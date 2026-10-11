@@ -1,6 +1,6 @@
 # 5.3 Sampling From The Normal Distribution
 
-📊 **Progress:** `21` Notes | `29` Screenshots | `7` AI Reviews
+📊 **Progress:** `21` Notes | `29` Screenshots | `8` AI Reviews
 
 ---
 <a id="node-lmu32b0"></a>
@@ -842,16 +842,16 @@
 
 ###### Chứng minh S² Chi-square
 
-<p align="center"><kbd><img src="assets/d32ijmy0cdd.png" width="80%"></kbd></p>
-
 <p align="center"><kbd><img src="assets/ozwzrjiuv89.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/d32ijmy0cdd.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Phần này gs chứng minh vế cuối của theorem: là nếu X1,...Xn là random sample từ normal(μ, σ²) thì
 >
 >
 >
-> c): (n-1)S²/σ sẽ là Chi-square n-1 (χ²\_n-1)
+> c): (n-1)S²/σ² sẽ là Chi-square n-1 (χ²\_n-1)
 >
 >
 >
@@ -859,11 +859,11 @@
 >
 >
 >
-> Có nghĩa là cần chứng minh (n-1)S² sẽ là Chi-square n-1
+> Có nghĩa là cần chứng minh (n-1)S² sẽ là χ²\_n-1
 >
 >
 >
-> Đầu tiên phải ta sẽ chấp nhận công thức sample variance của mẫu size n sẽ quan hệ với sample variance của mẫu size n-1 bởi:
+> Đầu tiên phải ta sẽ chấp nhận (nội dung bài tập 5.15) công thức sample variance của mẫu size n sẽ quan hệ với sample variance của mẫu size n-1 bởi:
 >
 >
 >
@@ -875,7 +875,19 @@
 >
 >
 >
-> Chứng minh nó đúng với n=2, tức chứng minh (2-1)S²\_2/σ (sample variance của bộ có 2 cái X1, X2) là một Chi-square 1
+> ---
+>
+>
+>
+> X1,...Xn \~ n(0,1)
+>
+>
+>
+> Chứng minh (n-1)S²/σ² sẽ là χ²\_n-1
+>
+>
+>
+> Chứng minh nó đúng với n=2, tức chứng minh (2-1)S²\_2/1 =  (2-1)S²\_2 (sample variance của bộ có 2 cái X1, X2) là một χ²\_1
 >
 >
 >
@@ -887,7 +899,67 @@
 >
 >
 >
-> Vì theorem trước đây đã có nói (theo link), tổng của hai rv independent normal sẽ cũng là một normal, với param mean = tổng mean và variance = tổng variance. Ở đây X1, X2 là independent normal(0,1), thì -X1 cũng là normal(0, 1), (vì tuy có thể trả lời bằng cách derive pdf, nhưg có thể dùng location scale không? nó nói nếu Z \~ standard pdf f(x), thì σZ + μ sẽ là family member có location μ và scale param σ. với normal thì location và scale cũng là mean và standard deviation nên σZ + μ sẽ có mean μ, variance σ², ở đây -X1 = (-1)\*X1 + 0 ⇨ -X1 distribution cũng là thành viên với location = mean là 0, scale = -1 ⇨ variance = (-1)² = 1
+> Vì theorem trước đây đã có nói (theo link), tổng của hai rv independent normal sẽ cũng là một normal, với param mean = tổng mean và variance = tổng variance. Ở đây X1, X2 là independent normal(0,1), thì -X1 cũng là normal(0, 1) và (-X1) + X2 \~ normal(0,2)
+>
+>
+>
+> ---
+>
+>
+>
+> Vì sao -X1 cũng là normal(0, 1)? → Dùng location scale? nó nói nếu Z \~ standard pdf f(x), thì σZ + μ sẽ là family member có location μ và scale param σ. với normal thì location và scale cũng là mean và standard deviation nên σZ + μ sẽ có mean μ, variance σ², ở đây -X1 = (-1) × X1 + 0 ⇨ -X1 distribution cũng là thành viên với location = mean là 0, scale = |-1| = 1 ⇨ variance = (-1)² = 1
+>
+>
+>
+> ---
+>
+>
+>
+> (Chứng minh nhanh X \~ n(μ1, σ1²) và Y \~ n(μ2, σ2²), X,Y độc lập thì X+Y \~ n(μ1+μ2,σ1²+σ2²)) bằng mgf:
+>
+>
+>
+> MGF của X \~ normal(μ, σ²): M(t) = E\[exp(tX)\] = exp(μ1t + σ1²t²/2)
+>
+>
+>
+> M(t) = E\[exp(tX)\] = exp(μt + σ²t²/2)
+>
+>
+>
+> MGF của X+Y: M(X+Y)(t) = E\[exp(t(X+Y))\] = E\[exp(tX+tY))\]
+>
+>
+>
+> = E\[exp(tX)exp(tY)\] 
+>
+>
+>
+> = E\[exp(tX)\]E\[exp(tY)\] (do X,Y độc lập) 
+>
+>
+>
+> U,V: E\[UV\] = ∫∫uvf(u,v)dudv = ∫∫uvf(u)f(v)dudv = ∫vf(v)(∫uf(u)du)dv = ∫vf(v)(EU)dv = EU ∫vf(v)dv = EUEV
+>
+>
+>
+> = MX(t)MY(t) = exp(μ1t + σ1²t²/2) exp(μ2t + σ2²t²/2) = exp(μ1t + σ1²t²/2 + μ2t + σ2²t²/2) 
+>
+>
+>
+> = exp\[(μ1+μ2)t + (σ1²+σ2²)t²/2\] 
+>
+>
+>
+> = exp\[at + b²t²/2\] 
+>
+>
+>
+> đây chính là mgf của một n(μ1+μ2,σ1²+σ2²) nên kết luận X+Y là n(μ1+μ2,σ1²+σ2²))
+>
+>
+>
+> ---
 >
 >
 >
@@ -895,19 +967,27 @@
 >
 >
 >
-> Tiếp, xét (X2 - X1)/2 thì cũng lại dùng location scale theorem: Nói rằng nếu X \~ thành viên có location μ, scale σ thì Z = (X - μ)/ σ sẽ là thành viên chuẩn (location 0, scale 1) Nên ở đây (X2 - X1) là thành viên location 0, scale √2 ⇨ \[(X2 - X1) - 0\]/√2 chính là sẽ ra thành viên chuẩn (location 0, scale 1) mà xét trong bối cảnh normal thì sẽ là mean 0, std 1 ⇨ normal(0,1)
+> Z \~ n(0,1) thì  X=Zσ + μ \~ n(μ, σ²) thì ngược lại X \~ n(μ, σ²) thì (X - μ)/σ \~ n(0,1)
 >
 >
 >
-> Vậy (X2 - X1)/√2 là normal(0,1) ⇨ \[(X2 - X1)/√2\]² = (X2 - X2)/2 là Chi-square 1
+> Tiếp, xét (X2 - X1)/√2 thì cũng lại dùng location scale theorem: Nói rằng nếu X \~ thành viên có location μ, scale σ thì Z = (X - μ)/ σ sẽ là thành viên chuẩn (location 0, scale 1). Nên ở đây (X2 - X1) là thành viên location 0, scale √2 ⇨ \[(X2 - X1) - 0\]/√2 chính là sẽ ra thành viên chuẩn (location 0, scale 1) mà xét trong bối cảnh normal thì sẽ là mean 0, std 1 ⇨ normal(0,1)
 >
 >
 >
-> Hay, (2-1) S²\_2 (hay (n-1)S²\_n với n = 2) là Chi-square 1
+> Vậy (X2 - X1)/√2 là normal(0,1) ⇨ \[(X2 - X1)/√2\]² = (X2 - X1)²/2 là χ²\_1
 >
 >
 >
-> ====
+> ⇔ (2-1) S²\_2 \~ χ²\_1
+>
+>
+>
+> Cũng là (n-1)S²\_n với n = 2 là χ²\_1
+>
+>
+>
+> ---
 >
 >
 >
@@ -915,7 +995,7 @@
 >
 >
 >
-> Vậy thì ta giả sử nó đúng với mẫu size k, tức là (k-1)S²\_k/σ (sample mean của mẫu size k (tức gồm X1,...Xk) là một Chi-square (k-1)
+> Vậy thì ta **giả sử nó đúng với mẫu size k**, tức là: (k-1)S²\_k \~ χ²\_(k-1)
 >
 >
 >
@@ -923,7 +1003,11 @@
 >
 >
 >
-> ta có (k + 1 - 1)S²\_k+1 = (k + 1 - 2)S²\_k+1-1 + (k+1-1)/k+1 (X_k+1 - X_k+1-1_bar)²
+> thay n = k+1:
+>
+>
+>
+> (k+1-1)S²\_k+1 = (k+1-2)S²\_k+1-1 + (k+1-1)/(k+1) (X_k+1 - X̄\_k+1-1)²
 >
 >
 >
@@ -931,7 +1015,11 @@
 >
 >
 >
-> Với việc đã giả thiết (k-1)S²\_k là Chi-square (k-1) thì ta cần chứng minh S²\_k+1 là Chi-square k
+> Với việc đã giả thiết (k-1)S²\_k/σ² là χ²\_(k-1) thì ta cần chứng minh kS²\_k+1/σ² là χ²\_k
+>
+>
+>
+> ---
 >
 >
 >
@@ -939,67 +1027,71 @@
 >
 >
 >
-> Đại khái là vầy: X_k+1 - X̄\_k = X_k+1 - (X1 + X2 + ...Xk) / k. Và cái này là tổng của các normal (X_k+1, -X1/k, -X2/k,.. đều là normal, chỉ khác param) Và có thể làm kĩ để xem nó là normal param bao nhiêu hoặc chỉ dùng linearity tính variance của nó.
+> Đại khái là: X_k+1 - X̄\_k = X_k+1 - Σi Xi / k.
 >
 >
 >
-> Làm kĩ: X_k+1 thì là normal(0,1) rồi, -X1/k = (-1/k) X1 + 0, với X1 là standard member thì (-1/k) X1 + 0 là member với location 0, scale -1/k, và với việc X1 là normal thì ⇨ ta có (-1/k) X1 \~ normal(0, 1/k²). Tương tự với (-1/k) X2,....(-1/k) Xk
+> Xi \~ n(0,1) ⇒ Xi / k \~ n(0, 1/k²) (location scale family: Z là standard member thì Zσ \~ location 0, scale σ)
 >
 >
 >
-> ⇨ X_k+1 - (X1 + X2 + ...Xk) / k \~ normal(0 + ..0, 1 + Σi=1:k 1/k²) = normal(0, 1 + k/k²)
+> Nên cái này là tổng của các normal (X_k+1, -X1/k, -X2/k,.. đều là normal, chỉ khác param)
 >
 >
 >
-> tức là variance của nó: = 1 + k/k² = 1 + 1/k = **(k+1)/k**
+> ⇨ X_k+1 - (X1 + X2 + ...Xk) / k \~ normal(0 + ..0, 1 + 1/k² +...+ 1/k²) = normal(0, 1 + k/k²)
 >
 >
 >
-> Còn không có thể tính Var(X_k+1 - X̄\_k) = Var(X_k+1 - (X1 + X2 + ...Xk) / k)
+> tức là variance của nó: = 1 + k/k² = 1 + 1/k = (k+1)/k
 >
 >
 >
-> = Var(X_k+1) + Var(-X1/k) + Var(-X2/k) + ...+ Var(-Xk/k) | Ta có điều này là vì các
+> ---
 >
 >
 >
-> X_k+1, -X1/k, -X2/k,... mutually independent ⇨ covariance bằng 0 = 1 + (1/k²) Var(X1) + (1/k²) Var(X2) + ...(1/k²) Var(Xk) | dùng tính chất của variance:
+> Làm cho vui: Xác nhận kết quả variance này theo cách khác: Vì X_k+1, -X1/k, -X2/k,... mutually independent ⇒ covariance bằng 0:
 >
 >
 >
-> Var(cX) = c² Var(X)
+> Var(X_k+1 - X̄\_k) = Var(X_k+1 - Σi Xi / k) = Var(X_k+1) + Σi Var(-Xi/k)
 >
 >
 >
-> = 1 + (1/k²) + ...(1/k²) = 1 + k/k² = 1 + 1/k
+> = 1 + Σi (1/k²) Var(Xi) = 1 + Σi (1/k²) = 1 + k/k² = 1 + 1/k = (k+1)/k
 >
 >
 >
-> Tiếp, vậy X_k+1 - X̄\_k là normal (0, (k+1)/k), nên lại theo location scale theorem:
+> ---
 >
 >
 >
-> (chú ý nói X_k+1 - X̄\_k là normal (0, (k+1)/k) thì tức là nó là member có location 0 scale √(k+1)/k nhé)
+> Tiếp, vậy X_k+1 - X̄\_k là n(0, (k+1)/k), nên lại theo location scale theorem:
 >
 >
 >
-> \[(X_k+1 - X̄\_k) - 0\] / √\[(k+1)/k\] sẽ là standard member có location 0, scale 1, tức normal(0,1)
+> (Chú ý nói X_k+1 - X̄\_k là normal (0, (k+1)/k) thì tức là nó là member có location 0, scale √\[(k+1)/k\] = √(k+1)/√k\] nhé, vì normal family là một loại location scale family với scale param là std, location là mean)
 >
 >
 >
-> ⇨ √(k/k+1)(X_k+1 - X̄\_k) \~ normal (0,1)
+> \[(X_k+1 - X̄\_k) - 0\] / \[√(k+1)/√k\] sẽ là standard member có location 0, scale 1, tức normal(0,1)
 >
 >
 >
-> Và suy ra bình phương của nó là Chi-square 1
+> ⇨ (X_k+1 - X̄\_k) √k / √(k+1) \~ normal (0,1)
 >
 >
 >
-> \[√(k/k+1)(X_k+1 - X̄\_k)\]² = **(k/k+1)**(X_k+1 **-** X̄\_k)\*\*² **\~ Chi-square 1**
+> ⇒ (X_k+1 - X̄\_k)² k / (k+1) \~ χ²\_1
 >
 >
 >
-> ====
+> ⇒ \[(k/k+1)\](X_k+1 - X̄\_k)² \~χ²\_1
+>
+>
+>
+> ---
 >
 >
 >
@@ -1007,69 +1099,142 @@
 >
 >
 >
-> Ta đã có S²\_k theo giả thiết là Chi-square k
+> Ta đã có: theo giả thiết là (k-1)S²\_k \~ χ²\_(k-1)
 >
 >
 >
-> Nay ta đã chứng minh (k/k+1) (X_k+1 - X̄\_k)² là Chi-square 1
+> Nay đã chứng minh: (k/k+1) (X_k+1 - X̄\_k)² là χ²\_1
 >
 >
 >
-> Vậy dùng cái theorem vữa nãy, nói là tổng của các chi-square sẽ là chi-square với bậc tự do cộng lại. Suy ra (k-1)S²\_k + (k/k+1) (X_k+1 - X̄\_k)² là một Chi-square có k + 1 bậc tự do. Chứng minh xong kS²\_k+1 là Chi-square k + 1
+> nên kS²\_k+1 là tổng của χ²\_(k-1) và χ²\_1
 >
 >
 >
->
->
-> Một điểm quan trọng có thể bỏ xót. Phải nói rõ là các Chi-square độc lập thì mới áp dụng theorem tổng Chi-square cũng là Chi-square nhé. Nên ở đây trong sách giáo sư Casella có chỉ ra S²\_k độc lập với X_k+1 - X̄\_k
->
->
->
-> Và vì sao chúng độc lập là vì vế a) của theorem 5.3.1 nói rằng với X1,..Xn là random sample từ normal(μ, σ²) thì X̄ và S² độc lập nhau.
+> Vậy dùng cái theorem  nãy, nói là **tổng của các χ² độc lập sẽ là χ² với bậc tự do cộng lại**.
 >
 >
 >
-> Vậy với random sample size k từ normal(0, 1) thì sample mean X̄\_k và sample variance S²\_k cũng độc lập nhau. Mà như vậy thì X_k+1 - X̄\_k cũng độc lập với S²\_k vì S²\_k chả liên quan gì đến X_k+1 (vì nó chỉ liên quan X1,...Xk)
+> ⇒ χ²\_(k-1) và χ²\_1 \~ χ²\_k
+>
+>
+>
+> ⇒ Chứng minh xong kS²\_k+1 là χ²\_k
+>
+>
+>
+> ---
+>
+>
+>
+> (Phải nói rõ là các Chi-square độc lập thì mới áp dụng theorem tổng Chi-square cũng là Chi-square nhé. Nên ở đây trong sách giáo sư Casella có chỉ ra S²\_k độc lập với X_k+1 - X̄\_k)
+>
+>
+>
+> Và vì sao chúng độc lập?
+>
+>
+>
+> Là vì vế a) của theorem 5.3.1 nói rằng với X1,..Xn là random sample từ normal(μ, σ²) thì X̄ và S² độc lập nhau.
+>
+>
+>
+> Nên với random sample size k từ normal(0, 1) thì sample mean X̄\_k và sample variance S²\_k cũng độc lập nhau.
+>
+>
+>
+> X̄\_k độc lập với S²\_k
+>
+>
+>
+> X_k+1 độc lập với S²\_k vì X_k+1 độc lập X1,....Xk nên độc lập với S²\_k (là hàm của X1,....Xk)
+>
+>
+>
+> X_k+1 độc lập X̄\_k
+>
+>
+>
+> Nên mọi hàm của X_k+1 và X̄\_k, ví dụ (X_k+1 - X̄\_k) đều độc lập với S²\_k
+>
+>
+>
+> ---
+>
+>
+>
+> Cuối cùng, kết quả (n-1)S²\_n \~ χ²\_n-1 là đối với Xi \~ n(0,1), đổi tên lại thành Zi, và S²\_n này là sample variance của đám Zi \~ n(0,1)
+>
+>
+>
+> Ta có:
+>
+>
+>
+> (n-1)S²\_n \~ χ²\_n-1 với S²\_n = Σi (Zi-Z̄)²/(n-1)
+>
+>
+>
+> Xi ban đầu \~ n(μ, σ²), nên Xi = σZi + μ ⇔ Zi = (Xi - μ)/σ
+>
+>
+>
+> Z̄ = (Σi Zi) / n = \[Σi (Xi - μ)/σ\]/n = \[(1/σ)(Σi Xi - Σiμ)\]/n = (1/σ)(Σi Xi - nμ)/n = (1/σ)((Σi Xi)/n - μ) = (1/σ)(X̄ - μ) = (X̄ - μ)/σ
+>
+>
+>
+> ... ⇔ (n-1)S²\_n = (n-1) Σi ((Xi - μ)/σ-Z̄ )²/(n-1) \~ χ²\_n-1
+>
+>
+>
+> ⇔ = (n-1) Σi \[(Xi - μ)/σ-(X̄ - μ)/σ\]²/(n-1) \~ χ²\_n-1
+>
+>
+>
+> ⇔ = (n-1) Σi \[(Xi - μ)-(X̄ - μ)\]²/σ²(n-1) \~ χ²\_n-1
+>
+>
+>
+> ⇔ = (n-1) Σi (Xi - μ - X̄ + μ)²/σ²(n-1) \~ χ²\_n-1
+>
+>
+>
+> ⇔ = (n-1) Σi (Xi - X̄ )²/σ²(n-1) \~ χ²\_n-1
+>
+>
+>
+> ⇔ = (n-1) Σi \[(Xi - X̄ )²/(n-1)\]/σ² \~ χ²\_n-1
+>
+>
+>
+> ⇔ = (n-1) Σi \[(Xi - X̄ )²/(n-1)\]/σ² \~ χ²\_n-1
+>
+>
+>
+> Σi \[(Xi - X̄ )²/(n-1)\] bây giờ là S², random sample của đám Xi \~ n(μ, σ²)
+>
+>
+>
+> Vậy ta có (n-1) S²/σ² \~ χ²\_n-1, chứng minh xong ý c).
+
+📹 Video 1: [Chứng minh S² Chi-square — Statistical Inference - Casella](https://www.youtube.com/watch?v=V4s75gq78PI)
+
+📹 Video 2: [Ôn nhanh location scale family.](https://www.youtube.com/watch?v=4QKRIw9ZxL8)
+
+📹 Video 3: [Chứng minh X,Y ~ normal độc lập thì X+Y cũng là normal](https://www.youtube.com/watch?v=ZqHWCkV8iG0)
 
 > [!TIP]
-> 🤖 **AI Check** — 🔴 Critical issues — ❌ **68/100** · ✗ Fix first
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chép thể hiện sự nắm bắt rất tốt về các bước biến đổi và lập luận tính độc lập, tuy nhiên ở bước chốt của phép quy nạp bạn đã nhầm lẫn bậc tự do khiến kết luận bị sai lệch thành Chi-square k+1 thay vì k.
->
-> **🔴 Critical issues**
->
-> **1.** *"Ta đã có Sk^2 theo giả thiết là Chi-square k ... Suy ra (k-1)Sk^2 + (k/k+1) (Xk+1 - Xk_bar)^2 là một Chi-square có k + 1 bậc tự do. Chứng minh xong kSk+1^2 là Chi-square k + 1"*
->
-> Theo giả thiết quy nạp, (k-1)S_k^2 có phân phối Chi-square với k - 1 bậc tự do (chứ không phải k). Do đó khi cộng với số hạng thứ hai có phân phối Chi-square 1 bậc tự do, tổng k*S_{k+1}^2 có phân phối Chi-square với (k - 1) + 1 = k bậc tự do. Việc ghi nhận thành k + 1 bậc tự do mâu thuẫn trực tiếp với định lý cần chứng minh là (n-1)S_n^2 ~ Chi-square(n-1).
->
->
-> **🟡 Minor issues**
->
-> **1.** *"(n-1)S^2/σ sẽ là Chi-square n-1"*
->
-> Mẫu số chuẩn hóa phải là phương sai σ² chứ không phải độ lệch chuẩn σ: (n-1)S²/σ² ~ Chi-square(n-1).
->
-> **2.** *"tức là (k-1)Sk^2/σ  (sample mean của mẫu size k (tức gồm X1,...Xk) là một Chi-square (k-1)"*
->
-> Gõ nhầm thuật ngữ 'sample mean' thay vì 'sample variance' khi đang nói về S_k².
->
-> **3.** *"[(X2 - X1)/√2]^2 = (X2 - X2)/2"*
->
-> Lỗi gõ nhầm (typo) ở tử số, đúng ra phải là (X2 - X1)²/2.
->
-> **4.** *"scale = -1"*
->
-> Theo quy ước định nghĩa họ location-scale, tham số scale luôn là một số dương (σ > 0); phép nhân với -1 cho scale là |-1| = 1.
->
+> Ghi chú cực kỳ chi tiết, giải thích tường tận từng bước từ trường hợp cơ sở, bước quy nạp đến tính độc lập và phép đổi biến tổng quát hóa. Tư duy toán học rất mạch lạc và chuẩn xác.
 >
 > **✓ Strengths**
-> - Trình bày và dẫn dắt rất tường minh, chi tiết bước cơ sở n = 2 bằng tính chất tổng/hiệu của hai biến chuẩn độc lập.
-> - Tự tính toán chuẩn xác kỳ vọng và phương sai của biến ngẫu nhiên X_{k+1} - X̄_k thông qua tính chất tuyến tính của phương sai.
-> - Nắm rất vững và giải thích đúng điều kiện cần thiết về tính độc lập giữa S_k² và X̄_k (theo Theorem 5.3.1a) để áp dụng định lý cộng các biến Chi-square.
+> - Hiểu rất rõ và tự giải thích chi tiết bước chuẩn hóa biến ngẫu nhiên về N(0,1) cũng như quy đổi ngược lại về tổng quát N(μ, σ²).
+> - Chứng minh chặt chẽ phân phối của hiệu X_{k+1} - X̄_k theo cả quy tắc tổ hợp tuyến tính và tính phương sai độc lập.
+> - Bổ sung dẫn chứng MGF và họ vị trí - tỉ lệ (location-scale family) để làm rõ bản chất các bước biến đổi mà sách giáo khoa lược giản.
 >
 > **💡 Deeper notes**
-> - Cần lưu ý phân biệt rạch ròi giữa kích thước mẫu (k, k+1) và bậc tự do của phân phối Chi-square (k-1, k) để tránh nhầm lẫn ở bước cộng bậc tự do.
-> - Việc giả sử normal(0, 1) không làm mất tính tổng quát vì với mẫu chuẩn bất kỳ N(μ, σ²), ta luôn chuẩn hóa được Z_i = (X_i - μ)/σ và khi đó (n-1)S²/σ² chính là tổng bình phương sai lệch của các biến Z_i chuẩn hóa.
+> - Về tính độc lập giữa vector (X_{k+1}, X̄_k) và S_k²: Trong lý thuyết xác suất, A độc lập C và B độc lập C không mặc nhiên suy ra (A, B) độc lập C. Tuy nhiên ở đây tính chất này hoàn toàn đúng vì X_{k+1} độc lập với toàn bộ vector mẫu (X_1, ..., X_k), và bản thân X̄_k độc lập với S_k² (theo định lý 5.3.1a).
 
 **🔗 See also:** [MGF của tổng phân phối chuẩn](./42_conditional_distributions_independent.md#node-tk1wnj7) · [Tính chất Trung bình & Phương sai mẫu](#node-aytwme7)
 
@@ -1325,6 +1490,26 @@
 >
 > Đây chính là cái ràng buộc (restriction) đối với các constant mà giáo sư 
 > nói tới trong phần tiếp theo**
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, tự triển khai chi tiết và chính xác hai bước chứng minh mà sách giáo khoa bỏ qua (độc lập suy ra hiệp phương sai bằng 0 và công thức tính hiệp phương sai của tổ hợp tuyến tính).
+>
+> **🟡 Minor issues**
+>
+> **1.** *"+ 2ai1br2(X1 - μ1)(X2 - μ2) + ... (các cross term)"*
+>
+> Khi khai triển tích hai tổng có hệ số khác nhau (aij và brj), các số hạng chéo là ai1 br2 và ai2 br1 chứ không tự gộp thành hệ số 2 như hằng đẳng thức bình phương thông thường. Dù vậy, ngay dòng sau bạn đã viết lại dạng tổng tổng quát đúng (aik brh với k ≠ h).
+>
+>
+> **✓ Strengths**
+> - Tự suy diễn và chứng minh trọn vẹn công thức Cov(Ui, Vr) = Σj aij brj σj² từ định nghĩa thay vì chỉ thừa nhận như trong sách.
+> - Nắm vững tính chất tuyến tính của kỳ vọng và tính triệt tiêu của các số hạng chéo do giả thiết các Xj độc lập.
+> - Hiểu rõ mục đích của việc chuẩn hóa μi = 0 và σi² = 1 để rút gọn điều kiện Cov = 0 về dạng ràng buộc hệ số Σj aij brj = 0.
+>
+> **💡 Deeper notes**
+> - Để chứng minh Ui và Vr độc lập khi biết Cov(Ui, Vr) = 0, cần nhấn mạnh rằng cặp (Ui, Vr) có phân phối chuẩn đồng thời (bivariate normal) nhờ tính chất vector chuẩn, vì nói chung Cov = 0 chỉ suy ra độc lập đối với phân phối chuẩn nhiều chiều chứ không đúng cho mọi biến ngẫu nhiên.
 
 **🔗 See also:** [Định lý Độc lập Hiệp phương sai](./45_covariance_correlation.md#node-o2ergsg) · [Chứng minh tổng biến chuẩn](./46_multi_variate_distribution.md#node-uaywczk)
 
