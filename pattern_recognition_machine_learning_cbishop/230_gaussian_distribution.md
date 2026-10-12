@@ -120,55 +120,55 @@
 <p align="center"><kbd><img src="assets/cdbd2fg9wmk.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Thế thì chỗ này gs nói matrix Σ có thể coi như là symmetric (đối xứng), mà không mất tính tổng quát vì mọi thành phần bất đối xứng đều bị biến mất bởi exponent. Là sao ta?
+> Thế thì chỗ này gs nói matrix 𝚺 có thể coi như là symmetric (đối xứng), mà không mất tính tổng quát vì mọi thành phần bất đối xứng đều bị biến mất bởi exponent. Là sao ta? 
 >
 >
 >
-> Sau khi thảo luận với gemini, mình hiểu thế này: Một matrix A được gọi là đối xứng khi Aᵀ = A (A tranpose, chuyển vị, bằng chính nó). Còn nếu Aᵀ = -A thì nó gọi là anti-symmetric matrix.
+> Sau khi thảo luận với gemini, mình hiểu thế này: Một matrix 𝐀 được gọi là đối xứng khi 𝐀ᵀ = 𝐀 (𝐀 tranpose, chuyển vị, bằng chính nó). Còn nếu 𝐀ᵀ = -𝐀 thì nó gọi là anti-symmetric matrix.
 >
 >
 >
-> Thế thì giả sử ta xét một matrix A bình thường (bất kì, bằng cách biến đổi chút ta sẽ có: A = (1/2)A + (1/2)A
+> Thế thì giả sử ta xét một matrix 𝐀 bình thường (bất kì, bằng cách biến đổi chút ta sẽ có: 𝐀 = (1/2)𝐀 + (1/2)𝐀
 >
 >
 >
-> = (1/2)A + (1/2)Aᵀ + (1/2)A - (1/2)Aᵀ
+> = (1/2)𝐀 + (1/2)𝐀ᵀ + (1/2)𝐀 - (1/2)𝐀ᵀ
 >
 >
 >
-> = (1/2)(A + Aᵀ) + (1/2)(A - Aᵀ)
+> = (1/2)(𝐀 + 𝐀ᵀ) + (1/2)(𝐀 - 𝐀ᵀ)
 >
 >
 >
-> Khi đó ta có (1/2)(A + Aᵀ) là matrix đối xứng, vì (1/2)(A + Aᵀ)ᵀ = (1/2)(Aᵀ + A) = (1/2)(A + Aᵀ)
+> Khi đó ta có (1/2)(𝐀 + 𝐀ᵀ) là matrix đối xứng, vì (1/2)(𝐀 + 𝐀ᵀ)ᵀ = (1/2)(𝐀ᵀ + 𝐀) = (1/2)(𝐀 + 𝐀ᵀ)
 >
 >
 >
-> Còn (1/2)(A - Aᵀ) là matrix anti-symmetric vì (1/2)(A - Aᵀ)ᵀ = (1/2)(Aᵀ - A) = -(1/2)(A - Aᵀ)
+> Còn (1/2)(𝐀 - 𝐀ᵀ) là matrix anti-symmetric vì (1/2)(𝐀 - 𝐀ᵀ)ᵀ = (1/2)(𝐀ᵀ - 𝐀) = -(1/2)(𝐀 - 𝐀ᵀ)
 >
 >
 >
-> Như vậy có thể hiểu mọi matrix Σ bất kì đều có thể thể hiện bởi tổng của một matrix symmetric và một matrix antisymmetric.
+> Như vậy có thể hiểu mọi matrix 𝚺 bất kì đều có thể thể hiện bởi tổng của một matrix symmetric và một matrix antisymmetric.
 >
 >
 >
-> Thế thì như vậy, nếu ta xét Σ trong Gaussian là matrix bất kì, thì cái cụm quadratic form sẽ trở thành (𝐱 - **μ**)ᵀ Σ⁻¹ (𝐱 - **μ**)
+> Thế thì như vậy, nếu ta xét 𝚺 trong Gaussian là matrix bất kì, thì cái cụm quadratic form sẽ trở thành (𝐱 - **μ**)ᵀ 𝚺⁻¹ (𝐱 - **μ**)
 >
 >
 >
-> = (𝐱 - **μ**)ᵀ \[Σ⁻¹_sym + Σ⁻¹_asym\] (𝐱 - **μ**)
+> = (𝐱 - **μ**)ᵀ \[𝚺⁻¹\_sym + 𝚺⁻¹\_asym\] (𝐱 - **μ**)
 >
 >
 >
-> = (𝐱 - **μ**)ᵀ Σ⁻¹_sym (𝐱 - **μ**) + (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**)
+> = (𝐱 - **μ**)ᵀ 𝚺⁻¹\_sym (𝐱 - **μ**) + (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**)
 >
 >
 >
-> Xét hạng tử thứ hai: 
+> Xét hạng tử thứ hai:
 >
 >
 >
-> (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**)
+> (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**)
 >
 >
 >
@@ -176,44 +176,52 @@
 >
 >
 >
-> (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**) = \[(𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**)\]ᵀ
+> (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**) = \[(𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**)\]ᵀ
 >
 >
 >
-> ⇔ (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**) = (𝐱 - **μ**)ᵀ (Σ⁻¹_asym)ᵀ (𝐱 - **μ**)
+> ⇔ (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**) = (𝐱 - **μ**)ᵀ (𝚺⁻¹\_asym)ᵀ (𝐱 - **μ**)
 >
 >
 >
-> ⇔ (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**) = (𝐱 - **μ**)ᵀ (-Σ⁻¹_asym) (𝐱 - **μ**)
+> ⇔ (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**) = (𝐱 - **μ**)ᵀ (-𝚺⁻¹\_asym) (𝐱 - **μ**)
 >
 >
 >
-> ⇔ (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**) = -(𝐱 - **μ**)ᵀ (Σ⁻¹_asym) (𝐱 - **μ**)
+> ⇔ (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**) = -(𝐱 - **μ**)ᵀ (𝚺⁻¹\_asym) (𝐱 - **μ**)
 >
 >
 >
-> Như vậy,  nếu coi vế trái là c thì ta có c = -c, suy ra c = 0.
+> Như vậy, nếu coi vế trái là c thì ta có c = -c, suy ra c = 0.
 >
 >
 >
-> Vậy (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**) = 0
+> Vậy (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**) = 0
 >
 >
 >
-> ⇨ (𝐱 - **μ**)ᵀ Σ⁻¹_sym (𝐱 - **μ**) + (𝐱 - **μ**)ᵀ Σ⁻¹_asym (𝐱 - **μ**)
+> ⇨ (𝐱 - **μ**)ᵀ 𝚺⁻¹\_sym (𝐱 - **μ**) + (𝐱 - **μ**)ᵀ 𝚺⁻¹\_asym (𝐱 - **μ**)
 >
 >
 >
-> = (𝐱 - **μ**)ᵀ Σ⁻¹_sym (𝐱 - **μ**) 
+> = (𝐱 - **μ**)ᵀ 𝚺⁻¹\_sym (𝐱 - **μ**)
 >
 >
 >
-> Do đó, dù có xét Σ có không đối xứng thì quadratic form (𝐱 - **μ**)ᵀ Σ⁻¹ (𝐱 - **μ**) cũng chỉ còn lại phần đối xứng của nó. Thành ra gs mới nói là ta coi Σ là matrix đối xứng mà không sợ mất tính tổng quát (loss of generality)
+> Do đó, dù có xét 𝚺 có không đối xứng thì quadratic form (𝐱 - **μ**)ᵀ 𝚺⁻¹ (𝐱 - **μ**) cũng chỉ còn lại phần đối xứng của nó. Thành ra gs mới nói là ta coi 𝚺 là matrix đối xứng mà không sợ mất tính tổng quát (loss of generality)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Phân tích của bạn rất sâu sắc và chính xác, giải thích rõ ràng lý do tại sao thành phần phản đối xứng biến mất khỏi biểu thức bậc hai. Việc phân tích từng bước này thể hiện sự hiểu biết vững chắc về đại số tuyến tính.
+> Ghi chú xuất sắc! Bạn đã chứng minh rất chặt chẽ và rõ ràng tại sao thành phần phản đối xứng (anti-symmetric) triệt tiêu trong dạng toàn phương của số mũ Gaussian.
+>
+> **✓ Strengths**
+> - Phân tích đúng đắn việc mọi ma trận vuông luôn phân tích được thành tổng của một ma trận đối xứng và một ma trận phản đối xứng.
+> - Chứng minh chuẩn xác tính chất vector-ma trận: với ma trận phản đối xứng K và vector v bất kỳ, vᵀ K v = 0 dựa trên tính chất chuyển vị của một scalar (c = cᵀ).
+>
+> **💡 Deeper notes**
+> - Phân tích ma trận thành phần đối xứng và phản đối xứng chỉ áp dụng cho ma trận vuông (điều này luôn thỏa mãn với ma trận hiệp phương sai n x n).
+> - Lưu ý nhỏ về mặt đại số: phần đối xứng của ma trận nghịch đảo (Σ⁻¹)_sym nói chung không bằng nghịch đảo của phần đối xứng (Σ_sym)⁻¹. Tuy nhiên, vì hàm mật độ xác suất chỉ phụ thuộc vào (Σ⁻¹)_sym, ta có thể quy ước chọn ma trận chính xác (precision matrix) đối xứng ngay từ đầu, kéo theo Σ cũng là ma trận đối xứng mà không làm mất tính tổng quát.
 
 <br>
 
