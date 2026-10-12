@@ -2899,7 +2899,7 @@
 >
 > Do đó:
 >
-> *y(x) = E\[T|X=x\] = wᵀx*\*
+> *y(x) = E\[T|X=x\] = wᵀx\**
 >
 > Đây chính là cơ sở để giải thích tại sao chúng ta sử dụng wᵀx để prediction.
 >
@@ -2919,7 +2919,9 @@
 >
 > Machine Learning không phải tự nhiên mọc từ dưới đất lên. Nó được xây dựng trên nền tảng của Statistics, Decision Theory và Optimization.
 
-📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=cWEbHeh0JZg)
+📹 Video 1: [Tại sao lại dùng wᵀx làm prediction trong Linear Regression?](https://www.youtube.com/watch?v=qpbXwm7Wsy8)
+
+📹 Video 2: [Tại sao Linear Regression lại dùng wᵀx làm prediction? (cont)](https://www.youtube.com/watch?v=9RZ7m6mqCDc)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
