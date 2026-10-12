@@ -1,6 +1,6 @@
 # 5.3 Sampling From The Normal Distribution
 
-📊 **Progress:** `21` Notes | `29` Screenshots | `8` AI Reviews
+📊 **Progress:** `21` Notes | `29` Screenshots | `16` AI Reviews
 
 ---
 <a id="node-lmu32b0"></a>
@@ -1247,13 +1247,11 @@
 <p align="center"><kbd><img src="assets/900tplcxb4.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đại khái là  tác giả nói có thể chứng minh sample mean và sample variance 
-> độc lập bằng cách khác, thay vì như lúc nãy ta đã làm là chứng minh
-> joint pdf của chúng tách ra. Thì đầu tiên sẽ biết qua bổ đề sau:
+> Đại khái là tác giả nói có thể chứng minh sample mean và sample variance độc lập bằng cách khác, thay vì như lúc nãy ta đã làm là chứng minh joint pdf của chúng tách ra. Thì đầu tiên sẽ biết qua bổ đề sau:
 >
 >
 >
-> Đại khái nó nói là: cho X1,...Xn là các rv ~ normal(μj, σj²) j = 1,...n 
+> Đại khái nó nói là: cho X1,...Xn là các rv \~ normal(μj, σj²) j = 1,...n độc lập
 >
 >
 >
@@ -1261,59 +1259,50 @@
 >
 >
 >
-> Ui = Σj aij Xj 
+> Ui = Σj aij Xj
 >
 >
 >
-> và Vr = Σj brj Xj
+> và 
 >
 >
 >
-> Có nghĩa là ta có các random variable mới Ui, tạo ra bởi linear combine
-> các random variabel X1,..Xn
+> Vr = Σj brj Xj
 >
 >
 >
-> Khi đó: 
+> Có nghĩa là ta có các random variable mới Ui, tạo ra bởi linear combination các random variabel X1,..Xn
 >
 >
 >
-> a)Ui và Vr đọc lập khi và chỉ khi Cov(Ui, Vr) = 0 và hơn nữa  
-> Cov(Ui, Vr) = Σj aijbrj j²
+> Khi đó:
 >
 >
 >
-> b) random vector (U1,...Uk) và (V1,...Vm) độc lập khi và chỉ khi Ui độc lập
-> với Vr với mọi cặp i, j
+> a)Ui và Vr độc lập khi và chỉ khi Cov(Ui, Vr) = 0 và hơn nữa Cov(Ui, Vr) = Σj aijbrj σj²
+>
+>
+>
+> b) random vector (U1,...Uk) và (V1,...Vm) độc lập khi và chỉ khi Ui độc lập với Vr với mọi cặp i, r
 
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ⚠️ **85/100** · ✓ Move on
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
 >
-> Ghi chú đã nắm đúng tinh thần và nội dung chính của Bổ đề 5.3.3 về mối liên hệ giữa tính độc lập và hiệp phương sai của các tổ hợp tuyến tính từ biến chuẩn. Tuy nhiên, bạn đã bỏ quên giả thiết độc lập ban đầu của các $X_j$ và có hai lỗi gõ phím nhỏ ở công thức hiệp phương sai và chỉ số cặp.
+> Ghi chú tóm tắt rất tốt và chính xác nội dung bổ đề cũng như bối cảnh áp dụng; chỉ bỏ sót một điều kiện nhỏ về số chiều.
 >
 > **🟡 Minor issues**
 >
-> **1.** *"cho X1,...Xn là các rv ~ normal(μj, σj^2) j = 1,...n"*
+> **1.** *"thì với các constant aij, brj ta định nghiã ra:"*
 >
-> Bổ đề yêu cầu các biến ngẫu nhiên $X_1, \dots, X_n$ phải độc lập với nhau (independent). Thiếu điều kiện này thì công thức tính Covariance và tính chất tương đương độc lập sẽ không còn áp dụng trực tiếp như vậy.
->
-> **2.** *"Cov(Ui, Vr) = Σj aijbrj j^2"*
->
-> Lỗi gõ phím: công thức đúng là $\sum_j a_{ij} b_{rj} \sigma_j^2$ (phương sai $\sigma_j^2$), không phải $j^2$.
->
-> **3.** *"với mọi cặp i, j"*
->
-> Lỗi nhầm chỉ số: $U_i$ đi với chỉ số $i$ ($1 \le i \le k$) và $V_r$ đi với chỉ số $r$ ($1 \le r \le m$), nên phải là 'với mọi cặp $i, r$' thay vì 'cặp $i, j$'.
+> Bổ đề có nêu điều kiện về số lượng biến được tổ hợp là k + m ≤ n (với i = 1,...,k và r = 1,...,m), phần này bị lược bỏ trong ghi chú.
 >
 >
 > **✓ Strengths**
-> - Nắm bắt chính xác mục đích của đoạn trích: dùng bổ đề về tổ hợp tuyến tính để chứng minh tính độc lập của $\bar{X}$ và $S^2$ thay vì phân tích hàm mật độ đồng thời (joint pdf).
-> - Hiểu đúng bản chất của $U_i$ và $V_r$ là các tổ hợp tuyến tính của các biến ngẫu nhiên ban đầu.
-> - Nắm chuẩn hai mệnh đề then chốt: độc lập tương đương với hiệp phương sai bằng 0 cho từng cặp, và hai vector độc lập khi mọi cặp thành phần độc lập.
+> - Nắm bắt chính xác bản chất Ui, Vr là các tổ hợp tuyến tính của các biến ngẫu nhiên chuẩn độc lập.
+> - Tóm tắt đúng và đầy đủ hai kết quả cốt lõi của bổ đề về tính độc lập tương đương với hiệp phương sai bằng 0 và tính độc lập theo từng cặp của vector ngẫu nhiên chuẩn.
 >
 > **💡 Deeper notes**
-> - Cần lưu ý điều kiện kích thước $k + m \le n$ trong bổ đề để đảm bảo tính hợp lệ khi chuyển đổi cơ sở/biến ngẫu nhiên.
-> - Tính chất 'độc lập $\iff \text{Cov} = 0$' chỉ đúng đặc biệt đối với phân phối chuẩn (jointly normal), trong trường hợp tổng quát không phân phối chuẩn thì Cov bằng 0 chỉ có nghĩa là không tương quan chứ chưa chắc độc lập.
+> - Điều kiện k + m ≤ n thường xuất hiện để đảm bảo có thể xây dựng một phép biến đổi trực giao hoặc không suy biến đầy đủ trên không gian n chiều ban đầu.
 
 <br>
 
@@ -1326,8 +1315,7 @@
 <p align="center"><kbd><img src="assets/xfe12q43zkg.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> đầu tiên giáo sư cho rằng có thể chứng minh bổ đề này với μi = 0, σi² = 1
-> ta sẽ quay lại ý này sau.
+> đầu tiên giáo sư cho rằng có thể chứng minh bổ đề này với μi = 0, σi² = 1 ta sẽ quay lại ý này sau.
 >
 >
 >
@@ -1335,16 +1323,15 @@
 >
 >
 >
-> X, Y independent thì Cov(X, Y) = 0. Đại khái là vì (tức là lập luận để chứng 
-> minh) Cov(X,Y) = E[(X - EX)(Y - EY)] = triển khai ra ta sẽ có công thức thứ 2:
+> X, Y independent thì Cov(X, Y) = 0. Đại khái là vì (tức là lập luận để chứng minh) Cov(X,Y) = E\[(X - EX)(Y - EY)\] = triển khai ra ta sẽ có công thức thứ 2:
 >
 >
 >
-> = E[XY - (EX)Y - XEY + EXEY]
+> = E\[XY - (EX)Y - XEY + EXEY\]
 >
 >
 >
-> = E(XY) - E[(EX)Y] - E[XEY] + E(EXEY)
+> = E(XY) - E\[(EX)Y\] - E\[XEY\] + E(EXEY)
 >
 >
 >
@@ -1352,13 +1339,11 @@
 >
 >
 >
-> = E(XY) - EXEY 
+> = E(XY) - EXEY
 >
 >
 >
-> Mà với X, Y independent thì E(XY) = EXEY (chứng minh bằng cách dùng
-> 2D lotus, sau đó phân tách joint pdf thành tích marginal pdf để đưa
-> về tích hai tích phân ⇨ EX EY)
+> Mà với X, Y independent thì E(XY) = EXEY (chứng minh bằng cách dùng 2D lotus, sau đó phân tách joint pdf thành tích marginal pdf để đưa về tích hai tích phân ⇨ EX EY)
 >
 >
 >
@@ -1374,35 +1359,35 @@
 >
 >
 >
-> Cov(Ui, Vr) = E[(Ui - EUi)(Vr - EVr)]
+> Cov(Ui, Vr) = E\[(Ui - EUi)(Vr - EVr)\]
 >
 >
 >
-> EUi = E[Σj aij Xj] = Σj aij EXj (linearity) = Σj aij μj
+> EUi = E\[Σj aij Xj\] = Σj aij EXj (do linearity) = Σj aij μj
 >
 >
 >
-> Ui - EUi = Σj aij Xj -  Σj aij μj =  Σj aij (Xj - μj)
+> Ui - EUi = Σj aij Xj - Σj aij μj = Σj aij (Xj - μj)
 >
 >
 >
-> EVr = E[Σj brj Xj] = Σj brj EXj = Σj brj μj
+> EVr = E\[Σj brj Xj\] = Σj brj EXj = Σj brj μj
 >
 >
 >
-> Vr - EVr = Σj brj Xj - Σj brj μj = Σj brj (Xj - μj) 
+> Vr - EVr = Σj brj Xj - Σj brj μj = Σj brj (Xj - μj)
 >
 >
 >
-> ⇨ Cov(Ui, Vr) = E[Σj aij (Xj - μj) Σj brj (Xj - μj)]
+> ⇨ Cov(Ui, Vr) = E\[Σj aij (Xj - μj) Σj brj (Xj - μj)\]
 >
 >
 >
-> = E[[ai1(X1 - μ1) + ai2(X2 - μ2) + ...][br1(X1 - μ1) + br2(X2 - μ2) + ...]]
+> = E\[\[ai1(X1 - μ1) + ai2(X2 - μ2) + ...\]\[br1(X1 - μ1) + br2(X2 - μ2) + ...\]\]
 >
 >
 >
-> = E[
+> = E\[
 >
 >
 >
@@ -1410,15 +1395,15 @@
 >
 >
 >
-> + 2ai1br2(X1 - μ1)(X2 - μ2) + ... (các cross term)
+> \-2ai1br2(X1 - μ1)(X2 - μ2) + ... (các cross term)
 >
 >
 >
-> ]
+> \]
 >
 >
 >
-> = E[Σj=1:n aijbrj (Xj - μj)² + Σk=1:n, h=1:n, k≠h aik brh (Xk - μk)(Xh - μh) ]
+> = E\[Σj=1:n aijbrj (Xj - μj)² + Σk=1:n, h=1:n, k≠h aik brh (Xk - μk)(Xh - μh) \]
 >
 >
 >
@@ -1426,7 +1411,7 @@
 >
 >
 >
-> = Σj=1:n aijbrj E(Xj - μj)² + Σk=1:n, h=1:n, k≠h aik brh E(Xk - μk)(Xh - μh) 
+> = Σj=1:n aijbrj E(Xj - μj)² + Σk=1:n, h=1:n, k≠h aik brh E(Xk - μk)(Xh - μh)
 >
 >
 >
@@ -1442,18 +1427,21 @@
 >
 >
 >
-> ====
+> ---
 >
 >
 >
-> Và cuối cùng, Hệ quả 4.6.10 (theo link xanh) ta có tổ hợp tuyến tính các normal
-> rv cũng là normal
->
-> Vậy thì nói thêm một chút: 
 >
 >
+> Và cuối cùng, Hệ quả 4.6.10 (theo link xanh) ta có tổ hợp tuyến tính các normal rv cũng là normal
 >
-> Ở đây, ta sẽ chứng minh lemma này với μi = 0, σi² = 1. 
+>
+>
+> Vậy thì nói thêm một chút:
+>
+>
+>
+> Ở đây, ta sẽ chứng minh lemma này với μi = 0, σi² = 1.
 >
 >
 >
@@ -1461,14 +1449,11 @@
 >
 >
 >
-> Cho Xj ~ normal(μj, σj²) độc lập và ta có các Ui, Vr là các random variable
-> tạo bởi tổ hợp tuyến tính của các rv Xj. Thì chúng sẽ độc lập khi và chỉ khi
-> covariance của chúng bằng 0.
+> Cho Xj \~ normal(μj, σj²) độc lập và ta có các Ui, Vr là các random variable tạo bởi tổ hợp tuyến tính của các rv Xj. Thì chúng sẽ độc lập khi và chỉ khi covariance của chúng bằng 0.
 >
 >
 >
-> Vậy thì cái ta cần chứng minh là cho thấy joint pdf của Ui, Vr phân tách
-> thành tích các marginal pdf
+> Vậy thì cái ta cần chứng minh là cho thấy joint pdf của Ui, Vr phân tách thành tích các marginal pdf
 >
 >
 >
@@ -1480,36 +1465,35 @@
 >
 >
 >
-> Mà đã nói, ta sẽ đang chứng minh với σi = 1 ⇨ Σj=1:n aijbrj σj² = Σj=1:n aijbrj 
+> Mà đã nói, ta sẽ đang chứng minh với σi = 1 ⇨ Σj=1:n aijbrj σj² = Σj=1:n aijbrj
 >
 >
 >
-> ⇨ điều kiện ta đang có để dùng là **Σj=1:n aijbrj = 0
+> ⇨ điều kiện ta đang có để dùng là Σj=1:n aijbrj = 0
 >
 >
 >
-> Đây chính là cái ràng buộc (restriction) đối với các constant mà giáo sư 
-> nói tới trong phần tiếp theo**
+> Đây chính là cái ràng buộc (restriction) đối với các constant mà giáo sư nói tới trong phần tiếp theo
 
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
 >
-> Ghi chú rất xuất sắc, tự triển khai chi tiết và chính xác hai bước chứng minh mà sách giáo khoa bỏ qua (độc lập suy ra hiệp phương sai bằng 0 và công thức tính hiệp phương sai của tổ hợp tuyến tính).
+> Ghi chú rất chi tiết và chủ động tự chứng minh lại các kết quả được lược dẫn trong sách (như tính Cov(Ui, Vr) và tính chất độc lập suy ra hiệp phương sai bằng 0). Nắm rất chắc luồng lập luận của bài chứng minh.
 >
 > **🟡 Minor issues**
 >
-> **1.** *"+ 2ai1br2(X1 - μ1)(X2 - μ2) + ... (các cross term)"*
+> **1.** *"-2ai1br2(X1 - μ1)(X2 - μ2) + ... (các cross term)"*
 >
-> Khi khai triển tích hai tổng có hệ số khác nhau (aij và brj), các số hạng chéo là ai1 br2 và ai2 br1 chứ không tự gộp thành hệ số 2 như hằng đẳng thức bình phương thông thường. Dù vậy, ngay dòng sau bạn đã viết lại dạng tổng tổng quát đúng (aik brh với k ≠ h).
+> Trong bước nháp khai triển tích hai ngoặc, hệ số '-2' là không chuẩn xác (có thể do nhầm với khai triển hằng đẳng thức bậc hai). Tuy nhiên, dòng tổng sigma ngay bên dưới bạn đã viết lại dạng chuẩn xác không bị ảnh hưởng.
 >
 >
 > **✓ Strengths**
-> - Tự suy diễn và chứng minh trọn vẹn công thức Cov(Ui, Vr) = Σj aij brj σj² từ định nghĩa thay vì chỉ thừa nhận như trong sách.
-> - Nắm vững tính chất tuyến tính của kỳ vọng và tính triệt tiêu của các số hạng chéo do giả thiết các Xj độc lập.
-> - Hiểu rõ mục đích của việc chuẩn hóa μi = 0 và σi² = 1 để rút gọn điều kiện Cov = 0 về dạng ràng buộc hệ số Σj aij brj = 0.
+> - Tự triển khai đầy đủ và chính xác bước tính Cov(Ui, Vr) dựa trên tính tuyến tính của kỳ vọng và tính độc lập của các biến Xj.
+> - Hiểu đúng và nêu rõ lý do độc lập kéo theo Cov = 0 thông qua kỳ vọng tích E(XY) = E(X)E(Y).
+> - Nắm bắt chính xác hướng đi tiếp theo của bổ đề khi chuẩn hóa về μi = 0, σi² = 1 và điều kiện triệt tiêu hiệp phương sai dẫn đến ràng buộc tích vô hướng các hệ số bằng 0.
 >
 > **💡 Deeper notes**
-> - Để chứng minh Ui và Vr độc lập khi biết Cov(Ui, Vr) = 0, cần nhấn mạnh rằng cặp (Ui, Vr) có phân phối chuẩn đồng thời (bivariate normal) nhờ tính chất vector chuẩn, vì nói chung Cov = 0 chỉ suy ra độc lập đối với phân phối chuẩn nhiều chiều chứ không đúng cho mọi biến ngẫu nhiên.
+> - Để suy ra Ui và Vr độc lập khi hiệp phương sai bằng 0, không chỉ cần từng biến Ui, Vr có phân phối chuẩn riêng lẻ, mà bản thân vector (Ui, Vr) phải có phân phối chuẩn đồng thời (bivariate/multivariate normal) - điều này được đảm bảo do chúng cùng là tổ hợp tuyến tính từ vector chuẩn độc lập X.
 
 **🔗 See also:** [Định lý Độc lập Hiệp phương sai](./45_covariance_correlation.md#node-o2ergsg) · [Chứng minh tổng biến chuẩn](./46_multi_variate_distribution.md#node-uaywczk)
 
@@ -1522,16 +1506,15 @@
 <p align="center"><kbd><img src="assets/vmi5qtu1ufk.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, giáo sư nói tiếp, ta sẽ chứng minh lemma với n = 2, vì phần chứng minh với khái quát n cũng tương
-> tự.
+> Rồi, giáo sư nói tiếp, ta sẽ chứng minh lemma với n = 2, vì phần chứng minh với khái quát n cũng tương tự.
 >
 >
 >
-> Chứng minh với n = 2 tức là chứng minh: ta có X1 ~ n(μ1 = 0, σ1² = 1)  X2 ~ n(0, 1)
+> Chứng minh với n = 2 tức là chứng minh: ta có X1 \~ n(μ1 = 0, σ1² = 1) X2 \~ n(0, 1)
 >
 >
 >
-> (again, nhắc lại là giáo sư mở đầu đã nói ta có thể chứng minh với  μj = 0, σj = 1),
+> (again, nhắc lại là giáo sư mở đầu đã nói ta có thể chứng minh với μj = 0, σj = 1),
 >
 >
 >
@@ -1547,8 +1530,7 @@
 >
 >
 >
-> (Mà điều này tương đương Σj=1:n aij brj σj² = Σj=1:n aij brj = 0)  thì joint pdf của Ui, Vr sẽ factor, tức
-> chúng độc lập
+> (Mà điều này tương đương Σj=1:n aij brj σj² = Σj=1:n aij brj = 0) thì joint pdf của Ui, Vr sẽ factor, tức chúng độc lập
 >
 >
 >
@@ -1560,19 +1542,15 @@
 >
 >
 >
-> Vấn đề là để dùng theorem này, ta cần có MAPPING 1-1 TỪ SUPPORT SET CỦA X, Y TỚI ẢNH CỦA
-> NÓ: Là sao?
+> Vấn đề là để dùng theorem này, ta cần có MAPPING 1-1 TỪ SUPPORT SET CỦA X, Y TỚI ẢNH CỦA NÓ: Là sao?
 >
 >
 >
-> 𝒜 là support set của X,Y, đơn giản là tập (con của R², vì (X,Y) là R² random variable vector) mà
-> trong đó joint pdf của X,Y dương.
+> 𝒜 là support set của X,Y, đơn giản là tập (con của R², vì (X,Y) là R² random variable vector) mà trong đó joint pdf của X,Y dương.
 >
 >
 >
-> Dĩ nhiên là thông qua hàm g1, g2, thì U = g1(X,Y), V = g2(X, Y) thì các giá trị khả dĩ (x,y) của X, Y sẽ
-> được map với u,v trong R². Nhưng mà ta sẽ chỉ quan tâm tới (x,y) trong 𝒜, vì tại đó mới là nơi "có
-> thể xảy ra" (ý là giá trị của X,Y)
+> Dĩ nhiên là thông qua hàm g1, g2, thì U = g1(X,Y), V = g2(X, Y) thì các giá trị khả dĩ (x,y) của X, Y sẽ được map với u,v trong R². Nhưng mà ta sẽ chỉ quan tâm tới (x,y) trong 𝒜, vì tại đó mới là nơi "có thể xảy ra" (ý là giá trị của X,Y)
 >
 >
 >
@@ -1588,14 +1566,11 @@
 >
 >
 >
-> (Và điều này không ngăn cản việc có thể có điểm (x,y) khác trong R² nằm ngoài 𝒜 được map với
-> (u,v) nhưng vì tại (x,y) khác này, joint pdf của X,Y = 0 nên ko ảnh hưởng gì, nên theorem chỉ cần
-> mapping 1-1 giữa 𝒜 với ℬ là đủ)
+> (Và điều này không ngăn cản việc có thể có điểm (x,y) khác trong R² nằm ngoài 𝒜 được map với (u,v) nhưng vì tại (x,y) khác này, joint pdf của X,Y = 0 nên ko ảnh hưởng gì, nên theorem chỉ cần mapping 1-1 giữa 𝒜 với ℬ là đủ)
 >
 >
 >
-> Khi thỏa yêu cầu đó, thì từ (u,v) trong ℬ, như đã nói ta có thể tìm thấy (x,y) trong 𝒜: x = h1(u,
-> v), y = h2(u,v) mà nếu điều kiện mapping 1-1 ko thỏa thì ta ko biết x, y là gì hết.
+> Khi thỏa yêu cầu đó, thì từ (u,v) trong ℬ, như đã nói ta có thể tìm thấy (x,y) trong 𝒜: x = h1(u, v), y = h2(u,v) mà nếu điều kiện mapping 1-1 ko thỏa thì ta ko biết x, y là gì hết.
 >
 >
 >
@@ -1616,22 +1591,20 @@
 >
 >
 > Áp dụng vào bài toán này, nhắc lại, ta cần chứng minh Ui và Vr độc lập với Ui = Σj=1:2 aijXj tức, = ai1X1
-> + ai2X2 và Vr = Σj=1:2 brj Xj = br1X1 + br2X2
+>
+> \- ai2X2 và Vr = Σj=1:2 brj Xj = br1X1 + br2X2
 >
 >
 >
-> Cho i = 1,r = 1, tức là ta sẽ chứng minh U1, V1 độc lập, và cho gọn ta gọi là U, V với U = a1X1 + a2X2, V
-> = b1X1 + b2X2 và "thành lập" random variable vector (U, V) (để mà ta sẽ chứng minh joint pdf của U, V
-> factored, từ joint pdf của X1, X2)
+> Cho i = 1,r = 1, tức là ta sẽ chứng minh U1, V1 độc lập, và cho gọn ta gọi là U, V với U = a1X1 + a2X2, V = b1X1 + b2X2 và "thành lập" random variable vector (U, V) (để mà ta sẽ chứng minh joint pdf của U, V factored, từ joint pdf của X1, X2)
 >
 >
 >
-> Vậy thì ở đây, U = g1(X1, X2) và V = g2(X1, X2) với g1(x1,x2) = a1x1 + a2x2, g2(x1,x2)  = b1x1 + b2x2
+> Vậy thì ở đây, U = g1(X1, X2) và V = g2(X1, X2) với g1(x1,x2) = a1x1 + a2x2, g2(x1,x2) = b1x1 + b2x2
 >
 >
 >
-> Chúng đều là hàm tuyến tính, nên có thể nói là ta đã thỏa yêu cầu mapping 1-1 từ support set của X1,X2
-> tới ảnh của nó.
+> Chúng đều là hàm tuyến tính, nên có thể nói là ta đã thỏa yêu cầu mapping 1-1 từ support set của X1,X2 tới ảnh của nó.
 >
 >
 >
@@ -1643,7 +1616,7 @@
 >
 >
 >
-> => x1 = (b2u - a2v) / (a1b2 - b1a2),
+> =&gt; x1 = (b2u - a2v) / (a1b2 - b1a2),
 >
 >
 >
@@ -1655,15 +1628,15 @@
 >
 >
 >
-> Row 1: [∂x1/∂u, ∂x1/∂v] = [ b2 / (a1b2 - b1a2), -a2 / (a1b2 - b1a2) ]
+> Row 1: \[∂x1/∂u, ∂x1/∂v\] = \[ b2 / (a1b2 - b1a2), -a2 / (a1b2 - b1a2) \]
 >
 >
 >
-> Row 2: [∂x2/∂u, ∂x2/∂v] = [ -b1 / (a1b2 - b1a2), a1 / (a1b2 - b1a2)]
+> Row 2: \[∂x2/∂u, ∂x2/∂v\] = \[ -b1 / (a1b2 - b1a2), a1 / (a1b2 - b1a2)\]
 >
 >
 >
-> ⇨ |J| = [b2 / (a1b2 - b1a2)] [a1 / (a1b2 - b1a2)] - [-a2 / (a1b2 - b1a2)] [-b1 / (a1b2 - b1a2)]
+> ⇨ |J| = \[b2 / (a1b2 - b1a2)\] \[a1 / (a1b2 - b1a2)\] - \[-a2 / (a1b2 - b1a2)\] \[-b1 / (a1b2 - b1a2)\]
 >
 >
 >
@@ -1695,31 +1668,31 @@
 >
 >
 >
-> pdf cuả n(0,1) f(x) = [1/√2π] exp{-x1²/2}
+> pdf cuả n(0,1) f(x) = \[1/√2π\] exp{-x1²/2}
 >
 >
 >
-> = [1/√2π] exp{-[(b2u - a2v) / (a1b2 - b1a2)]²/2} [1/√2π] exp{-[(a1v - b1u) / (a1b2 - b1a2)]²/2} |J|
+> = \[1/√2π\] exp{-\[(b2u - a2v) / (a1b2 - b1a2)\]²/2} \[1/√2π\] exp{-\[(a1v - b1u) / (a1b2 - b1a2)\]²/2} |J|
 >
 >
 >
-> = [1/2π] exp{-[(b2u - a2v) / (a1b2 - b1a2)]²/2} exp{-[(a1v - b1u) / (a1b2 - b1a2)]²/2} |J|
+> = \[1/2π\] exp{-\[(b2u - a2v) / (a1b2 - b1a2)\]²/2} exp{-\[(a1v - b1u) / (a1b2 - b1a2)\]²/2} |J|
 >
 >
 >
-> = [1/2π] exp{ -(1/2) [(b2u - a2v) / (a1b2 - b1a2)]² + [(a1v - b1u) / (a1b2 - b1a2)]² }  |J|
+> = \[1/2π\] exp{ -(1/2) \[(b2u - a2v) / (a1b2 - b1a2)\]² + \[(a1v - b1u) / (a1b2 - b1a2)\]² } |J|
 >
 >
 >
-> = [1/2π] exp{ -1 / [2(a1b2 - b1a2)²] [(b2u - a2v)² + (a1v - b1u)²] } |J| (1)
+> = \[1/2π\] exp{ -1 / \[2(a1b2 - b1a2)²\] \[(b2u - a2v)² + (a1v - b1u)²\] } |J| (1)
 >
 >
 >
-> Xét [(b2u - a2v)² + (a1v - b1u)²]
+> Xét \[(b2u - a2v)² + (a1v - b1u)²\]
 >
 >
 >
-> triển khai ra ta sẽ có (b1² + b2²)u² + (a1² + a2²)v² - **2(a1b1 + a2b2)uv**
+> triển khai ra ta sẽ có (b1² + b2²)u² + (a1² + a2²)v² - 2(a1b1 + a2b2)uv
 >
 >
 >
@@ -1731,16 +1704,39 @@
 >
 >
 >
-> Như vậy (1) =  [1/2π] exp{ -1 / [2(a1b2 - b1a2)²] [(b1² + b2²)**u**² + (a1² + a2²)**v**²] } |J|
+> Như vậy (1) = \[1/2π\] exp{ -1 / \[2(a1b2 - b1a2)²\] \[(b1² + b2²)u² + (a1² + a2²)v²\] } |J|
 >
 >
 >
-> = [1/2π] exp{ -1 / [2(a1b2 - b1a2)²] [(b1² + b2²)**u**² } * exp {-1 / [2(a1b2 - b1a2)²][a1² +
-> a2²)**v**²] } |J|
+> = \[1/2π\] exp{ -1 / \[2(a1b2 - b1a2)²\] \[(b1² + b2²)u² } × exp {-1 / \[2(a1b2 - b1a2)²\]\[a1² + a2²)v²\] } |J|
 >
 >
 >
 > Tới đây là đủ để thấy joint pdf của U, V phân tách ⇨ U, V độc lập ⇨ Chứng minh xong phần a)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chép rất chi tiết, tự tính toán đầy đủ từng bước từ tìm nghiệm ngược, tính định thức Jacobian đến khai triển phân tích nhân tử để chứng minh tính độc lập.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Chúng đều là hàm tuyến tính, nên có thể nói là ta đã thỏa yêu cầu mapping 1-1 từ support set của X1,X2 tới ảnh của nó."*
+>
+> Phép biến đổi tuyến tính chỉ đảm bảo 1-1 (song ánh trên R²) khi ma trận hệ số khả nghịch, tức định thức a1*b2 - b1*a2 khác 0. Bản thân tính tuyến tính chưa đủ để kết luận 1-1 nếu định thức bằng 0.
+>
+> **2.** *"⇨ |J| = [b2 / (a1b2 - b1a2)] [a1 / (a1b2 - b1a2)] - [-a2 / (a1b2 - b1a2)] [-b1 / (a1b2 - b1a2)] = (b2a1 - b1a2) / (a1b2 - b1a2)² = 1 / (a1b2 - b1a2)"*
+>
+> Đang có sự nhầm lẫn ký hiệu giữa định thức Jacobian J và giá trị tuyệt đối |J|. Biểu thức tính ra là định thức J = 1/(a1*b2 - b1*a2), còn khi đưa vào pdf phải là |J| = 1/|a1*b2 - b1*a2|.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ và diễn giải trực quan điều kiện đổi biến ngẫu nhiên 2 chiều (ánh xạ 1-1 trên tập support).
+> - Tự tính toán tường minh ma trận Jacobian và định thức của nó thay vì chỉ chép lại kết quả cuối cùng.
+> - Khai triển đại số chính xác để làm rõ số hạng chéo chứa hiệp phương sai triệt tiêu về 0, dẫn tới hàm mật độ đồng thời phân tách thành tích hai hàm riêng biệt.
+>
+> **💡 Deeper notes**
+> - Trong trường hợp suy biến a1*b2 - b1*a2 = 0, U và V phụ thuộc tuyến tính (tỉ lệ với nhau); khi đó không thể dùng phép đổi biến mật độ liên tục thông thường mà xét trực tiếp tính suy biến của phân phối Gauss nhiều chiều.
 
 <br>
 
@@ -1828,6 +1824,30 @@
 > Và DUY CHỈ CÓ KHI TA START VỚI NORMAL THÌ MỚI CÓ TÍNH CHẤT
 > NÀY
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và chính xác các ý cốt lõi từ tài liệu: sự tương đương giữa hiệp phương sai bằng 0 và tính độc lập cho tổ hợp tuyến tính của các biến chuẩn độc lập, cũng như việc kiểm tra tính độc lập theo từng cặp suy ra tính độc lập của các vector.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Và DUY CHỈ CÓ KHI TA START VỚI NORMAL THÌ MỚI CÓ TÍNH CHẤT NÀY"*
+>
+> Tài liệu chỉ nói 'a property that does not hold for general random variables' (tính chất này nói chung không đúng với các biến ngẫu nhiên tổng quát), không đồng nghĩa với việc khẳng định biến chuẩn là phân phối duy nhất thỏa mãn điều này.
+>
+> **2.** *"COVARIANCE VÀ TÍNH CHẤT INDEPENDENT của các linear function của đám rvs này (Ui,Vr) sẽ là một"*
+>
+> Cách diễn đạt hơi thiếu chặt chẽ về mặt toán học. Chuẩn xác là: hiệp phương sai bằng 0 tương đương với tính độc lập (Cov = 0 <=> độc lập), chứ bản thân 'hiệp phương sai' (một giá trị số) và 'tính độc lập' (một quan hệ xác suất) không phải là một.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng và nêu rõ được điều kiện nền tảng: các biến ban đầu phải là biến chuẩn độc lập.
+> - Nắm chuẩn ý nghĩa thực hành: chuyển việc kiểm tra độc lập phức tạp thành phép tính hiệp phương sai bằng 0 đơn giản.
+> - Hiểu chính xác bản chất phần (b): kiểm tra độc lập từng cặp (pairwise) đủ để suy ra độc lập toàn phần giữa hai vector ngẫu nhiên.
+>
+> **💡 Deeper notes**
+> - Một vector có các thành phần đều mang phân phối chuẩn riêng lẻ (marginal normal) chưa chắc đã là một vector chuẩn nhiều chiều (multivariate normal). Tuy nhiên, vì ở đây các thành phần đều là tổ hợp tuyến tính của các biến chuẩn độc lập ban đầu, nên vector tạo thành thực sự là multivariate normal.
+
 <br>
 
 <a id="node-jkt5q0l"></a>
@@ -1881,6 +1901,27 @@
 > Nên ở đâu S² = là function của (X1 - X̄, X2 - X̄,...)
 > nên nó cũng độc lập X̄
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và tóm tắt rành mạch mạch tư duy logic của chứng minh: từ tổ hợp tuyến tính, hiệp phương sai bằng 0 suy ra tính độc lập, đến việc hàm số của các biến độc lập cũng độc lập.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Từ đó theo bổ đề ta suy ra X1-X̄ độc lập X̄, X2-X̄ độc lập X̄, ... mà trước đây đại khái là có theorem nói rằng nếu X, Y độc lập thì apply các hàm vào thì ta vẫn có các rv độc lập. Nên ở đâu S² = là function của (X1 - X̄, X2 - X̄,...) nên nó cũng độc lập X̄"*
+>
+> Về mặt toán học chặt chẽ, việc từng biến $X_i - \bar{X}$ độc lập riêng lẻ với $ar{X}$ (pairwise) chưa đủ để áp hàm nhiều biến $S^2 = g(X_1 - \bar{X}, \dots, X_n - \bar{X})$ độc lập với $ar{X}$. Ở đây ta cần vector độ lệch $(X_1 - \bar{X}, \dots, X_n - \bar{X})$ độc lập đồng thời (jointly) với $ar{X}$ — điều này được đảm bảo do chúng có phân phối chuẩn đồng thời và hiệp phương sai với $\bar{X}$ đều bằng 0.
+>
+>
+> **✓ Strengths**
+> - Nắm chuẩn điều kiện tiên quyết của Bổ đề 5.3.3 là các biến ngẫu nhiên mẫu phải tuân theo phân phối chuẩn để tính không tương quan tương đương với độc lập.
+> - Hiểu rõ vai trò biểu diễn $\bar{X}$ và $X_j - \bar{X}$ dưới dạng các tổ hợp tuyến tính để áp dụng bổ đề.
+> - Tóm tắt chính xác luận điểm kết bài: vì $S^2$ là hàm của các độ lệch và các độ lệch độc lập với $\bar{X}$, nên $S^2$ độc lập với $\bar{X}$.
+>
+> **💡 Deeper notes**
+> - Trong tài liệu gốc có nhấn mạnh $S^2$ chỉ cần viết dưới dạng hàm của $n - 1$ độ lệch vì bậc tự do của mẫu chỉ là $n - 1$ do $\sum (X_i - \bar{X}) = 0$.
+> - Phép tính hiệp phương sai bằng 0 cũng ngầm giả định các $X_i$ độc lập và có cùng phương sai $\sigma^2$ (i.i.d normal).
+
 <br>
 
 <a id="node-153vzn2"></a>
@@ -1890,59 +1931,43 @@
 <p align="center"><kbd><img src="assets/h7e5i0wibo.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> đại khái là vầy: giáo sư Casella nói phần trước, khi ta  tìm cách derive
-> distribution (của các statistic như sample mean, sample variance) với 
-> giả định là random sampling từ normal là bởi vì (đại khái là) trong thực
-> hành phân tích thống kê thì bước đầu tiên chính là giả định tính normality.
+> đại khái là vầy: giáo sư Casella nói phần trước, khi ta tìm cách derive distribution (của các statistic như sample mean, sample variance) với giả định là random sampling từ normal là bởi vì (đại khái là) trong thực hành phân tích thống kê thì bước đầu tiên chính là giả định tính normality.
 >
 >
 >
-> Cụ thể hơn, trong hầu hết các case thực tế, thì ta KHÔNG BIẾT σ² (tức
-> population variance của population normal distribution.
+> Cụ thể hơn, trong hầu hết các case thực tế, thì ta KHÔNG BIẾT σ² (tức population variance của population normal distribution.
 >
 >
 >
-> Thế thì để mà chuyển qua phân tích về TÍNH BIẾN ĐỘNG CỦA SAMPLE
-> MEAN X̄, thì ta cần phải estimate variance σ².
+> Thế thì để mà chuyển qua phân tích về TÍNH BIẾN ĐỘNG CỦA SAMPLE MEAN X̄, thì ta cần phải estimate variance σ².
 >
 >
 >
-> (variability của sample mean, tức là sao? Là vì sampling mean ta đã biết
-> là một random variable, có distribution, mà ta gọi là sampling distribution,
-> vậy thì sắp tới ta quan tâm VARIANCE CỦA NÓ, chú ý, nó hoàn toàn khác
-> với SAMPLE VARIANCE nhé, cái này nhắc lại là variance của sample mean)
+> (variability của sample mean, tức là sao? Là vì sampling mean ta đã biết là một random variable, có distribution, mà ta gọi là sampling distribution, vậy thì sắp tới ta quan tâm VARIANCE CỦA NÓ, chú ý, nó hoàn toàn khác với SAMPLE VARIANCE nhé, cái này nhắc lại là variance của sample mean)
 >
 >
 >
-> Vậy thì giáo sư cho biết, nếu X1.....Xn là random sample từ n(μ, σ²), thì
-> ta đã biết (X̄ - μ) / σ/√n sẽ ~ n(0,1). Tại sao?
+> Vậy thì giáo sư cho biết, nếu X1.....Xn là random sample từ n(μ, σ²), thì ta đã biết (X̄ - μ) / σ/√n sẽ \~ n(0,1). Tại sao?
 >
 >
 >
-> Đầu tiên, ôn lại random sample là cái gì: Theo định nghĩa random sample
-> size n từ population f tức là ta sẽ tiến hành quan sát giá trị của một biến số
-> nào đó n lần, mỗi lần giá trị sẽ được đại diện bởi một random variable X_i
+> Đầu tiên, ôn lại random sample là cái gì: Theo định nghĩa random sample size n từ population f tức là ta sẽ tiến hành quan sát giá trị của một biến số nào đó n lần, mỗi lần giá trị sẽ được đại diện bởi một random variable X_i
 >
 >
 >
-> Và các random variables X1,...Xn sẽ mutually independent, cũng như là
-> identically distributed, tức có chung marginal distribution là population distribs
+> Và các random variables X1,...Xn sẽ mutually independent, cũng như là identically distributed, tức có chung marginal distribution là population distribs
 >
 >
 >
-> Vậy thì trong phần trước mình đã biết rằng, sample mean X̄, với random
-> sample từ normal(μ, σ²) thì X̄ cũng là normal, nhưng là normal(μ, σ²/n)
+> Vậy thì trong phần trước mình đã biết rằng, sample mean X̄, với random sample từ normal(μ, σ²) thì X̄ cũng là normal, nhưng là normal(μ, σ²/n)
 >
 >
 >
-> Thế thì mới nói tới location scale theorem ta đã biết, nói rằng: nếu Z là random
-> variable có pdf f(z), tức là thành viên chuẩn của location scale family, thì random 
-> variable X = σZ + μ sẽ là thành viên của family với location μ, và scale σ
+> Thế thì mới nói tới location scale theorem ta đã biết, nói rằng: nếu Z là random variable có pdf f(z), tức là thành viên chuẩn của location scale family, thì random variable X = σZ + μ sẽ là thành viên của family với location μ, và scale σ
 >
 >
 >
-> Và ngược lại nếu X là thành viên có location μ, scale σ thì (X - μ) / σ sẽ là thành
-> viên chuẩn tức có location 0, scale 1.
+> Và ngược lại nếu X là thành viên có location μ, scale σ thì (X - μ) / σ sẽ là thành viên chuẩn tức có location 0, scale 1.
 >
 >
 >
@@ -1950,17 +1975,15 @@
 >
 >
 >
-> nên mới nói X̄ là normal(μ, σ²/n) thì (X̄ - μ) / (σ²/n) sẽ là một normal(0,1)
+> nên mới nói X̄ là normal(μ, σ²/n) thì (X̄ - μ) / √(σ²/n) sẽ là một normal(0,1)
 >
 >
 >
-> ====
+> ---
 >
 >
 >
-> Thế thì, đại khái là với việc biết (X̄ - μ) / (σ²/n) sẽ là một normal(0,1) thì ta 
-> có thể đo X̄, và nếu biết σ² (population variance) thì khi đó ta có thể làm cơ
-> sở để SUY LUẬN RA μ (population mean).
+> Thế thì, đại khái là với việc biết (X̄ - μ) / √(σ²/n) sẽ là một normal(0,1) thì ta có thể đo X̄, và nếu biết σ² (population variance) thì khi đó ta có thể làm cơ sở để SUY LUẬN RA μ (population mean).
 >
 >
 >
@@ -1968,11 +1991,22 @@
 >
 >
 >
-> THÀNH RA, NGHIÊN CỨU CỦA ÔNG STUDENT, sẽ là quan sát distribution của
-> (X̄ - μ) / S/√n (dùng sampling standard deviation thay cho σ). Nhằm làm cơ 
-> sở cho việc **suy luận ra μ Mà ko cần biết variance σ**
+> THÀNH RA, NGHIÊN CỨU CỦA ÔNG STUDENT, sẽ là quan sát distribution của (X̄ - μ) / S/√n (dùng sample standard deviation thay cho σ). Nhằm làm cơ sở cho việc **suy luận ra μ mà ko cần biết variance σ**
 
-**🔗 See also:** [Kiểm định LRT cho trung bình](./82_method_of_finding_tests.md#node-ouhenhy)
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất tốt, thể hiện sự hiểu bài sâu sắc từ động lực thực tế (chưa biết σ²) đến bản chất toán học của việc chuẩn hóa biến ngẫu nhiên qua họ location-scale.
+>
+> **✓ Strengths**
+> - Nắm rất vững động lực thực tế dẫn đến phân phối Student: trong thực tế không biết phương sai tổng thể σ² nên phải thay thế bằng độ lệch chuẩn mẫu S để suy diễn về μ.
+> - Phân biệt chính xác giữa phương sai của mẫu (sample variance) và phương sai của trung bình mẫu (variance of sample mean).
+> - Giải thích logic và chặt chẽ vì sao (X̄ - μ)/(σ/√n) ~ n(0,1) thông qua tính chất của phân phối chuẩn và định lý họ vị trí - tỉ lệ (location-scale family).
+>
+> **💡 Deeper notes**
+> - Khi thay thế hằng số σ bằng độ lệch chuẩn mẫu S, mẫu số trở thành một biến ngẫu nhiên. Vì vậy, phân phối của tỉ số này không còn là phân phối chuẩn nữa mà phụ thuộc vào phân phối của S và tính độc lập giữa X̄ và S² (đặc trưng của mẫu từ phân phối chuẩn), dẫn đến phân phối t với (n - 1) bậc tự do.
+
+**🔗 See also:** [Kiểm định LRT cho trung bình](./82_method_of_finding_tests.md#node-ouhenhy) · [Pooled Estimator and Student t Distribution](./111_2_introduction_one_way_anova.md#node-680r0w1)
 
 <br>
 
@@ -1983,8 +2017,7 @@
 <p align="center"><kbd><img src="assets/vcmhn3i47.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Thế thì đại ý là distribution của cái này (X̄ - μ) / S/√n thật ra là ko khó để
-> derive:
+> Thế thì đại ý là distribution của cái này (X̄ - μ) / S/√n thật ra là ko khó để derive:
 >
 >
 >
@@ -1996,19 +2029,19 @@
 >
 >
 >
-> = (X̄ - μ)/(σ/√n)  /  (S/√n)/(σ/√n) (chia tử và mẫu cho (σ/√n))
+> = (X̄ - μ)/(σ/√n) / (S/√n)/(σ/√n) (chia tử và mẫu cho (σ/√n))
 >
 >
 >
-> = (X̄ - μ)/(σ/√n)  /  (S/√n)(√n/σ)
+> = (X̄ - μ)/(σ/√n) / (S/√n)(√n/σ)
 >
 >
 >
-> = (X̄ - μ)/(σ/√n)  /  (S/σ)
+> = (X̄ - μ)/(σ/√n) / (S/σ)
 >
 >
 >
-> = (X̄ - μ)/(σ/√n)  /  √(S²/σ²)
+> = (X̄ - μ)/(σ/√n) / √(S²/σ²)
 >
 >
 >
@@ -2016,44 +2049,59 @@
 >
 >
 >
-> Còn mẫu, thì bài trước ta đã biết, Sn², tức là sample variance của  một
-> random sample size n từ normal thì sẽ có tính chất:
+> X̄  \~ n(μ, σ²/n), STD(X̄ ) = σ/√n, E(X̄ ) = μ.
 >
 >
 >
-> (n-1) Sn² / σ² là một Chi-square n - 1, kí hiệu /X/²_n-1
+> location scale. Z: location = 0, scale = 1
 >
 >
 >
-> Vậy thì Sn² / σ² dĩ nhiên là có bản chất cũng là (một Chi-square n-1) /
-> (n-1)
+> aZ + b = X, X location = b, scale a
 >
 >
 >
-> (này nhé nếu đặt Y = (n-1) Sn² / σ² thì ta có Y là Chi-square n-1, vậy giờ
-> đem Y chia cho (n-1) thì ta nói là X = Y / (n-1) là một (Chi-square n-1) /
-> (n-1) thôi.
+> X \~ n(μ, σ²) location = mean, scale = std
 >
 >
 >
-> Nhưng chưa biết nó có là Chi- square hay không, nhưng ta hiểu nó là việc
-> apply hàm h(u) = u / (n-1) lên  một Chi-square (n-1) random variable thôi.
-> Và nếu h(u) = √[u / (n-1)] thì  Y là √[Chi-square (n-1)] / (n-1)]. Nói chung
-> hiểu bản chất là sẽ thấy ko khó.
+> (X - μ)/σ = Z  \~ location = 0, scale = 1 \~ n(0, 1)
 >
 >
 >
-> Rồi, ý quan trọng là, cái thằng mẫu (random variable ở mẫu)
 >
 >
 >
-> = √[χ²_n-1 / (n-1)], nó độc lập với tử.
 >
 >
 >
-> Do đó, nếu gọi U là tử, là một n(0,1), và V = χ²_p, thì mẫu là một √(V / p)
-> thì việc tìm distribution của (X̄ - μ) / (S/√n) cũng chỉ là tìm distribution
-> của U/√(V/p). Và quan trọng là U, V độc lập.
+>
+>
+> Còn mẫu, thì bài trước ta đã biết, Sn², tức là sample variance của một random sample size n từ normal thì sẽ có tính chất:
+>
+>
+>
+> (n-1) S²\_n / σ² là một Chi-square n-1, kí hiệu χ²\_n-1
+>
+>
+>
+> Vậy thì S²\_n / σ² dĩ nhiên là χ²\_n-1/(n-1)
+>
+>
+>
+> nên mẫu số là √\[χ²\_n-1/(n-1)\]: căn bậc hai của một Chi-square chia cho bậc tự do của nó.
+>
+>
+>
+> Và cái mẫu số này này độc lập với tử số, vì S² đã được chứng minh là độc lập với X̄ theo ý a) của Theorem 5.3.1
+>
+>
+>
+> Như vậy tử số là một n(0,1), mẫu số có dạng căn bậc hai của Chi-square chia cho bậc tự do, và hai thằng độc lập.
+>
+>
+>
+> Do đó, nếu gọi tử số là U như đã biết, là một n(0,1), và V = χ²\_p, thì mẫu số là √(V/p) thì việc tìm distribution của (X̄ - μ) / (S/√n) cũng chỉ là tìm distribution của U/√(V/p) với U, V độc lập.
 >
 >
 >
@@ -2061,8 +2109,20 @@
 >
 >
 >
-> V là Chi-square p, thì ta có thể tìm distribution của √(V/p), rồi U là n(0,1) thì
-> nói chung ta có thể tìm được distribution của U/√(V/p)
+> V là Chi-square p, thì ta có thể tìm distribution của √(V/p), rồi U là n(0,1) thì nói chung ta có thể tìm được distribution của U/√(V/p)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất tốt, giải thích chi tiết và mạch lạc từng bước biến đổi đại số cũng như cơ sở lý thuyết (phân phối Chi-bình phương, tính độc lập giữa trung bình mẫu và phương sai mẫu) để đưa thống kê t về dạng chuẩn U/√(V/p).
+>
+> **✓ Strengths**
+> - Khai triển chi tiết từng bước đại số từ biểu thức ban đầu đến tỉ số chuẩn tắc, làm rõ hơn sách giáo khoa.
+> - Nắm vững và liên hệ chính xác tính độc lập giữa tử số và mẫu số dựa trên tính chất độc lập giữa trung bình mẫu và phương sai mẫu trong phân phối chuẩn.
+> - Xác định đúng bản chất mẫu số là căn bậc hai của một biến Chi-bình phương chia cho bậc tự do tương ứng.
+>
+> **💡 Deeper notes**
+> - Trong bài toán cụ thể này, bậc tự do p của biến ngẫu nhiên Chi-bình phương V ở mẫu số chính là p = n - 1.
 
 **🔗 See also:** [Tính chất Trung bình & Phương sai mẫu](#node-aytwme7)
 
@@ -2075,29 +2135,59 @@
 <p align="center"><kbd><img src="assets/r22vor23fbe.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Ta có định nghĩa: Cho random sample X1,...Xn từ n(μ, σ²), thì 
+> Ta có định nghĩa: Cho random sample X1,...Xn từ n(μ, σ²), thì:
 >
 >
 >
-> cái quantity (cái random variable có được từ) (X̄ - μ) / S/√n sẽ là 
-> một STUDENT's t  distribution, với n - 1 degree of freedom.
+> **Phân phối của** (X̄ - μ) / S/√n **được định nghĩa là student's t**, với **n - 1 degree of freedom.**
 >
 >
 >
-> Và nếu nói T là random variable ~ Student's t với p bậc tự do, thì ta 
-> kí hiệu là T ~ t_p. Và nó có pdf như vầy.
+> Như vậy sau này nên nhớ, story của Student t distribution là: là phân phối của (X̄ - μ) / (S/√n) với X̄ và S là sample mean và sample std của random sample \~ n(μ, σ²)
 >
 >
 >
-> Với p = 1 thì nó chính là pdf của Cauchy distribution
+> Và nếu nói T là random variable \~ Student's t với p bậc tự do, thì ta kí hiệu là T \~ t_p. Và nó có pdf như vầy:
+>
+>
+>
+> fT(t) = Γ((p+1)/2)/Γ(p/2) × 1/√(pπ) × 1/\[(1+t²/p)^((p+1)/2)\]
+>
+>
+>
+> **Với p = 1 thì nó chính là pdf của Cauchy distribution:**
+>
+>
+>
+> fT(t) = \[Γ(1)/Γ(1/2)\] \[1/√(π)\] \[1/(1+t²)\]
+>
+>
+>
+> = \[1/√π\] (1/√(π)) \[1/(1+t²)\]
+>
+>
+>
+> = (1/π) \[1/(1+t²)\]  → xem link để thấy ta đã biết pdf của Cauchy f(x|θ) = (1/π) (1/(1+(x-θ)²) (-∞ &lt; x &lt; ∞, -∞ &lt; θ &lt; ∞)
 
-**🔗 See also:** [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge) · [Tối ưu hóa kỳ vọng độ dài](./93_methods_of_evaluating_interval_estimators.md#node-cu30bvl)
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chính xác, tóm tắt rõ ràng định nghĩa phân phối Student's t và tự kiểm tra biến đổi chi tiết khi p = 1 để ra phân phối Cauchy chuẩn.
+>
+> **✓ Strengths**
+> - Nắm chuẩn bản chất và 'story' của phân phối Student's t xuất phát từ mẫu chuẩn có độ lệch chuẩn mẫu S.
+> - Tự thực hiện đầy đủ các bước tính toán với các giá trị hàm Gamma để chứng minh t_1 chính là phân phối Cauchy chuẩn.
+>
+> **💡 Deeper notes**
+> - Trường hợp p = 1 chính xác là phân phối Cauchy chuẩn (standard Cauchy) với tham số vị trí θ = 0 và tham số tỉ lệ γ = 1.
+
+**🔗 See also:** [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge) · [Tối ưu hóa kỳ vọng độ dài](./93_methods_of_evaluating_interval_estimators.md#node-cu30bvl) · [Phân phối Cauchy](./33_continuous_distribution.md#node-sy5tj8j)
 
 <br>
 
 <a id="node-5eltn4g"></a>
 
-###### Đạo hàm phân phối t-Student
+###### Derive pdf của phân phối t-Student
 
 <p align="center"><kbd><img src="assets/oweb6o4iaa.png" width="80%"></kbd></p>
 
@@ -2108,8 +2198,7 @@
 >
 >
 >
-> Như đã nói, bài toán chính là tìm pdf của U/√(V/p) với U là n(0,1), 
-> V là Chi-square p bậc tự do. Và U, V độc lập
+> Như đã nói, bài toán chính là tìm pdf của U/√(V/p) với U là n(0,1), V là χ²\_p. Và U, V độc lập
 >
 >
 >
@@ -2121,11 +2210,59 @@
 >
 >
 >
-> = 1/√(2π) e^-u²/2 . 1/ [Γ(p/2) 2^(p/2)] v^[(p/2)-1] e^(-v/2),  
+> = 1/√(2π) exp(-u²/2) × 1/ \[Γ(p/2) 2^(p/2)\] v^\[(p/2)-1\] exp(-v/2),
 >
 >
 >
-> -inf < u < inf, 0 < v < inf
+> \-inf &lt; u &lt; inf, 0 &lt; v &lt; inf
+>
+>
+>
+> ---
+>
+>
+>
+> Ôn lại nhanh **transformation** **theorem**:
+>
+>
+>
+> 1D: khi Y = g(X) với X \~ fX(x), và g là hàm invertible để mapping giữa x ∈ 𝓧 tới g(x) ∈ 𝒴 (ảnh của 𝓧) là 1-1: y = g(x) ∈ image của 𝓧 ⇔ x = g⁻¹(y) ∈ 𝓧 thì ta có transformation theorem:
+>
+>
+>
+> fY(y) = fX(x) |dx/dy|
+>
+>
+>
+> ⇔ fY(y) = fX(g⁻¹(y)) |d/dy g⁻¹(y)|
+>
+>
+>
+> 2D: Với random vector (X,Y) có joint pdf f(x,y): và (U,V) với U = g(X,Y), V = h(X,Y) sao cho mapping giữa (x,y) với (u,v) là 1-1: Mấu chốt: Có thể có (u,v) ∈ ℬ là ảnh của 𝒜 sao cho tồn tại (x1,y1) và (x2,y2) đều thỏa \[g(x,y), h(x,y)\] = (u,v) nhưng chỉ được phép một trong số đó thuộc 𝒜: tức tại đó joint pdf &gt; 0. Khi đó transformation theorem cho ta:
+>
+>
+>
+> fU,V(u,v) = fX,Y(x,y) |J| = fX,Y(g⁻¹(u,v),h⁻¹(u,v)) |J|
+>
+>
+>
+> **Chú ý:** J là matrix Jacobian (đạo hàm cấp 1) của hàm vector - vector: (x,y) = \[m(u,v), n(u,v)\]
+>
+>
+>
+> và |J| thật ra là |(|J|)| hay | det J| tức trị tuyệt đối của det J
+>
+>
+>
+> Và cách làm điển hình để có pdf của một rv V = hàm của hai rvs X,Y đó là: ta chọn đại U = X, (hoặc Y), để dựa trên cái này có joint pdf của U,V. Rồi marginalizing over U để có V
+>
+>
+>
+> Ta cần mapping 1-1 từ support set của (U,V) tới ảnh của nó.
+>
+>
+>
+> ---
 >
 >
 >
@@ -2133,17 +2270,11 @@
 >
 >
 >
-> T = g1(U, V)  với g1(u,v) = u / √(v/p). W = g2(U,V) , g2(u,v) = v
+> T = g1(U, V) với g1(u,v) = u / √(v/p). W = g2(U,V) , g2(u,v) = v
 >
 >
 >
-> Ôn lại không thừa: Để dùng transformation theorem: ta cần mapping 1-1 từ
-> support set của (U,V) tới ảnh của nó.
->
->
->
-> Ở đây với t = g1(u,v) = u / √(v/p), w = v thì xem thử có thể giải ra u, v từ t, w 
-> không
+> Ở đây với t = g1(u,v) = u / √(v/p), w = v thì xem thử có thể giải ra u, v từ t, w không
 >
 >
 >
@@ -2159,23 +2290,51 @@
 >
 >
 >
-> Jacobian: ∂(u,v)/∂(t,w)
+> ---
 >
 >
 >
-> Row 1: [∂u/∂t, ∂u/∂w] 
+> Xây dựng Jacobian: ∂(u,v)/∂(t,w)
 >
 >
 >
-> u = t √(w/p) ⇨ ∂u/∂t = √(w/p), 
+> Row 1: \[∂u/∂t, ∂u/∂w\]
 >
 >
 >
-> ∂u/∂w = (t/√p) (1/√w) = t/√(pw)
+> u = t √(w/p) ⇨ ∂u/∂t = √(w/p),
 >
 >
 >
-> Row 2: [∂v/∂t, ∂v/∂w] 
+> ∂u/∂w = ∂/∂w \[ t √(w/p)\] = t ∂/∂w \[√(w/p)\]
+>
+>
+>
+> = t ∂/∂(w/p) \[√(w/p)\] . ∂/∂w (w/p)
+>
+>
+>
+> (d/dz √z = d/dz z^(1/2) = (1/2) z^(-1/2)
+>
+>
+>
+> = t (1/2) \[1/(√w/p)\] (1/p)
+>
+>
+>
+> = t (1/2) (√p/√w) (1/p)
+>
+>
+>
+> = (t/√p) (1/2√w)
+>
+>
+>
+> = t/2√(pw)
+>
+>
+>
+> Row 2: \[∂v/∂t, ∂v/∂w\]
 >
 >
 >
@@ -2183,7 +2342,13 @@
 >
 >
 >
-> ⇨ J = [√(w/p), t/√(pw); 0, 1] ⇨ |J| = √(w/p)
+> ⇨ J = \[√(w/p), t/2√(pw); 0, 1\] ⇨ |J| = √(w/p)
+>
+>
+>
+> ---
+>
+>
 >
 >
 >
@@ -2195,6 +2360,14 @@
 >
 >
 >
+> fU,V(u,v) = fU(u)fV(v)
+>
+>
+>
+> fT,W(t,w) = \[1/√(2π) exp(-u²/2)\] \[1/ \[Γ(p/2) 2^(p/2)\] v^\[(p/2)-1\] exp(-v/2) √(w/p)\] 
+>
+>
+>
 > Và để tìm pdf của T thì ta chỉ việc marginalizing over mọi possible value của W:
 >
 >
@@ -2203,11 +2376,11 @@
 >
 >
 >
-> = ∫0:inf 1/√(2π) e^-u²/2 . 1/ [Γ(p/2) 2^(p/2)] v^[(p/2)-1] e^(-v/2) √(w/p) dw
+> = ∫0:∞ 1/√(2π) exp(-u²/2) . 1/ \[Γ(p/2) 2^(p/2)\] v^\[(p/2)-1\] exp(-v/2) √(w/p) dw
 >
 >
 >
-> = 1/√(2π)  1/ [Γ(p/2) 2^(p/2)] ∫0:inf e^-u²/2 .v^[(p/2)-1] e^(-v/2) √(w/p) dw
+> = 1/√(2π) 1/ \[Γ(p/2) 2^(p/2)\] ∫0:∞ exp(-u²/2) × v^\[(p/2)-1\] exp(-v/2) √(w/p) dw
 >
 >
 >
@@ -2215,19 +2388,133 @@
 >
 >
 >
-> Xét ∫0:inf e^-u²/2 . v^[(p/2)-1] e^(-v/2) √(w/p) dw
+> Xét ∫0:∞ exp(-u²/2) × v^\[(p/2)-1\] exp(-v/2) √(w/p) dw
 >
 >
 >
-> ...
+> = ∫0:∞ exp(-u²/2) × v^\[(p/2)-1\] exp(-v/2) √(w/p) dw
 >
 >
 >
-> Nói chung là ta sẽ nhận ra bên trong là kernel của Γ((p+1)/2, 2/(1+t²/p))
+> = ∫0:∞ exp(-(t √(w/p))²/2) × w^\[(p/2)-1\] exp(-w/2) √(w/p) dw
 >
 >
 >
-> từ đó ta có pdf của T,là pdf của student t p degree
+> = ∫0:∞ exp(-wt²/2p) × w^\[(p/2)-1\] exp(-w/2) √(w/p) dw
+>
+>
+>
+> = ∫0:∞ exp(-wt²/2p) × w^\[(p/2)-1\] exp(-w/2) √(w/p) dw
+>
+>
+>
+> ---
+>
+>
+>
+> Để đỡ rối: xét và gom hai cục exp(...): exp(-wt²/2p)exp(-w/2) = exp(-wt²/2p-w/2)
+>
+>
+>
+> = exp(-w(t²/2p+1/2)) = exp(-w(t²/2p+p/2p)) = exp(-w(t²+p)/2p)) = exp(-w/β') với β' = 2p/(t²+p) = 2/\[(t²/p)+1\].
+>
+>
+>
+> ---
+>
+>
+>
+> Xét tiếp w^\[(p/2)-1\] √(w/p) = w^\[(p/2)-1\] w^(1/2)/√p = (1/√p) w^\[(p/2)-1+1/2)\] = (1/√p) w^\[(p/2)+(1/2)-1\]
+>
+>
+>
+> = (1/√p) w^\[(p+1)/2 - 1\] = (1/√p) w^(α'-1) với α' = (p+1)/2
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy trong tích phân ở trên là: (1/√p) w^(α'-1)exp(-w/β')
+>
+>
+>
+> Đưa (1/√p) ra ngoài tích phân, ta còn lại w^(α'-1)exp(-w/β')
+>
+>
+>
+> và xem lại pdf của Gamma:
+>
+>
+>
+> Γ(x|α, β) = \[1/Γ(α)βᵅ\] x^(α-1) exp(-x/β),
+>
+>
+>
+> Do đó, nó có dạng kernel của Γ(α', β') với α' = (p+1)/2 và β' = 2/\[(t²/p)+1\]
+>
+>
+>
+> Nên bằng cách nhân thêm và chia bớt hằng số chuẩn hóa là \[1/Γ(α')β'ᵅ'\], tích phân trở thành 1 theo tính valid của pdf. Còn lại: (1/√p) chia cho \[1/Γ(α')β'ᵅ'\]
+>
+>
+>
+> ∫0:∞ exp(-wt²/2p) × w^\[(p/2)-1\] exp(-w/2) √(w/p) dw = (1/√p) chia cho \[1/Γ(α')β'ᵅ'\]
+>
+>
+>
+> = Γ(α')β'ᵅ'/√p
+>
+>
+>
+> ---
+>
+>
+>
+> Cuối cùng, còn nhớ ta còn hai cục const ở trước: 1/√(2π) 1/ \[Γ(p/2) 2^(p/2)\]
+>
+>
+>
+> Vậy là kết qủa marginalizing joint pdf của t,w over w, (chính là f(t)):
+>
+>
+>
+> f(t) = 1/√(2π) 1/ \[Γ(p/2) 2^(p/2)\] Γ(α')β'ᵅ'/√p
+>
+>
+>
+> = 1/(2π)^(1/2) × 1/ \[Γ(p/2) 2^(p/2) p^(1/2)\] × Γ((p+1)/2) × β'ᵅ' với α' = (p+1)/2 và β' = 2/\[(t²/p)+1\]
+>
+>
+>
+> Đây chính là công thức pdf của Student t p bậc tự do,
+
+📹 Video 1: [Derive pdf của phân phối t-Student — Statistical Inference - Casella](https://www.youtube.com/watch?v=rrOrZFTeyVE)
+
+📹 Video 2: [Làm sao suy ra pdf Student's t từ tỉ số U/√(V/p) (cont)?](https://www.youtube.com/watch?v=MRIIRaMOWAs)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Bạn đã tự tay triển khai toàn bộ các bước tính đạo hàm riêng của ma trận Jacobian, gom các số hạng và tính tích phân qua hàm Gamma một cách chuẩn xác.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"fT,W(t,w) = [1/√(2π) exp(-u²/2)] [1/ [Γ(p/2) 2^(p/2)] v^[(p/2)-1] exp(-v/2) √(w/p)]"*
+>
+> Về mặt ký hiệu, hàm mật độ đồng thời f_{T,W}(t,w) cần được viết hoàn toàn theo biến mới (t, w) thay vì để lẫn các biến cũ u, v (dù ở các dòng tích phân ngay sau đó bạn đã thay u, v thành t, w rất chính xác).
+>
+>
+> **✓ Strengths**
+> - Thực hiện đầy đủ và chính xác đạo hàm riêng từng phần tử để lập ma trận Jacobian 2x2 thay vì chép lại kết quả có sẵn.
+> - Tách và ghép các thành phần lũy thừa của w và số mũ exp rất cẩn thận để nhận dạng đúng dạng hạt nhân (kernel) của phân phối Gamma.
+> - Nắm vững định lý biến đổi biến ngẫu nhiên nhiều chiều và kỹ thuật marginalize để tìm hàm mật độ biên.
+>
+> **💡 Deeper notes**
+> - Nếu rút gọn thêm cụm hằng số (hạ 2^{(p+1)/2} từ tử số của [2/(1+t^2/p)]^{(p+1)/2} xuống triệt tiêu với 2^{1/2} và 2^{p/2} ở mẫu), bạn sẽ thu được trực tiếp dạng rút gọn kinh điển của hàm mật độ Student-t.
+
+**🔗 See also:** [Hàm Gamma và Phân phối Gamma](./33_continuous_distribution.md#node-xt1ypib)
 
 <br>
 
@@ -2261,6 +2548,19 @@
 >
 >
 > variance với p > 2 VarTp = p / (p - 2)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú nắm rất chính xác và đầy đủ các ý chính từ tài liệu: lý do phân phối Student-t không có mgf, điều kiện tồn tại moment theo bậc tự do p, cùng công thức của kỳ vọng và phương sai.
+>
+> **✓ Strengths**
+> - Hiểu chính xác mối liên hệ: nếu hàm sinh moment (mgf) tồn tại quanh 0 thì mọi moment đều phải tồn tại, do đó việc thiếu các moment bậc cao dẫn đến không có mgf.
+> - Tóm tắt đúng và trực quan các trường hợp cụ thể: p = 1 không có mean, p = 2 có mean nhưng không có variance.
+> - Ghi lại chính xác điều kiện và công thức cho E(T_p) và Var(T_p).
+>
+> **💡 Deeper notes**
+> - Về mặt toán học, hàm mgf M(t) = E[e^(tX)] không tồn tại với t khác 0 vì phân phối t là phân phối đuôi dày (heavy-tailed, mật độ suy giảm theo hàm đa thức bậc âm thay vì hàm mũ âm), khiến e^(tX)f(x) phân kỳ khi tích phân ra vô cùng.
 
 **🔗 See also:** [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge)
 
