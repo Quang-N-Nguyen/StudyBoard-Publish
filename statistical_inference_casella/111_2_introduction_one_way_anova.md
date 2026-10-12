@@ -850,7 +850,7 @@
 > **💡 Deeper notes**
 > - Ghi chú đang dừng lại ở phân phối chuẩn khi biết σ; để ra thống kê phân phối Student's t ở công thức (11.2.6), ta thay σ² bằng ước lượng gộp S_p² và chia biến chuẩn tắc Z cho căn bậc hai của [(N-k)S_p² / σ²] / (N-k).
 
-**🔗 See also:** [Tính chất Trung bình & Phương sai mẫu](./53_sampling_from_the_normal_distribution.md#node-aytwme7) · [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq)
+**🔗 See also:** [Tính chất Trung bình & Phương sai mẫu](./53_sampling_from_the_normal_distribution.md#node-aytwme7) · [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq) · [Phân phối và biến động trung bình mẫu](./53_sampling_from_the_normal_distribution.md#node-153vzn2)
 
 <br>
 
