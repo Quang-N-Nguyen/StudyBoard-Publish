@@ -1,6 +1,6 @@
 # 4.5.2 Predictive distribution
 
-📊 **Progress:** `2` Notes | `3` Screenshots | `2` AI Reviews
+📊 **Progress:** `4` Notes | `6` Screenshots | `4` AI Reviews
 
 ---
 <a id="node-o3n19bt"></a>
@@ -399,7 +399,7 @@
 >
 >
 >
-> Vì Cov(𝐙) = 𝐈, nên Z1,Z2,...độc lập. ⇒ exp(t1Z1), exp(t2Z2),... cũng độc lập.
+> Vì Cov(𝐙) = 𝐈, và Z1,..Zn đều là normal nên Z1,Z2,...là các normal rv độc lập. ⇒ exp(t1Z1), exp(t2Z2),... cũng độc lập.
 >
 >
 >
@@ -632,22 +632,329 @@
 > [!TIP]
 > 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
 >
-> Ghi chép suy dẫn rất chi tiết, logic và chính xác từ MGF chuẩn tắc một chiều đến chuẩn nhiều chiều và phép biến đổi tuyến tính.
+> Ghi chú rất xuất sắc, tự dẫn xuất đầy đủ từ MGF chuẩn tắc 1 chiều đến chuẩn nhiều chiều và chứng minh biến đổi tuyến tính chuẩn xác.
 >
 > **🟡 Minor issues**
 >
-> **1.** *"Vì Cov(𝐙) = 𝐈, nên Z1,Z2,...độc lập."*
+> **1.** *"Từ đó, do mgf, cũng như pdf, pmf, cdf đều có thể giúp xác định một distribution, do đó giúp kết luận: 𝐘 = 𝐀𝐗 chính là một random variable vector ~ 𝒩(𝐀𝛍, 𝐀𝚺𝐀ᵀ)"*
 >
-> Trong trường hợp tổng quát, không tương quan (hiệp phương sai bằng 0) không tương đương với độc lập; tính chất này chỉ đúng khi các biến thành phần cùng tuân theo phân phối chuẩn đồng thời (jointly Gaussian).
+> Tính xác định duy nhất của hàm sinh moment (MGF uniqueness theorem) đòi hỏi điều kiện MGF phải tồn tại trong một lân cận mở quanh gốc tọa độ 0 (điều này thỏa mãn với phân phối chuẩn). Ngoài ra, khác với pdf (vốn đòi hỏi ma trận hiệp phương sai phải khả nghịch), MGF bao quát được cả trường hợp chuẩn suy biến (degenerate multivariate normal).
 >
 >
 > **✓ Strengths**
-> - Tự triển khai đầy đủ các bước biến đổi tích phân hoàn thiện bình phương để tìm MGF của chuẩn 1 chiều thay vì chỉ áp đặt công thức.
-> - Nắm vững tính chất song ánh (tính duy nhất) của hàm sinh mô-men (MGF) để suy ra phân phối xác suất sau phép biến đổi tuyến tính.
+> - Tự thực hiện đầy đủ các bước biến đổi tích phân và kỹ thuật hoàn thành bình phương để tìm MGF của chuẩn 1 chiều.
+> - Lập luận logic chặt chẽ khi đi từ biến độc lập chuẩn tắc Z đến dạng tổng quát X = BZ + μ thông qua phân rã hiệp phương sai Σ = BBᵀ.
+> - Vận dụng chính xác đại số tuyến tính và tính chất của hàm sinh moment để chứng minh phân phối của biến đổi tuyến tính Y = AX.
 >
 > **💡 Deeper notes**
-> - Sự tồn tại của ma trận 𝐁 thỏa mãn 𝐁𝐁ᵀ = 𝚺 đòi hỏi 𝚺 phải là ma trận đối xứng nửa xác định dương (thực hiện qua phân tích Cholesky hoặc phân tích kỳ dị phổ).
-> - Nếu mở rộng sang phép biến đổi afin đầy đủ 𝐘 = 𝐀𝐗 + 𝐜, MGF sẽ thu được dạng của 𝒩(𝐀𝛍 + 𝐜, 𝐀𝚺𝐀ᵀ).
+> - Sự tồn tại của ma trận B sao cho Σ = BBᵀ luôn được đảm bảo vì ma trận hiệp phương sai Σ luôn nửa xác định dương (PSD), có thể tìm bằng phân rã Cholesky hoặc phân rã phổ (spectral decomposition).
+> - Nếu muốn mở rộng cho phép biến đổi affine tổng quát Y = AX + b, MGF chỉ cần bổ sung thêm thừa số exp(tᵀb).
+
+<br>
+
+<a id="node-t0795j6"></a>
+
+#### Probit Approximation to Logistic Sigmoid
+
+<p align="center"><kbd><img src="assets/fv4a0v3ubte.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/rnc2a4zrlns.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Tiếp, đại ý là ngay cả khi ta chuyển bài toán về tích phân một chiều (theo a) thay vì theo 𝐰 thì cái tích phân này vẫn tính không nổi.
+>
+>
+>
+> ∫σ(a) 𝒩(a|μ\_a, σ²\_a) da
+>
+>
+>
+> Mà lí do rắc rối là do hàm sigmoid.
+>
+>
+>
+> Thế thì người ta mới làm như vầy: Còn nhớ hàm probit trong phần trước, nó có cái dạng khá giống hàm sigmoid. Và bản thân nó, lại là gì? Chính là cdf của một normal(0,1):
+>
+>
+>
+> Φ(z) = F(z) = ∫-∞:z 𝒩(t|0,1)dt
+>
+>
+>
+> Nên nếu ta có thể xấp xỉ sigmoid bằng một hàm probit thì có thể cùng là normal với nhau sẽ khiến tích phân này tính được (dù gì thì ta cũng đã không thể tính chính xác từ đầu khi ta xấp xỉ posterior bởi một Gaussian rồi)
+>
+>
+>
+> Thế thì, để xấp xỉ σ(a) bởi probit, đại ý là, không thể cứ thay bởi Φ(a). Vì như vậy sẽ không khớp (xấp xỉ không tốt), mà ta phải đại ý là kéo giãn trục hoành sao cho chúng khớp nhau: Là sao?
+>
+>
+>
+> Là làm vầy nè: Nhân (scale) a bởi hệ số λ (vs với shift: là + thêm μ) Động tác này chính là ta đang kéo giãn hoặc bóp trục hoành lại.
+>
+>
+>
+> Để rồi: tìm λ sao cho σ(a) và g(a) = Φ(λa) khớp nhau tốt nhất có thể.
+>
+>
+>
+> Và để làm vậy, ta sẽ tìm λ sao cho tại a = 0, độ dốc của chúng bằng nhau. (tưởng tượng khi ta kéo giãn trục hoành thì độ dốc của đường cong hàm probit sẽ thay đổi, và ta sẽ chọn λ sao cho nó khớp với độ dốc hàm sigmoid)
+>
+>
+>
+> Vậy bài toán tìm scale factor là giải phương trình:
+>
+>
+>
+> σ'(a)|a=0 = g'(a)|a=0
+>
+>
+>
+> g'(a) = d/da g(a) = d/da Φ(λa) = \[d/d(λa) Φ(λa)\] . (d/da λa) = Φ'(λa) . λ = λ Φ'(λa)
+>
+>
+>
+> Còn nhớ: cdf chính là nguyên hàm của pdf: F'(x) = f(x), nên đạo hàm của cdf chính là pdf.
+>
+>
+>
+> Xét biến ngẫu nhiên X: 
+>
+>
+>
+> Định nghĩa của cdf F(x) = P(X ≤ x) 
+>
+>
+>
+> Định nghĩa của pdf f(x): P(X ≤ x) = ∫-∞:x f(t)dt
+>
+>
+>
+> F(x) = ∫-∞:x f(t)dt
+>
+>
+>
+> Fundamental Theorem Calculus: G , f: G(x) = ∫-inf:x f(t)dt khi đó G gọi là nguyên hàm của f (anti-derivative), G'(x) = f(x)
+>
+>
+>
+> ⇒ theo FTC thì cdf F(x) là nguyên hàm của pdf f(x): F'(x) = f(x)
+>
+>
+>
+> ---
+>
+>
+>
+> Nên hàm số Φ'(x) = 𝒩(x|0,1) = (1/√2π) exp(-x²/2)
+>
+>
+>
+> ⇒ Φ'(λa) = (1/√2π) exp(-(λa)²/2)
+>
+>
+>
+> ⇔ g'(a) = λ Φ'(λa) = λ (1/√2π) exp(-(λa)²/2)
+>
+>
+>
+> ---
+>
+>
+>
+> ⇒ g'(a)|a=0 = λ (1/√2π) exp(-(λ × 0)²/2) = λ (1/√2π)
+>
+>
+>
+> Còn σ'(a) = σ(a)\[1-σ(a)\]
+>
+>
+>
+> ⇒ σ'(a)|a=0 = σ(0)\[1-σ(0)\] = (1/2)(1/2) = 1/4
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy σ'(a)|a=0 = g'(a)|a=0
+>
+>
+>
+> ⇔ 1/4 = λ (1/√2π)
+>
+>
+>
+> ⇔ √2π = 4λ ⇔ √2π/4 = λ
+>
+>
+>
+> ⇔ λ² = 2π/16 = π/8
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=pqzGU1xMTGo)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Bạn không chỉ hiểu rõ động lực trực quan của việc co giãn trục hoành mà còn tự tay giải chi tiết bước dẫn xuất tìm λ² = π/8 — phần mà giáo trình chỉ nêu sẵn kết quả.
+>
+> **✓ Strengths**
+> - Dẫn xuất toán học hoàn chỉnh và chính xác từng bước đạo hàm hàm hợp g'(a) và đạo hàm của sigmoid tại a=0 để tìm ra λ² = π/8.
+> - Nắm rất vững mối liên hệ giữa hàm probit (CDF của chuẩn tắc) và PDF chuẩn tắc thông qua phép lấy đạo hàm.
+> - Trực quan hóa rất tốt ý nghĩa hình học của việc nhân hệ số λ là co giãn trục hoành để khớp độ dốc tại gốc tọa độ.
+>
+> **💡 Deeper notes**
+> - Khớp độ dốc tại gốc tọa độ (matching slope at origin) là một tiêu chuẩn giải tích tiện lợi; trong thực tế một số tài liệu khác có thể chọn λ bằng cách tối thiểu hóa sai số toàn cục (như sai số bình phương trung bình trên toàn miền ℝ) cho ra giá trị xấp xỉ hơi khác một chút, nhưng λ² = π/8 là chuẩn tắc trong PRML.
+
+<br>
+
+<a id="node-dtpl38s"></a>
+
+##### Convolution of Probit and Gaussian
+
+<p align="center"><kbd><img src="assets/63b25z1t1kd.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> ∫ Φ(λa) 𝒩(a|μ, σ²) da
+>
+>
+>
+> Để cho dễ hiểu ta xét event (Z ≤ λA) với Z \~ 𝒩(0,1) và A \~ 𝒩(μ, σ²) độc lập. Gọi f(z,a) f(z), f(a) lần lượt là joint pdf và marginal pdf của chúng
+>
+>
+>
+> Theo định nghĩa hàm xác suất P(Z ≤ λA) được tính như sau: 
+>
+>
+>
+> P(Z ≤ λA) = ∫∫\_R f(z,a)dzda với R = {(z,a): z ≤ λa}
+>
+>
+>
+> = ∫∫\_R f(z)f(a)dzda
+>
+>
+>
+> = ∫-∞:∞\[∫-∞:λa f(z)f(a)dz\]da
+>
+>
+>
+> = ∫-∞:∞\[∫-∞:λa f(z)dz\] f(a)da
+>
+>
+>
+> = ∫-∞:∞\[Φ(λa)\] f(a)da
+>
+>
+>
+> = ∫-∞:∞\[Φ(λa)\] 𝒩(a|μ, σ²)da
+>
+>
+>
+> Vậy cái ta cần tính ban đầu chính là P(Z ≤ λA)
+>
+>
+>
+> Đặt W = Z - λA, đây sẽ là một \~ normal:
+>
+>
+>
+> ---
+>
+>
+>
+> Ta còn nhớ bên Casella đã học theorem này:
+>
+>
+>
+> Nếu X \~ 𝒩(μx, σ²x), Y \~ 𝒩(μy, σ²y) và X, Y độc lập thì X+Y \~ 𝒩(μx+μy, σ²x + σ²y)
+>
+>
+>
+> ---
+>
+>
+>
+> Tiếp, A \~ 𝒩(μ, σ²) thì theo location scale theorem: 
+>
+>
+>
+> A-μ \~ 𝒩(0, σ²) ⇔ -λ(A-μ) \~ (-λ) × 𝒩(0, σ²) \~ 𝒩(0, λ²σ²)
+>
+>
+>
+> ⇒ -λA \~ 𝒩(0, λ²σ²) - λμ 
+>
+>
+>
+> ⇔ -λA \~ 𝒩(-λμ , λ²σ²) 
+>
+>
+>
+> Nên Z + (-λA) \~ 𝒩(0-λμ, 1+λ²σ²) \~ 𝒩(-λμ, 1+λ²σ²)
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy P(Z ≤ λA) = P(W ≤ 0) với W \~ 𝒩(-λμ, 1+λ²σ²)
+>
+>
+>
+> W ≤ 0 ⇔ W -(-λμ) ≤ 0 -(-λμ) 
+>
+>
+>
+> ⇔ \[W -(-λμ)\] / √(1+λ²σ²) ≤ \[0 -(-λμ)\] / √(1+λ²σ²) 
+>
+>
+>
+> ⇔ \[W -(-λμ)\] / √(1+λ²σ²) ≤ λμ / √(1+λ²σ²)
+>
+>
+>
+> ⇒ P(W ≤ 0) = P(\[W -(-λμ)\] / √(1+λ²σ²) ≤ λμ / √(1+λ²σ²)) 
+>
+>
+>
+> Mà theo location scale theorem: W \~ 𝒩(-λμ, 1+λ²σ²) ⇒ \[W -(-λμ)\] / √(1+λ²σ²) \~ 𝒩(0,1)
+>
+>
+>
+> ⇒ P(W ≤ 0) = P(Z ≤ λμ / √(1+λ²σ²)) = Φ\[λμ / √(1+λ²σ²)\]
+>
+>
+>
+> = Φ\[μ / √(1/λ²+σ²)\]
+>
+>
+>
+> = Φ\[μ / √(λ⁻²+σ²)\]
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Bạn đã tự chứng minh trọn vẹn công thức tích chập (4.152) bằng góc nhìn xác suất rất trực quan và chính xác thông qua biến ngẫu nhiên phụ.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"-λ(A-μ) ~ (-λ) × 𝒩(0, σ²) ~ 𝒩(0, λ²σ²) ⇒ -λA ~ 𝒩(0, λ²σ²) - λμ"*
+>
+> Ký hiệu phép nhân và trừ trực tiếp một số vô hướng với phân phối chuẩn (-λ × 𝒩 và 𝒩 - λμ) mang tính trực giác cá nhân, về mặt toán học chuẩn tắc nên viết là tính chất biến đổi tuyến tính: nếu A ~ 𝒩(μ, σ²) thì cA + d ~ 𝒩(cμ + d, c²σ²).
+>
+> **2.** *"Φ[λμ / √(1+λ²σ²)] = Φ[μ / √(1/λ²+σ²)] = Φ[μ / √(λ⁻²+σ²)]"*
+>
+> Bước rút gọn chia cả tử và mẫu cho λ ngầm định rằng λ > 0 (vì √(1+λ²σ²)/λ = √(λ⁻²+σ²) chỉ đúng khi λ > 0). Nếu λ < 0 thì đưa λ vào trong căn sẽ xuất hiện dấu trừ.
+>
+>
+> **✓ Strengths**
+> - Áp dụng góc nhìn xác suất (biểu diễn tích phân dưới dạng xác suất P(Z ≤ λA)) rất thông minh, giúp việc giải tích phân Gauss phức tạp trở nên đơn giản và trực quan.
+> - Chuẩn hóa và tính toán kỳ vọng, phương sai của tổ hợp tuyến tính W = Z - λA hoàn toàn chính xác.
+>
+> **💡 Deeper notes**
+> - Trong ngữ cảnh của mô hình Probit/Gaussian processes (Bishop PRML), tham số tỉ lệ λ thường được quy ước là số dương, do đó việc chia cho λ mà không đổi dấu hoàn toàn phù hợp với ngữ cảnh của sách.
 
 <br>
 
