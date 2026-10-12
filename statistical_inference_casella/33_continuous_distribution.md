@@ -482,7 +482,7 @@
 > Với α sẽ ảnh hưởng đến hình dạng của distribution còn β ảnh hưởng đến độ
 > phân tán của distribution
 
-**🔗 See also:** [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq)
+**🔗 See also:** [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq) · [Derive pdf của phân phối t-Student](./53_sampling_from_the_normal_distribution.md#node-5eltn4g)
 
 <br>
 
@@ -2282,6 +2282,8 @@
 >
 >
 > ⇨ kết quả = (1/π) (π/2 - (- π/2)) = 1
+
+**🔗 See also:** [Phân phối t của Student](./53_sampling_from_the_normal_distribution.md#node-isdevob)
 
 <br>
 
