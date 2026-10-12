@@ -2389,11 +2389,13 @@
 >
 > Tức là chúng ta đang giả định các conditional distributions này có chung variance, chỉ khác nhau mean.
 >
-> Bước đầu tiên là giải bài toán inference: dựa trên observed data để estimate các parameters của phân phối, cụ thể ở đây là w và β.
+> Bước đầu tiên là giải bài toán inference: dựa trên observed data để estimate các parameters của phân phối, cụ thể ở đây là w và β. Nhưng sau khi đã infer được conditional distribution, tại sao chúng ta lại dùng mean của phân phối này, tức là wᵀx, để làm prediction?
 >
-> Nhưng sau khi đã infer được conditional distribution, tại sao chúng ta lại dùng mean của phân phối này, tức là wᵀx, để làm prediction?
+>
 >
 > Tại sao không dùng một giá trị khác? Khi nào dùng mean, khi nào dùng median? Và dựa trên cơ sở nào để đưa ra quyết định đó?
+>
+>
 >
 > Đây chính là chỗ mà kiến thức Statistical Inference, đặc biệt là Decision Theory, giúp chúng ta hiểu rõ hơn bản chất của bài toán.
 >
@@ -2405,23 +2407,39 @@
 >
 > Trong Statistical Inference, chúng ta đã học ba bài toán lớn: Point Estimation, Hypothesis Testing và Interval Estimation.
 >
+>
+>
 > Ở đây chúng ta chỉ tập trung vào Point Estimation.
+>
+>
+>
+> Cho 𝐗 là một random sample gồm n random variables độc lập và cùng phân phối (i.i.d.), có chung population distribution được đặc trưng bởi parameter θ.
+>
+>
 >
 > 𝐗 = (X1, X2,.....,Xn), Xi, i=1,2,.... \~ f(x|θ) (ví dụ normal(μ, σ²))
 >
-> 𝐗 là một random sample gồm n random variables độc lập và cùng phân phối (i.i.d.), có chung population distribution được đặc trưng bởi parameter θ.
 >
-> 𝐱 = x1, x2,....xn
 >
-> Đây là những giá trị cụ thể mà chúng ta quan sát được sau khi thu thập sample.
+> 𝐱 = x1, x2,....xn: Đây là những giá trị cụ thể mà chúng ta quan sát được sau khi thu thập sample.
+>
+>
 >
 > Bài toán Point Estimation là đi tìm một hàm số W của random sample 𝐗 để khi áp hàm số đó lên dữ liệu quan sát được 𝐱, chúng ta có được một point estimate cho θ.
 >
+>
+>
 > W(𝐱) = point estimate cho θ
+>
+>
 >
 > Cần phân biệt: W(𝐗) là một statistic, tức là một random variable bởi vì nó là hàm số của random sample 𝐗. Còn W(𝐱) là một giá trị cụ thể sau khi đã quan sát được dữ liệu.
 >
+>
+>
 > Ví dụ, giả sử population distribution là Normal với variance đã biết nhưng mean μ chưa biết. Khi đó θ chính là μ, và nhiệm vụ của chúng ta là tìm một estimator để estimate μ.
+>
+>
 >
 > Vậy tìm một estimator tốt bằng cách nào?
 >
@@ -2447,7 +2465,11 @@
 >
 > 𝐱 = 1,2,3,4,5,6,7,8 n(μ, 5)
 >
+>
+>
 > Giả sử chúng ta quan sát được sample gồm các giá trị 1,2,3,4,5,6,7,8 và biết rằng population distribution là Normal, với variance đã biết, nhưng không biết μ bằng bao nhiêu.
+>
+>
 >
 > Chúng ta muốn tìm một giá trị μ sao cho nó giải thích dữ liệu đã quan sát được một cách hợp lý nhất.
 >
@@ -2459,39 +2481,73 @@
 >
 > L(μ|𝐱 = 1,2,3,4,5,6,7,8)|μ=2 → 0.7
 >
+>
+>
 > (Các giá trị 0.4, 0.2, 0.7 chỉ là những con số được lấy đại để minh họa cách hiểu likelihood, không phải kết quả tính toán thực tế.)
+>
+>
 >
 > Những giá trị μ = 10, μ = 12, μ = 2 này giống như những **ứng cử viên** cho giá trị μ thật sự mà chúng ta không biết.
 >
+>
+>
 > Likelihood function sẽ giúp đánh giá rằng, với observed data như vậy, ứng cử viên nào có mức độ hợp lý cao hơn.
+>
+>
 >
 > Ví von: Những bức tranh và người họa sĩ
 >
+>
+>
 > Để hiểu likelihood một cách trực quan, thử tưởng tượng rằng chúng ta đi ngoài đường và nhìn thấy rất nhiều bức tranh rất đẹp, nhưng không biết ai đã vẽ những bức tranh đó.
+>
+>
 >
 > Chúng ta biết có một nhóm vài chục ông họa sĩ, nhưng không biết ông nào là tác giả.
 >
+>
+>
 > Vậy bây giờ nhiệm vụ là đi tìm xem ông họa sĩ nào có khả năng đã vẽ những bức tranh này.
+>
+>
 >
 > Những bức tranh mà chúng ta đang nhìn thấy giống như **observed data**. Còn những ông họa sĩ khác nhau giống như những **ứng cử viên cho parameter μ**.
 >
+>
+>
 > Giả sử chúng ta có một cách để đánh giá mức độ hợp lý của giả thuyết rằng một ông họa sĩ cụ thể đã vẽ những bức tranh đó, dựa trên những gì chúng ta biết về khả năng và phong cách của ông ta.
+>
+>
 >
 > Ví dụ, có một ông họa sĩ mà chúng ta biết trình độ của ông ấy rất kém. Trong khi những bức tranh quan sát được lại rất đẹp.
 >
 > Vậy thì giả thuyết rằng ông này đã vẽ những bức tranh đó có mức độ hợp lý thấp.
 >
+>
+>
 > Giả sử đây là ông số 12, tương ứng với μ = 12, có likelihood bằng 0.2.
+>
+>
 >
 > Còn ông số 10, chúng ta biết trình độ của ông ấy cao hơn. Vì vậy, giả thuyết rằng ông ấy đã vẽ những bức tranh này có mức độ hợp lý cao hơn, chẳng hạn 0.4.
 >
+>
+>
 > Tiếp tục xét những ứng cử viên khác, cuối cùng chúng ta gặp ông số 2. Qua việc xem trình độ, kho tranh và những tác phẩm của ông ấy, chúng ta thấy rằng giả thuyết ông này là tác giả của những bức tranh kia rất hợp lý.
+>
+>
 >
 > Chẳng hạn likelihood của ông này là 0.7.
 >
+>
+>
 > Như vậy, ông số 2 là ứng cử viên có mức độ hợp lý cao nhất trong ví dụ.
 >
+>
+>
 > Đó chính là cách hình dung ý nghĩa của likelihood function: với mỗi giá trị parameter được đề xuất, chúng ta đánh giá mức độ hợp lý của giá trị đó trong việc giải thích dữ liệu đã quan sát được.
+>
+>
 >
 > Và Maximum Likelihood Estimation chính là đi tìm giá trị parameter làm cho likelihood đạt lớn nhất.
 >
@@ -2505,15 +2561,27 @@
 >
 > Ví dụ, estimate có thể là μ = 2, nhưng giá trị thật có thể là μ = 1.9.
 >
+>
+>
 > Chúng ta chỉ đang chọn giá trị giải thích observed data hợp lý nhất theo mô hình đã giả định.
+>
+>
 >
 > θ̂\_ml = argmax\_θ L(θ|𝐗)
 >
+>
+>
 > Ở đây, khi sử dụng random sample 𝐗 thay cho observed data 𝐱, chúng ta đang nói về Maximum Likelihood Estimator — một statistic, tức là một hàm của random sample.
+>
+>
 >
 > Khi có observed data cụ thể và thay 𝐱 vào, chúng ta nhận được Maximum Likelihood Estimate.
 >
+>
+>
 > Frequentist: Chỉ coi θ, μ là cố định nhưng không biết.
+>
+>
 >
 > Trong cách tiếp cận Frequentist, parameter θ là một giá trị cố định nhưng chưa biết. Cái mang yếu tố ngẫu nhiên chính là random sample 𝐗, và do đó estimator W(𝐗) cũng là random variable.
 >
@@ -2529,35 +2597,67 @@
 >
 > Bây giờ chuyển qua cách tiếp cận của trường phái Bayesian.
 >
+>
+>
 > Khác với Frequentist, Bayesian coi parameter θ, hay trong ví dụ cụ thể là μ, như một random variable.
+>
+>
 >
 > θ, μ là random variable: có phân phối xác suất: π(θ) prior distribution (ví dụ μ \~ n(0, 1))
 >
+>
+>
 > Prior distribution là phân phối tiên nghiệm của θ, chưa dựa trên observed data. Chúng ta có thể lựa chọn prior dựa trên kinh nghiệm, những thông tin đã có hoặc những lý do thuận lợi cho tính toán.
+>
+>
 >
 > Ví dụ, μ là mean của population Normal mà chúng ta đang muốn estimate. Trong Bayesian approach, chúng ta có thể đặt prior distribution cho chính μ cũng là một Normal.
 >
+>
+>
 > Sau đó dùng Bayes rule để xây dựng posterior distribution, tức là phân phối của μ sau khi đã xét đến dữ liệu quan sát được.
+>
+>
 >
 > Bayes rule: π(μ|𝐱) = f(𝐱|μ)π(μ)/f(𝐱) posterior distribution
 >
+>
+>
 > π(μ|𝐱) cũng là một normal(2,8)
+>
+>
 >
 > Giả sử sau khi áp dụng Bayes rule, chúng ta xác định được posterior distribution của μ cũng là một Normal với các parameters như trong ví dụ.
 >
+>
+>
 > Đến đây, về cơ bản chúng ta đã giải được một bài toán inference khác: tìm phân phối hậu nghiệm của μ.
+>
+>
 >
 > Nhưng cần để ý rằng chúng ta mới chỉ tìm được **một probability distribution**, chứ chưa có một point estimate cụ thể cho μ.
 >
+>
+>
 > Ví dụ, posterior là Normal(2,8). Nó cho chúng ta biết mật độ xác suất của μ tại những giá trị khác nhau, nhưng câu hỏi vẫn là:
+>
+>
 >
 > Bayes estimator W(𝐱)?
 >
+>
+>
 > Tức là, với observed data 𝐱, chúng ta nên sử dụng giá trị nào để estimate μ?
+>
+>
 >
 > Với một phân phối Normal thì một cách trực quan, chúng ta có thể nghĩ nên lấy cái tâm của phân phối để estimate.
 >
+>
+>
 > Nhưng tại sao? Dựa trên cơ sở gì mà chọn cái tâm? Nếu posterior distribution không phải Normal thì chúng ta nên lấy giá trị nào?
+>
+>
 >
 > Đó chính là vấn đề mà Decision Theory giúp chúng ta giải quyết.
 >
@@ -2565,117 +2665,191 @@
 >
 > ---
 >
+>
+>
 > ## Decision theory
 >
 >
 >
 > Khi đã có một probability distribution và muốn đưa ra một point estimate, trước hết chúng ta cần xác định một tiêu chí để đánh giá thế nào là tốt, thế nào là tối ưu.
 >
+>
+>
 > Từ đó người ta mới xây dựng các loss functions khác nhau.
+>
+>
 >
 > Loss function: L(W(𝐗), θ) =
 >
+>
+>
 > Loss function nhận vào giá trị ước lượng của estimator và giá trị θ thật, rồi đo sự sai khác theo một tiêu chí cụ thể.
+>
+>
 >
 > Squared error loss: \[W(𝐗) - θ\]²
 >
+>
+>
 > Absolute error loss: |W(𝐗) - θ|
+>
+>
 >
 > Ngoài ra còn có nhiều loss functions khác.
 >
+>
+>
 > Điểm quan trọng là: tùy theo loss function mà chúng ta sử dụng, estimator tối ưu có thể khác nhau.
+>
+>
 >
 > Bây giờ xét squared error loss.
 >
+>
+>
 > ### 3.1 Risk function
 >
-> Tạm thời chúng ta quay lại cách nhìn Frequentist, tức là coi θ là một giá trị cố định nhưng không biết.
 >
-> Trong khi đó, 𝐗 vẫn là random sample và W(𝐗) vẫn là một statistic, do đó W(𝐗) là random variable.
 >
-> Vì vậy:
+> Tạm thời chúng ta quay lại cách nhìn Frequentist, tức là coi θ là một giá trị cố định nhưng không biết. Trong khi đó, 𝐗 vẫn là random sample và W(𝐗) vẫn là một statistic, do đó W(𝐗) là random variable.
 >
-> \[W(𝐗) - θ\]²
 >
-> cũng là một random variable.
+>
+> Vì vậy: \[W(𝐗) - θ\]² cũng là một random variable.
+>
+>
 >
 > Tại sao cứ phải nhắc đi nhắc lại rằng nó là random variable?
 >
+>
+>
 > Bởi vì khi nói tới expectation, chúng ta phải hiểu rằng mình đang lấy kỳ vọng của biến ngẫu nhiên nào, và **nguồn gốc của randomness đến từ đâu**.
+>
+>
 >
 > Trong trường hợp này, θ đang được coi là cố định. Nguồn ngẫu nhiên đến từ 𝐗. W(𝐗) là hàm số của 𝐗 nên nó cũng là random variable. Và khi áp squared error loss lên W(𝐗), kết quả cũng là random variable.
 >
+>
+>
 > Do đó chúng ta có thể xét expected loss:
+>
+>
 >
 > E\[(W(𝐗) - θ)²\] = ∫(W(𝐱) - θ)²f(𝐱|θ) d𝐱
 >
-> Tại sao expectation này lại được biểu diễn bằng tích phân như trên?
 >
-> Để hiểu, chúng ta active recall lại LOTUS.
 >
-> LOTUS
+> Tại sao expectation này lại được biểu diễn bằng tích phân như trên? Để hiểu, chúng ta active recall lại LOTUS.
+>
+>
 >
 > Giả sử:
 >
+>
+>
 > Y = (W(𝐗) - θ)² = g(𝐗)
 >
-> Định nghĩa hàm g:
 >
-> g(𝐮) = (W(𝐮) - θ)²
+>
+> Định nghĩa hàm g: g(𝐮) = (W(𝐮) - θ)²
+>
+>
 >
 > Khi áp hàm g lên random vector 𝐗:
 >
+>
+>
 > g(𝐗) = (W(𝐗) - θ)²
+>
+>
 >
 > Chúng ta có được random variable Y.
 >
+>
+>
 > Nhớ lại, nếu muốn tính expectation của một random variable theo định nghĩa, chúng ta cần biết probability distribution của nó.
+>
+>
 >
 > E\[𝐗\] = ∫𝐱f(𝐱|θ)d𝐱
 >
+>
+>
 > Nhưng nếu Y = g(𝐗), chúng ta có thể chưa biết PDF của Y. Chúng ta chỉ biết distribution của 𝐗 và biết hàm g.
+>
+>
 >
 > LOTUS cho phép chúng ta tính expectation của Y trực tiếp thông qua distribution của 𝐗, mà không cần tìm PDF của Y.
 >
+>
+>
 > E\[Y\] = ∫g(𝐱)f(𝐱|θ)d𝐱
+>
+>
 >
 > Ở đây, Y chính là (W(𝐗) - θ)², tức là g(𝐗).
 >
+>
+>
 > Do đó chúng ta chỉ cần thay g(𝐱) vào công thức LOTUS:
+>
+>
 >
 > E\_θ\[(W(𝐗) - θ)²\] = ∫(W(𝐱) - θ)²f(𝐱|θ)d𝐱 = r(θ)
 >
+>
+>
 > Risk function
+>
+>
 >
 > LOTUS: X \~ fX(x): EX = ∫xfX(x)dx. Y = g(X), EY = ∫g(x)fX(x)dx
 >
+>
+>
 > LOTUS rất hữu ích bởi vì nhiều khi chúng ta cần tính expectation của một random variable được tạo ra bằng cách áp một hàm số lên một random variable khác mà chúng ta đã biết distribution.
 >
-> Tại sao gọi là Risk Function?
+>
 >
 > Bây giờ cần để ý một điều.
 >
+>
+>
 > Ban đầu, squared error loss là một random variable bởi vì nó phụ thuộc vào random sample 𝐗.
 >
-> Nhưng sau khi lấy expectation theo distribution của 𝐗, chúng ta đã lấy trung bình qua mọi giá trị khả dĩ của random sample.
 >
-> Kết quả không còn ngẫu nhiên theo 𝐗 nữa.
 >
-> Tuy nhiên, nó vẫn phụ thuộc vào θ bởi vì distribution f(𝐱|θ) phụ thuộc θ.
+> Nhưng sau khi lấy expectation theo distribution của 𝐗, chúng ta đã lấy trung bình qua mọi giá trị khả dĩ của random sample. Kết quả không còn ngẫu nhiên theo 𝐗 nữa. Tuy nhiên, nó vẫn phụ thuộc vào θ bởi vì distribution f(𝐱|θ) phụ thuộc θ.
+>
+>
 >
 > Ví dụ:
 >
+>
+>
 > X \~ n(t, 1) EX = h(t)
+>
+>
 >
 > Trong trường hợp này, E\[X\] = t. Sau khi lấy expectation, kết quả không còn ngẫu nhiên nữa, nhưng nó vẫn là một biểu thức phụ thuộc vào parameter t.
 >
+>
+>
 > Tương tự, expected squared error loss sau khi tính toán sẽ là một hàm số theo θ.
+>
+>
 >
 > Đó là lý do chúng ta viết r(θ), và gọi nó là **Risk Function**.
 >
+>
+>
 > Về ý nghĩa, loss function đo sai số khi estimator W(𝐗) cho một giá trị cụ thể so với θ thật.
 >
+>
+>
 > Nhưng bởi vì 𝐗 có thể nhận nhiều giá trị khác nhau, nên W(𝐗) cũng có thể cho những estimates khác nhau.
+>
+>
 >
 > Khi lấy expectation của loss function theo 𝐗, chúng ta đang lấy trung bình sai số qua tất cả các possible values của random sample.
 >
@@ -2687,23 +2861,33 @@
 >
 >
 >
-> ### Bayes risk
+> Bayes risk:
 >
 >
 >
 > Bây giờ chúng ta chuyển lại sang Bayesian approach.
 >
-> Hồi nãy, khi tính risk function, θ được coi là cố định nhưng không biết. Do đó r(θ) là một hàm số của θ.
 >
-> Nhưng bây giờ theo Bayesian approach, θ được coi là random variable có prior distribution π(θ).
+>
+> Hồi nãy, khi tính risk function, θ được coi là cố định nhưng không biết. Do đó r(θ) là một hàm số của θ. Nhưng bây giờ theo Bayesian approach, θ được coi là random variable có prior distribution π(θ).
+>
+>
 >
 > Vì r(θ) là một hàm số của θ, nên khi θ là random variable thì r(θ) cũng trở thành random variable.
 >
+>
+>
 > Chúng ta lại tiếp tục lấy expectation, nhưng lần này là **expectation theo distribution của θ**, chứ không phải theo distribution của 𝐗 nữa.
+>
+>
 >
 > E{E\_θ\[(W(𝐗) - θ)²\]} = ∫r(θ)π(θ)dθ
 >
-> Bayes risk
+>
+>
+> Đây gọi là Bayes risk
+>
+>
 >
 > Để ý có hai lần lấy expectation:
 >
@@ -2717,9 +2901,7 @@
 >
 >
 >
-> Sau khi lấy expectation theo θ, kết quả không còn ngẫu nhiên theo θ nữa. Nhưng nó vẫn phụ thuộc vào estimator W mà chúng ta lựa chọn.
->
-> Đó là lý do dù Bayes risk là một giá trị không ngẫu nhiên đối với một estimator đã cho, chúng ta vẫn phải tìm W sao cho Bayes risk nhỏ nhất.
+> Sau khi lấy expectation theo θ, kết quả không còn ngẫu nhiên theo θ nữa. Nhưng nó vẫn phụ thuộc vào estimator W mà chúng ta lựa chọn. Đó là lý do dù Bayes risk là một giá trị không ngẫu nhiên đối với một estimator đã cho, chúng ta vẫn phải tìm W sao cho Bayes risk nhỏ nhất.
 >
 >
 >
@@ -2731,93 +2913,169 @@
 >
 >
 >
-> Tìm W để minimize Bayes risk:
+> Tìm W để minimize Bayes risk: minimize ∫E\_θ\[(W(𝐗) - θ)²\]π(θ)dθ
 >
-> minimize ∫E\_θ\[(W(𝐗) - θ)²\]π(θ)dθ
+>
 >
 > Thay công thức expected squared error loss đã tính ở trên:
 >
+>
+>
 > = ∫∫(W(𝐱) - θ)²f(𝐱|θ) d𝐱 π(θ)dθ
+>
+>
 >
 > Bây giờ chúng ta đưa π(θ) vào trong tích phân theo 𝐱, vì π(θ) không phụ thuộc vào 𝐱.
 >
+>
+>
 > = ∫∫(W(𝐱) - θ)² f(𝐱|θ)π(θ) d𝐱 dθ
+>
+>
 >
 > Nhớ lại Bayes rule:
 >
+>
+>
 > f(𝐱|θ)π(θ) = π(θ|𝐱)f(𝐱)
 >
+>
+>
 > Do đó:
+>
+>
 >
 > = ∫∫(W(𝐱) - θ)² π(θ|𝐱)f(𝐱) d𝐱 dθ
 >
+>
+>
 > Tiếp theo, hoán đổi thứ tự tích phân theo θ và 𝐱:
+>
+>
 >
 > = ∫∫(W(𝐱) - θ)² π(θ|𝐱)f(𝐱) dθ d𝐱
 >
+>
+>
 > Bởi vì f(𝐱) không phụ thuộc θ, chúng ta đưa nó ra ngoài tích phân theo θ:
+>
+>
 >
 > = ∫f(𝐱) ∫(W(𝐱) - θ)² π(θ|𝐱)dθ d𝐱
 >
+>
+>
 > Bây giờ xét riêng phần tích phân bên trong:
+>
+>
 >
 > ∫(W(𝐱) - θ)² π(θ|𝐱)dθ
 >
+>
+>
 > Đây là cái gì?
+>
+>
 >
 > Để ý rằng ở đây chúng ta đang xét một giá trị observed data 𝐱 cụ thể.
 >
+>
+>
 > Do đó W(𝐱) là một giá trị cố định. Yếu tố ngẫu nhiên lúc này không còn đến từ 𝐗 nữa, mà đến từ θ.
 >
-> Vì θ là random variable theo posterior distribution π(θ|𝐱), nên:
 >
-> (W(𝐱) - θ)²
 >
-> là một random variable được tạo ra bởi một hàm số của θ.
+> Vì θ là random variable theo posterior distribution π(θ|𝐱), nên (W(𝐱) - θ)² là một random variable được tạo ra bởi một hàm số của θ.
+>
+>
 >
 > Và chúng ta lại đang sử dụng LOTUS để lấy expectation của random variable này theo posterior distribution của θ.
 >
+>
+>
 > E\[(W(𝐱) - θ)²\]
+>
+>
 >
 > posterior expected loss
 >
+>
+>
 > Tại sao gọi là posterior expected loss?
+>
+>
 >
 > Bởi vì đây là expectation của loss function, nhưng expectation được tính theo **posterior distribution của θ given 𝐱**.
 >
+>
+>
 > Bây giờ quay lại toàn bộ biểu thức Bayes risk.
+>
+>
 >
 > Vì f(𝐱) không âm, để minimize Bayes risk, chúng ta có thể tìm W sao cho posterior expected loss nhỏ nhất đối với từng 𝐱.
 >
+>
+>
 > minimize E\[(W - θ)²\] ∀𝐱
+>
+>
 >
 > Ở đây, để viết cho gọn, tạm bỏ phần phụ thuộc 𝐱 trong W(𝐱), nhưng phải nhớ W là giá trị cố định ứng với observed data 𝐱 đang xét.
 >
+>
+>
 > Và expectation ở đây là expectation theo posterior distribution của θ.
 >
-> ### 3.4 Tìm Bayes Estimator tối ưu
+>
+>
+> ### Tìm Bayes Estimator tối ưu
+>
+>
 >
 > Bây giờ chỉ còn giải bài toán optimization này.
 >
+>
+>
 > minimize E\[(W - θ)²\] ∀𝐱
+>
+>
 >
 > Mở bình phương:
 >
+>
+>
 > = E\[W² -2Wθ + θ²\]
+>
+>
 >
 > Dùng tính tuyến tính của expectation:
 >
+>
+>
 > = E\[W²\] -2E\[Wθ\] + E\[θ²\]
+>
+>
 >
 > Như đã giải thích, ở đây W là một giá trị cố định, chỉ có θ là random variable theo posterior distribution.
 >
-> Do đó:
 >
-> = W² -2WE\[θ\] + E\[θ²\]
+>
+> Do đó: 
+>
+>
+>
+> ..= W² -2WE\[θ\] + E\[θ²\]
+>
+>
 >
 > Bây giờ chúng ta cần tìm W để minimize biểu thức này.
 >
+>
+>
 > Đây là một quadratic function theo W, có hệ số của W² dương. Do đó, stationary point tìm được bằng first-order condition cũng chính là minimum.
+>
+>
 >
 > Lấy đạo hàm theo W và cho bằng 0:
 >
@@ -2827,17 +3085,21 @@
 >
 > ⇔ W = E\[θ|𝐱\]
 >
+>
+>
 > Lưu ý, E\[θ\] ở các bước biến đổi trên là expectation theo posterior distribution π(θ|𝐱), chứ không phải prior distribution π(θ).
 >
-> Vì vậy chúng ta ghi rõ:
->
-> W(𝐱)\* = E\[θ|𝐱\]
 >
 >
+> Vì vậy chúng ta ghi rõ: W(𝐱)\* = E\[θ|𝐱\]
 >
-> Đây chính là kết quả muốn chứng minh.
 >
-> Nếu sử dụng squared error loss, Bayes estimator giúp minimize Bayes risk chính là **posterior mean**.
+>
+> Đây chính là kết quả muốn chứng minh. Nếu sử dụng squared error loss, Bayes estimator giúp minimize Bayes risk chính là **posterior mean**.
+>
+>
+>
+> ---
 >
 >
 >
@@ -2845,7 +3107,9 @@
 >
 >
 >
-> ML Estimator: W(𝐗) = argmax L(θ|𝐱) = ml estimate θ
+> ML Estimator: W(𝐗) = argmax L(θ|𝐗) = ml estimate θ
+>
+>
 >
 > Bayes Estimator: W(𝐗) = E\[θ|𝐱\] Bayes estinate cho θ
 >
@@ -2855,7 +3119,11 @@
 >
 > Còn với Bayesian approach, chúng ta coi θ là random variable, xây dựng posterior distribution của θ given 𝐱, rồi sử dụng Decision Theory để lựa chọn point estimate.
 >
+>
+>
 > Nếu loss function là squared error loss thì Bayes estimator tối ưu là posterior mean.
+>
+>
 >
 > Điều cần nhớ là kết quả này phụ thuộc vào loss function. Nếu chúng ta chọn một loss function khác thì estimator tối ưu có thể khác.
 >
@@ -2867,61 +3135,200 @@
 >
 > Bây giờ quay lại câu hỏi mà chúng ta đã đặt ra ở đầu video.
 >
+>
+>
 > Trong bài toán Regression, chúng ta muốn xây dựng một prediction function nhận feature vector x và đưa ra một target prediction.
+>
+>
 >
 > Theo probabilistic approach của Bishop, chúng ta giả định một conditional distribution của target T given X.
 >
+>
+>
 > Ví dụ, trong Linear Regression:
 >
+>
+>
 > T|X=x \~ Normal(wᵀx, β⁻¹)
+>
+>
 >
 > Thông qua inference, chúng ta estimate parameters w và β của mô hình.
 >
+>
+>
 > Nhưng sau khi đã infer được phân phối xác suất, chúng ta vẫn cần phải quyết định sử dụng giá trị nào để làm prediction cho T.
+>
+>
 >
 > Đây là vấn đề tương tự với bài toán Bayes estimator mà chúng ta vừa giải.
 >
+>
+>
 > Ở trên, chúng ta có posterior distribution của θ given 𝐱. Sau đó dựa trên Decision Theory, với squared error loss, chúng ta chứng minh rằng optimal point estimate chính là:
+>
+>
 >
 > W(𝐱)\* = E\[θ|𝐱\]
 >
+>
+>
 > Còn trong bài toán Regression, chúng ta có conditional distribution của T given X=x.
+>
+>
 >
 > Nếu sử dụng squared error loss, optimal point prediction chính là:
 >
+>
+>
 > y\*(x) = E\[T|X=x\]
+>
+>
 >
 > Trong trường hợp Linear Regression với Gaussian conditional distribution:
 >
+>
+>
 > T|X=x \~ Normal(wᵀx, β⁻¹)
+>
+>
 >
 > Thì conditional mean chính là wᵀx.
 >
+>
+>
 > Do đó:
 >
-> *y(x) = E\[T|X=x\] = wᵀx\**
+>
+>
+> y(x) = E\[T|X=x\] = wᵀx\*
+>
+>
 >
 > Đây chính là cơ sở để giải thích tại sao chúng ta sử dụng wᵀx để prediction.
 >
+>
+>
 > Không phải vì tự nhiên người ta quyết định lấy mean của phân phối hay vì chúng ta đơn giản thấy cái tâm của Normal có vẻ hợp lý.
+>
+>
 >
 > Mà bởi vì **theo Decision Theory, nếu sử dụng squared error loss thì conditional mean chính là optimal prediction**.
 >
+>
+>
 > Nếu sử dụng absolute error loss thì conditional median mới là optimal prediction.
+>
+>
 >
 > Đối với Normal distribution, mean và median trùng nhau. Nhưng đối với những phân phối khác, chúng có thể khác nhau.
 >
+>
+>
 > Vì vậy, nếu chúng ta không đặt câu hỏi tại sao lại dùng y(x) = wᵀx, thì có thể chúng ta vẫn sử dụng công thức đó mà không thấy có gì cần thắc mắc.
+>
+>
 >
 > Nhưng khi đặt câu hỏi và chất vấn sự hiểu của mình, chúng ta mới thấy rằng việc lựa chọn prediction function có một cơ sở lý thuyết chặt chẽ.
 >
+>
+>
 > Đó là điều mà phần 1.5.5 của Bishop giúp chúng ta hiểu rõ hơn.
 >
+>
+>
 > Machine Learning không phải tự nhiên mọc từ dưới đất lên. Nó được xây dựng trên nền tảng của Statistics, Decision Theory và Optimization.
+>
+>
+>
+>
+>
+> ---
+>
+>
+>
+> π(θ|𝐱) 
+>
+> \
+> W(𝐱) point estimate cho θ
+>
+>
+>
+> Frequentist: θ̂(𝐗) 
+>
+>
+>
+> Bayesian: π(θ|𝐱) W(𝐗) = E\[θ|𝐗\]
+>
+>
+>
+> f(t|𝐱)
+>
+>
+>
+> y(𝐱) estimate t
+>
+>
+>
+> Loss = L(y(𝐗), T) = (y(𝐗) - T)²
+>
+>
+>
+> E\[L\] =  ∫ \[∫(y(𝐱) - t)² f(𝐱, t) d𝐱\]  dt
+>
+>
+>
+> LOTUS: X \~ fX(x), EX = ∫xfX(x)dx. Y = g(X), LOTUS cho EY = ∫g(x)fX(x)dx
+>
+>
+>
+> E\[L\] =  ∫ ∫(y(𝐱) - t)² f(t|𝐱) d𝐱  dt
+>
+>
+>
+> = ∫ ∫(y(𝐱) - t)² f(t|𝐱)f(𝐱) d𝐱  dt
+>
+>
+>
+> = ∫ f(𝐱) \[∫(y(𝐱) - t)² f(t|𝐱)d𝐱\] dt
+>
+>
+>
+> minimize ∫(y(𝐱) - t)² f(t|𝐱)d𝐱 với mọi 𝐱
+>
+>
+>
+> y(𝐱) = ∫tf(t|𝐱)d𝐱 = E\[t|𝐱\]
+>
+>
+>
+> minimize over y E\[(y-T)²\] với T\~f(t|𝐱)
+>
+>
+>
+> E\[(y-T)²\] = E\[y² -2yT + T²\]
+>
+>
+>
+>  = E\[y²\] -2E\[yT\] + E\[T²\]
+>
+>
+>
+>  = y² -2yE\[T\] + E\[T²\]
+>
+>
+>
+> d/dy {y² -2yE\[T\] + E\[T²\]} = 2y - 2E\[T\] = 0
+>
+>
+>
+> ⇔ y = E_t\[T|𝐱\] với T\~f(t|𝐱)
 
-📹 Video 1: [Tại sao lại dùng wᵀx làm prediction trong Linear Regression?](https://www.youtube.com/watch?v=qpbXwm7Wsy8)
+📹 Video 1: [Loss Functions for Regression — Pattern Recognition Machine Learning_C.Bishop](https://www.youtube.com/watch?v=bn50Fk9l3-8)
 
-📹 Video 2: [Tại sao Linear Regression lại dùng wᵀx làm prediction? (cont)](https://www.youtube.com/watch?v=9RZ7m6mqCDc)
+📹 Video 2: [Tại sao lại dùng wᵀx làm prediction trong Linear Regression?](https://www.youtube.com/watch?v=qpbXwm7Wsy8)
+
+📹 Video 3: [Tại sao Linear Regression lại dùng wᵀx làm prediction? (cont)](https://www.youtube.com/watch?v=9RZ7m6mqCDc)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
