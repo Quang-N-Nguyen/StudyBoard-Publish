@@ -1,6 +1,6 @@
 # 1.5 Decision Theory
 
-📊 **Progress:** `29` Notes | `41` Screenshots | `4` AI Reviews
+📊 **Progress:** `30` Notes | `42` Screenshots | `15` AI Reviews
 
 ---
 <a id="node-0es6zw7"></a>
@@ -73,6 +73,25 @@
 > ta thường muốn dự đoán t dựa trên giá trị của x hoặc rộng hơn, mục đích
 > của ta thường là đưa ra một hành động tốt nhất dựa trên giá trị mà t có khả
 > năng cao nhất dựa trên input x
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú thể hiện khả năng liên hệ khái niệm rất tốt giữa giáo trình PRML của Bishop và thống kê suy luận cổ điển (Casella & Berger). Điểm duy nhất cần lưu ý là lý thuyết quyết định (decision theory) không chỉ dựa vào giá trị có khả năng cao nhất mà xét trên toàn bộ phân phối hậu nghiệm kết hợp với hàm tổn thất.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"đưa ra một hành động tốt nhất dựa trên giá trị mà t có khả năng cao nhất dựa trên input x"*
+>
+> Cách diễn đạt này vô tình thu hẹp lý thuyết quyết định (Decision Theory) về bài toán chọn giá trị có xác suất lớn nhất (như MAP). Trong thực tế, decision theory tối ưu hóa hành động dựa trên việc cực tiểu hóa kỳ vọng của hàm mất mát (expected loss) đối với toàn bộ phân phối điều kiện p(t|x), chứ không chỉ dựa riêng vào một giá trị t có khả năng xảy ra cao nhất.
+>
+>
+> **✓ Strengths**
+> - Hiểu chính xác sự phân biệt giữa bài toán hồi quy (continuous variables) và phân loại (class labels).
+> - Kết nối rất sáng tạo và chính xác định nghĩa 'inference' trong Machine Learning với các bài toán suy diễn thống kê chuẩn mực (point estimation, hypothesis testing, interval estimation) trong Casella & Berger.
+>
+> **💡 Deeper notes**
+> - Bishop chia quá trình giải quyết bài toán thành 2 bước rõ rệt: Inference stage (ước lượng phân phối p(x, t) hoặc p(t|x)) và Decision stage (chọn hành động tối ưu theo loss function). Sau này Bishop sẽ giới thiệu các hướng tiếp cận khác như mô hình phân biệt (học trực tiếp p(t|x)) hoặc hàm phân biệt (discriminant function - map thẳng từ x sang t bỏ qua bước tính xác suất).
 
 <br>
 
@@ -159,6 +178,18 @@
 > Vậy thì ở đây, tính được f(t, 𝐱) coi như là bài toán inference, khi đó, ta
 > sẽ tính được f(t|𝐱) và việc lấy giá trị nào có posterior cao hơn để gán / báo 
 > cho bệnh nhân chính là bước dựa vào decision theory để take action
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và diễn giải trực quan vai trò của định lý Bayes trong bài toán quyết định. Bạn còn nhìn nhận sớm và chính xác sự phân tách giữa hai giai đoạn inference (suy luận xác suất) và decision (ra quyết định).
+>
+> **✓ Strengths**
+> - Hiểu chính xác vai trò và ý nghĩa trực giác của xác suất tiên nghiệm (prior) và xác suất hậu nghiệm (posterior) trong bài toán chẩn đoán y tế.
+> - Liên hệ và phân biệt chuẩn xác giữa bài toán inference (mô hình hóa phân phối/tính posterior) và decision theory (chọn hành động tối ưu dựa trên posterior).
+>
+> **💡 Deeper notes**
+> - Về mặt bản chất: ở bài toán phân loại, nhãn lớp $T$ (hay $\mathcal{C}_k$) là một biến ngẫu nhiên rời rạc (discrete target variable) của từng mẫu dữ liệu, khác với tham số $\theta$ trong Bayesian inference vốn là tham số cố định chưa biết của toàn bộ mô hình được gán phân phối niềm tin.
 
 <br>
 
@@ -357,6 +388,25 @@
 >
 >
 > ∫R2 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc khi liên hệ sâu sắc giữa decision region trong bài toán phân loại và rejection region trong kiểm định giả thuyết thống kê cổ điển. Việc giải thích sự khác biệt giữa tham số cố định θ và biến ngẫu nhiên nhãn lớp T giúp làm rõ bản chất công thức xác suất lỗi.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Đây là union của hai disjoint event, nên theo axiom 2 của lí thuyết xác suất, ta tách nó thành tổng"*
+>
+> Theo hệ tiên đề xác suất Kolmogorov chuẩn, tính cộng của các biến cố xung khắc (additivity) là Tiên đề 3 (Axiom 3), còn Tiên đề 2 là chuẩn hóa P(Ω) = 1 (hoặc Tiên đề 1 là tính không âm).
+>
+>
+> **✓ Strengths**
+> - So sánh và phân biệt rất chính xác góc nhìn Frequentist trong kiểm định giả thuyết (θ là hằng số cố định, unknown) với bài toán phân loại mẫu (nhãn lớp T là biến ngẫu nhiên).
+> - Thiết lập chặt chẽ công thức tính xác suất lỗi dựa trên hợp của hai biến cố xung khắc và tích phân mật độ đồng thời trên miền quyết định.
+>
+> **💡 Deeper notes**
+> - Đối với phân phối đồng thời giữa biến ngẫu nhiên liên tục X và biến rời rạc T, về mặt lý thuyết đo độ (measure theory), tích phân f(t, x) dxdt thực chất là tích phân theo tích của độ đo Lebesgue và độ đo đếm (counting measure), do đó tích phân trên biến T rút lại thành phép tính tổng (hoặc giá trị tại điểm rời rạc).
 
 **🔗 See also:** [Generalized Linear Model for K Classes](./421_continuous_inputs.md#node-q8w0jnb)
 
@@ -1028,6 +1078,36 @@
 >
 >
 > Khi θ ∈ Θ0c: R = cII * P_θ(𝐗 ∈ R) + 0 * P_θ(X ∈ Rc) = cII * (1 - β(θ))
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc ý tưởng của đoạn trích và mở rộng đối chiếu xuất sắc sang Decision Theory trong thống kê cổ điển và Bayes (Casella & Berger). Một vài chỗ có lỗi gõ nhầm ký hiệu (typo) trong biến đổi đại số nhưng không làm sai lệch bản chất tư duy.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"= Var[Var(𝐗) - θ] + (E[W(𝐗) - θ])² 
+
+ = Var[Var(𝐗)] + (E[W(X) - θ])²"*
+>
+> Lỗi gõ nhầm (typo): viết nhầm `Var(X)` thay vì `W(X)`. Đúng ra phải là `= Var[W(X) - θ] + (E[W(X) - θ])² = Var[W(X)] + [Bias(W(X), θ)]²` vì phương sai của hằng số θ bằng 0.
+>
+> **2.** *"L(C(𝐗), θ) = I_{θ ∈ C(𝐗)} + b Size(C(𝐗)), thể hiện: nếu C(𝐗) chứa θ và có size nhỏ thì loss sẽ nhỏ."*
+>
+> Quy ước hàm chỉ thị (indicator function) thông thường nhận giá trị 1 nếu mệnh đề đúng và 0 nếu sai. Do đó, nếu muốn nhận giá trị 0 khi chứa θ và 1 khi không chứa θ, ký hiệu chuẩn phải là $I_{\{\theta \notin C(X)\}}$ hoặc $1 - I_{\{\theta \in C(X)\}}$, thay vì viết trực tiếp $I_{\{\theta \in C(X)\}}$, dù lời giải thích bằng lời đi kèm là đúng.
+>
+> **3.** *"Khi θ ∈ Θ0c: R = cI * P_θ(𝐗 ∈ R) + 0 * P_θ(X ∈ Rc) = cI * (1 - β(θ))"*
+>
+> Lỗi nhầm vị trí xác suất khi viết chi tiết: khi θ ∈ Θ0c, lỗi loại II (loss = cII) xảy ra khi không bác bỏ H0, tức là $X \in R^c$. Biểu thức đúng phải là $R = c_{II} P_\theta(X \in R^c) + 0 \cdot P_\theta(X \in R) = c_{II}(1 - \beta(\theta))$. Kết quả cuối cùng bạn viết đúng nhưng bước trung gian bị tráo $R$ và $R^c$.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ và tóm tắt chính xác luận điểm của sách Bishop: trong thực tế, các loại sai số có hậu quả rất khác nhau nên không thể chỉ tối thiểu hóa tỷ lệ phân loại sai thuần túy.
+> - Khả năng kết nối kiến thức rất tốt khi liên hệ trực tiếp với kiểm định giả thuyết (Type I vs Type II error, level alpha test) và lý thuyết quyết định (Statistical Decision Theory).
+> - Trình bày chi tiết và chính xác mối liên hệ giữa risk function, MSE (phân rã Bias-Variance) và Bayes risk / posterior expected loss.
+>
+> **💡 Deeper notes**
+> - Trong bài toán phân loại của Bishop sắp tới (mục 1.5.2 tiếp tục), ma trận loss $L_{kj}$ thường được định nghĩa với $k$ là nhãn thực tế và $j$ là nhãn dự đoán (action), từ đó việc tối thiểu hóa expected loss quy về việc so sánh các posterior probabilities $p(C_k|x)$ nhân với trọng số loss tương ứng.
 
 <br>
 
@@ -1804,6 +1884,31 @@
 > là cái khúc nó sẽ học ra posterior distribution, và decoder là một mô hình
 > đóng vai trò sampling từ posterior distribution đó.
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ⚠️ **85/100** · ✓ Move on
+>
+> Ghi chú nắm rất tốt bản chất của hai giai đoạn (inference và decision) cũng như liên hệ sâu sắc với thống kê cổ điển. Có một vài điểm chưa hoàn toàn chuẩn xác khi mô tả cách hoạt động của discriminant function và ví dụ về Neural Network/VAE, nhưng tư duy tổng thể rất đúng hướng.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"vừa "học" ra / suy luận / inference posterior và vừa đưa ra dự đoán luôn, thông qua hình thức là học một function map giữa input và decision, gọi là DISCRIMINANT function"*
+>
+> Cụm 'solve both problems together' của Bishop không có nghĩa là hàm này vừa suy ra posterior vừa ra quyết định, mà là nó bỏ qua hoàn toàn bước tính xác suất posterior (probabilities play no role) để đi thẳng từ x sang quyết định/nhãn (dù bạn đã phần nào tự chỉnh lại ý này ở đoạn sau).
+>
+> **2.** *"Lấy ví dụ một neural network, hay deep learning model, thì bằng cách training một mapping function giữa ảnh đầu vào và phân loại ảnh đầu ra, mình có thể hiểu bên trong nó đang làm hai việc cùng lúc: học ra posterior distribution và thực hiện decision."*
+>
+> Mạng nơ-ron phân loại thông thường (với tầng cuối là softmax và tối ưu cross-entropy) thực chất thuộc hướng tiếp cận số 2: mô hình hóa trực tiếp xác suất hậu nghiệm p(Ck|x), sau đó bước chọn argmax mới là decision stage; chứ bản thân mạng không phải là thuần discriminant function không qua xác suất (như SVM hay Perceptron).
+>
+>
+> **✓ Strengths**
+> - Phân biệt rất rõ ràng hai giai đoạn inference (học phân phối posterior) và decision (ra quyết định tối ưu dựa trên posterior).
+> - Có liên hệ rất hay và chính xác với lý thuyết suy diễn thống kê (Statistical Inference của Casella) về bản chất của bước inference.
+> - Tự phát hiện và phân biệt được sự khác nhau giữa mô hình có ước lượng posterior và mô hình map trực tiếp sang quyết định (discriminant function).
+>
+> **💡 Deeper notes**
+> - Bishop chia thành 3 hướng tiếp cận cụ thể ở phần sau: (1) Generative models: mô hình hóa p(x|Ck) và p(Ck) rồi dùng Bayes để tìm p(Ck|x); (2) Discriminative models: mô hình hóa trực tiếp p(Ck|x); (3) Discriminant function: map trực tiếp x ra nhãn không dùng xác suất.
+> - Ví dụ về VAE ở cuối note thuộc về mô hình sinh có biến ẩn (latent variable model), trong đó encoder xấp xỉ posterior q(z|x) của biến ẩn z, hơi khác ngữ cảnh bài toán phân lớp (classification posterior p(Ck|x)) đang xét trong mục 1.5.4.
+
 <br>
 
 <a id="node-dlnliou"></a>
@@ -2219,16 +2324,11 @@
 <p align="center"><kbd><img src="assets/fdhzp1y5yur.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Chuyển qua bài toán decision theory trong linear regression. Trong đó,  ta
-> đưa ra dự đóan t = y(𝐱) cho mỗi input 𝐱, mỗi một dự đoán như vậy, tạo
-> ra loss L(t, y(𝐱)). Và average loss E[L] theo công thức 1.86. Vì sao?
+> Chuyển qua bài toán decision theory trong regression. Trong đó, ta đưa ra dự đóan t = y(𝐱) cho mỗi input 𝐱, mỗi một dự đoán như vậy, tạo ra loss L(t, y(𝐱)). Và average loss E\[L\] theo công thức 1.86. Vì sao?
 >
 >
 >
-> Đơn giản, L(𝐭,y(𝐱)) là hàm, nên Loss = L(𝐓, y(𝐗)) là random
-> variable   tạo ra bởi việc áp một hàm số lên hai random variable T, 𝐗. Và
-> như đã học ở Stat110, Casella, 2D LOTUS cho phép ta tính EZ của Y = g(X,
-> Y) dựa theo joint pdf/pmf f(x,y) của X, Y:
+> Đơn giản, L(𝐭, y(𝐱)) là hàm, nên Loss = L(𝐓, y(𝐗)) là random variable tạo ra bởi việc áp một hàm số lên hai random variable T, 𝐗. Và như đã học ở Stat110, Casella, 2D LOTUS cho phép ta tính EZ = g(X, Y) dựa theo joint pdf/pmf f(x,y) của X, Y:
 >
 >
 >
@@ -2236,12 +2336,611 @@
 >
 >
 >
-> Vậy thì đây cũng vậy, LOTUS cho phép tính EL dựa theo joint distribution
-> của T, 𝐗
+> Vậy thì đây cũng vậy, LOTUS cho phép tính EL dựa theo joint distribution của T, 𝐗
 >
 >
 >
-> E[L] = ∫∫L(t, y(𝐱)) f(t,𝐱) d𝐱 dt
+> E\[L\] = ∫∫L(t, y(𝐱)) f(t,𝐱) d𝐱 dt
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú giải thích rất xuất sắc và chính xác bản chất xác suất của công thức kỳ vọng hàm mất mát thông qua định lý LOTUS.
+>
+> **✓ Strengths**
+> - Liên hệ chính xác việc tính kỳ vọng hàm mất mát E[L] với định lý LOTUS (Law of the Unconscious Statistician) từ xác suất thống kê.
+> - Hiểu rõ loss là một biến ngẫu nhiên được tạo thành từ hàm số áp lên hai biến ngẫu nhiên đầu vào và nhãn (X, T).
+>
+> **💡 Deeper notes**
+> - Trong thiết lập hồi quy chuẩn của mục này, t thường là biến vô hướng (scalar target), trong khi x là vector (dù LOTUS vẫn hoàn toàn tổng quát cho vector t đa chiều).
+
+<br>
+
+<a id="node-bv9ovhb"></a>
+
+###### Loss Functions for Regression
+
+<p align="center"><kbd><img src="assets/nhfkka9kzy.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> (Nội dung này mình nhờ GPT tổng hợp những gì nói trong video với những ghi chú ngắn mà bạn thấy trong video, thành ra cái note dưới đây cơ bản có bàn tay của AI)
+>
+>
+>
+> Mục đích của video này là dùng kiến thức đã học trong cuốn *Statistical Inference* của Casella & Berger để hiểu rõ hơn phần 1.5.5 của Bishop PRML.
+>
+>
+>
+> Cụ thể, trong bài toán Regression, giả sử chúng ta đã infer được conditional distribution của target T given X. Vậy thì chúng ta nên lấy giá trị nào từ phân phối này để đưa ra prediction là tối ưu?
+>
+>
+>
+> Ở Chapter 3 về Linear Regression, chúng ta đã giả định:
+>
+> T₁|X₁=x₁ \~ Normal(wᵀx₁, β⁻¹)
+>
+> T₂|X₂=x₂ \~ Normal(wᵀx₂, β⁻¹)
+>
+> ...
+>
+> Tₙ|Xₙ=xₙ \~ Normal(wᵀxₙ, β⁻¹)
+>
+>
+>
+> Tức là chúng ta đang giả định các conditional distributions này có chung variance, chỉ khác nhau mean.
+>
+> Bước đầu tiên là giải bài toán inference: dựa trên observed data để estimate các parameters của phân phối, cụ thể ở đây là w và β.
+>
+> Nhưng sau khi đã infer được conditional distribution, tại sao chúng ta lại dùng mean của phân phối này, tức là wᵀx, để làm prediction?
+>
+> Tại sao không dùng một giá trị khác? Khi nào dùng mean, khi nào dùng median? Và dựa trên cơ sở nào để đưa ra quyết định đó?
+>
+> Đây chính là chỗ mà kiến thức Statistical Inference, đặc biệt là Decision Theory, giúp chúng ta hiểu rõ hơn bản chất của bài toán.
+>
+>
+>
+> Trước hết, active recall lại bài toán **Point Estimation**.
+>
+>
+>
+> Trong Statistical Inference, chúng ta đã học ba bài toán lớn: Point Estimation, Hypothesis Testing và Interval Estimation.
+>
+> Ở đây chúng ta chỉ tập trung vào Point Estimation.
+>
+> 𝐗 = (X1, X2,.....,Xn), Xi, i=1,2,.... \~ f(x|θ) (ví dụ normal(μ, σ²))
+>
+> 𝐗 là một random sample gồm n random variables độc lập và cùng phân phối (i.i.d.), có chung population distribution được đặc trưng bởi parameter θ.
+>
+> 𝐱 = x1, x2,....xn
+>
+> Đây là những giá trị cụ thể mà chúng ta quan sát được sau khi thu thập sample.
+>
+> Bài toán Point Estimation là đi tìm một hàm số W của random sample 𝐗 để khi áp hàm số đó lên dữ liệu quan sát được 𝐱, chúng ta có được một point estimate cho θ.
+>
+> W(𝐱) = point estimate cho θ
+>
+> Cần phân biệt: W(𝐗) là một statistic, tức là một random variable bởi vì nó là hàm số của random sample 𝐗. Còn W(𝐱) là một giá trị cụ thể sau khi đã quan sát được dữ liệu.
+>
+> Ví dụ, giả sử population distribution là Normal với variance đã biết nhưng mean μ chưa biết. Khi đó θ chính là μ, và nhiệm vụ của chúng ta là tìm một estimator để estimate μ.
+>
+> Vậy tìm một estimator tốt bằng cách nào?
+>
+>
+>
+> Trong sách Casella, chúng ta đã học các phương pháp như Method of Moments, Maximum Likelihood và Bayes Estimation.
+>
+>
+>
+> ---
+>
+>
+>
+> ### Maximum likelihood (estimator)
+>
+>
+>
+> W(𝐱) = argmax\_θ L(θ|𝐱)
+>
+> likelihood function: "mức độ hợp lí"
+>
+> Để hiểu cái likelihood function này, xét ví dụ:
+>
+> 𝐱 = 1,2,3,4,5,6,7,8 n(μ, 5)
+>
+> Giả sử chúng ta quan sát được sample gồm các giá trị 1,2,3,4,5,6,7,8 và biết rằng population distribution là Normal, với variance đã biết, nhưng không biết μ bằng bao nhiêu.
+>
+> Chúng ta muốn tìm một giá trị μ sao cho nó giải thích dữ liệu đã quan sát được một cách hợp lý nhất.
+>
+> Ví dụ, thử đưa những giá trị μ khác nhau vào likelihood function:
+>
+> L(μ|𝐱 = 1,2,3,4,5,6,7,8)|μ=10 → 0.4
+>
+> L(μ|𝐱 = 1,2,3,4,5,6,7,8)|μ=12 → 0.2
+>
+> L(μ|𝐱 = 1,2,3,4,5,6,7,8)|μ=2 → 0.7
+>
+> (Các giá trị 0.4, 0.2, 0.7 chỉ là những con số được lấy đại để minh họa cách hiểu likelihood, không phải kết quả tính toán thực tế.)
+>
+> Những giá trị μ = 10, μ = 12, μ = 2 này giống như những **ứng cử viên** cho giá trị μ thật sự mà chúng ta không biết.
+>
+> Likelihood function sẽ giúp đánh giá rằng, với observed data như vậy, ứng cử viên nào có mức độ hợp lý cao hơn.
+>
+> Ví von: Những bức tranh và người họa sĩ
+>
+> Để hiểu likelihood một cách trực quan, thử tưởng tượng rằng chúng ta đi ngoài đường và nhìn thấy rất nhiều bức tranh rất đẹp, nhưng không biết ai đã vẽ những bức tranh đó.
+>
+> Chúng ta biết có một nhóm vài chục ông họa sĩ, nhưng không biết ông nào là tác giả.
+>
+> Vậy bây giờ nhiệm vụ là đi tìm xem ông họa sĩ nào có khả năng đã vẽ những bức tranh này.
+>
+> Những bức tranh mà chúng ta đang nhìn thấy giống như **observed data**. Còn những ông họa sĩ khác nhau giống như những **ứng cử viên cho parameter μ**.
+>
+> Giả sử chúng ta có một cách để đánh giá mức độ hợp lý của giả thuyết rằng một ông họa sĩ cụ thể đã vẽ những bức tranh đó, dựa trên những gì chúng ta biết về khả năng và phong cách của ông ta.
+>
+> Ví dụ, có một ông họa sĩ mà chúng ta biết trình độ của ông ấy rất kém. Trong khi những bức tranh quan sát được lại rất đẹp.
+>
+> Vậy thì giả thuyết rằng ông này đã vẽ những bức tranh đó có mức độ hợp lý thấp.
+>
+> Giả sử đây là ông số 12, tương ứng với μ = 12, có likelihood bằng 0.2.
+>
+> Còn ông số 10, chúng ta biết trình độ của ông ấy cao hơn. Vì vậy, giả thuyết rằng ông ấy đã vẽ những bức tranh này có mức độ hợp lý cao hơn, chẳng hạn 0.4.
+>
+> Tiếp tục xét những ứng cử viên khác, cuối cùng chúng ta gặp ông số 2. Qua việc xem trình độ, kho tranh và những tác phẩm của ông ấy, chúng ta thấy rằng giả thuyết ông này là tác giả của những bức tranh kia rất hợp lý.
+>
+> Chẳng hạn likelihood của ông này là 0.7.
+>
+> Như vậy, ông số 2 là ứng cử viên có mức độ hợp lý cao nhất trong ví dụ.
+>
+> Đó chính là cách hình dung ý nghĩa của likelihood function: với mỗi giá trị parameter được đề xuất, chúng ta đánh giá mức độ hợp lý của giá trị đó trong việc giải thích dữ liệu đã quan sát được.
+>
+> Và Maximum Likelihood Estimation chính là đi tìm giá trị parameter làm cho likelihood đạt lớn nhất.
+>
+>
+>
+> Tuy nhiên, cần để ý: **Ông họa sĩ có likelihood cao nhất chưa chắc đã thực sự là người vẽ những bức tranh đó.**
+>
+>
+>
+> Tương tự, giá trị μ làm cho likelihood đạt lớn nhất cũng không nhất thiết trùng với giá trị μ thật của population.
+>
+> Ví dụ, estimate có thể là μ = 2, nhưng giá trị thật có thể là μ = 1.9.
+>
+> Chúng ta chỉ đang chọn giá trị giải thích observed data hợp lý nhất theo mô hình đã giả định.
+>
+> θ̂\_ml = argmax\_θ L(θ|𝐗)
+>
+> Ở đây, khi sử dụng random sample 𝐗 thay cho observed data 𝐱, chúng ta đang nói về Maximum Likelihood Estimator — một statistic, tức là một hàm của random sample.
+>
+> Khi có observed data cụ thể và thay 𝐱 vào, chúng ta nhận được Maximum Likelihood Estimate.
+>
+> Frequentist: Chỉ coi θ, μ là cố định nhưng không biết.
+>
+> Trong cách tiếp cận Frequentist, parameter θ là một giá trị cố định nhưng chưa biết. Cái mang yếu tố ngẫu nhiên chính là random sample 𝐗, và do đó estimator W(𝐗) cũng là random variable.
+>
+>
+>
+> ---
+>
+>
+>
+> ## Bayes estimator
+>
+>
+>
+> Bây giờ chuyển qua cách tiếp cận của trường phái Bayesian.
+>
+> Khác với Frequentist, Bayesian coi parameter θ, hay trong ví dụ cụ thể là μ, như một random variable.
+>
+> θ, μ là random variable: có phân phối xác suất: π(θ) prior distribution (ví dụ μ \~ n(0, 1))
+>
+> Prior distribution là phân phối tiên nghiệm của θ, chưa dựa trên observed data. Chúng ta có thể lựa chọn prior dựa trên kinh nghiệm, những thông tin đã có hoặc những lý do thuận lợi cho tính toán.
+>
+> Ví dụ, μ là mean của population Normal mà chúng ta đang muốn estimate. Trong Bayesian approach, chúng ta có thể đặt prior distribution cho chính μ cũng là một Normal.
+>
+> Sau đó dùng Bayes rule để xây dựng posterior distribution, tức là phân phối của μ sau khi đã xét đến dữ liệu quan sát được.
+>
+> Bayes rule: π(μ|𝐱) = f(𝐱|μ)π(μ)/f(𝐱) posterior distribution
+>
+> π(μ|𝐱) cũng là một normal(2,8)
+>
+> Giả sử sau khi áp dụng Bayes rule, chúng ta xác định được posterior distribution của μ cũng là một Normal với các parameters như trong ví dụ.
+>
+> Đến đây, về cơ bản chúng ta đã giải được một bài toán inference khác: tìm phân phối hậu nghiệm của μ.
+>
+> Nhưng cần để ý rằng chúng ta mới chỉ tìm được **một probability distribution**, chứ chưa có một point estimate cụ thể cho μ.
+>
+> Ví dụ, posterior là Normal(2,8). Nó cho chúng ta biết mật độ xác suất của μ tại những giá trị khác nhau, nhưng câu hỏi vẫn là:
+>
+> Bayes estimator W(𝐱)?
+>
+> Tức là, với observed data 𝐱, chúng ta nên sử dụng giá trị nào để estimate μ?
+>
+> Với một phân phối Normal thì một cách trực quan, chúng ta có thể nghĩ nên lấy cái tâm của phân phối để estimate.
+>
+> Nhưng tại sao? Dựa trên cơ sở gì mà chọn cái tâm? Nếu posterior distribution không phải Normal thì chúng ta nên lấy giá trị nào?
+>
+> Đó chính là vấn đề mà Decision Theory giúp chúng ta giải quyết.
+>
+>
+>
+> ---
+>
+> ## Decision theory
+>
+>
+>
+> Khi đã có một probability distribution và muốn đưa ra một point estimate, trước hết chúng ta cần xác định một tiêu chí để đánh giá thế nào là tốt, thế nào là tối ưu.
+>
+> Từ đó người ta mới xây dựng các loss functions khác nhau.
+>
+> Loss function: L(W(𝐗), θ) =
+>
+> Loss function nhận vào giá trị ước lượng của estimator và giá trị θ thật, rồi đo sự sai khác theo một tiêu chí cụ thể.
+>
+> Squared error loss: \[W(𝐗) - θ\]²
+>
+> Absolute error loss: |W(𝐗) - θ|
+>
+> Ngoài ra còn có nhiều loss functions khác.
+>
+> Điểm quan trọng là: tùy theo loss function mà chúng ta sử dụng, estimator tối ưu có thể khác nhau.
+>
+> Bây giờ xét squared error loss.
+>
+> ### 3.1 Risk function
+>
+> Tạm thời chúng ta quay lại cách nhìn Frequentist, tức là coi θ là một giá trị cố định nhưng không biết.
+>
+> Trong khi đó, 𝐗 vẫn là random sample và W(𝐗) vẫn là một statistic, do đó W(𝐗) là random variable.
+>
+> Vì vậy:
+>
+> \[W(𝐗) - θ\]²
+>
+> cũng là một random variable.
+>
+> Tại sao cứ phải nhắc đi nhắc lại rằng nó là random variable?
+>
+> Bởi vì khi nói tới expectation, chúng ta phải hiểu rằng mình đang lấy kỳ vọng của biến ngẫu nhiên nào, và **nguồn gốc của randomness đến từ đâu**.
+>
+> Trong trường hợp này, θ đang được coi là cố định. Nguồn ngẫu nhiên đến từ 𝐗. W(𝐗) là hàm số của 𝐗 nên nó cũng là random variable. Và khi áp squared error loss lên W(𝐗), kết quả cũng là random variable.
+>
+> Do đó chúng ta có thể xét expected loss:
+>
+> E\[(W(𝐗) - θ)²\] = ∫(W(𝐱) - θ)²f(𝐱|θ) d𝐱
+>
+> Tại sao expectation này lại được biểu diễn bằng tích phân như trên?
+>
+> Để hiểu, chúng ta active recall lại LOTUS.
+>
+> LOTUS
+>
+> Giả sử:
+>
+> Y = (W(𝐗) - θ)² = g(𝐗)
+>
+> Định nghĩa hàm g:
+>
+> g(𝐮) = (W(𝐮) - θ)²
+>
+> Khi áp hàm g lên random vector 𝐗:
+>
+> g(𝐗) = (W(𝐗) - θ)²
+>
+> Chúng ta có được random variable Y.
+>
+> Nhớ lại, nếu muốn tính expectation của một random variable theo định nghĩa, chúng ta cần biết probability distribution của nó.
+>
+> E\[𝐗\] = ∫𝐱f(𝐱|θ)d𝐱
+>
+> Nhưng nếu Y = g(𝐗), chúng ta có thể chưa biết PDF của Y. Chúng ta chỉ biết distribution của 𝐗 và biết hàm g.
+>
+> LOTUS cho phép chúng ta tính expectation của Y trực tiếp thông qua distribution của 𝐗, mà không cần tìm PDF của Y.
+>
+> E\[Y\] = ∫g(𝐱)f(𝐱|θ)d𝐱
+>
+> Ở đây, Y chính là (W(𝐗) - θ)², tức là g(𝐗).
+>
+> Do đó chúng ta chỉ cần thay g(𝐱) vào công thức LOTUS:
+>
+> E\_θ\[(W(𝐗) - θ)²\] = ∫(W(𝐱) - θ)²f(𝐱|θ)d𝐱 = r(θ)
+>
+> Risk function
+>
+> LOTUS: X \~ fX(x): EX = ∫xfX(x)dx. Y = g(X), EY = ∫g(x)fX(x)dx
+>
+> LOTUS rất hữu ích bởi vì nhiều khi chúng ta cần tính expectation của một random variable được tạo ra bằng cách áp một hàm số lên một random variable khác mà chúng ta đã biết distribution.
+>
+> Tại sao gọi là Risk Function?
+>
+> Bây giờ cần để ý một điều.
+>
+> Ban đầu, squared error loss là một random variable bởi vì nó phụ thuộc vào random sample 𝐗.
+>
+> Nhưng sau khi lấy expectation theo distribution của 𝐗, chúng ta đã lấy trung bình qua mọi giá trị khả dĩ của random sample.
+>
+> Kết quả không còn ngẫu nhiên theo 𝐗 nữa.
+>
+> Tuy nhiên, nó vẫn phụ thuộc vào θ bởi vì distribution f(𝐱|θ) phụ thuộc θ.
+>
+> Ví dụ:
+>
+> X \~ n(t, 1) EX = h(t)
+>
+> Trong trường hợp này, E\[X\] = t. Sau khi lấy expectation, kết quả không còn ngẫu nhiên nữa, nhưng nó vẫn là một biểu thức phụ thuộc vào parameter t.
+>
+> Tương tự, expected squared error loss sau khi tính toán sẽ là một hàm số theo θ.
+>
+> Đó là lý do chúng ta viết r(θ), và gọi nó là **Risk Function**.
+>
+> Về ý nghĩa, loss function đo sai số khi estimator W(𝐗) cho một giá trị cụ thể so với θ thật.
+>
+> Nhưng bởi vì 𝐗 có thể nhận nhiều giá trị khác nhau, nên W(𝐗) cũng có thể cho những estimates khác nhau.
+>
+> Khi lấy expectation của loss function theo 𝐗, chúng ta đang lấy trung bình sai số qua tất cả các possible values của random sample.
+>
+> Vì vậy risk function phản ánh expected loss của estimator khi sử dụng nó để estimate θ, với θ được cố định tại một giá trị cụ thể.
+>
+>
+>
+> ---
+>
+>
+>
+> ### Bayes risk
+>
+>
+>
+> Bây giờ chúng ta chuyển lại sang Bayesian approach.
+>
+> Hồi nãy, khi tính risk function, θ được coi là cố định nhưng không biết. Do đó r(θ) là một hàm số của θ.
+>
+> Nhưng bây giờ theo Bayesian approach, θ được coi là random variable có prior distribution π(θ).
+>
+> Vì r(θ) là một hàm số của θ, nên khi θ là random variable thì r(θ) cũng trở thành random variable.
+>
+> Chúng ta lại tiếp tục lấy expectation, nhưng lần này là **expectation theo distribution của θ**, chứ không phải theo distribution của 𝐗 nữa.
+>
+> E{E\_θ\[(W(𝐗) - θ)²\]} = ∫r(θ)π(θ)dθ
+>
+> Bayes risk
+>
+> Để ý có hai lần lấy expectation:
+>
+>
+>
+> Lần đầu, lấy expectation của loss theo random sample 𝐗, với θ cố định. Kết quả là risk function r(θ).
+>
+>
+>
+> Lần thứ hai, lấy expectation của risk function theo prior distribution của θ. Kết quả là Bayes risk.
+>
+>
+>
+> Sau khi lấy expectation theo θ, kết quả không còn ngẫu nhiên theo θ nữa. Nhưng nó vẫn phụ thuộc vào estimator W mà chúng ta lựa chọn.
+>
+> Đó là lý do dù Bayes risk là một giá trị không ngẫu nhiên đối với một estimator đã cho, chúng ta vẫn phải tìm W sao cho Bayes risk nhỏ nhất.
+>
+>
+>
+> ---
+>
+>
+>
+> ### Minimize Bayes Risk
+>
+>
+>
+> Tìm W để minimize Bayes risk:
+>
+> minimize ∫E\_θ\[(W(𝐗) - θ)²\]π(θ)dθ
+>
+> Thay công thức expected squared error loss đã tính ở trên:
+>
+> = ∫∫(W(𝐱) - θ)²f(𝐱|θ) d𝐱 π(θ)dθ
+>
+> Bây giờ chúng ta đưa π(θ) vào trong tích phân theo 𝐱, vì π(θ) không phụ thuộc vào 𝐱.
+>
+> = ∫∫(W(𝐱) - θ)² f(𝐱|θ)π(θ) d𝐱 dθ
+>
+> Nhớ lại Bayes rule:
+>
+> f(𝐱|θ)π(θ) = π(θ|𝐱)f(𝐱)
+>
+> Do đó:
+>
+> = ∫∫(W(𝐱) - θ)² π(θ|𝐱)f(𝐱) d𝐱 dθ
+>
+> Tiếp theo, hoán đổi thứ tự tích phân theo θ và 𝐱:
+>
+> = ∫∫(W(𝐱) - θ)² π(θ|𝐱)f(𝐱) dθ d𝐱
+>
+> Bởi vì f(𝐱) không phụ thuộc θ, chúng ta đưa nó ra ngoài tích phân theo θ:
+>
+> = ∫f(𝐱) ∫(W(𝐱) - θ)² π(θ|𝐱)dθ d𝐱
+>
+> Bây giờ xét riêng phần tích phân bên trong:
+>
+> ∫(W(𝐱) - θ)² π(θ|𝐱)dθ
+>
+> Đây là cái gì?
+>
+> Để ý rằng ở đây chúng ta đang xét một giá trị observed data 𝐱 cụ thể.
+>
+> Do đó W(𝐱) là một giá trị cố định. Yếu tố ngẫu nhiên lúc này không còn đến từ 𝐗 nữa, mà đến từ θ.
+>
+> Vì θ là random variable theo posterior distribution π(θ|𝐱), nên:
+>
+> (W(𝐱) - θ)²
+>
+> là một random variable được tạo ra bởi một hàm số của θ.
+>
+> Và chúng ta lại đang sử dụng LOTUS để lấy expectation của random variable này theo posterior distribution của θ.
+>
+> E\[(W(𝐱) - θ)²\]
+>
+> posterior expected loss
+>
+> Tại sao gọi là posterior expected loss?
+>
+> Bởi vì đây là expectation của loss function, nhưng expectation được tính theo **posterior distribution của θ given 𝐱**.
+>
+> Bây giờ quay lại toàn bộ biểu thức Bayes risk.
+>
+> Vì f(𝐱) không âm, để minimize Bayes risk, chúng ta có thể tìm W sao cho posterior expected loss nhỏ nhất đối với từng 𝐱.
+>
+> minimize E\[(W - θ)²\] ∀𝐱
+>
+> Ở đây, để viết cho gọn, tạm bỏ phần phụ thuộc 𝐱 trong W(𝐱), nhưng phải nhớ W là giá trị cố định ứng với observed data 𝐱 đang xét.
+>
+> Và expectation ở đây là expectation theo posterior distribution của θ.
+>
+> ### 3.4 Tìm Bayes Estimator tối ưu
+>
+> Bây giờ chỉ còn giải bài toán optimization này.
+>
+> minimize E\[(W - θ)²\] ∀𝐱
+>
+> Mở bình phương:
+>
+> = E\[W² -2Wθ + θ²\]
+>
+> Dùng tính tuyến tính của expectation:
+>
+> = E\[W²\] -2E\[Wθ\] + E\[θ²\]
+>
+> Như đã giải thích, ở đây W là một giá trị cố định, chỉ có θ là random variable theo posterior distribution.
+>
+> Do đó:
+>
+> = W² -2WE\[θ\] + E\[θ²\]
+>
+> Bây giờ chúng ta cần tìm W để minimize biểu thức này.
+>
+> Đây là một quadratic function theo W, có hệ số của W² dương. Do đó, stationary point tìm được bằng first-order condition cũng chính là minimum.
+>
+> Lấy đạo hàm theo W và cho bằng 0:
+>
+> d/dW \[W² -2WE\[θ\] + E\[θ²\]\] = 0
+>
+> ⇔ 2W -2E\[θ\] = 0
+>
+> ⇔ W = E\[θ|𝐱\]
+>
+> Lưu ý, E\[θ\] ở các bước biến đổi trên là expectation theo posterior distribution π(θ|𝐱), chứ không phải prior distribution π(θ).
+>
+> Vì vậy chúng ta ghi rõ:
+>
+> W(𝐱)\* = E\[θ|𝐱\]
+>
+>
+>
+> Đây chính là kết quả muốn chứng minh.
+>
+> Nếu sử dụng squared error loss, Bayes estimator giúp minimize Bayes risk chính là **posterior mean**.
+>
+>
+>
+> ## So sánh MLE và Bayes Estimator
+>
+>
+>
+> ML Estimator: W(𝐗) = argmax L(θ|𝐱) = ml estimate θ
+>
+> Bayes Estimator: W(𝐗) = E\[θ|𝐱\] Bayes estinate cho θ
+>
+>
+>
+> Với MLE, chúng ta đi tìm parameter θ làm cho likelihood đạt maximum, tức là giá trị parameter giải thích observed data hợp lý nhất theo mô hình.
+>
+> Còn với Bayesian approach, chúng ta coi θ là random variable, xây dựng posterior distribution của θ given 𝐱, rồi sử dụng Decision Theory để lựa chọn point estimate.
+>
+> Nếu loss function là squared error loss thì Bayes estimator tối ưu là posterior mean.
+>
+> Điều cần nhớ là kết quả này phụ thuộc vào loss function. Nếu chúng ta chọn một loss function khác thì estimator tối ưu có thể khác.
+>
+>
+>
+> ## Quay lại bài toán Prediction trong Bishop PRML
+>
+>
+>
+> Bây giờ quay lại câu hỏi mà chúng ta đã đặt ra ở đầu video.
+>
+> Trong bài toán Regression, chúng ta muốn xây dựng một prediction function nhận feature vector x và đưa ra một target prediction.
+>
+> Theo probabilistic approach của Bishop, chúng ta giả định một conditional distribution của target T given X.
+>
+> Ví dụ, trong Linear Regression:
+>
+> T|X=x \~ Normal(wᵀx, β⁻¹)
+>
+> Thông qua inference, chúng ta estimate parameters w và β của mô hình.
+>
+> Nhưng sau khi đã infer được phân phối xác suất, chúng ta vẫn cần phải quyết định sử dụng giá trị nào để làm prediction cho T.
+>
+> Đây là vấn đề tương tự với bài toán Bayes estimator mà chúng ta vừa giải.
+>
+> Ở trên, chúng ta có posterior distribution của θ given 𝐱. Sau đó dựa trên Decision Theory, với squared error loss, chúng ta chứng minh rằng optimal point estimate chính là:
+>
+> W(𝐱)\* = E\[θ|𝐱\]
+>
+> Còn trong bài toán Regression, chúng ta có conditional distribution của T given X=x.
+>
+> Nếu sử dụng squared error loss, optimal point prediction chính là:
+>
+> y\*(x) = E\[T|X=x\]
+>
+> Trong trường hợp Linear Regression với Gaussian conditional distribution:
+>
+> T|X=x \~ Normal(wᵀx, β⁻¹)
+>
+> Thì conditional mean chính là wᵀx.
+>
+> Do đó:
+>
+> *y(x) = E\[T|X=x\] = wᵀx*\*
+>
+> Đây chính là cơ sở để giải thích tại sao chúng ta sử dụng wᵀx để prediction.
+>
+> Không phải vì tự nhiên người ta quyết định lấy mean của phân phối hay vì chúng ta đơn giản thấy cái tâm của Normal có vẻ hợp lý.
+>
+> Mà bởi vì **theo Decision Theory, nếu sử dụng squared error loss thì conditional mean chính là optimal prediction**.
+>
+> Nếu sử dụng absolute error loss thì conditional median mới là optimal prediction.
+>
+> Đối với Normal distribution, mean và median trùng nhau. Nhưng đối với những phân phối khác, chúng có thể khác nhau.
+>
+> Vì vậy, nếu chúng ta không đặt câu hỏi tại sao lại dùng y(x) = wᵀx, thì có thể chúng ta vẫn sử dụng công thức đó mà không thấy có gì cần thắc mắc.
+>
+> Nhưng khi đặt câu hỏi và chất vấn sự hiểu của mình, chúng ta mới thấy rằng việc lựa chọn prediction function có một cơ sở lý thuyết chặt chẽ.
+>
+> Đó là điều mà phần 1.5.5 của Bishop giúp chúng ta hiểu rõ hơn.
+>
+> Machine Learning không phải tự nhiên mọc từ dưới đất lên. Nó được xây dựng trên nền tảng của Statistics, Decision Theory và Optimization.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=cWEbHeh0JZg)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú xuất sắc khi kết nối rất mạch lạc và chính xác giữa Decision Theory trong thống kê cổ điển (Casella & Berger) với bài toán Regression trong Machine Learning (Bishop PRML 1.5.5). Các bước biến đổi và lập luận toán học hoàn toàn đúng đắn.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"ML Estimator: W(𝐗) = argmax L(θ|𝐱) = ml estimate θ"*
+>
+> Có sự lẫn lộn nhẹ về ký hiệu giữa estimator W(𝐗) (biến ngẫu nhiên phụ thuộc sample 𝐗) và estimate W(𝐱) (giá trị cụ thể sau khi quan sát dữ liệu 𝐱). Vế trái viết 𝐗 nhưng vế phải viết hàm theo 𝐱.
+>
+>
+> **✓ Strengths**
+> - Hiểu sâu sắc vai trò của Decision Theory: phân biệt rõ ràng giữa giai đoạn suy diễn (inference - tìm phân phối) và giai đoạn ra quyết định (decision - chọn điểm dự đoán tối ưu).
+> - Áp dụng định lý LOTUS và hoán đổi thứ tự tích phân cực kỳ chuẩn xác để đưa việc tối thiểu Bayes risk toàn cục về bài toán tối thiểu posterior expected loss cục bộ cho từng giá trị x cụ thể.
+> - Giải thích bản chất tại sao mô hình hồi quy tuyến tính với giả định Gaussian lại dùng wᵀx làm dự đoán: đó là hệ quả của squared error loss dẫn đến conditional mean, chứ không phải một quy ước ngẫu hứng.
+>
+> **💡 Deeper notes**
+> - Trong Bishop PRML (1.88), tác giả dùng phép biến phân (calculus of variations) để đạo hàm theo hàm số y(x). Cách tiếp cận của bạn dùng phân rã kỳ vọng có điều kiện và tối ưu điểm (pointwise optimization) tương đương về mặt toán học và thường trực quan hơn trong Decision Theory.
+> - Một cách chứng minh kinh điển khác cho công thức (1.89) mà Bishop thường dùng sau đó là kỹ thuật thêm bớt: {y(x) - t}² = {y(x) - E[t|x] + E[t|x] - t}², triệt tiêu số hạng chéo nhờ luật kỳ vọng lặp (tower property), tách loss thành sai số mô hình và nhiễu nội tại (intrinsic noise).
 
 <br>
 
@@ -2254,7 +2953,7 @@
 <p align="center"><kbd><img src="assets/5whe6nton69.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Một lựa chọn phổ biến cho loss trong regression problem là squared loss, L(t, y(𝐱)) = (y(𝐱) - t)²
+> Một lựa chọn phổ biến cho loss trong regression problem là **squared loss**, L(t, y(𝐱)) = (y(𝐱) - t)²
 >
 >
 >
@@ -2270,11 +2969,11 @@
 >
 >
 >
-> ∂/∂y g(t,y) = 0
+> δ/δy g(t,y) = 0
 >
 >
 >
-> ⇔ ∂/∂y ∫∫\[y(x) - t\]² f(𝐱, t) d𝐱 dt = 0
+> ⇔ δ/δy ∫∫\[y(x) - t\]² f(𝐱, t) d𝐱 dt = 0
 >
 >
 >
@@ -2326,19 +3025,19 @@
 >
 >
 >
-> ∫∫ y(𝐱) f(𝐱, t) d𝐱 dt = ∫\_range X ∫\_range_T y(𝐱) f(𝐱, t) dt d𝐱
+> ∫∫ y(𝐱) f(𝐱, t) d𝐱 dt = ∫\_𝓧 ∫\_𝒯 y(𝐱) f(𝐱, t) dt d𝐱
 >
 >
 >
-> = ∫*range*𝐗 y(x) {∫*range*𝐓 f(𝐱, t) dt} d𝐱
+> = ∫\_𝓧 y(x) {∫\_𝒯 f(𝐱, t) dt} d𝐱
 >
 >
 >
-> ∫\_range_T f(x, t) dt chính là marginalizing joint pdf của 𝐗, T với mọi mọi T, sẽ được marginal pdf của 𝐗
+> ∫\_𝒯 f(𝐱, t) dt chính là marginalizing joint pdf của 𝐗, T với mọi mọi T, sẽ được marginal pdf của 𝐗
 >
 >
 >
-> .. = ∫*range*𝐗 y(𝐱) f(𝐱) d𝐱
+> .. = ∫\_𝓧 y(𝐱) f(𝐱) d𝐱
 >
 >
 >
@@ -2346,7 +3045,7 @@
 >
 >
 >
-> ∫∫ t f(𝐱, t) d𝐱 dt = ∫\_range 𝐗 \[∫\_range 𝐓 t f(𝐱, t) dt \] d𝐱 Vậy phương trình trở thành ∫*range*𝐗 y(𝐱) f(𝐱) d𝐱 = ∫\_range 𝐗 \[∫\_range T t f(𝐱, t) dt \] d𝐱
+> ∫∫ t f(𝐱, t) d𝐱 dt = ∫\_𝓧 \[∫\_range 𝐓 t f(𝐱, t) dt \] d𝐱 Vậy phương trình trở thành ∫\_𝓧 y(𝐱) f(𝐱) d𝐱 = ∫\_𝓧 \[∫\_𝒯 t f(𝐱, t) dt \] d𝐱
 >
 >
 >
@@ -2354,31 +3053,35 @@
 >
 >
 >
-> ⇔ y(𝐱) f(𝐱)= ∫\_range T t f(𝐱, t) dt
+> ⇔ y(𝐱) f(𝐱)= ∫\_𝒯 t f(𝐱, t) dt
 >
 >
 >
-> ⇔ y(𝐱) = \[∫\_range T t f(𝐱, t) dt\] / f(𝐱)
+> ⇔ y(𝐱) = \[∫\_𝒯 t f(𝐱, t) dt\] / f(𝐱)
 >
 >
 >
-> = \[∫\_range T t f(t|𝐱) f(𝐱) dt\] / f(𝐱)
+> = \[∫\_𝒯 t f(t|𝐱) f(𝐱) dt\] / f(𝐱)
 >
 >
 >
-> = \[∫\_range T t f(t|𝐱) dt\] f(𝐱) / f(𝐱)
+> = \[∫\_𝒯 t f(t|𝐱) dt\] f(𝐱) / f(𝐱)
 >
 >
 >
-> = ∫\_range T t f(t|𝐱) dt
+> = ∫\_𝒯 t f(t|𝐱) dt
 >
 >
 >
-> Đây chính là E(T|𝐱), trung bình của T \~ posterior distribution f(t|𝐱)
+> Đây chính là E(T|𝐱), trung bình của T \~ f(t|𝐱)
 >
 >
 >
-> Như vậy, khi dùng squared loss thì cái hàm y(𝐱) giúp minimize trung bình loss E\[L\] chính là cái hàm y(𝐱) dùng mean của posterior f(t|𝐱) để dự đoán.
+> Như vậy, khi dùng squared loss thì cái hàm y(𝐱) giúp minimize trung bình loss E\[L\] chính là cái hàm y(𝐱) dùng mean của f(t|𝐱) để dự đoán.
+>
+>
+>
+> ---
 >
 >
 >
@@ -2406,7 +3109,7 @@
 >
 >
 >
-> Bayes risk = ∫\_Θ R(δ(𝐗), θ) π(θ) dθ = ∫*Θ* ∫𝐗 L(δ(𝐱), θ) f(θ, 𝐱) d𝐱 dθ
+> Bayes risk = ∫\_Θ R(δ(𝐗), θ) π(θ) dθ = ∫\_Θ ∫𝐗 L(δ(𝐱), θ) f(θ, 𝐱) d𝐱 dθ
 >
 >
 >
@@ -2414,7 +3117,7 @@
 >
 >
 >
-> Do đó kết quả cũng là: khi ta muốn từ posterior f(t|𝐱) để đưa ra một point estimator cho T thì mean E\[T|𝐱\] sẽ là cái giúp giảm thiểu E\[L\], y như E\[θ|𝐱\] là point estimator cho θ giúp giảm thiểu Bayes risk khi loss là squared error vậy
+> Do đó kết quả cũng là: khi ta muốn từ f(t|𝐱) để đưa ra một point estimator cho T thì mean E\[T|𝐱\] sẽ là cái giúp giảm thiểu E\[L\], y như E\[θ|𝐱\] là point estimator cho θ giúp giảm thiểu Bayes risk khi loss là squared error vậy
 >
 >
 >
@@ -2422,7 +3125,9 @@
 >
 >
 >
-> Và từ đây cũng giúp mình nhớ lại để hiểu vì sao trong bài revising curve fitting, ta thấy gs Bishop assume Ti \~ Normal(y(xi,𝐰), 1/β), hành động này chính là dùng mean của posterior f(ti|xi), tức E\[Ti|xi\] để làm point estimate cho t, và theo decision theory, nó là tối ưu. Nếu ông dùng median của posterior để point estimate cho T thì nó sẽ cũng là tối ưu nhưng theo tiêu chí giảm thiểu average absolute error loss.
+> Và từ đây cũng giúp mình nhớ lại để hiểu vì sao trong bài revising curve fitting, ta thấy gs Bishop assume Ti \~ Normal(y(xi,𝐰), 1/β), hành động này chính là dùng mean của f(ti|xi), tức E\[Ti|xi\] để làm point estimate cho t, và theo decision theory, nó là tối ưu. Nếu ông dùng median của để point estimate cho T thì nó sẽ cũng là tối ưu nhưng theo tiêu chí giảm thiểu average absolute error loss.
+>
+>
 >
 > Sẵn tiện đang nói bài toán linear regression, sẽ có ích nếu ta ôn lại chút.
 >
@@ -2472,7 +3177,7 @@
 >
 >
 >
-> 𝐰*ML = argmax*𝐰 L(𝐰|𝐭)
+> 𝐰ML = argmax over 𝐰 {L(𝐰|𝐭)}
 >
 >
 >
@@ -2496,11 +3201,11 @@
 >
 >
 >
-> Trước khi recall tiếp phần Bayesian inference, ta nhắc lại nhận định rút ra được trong note liền trước (khi có posterior f(t|x) thì dùng mean của nó để point estimator cho T chính là cách để minimize average squared error loss)
+> Trước khi recall tiếp phần Bayesian inference, ta nhắc lại nhận định rút ra được trong note liền trước (khi có f(t|x) thì dùng mean của nó để point estimator cho T chính là cách để minimize average squared error loss)
 >
 >
 >
-> Khi gs Bishop giả định Ti \~ Normal(y(xi,𝐰), 1/β) thì chính là dùng mean của posterior f(ti|xi): E\[Ti|xi\] để làm point estimate cho T thì **theo decision theory**:
+> Khi gs Bishop giả định Ti \~ Normal(y(xi,𝐰), 1/β) thì chính là dùng mean của f(ti|xi): E\[Ti|xi\] để làm point estimate cho T thì **theo decision theory**:
 >
 >
 >
@@ -2516,7 +3221,7 @@
 >
 >
 >
-> Vì giả sử ta assume Ti là expo(y(xi,𝐰)), hay distribution nào khác: tức cũng là mean của posterior f(ti|xi), để rồi đi maximize likelihood, khi đó, ta sẽ thấy nó chưa chắc đã là minimize sum squared error. Tuy nhiên, miễn là ta lấy mean của posterior f(ti|xi) để làm point estimator cho T thì theo decision theory, đó vẫn là tốt nhất theo tiêu chí giảm average squared error loss.
+> Vì giả sử ta assume Ti là expo(y(xi,𝐰)), hay distribution nào khác: tức cũng là mean của f(ti|xi), để rồi đi maximize likelihood, khi đó, ta sẽ thấy nó chưa chắc đã là minimize sum squared error. Tuy nhiên, miễn là ta lấy mean của f(ti|xi) để làm point estimator cho T thì theo decision theory, đó vẫn là tốt nhất theo tiêu chí giảm average squared error loss.
 >
 >
 >
@@ -2548,7 +3253,7 @@
 >
 >
 >
-> Còn trong Bishop, một hướng đi, là ta đi tìm 𝐰 giúp maximize cái posterior π(𝐰|t,x) này. Mà thực ra, trong bài toán này p**osterior hóa ra cũng là Gaussian**, nên tìm w có posterior lớn nhất **cũng là lấy mean của posterior** thôi
+> Còn trong Bishop, một hướng đi, là ta đi tìm 𝐰 giúp maximize cái posterior π(𝐰|t,x) này. Mà thực ra, trong bài toán này **posterior hóa ra cũng là Gaussian**, nên tìm w có posterior lớn nhất **cũng là lấy mean của posterior** thôi
 >
 >
 >
@@ -2569,6 +3274,27 @@
 >
 >
 > f(t|x,𝐱,𝐭) = ∫f(t,𝐰|x,𝐱,𝐭)d𝐰 = ∫f(t|x, 𝐰) π(𝐰|𝐱,𝐭) d𝐰 với π(𝐰|𝐱,𝐭) là posterior của 𝐰.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú thể hiện sự hiểu biết rất sâu sắc khi kết nối mượt mà bài toán Decision Theory trong Bishop với kiến thức Thống kê trong Casella & Berger (Bayes risk, posterior mean/median, MLE, MAP). Điểm cần lưu ý duy nhất là bước đạo hàm biến phân còn hơi lỏng tay về mặt toán học.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"⇔ ∫∫ [∂/∂y(𝐱) [y(𝐱) - t]²] f(𝐱, t) d𝐱 dt = 0 ... Vậy phương trình trở thành ∫_𝓧 y(𝐱) f(𝐱) d𝐱 = ∫_𝓧 [∫_𝒯 t f(𝐱, t) dt ] d𝐱. Vì tính chất complete flexible của y(𝐱), cho phép: ⇔ y(𝐱) f(𝐱)= ∫_𝒯 t f(𝐱, t) dt"*
+>
+> Về mặt giải tích toán học, việc đưa đạo hàm vào trong cả hai tích phân rồi suy ra hai hàm dưới tích phân bằng nhau vì 'complete flexible' là lập luận không chặt chẽ. Đạo hàm biến phân (calculus of variations) δE[L]/δy(x) vốn tác động cục bộ tại điểm x và trực tiếp triệt tiêu tích phân theo dx (như công thức 1.88 trong sách), chỉ còn lại tích phân theo t.
+>
+>
+> **✓ Strengths**
+> - Nắm chắc và giải thích đúng bản chất hàm hồi quy tối ưu dưới hàm mất mát bình phương là kỳ vọng có điều kiện E[t|x].
+> - Kết nối xuất sắc với lý thuyết quyết định (Decision Theory) và ước lượng Bayes trong Casella & Berger (squared error loss ứng với mean, absolute error loss ứng với median).
+> - Phân biệt rạch ròi giữa việc giả định mô hình nhiễu Gaussian dẫn đến nghiệm bình phương tối thiểu (MLE) với nguyên lý tối ưu của hàm quyết định trong Decision Theory.
+> - Khái quát chuẩn xác từ góc nhìn MLE sang MAP (với prior Gaussian dẫn đến L2 regularization) và phân phối dự báo (predictive distribution) thuần Bayesian.
+>
+> **💡 Deeper notes**
+> - Một cách biến đổi tương đương chặt chẽ mà không cần dùng calculus of variations là áp dụng luật kỳ vọng lặp (tower property): viết E[L] = E_x[E_{t|x}[(y(x) - t)^2 | x]]. Do p(x) >= 0 và y(x) hoàn toàn linh hoạt (không bị ràng buộc dạng hàm), việc cực tiểu hóa tích phân toàn phần tương đương với cực tiểu hóa E_{t|x}[(y(x) - t)^2 | x] độc lập tại từng điểm x.
 
 <br>
 
@@ -2985,6 +3711,27 @@
 >
 > Và vì cái này nó HOÀN TOÀN KHÔNG DÍNH GÌ / PHỤ THUỘC y(x), NÊN NÓ ĐẠI DIỆN GIÁ TRỊ NHỎ NHẤT, LÀ PHẦN KHÔNG THỂ GIẢM HƠN NỮA CỦA LOSS FUNCTION.
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú xuất sắc, tư duy liên kết kiến thức giữa Bishop (Machine Learning) và Casella & Berger (Thống kê toán) rất sâu sắc và mạch lạc. Bạn đã tự diễn giải và chứng minh lại toàn bộ các bước, đồng thời phát hiện chuẩn xác lỗi in ấn/viết tắt trong phương trình (1.90) của sách Bishop.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"f(t|𝐱), là posterior distribution của t (vs prior distribution là f(t) - phân phối marginal của t)"*
+>
+> Trong quy ước Machine Learning chuẩn, $t$ là biến mục tiêu (target), $p(t|\mathbf{x})$ thường được gọi là conditional distribution hoặc predictive distribution. Thuật ngữ prior/posterior chuẩn thường dành cho phân phối của tham số mô hình (như $\mathbf{w}$ hoặc $\theta$). Việc gọi $p(t|\mathbf{x})$ là 'posterior của $t$' chỉ đúng về mặt tương tự hình thức toán học (Bayes' rule) chứ không hoàn toàn khớp với thuật ngữ chuẩn.
+>
+>
+> **✓ Strengths**
+> - Khả năng kết nối mô hình Decision Theory trong Thống kê toán (Casella & Berger) với bài toán Regression trong Machine Learning (Bishop) rất chuẩn xác và sâu sắc.
+> - Chứng minh chi tiết việc triệt tiêu cross-term và tối ưu hàm mất mát bình phương bằng kỹ thuật phân rã kỳ vọng điều kiện thay vì chỉ phụ thuộc vào giải tích biến phân.
+> - Phát hiện cực kỳ sắc bén về lỗi ký hiệu trong công thức (1.90) của Bishop: số hạng thứ hai thiếu tích phân theo $t$ (hoặc chưa viết rõ $p(\mathbf{x}, t)$ / $\text{var}[t|\mathbf{x}]$).
+> - Hiểu đúng bản chất của số hạng thứ hai là nhiễu nội tại không thể giảm thiểu (irreducible noise) thông qua kỳ vọng của phương sai điều kiện $\mathbb{E}_\mathbf{x}[\text{Var}(t|\mathbf{x})]$.
+>
+> **💡 Deeper notes**
+> - Trong công thức (1.90) của các bản in đầu sách PRML (Bishop), số hạng thứ hai đúng là có lỗi in ấn errata nổi tiếng: phải là $\iint \{\mathbb{E}[t|\mathbf{x}] - t\}^2 p(\mathbf{x}, t) \mathrm{d}\mathbf{x}\mathrm{d}t$ hoặc viết gọn thành $\int \text{var}[t|\mathbf{x}] p(\mathbf{x}) \mathrm{d}\mathbf{x}$. Nhận định của bạn hoàn toàn khớp với đính chính chính thức của tác giả.
+
 **🔗 See also:** [Expected Squared Loss Decomposition](./320_the_bias_variance_decomposition.md#node-s3i1j2i)
 
 <br>
@@ -3002,17 +3749,27 @@
 >
 >
 >
-> a) Inference joint pdf f(t,x). Rồi marginalizing ra posterior f(t|x). Và make
-> decision:  lấy mean E(T|x)
+> a) Inference joint pdf f(t,x). Rồi normalizing f(t,x)/f(x) để có f(t|x). Và make decision: lấy mean E(T|x)
 >
 >
 >
-> b) Inference trực tiếp ra posterior f(t|x). Và make decision: lấy mean
-> E(T|x)
+> b) Inference trực tiếp ra f(t|x). Và make decision: lấy mean E(T|x)
 >
 >
 >
 > c) Học trực tiếp hàm mapping y(x), không cần inference
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất chính xác và cô đọng 3 hướng tiếp cận bài toán hồi quy (regression) từ văn bản gốc, làm rõ được cả bước suy diễn xác suất và bước ra quyết định.
+>
+> **✓ Strengths**
+> - Hiểu rõ và phân biệt chính xác 3 cấp độ tiếp cận: mô hình hóa phân phối đồng thời (generative), phân phối có điều kiện (discriminative), và học trực tiếp hàm hồi quy (discriminant function/direct regression).
+> - Nắm đúng bản chất của bước ra quyết định tối ưu theo hàm mất mát bình phương sai số là tính kỳ vọng có điều kiện E[T|x].
+>
+> **💡 Deeper notes**
+> - Thứ tự từ (a) đến (c) được sách xếp theo mức độ phức tạp tính toán giảm dần (decreasing complexity) và dữ liệu cần thiết cũng giảm dần theo.
 
 <br>
 
@@ -3025,8 +3782,7 @@
 <p align="center"><kbd><img src="assets/58zu01zfwgo.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Cuối cùng, đại ý là, có những tình huống hàm squared loss sẽ cho ra
-> kết quả tệ. Ta phải design hàm loss khác. Một ví dụ là Minkowski loss
+> Cuối cùng, đại ý là, có những tình huống hàm squared loss sẽ cho ra kết quả tệ. Ta phải design hàm loss khác. Một ví dụ là Minkowski loss
 >
 >
 >
@@ -3034,11 +3790,27 @@
 >
 >
 >
-> Nhận xét, là với q khác nhau thì hình phạt đối với sai số sẽ khác nhau.
-> Vói q = 0.3, có thể thấy loss chỉ nhỉ khi y(x) ≈ t, còn lại thì đều cao.
-> q = 1 thì loss sẽ tăng tuyến tính theo sai số. q = 2 thì loss tăng quadratic
-> theo sai số. q = 10 thì thì loss nhỏ khi y(x) nằm trong lân cận nào đó
-> quanh t, nhưng xa hơn thì tăng rất nhanh.
+> Nhận xét, là với q khác nhau thì hình phạt đối với sai số sẽ khác nhau. Với q = 0.3, có thể thấy loss chỉ nhỉ khi y(x) ≈ t, còn lại thì đều cao. q = 1 thì loss sẽ tăng tuyến tính theo sai số. q = 2 thì loss tăng quadratic theo sai số. q = 10 thì thì loss nhỏ khi y(x) nằm trong lân cận nào đó quanh t, nhưng xa hơn thì tăng rất nhanh.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ⚠️ **88/100** · ✓ Move on
+>
+> Ghi chú nắm rất tốt bản chất trực quan của hàm Minkowski loss và sự thay đổi hình dạng theo tham số q. Bạn nên bổ sung thêm ý nghĩa của nghiệm tối ưu (mean, median, mode) và đặc tính chịu lỗi ngoại lai (outliers) khi q < 1.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Vói q = 0.3, có thể thấy loss chỉ nhỉ khi y(x) ≈ t, còn lại thì đều cao."*
+>
+> Có lỗi chính tả ('Vói', 'nhỉ' thay vì 'Với', 'nhỏ'). Ngoài ra, nhận xét này chưa làm nổi bật đặc tính quan trọng nhất của q < 1: hàm số tăng rất chậm (dưới tuyến tính) khi sai số lớn, giúp mô hình ít bị ảnh hưởng bởi nhiễu/outliers so với q = 1 hay q = 2.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng mục đích tổng quát hóa của Minkowski loss đối với squared loss khi squared loss thất bại.
+> - Mô tả chính xác hình dạng hàm mất mát và tốc độ tăng phạt sai số cho các trường hợp q = 1, q = 2 và q = 10.
+>
+> **💡 Deeper notes**
+> - Văn bản gốc nhấn mạnh giá trị cực tiểu của kỳ vọng Minkowski loss tương ứng với các đại lượng thống kê: conditional mean (q = 2), conditional median (q = 1), và conditional mode (khi q -> 0).
+> - Trường hợp phân phối điều kiện p(t|x) đa đỉnh (multimodal, thường gặp trong bài toán nghịch đảo) là lý do quan trọng khiến squared loss cho kết quả kém, vì trung bình điều kiện có thể rơi vào vùng có xác suất rất thấp giữa các đỉnh.
 
 <br>
 
