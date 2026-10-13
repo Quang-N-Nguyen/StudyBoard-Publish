@@ -1,6 +1,6 @@
 # 4.5.2 Predictive distribution
 
-📊 **Progress:** `4` Notes | `6` Screenshots | `4` AI Reviews
+📊 **Progress:** `5` Notes | `8` Screenshots | `5` AI Reviews
 
 ---
 <a id="node-o3n19bt"></a>
@@ -1001,7 +1001,9 @@
 >
 > = Φ\[μ / √(λ⁻²+σ²)\]
 
-📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=qOrOKM71YhI)
+📹 Video 1: [Convolution of Probit and Gaussian — Pattern Recognition Machine Learning_C.Bishop](https://www.youtube.com/watch?v=uX4Oofuqo1Y)
+
+📹 Video 2: [Làm sao tính tích chập hàm Probit Φ(λa) và Gaussian bằng P(Z ≤ λA)?](https://www.youtube.com/watch?v=qOrOKM71YhI)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
@@ -1017,6 +1019,118 @@
 > - Bước chia tử và mẫu cho lambda để đưa vào căn thức (lambda / sqrt(1 + lambda^2 sigma^2) = 1 / sqrt(lambda^-2 + sigma^2)) ngầm giả định lambda > 0 (trong PRML, hệ số lambda này thường là tham số thực dương, ví dụ lambda^2 = pi/8).
 
 **🔗 See also:** [Chứng minh tổng biến chuẩn *(Statistical Inference - Casella)*](../statistical_inference_casella/46_multi_variate_distribution.md#node-uaywczk)
+
+<br>
+
+<a id="node-ucwxk6n"></a>
+
+###### Approximate Predictive Distribution
+
+<p align="center"><kbd><img src="assets/r90a5icaqos.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/xeukbf9byik.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> ∫ Φ(λa) 𝒩(a|μ, σ²) da = Φ\[μ / √(λ⁻²+σ²)\]
+>
+>
+>
+> Φ(λa) ≈ σ(a)
+>
+>
+>
+> Φ\[μ / √(λ⁻²+σ²)\] ≈ σ\[μ / λ√(λ⁻²+σ²)\]
+>
+>
+>
+> Xét 1 / λ√(λ⁻²+σ²) = 1 / √\[λ²(λ⁻²+σ²)\] = \[λ²(λ⁻²+σ²)\]^(-1/2)
+>
+>
+>
+> = \[λ²(λ⁻²+σ²)\]^(-1/2) = (1+λ²σ²)^(-1/2)
+>
+>
+>
+> = (1+πσ²/8)^(-1/2) (thay λ² = π/8 mà ta đã hiểu ở note trước), đặt là κ(σ²)
+>
+>
+>
+> ⇒ Φ\[μ / √(λ⁻²+σ²)\] ≈ σ\[μ / λ√(λ⁻²+σ²)\]
+>
+>
+>
+> = σ(μ κ(σ²))
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy ∫ σ(a) 𝒩(a|μ, σ²) da ≈ σ(μ κ(σ²))
+>
+>
+>
+> Nên ∫ σ(a) 𝒩(a|μ\_a, σ²\_a) da ≈ σ(μ\_a κ(σ²\_a))
+>
+>
+>
+> Chính là f(𝒞1|φ, 𝐭) = P(T=1|Φ, 𝐭) ≈ σ(μ\_a κ(σ²\_a))
+>
+>
+>
+> với μ\_a = 𝐰MAP ᵀφ
+>
+>
+>
+> ---
+>
+>
+>
+> Vấn đề cuối đại ý là vầy: với cái predictive probability này, thì về cơ bản decision boundary là tập các transformed feature Φ sau cho f(𝒞1|φ, 𝐭) = 0.5 (ranh giới chi không gian transformed feature làm hai: {φ: f(𝒞1|φ) &gt; 0.5} - nơi sẽ được dự đoán class 𝒞1 và {φ: f(𝒞1|φ) &lt; 0.5} là tập mà input sẽ được dự đoán class 𝒞2.
+>
+>
+>
+> f(𝒞1|φ, 𝐭) = 0.5 ⇔ σ(μ\_a κ(σ²\_a)) = 1/2 ⇔ μ\_a κ(σ²\_a) = 0 ⇔ μ\_a = 0 ⇔ 𝐰MAP ᵀφ = 0. Như vậy decision boundary chính là hyperplane 𝐰MAP ᵀφ = 0
+>
+>
+>
+> Vậy thì có vấn đề gì?
+>
+>
+>
+> Vấn đề là: Nếu ta không làm cái vụ đi tìm predictive probability này. Mà cứ dùng ước lượng điểm 𝐰MAP, và lắp vào hàm dự đoán: f(𝒞1|𝐰MAP, φ) = σ(𝐰ᵀφ) thì sao? Khi đó mô hình của ta sẽ là f(𝒞1|𝐰MAP, φ) = σ(𝐰MAPᵀφ).
+>
+>
+>
+> Và decision bounadry là: f(𝒞1|𝐰MAP, φ) = σ(𝐰MAPᵀφ) = 0.5 ⇔ 𝐰MAPᵀφ = 0. Và decision boudary cũng y chang của cái mô hình khi ta đã marginalizing over 𝐰 \~ posterior (xấp xỉ)
+>
+>
+>
+> Do đó, về cơ bản là không ích lợi gì khi phải mất công như vậy.
+>
+>
+>
+> Tuy nhiên, ông nói, đúng là khi ta chỉ dựa trên tiêu chí minimize misclassification rate với điều kiện xác xuất tiên nghiệm f(𝒞k) là như nhau (để rồi theo decision theory, ta sẽ dựa vào f(𝒞k|𝐰, φ) để đưa ra quyết định assign class nào) thì việc đi marginalizing để có predictive distribution là không cần thiết (vì nó chỉ ra kết quả tương đương như dùng 𝐰MAP)
+>
+>
+>
+> Nhưng sẽ có tình huống mà ta cần ưu tiên cái khác thay vì minimizing misclassification rate. Khi đó cách làm này sẽ phát huy tác dụng.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=E2W9KwyCmy8)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, tái hiện chi tiết từng bước biến đổi đại số của hệ số kappa và giải thích trực quan, chính xác ý nghĩa của decision boundary cũng như vai trò của việc marginalization.
+>
+> **✓ Strengths**
+> - Tự triển khai tường minh phép biến đổi đại số đưa thừa số 1/lambda vào căn bậc hai để thu được hàm kappa(sigma^2).
+> - Hiểu rất rõ lý do tại sao decision boundary (ngưỡng 0.5) khi marginalize lại trùng khớp với decision boundary của điểm MAP w_MAP.
+> - Nắm chuẩn bản chất: việc marginalization quan trọng khi bài toán liên quan đến cost matrix bất đối xứng, ngưỡng từ chối (reject option) hoặc cần xác suất dự báo được hiệu chuẩn (calibrated uncertainty) thay vì chỉ phân loại nhị phân tối thiểu hóa lỗi cơ bản.
+>
+> **💡 Deeper notes**
+> - Khi độ bất định sigma_a^2 lớn (ví dụ ở vùng xa dữ liệu), kappa(sigma_a^2) tiến về 0, kéo xác suất dự báo p(C1|phi, t) dạt về 0.5 (hoài nghi tối đa), trong khi mô hình MAP thuần túy sigma(w_MAP^T phi) vẫn có thể đưa ra xác suất cực đoan gần 0 hoặc 1.
 
 <br>
 
