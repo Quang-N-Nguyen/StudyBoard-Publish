@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1791915052393,
+  "publishedAt": 1791931663609,
   "sections": [
     {
       "title": "📋 Overview",
@@ -72,7 +72,7 @@
       "title": "1.5 Decision Theory",
       "path": "pattern_recognition_machine_learning_cbishop/15_decision_theory.md",
       "noteCount": 30,
-      "imageCount": 42
+      "imageCount": 45
     },
     {
       "title": "1.6 Information Theory",
@@ -449,8 +449,8 @@
     {
       "title": "4.5.2 Predictive distribution",
       "path": "pattern_recognition_machine_learning_cbishop/452_predictive_distribution.md",
-      "noteCount": 4,
-      "imageCount": 6
+      "noteCount": 5,
+      "imageCount": 8
     },
     {
       "title": "Appendix C. Matrices",
@@ -465,6 +465,6 @@
       "imageCount": 7
     }
   ],
-  "totalNotes": 466,
-  "totalImages": 705
+  "totalNotes": 467,
+  "totalImages": 710
 }
