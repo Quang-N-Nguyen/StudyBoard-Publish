@@ -323,9 +323,25 @@
 > ---
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **96/100** · ✓ Move on
 >
-> Bài ghi chép cực kỳ chi tiết, chính xác và có chiều sâu, đặc biệt trong việc giải thích lý thuyết MLE, dẫn giải công thức log-likelihood và chứng minh tính đủ của các thống kê bằng định lý Factorization. Độ dài của ghi chú có thể quá chi tiết cho một lần ôn tập nhanh, tuy nhiên, điều này thể hiện sự hiểu biết sâu sắc và kỹ lưỡng.
+> Ghi chú xuất sắc, hiểu rất sâu bản chất toán học từ việc biến đổi log-likelihood, sử dụng trace cyclic property để cô lập dữ liệu cho đến liên hệ chặt chẽ với Định lý Factorization của Fisher-Neyman.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"có dạng g1(Σ) + g2(T1(x1,..xN), Σ) + g3( μ, T2(x1,..xN))"*
+>
+> Trong biểu thức log-likelihood đầy đủ còn có hằng số $(-ND/2)\ln(2\pi)$ và số hạng $-(N/2)\boldsymbol{\mu}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}$ (phụ thuộc đồng thời vào cả $\boldsymbol{\mu}$ và $\boldsymbol{\Sigma}$). Dù gộp chung lại vẫn thỏa mãn hàm $g(T_1, T_2 \mid \boldsymbol{\mu}, \boldsymbol{\Sigma})$, việc phân tách riêng lẻ thành $g_1, g_2, g_3$ như trên hơi thiếu chặt chẽ do bỏ quên số hạng chứa cả hai tham số.
+>
+>
+> **✓ Strengths**
+> - Tự suy dẫn chi tiết từng số hạng trong hàm log-likelihood nhiều chiều (2.118) rất chuẩn xác.
+> - Ứng dụng khéo léo tính chất cyclic và linearity của trace để biến đổi dạng toàn phương thành tích ma trận với $\sum \mathbf{x}_n\mathbf{x}_n^T$.
+> - Kết nối kiến thức rất tốt với Định lý Factorization (Neyman-Fisher) để chứng minh tính sufficient statistic của hai đại lượng thống kê.
+>
+> **💡 Deeper notes**
+> - Khi gộp $-\boldsymbol{\mu}^T\boldsymbol{\Sigma}^{-1}\mathbf{x}_i - \mathbf{x}_i^T\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu} = -2\boldsymbol{\mu}^T\boldsymbol{\Sigma}^{-1}\mathbf{x}_i$, bạn đã sử dụng ngầm tính đối xứng của ma trận hiệp phương sai $\boldsymbol{\Sigma}$ (dẫn đến $\boldsymbol{\Sigma}^{-1}$ cũng đối xứng).
+> - Khi dùng Factorization Theorem, cần giữ lại toàn bộ hằng số $(-ND/2)\ln(2\pi)$ (được gom vào hàm $h(\mathbf{x})$ hoặc $g$) thay vì lược bỏ như trong bài toán tối ưu cực trị.
 
 <br>
 
