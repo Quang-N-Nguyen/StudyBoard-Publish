@@ -817,37 +817,71 @@
 > [!NOTE]
 > ∫ Φ(λa) 𝒩(a|μ, σ²) da
 >
->
->
-> Để cho dễ hiểu ta xét event (Z ≤ λA) với Z \~ 𝒩(0,1) và A \~ 𝒩(μ, σ²) độc lập. Gọi f(z,a) f(z), f(a) lần lượt là joint pdf và marginal pdf của chúng
->
->
->
-> Theo định nghĩa hàm xác suất P(Z ≤ λA) được tính như sau: 
+> ---
 >
 >
 >
-> P(Z ≤ λA) = ∫∫\_R f(z,a)dzda với R = {(z,a): z ≤ λa}
+> Ôn lại hàm probit Φ(z): CDF Z \~ 𝒩(0,1)
 >
 >
 >
-> = ∫∫\_R f(z)f(a)dzda
+> Φ(z) = P(Z ≤ z) = ∫-∞:z 𝒩(t|0,1) dt
 >
 >
 >
-> = ∫-∞:∞\[∫-∞:λa f(z)f(a)dz\]da
+> Φ(λa) = ∫-∞:λa 𝒩(t|0,1) dt
 >
 >
 >
-> = ∫-∞:∞\[∫-∞:λa f(z)dz\] f(a)da
+> ---
 >
 >
 >
-> = ∫-∞:∞\[Φ(λa)\] f(a)da
+> Thay vào:
 >
 >
 >
-> = ∫-∞:∞\[Φ(λa)\] 𝒩(a|μ, σ²)da
+> ∫-∞:∞ ∫-∞:λa 𝒩(t|0,1) dt 𝒩(a|μ, σ²) da
+>
+>
+>
+> = ∫-∞:∞ ∫-∞:λa 𝒩(t|0,1) dt 𝒩(a|μ, σ²) da
+>
+>
+>
+> X \~ fX(x). P(X ∈ A) = ∫\_A fX(x)dx, ví dụ A = \[a, b\] P(a ≤ X ≤ b) = ∫a:b fX(x)dx
+>
+>
+>
+> X,Y \~ f(x,y). P((X,Y) ∈ R) = ∫∫\_R f(x,y)dxdy
+>
+>
+>
+> Áp dụng cho Z, A độc lập, f(z,a): P((Z,A) ∈ R) = ∫∫\_R f(z,a)dzda = ∫∫\_R f(z)f(a)dzda
+>
+>
+>
+> Z \~ 𝒩(0,1), A \~ 𝒩(μ, σ²)
+>
+>
+>
+> = ∫∫\_R 𝒩(z|0,1) 𝒩(a|μ, σ²) dzda
+>
+>
+>
+> Chọn R = {-∞ &lt; a &lt; ∞, -∞ &lt; z ≤ λa}
+>
+>
+>
+> P((Z,A) ∈ R)= ∫-∞:∞∫-∞:λa 𝒩(z|0,1) 𝒩(a|μ, σ²) dzda
+>
+>
+>
+> P((Z,A) ∈ R) ⇔ P(Z ≤ λA)
+>
+>
+>
+> = P(Z - λA ≤ 0)
 >
 >
 >
@@ -863,11 +897,19 @@
 >
 >
 >
-> Ta còn nhớ bên Casella đã học theorem này:
+> Ta còn nhớ bên Casella đã học theorem này (xem link Corollary 4.6.10)
 >
 >
 >
-> Nếu X \~ 𝒩(μx, σ²x), Y \~ 𝒩(μy, σ²y) và X, Y độc lập thì X+Y \~ 𝒩(μx+μy, σ²x + σ²y)
+> Cho Xi \~ 𝒩(μi, σi²) i=1,2....n. multually independent.
+>
+>
+>
+> Và bộ constant ai, bi, i=1,2....n
+>
+>
+>
+> Thì Y = (Σi aiXi + bi) \~ 𝒩(Σi (aiμi + bi), Σi ai²σi²)
 >
 >
 >
@@ -875,23 +917,15 @@
 >
 >
 >
-> Tiếp, A \~ 𝒩(μ, σ²) thì theo location scale theorem: 
+> Áp dụng vào đây:
 >
 >
 >
-> A-μ \~ 𝒩(0, σ²) ⇔ -λ(A-μ) \~ (-λ) × 𝒩(0, σ²) \~ 𝒩(0, λ²σ²)
+> Z \~ 𝒩(0,1), A \~ 𝒩(μ, σ²)
 >
 >
 >
-> ⇒ -λA \~ 𝒩(0, λ²σ²) - λμ 
->
->
->
-> ⇔ -λA \~ 𝒩(-λμ , λ²σ²) 
->
->
->
-> Nên Z + (-λA) \~ 𝒩(0-λμ, 1+λ²σ²) \~ 𝒩(-λμ, 1+λ²σ²)
+> W = Z - λA = (1 × Z - λ × A) \~ 𝒩(0×1 + (-λ) × μ, 1 × 1² + (-λ)²σ²) = 𝒩(-λμ, 1+ λ²σ²)
 >
 >
 >
@@ -903,11 +937,11 @@
 >
 >
 >
-> W ≤ 0 ⇔ W -(-λμ) ≤ 0 -(-λμ) 
+> W ≤ 0 ⇔ W -(-λμ) ≤ 0 -(-λμ)
 >
 >
 >
-> ⇔ \[W -(-λμ)\] / √(1+λ²σ²) ≤ \[0 -(-λμ)\] / √(1+λ²σ²) 
+> ⇔ \[W -(-λμ)\] / √(1+λ²σ²) ≤ \[0 -(-λμ)\] / √(1+λ²σ²)
 >
 >
 >
@@ -915,15 +949,49 @@
 >
 >
 >
-> ⇒ P(W ≤ 0) = P(\[W -(-λμ)\] / √(1+λ²σ²) ≤ λμ / √(1+λ²σ²)) 
+> ⇒ P(W ≤ 0) = P(\[W -(-λμ)\] / √(1+λ²σ²) ≤ λμ / √(1+λ²σ²))
 >
 >
 >
-> Mà theo location scale theorem: W \~ 𝒩(-λμ, 1+λ²σ²) ⇒ \[W -(-λμ)\] / √(1+λ²σ²) \~ 𝒩(0,1)
+> ---
 >
 >
 >
-> ⇒ P(W ≤ 0) = P(Z ≤ λμ / √(1+λ²σ²)) = Φ\[λμ / √(1+λ²σ²)\]
+> Ôn lại kiến thức location scale family:
+>
+>
+>
+> Gọi Z' là random variable có phân phối thuộc thành viên chuẩn trong họ, tức là thành viên có location 0, scale 1 thì:
+>
+>
+>
+> Zb + a sẽ (có phân phối) là thành viên của họ ứng với location a, scale b. 
+>
+>
+>
+> Ngược lại nếu có X có phân phối thuộc họ location scale, ứng với location a, scale b thì Z'=(X - a)/b sẽ là random variable có phân phối là thành viên chuẩn của họ đó: location 0, scale 1.
+>
+>
+>
+> Và normal(μ, σ²) với μ và σ thay đổi sẽ tạo nên một location scale family với mean = location, scale = std
+>
+>
+>
+> Do đó X \~ 𝒩(1, 5) chính là thành viên có location 1, scale √5, thì Z' = (X - 1)/√5 sẽ có phân phối là thành viên chuẩn của họ, location 0, scale 1, tức 𝒩(0,1)
+>
+>
+>
+> Như vậy W \~ 𝒩(-λμ, 1+λ²σ²) nên Z' = \[W - (-λμ)\]/√(1+λ²σ²) \~ 𝒩(0,1)
+>
+>
+>
+> ---
+>
+>
+>
+>
+>
+> ⇒ P(W ≤ 0) = P(Z' ≤ λμ / √(1+λ²σ²)) = là cdf của Z' tại λμ / √(1+λ²σ²), = Φ\[λμ / √(1+λ²σ²)\]
 >
 >
 >
@@ -933,28 +1001,22 @@
 >
 > = Φ\[μ / √(λ⁻²+σ²)\]
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=qOrOKM71YhI)
+
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú xuất sắc! Bạn đã tự chứng minh trọn vẹn công thức tích chập (4.152) bằng góc nhìn xác suất rất trực quan và chính xác thông qua biến ngẫu nhiên phụ.
->
-> **🟡 Minor issues**
->
-> **1.** *"-λ(A-μ) ~ (-λ) × 𝒩(0, σ²) ~ 𝒩(0, λ²σ²) ⇒ -λA ~ 𝒩(0, λ²σ²) - λμ"*
->
-> Ký hiệu phép nhân và trừ trực tiếp một số vô hướng với phân phối chuẩn (-λ × 𝒩 và 𝒩 - λμ) mang tính trực giác cá nhân, về mặt toán học chuẩn tắc nên viết là tính chất biến đổi tuyến tính: nếu A ~ 𝒩(μ, σ²) thì cA + d ~ 𝒩(cμ + d, c²σ²).
->
-> **2.** *"Φ[λμ / √(1+λ²σ²)] = Φ[μ / √(1/λ²+σ²)] = Φ[μ / √(λ⁻²+σ²)]"*
->
-> Bước rút gọn chia cả tử và mẫu cho λ ngầm định rằng λ > 0 (vì √(1+λ²σ²)/λ = √(λ⁻²+σ²) chỉ đúng khi λ > 0). Nếu λ < 0 thì đưa λ vào trong căn sẽ xuất hiện dấu trừ.
->
+> Ghi chú xuất sắc! Bạn đã chứng minh công thức (4.152) một cách rất thông minh và trực quan bằng cách chuyển đổi tích phân thành xác suất đồng thời P(Z <= lambda A) của hai biến ngẫu nhiên Gauss độc lập.
 >
 > **✓ Strengths**
-> - Áp dụng góc nhìn xác suất (biểu diễn tích phân dưới dạng xác suất P(Z ≤ λA)) rất thông minh, giúp việc giải tích phân Gauss phức tạp trở nên đơn giản và trực quan.
-> - Chuẩn hóa và tính toán kỳ vọng, phương sai của tổ hợp tuyến tính W = Z - λA hoàn toàn chính xác.
+> - Ý tưởng chuyển tích phân chập thành xác suất P(Z <= lambda A) với Z và A là hai biến ngẫu nhiên Gauss độc lập rất chuẩn xác và thanh lịch.
+> - Sử dụng đúng tính chất tổ hợp tuyến tính của các biến ngẫu nhiên Gauss độc lập để tìm phân phối của biến W = Z - lambda A.
+> - Chuẩn hóa biến ngẫu nhiên W về dạng Gauss chuẩn (0, 1) thông qua họ vị trí - tỉ lệ (location-scale family) rất chặt chẽ và mạch lạc.
 >
 > **💡 Deeper notes**
-> - Trong ngữ cảnh của mô hình Probit/Gaussian processes (Bishop PRML), tham số tỉ lệ λ thường được quy ước là số dương, do đó việc chia cho λ mà không đổi dấu hoàn toàn phù hợp với ngữ cảnh của sách.
+> - Bước chia tử và mẫu cho lambda để đưa vào căn thức (lambda / sqrt(1 + lambda^2 sigma^2) = 1 / sqrt(lambda^-2 + sigma^2)) ngầm giả định lambda > 0 (trong PRML, hệ số lambda này thường là tham số thực dương, ví dụ lambda^2 = pi/8).
+
+**🔗 See also:** [Chứng minh tổng biến chuẩn *(Statistical Inference - Casella)*](../statistical_inference_casella/46_multi_variate_distribution.md#node-uaywczk)
 
 <br>
 
