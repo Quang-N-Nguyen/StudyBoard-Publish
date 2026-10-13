@@ -1,6 +1,6 @@
 # 1.5 Decision Theory
 
-📊 **Progress:** `30` Notes | `42` Screenshots | `15` AI Reviews
+📊 **Progress:** `30` Notes | `45` Screenshots | `25` AI Reviews
 
 ---
 <a id="node-0es6zw7"></a>
@@ -19,6 +19,24 @@
 > uncertainty. Thì nay, kết hợp với decision theory, sẽ cho ta một công cụ để
 > giúp đưa ra  những quyết định hợp lí trong bối cảnh uncertainty
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất tốt và chuẩn xác ý chính mở đầu của phần Decision Theory.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"những quyết định hợp lí"*
+>
+> Nguyên văn là 'optimal decisions' (quyết định tối ưu), có ý nghĩa toán học chính xác (thường là tối thiểu hóa rủi ro kỳ vọng hoặc tối đa hóa hàm ích lợi), dùng từ 'hợp lí' thì hơi mang tính định tính và chưa phản ánh đúng tính tối ưu.
+>
+>
+> **✓ Strengths**
+> - Nắm bắt chính xác vai trò kết hợp giữa lý thuyết xác suất (định lượng sự không chắc chắn) và lý thuyết quyết định.
+>
+> **💡 Deeper notes**
+> - Khái niệm 'optimal' trong decision theory chỉ có nghĩa cụ thể khi đi kèm một hàm mục tiêu rõ ràng (chẳng hạn như loss function hay utility function).
+
 <br>
 
 <a id="node-keqwbdj"></a>
@@ -27,52 +45,36 @@
 
 <p align="center"><kbd><img src="assets/ffy6lygz9ov.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/br4pbeg1csf.png" width="80%"></kbd></p>
+
 > [!NOTE]
-> Đại khái là, giả sử ta có input vector 𝐱, tương ứng là vector 𝐭, và mục
-> đích là dự đoán t từ new value x. Thì với bài toán regression, t sẽ là biến
-> liên tục. còn classification, t sẽ là class label.
+> Đại khái là, giả sử ta có input vector 𝐱, tương ứng là vector 𝐭, và mục đích là dự đoán t từ new value x. Thì với bài toán regression, t sẽ là biến liên tục. còn classification, t sẽ là class label.
 >
 >
 >
-> Khi đó joint probability của 𝐗,𝐓 (ở đây mình cứ theo quy tắc Casella,
-> biến thì viết hoa, cũng như xài chữ f cho quen thuộc) f(𝐱,𝐭) sẽ phản
-> ánh toàn diện mọi tính uncertainty gắn với các random variables này. Và
-> bài toán đi xác định phân phối xác suất của 𝐗,𝐓 được gọi là
-> **INFERENCE**.
+> Khi đó joint probability của 𝐗,𝐓 (ở đây mình cứ theo quy tắc Casella, biến thì viết hoa, cũng như xài chữ f cho quen thuộc) f(𝐱,𝐭) sẽ phản ánh toàn diện mọi tính uncertainty gắn với các random variables này. Và bài toán đi xác định phân phối xác suất của 𝐗,𝐓 được gọi là **INFERENCE**.
 >
 >
 >
-> Có thể hiểu ý này, vì xuyên suốt cuốn Statistical Inference của Casella,
-> mình chính là deal với bài toán này: cho random sample X = (X1,...Xn) ~
-> f(𝐱|θ) thì mục tiêu của ta là suy đoán giá trị của θ, tham số chi phối phân
-> phối xác suất của 𝐗, và 3 bài toán lớn là
+> Có thể hiểu ý này, vì xuyên suốt cuốn Statistical Inference của Casella, mình chính là deal với bài toán này: cho random sample 𝐗 = (X1,...Xn) \~ f(𝐱|θ) thì mục tiêu của ta là suy đoán giá trị của θ, tham số chi phối phân phối xác suất của 𝐗, và 3 bài toán lớn là
 >
 >
 >
-> i) point estimation - tìm cách đưa ra một function của sample W(𝐗) sao
-> cho với giá trị quan sát 𝐗 = 𝐱 thì ta có một estimate W(𝐱) cho θ.
+> i) point estimation - tìm cách đưa ra một function của sample W(𝐗) sao cho với giá trị quan sát 𝐗 = 𝐱 thì ta có một estimate W(𝐱) cho θ.
 >
 >
 >
-> ii) hypothesis testing - tìm cách đưa ra một nhận định rằng θ ∈ Θ0 hoặc θ ∈
-> Θ0c, và cụ thể là đi xây dựng một rejection region R = {𝐱: reject H0}
-> cũng  chính là một hypothesis test, có bản chất là một decision rule: nhận
-> vào 𝐱, tính toán giá trị của test statistic và dùng nó để quyết định xem
-> nên tuyên bố θ ∈ Θ0 hay Θ0c.
+> ii) hypothesis testing - tìm cách đưa ra một nhận định rằng θ ∈ Θ0 hoặc θ ∈ Θ0c, và cụ thể là đi xây dựng một rejection region R = {𝐱: reject H0} cũng chính là một hypothesis test, có bản chất là một decision rule: nhận vào 𝐱, tính toán giá trị của test statistic và dùng nó để quyết định xem nên tuyên bố θ ∈ Θ0 hay Θ0c.
 >
 >
 >
-> iii) interval estimator - tìm cách xây dựng một random interval hay khái quát
-> hơn là random set C(𝐗) để khi quan sát 𝐗 = 𝐱 ta sẽ đưa ra một
-> nhận định là θ ∈ C(𝐗)
+> iii) interval estimation - tìm cách xây dựng một random interval hay khái quát hơn là random set C(𝐗) để khi quan sát 𝐗 = 𝐱 ta sẽ đưa ra một nhận định là θ ∈ C(𝐗)
 >
 >
 >
-> Quay lại đây, gs Bishop cho rằng đây vốn là bài toán rất khó, và sẽ là chủ
-> đề xuyên suốt của cuốn sách này. Tuy nhiên, trong những bài toán thực tế,
-> ta thường muốn dự đoán t dựa trên giá trị của x hoặc rộng hơn, mục đích
-> của ta thường là đưa ra một hành động tốt nhất dựa trên giá trị mà t có khả
-> năng cao nhất dựa trên input x
+> Quay lại đây, gs Bishop cho rằng đây vốn là bài toán rất khó, và sẽ là chủ đề xuyên suốt của cuốn sách này. Tuy nhiên, trong những bài toán thực tế, ta thường muốn dự đoán t dựa trên giá trị của x hoặc rộng hơn, mục đích của ta thường là đưa ra một hành động tốt nhất dựa trên giá trị mà t có khả năng cao nhất dựa trên input x
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=DW22LgJKcKM)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
@@ -101,6 +103,10 @@
 
 <p align="center"><kbd><img src="assets/kdzb3izwnoj.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/hpwefnizk45.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/s89j6bth9w8.png" width="80%"></kbd></p>
+
 > [!NOTE]
 > Lấy ví dụ bài toán y khoa, ta muốn dựa trên input x là vector các giá trị điểm
 > ảnh của ảnh chụp x quang, để dự đoán t mang một trong hai giá trị 0 hoặc 1
@@ -126,6 +132,21 @@
 >
 > Và gs cho biết thường thì bước make decision sẽ tương đối đơn giản một
 > khi ta đã giải được bài toán inference.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=Y4YG0TJQ-tA)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chính xác và đầy đủ hai giai đoạn cốt lõi: suy diễn xác suất (inference) và ra quyết định (decision theory). Phần thắc mắc về ký hiệu C_k hoàn toàn dễ hiểu và sẽ được làm sáng tỏ khi mở rộng sang bài toán nhiều lớp.
+>
+> **✓ Strengths**
+> - Phân biệt rạch ròi giữa bài toán suy diễn (ước lượng phân phối xác suất chung) và bài toán ra quyết định dựa trên xác suất đó.
+> - Tóm tắt đúng bản chất ví dụ chẩn đoán y khoa với đầu vào là vector điểm ảnh và đầu ra nhị phân.
+>
+> **💡 Deeper notes**
+> - Việc tác giả Bishop phân biệt C_k (tên lớp / class label) và t (biến mục tiêu mã hóa nhị phân) không hẳn là 'rách việc', mà là để thuận tiện mở rộng sang bài toán phân loại nhiều lớp (K > 2) sau này, khi t có thể được biểu diễn dưới dạng vector one-hot thay vì chỉ là một số vô hướng {0, 1}.
+> - Trong cộng đồng Machine Learning, ký hiệu p(·) được chuẩn hóa để chỉ chung cho cả hàm mật độ xác suất (pdf) lẫn hàm khối xác suất (pmf), giúp biểu thức tổng quát hơn so với việc phân chia f(x) và P(X=x) như trong toán thống kê cổ điển.
 
 <br>
 
@@ -392,21 +413,21 @@
 > [!TIP]
 > 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
 >
-> Ghi chú rất xuất sắc khi liên hệ sâu sắc giữa decision region trong bài toán phân loại và rejection region trong kiểm định giả thuyết thống kê cổ điển. Việc giải thích sự khác biệt giữa tham số cố định θ và biến ngẫu nhiên nhãn lớp T giúp làm rõ bản chất công thức xác suất lỗi.
+> Ghi chú rất xuất sắc, hiểu sâu bản chất khi so sánh bài toán kiểm định giả thuyết (Frequentist) với bài toán phân loại thống kê (nơi nhãn lớp là biến ngẫu nhiên). Việc giải thích nguồn gốc của công thức (1.78) hoàn toàn chính xác và rõ ràng.
 >
 > **🟡 Minor issues**
 >
 > **1.** *"Đây là union của hai disjoint event, nên theo axiom 2 của lí thuyết xác suất, ta tách nó thành tổng"*
 >
-> Theo hệ tiên đề xác suất Kolmogorov chuẩn, tính cộng của các biến cố xung khắc (additivity) là Tiên đề 3 (Axiom 3), còn Tiên đề 2 là chuẩn hóa P(Ω) = 1 (hoặc Tiên đề 1 là tính không âm).
+> Trong hệ tiên đề Kolmogorov (và cả trong sách Casella & Berger, Def 1.2.4), tính cộng xác suất cho các biến cố rời nhau (countable/finite additivity) là Tiên đề 3 (Axiom 3), còn Tiên đề 2 là $P(S) = 1$.
 >
 >
 > **✓ Strengths**
-> - So sánh và phân biệt rất chính xác góc nhìn Frequentist trong kiểm định giả thuyết (θ là hằng số cố định, unknown) với bài toán phân loại mẫu (nhãn lớp T là biến ngẫu nhiên).
-> - Thiết lập chặt chẽ công thức tính xác suất lỗi dựa trên hợp của hai biến cố xung khắc và tích phân mật độ đồng thời trên miền quyết định.
+> - So sánh rất sâu sắc và chuẩn xác sự khác biệt giữa tham số cố định theta trong kiểm định giả thuyết Frequentist và nhãn lớp T đóng vai trò là biến ngẫu nhiên trong bài toán này.
+> - Tự suy luận và diễn giải mượt mà tích phân của phân phối đồng thời giữa biến rời rạc T và vector liên tục X để dẫn ra phương trình (1.78).
 >
 > **💡 Deeper notes**
-> - Đối với phân phối đồng thời giữa biến ngẫu nhiên liên tục X và biến rời rạc T, về mặt lý thuyết đo độ (measure theory), tích phân f(t, x) dxdt thực chất là tích phân theo tích của độ đo Lebesgue và độ đo đếm (counting measure), do đó tích phân trên biến T rút lại thành phép tính tổng (hoặc giá trị tại điểm rời rạc).
+> - Trong lý thuyết xác suất hỗn hợp (mixed continuous-discrete), đại lượng $f(C_k, \mathbf{x})$ thực chất là $p(\mathbf{x}, C_k) = p(\mathbf{x}|C_k)P(C_k)$, là tích của một hàm mật độ xác suất liên tục với một khối lượng xác suất rời rạc (probability mass).
 
 **🔗 See also:** [Generalized Linear Model for K Classes](./421_continuous_inputs.md#node-q8w0jnb)
 
@@ -653,6 +674,26 @@
 >
 > Có nghĩa là cái optimal rule sẽ là: Assign C1 nếu x < x0 và ngược lại.
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc bản chất hình học của bài toán tối thiểu hóa xác suất phân loại sai và lý do tại sao ngưỡng tối ưu nằm tại điểm cắt x0.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"chính là phần xanh đỏ và xanh  lá"*
+>
+> Có một lỗi gõ phím nhỏ khi liệt kê 3 vùng (thiếu từ 'xanh dương', thành 'xanh đỏ và xanh lá'), tuy nhiên đoạn kế tiếp bạn đã nêu rõ đầy đủ cả 3 vùng xanh dương, xanh lá và đỏ nên không ảnh hưởng đến hiểu bản chất.
+>
+>
+> **✓ Strengths**
+> - Nhận thức chính xác rằng hình vẽ đang xét trường hợp biến vô hướng 1 chiều x để minh họa trực quan thay vì vector tổng quát.
+> - Hiểu đúng bản chất tích phân là diện tích dưới đường cong của xác suất đồng thời và biểu diễn đúng tổng xác suất sai số.
+> - Giải thích chuẩn xác trực giác di chuyển ngưỡng x^ về x0 để triệt tiêu phần diện tích sai số phụ (vùng màu đỏ).
+>
+> **💡 Deeper notes**
+> - Quy tắc quyết định phân chia R1 là x < x0 chỉ đúng khi hai đường cong chỉ cắt nhau đúng 1 lần tại x0; nếu phân phối phức tạp hơn (ví dụ đa mốt) và cắt nhau nhiều lần, vùng quyết định R1 có thể là hợp của nhiều khoảng rời rạc chứ không nhất thiết chỉ là một nửa đường thẳng x < x0.
+
 <br>
 
 <a id="node-11mro6g"></a>
@@ -662,19 +703,11 @@
 <p align="center"><kbd><img src="assets/lcinhi9o1rb.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Nói qua khái quát bài toán lên K classes thay vì 2 classes, ông cho rằng sẽ
-> dễ hơn nếu ta đặt objective cho việc tìm rule tối ưu là maximize xác suất
-> phân loại đúng thay vì minimize xác suất phân loại sai.
+> Nói qua khái quát bài toán lên K classes thay vì 2 classes, ông cho rằng sẽ dễ hơn nếu ta đặt objective cho việc tìm rule tối ưu là maximize xác suất phân loại đúng thay vì minimize xác suất phân loại sai.
 >
 >
 >
-> Là sao? À đơn giản là vì đây là hai event disjoint và bù nhau, nên P("mistake"
-> ) = 1 - P(" correct"). Mà với bài toán tối ưu thì ta biết rồi, minimize hàm f(x) thì
-> cũng là maximize hàm -f(x). Đo đó, minimize P("mistake") tương đương
-> maximize
-> \- P("mistake"), và cũng tương đương maximize 1 - P("mistake") (cộng hằng
-> số vào objective thì cũng được bài toán tương đương), và đây chính là
-> maximize P("correct")
+> Là sao? À đơn giản là vì đây là hai event disjoint và bù nhau, nên P("mistake" ) = 1 - P(" correct"). Mà với bài toán tối ưu thì ta biết rồi, minimize hàm f(x) thì cũng là maximize hàm -f(x). Đo đó, minimize P("mistake") tương đương maximize -P("mistake"), và cũng tương đương maximize 1 - P("mistake") (cộng hằng số vào objective thì cũng được bài toán tương đương), và đây chính là maximize P("correct")
 >
 >
 >
@@ -686,8 +719,7 @@
 >
 >
 >
-> Là vì, event "correct" dễ định nghĩa hơn event "mistake" trong trường hợp có
-> nhiều classes.
+> Là vì, event "correct" dễ định nghĩa hơn event "mistake" trong trường hợp có nhiều classes.
 >
 >
 >
@@ -695,11 +727,11 @@
 >
 >
 >
-> ([T = C1, decision rule phán là C1] hoặc [T = C2, decision rule phán là C2] ..
+> (\[T = C1, decision rule phán là C1\] hoặc \[T = C2, decision rule phán là C2\] ..
 >
 >
 >
-> hoặc [T = CK, decision rule phán là CK])
+> hoặc \[T = CK, decision rule phán là CK\])
 >
 >
 >
@@ -707,27 +739,23 @@
 >
 >
 >
-> "Correct" = (T = C1, 𝐗 ∈ R1) hoặc (T = C2, 𝐗 ∈ R2) ,...(T = CK, 𝐗 ∈
-> Rk)
+> "Correct" = (T = C1, 𝐗 ∈ R1) hoặc (T = C2, 𝐗 ∈ R2) ,...(T = CK, 𝐗 ∈ Rk)
 >
 >
 >
-> ⇨ P("Correct") = P[(T = C1, 𝐗 ∈ R1) U (T = C2, 𝐗 ∈ R2) U...U( T = CK,
-> 𝐗 ∈ Rk)]
+> ⇨ P("Correct") = P\[(T = C1, 𝐗 ∈ R1) U (T = C2, 𝐗 ∈ R2) U...U( T = CK, 𝐗 ∈ Rk)\]
 >
 >
 >
-> tương tự, đây là union của các disjoint events nên theo axiom 2 (hay 3 nếu
-> theo sách Casella)
+> tương tự, đây là union của các disjoint events nên theo axiom 2 (hay 3 nếu theo sách Casella)
 >
 >
 >
-> .. = P[(T = C1, 𝐗 ∈ R1) + P(T = C2, 𝐗 ∈ R2) +...+ P(T = CK, 𝐗 ∈ Rk)]
+> .. = P\[(T = C1, 𝐗 ∈ R1) + P(T = C2, 𝐗 ∈ R2) +...+ P(T = CK, 𝐗 ∈ Rk)\]
 >
 >
 >
-> và tương tự như hồi nãy, nó chính là ∫R1 f(C1,𝐱)d𝐱 + ...∫RK f(CK,
-> 𝐱)d𝐱
+> và tương tự như hồi nãy, nó chính là ∫R1 f(C1,𝐱)d𝐱 + ...∫RK f(CK, 𝐱)d𝐱
 >
 >
 >
@@ -735,9 +763,7 @@
 >
 >
 >
-> Và tương tự như khi K = 2, cái decision rule khiến maximize P("correct") có
-> thể đoán được cũng sẽ chính là cái rule này: Assign class Ck nếu joint  pdf
-> f(Ck, 𝐱) và cũng là posterior pdf f(Ck|𝐱) là cao nhất trong các k = 1,..K
+> Và tương tự như khi K = 2, cái decision rule khiến maximize P("correct") có thể đoán được cũng sẽ chính là cái rule này: Assign class Ck nếu joint pdf f(Ck, 𝐱) và cũng là posterior pdf f(Ck|𝐱) là cao nhất trong các k = 1,..K
 >
 >
 >
@@ -745,9 +771,31 @@
 >
 >
 >
-> Vậy ở đây giúp ta hiểu sâu hơn như sau: Nếu tiêu chí của ta, mục tiêu của
-> ta là giảm thiểu tỉ lệ sai xót tổng thể, thì cách phân loại tốt nhất chính là
-> dựa trên posterior probability
+> Vậy ở đây giúp ta hiểu sâu hơn như sau: Nếu tiêu chí của ta, mục tiêu của ta là giảm thiểu tỉ lệ sai xót tổng thể, thì cách phân loại tốt nhất chính là dựa trên posterior probability
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú thể hiện sự hiểu bài rất tốt, giải thích rõ ràng lý do chuyển từ việc cực tiểu hóa sai số sang cực đại hóa độ chính xác và đi tới đúng kết luận về posterior probability. Có một vài điểm nhỏ về ký hiệu ngoặc và dùng từ xác suất rời rạc vs hàm mật độ.
+>
+> **🟡 Minor issues**
+>
+> **1.** *".. = P[(T = C1, 𝐗 ∈ R1) + P(T = C2, 𝐗 ∈ R2) +...+ P(T = CK, 𝐗 ∈ Rk)]"*
+>
+> Lỗi gõ ký hiệu: Thừa dấu ngoặc vuông và chữ P ở đầu biểu thức tổng xác suất (đúng ra là P(...) + P(...) + ... + P(...)).
+>
+> **2.** *"posterior pdf f(Ck|𝐱)"*
+>
+> Nhãn lớp Ck là biến ngẫu nhiên rời rạc, do đó P(Ck|x) là xác suất (hoặc pmf), không phải là hàm mật độ xác suất (pdf), dù x là biến liên tục.
+>
+>
+> **✓ Strengths**
+> - Giải thích rất trực quan và chính xác lý do toán học vì sao cực tiểu hóa P(mistake) tương đương với cực đại hóa P(correct).
+> - Hiểu rõ tại sao khi tổng quát lên K lớp thì việc biểu diễn biến cố 'đoán đúng' lại thuận tiện và gọn hơn nhiều so với biến cố 'đoán sai'.
+> - Nắm chắc lập luận lược bỏ p(x) chung để quy về quy tắc chọn lớp có xác suất hậu nghiệm (posterior) lớn nhất.
+>
+> **💡 Deeper notes**
+> - Trong trường hợp có nhiều hơn một lớp đạt cùng giá trị posterior lớn nhất tại một điểm x (tie-breaking), việc gán vào bất kỳ lớp nào trong số đó đều cho cùng xác suất phân loại đúng tối ưu.
 
 <br>
 
@@ -1247,6 +1295,27 @@
 > Để rồi ta sẽ thấy **CHÍNH XÁC LÀ** **NGÀI BISHOP ĐANG TÍNH BAYES RISK** (tính **kì
 > vọng của loss (tổng loss) trên joint distribution của** T **và** 𝐗)
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú thể hiện sự hiểu biết sâu sắc và kết nối xuất sắc giữa lý thuyết quyết định Bayes trong thống kê cổ điển (Casella) và học máy (Bishop). Có một lỗi viết nhầm ký hiệu nhỏ trong một câu ví dụ nhưng không ảnh hưởng đến mô hình tư duy tổng thể.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Ví dụ, ô Lkj sẽ là loss của event: T = k (class thật là j) và "mô hình phân lại là class j""*
+>
+> Lỗi viết nhầm (typo) trong dấu ngoặc: nếu sự kiện là $T = k$ thì class thật phải là $k$, không phải $j$.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ cách cấu trúc của Loss matrix $L_{kj}$ với hàng là nhãn thực tế và cột là nhãn dự đoán.
+> - Liên hệ chính xác giữa việc gán nhãn 2 lớp với bài toán kiểm định giả thuyết thống kê (Type I / Type II error và hàm generalized 0-c loss).
+> - Nhận diện cực kỳ chuẩn xác bản chất việc Bishop tối thiểu hóa expected loss thực chất chính là bài toán tìm quy tắc quyết định tối thiểu hóa Bayes Risk (tương đương với tối thiểu hóa posterior expected loss).
+>
+> **💡 Deeper notes**
+> - Dù trên thực tế đường chéo $L_{kk}$ thường được chuẩn hóa về 0 (không phạt khi đoán đúng), trong lý thuyết tổng quát các phần tử này chỉ cần thỏa mãn $L_{kk} < L_{kj}$ với $k \neq j$.
+> - Trong bối cảnh bài toán phân loại giám sát của Bishop, $(X, T)$ là cặp biến ngẫu nhiên đồng thời (joint distribution), việc chia phân vùng không gian quyết định $\mathcal{R}_j$ dẫn đến việc chỉ cần chọn $j$ cực tiểu hóa $\sum_k L_{kj} p(\mathcal{C}_k|\mathbf{x})$ cho từng điểm $\mathbf{x}$ cụ thể.
+
 <br>
 
 <a id="node-jfiv67u"></a>
@@ -1423,6 +1492,26 @@
 >
 >
 > Còn nhờ học Casella, ta hiểu thấu bản chất đây chỉ là Bayes risk mà thôi.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Bạn đã giải thích và chứng minh công thức (1.80) một cách chặt chẽ từ góc nhìn biến ngẫu nhiên, định lý LOTUS và hàm chỉ thị (indicator function).
+>
+> **🟡 Minor issues**
+>
+> **1.** *"với việc đã xét n=1,...K ở miền ngoài tích phân thì cái tổng [ Σj=1:K Lmj I_(t = Ck) I(𝐱 ∈ Rj) ] bên trong vòng lặp này..."*
+>
+> Có một lỗi gõ nhỏ (typo) khi viết lại cụm có chứa I_(t = Ck) dù trước đó đã rút gọn và gán t = Cm, tuy nhiên biểu thức rút gọn cuối cùng Lmn vẫn hoàn toàn chính xác.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất sâu sắc bản chất hàm Loss là một biến ngẫu nhiên hình thành từ ánh xạ g(T, X) trên không gian tích.
+> - Ứng dụng chuẩn xác định lý LOTUS cho cặp biến ngẫu nhiên hỗn hợp (T rời rạc, X liên tục) để dẫn xuất từng bước ra công thức 1.80.
+> - Liên hệ chính xác với khái niệm Bayes risk trong thống kê cổ điển (Casella & Berger).
+>
+> **💡 Deeper notes**
+> - Phép phân tách tích phân toàn miền range(X) thành tổng các tích phân trên Rn dựa trên giả định ngầm định rằng các vùng quyết định Rj tạo thành một phân hoạch (partition) của không gian đầu vào X (các vùng rời nhau và phủ kín không gian, sai khác nhiều nhất là tập có độ đo 0).
 
 <br>
 
@@ -1666,6 +1755,26 @@
 >
 > **trong câu nói "...which implies that for each x we should minimize Σk Lkj p(x, Ck)"**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú giải thích rất trực quan và chính xác bản chất vì sao bài toán tìm phân hoạch lại quy về bài toán cực tiểu hóa rời rạc tại từng điểm x độc lập.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Và f(𝐱, Ck) về cơ bản cũng có thể tương đương với xác suất mà T = Ck xảy ra. Nên Σk=1:K Lkj f(𝐱, Ck) = Σk=1:K [mức phạt khi gán một data point thuộc class Ck vào class j] * [Xác xuất data point thuộc class Ck] và nó mang ý nghĩa là Trung bình mức phạt khi gán data point x vào class Cj"*
+>
+> Về mặt toán học, f(x, Ck) (hay p(x, Ck)) là hàm mật độ đồng thời (joint density), không phải xác suất tiên nghiệm p(Ck) hay hậu nghiệm p(Ck|x). Do đó gj(x) thực chất là mức phạt trung bình có điều kiện nhân với p(x), tức gj(x) = p(x) * E[L|x, assign j]. Dù vậy, với mỗi x cố định, p(x) là hằng số dương nên việc cực tiểu hóa gj(x) hoàn toàn tương đương với cực tiểu hóa kỳ vọng tổn thất tại điểm đó.
+>
+>
+> **✓ Strengths**
+> - Liên kết xuất sắc khái niệm Bayes risk và decision rule giữa giáo trình Bishop và nền tảng lý thuyết ước lượng/kiểm định trong Casella & Berger.
+> - Sử dụng công cụ hàm chỉ thị (indicator function) để chuyển bài toán tích phân trên các miền phân hoạch về dạng tích phân trên toàn không gian rất rõ ràng và mạch lạc.
+> - Lập luận thuyết phục vì sao có thể tối ưu điểm (pointwise optimization) độc lập cho từng x để tối ưu hóa tích phân tổng thể.
+>
+> **💡 Deeper notes**
+> - Đoạn tiếp theo trong giáo trình Bishop dùng công thức tích p(x, Ck) = p(Ck|x)p(x) nhằm triệt tiêu thừa số chung p(x), đưa gj(x) về đúng nghĩa là kỳ vọng tổn thất có điều kiện (conditional expected loss) sum_k L_{kj} p(Ck|x).
+
 <br>
 
 <a id="node-ym5yp89"></a>
@@ -1834,6 +1943,26 @@
 > HÌnh minh họa cho thấy vùng giữa hai đường xanh lá, nơi đó posterior tại  hai class
 > (ý là f(t|x)|t=C1 và f(t|x)|t=C2)  có giá trị khác biệt không lớn. Và ta sẽ từ chối đưa ra
 > quyết định phân loại
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú nắm rất đúng trực quan của vùng từ chối (reject region) trong bài toán phân loại 2 lớp. Để chặt chẽ hơn và tổng quát cho nhiều lớp, nên diễn đạt theo điều kiện xác suất hậu nghiệm lớn nhất nhỏ hơn hoặc bằng ngưỡng theta.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"nơi đó posterior tại  hai class (ý là f(t|x)|t=C1 và f(t|x)|t=C2)  có giá trị khác biệt không lớn"*
+>
+> Định nghĩa chuẩn của reject option là max_k p(C_k|x) <= theta. Trong bài toán 2 lớp thì điều này tương đương với việc hai xác suất chênh lệch không nhiều, nhưng khi mở rộng ra K > 2 lớp thì tiêu chuẩn so sánh trực tiếp max posterior với ngưỡng theta là cách biểu diễn chuẩn xác nhất.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng bản chất của reject option: từ chối phân loại khi mô hình không đủ tự tin (các xác suất hậu nghiệm gần nhau).
+> - Xác định chính xác vùng từ chối nằm giữa hai đường giới hạn màu xanh lá trên đồ thị.
+>
+> **💡 Deeper notes**
+> - Với bài toán 2 lớp, do tổng hai xác suất hậu nghiệm bằng 1, điều kiện max(p(C1|x), p(C2|x)) <= theta (với theta >= 0.5) tương đương với |p(C1|x) - p(C2|x)| <= 2*theta - 1. Nếu đặt theta = 1 thì toàn bộ không gian bị từ chối; nếu theta = 0.5 thì không có điểm nào bị từ chối.
+> - Ký hiệu chuẩn trong sách thường là p(C_k|x) thay vì viết điều kiện hóa dạng f(t|x)|t=C_k.
 
 <br>
 
@@ -2085,6 +2214,30 @@
 > hiện khi nào thì ta có một x có xác suất thấp → thì đó chính là một tấm ảnh
 > có sự bất thường gọi là outlier
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú nắm rất tốt ý cốt lõi về ưu/nhược điểm của mô hình sinh (generative approach) và ứng dụng của phân phối biên duyên trong việc phát hiện dị biệt (outlier detection). Có một chút nhầm lẫn nhỏ về thuật ngữ khi gọi p(x) là 'prior distribution'.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"và cái này, là prior distribution của x"*
+>
+> Trong ngữ cảnh này, p(x) là 'marginal density' (mật độ biên duyên) hoặc 'evidence', không nên gọi là prior distribution của x. Thuật ngữ 'prior' thường dùng để chỉ phân phối tiên nghiệm của nhãn/lớp p(C_k) hoặc tham số.
+>
+> **2.** *"ý nghĩa của f(𝐱) là hàm xác suất của ảnh"*
+>
+> Với biến liên tục nhiều chiều x (như vector ảnh), f(x) là hàm mật độ xác suất (probability density function), giá trị f(x) là mật độ xác suất chứ không phải xác suất trực tiếp.
+>
+>
+> **✓ Strengths**
+> - Hiểu chính xác lý do phương pháp mô hình hóa phân phối đồng thời yêu cầu nhiều dữ liệu huấn luyện do số chiều của x lớn.
+> - Nắm bắt rất trực quan và chính xác cơ chế dùng p(x) biên duyên để phát hiện điểm dị biệt (outlier/novelty detection).
+>
+> **💡 Deeper notes**
+> - Công thức xác định p(x) từ phân phối đồng thời trong bài toán phân loại rời rạc là tổng biên duyên trên các lớp: p(x) = sum_k p(x, C_k) = sum_k p(x|C_k)p(C_k).
+> - Khi p(x) rất thấp, không chỉ điểm dữ liệu đó là bất thường/mới lạ mà các dự đoán phân loại (predictions) đối với điểm đó thường cũng sẽ có độ tin cậy và độ chính xác thấp.
+
 <br>
 
 <a id="node-fks3wq7"></a>
@@ -2162,6 +2315,25 @@
 >
 > Hơn nữa, posterior sẽ giúp ta có thể reject, ko đưa ra quyết định khi cảm
 > thấy ko chắc
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ⚠️ **88/100** · ✓ Move on
+>
+> Ghi chú nắm rất tốt ý nghĩa cốt lõi của việc tính xác suất hậu nghiệm (posterior) so với hàm phân biệt (discriminant function). Tuy nhiên, cần lưu ý chính xác rằng khi ma trận tổn thất thay đổi, bản thân posterior không thay đổi mà là tiêu chí ra quyết định được cập nhật lại.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"cái posterior sẽ được cập nhật theo rất đơn giản (trivially)"*
+>
+> Về mặt bản chất, xác suất hậu nghiệm p(C_k|x) không phụ thuộc vào ma trận tổn thất (loss matrix) nên không bị thay đổi hay cần cập nhật. Thứ được cập nhật một cách đơn giản (trivially) chính là tiêu chí/quy tắc ra quyết định giảm thiểu rủi ro (decision criterion/minimum risk rule) dựa trên công thức tổn thất kỳ vọng.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng sự tương phản cốt lõi: dùng posterior cho phép linh hoạt đổi ma trận tổn thất mà không phải huấn luyện lại từ đầu (afresh) như cách dùng hàm phân biệt (option c).
+> - Nêu chính xác vai trò của posterior trong việc xác định ngưỡng từ chối (reject option) khi độ tin cậy thấp.
+>
+> **💡 Deeper notes**
+> - Lợi ích cốt lõi ở đây xuất phát từ việc tách rời hai giai đoạn: suy diễn (inference - tính posterior) và ra quyết định (decision - kết hợp posterior với loss matrix). Do hai giai đoạn độc lập, sự thay đổi của hàm mất mát/ma trận phạt ở giai đoạn quyết định hoàn toàn không ảnh hưởng đến kết quả suy diễn đã học trước đó.
 
 <br>
 
