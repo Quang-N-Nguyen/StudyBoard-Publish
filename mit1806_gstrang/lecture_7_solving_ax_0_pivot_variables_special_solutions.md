@@ -9,6 +9,8 @@
 
 <a id="node-ufz540f"></a>
 
+## Cách tìm null-space và column-space
+
 <p align="center"><kbd><img src="assets/k53q5wl0vn.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -20,6 +22,8 @@
 <br>
 
 <a id="node-smtg46k"></a>
+
+### Khử ma trận chữ nhật
 
 <p align="center"><kbd><img src="assets/jxrwkex847s.png" width="80%"></kbd></p>
 
@@ -39,6 +43,8 @@
 
 <a id="node-gwwrkaj"></a>
 
+#### Ảnh hưởng của phép khử
+
 <p align="center"><kbd><img src="assets/7ajnnq188g2.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -56,6 +62,8 @@
 
 <a id="node-1ukxnco"></a>
 
+##### Phép khử hàng Gauss
+
 <p align="center"><kbd><img src="assets/3xgyf0ztme5.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -65,6 +73,8 @@
 <br>
 
 <a id="node-ww804pl"></a>
+
+###### Cột phụ thuộc tuyến tính
 
 <p align="center"><kbd><img src="assets/suvvmbyauq.png" width="80%"></kbd></p>
 
@@ -81,6 +91,8 @@
 <br>
 
 <a id="node-pvqdlyf"></a>
+
+###### Ma trận dạng bậc thang
 
 <p align="center"><kbd><img src="assets/7jci7ow07u2.png" width="80%"></kbd></p>
 
@@ -112,6 +124,8 @@
 <br>
 
 <a id="node-dtict6d"></a>
+
+###### Nullspace qua phép khử Gauss
 
 <p align="center"><kbd><img src="assets/o6o22klb4n.png" width="80%"></kbd></p>
 
@@ -166,11 +180,13 @@
 >
 >  → x = c * [-2, 1, 0, 0].T
 
-**🔗 See also:** [linked note](#node-o9zdw8l)
+**🔗 See also:** [Nghiệm đặc biệt của nullspace](#node-o9zdw8l)
 
 <br>
 
 <a id="node-ftx8eg7"></a>
+
+###### Nghiệm đặc biệt của null-space
 
 <p align="center"><kbd><img src="assets/ppr6y1w7fz.png" width="80%"></kbd></p>
 
@@ -212,6 +228,8 @@
 
 <a id="node-xpxaf8g"></a>
 
+###### Nghiệm đặc biệt và Nullspace
+
 <p align="center"><kbd><img src="assets/hmsgpxwtdb6.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -228,11 +246,13 @@
 > Và như đã nói **MỌI LINEAR COMBINATION CỦA SPECIAL
 > SOLUTION LÀM THÀNH NULL-SPACE**
 
-**🔗 See also:** [linked note](./lecture_8_solving_ax_b_row_reduced_form_r.md#node-37ysmvr) · [linked note](./lecture_9_independece_basis_and_dimension.md#node-suvoza3)
+**🔗 See also:** [Nullspace không có biến tự do](./lecture_8_solving_ax_b_row_reduced_form_r.md#node-37ysmvr) · [Matrix Rank and Free Variables](./lecture_9_independece_basis_and_dimension.md#node-suvoza3)
 
 <br>
 
 <a id="node-isp5jls"></a>
+
+###### Nguồn gốc hàng số không
 
 <p align="center"><kbd><img src="assets/itif13hkbyd.png" width="80%"></kbd></p>
 
@@ -255,6 +275,8 @@
 
 <a id="node-pzchlka"></a>
 
+###### Quy trình biến đổi RREF
+
 <p align="center"><kbd><img src="assets/2a5ctniim9e.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -267,11 +289,13 @@
 > Có thể tiếp tục clean hơn nữa: **CHO PIVOT BẰNG 1
 > HẾT**. → Chia row 2 cho pivot
 
-**🔗 See also:** [linked note](#node-r7qd5ov)
+**🔗 See also:** [Dạng bậc thang rút gọn](#node-r7qd5ov)
 
 <br>
 
 <a id="node-qcxzsyz"></a>
+
+###### Lệnh rref trong MATLAB
 
 <p align="center"><kbd><img src="assets/haek0hfhloi.png" width="80%"></kbd></p>
 
@@ -282,6 +306,8 @@
 <br>
 
 <a id="node-262tj7b"></a>
+
+###### Tính độc lập của pivot
 
 <p align="center"><kbd><img src="assets/64xjyh5kc9u.png" width="80%"></kbd></p>
 
@@ -307,6 +333,8 @@
 
 <a id="node-vvgb5gf"></a>
 
+###### Nghiệm của Ax=0 và Rx=0
+
 <p align="center"><kbd><img src="assets/dypxm3ce9br.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -317,6 +345,8 @@
 <br>
 
 <a id="node-e30sm7e"></a>
+
+###### Cấu trúc nghiệm đặc biệt
 
 <p align="center"><kbd><img src="assets/nseihmbcx7e.png" width="80%"></kbd></p>
 
@@ -338,6 +368,8 @@
 <br>
 
 <a id="node-wuiyewh"></a>
+
+###### Cấu trúc RREF điển hình
 
 <p align="center"><kbd><img src="assets/2rg8qyqmt43.png" width="80%"></kbd></p>
 
@@ -393,6 +425,8 @@
 
 <a id="node-naw056r"></a>
 
+###### Bản chất ma trận Nullspace
+
 <p align="center"><kbd><img src="assets/91auzn85bjk.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/fi60uyy4n6.png" width="80%"></kbd></p>
@@ -421,6 +455,8 @@
 
 <a id="node-6lrv2rd"></a>
 
+###### Số biến pivot ma trận
+
 <p align="center"><kbd><img src="assets/o2rfgaf5s8c.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -443,6 +479,8 @@
 <br>
 
 <a id="node-g1o0dxb"></a>
+
+###### Các bước khử Gauss
 
 <p align="center"><kbd><img src="assets/dzyzygwfwqq.png" width="80%"></kbd></p>
 
@@ -469,6 +507,8 @@
 
 <a id="node-pi0ldnh"></a>
 
+###### Phép đổi hàng pivot
+
 <p align="center"><kbd><img src="assets/dmwafu23hz5.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -480,6 +520,8 @@
 
 <a id="node-f68mo86"></a>
 
+###### Phép biến đổi hàng Gauss
+
 <p align="center"><kbd><img src="assets/jaa4fipbdmf.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -489,6 +531,8 @@
 <br>
 
 <a id="node-xhtpxlk"></a>
+
+###### Ma trận tam giác trên
 
 <p align="center"><kbd><img src="assets/c4sntx52jm8.png" width="80%"></kbd></p>
 
@@ -501,6 +545,8 @@
 <br>
 
 <a id="node-o9zdw8l"></a>
+
+###### Nghiệm đặc biệt của nullspace
 
 <p align="center"><kbd><img src="assets/58pi8cbw1h.png" width="80%"></kbd></p>
 
@@ -542,6 +588,8 @@
 
 <a id="node-2hcturd"></a>
 
+###### Sự phụ thuộc tuyến tính
+
 <p align="center"><kbd><img src="assets/ugaybljwnm.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -569,6 +617,8 @@
 <br>
 
 <a id="node-uipe2bj"></a>
+
+###### Bản chất không gian null
 
 <p align="center"><kbd><img src="assets/p61bo1z1qd.png" width="80%"></kbd></p>
 
@@ -625,6 +675,8 @@
 
 <a id="node-r7qd5ov"></a>
 
+###### Dạng bậc thang rút gọn
+
 <p align="center"><kbd><img src="assets/iga6tb27eh.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -641,11 +693,13 @@
 > Trừ hàng 1 cho hàng 2, (để trong mỗi cột chỉ có pivot 
 > là khác 0) và chia hàng 2 cho 1 để đưa các pivot thành 1
 
-**🔗 See also:** [linked note](#node-pzchlka)
+**🔗 See also:** [Quy trình biến đổi RREF](#node-pzchlka)
 
 <br>
 
 <a id="node-nkx5u2k"></a>
+
+###### Ma trận I và F
 
 <p align="center"><kbd><img src="assets/96wgz1b6lh5.png" width="80%"></kbd></p>
 
