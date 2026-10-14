@@ -199,7 +199,7 @@
 > **bên dưới đường chéo là 0 hết**, **L** là **Lower Triangular**
 > (đường chéo là 1 hết, bên trên đường chéo là 0 hết)
 
-**🔗 See also:** [linked note](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-xhtpxlk)
+**🔗 See also:** [Ma trận tam giác trên](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-xhtpxlk)
 
 <br>
 
