@@ -9,6 +9,8 @@
 
 <a id="node-8unweix"></a>
 
+## Nghiệm của hệ Ax=b
+
 <p align="center"><kbd><img src="assets/rquicxstfad.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -23,6 +25,8 @@
 <br>
 
 <a id="node-sd3c1e2"></a>
+
+### Điều kiện có nghiệm Ax=b
 
 <p align="center"><kbd><img src="assets/wre1scoylj.png" width="80%"></kbd></p>
 
@@ -54,6 +58,8 @@
 <br>
 
 <a id="node-66x1yvg"></a>
+
+#### Ma trận mở rộng
 
 <p align="center"><kbd><img src="assets/ihef0542i5n.png" width="80%"></kbd></p>
 
@@ -119,6 +125,8 @@
 
 <a id="node-094qe4a"></a>
 
+###### Điều kiện hệ có nghiệm
+
 <p align="center"><kbd><img src="assets/6jrie8568eh.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -130,6 +138,8 @@
 
 <a id="node-949m5av"></a>
 
+###### Quá trình khử vector b
+
 <p align="center"><kbd><img src="assets/bx7h5l1m678.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -140,6 +150,8 @@
 <br>
 
 <a id="node-52p1yud"></a>
+
+###### Điều kiện tồn tại nghiệm
 
 <p align="center"><kbd><img src="assets/8d0qqgi68k2.png" width="80%"></kbd></p>
 
@@ -158,6 +170,8 @@
 <br>
 
 <a id="node-mqrqyr9"></a>
+
+###### Quy trình tìm nghiệm riêng
 
 <p align="center"><kbd><img src="assets/q2rh6t90gol.png" width="80%"></kbd></p>
 
@@ -179,6 +193,8 @@
 
 <a id="node-vh926d0"></a>
 
+###### Tập nghiệm tổng quát
+
 <p align="center"><kbd><img src="assets/d46tuq8fjla.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -192,6 +208,8 @@
 <br>
 
 <a id="node-9vdh965"></a>
+
+###### Nghiệm hoàn chỉnh của Ax=b
 
 <p align="center"><kbd><img src="assets/i7x6znnodvq.png" width="80%"></kbd></p>
 
@@ -215,6 +233,8 @@
 <br>
 
 <a id="node-f3zb5ut"></a>
+
+###### Cấu trúc nghiệm hệ Ax=b
 
 <p align="center"><kbd><img src="assets/wwplkx9cot.png" width="80%"></kbd></p>
 
@@ -254,6 +274,8 @@
 
 <a id="node-2zircqy"></a>
 
+###### Phương pháp tìm nullspace
+
 <p align="center"><kbd><img src="assets/o4x5k7op1z.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/7e03gfrybjw.png" width="80%"></kbd></p>
@@ -271,6 +293,8 @@
 
 <a id="node-scvtmo7"></a>
 
+###### Lời giải hoàn chỉnh
+
 <p align="center"><kbd><img src="assets/cqt5rstwdbn.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -279,6 +303,8 @@
 <br>
 
 <a id="node-xmqvmub"></a>
+
+###### Hệ số nhân nghiệm riêng
 
 <p align="center"><kbd><img src="assets/35g24us1vnk.png" width="80%"></kbd></p>
 
@@ -296,6 +322,8 @@
 
 <a id="node-786nqdg"></a>
 
+###### Tính chất nghiệm Nullspace
+
 <p align="center"><kbd><img src="assets/ghioflqpbu.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -307,6 +335,8 @@
 <br>
 
 <a id="node-998obru"></a>
+
+###### Không gian nghiệm R4
 
 <p align="center"><kbd><img src="assets/wpngvujfvfa.png" width="80%"></kbd></p>
 
@@ -358,6 +388,8 @@
 
 <a id="node-pmidnne"></a>
 
+###### Rank và nghiệm hệ Ax=b
+
 <p align="center"><kbd><img src="assets/5bd7mjm7n28.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -378,6 +410,8 @@
 <br>
 
 <a id="node-3ytq3kz"></a>
+
+###### Rank tối đa của ma trận
 
 <p align="center"><kbd><img src="assets/ncgwh4md4pg.png" width="80%"></kbd></p>
 
@@ -408,6 +442,8 @@
 
 <a id="node-tijjtka"></a>
 
+###### Full column rank và Nullspace
+
 <p align="center"><kbd><img src="assets/7y95dww2ujq.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -431,6 +467,8 @@
 
 <a id="node-37ysmvr"></a>
 
+###### Nullspace không có biến tự do
+
 <p align="center"><kbd><img src="assets/4irp0sazdju.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -453,11 +491,13 @@
 > (Nó **ít nhất cũng có vector 0** vì **nullspace là subspace**, là một
 > vector space, nên nó **phải ít nhất cũng chứa origin = vector 0**)
 
-**🔗 See also:** [linked note](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-xpxaf8g)
+**🔗 See also:** [Nghiệm đặc biệt và Nullspace](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-xpxaf8g)
 
 <br>
 
 <a id="node-v6cs9bu"></a>
+
+###### Số nghiệm của hệ Ax=b
 
 <p align="center"><kbd><img src="assets/6dx9kzx87qr.png" width="80%"></kbd></p>
 
@@ -477,6 +517,8 @@
 
 <a id="node-e4hajzm"></a>
 
+###### Dạng RREF full column rank
+
 <p align="center"><kbd><img src="assets/sxojcyh0uzn.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -495,6 +537,8 @@
 <br>
 
 <a id="node-w7e4lkq"></a>
+
+###### Nghiệm hệ full column rank
 
 <p align="center"><kbd><img src="assets/jn0d6plouh.png" width="80%"></kbd></p>
 
@@ -526,6 +570,8 @@
 <br>
 
 <a id="node-sl7h47a"></a>
+
+###### Nghiệm Ax=b Full Row Rank
 
 <p align="center"><kbd><img src="assets/zc3ts98ps5.png" width="80%"></kbd></p>
 
@@ -564,6 +610,8 @@
 <br>
 
 <a id="node-dz08r51"></a>
+
+###### Số biến tự do
 
 <p align="center"><kbd><img src="assets/2o15jso650w.png" width="80%"></kbd></p>
 
@@ -611,6 +659,8 @@
 
 <a id="node-8xblyk9"></a>
 
+###### Hạng và cột pivot
+
 <p align="center"><kbd><img src="assets/iaerxaod9zh.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -639,6 +689,8 @@
 
 <a id="node-3ekzie8"></a>
 
+###### Dạng [I F] của RREF
+
 <p align="center"><kbd><img src="assets/3uakp5ysrui.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -650,6 +702,8 @@
 <br>
 
 <a id="node-i0hzrgh"></a>
+
+###### Ma trận vuông khả nghịch
 
 <p align="center"><kbd><img src="assets/iwwqi7v51cc.png" width="80%"></kbd></p>
 
@@ -671,11 +725,13 @@
 > thể hiện các bước elimination. Vậy EA = I. Điều này chứng tỏ
 > E chính là A⁻¹, đồng nghĩa A là **INVERTIBLE** MATRIX
 
-**🔗 See also:** [linked note](./lecture_9_independece_basis_and_dimension.md#node-ojpu0lh)
+**🔗 See also:** [Ma trận vuông khả nghịch](./lecture_9_independece_basis_and_dimension.md#node-ojpu0lh)
 
 <br>
 
 <a id="node-hft4gxj"></a>
+
+###### Nullspace chỉ chứa vector không
 
 <p align="center"><kbd><img src="assets/2durvakc2pm.png" width="80%"></kbd></p>
 
@@ -701,6 +757,8 @@
 <br>
 
 <a id="node-ckb838t"></a>
+
+###### Điều kiện nghiệm hệ Ax=b
 
 <p align="center"><kbd><img src="assets/fb2cif5bn6p.png" width="80%"></kbd></p>
 
@@ -800,6 +858,8 @@
 <br>
 
 <a id="node-mk79kq7"></a>
+
+###### Hạng ma trận và nghiệm
 
 <p align="center"><kbd><img src="assets/6oq37ss895h.png" width="80%"></kbd></p>
 
