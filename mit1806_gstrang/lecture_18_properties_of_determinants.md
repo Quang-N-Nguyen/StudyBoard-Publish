@@ -165,6 +165,8 @@
 > row đầu) của A cho t, và các row còn lại giữ nguyên thì
 > determinant = t × det(A)
 
+**🔗 See also:** [Model Evidence and Occam Factor *(Pattern Recognition Machine Learning_C.Bishop)*](../pattern_recognition_machine_learning_cbishop/441_model_comparison_and_bic.md#node-vwb8lk4)
+
 <br>
 
 <a id="node-4g1c87r"></a>
