@@ -554,6 +554,8 @@
 > qua khi A symmetric, **các eigenvectors trở nên orthogonal**
 > và unit norm, khiến cho S trở thành orthogonal matrix Q.
 
+**🔗 See also:** [Ex 3.21 Log Determinant Derivative Identity *(Pattern Recognition Machine Learning_C.Bishop)*](../pattern_recognition_machine_learning_cbishop/37_exercises.md#node-3ldsqi5)
+
 <br>
 
 <a id="node-jjn8o5a"></a>
