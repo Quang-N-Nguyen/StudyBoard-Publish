@@ -87,6 +87,8 @@
 
 <a id="node-g016tfe"></a>
 
+###### Giao hai không gian con
+
 <p align="center"><kbd><img src="assets/m9kmokrkoap.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -311,6 +313,8 @@
 
 <a id="node-ty82xvk"></a>
 
+###### Ý nghĩa kích thước ma trận
+
 <p align="center"><kbd><img src="assets/hffvt09w5i.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -334,6 +338,8 @@
 
 <a id="node-od7m1pa"></a>
 
+###### Vector không trong null space
+
 <p align="center"><kbd><img src="assets/ot4quvfckol.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -353,6 +359,8 @@
 
 <a id="node-khvdugm"></a>
 
+###### Nghiệm tổ hợp tuyến tính
+
 <p align="center"><kbd><img src="assets/m9gfbqw599.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -365,6 +373,8 @@
 <br>
 
 <a id="node-lolsvyq"></a>
+
+###### Biểu diễn vector tổng quát
 
 <p align="center"><kbd><img src="assets/ciqeq019he4.png" width="80%"></kbd></p>
 
@@ -379,6 +389,8 @@
 
 <a id="node-5fbf0rl"></a>
 
+###### Không gian con 1 chiều
+
 <p align="center"><kbd><img src="assets/2lfqjd2o4cw.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -391,6 +403,8 @@
 <br>
 
 <a id="node-7k5gahr"></a>
+
+###### Tính chất subspace của nullspace
 
 <p align="center"><kbd><img src="assets/vg8ht3yo1p.png" width="80%"></kbd></p>
 
@@ -422,6 +436,8 @@
 
 <a id="node-e25n2xs"></a>
 
+###### Luật phân phối ma trận
+
 <p align="center"><kbd><img src="assets/frhwtqiesgf.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -433,6 +449,8 @@
 
 <a id="node-b73s95c"></a>
 
+###### Không gian vectơ của nullspace
+
 <p align="center"><kbd><img src="assets/eifv4m2s838.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -442,6 +460,8 @@
 <br>
 
 <a id="node-2737lqj"></a>
+
+###### Điều kiện không gian vector
 
 <p align="center"><kbd><img src="assets/va9a23ajtrh.png" width="80%"></kbd></p>
 
@@ -473,6 +493,8 @@
 
 <a id="node-dd9dcgo"></a>
 
+###### Dạng hình học tập nghiệm
+
 <p align="center"><kbd><img src="assets/28lk1fwxy8z.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -488,6 +510,8 @@
 <br>
 
 <a id="node-ul2wdfb"></a>
+
+###### Định nghĩa không gian vector
 
 <p align="center"><kbd><img src="assets/yrfjsf2jucb.png" width="80%"></kbd></p>
 
