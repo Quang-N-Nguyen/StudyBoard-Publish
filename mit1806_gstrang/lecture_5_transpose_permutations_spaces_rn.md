@@ -242,7 +242,7 @@
 > phép một vector nhân với 0** **để ra kết quả vẫn thuộc
 > vector space.**
 
-**🔗 See also:** [linked note](./lecture_6_column_space_and_null_space.md#node-od7m1pa) · [linked note](./lecture_6_column_space_and_null_space.md#node-2737lqj)
+**🔗 See also:** [Vector không trong null space](./lecture_6_column_space_and_null_space.md#node-od7m1pa) · [Điều kiện không gian vector](./lecture_6_column_space_and_null_space.md#node-2737lqj)
 
 <br>
 
@@ -274,6 +274,8 @@
 <br>
 
 <a id="node-rf1knne"></a>
+
+###### Không gian con của R3
 
 <p align="center"><kbd><img src="assets/nnbi9fvg7.png" width="80%"></kbd></p>
 
@@ -334,7 +336,7 @@
 > vector space. Vậy nó là một vector space. Và nó có tên là
 > Column Space
 
-**🔗 See also:** [linked note](./lecture_9_independece_basis_and_dimension.md#node-7nqnb3m)
+**🔗 See also:** [Linear Independence and Nullspace](./lecture_9_independece_basis_and_dimension.md#node-7nqnb3m)
 
 <br>
 
