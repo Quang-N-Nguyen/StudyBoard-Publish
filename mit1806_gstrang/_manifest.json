@@ -1,6 +1,6 @@
 {
   "title": "MIT 18.06",
-  "publishedAt": 1788797609760,
+  "publishedAt": 1791951785562,
   "sections": [
     {
       "title": "18.03 Lec 25",
@@ -60,7 +60,7 @@
       "title": "Lecture 9: Independece, Basis, And Dimension",
       "path": "mit1806_gstrang/lecture_9_independece_basis_and_dimension.md",
       "noteCount": 35,
-      "imageCount": 37
+      "imageCount": 40
     },
     {
       "title": "Lecture 10: The Four Fundamental Subspaces",
@@ -220,5 +220,5 @@
     }
   ],
   "totalNotes": 1181,
-  "totalImages": 1269
+  "totalImages": 1272
 }
