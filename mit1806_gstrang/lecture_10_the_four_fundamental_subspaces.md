@@ -1,6 +1,6 @@
 # Lecture 10: The Four Fundamental Subspaces
 
-📊 **Progress:** `24` Notes | `29` Screenshots
+📊 **Progress:** `24` Notes | `29` Screenshots | `1` AI Reviews
 
 ---
 <a id="node-no1m6a6"></a>
@@ -535,6 +535,8 @@
 
 <a id="node-mwlhyhi"></a>
 
+###### Row Space of Reduced Matrix
+
 <p align="center"><kbd><img src="assets/s6j5zq5lcym.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -558,6 +560,30 @@
 > Thì hai row đầu tiên của R trong trường hợp này là the best
 > basis của row space (best mang ý nghĩa là nó đã được
 > clean / tối giản hết mức có thể)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ⚠️ **88/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc bản chất: không gian cột bị thay đổi qua phép biến đổi hàng nên phải lấy cột của A làm cơ sở, trong khi không gian hàng không đổi nên các hàng khác không của R tạo thành cơ sở tối ưu cho row space của A. Cần diễn đạt chính xác hơn một chút về mối quan hệ giữa các hàng của R và các hàng ban đầu của A.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Và cũng như đối với cols space, hai pivot cols (mà ở dạng reduced row echelon form) sẽ chính là hai cols gắn với cái Identity matrix là the best basis của cols space."*
+>
+> Câu này dễ gây hiểu nhầm rằng hai cột chứa ma trận đơn vị của R là cơ sở của C(A), dù ngay sau đó bạn đã viết chú ý đính chính là phải lấy cột của A. Chính xác thì hai cột đó chỉ là cơ sở của C(R).
+>
+> **2.** *"PIVOT ROW CỦA R/U CŨNG CHÍNH LÀ PIVOT ROW (BASIS) CỦA A"*
+>
+> Diễn đạt chưa thật chuẩn xác về mặt câu chữ: các hàng khác không của R/U không phải là các hàng nguyên bản của A (chúng là tổ hợp tuyến tính qua biến đổi hàng). Đúng hơn là: các hàng khác không của R tạo thành một cơ sở cho không gian hàng của A vì Row(R) = Row(A).
+>
+>
+> **✓ Strengths**
+> - Phân biệt chuẩn xác sự khác nhau giữa không gian cột (thay đổi qua biến đổi dòng, C(R) khác C(A)) và không gian hàng (bảo toàn, Row(R) = Row(A)).
+> - Hiểu đúng mục đích của việc tìm vị trí pivot columns trên U/R là để quay lại chọn các cột tương ứng trên A làm cơ sở cho C(A).
+> - Hiểu được lý do các hàng khác không của R là 'best basis' cho row space nhờ sự xuất hiện của ma trận đơn vị I (tối giản, dễ đọc nghiệm).
+>
+> **💡 Deeper notes**
+> - Các hàng khác không của R tạo thành một cơ sở trực quan và gọn gàng nhất cho Row(A) vì chúng chứa khối ma trận đơn vị I, giúp việc xác định các hệ số khi biểu diễn một vector bất kỳ trong Row(A) trở nên tức thì mà không cần giải hệ phương trình.
 
 <br>
 
