@@ -183,7 +183,7 @@
 > row của matrix A** với **coeff là components của x**, nên
 > sẽ **được row.**
 
-**🔗 See also:** [linked note](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-2hcturd)
+**🔗 See also:** [Sự phụ thuộc tuyến tính](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-2hcturd)
 
 <br>
 
