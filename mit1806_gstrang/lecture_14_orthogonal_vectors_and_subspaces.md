@@ -1,6 +1,6 @@
 # Lecture 14: Orthogonal Vectors And Subspaces
 
-📊 **Progress:** `37` Notes | `37` Screenshots
+📊 **Progress:** `37` Notes | `37` Screenshots | `1` AI Reviews
 
 ---
 <a id="node-cmamy5b"></a>
@@ -607,11 +607,51 @@
 <p align="center"><kbd><img src="assets/tq1x9etj3go.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> và gs nói rằng ông đã biết chắc kết quả sẽ không invertible
-> vì **AᵀA SẼ CÓ RANK CHÍNH XÁC BẰNG RANK CỦA A**.
-> mà trong trường hợp này RANK A = 1, NÊN AᵀA CŨNG
-> CÓ RANK BẰNG 1, TRONG KHI NÓ LÀ MATRIX 2X2
-> NÊN NÓ KHÔNG FULLRANK
+> và gs nói rằng ông đã biết chắc kết quả sẽ không invertible vì **AᵀA SẼ CÓ RANK CHÍNH XÁC BẰNG RANK CỦA A**. mà trong trường hợp này RANK A = 1, NÊN AᵀA CŨNG CÓ RANK BẰNG 1, TRONG KHI NÓ LÀ MATRIX 2X2 NÊN NÓ KHÔNG FULLRANK
+>
+>
+>
+> Active recall chút: Rank của một matrix, ta còn nhớ, sẽ chính là số cột (cũng như số hàng) độc lập tuyến tính.
+>
+>
+>
+> Vậy câu hỏi sẽ là, vì sao số cột, số hàng độc lập của AᵀA và A giống nhau.
+>
+>
+>
+> Mấu chốt là ta hãy nghĩ về nullspace.
+>
+>
+>
+> Nếu có vector x khác 0, khiến Ax = 0, ta biết nó là vector thuộc nullspace N(A).
+>
+>
+>
+> Mà Ax = 0 thì AᵀAx cũng = 0, nên x cũng sẽ thuộc nullspace của AᵀA, tức N(AᵀA)
+>
+>
+>
+> Vậy giả sử A là matrix m × n có d vector khác 0 trong nullspace thì AᵀA cũng vậy.
+>
+>
+>
+> Vậy nếu matrix A có rank = r thì có nghĩa là nó có r cột độc lập, và r hàng độc lập. Như vậy nó sẽ có n - r cột tự do và mỗi cột tự do này sẽ ứng với một non-zero nullspace vector. Vậy nên AᵀA cũng có n - r cột tự do (do đã bảo số non-zero nullspace vector của hai thằng này như nhau). Vậy AᵀA có m - (n - r) cột độc lập.
+>
+>
+>
+> Nên hạng của AᵀA là n - n + r = r
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú hoàn toàn chính xác và nắm bắt trọn vẹn bản chất lý thuyết: rank(AᵀA) = rank(A), từ đó giải thích rõ ràng tại sao ma trận AᵀA cấp 2x2 lại không khả nghịch (singular) khi rank A = 1.
+>
+> **✓ Strengths**
+> - Nắm vững định lý cốt lõi rằng rank(AᵀA) bằng với rank(A) đối với ma trận thực.
+> - Lập luận logic chuẩn xác: vì AᵀA có kích thước 2x2 nhưng chỉ có rank bằng 1 nên không full rank, dẫn đến việc không khả nghịch (invertible).
+>
+> **💡 Deeper notes**
+> - Tính chất rank(AᵀA) = rank(A) dựa trên việc không gian nghiệm nullspace N(AᵀA) = N(A), áp dụng cho ma trận số thực (đối với số phức cần dùng ma trận chuyển vị liên hợp AᴴA).
 
 <br>
 
