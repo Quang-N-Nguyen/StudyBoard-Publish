@@ -1,6 +1,6 @@
 # Lecture 9: Independece, Basis, And Dimension
 
-📊 **Progress:** `35` Notes | `37` Screenshots
+📊 **Progress:** `35` Notes | `40` Screenshots | `9` AI Reviews
 
 ---
 <a id="node-t2djvda"></a>
@@ -8,6 +8,8 @@
 <br>
 
 <a id="node-98noeys"></a>
+
+## Linear Independence, Basis and Dimension
 
 <p align="center"><kbd><img src="assets/2dlqj47t28y.png" width="80%"></kbd></p>
 
@@ -24,6 +26,20 @@
 > cột**. Thì ta có thể kết luận rằng hệ phương trình **Ax=0
 > SẼ CÓ SOLUTION KHÁC 0**. Câu hỏi là, vì sao ta có
 > thể kết luận như vậy?
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=OeiSCA8vnoU)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú đã tóm tắt hoàn toàn chính xác định lý được nêu trên bảng: khi số hàng ít hơn số cột (m < n) thì hệ thuần nhất Ax = 0 luôn có nghiệm phi tầm thường (khác 0).
+>
+> **✓ Strengths**
+> - Nắm bắt chính xác điều kiện m < n (số phương trình ít hơn số ẩn) và kết luận tồn tại nghiệm khác 0 của hệ Ax = 0.
+> - Đặt câu hỏi đúng trọng tâm bài học để tìm hiểu bản chất đại số tuyến tính đằng sau định lý.
+>
+> **💡 Deeper notes**
+> - Để trả lời cho câu hỏi 'vì sao': Hạng của ma trận r = rank(A) luôn nhỏ hơn hoặc bằng số hàng m (r ≤ m). Vì m < n nên r < n, điều này đảm bảo luôn có ít nhất n - r ≥ n - m > 0 biến tự do (free variables), do đó không gian hạt nhân (nullspace) N(A) có số chiều ít nhất là 1, dẫn đến luôn tồn tại nghiệm x ≠ 0.
 
 <br>
 
@@ -56,6 +72,18 @@
 >
 > Vậy ta có thể kết luận Ax=0 **chắc chắn có solution khác 0**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú lập luận rất chính xác và logic, liên kết chặt chẽ giữa phép khử Gauss, số lượng pivot và biến tự do để giải thích sự tồn tại của nghiệm khác không.
+>
+> **✓ Strengths**
+> - Giải thích bản chất rất rõ ràng bằng cách kết nối với quy trình khử hàng (Row Echelon), vị trí pivot và biến tự do.
+> - Hiểu đúng rằng số pivot r bị chặn trên bởi số hàng m (r <= m), dẫn đến luôn có biến tự do khi m < n.
+>
+> **💡 Deeper notes**
+> - Cần chính xác hơn về mặt từ ngữ: số biến tự do thực tế là n - r >= n - m > 0 (nghĩa là có 'ít nhất' n - m biến tự do, vì nếu xuất hiện hàng toàn số 0 thì số pivot r còn nhỏ hơn m).
+
 <br>
 
 <a id="node-efjctea"></a>
@@ -64,29 +92,38 @@
 
 <p align="center"><kbd><img src="assets/m7axls960f.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/8ds5jn2hrq6.png" width="80%"></kbd></p>
+
 > [!NOTE]
-> Qua khái niệm **independence**, gs định nghĩa là, đám
-> vector x1, x2....xn independence (có thể nói dài dòng là
-> linearly independence) **NẾU KHÔNG CÓ LINEAR
-> COMBINATION NÀO CỦA CHÚNG BẰNG 0**, **NGOẠI**
-> **TRỪ** một trường hợp được phép, là khi **MỌI
-> COEFFICIENT c_i ĐỀU BẰNG 0**
+> Qua khái niệm **independent**, gs định nghĩa là, đám vector x1, x2....xn independent (có thể nói dài dòng là linear independent) **NẾU KHÔNG CÓ LINEAR COMBINATION NÀO CỦA CHÚNG BẰNG 0**, **NGOẠITRỪ** một trường hợp được phép, là khi **MỌI COEFFICIENT c_i ĐỀU BẰNG 0**
 >
 >
 >
-> Me: Suy nghĩ một chút có thể hiểu vì sao lại vậy, là bởi vì
-> **nếu tồn tại một linear combination của chúng bằng 0**
-> thì chuyển vế đổi dấu một vector một cái qua ta sẽ thấy
-> ngay **vector đó là linear combination của các vector còn
-> lại**, tức là nó **phụ thuộc tuyến tính với đám kia.**
+> Suy nghĩ một chút có thể hiểu vì sao lại vậy, là bởi vì **nếu tồn tại một linear combination (non trivial) của chúng bằng 0** thì chuyển vế đổi dấu một vector một cái qua ta sẽ thấy ngay **vector đó là linear combination của các vector còn lại**, tức là nó **phụ thuộc tuyến tính với đám kia.**
 >
 >
 >
 > Như vậy thì **cả đám không độc lập tuyến tính nhau,**
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=OpXy96ENApE)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc định nghĩa độc lập tuyến tính trên bảng và diễn giải trực quan chính xác lý do vì sao định nghĩa này tương đương với việc không vector nào biểu diễn được qua các vector còn lại.
+>
+> **✓ Strengths**
+> - Hiểu và diễn đạt chính xác định nghĩa độc lập tuyến tính thông qua tổ hợp tuyến tính triệt tiêu (chỉ có nghiệm tầm thường c_i = 0).
+> - Nêu bật được trực giác bản chất: nếu có nghiệm không tầm thường thì có thể rút một vector ra biểu diễn tuyến tính qua các vector còn lại.
+>
+> **💡 Deeper notes**
+> - Về mặt biến đổi chi tiết: khi chuyển vế và chia hệ số để biểu diễn vector đó theo các vector còn lại, ta cần chọn vector có hệ số c_k khác 0 (điều này luôn khả thi vì đây là tổ hợp không tầm thường).
+
 <br>
 
 <a id="node-29fsud0"></a>
+
+###### Linear Independence of Vectors
 
 <p align="center"><kbd><img src="assets/25ei0e4qfwh.png" width="80%"></kbd></p>
 
@@ -96,20 +133,66 @@
 > thể kiếm được một linear combination giữa chúng để tạo
 > vector zero: 2v1 - v2 = 0
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chính xác ví dụ minh họa và bản chất đại số của tính phụ thuộc tuyến tính từ bài giảng.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"kiếm được một linear combination giữa chúng để tạo vector zero: 2v1 - v2 = 0"*
+>
+> Định nghĩa phụ thuộc tuyến tính yêu cầu các hệ số không đồng thời bằng 0 (ở đây là 2 và -1). Cần lưu ý điều này vì tổ hợp tuyến tính với các hệ số đều bằng 0 luôn luôn tạo ra vector 0 với bất kỳ vector nào.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng bản chất hình học và đại số của ví dụ: hai vector cùng phương dẫn đến sự phụ thuộc tuyến tính.
+> - Liên hệ chính xác ví dụ trên bảng với định nghĩa tổ hợp tuyến tính bằng vector không.
+>
+> **💡 Deeper notes**
+> - Về thuật ngữ, nên dùng tính từ 'linearly dependent' (hoặc 'phụ thuộc tuyến tính') thay vì danh từ 'dependence' khi mô tả quan hệ giữa các vector.
+
 <br>
 
 <a id="node-b24kult"></a>
 
+###### Sự phụ thuộc tuyến tính
+
 <p align="center"><kbd><img src="assets/nhv94i2eojc.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/qb757y6uos.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Ví dụ khác, v1 và v2 = 0. Cũng là dependence. Vì có thể
 > có 0 × v1 + 100 × v2 = 0 + 0 = 0. Vẫn thỏa điều kiện là **tồn tại
 > bộ non-zero coefficients để tạo linear combination = zero**
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=GCwrn_86Gos)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất chính xác về bản chất: bất kỳ tập hợp vector nào chứa vector 0 đều phụ thuộc tuyến tính, kèm ví dụ minh họa trực quan và đúng định nghĩa.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"tồn tại bộ non-zero coefficients"*
+>
+> Thuật ngữ chuẩn xác hơn nên là 'tồn tại các hệ số không đồng thời bằng 0' (not all zero coefficients) thay vì 'bộ non-zero', vì trong ví dụ hệ số của v1 vẫn bằng 0, chỉ cần ít nhất một hệ số khác 0 (ở đây là 100).
+>
+>
+> **✓ Strengths**
+> - Nắm vững định nghĩa sự phụ thuộc tuyến tính thông qua việc tìm ra một tổ hợp tuyến tính triệt tiêu có hệ số khác 0.
+> - Ví dụ cụ thể (0*v1 + 100*v2 = 0) giúp chứng minh trực tiếp và trực quan tại sao tập hợp chứa vector 0 luôn phụ thuộc tuyến tính.
+>
+> **💡 Deeper notes**
+> - Quy tắc tổng quát hữu ích: Bất kỳ họ vector nào chứa vector zero đều tự động phụ thuộc tuyến tính (linearly dependent), vì luôn có thể gán hệ số khác 0 cho vector zero và hệ số 0 cho tất cả các vector còn lại.
+
 <br>
 
 <a id="node-kn8ookr"></a>
+
+###### Linear Independence of Vectors
 
 <p align="center"><kbd><img src="assets/8md8r3zi6ct.png" width="80%"></kbd></p>
 
@@ -118,9 +201,22 @@
 > SET CÁC VECTOR CÓ MỘT ZERO VECTOR**, thì coi
 > như không có chuyện linear independence nữa
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú hoàn toàn chính xác về mặt toán học: một tập hợp vector chứa vector không (zero vector) thì luôn phụ thuộc tuyến tính (linearly dependent).
+>
+> **✓ Strengths**
+> - Nắm bắt chính xác tính chất quan trọng của tính độc lập tuyến tính từ ví dụ minh họa của bài giảng: bất kỳ tập vector nào chứa vector không đều phụ thuộc tuyến tính.
+>
+> **💡 Deeper notes**
+> - Lý do chặt chẽ là ta luôn có thể gán hệ số khác 0 (ví dụ bằng 6 như giáo sư viết trên bảng) cho vector không và hệ số 0 cho tất cả các vector còn lại để tạo ra tổ hợp tuyến tính bằng 0 mà không cần tất cả hệ số bằng 0.
+
 <br>
 
 <a id="node-ylj0igo"></a>
+
+###### Linear Independence of Vectors
 
 <p align="center"><kbd><img src="assets/gjc7u24zaq.png" width="80%"></kbd></p>
 
@@ -151,13 +247,19 @@
 
 <a id="node-xhiu9me"></a>
 
+###### Linear Independence Definition
+
 <p align="center"><kbd><img src="assets/jbv6o11l46.png" width="80%"></kbd></p>
 
 <br>
 
 <a id="node-4ojezmc"></a>
 
+###### Tính phụ thuộc tuyến tính
+
 <p align="center"><kbd><img src="assets/xy6xjcm0bjb.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/t14l32o4nm.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > gs: có thể giải thích vì sao tôi biết 3 vector này dependence
@@ -179,9 +281,25 @@
 > Thì như đã biết Ac=0 chính là linear combination của các
 > cột với coefficient là các phần tử của c = 0 → Dependence.
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=ogUUI-lxqk0)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và chính xác bản chất: ma trận có $m < n$ luôn có biến tự do (free variables), dẫn đến nghiệm phi tầm thường ($c \neq 0$) cho hệ $Ac = 0$, chứng minh các vector cột phụ thuộc tuyến tính.
+>
+> **✓ Strengths**
+> - Hiểu đúng mối liên hệ cốt lõi giữa số hàng nhỏ hơn số cột ($m < n$) với việc luôn tồn tại biến tự do và nghiệm khác không (nullspace chứa vector khác 0).
+> - Kết nối chính xác phương trình ma trận $Ac = 0$ với tổ hợp tuyến tính của các vector cột bằng 0 để kết luận tính phụ thuộc tuyến tính.
+>
+> **💡 Deeper notes**
+> - Cần lưu ý trong cách diễn đạt đoạn cuối: 'Ac=0 chính là linear combination của các cột bằng 0 với hệ số c không đồng thời bằng 0', tránh viết nhầm thành hệ số bằng 0.
+
 <br>
 
 <a id="node-tyxbmb2"></a>
+
+###### Column Independence via Nullspace
 
 <p align="center"><kbd><img src="assets/iawkwz23y7j.png" width="80%"></kbd></p>
 
@@ -225,9 +343,31 @@
 > nghĩa là **có một coeff khác mà không** **phải là 0** hết có thể tạo linear
 > combination của A's cols ra 0 → **dependence.**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, giải thích cặn kẽ và chính xác bản chất vì sao nghiệm của Ax=0 (nullspace) lại tương đương với tính độc lập tuyến tính của các cột.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"có nghĩa là có một coeff khác mà không phải là 0 hết"*
+>
+> Cách dùng từ hơi lẫn lộn giữa 'một hệ số' và 'bộ hệ số'. Chính xác hơn là 'tồn tại một vector nghiệm khác vector 0, nghĩa là có ít nhất một hệ số khác 0'.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ định nghĩa nullspace là tập nghiệm của phương trình Ax = 0, đồng thời là các tổ hợp tuyến tính của các cột bằng 0.
+> - Giải thích chính xác vì sao không gian vector luôn phải chứa vector 0 dựa trên tính chất đóng của tổ hợp tuyến tính.
+> - Kết nối mạch lạc giữa sự tồn tại của nghiệm tầm thường/không tầm thường với tính độc lập và phụ thuộc tuyến tính.
+>
+> **💡 Deeper notes**
+> - Khi dùng tiếng Anh, 'independent'/'dependent' là tính từ (dùng cho các vector), còn 'independence'/'dependence' là danh từ.
+
 <br>
 
 <a id="node-suvoza3"></a>
+
+###### Matrix Rank and Free Variables
 
 <p align="center"><kbd><img src="assets/okpaw0ne3wo.png" width="80%"></kbd></p>
 
@@ -241,11 +381,26 @@
 > Còn với trường hợp các cols của A **dependence**, thì ta có
 > số **pivot < số cột**, đồng nghĩa có free columns , và rank < n
 
-**🔗 See also:** [linked note](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-xpxaf8g)
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất chính xác và nắm vững bản chất: liên hệ đúng giữa số lượng pivot, hạng của ma trận (rank), tính độc lập tuyến tính của các cột và sự xuất hiện của biến tự do.
+>
+> **✓ Strengths**
+> - Nắm vững mối quan hệ giữa độc lập tuyến tính của các cột và việc mỗi cột đều có một pivot (rank = n).
+> - Hiểu rõ khi các cột phụ thuộc tuyến tính thì số pivot < n dẫn tới sự xuất hiện của các cột tự do (free variables/free columns).
+>
+> **💡 Deeper notes**
+> - Về thuật ngữ tiếng Anh: nên dùng tính từ 'independent' và 'dependent' thay vì danh từ 'independence' và 'dependence' khi mô tả đặc tính của các cột.
+> - Trên bảng giảng viên còn ghi thêm N(A) = {0} cho trường hợp rank = n, tức là nghiệm của hệ Ax = 0 chỉ có duy nhất nghiệm tầm thường x = 0.
+
+**🔗 See also:** [Nghiệm đặc biệt và Nullspace](./lecture_7_solving_ax_0_pivot_variables_special_solutions.md#node-xpxaf8g)
 
 <br>
 
 <a id="node-7nqnb3m"></a>
+
+###### Linear Independence and Nullspace
 
 <p align="center"><kbd><img src="assets/tnt9msu8ohc.png" width="80%"></kbd></p>
 
@@ -267,6 +422,8 @@
 
 <a id="node-bkulg9l"></a>
 
+###### Định nghĩa span vector
+
 <p align="center"><kbd><img src="assets/b33yk4wvfp.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -278,6 +435,8 @@
 <br>
 
 <a id="node-innyabk"></a>
+
+###### Khái niệm cơ sở Basis
 
 <p align="center"><kbd><img src="assets/0qqbpd5yyj4.png" width="80%"></kbd></p>
 
@@ -310,6 +469,8 @@
 
 <a id="node-jmadjea"></a>
 
+###### Định nghĩa cơ sở
+
 <p align="center"><kbd><img src="assets/dy2nczlwort.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -327,6 +488,8 @@
 <br>
 
 <a id="node-567bt08"></a>
+
+###### Cơ sở chính tắc R³
 
 <p align="center"><kbd><img src="assets/6ikx6h2yek8.png" width="80%"></kbd></p>
 
@@ -378,6 +541,8 @@
 
 <a id="node-jjuclef"></a>
 
+###### Kiểm tra hệ cơ sở
+
 <p align="center"><kbd><img src="assets/zbp0momuwkl.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -397,6 +562,8 @@
 <br>
 
 <a id="node-ojpu0lh"></a>
+
+###### Ma trận vuông khả nghịch
 
 <p align="center"><kbd><img src="assets/jj5e1togb9n.png" width="80%"></kbd></p>
 
@@ -437,11 +604,13 @@
 > ra **E chính là A⁻¹** đồng nghĩa **A là invertible matrix (vì
 > tồn tại A⁻¹)**
 
-**🔗 See also:** [linked note](./lecture_8_solving_ax_b_row_reduced_form_r.md#node-i0hzrgh)
+**🔗 See also:** [Ma trận vuông khả nghịch](./lecture_8_solving_ax_b_row_reduced_form_r.md#node-i0hzrgh)
 
 <br>
 
 <a id="node-3si7wyy"></a>
+
+###### Cơ sở không gian con
 
 <p align="center"><kbd><img src="assets/ljfhs3py4a.png" width="80%"></kbd></p>
 
@@ -493,6 +662,8 @@
 
 <a id="node-7kinaoh"></a>
 
+###### Cơ sở không gian R³
+
 <p align="center"><kbd><img src="assets/7e2f67likeq.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -517,6 +688,8 @@
 <br>
 
 <a id="node-5xozro8"></a>
+
+###### Số lượng vector cơ sở
 
 <p align="center"><kbd><img src="assets/o5cqye2e1d.png" width="80%"></kbd></p>
 
@@ -545,6 +718,8 @@
 
 <a id="node-aw1w7r8"></a>
 
+###### Cơ sở và số chiều
+
 <p align="center"><kbd><img src="assets/okgkbd2y6p.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -572,6 +747,8 @@
 <br>
 
 <a id="node-d6ygqo9"></a>
+
+###### Tập sinh không gian cột
 
 <p align="center"><kbd><img src="assets/14h6s640plyj.png" width="80%"></kbd></p>
 
