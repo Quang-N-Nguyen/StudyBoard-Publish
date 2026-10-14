@@ -80,6 +80,8 @@
 >
 > **4) QUADRATIC FORM xᵀAx >= 0**, và **CHỈ BẰNG 0 KHI x = 0**
 
+**🔗 See also:** [Hessian for Logistic Regression *(Pattern Recognition Machine Learning_C.Bishop)*](../pattern_recognition_machine_learning_cbishop/433_iterative_reweighted_least_squares.md#node-7nipjyu)
+
 <br>
 
 <a id="node-p7koqg1"></a>
