@@ -1674,9 +1674,33 @@
 > Tới đây theo lập đã nói, ta kết luận.
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
 >
-> Bài viết giải thích rất chi tiết và chính xác quá trình biến đổi chứng minh đẳng thức đạo hàm bằng LOTUS và luật Leibniz. Tuy nhiên, bạn có một lỗi gõ nhỏ ở công thức tính ARE cuối bài khi viết nhầm $\psi'$ thay vì $\psi$ ở mẫu số ($E_\theta[\psi(X-\theta)^2]$).
+> Ghi chú rất xuất sắc, hiểu sâu sắc bản chất chuỗi biến đổi tích phân và quy tắc Leibniz. Có một vài lỗi nhầm ký hiệu nhỏ ở công thức ARE cuối cùng và việc đồng nhất MLE với sample mean.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"E_θ([ψ'(Xi - θ)]²)"*
+>
+> Trong công thức tính ARE, thành phần ở mẫu số phải là E_θ[(ψ(X - θ))²] (hàm ψ, không có dấu đạo hàm '). Do bạn đã thế E_θ[ψ'] = E_θ[ψ · l'] vào mẫu của Avar, nên khi lập tỉ số ARE = Avar(MLE)/Avar(M), tử số cũ của Avar(M) là E[ψ²] sẽ nằm dưới mẫu của ARE. Viết ψ' ở đây là nhầm lẫn ký hiệu, làm mất tính khớp với bất đẳng thức Cauchy-Schwarz [E(AB)]² ≤ E[A²]E[B²].
+>
+> **2.** *"Còn Avar(θ^), tức sample mean, như ta đã chứng minh, chính là CRLB"*
+>
+> Ký hiệu θ^ ở đây đại diện cho ước lượng hợp lý cực đại (MLE) nói chung, không nhất thiết là sample mean (trung bình mẫu). MLE chỉ là sample mean trong một số mô hình vị trí cụ thể như phân phối chuẩn.
+>
+> **3.** *"E_θ([l'(X-θ)]²)"*
+>
+> Hàm số log-likelihood và đạo hàm của nó được ký hiệu chuẩn là l'(θ|X) (đạo hàm theo tham số θ), không nên viết nhầm thành l'(X-θ).
+>
+>
+> **✓ Strengths**
+> - Giải thích rất chính xác và sáng rõ bản chất của ψ'(x - θ) = -∂/∂θ ψ(x - θ) thông qua quy tắc chuỗi (chain rule), tránh được nhầm lẫn rất phổ biến.
+> - Trình bày chi tiết, mạch lạc từng bước biến đổi tích phân sử dụng quy tắc Leibniz, quy tắc đạo hàm tích số và điều kiện định nghĩa E[ψ(X - θ)] = 0.
+> - Nắm chắc ý tưởng nhân chia thêm mật độ f(x - θ) để làm xuất hiện đạo hàm log-likelihood và liên kết đúng với bất đẳng thức Cauchy-Schwarz.
+>
+> **💡 Deeper notes**
+> - Việc tráo đổi đạo hàm dưới dấu tích phân (quy tắc Leibniz) trên thực tế đòi hỏi các điều kiện chính quy (regularity conditions), như giá của biến ngẫu nhiên không phụ thuộc vào θ và hàm dưới dấu tích phân có đạo hàm bị chặn bởi một hàm khả tích.
+> - Dấu bằng của bất đẳng thức Cauchy-Schwarz đạt được khi ψ(X - θ) tỉ lệ tuyến tính với l'(θ|X), điều này giải thích tại sao M-estimator chỉ đạt hiệu quả tối đa khi nó trùng (hoặc tương đương) với MLE.
 
 **🔗 See also:** [Bổ đề Tính toán Hàm mũ](./73_methods_of_evaluating_estimators.md#node-sttybm4) · [Giá trị kỳ vọng và LOTUS](./22_expected_value.md#node-p3585vu) · [Đạo hàm dưới dấu tích phân](./24_differentiating_under_integral.md#node-817xtmo)
 
