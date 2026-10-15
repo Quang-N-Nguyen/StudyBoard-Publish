@@ -1,6 +1,6 @@
 # 1.5 Decision Theory
 
-📊 **Progress:** `30` Notes | `45` Screenshots | `25` AI Reviews
+📊 **Progress:** `30` Notes | `48` Screenshots | `25` AI Reviews
 
 ---
 <a id="node-0es6zw7"></a>
@@ -200,6 +200,8 @@
 > sẽ tính được f(t|𝐱) và việc lấy giá trị nào có posterior cao hơn để gán / báo 
 > cho bệnh nhân chính là bước dựa vào decision theory để take action
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=cs2g9gIdUpU)
+
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
@@ -220,51 +222,40 @@
 
 <p align="center"><kbd><img src="assets/jzfufhvi8ob.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/moqkhe7d67l.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/ed2vpwh7jtk.png" width="80%"></kbd></p>
+
 > [!NOTE]
-> Thế thì đại ý là nếu như mục tiêu của ta là giảm thiểu tỉ lệ phân loại nhầm
-> (misclassification rate) thì ta sẽ cần một bộ quy tắc để gán giá trị cho của 𝐱 cho
-> một trong các class đang xét.
+> Thế thì đại ý là nếu như mục tiêu của ta là giảm thiểu tỉ lệ phân loại nhầm (misclassification rate) thì ta sẽ cần một bộ quy tắc để gán giá trị cho của 𝐱 cho một trong các class đang xét.
 >
 >
 >
-> Trước khi nói tiếp, mình tranh thủ recall lại kiến thức trong Casella: Hypo thesis
-> testing:
+> Trước khi nói tiếp, mình tranh thủ recall lại kiến thức trong Casella: Hypothesis testing:
 >
 >
 >
-> Như lúc nãy cũng đã review lại sơ sơ: Bài toán hypothesis testing là bài toán suy
-> luận thống kê mà trong đó ta muốn xây dựng một cái hypothesis test - có bản
-> chất chỉ là một decision rule: dựa vào gía trị quan sát của 𝐗, tính toán ra test
-> stastisic λ(𝐗) và theo một cái rule nào đó để đưa ra kết luận rằng H0: θ ∈ Θ0,
-> gọi là accept null hypothesis, hay kết luận H1: θ ∈ Θ0c gọi là reject null
-> hypothesis.
+> Như lúc nãy cũng đã review lại sơ sơ: Bài toán hypothesis testing là bài toán suy luận thống kê mà trong đó ta muốn xây dựng một cái hypothesis test - có bản chất chỉ là một decision rule: dựa vào gía trị quan sát của 𝐗, tính toán ra test stastisic λ(𝐗) và theo một cái rule nào đó để đưa ra kết luận rằng H0: θ ∈ Θ0, gọi là accept null hypothesis, hay kết luận H1: θ ∈ Θ0c gọi là reject null hypothesis.
 >
 >
 >
-> Thế thì, như vậy việc định ra một cái test, cũng chính là định ra cái rule, để rồi áp
-> dụng cái rule này với mọi 𝐱 ∈ range 𝐗, nó sẽ chia range 𝐗 thành hai
-> phần, Rejection region R = {𝐱 ∈ range 𝐗: reject H0} và Rc = {𝐱 ∈ range
-> 𝐗: accept H0}, gọi là Acceptance region.
+> Thế thì, như vậy việc định ra một cái test, cũng chính là định ra cái rule, để rồi áp dụng cái rule này với mọi 𝐱 ∈ range 𝐗, nó sẽ chia range 𝐗 thành hai phần, Rejection region R = {𝐱 ∈ range 𝐗: reject H0} và Rc = {𝐱 ∈ range 𝐗: accept H0}, gọi là Acceptance region.
 >
 >
 >
-> Để rồi, khi đó, khi bàn tới việc đánh giá một hypothesis test, ta sẽ muốn giảm
-> thiểu hai loại sai sót: Type I error, là khi θ ∈ Θ0 nhưng lại reject H0 (𝐗 ∈ R), và
-> Type II error, là khi θ ∈ Θ0c nhưng lại accept H0 (𝐗 ∈ Rc).
+> Để rồi, khi đó, khi bàn tới việc đánh giá một hypothesis test, ta sẽ muốn giảm thiểu hai loại sai sót: Type I error, là khi θ ∈ Θ0 nhưng lại reject H0 (𝐗 ∈ R), và Type II error, là khi θ ∈ Θ0c nhưng lại accept H0 (𝐗 ∈ Rc).
 >
 >
 >
-> Để rồi từ đó ta có các khái niệm như power function: β(θ) = P_θ(𝐗 ∈ R), với
-> định nghĩa này, ta sẽ muốn một cái test có Type I error thấp thì có nghĩa là với θ ∈
-> Θ0 β(θ) nên thấp, từ đó ta có định nghĩa level α test là test mà:
+> Để rồi từ đó ta có các khái niệm như power function: β(θ) = P\_θ(𝐗 ∈ R), với định nghĩa này, ta sẽ muốn một cái test có Type I error thấp thì có nghĩa là với θ ∈ Θ0 β(θ) nên thấp, từ đó ta có định nghĩa level α test là test mà:
 >
 >
 >
-> sup_θ∈Θ0 P_θ(𝐗 ∈ R) ≤ α.
+> sup\_θ∈Θ0 P\_θ(𝐗 ∈ R) ≤ α.
 >
 >
 >
-> Và định nghĩa size α test, là test có sup_θ∈Θ0 P_θ(𝐗 ∈ R) = α.
+> Và định nghĩa size α test, là test có sup\_θ∈Θ0 P\_θ(𝐗 ∈ R) = α.
 >
 >
 >
@@ -272,11 +263,7 @@
 >
 >
 >
-> Ta sẽ muốn tìm thằng có xác suất mắc Type II error thấp nhất trong đó, cũng là
-> thằng mà khi θ ∈ Θ0c thì xác suất reject H0 là cao nhất mọi thằng khác, đó chính
-> là most power level α test, với power function chính là định nghĩa bởi β(θ) =
-> P_θ(𝐗 ∈ R): một test gọi là most power trong các test level α là khi với mọi θ ∈
-> Θ0c, thì β(θ) của nó luôn ≥ β'(θ) của mọi test khác trong đám đó.
+> Ta sẽ muốn tìm thằng có xác suất mắc Type II error thấp nhất trong đó, cũng là thằng mà khi θ ∈ Θ0c thì xác suất reject H0 là cao nhất mọi thằng khác, đó chính là most powerful level α test, với power function chính là định nghĩa bởi β(θ) = P\_θ(𝐗 ∈ R): một test gọi là most power trong các test level α là khi với mọi θ ∈ Θ0c, thì β(θ) của nó luôn ≥ β'(θ) của mọi test khác trong đám đó.
 >
 >
 >
@@ -284,20 +271,15 @@
 >
 >
 >
-> ------
+> ---
 >
 >
 >
-> Để thực hiện bước phân loại, ta cũng sẽ muốn một cái decision rule, cũng  giống
-> như hypothesis test, ta cũng sẽ cần một cái function, để nhận vào x, và trả ra kết
-> quả là predict là class nào. Khi đó nó cũng sẽ chia range X thành các vùng, gọi là
-> DECISION REGIONS
+> Để thực hiện bước phân loại, ta cũng sẽ muốn một cái decision rule, cũng giống như hypothesis test, ta cũng sẽ cần một cái function, để nhận vào x, và trả ra kết quả là predict là class nào. Khi đó nó cũng sẽ chia range X thành các vùng, gọi là **DECISION REGIONS**
 >
 >
 >
-> (không nhất thiết phải là 2 vùng rejection region R và decision region R, mà tùy
-> vào số possible class / cũng là số possible values của T, nhưng ở đây thì đúng là
-> có 2 vùng, vì T có 2 possible values, gọi là R1, và R2)
+> (không nhất thiết phải là 2 vùng rejection region R và decision region R, mà tùy vào số possible class / cũng là số possible values của T, nhưng ở đây thì đúng là có 2 vùng, vì T có 2 possible values, gọi là R1, và R2)
 >
 >
 >
@@ -305,8 +287,7 @@
 >
 >
 >
-> Thế thì khi nói về event "mắc sai lầm / phân loại sai", nếu trong bối cảnh bài toán
-> Hypothesis testing, thì nó sẽ là:
+> Thế thì khi nói về event "mắc sai lầm / phân loại sai", nếu trong bối cảnh bài toán Hypothesis testing, thì nó sẽ là:
 >
 >
 >
@@ -322,7 +303,7 @@
 >
 >
 >
-> (T = C1, phân loại C2) hoặc (t = C2, phân loại C1)
+> (T = C1, phân loại C2) hoặc (T = C2, phân loại C1)
 >
 >
 >
@@ -334,12 +315,7 @@
 >
 >
 >
-> Với bài toán hypothesis testing, phải chú ý rằng, vì theo Frequentist approach, ta
-> không coi θ như random variable, cho nên xác suất mắc Type 1 Error không phải
-> là P_θ(θ ∈ Θ0, 𝐗 ∈ R) mà phải define là P_θ(𝐗 ∈ R) khi θ ∈ Θ0, mang ý
-> nghĩa: Khi giá trị của θ, vốn là fixed và unknown, thật sự là ∈ Θ0 thì P_θ(𝐗 ∈ R)
-> chính là xác suất mắc Type I error. (vì sao có chữ θ ở dưới P: P_θ(...) thì là vì
-> 𝐗 ~ f(𝐱|θ) nên dĩ nhiên xác suất này phụ thuộc θ)
+> Với bài toán hypothesis testing, phải chú ý rằng, vì theo Frequentist approach, ta không coi θ như random variable, cho nên xác suất mắc Type 1 Error không phải là P\_θ(θ ∈ Θ0, 𝐗 ∈ R) mà phải define là P\_θ(𝐗 ∈ R) khi θ ∈ Θ0, mang ý nghĩa: Khi giá trị của θ, vốn là fixed và unknown, thật sự là ∈ Θ0 thì P\_θ(𝐗 ∈ R) chính là xác suất mắc Type I error. (vì sao có chữ θ ở dưới P: P\_θ(...) thì là vì 𝐗 \~ f(𝐱|θ) nên dĩ nhiên xác suất này phụ thuộc θ)
 >
 >
 >
@@ -347,7 +323,7 @@
 >
 >
 >
-> P_θ(𝐗 ∈ Rc) khi θ ∈ Θ0c.
+> P\_θ(𝐗 ∈ Rc) khi θ ∈ Θ0c.
 >
 >
 >
@@ -355,10 +331,7 @@
 >
 >
 >
-> (Chú ý, 𝐗 là random vectors, nên trong sách gs Bishop dùng bold font, nhưng
-> như đã nói ông ko theo convention nữa, nên viết chữ thường (vẫn in đậm, nhưng
-> chữ thường 𝐱) còn mình thì theo convention của Casella, nên in đậm, chữ hoa
-> 𝐗)
+> (Chú ý, 𝐗 là random vectors, nên trong sách gs Bishop dùng bold font, nhưng như đã nói ông ko theo convention nữa, nên viết chữ thường (vẫn in đậm, nhưng chữ thường 𝐱) còn mình thì theo convention của Casella, nên in đậm, chữ hoa 𝐗)
 >
 >
 >
@@ -366,16 +339,15 @@
 >
 >
 >
-> P[(T = C1, 𝐗 ∈ R2) or (T = C2, 𝐗 ∈ R1)]
+> P\[(T = C1, 𝐗 ∈ R2) or (T = C2, 𝐗 ∈ R1)\]
 >
 >
 >
-> = P[(T = C1, 𝐗 ∈ R2) U (T = C2, 𝐗 ∈ R1)]
+> = P\[(T = C1, 𝐗 ∈ R2) U (T = C2, 𝐗 ∈ R1)\]
 >
 >
 >
-> Đây là union của hai disjoint event, nên theo axiom 2 của lí thuyết xác suất, ta
-> tách nó thành tổng của:
+> Đây là union của hai disjoint event, nên theo axiom 3 của lí thuyết xác suất, ta tách nó thành tổng của:
 >
 >
 >
@@ -383,8 +355,7 @@
 >
 >
 >
-> Và đây là xác suất của joint event liên quan đến T, và 𝐗, nên ta sẽ dùng thể
-> hiện nó / tính toán nó bởi joint distribution của T và 𝐗:
+> Và đây là xác suất của joint event liên quan đến T, và 𝐗, nên ta sẽ dùng thể hiện nó / tính toán nó bởi joint distribution của T và 𝐗:
 >
 >
 >
@@ -392,42 +363,74 @@
 >
 >
 >
-> Để thấy bước tiếp theo quen thuộc ta nhớ trong Casella hay Stat110, khi xét joint
-> distribution của X,Y f(x,y), và xét xác suát của event X ∈ A, Y ∈ B, ta sẽ lấy tích
-> phân ∫A∫B f(x,y)dxdy.
+> Để thấy bước tiếp theo quen thuộc ta nhớ trong Casella hay Stat110, khi xét joint distribution của X,Y f(x,y), và xét xác suát của event X ∈ A, Y ∈ B, ta sẽ lấy tích phân ∫A∫B f(x,y)dxdy.
 >
 >
 >
-> Ở đây nó hơi lạ là đây là joint distribution của một biến discrete và một biến liên
-> tục nhưng nguyên lí cũng  vậy thôi, có thể coi cái ta cần tính ở đây là xác suất của
-> event T ∈ {C1}, 𝐗 ∈ R2 **⇨** ∫{C1}∫R2 f(t, 𝐱)d𝐱 dt = ∫R2 f(C1, 𝐱)d𝐱
+> P(X ∈ A, Y ∈ B) = ∫\_A ∫\_B f(x,y)dxdy
 >
 >
 >
-> nên ta có:
+> Với X, Y là discrete, công thức tương đương sẽ là:
 >
 >
 >
-> ∫R2 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱
+> P(X ∈ A, Y ∈ B) = Σ\_{x ∈ A} Σ\_{y ∈ B} P(X=x, Y=y)
+>
+>
+>
+> Nếu X discrete và Y continuous thì công thức sẽ là
+>
+>
+>
+> P(X ∈ A, Y ∈ B) = Σ\_{x ∈ A} ∫\_B f(x,y)dx
+>
+>
+>
+> Áp dụng ở đây là joint distribution của T là discrete, 𝐗 là continuous. Và T = C1 tương đương T ∈ {C1} (tức tập chỉ có một điểm C1)
+>
+>
+>
+> P(T = C1, 𝐗 ∈ R2) = Σ\_{t ∈ {C1}} ∫\_R2 f(t, 𝐱) d𝐱
+>
+>
+>
+> = Σ\_{t ∈ {C1,C2}} ∫\_R2 f(t, 𝐱) d𝐱
+>
+>
+>
+> = ∫\_R2 f(C1, 𝐱) d𝐱 (vì {C1} chỉ có 1 điểm)
+>
+>
+>
+> ---
+>
+>
+>
+> Tương tự:
+>
+>
+>
+> P(T = C2, 𝐗 ∈ R1) = ∫\_R1 f(C2, 𝐱) d𝐱
+>
+>
+>
+> ⇒ p(mistake) = ∫R2 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=EdO4zFFBwpI)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú rất xuất sắc, hiểu sâu bản chất khi so sánh bài toán kiểm định giả thuyết (Frequentist) với bài toán phân loại thống kê (nơi nhãn lớp là biến ngẫu nhiên). Việc giải thích nguồn gốc của công thức (1.78) hoàn toàn chính xác và rõ ràng.
->
-> **🟡 Minor issues**
->
-> **1.** *"Đây là union của hai disjoint event, nên theo axiom 2 của lí thuyết xác suất, ta tách nó thành tổng"*
->
-> Trong hệ tiên đề Kolmogorov (và cả trong sách Casella & Berger, Def 1.2.4), tính cộng xác suất cho các biến cố rời nhau (countable/finite additivity) là Tiên đề 3 (Axiom 3), còn Tiên đề 2 là $P(S) = 1$.
->
+> Ghi chú rất xuất sắc, kết nối trực giác sâu sắc và chính xác giữa kiểm định giả thuyết (Casella-Berger) với bài toán phân loại thống kê (PRML), đồng thời diễn giải chặt chẽ công thức xác suất phân loại nhầm.
 >
 > **✓ Strengths**
-> - So sánh rất sâu sắc và chuẩn xác sự khác biệt giữa tham số cố định theta trong kiểm định giả thuyết Frequentist và nhãn lớp T đóng vai trò là biến ngẫu nhiên trong bài toán này.
-> - Tự suy luận và diễn giải mượt mà tích phân của phân phối đồng thời giữa biến rời rạc T và vector liên tục X để dẫn ra phương trình (1.78).
+> - So sánh rất chuẩn xác giữa kiểm định giả thuyết (nơi tham số θ là cố định, kiểm soát Type I/Type II error) và phân loại học máy (nơi nhãn lớp T là biến ngẫu nhiên có phân phối đồng thời cùng vector đặc trưng X).
+> - Diễn giải toán học từ tiên đề xác suất (disjoint union) đến tích phân hàm mật độ đồng thời giữa biến rời rạc và biến liên tục rất mạch lạc và đúng đắn.
 >
 > **💡 Deeper notes**
-> - Trong lý thuyết xác suất hỗn hợp (mixed continuous-discrete), đại lượng $f(C_k, \mathbf{x})$ thực chất là $p(\mathbf{x}, C_k) = p(\mathbf{x}|C_k)P(C_k)$, là tích của một hàm mật độ xác suất liên tục với một khối lượng xác suất rời rạc (probability mass).
+> - Trong kiểm định giả thuyết cổ điển (Neyman-Pearson), ta thường cố định mức sai lầm loại I (size/level α) rồi cực tiểu sai lầm loại II; còn trong bài toán cực tiểu misclassification rate này, hai loại sai lầm được gộp chung lại và tính trọng số thông qua xác suất tiên nghiệm (prior probability) $p(\mathcal{C}_k)$.
+> - Sách gốc có lưu ý thêm rằng mỗi decision region $\mathcal{R}_k$ không nhất thiết phải liên tục (contiguous) mà có thể bao gồm nhiều vùng rời nhau (disjoint sub-regions).
 
 **🔗 See also:** [Generalized Linear Model for K Classes](./421_continuous_inputs.md#node-q8w0jnb)
 
@@ -441,10 +444,10 @@
 
 <p align="center"><kbd><img src="assets/69517zqjbhb.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/i9ufeyt6s1.png" width="80%"></kbd></p>
+
 > [!NOTE]
-> Tiếp, cùng tìm hiểu sao ông Bishop nói dễ thấy là cái rule mà sẽ giúp ta giảm thiểu
-> xác suất mistake này sẽ là cái rule sau đây: gán cho 𝐱 cái class nào mà f(𝐱,
-> Ck) nhỏ hơn. Ví dụ nếu f(𝐱, C1) < f(𝐱, C2) thì kết luận C2, ngược lại thì kết luận C1.
+> Tiếp, cùng tìm hiểu sao ông Bishop nói dễ thấy là **cái rule mà sẽ giúp ta giảm thiểu xác suất mistake này sẽ là cái rule sau đây**: gán C2 cho 𝐱 nếu f(𝐱, C1) &lt; f(𝐱, C2) , ngược lại thì kết luận C1.
 >
 >
 >
@@ -456,30 +459,23 @@
 >
 >
 >
-> tìm cái decision rule sao cho dưới cái rule đó, xác suất sai lầm là nhỏ nhất.
+> **tìm cái decision rule** sao cho **dưới cái rule đó, xác suất sai lầm là nhỏ nhất**.
 >
 >
 >
-> Vấn đề là,  với bài toán tối ưu, thì phải xác định biến tối ưu (optimization variable)  là
-> gì. Thế thì ở đây, cái cần tìm là một decision rule, ko phải tìm x, y gì cả.
+> Vấn đề là, với bài toán tối ưu, thì phải xác định biến tối ưu (optimization variable) là gì. Thế thì ở đây, cái cần tìm là một decision rule, ko phải tìm x, y gì cả.
 >
 >
 >
-> Vậy thì cái biến tối ưu ở đây, là decision rule. Mà decision rule thì làm sao mà thể
-> hiện theo toán học đây.
+> Vậy thì cái biến tối ưu ở đây, là decision rule. Mà decision rule thì làm sao mà thể hiện theo toán học đây.
 >
 >
 >
-> À, như đã biết trong bài toán Hypothesis testing, nói về một cái test, hay test rule,
-> thì bản chất cũng chính là nói về cái rejection region hay acceptance region. Vì một
-> cái rule, sẽ gắn với cái rejection region có được khi áp cái rule đó để mà chia range
-> 𝐗 thành R và Rc.
+> À, như đã biết trong bài toán Hypothesis testing, nói về một cái test, hay test rule, thì **bản chất cũng chính là nói về cái rejection region** hay acceptance region. Vì **một cái rule, sẽ gắn với cái rejection region** có được khi áp cái rule đó để mà chia không gian 𝐗 thành R và Rc.
 >
 >
 >
-> Nên ở đây cũng vậy, bản chất một cái decision rule, chính là thể hiện qua  các
-> decision region R1, R2. Vì tương tự như trên, mỗi một cái decision rule khác nhau
-> sẽ tạo ra một bộ decision region khác nhau.
+> Nên ở đây cũng vậy, bản chất một cái decision rule, chính là thể hiện qua các decision region R1, R2. Vì tương tự như trên, mỗi một cái decision rule khác nhau sẽ tạo ra một bộ decision region {R1,R2} khác nhau.
 >
 >
 >
@@ -487,34 +483,71 @@
 >
 >
 >
-> minimize_R1,R2 {∫R2 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱}
+> minimize\_{R1,R2} {∫R2 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱}
 >
 >
 >
-> (chỗ này vì X là vector nên ta phải hiểu đây là tích phân đa biến ∫...∫ nếu ghi
-> chặt chẽ theo toán học, chỉ là ghi ∫ cho gọn, cũng như range 𝐗 đây là subset của Rⁿ
-> chứ ko phải R)
+> (chỗ này vì 𝐗 là vector nên ta phải hiểu đây là tích phân đa biến ∫...∫ nếu ghi chặt chẽ theo toán học, chỉ là ghi ∫ cho gọn, cũng như range 𝐗 đây là subset của Rⁿ chứ ko phải R)
 >
 >
 >
-> Tuy nhiên, R1,R2 sẽ có ràng buộc: R1 U R2 = range 𝐗, và R1, R2 disjoint:  R1 ∩
-> R2 = ∅
+> Tuy nhiên, R1,R2 sẽ có ràng buộc: R1 U R2 = 𝓧 ⇒ R1 = 𝓧 \\ R2, và R1, R2 disjoint: R1 ∩ R2 = ∅
 >
 >
 >
-> Nhưng tích phân trên miền R2, có thể được tách thành tích phân trên toàn miền trừ
-> tích phân trên miền R1: ∫R2 f(C1,𝐱)d𝐱 = ∫{Range 𝐗} f(C1,𝐱)d𝐱 - ∫R1
-> f(C1,𝐱)d𝐱
+> ∫\_R1 f(C2,𝐱)d𝐱 = ∫\_{𝓧\\R2} f(C2,𝐱)d𝐱 = ∫\_𝓧 f(C2,𝐱)d𝐱  - ∫\_R2 f(C2,𝐱)d𝐱
 >
 >
 >
-> Và xét cái này ∫{Range 𝐗} f(C1,𝐱)d𝐱, Ta biết là marginalizing joint pdf/pmf
-> của 𝐗, T trên toàn miền xác định của 𝐗 ta sẽ được marginal pdf/pmf của T.
+> (giống như ∫1:10 f(x)dx = ∫1:5 f(x)dx + ∫5:10 f(x)dx ⇔ ∫5:10 f(x)dx = ∫1:10 f(x)dx - ∫1:5 f(x)dx
 >
 >
 >
-> Do đó ∫{Range 𝐗} f(C1,𝐱)d𝐱 chính là f(t)|t=C1, tức prior distribution của T,
-> evaluate tại t = C1
+> ⇒ ∫5:10 f(x)dx =  ∫{\[1:10\]\\\[1:5\]} f(x)dx )
+>
+>
+>
+> Nhưng tích phân trên miền R2, có thể được tách thành tích phân trên toàn miền trừ tích phân trên miền R1:
+>
+>
+>
+> ∫R2 f(C1,𝐱)d𝐱 = ∫\_𝓧 f(C1,𝐱)d𝐱 - ∫\_R1 f(C1,𝐱)d𝐱
+>
+>
+>
+> Objective trở thành: ∫\_𝓧 f(C1,𝐱)d𝐱 - ∫\_R1 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱
+>
+>
+>
+> ---
+>
+>
+>
+> Và xét cái này ∫\_𝓧 f(C1,𝐱)d𝐱:
+>
+>
+>
+> X,Y f(x,y): ∫f(x,y)dx = f(y)
+>
+>
+>
+> Ta biết là marginalizing joint pdf/pmf của 𝐗, T trên toàn miền xác định của 𝐗 ta sẽ được marginal pdf/pmf của T.
+>
+>
+>
+> Do đó ∫\_𝓧 f(C1,𝐱)d𝐱 chính là f(t)|t=C1
+>
+>
+>
+> (f(t) nên hiểu là pmf P(T=t)
+>
+>
+>
+> nên cái ta có chính là P(T=C1) chính prior distribution của T, evaluate tại t = C1 mang ý nghĩa: xác suất "bắt được một datapoint thuộc class C1 ngoài tự nhiên"
+>
+>
+>
+> ---
 >
 >
 >
@@ -522,8 +555,11 @@
 >
 >
 >
-> minimize_R1 {f(C1) - ∫R1 f(C1,𝐱)d𝐱 + ∫R1 f(C2,𝐱)d𝐱} = {f(C1) + ∫R1 [f(C2,
-> 𝐱) - f(C1,𝐱)]d𝐱 }
+> minimize_R1 {f(C1) - ∫\_R1 f(C1,𝐱)d𝐱 + ∫\_R1 f(C2,𝐱)d𝐱}
+>
+>
+>
+> = {f(C1) + ∫\_R1 \[f(C2, 𝐱) - f(C1,𝐱)\]d𝐱 }
 >
 >
 >
@@ -531,17 +567,15 @@
 >
 >
 >
-> minimize_R1 { ∫R1 [f(C2,𝐱) - f(C1,𝐱)]d𝐱 }
+> minimize_R1 { ∫\_R1 \[f(C2,𝐱) - f(C1,𝐱)\]d𝐱 }
 >
 >
 >
-> Đến đây, nói bằng lời, ta muốn tìm R1, sao cho minimize cái tích phân này
+> ("nói bằng lời": ta muốn tìm R1, sao cho minimize cái tích phân này)
 >
 >
 >
-> Nếu là bối cảnh bài toán tối ưu với biến 𝐱 thông thường, có lẽ tới đây mình sẽ dùng
-> first order necessary condition để tìm 𝐱 khiến gradient = 0, để ra critical point rồi xét
-> phép thử bậc hai các kiểu.
+> Nếu là bối cảnh bài toán tối ưu với biến 𝐱 thông thường, có lẽ tới đây mình sẽ dùng first order necessary condition để tìm 𝐱 khiến gradient = 0, để ra critical point rồi xét phép thử bậc hai các kiểu.
 >
 >
 >
@@ -549,38 +583,31 @@
 >
 >
 >
-> Ta sẽ dựa vào lập luận: mục đích là tìm vùng R1 sao cho minimize tích phân này.
-> Mà bản chất tích phân này là tổng: tổng các giá trị [f(C2,𝐱) - f(C1,𝐱)] trên miền
-> R1 ∈ range 𝐗
+> Ta sẽ dựa vào lập luận sau:
 >
 >
 >
-> Nên có thể diễn dịch yêu cầu là tìm trong miền 𝐗, để nhặt ra, gom lại những
-> giá trị 𝐱 nào đó sao cho tổng [f(C2,𝐱) - f(C1,𝐱)] trên tập đó là nhỏ nhất.
+> Hiểu đơn giản ∫\_R1 \[f(C2,𝐱) - f(C1,𝐱)\]d𝐱 sẽ tính tổng các hàm g(𝐱) = f(C2,𝐱) - f(C1,𝐱) trên miền R1.
 >
 >
 >
-> Để làm được điều này, về trực giác, ta sẽ chọn các 𝐱 khiến cái cụm này âm, thì
-> khi đó, tổng của một đám mang giá trị âm mới khiến đẩy giá trị ngày càng nhỏ
-> lại.
+> Hình dung ta thay đổi decision boundary để thay đổi miền R1, khi bất cứ khi nào nó chứa thêm một điểm mà g(𝐱) dương thì giá trị tích phân tăng lên và ngược lại khi nó chứa thêm một điểm có g(𝐱) âm thì giá trị tích phân sẽ nhỏ xuống. Do đó, cái này sẽ nhỏ nhất khi R1 chứa mọi 𝐱 ∈ 𝓧 sao cho g(𝐱) &lt; 0 
 >
 >
 >
-> Và ta cũng chỉ có thể lập luận như vậy, để kết luận R1 tối ưu nên là tập các 𝐱 ∈ range 𝐗
-> sao cho [f(C2,𝐱) - f(C1,𝐱)] < 0 ⇔ f(C2,𝐱) < f(C1,𝐱).
+> Kết luận R1 tối ưu nên là tập các 𝐱 ∈ 𝓧 sao cho \[f(C2,𝐱) - f(C1,𝐱)\] &lt; 0 ⇔ f(C2,𝐱) &lt; f(C1,𝐱).
 >
 >
 >
-> Nhờ vậy giúp ta hiểu vì sao gs Bishop nói vậy trong đoạn này. (ông nói clearly
-> nhưng mình thấy chả clearly chút nào nếu ko phân tích như trên).
+> Nhờ vậy giúp ta hiểu vì sao gs Bishop nói vậy trong đoạn này. (ông nói clearly nhưng mình thấy chả clearly chút nào nếu ko phân tích như trên).
 >
 >
 >
-> Vậy optimal decision rule (theo tiêu chí minimize misclassification rate) là:
+> Vậy **optimal decision rule** (theo tiêu chí minimize misclassification rate) là:
 >
 >
 >
-> Assign class C1 nếu f(C2,𝐱) < f(C1,𝐱) và ngược lại.
+> Assign class C1 nếu f(C2,𝐱) &lt; f(C1,𝐱) và ngược lại.
 >
 >
 >
@@ -592,28 +619,22 @@
 >
 >
 >
-> nên decision rule tối ưu cũng là: Assign class C1 nếu f(C2|𝐱) (tức posterior pdf
-> tại C2) < f(C1|𝐱)
+> nên decision rule tối ưu cũng là: Assign class C1 nếu f(C2|𝐱) (tức posterior pmf tại C2) &lt; f(C1|𝐱)
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=L_0FU59P6Ts)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú xuất sắc, người học đã chuyển hóa trực giác định tính trong sách thành một bài toán tối ưu hóa tập hợp (decision regions) chặt chẽ và rút ra kết luận hoàn toàn chính xác.
->
-> **🟡 Minor issues**
->
-> **1.** *"f(t)|t=C1, tức prior distribution của T, evaluate tại t = C1"*
->
-> Nhãn lớp C_k là biến ngẫu nhiên rời rạc, do đó tích phân trên toàn miền của x cho ra xác suất tiên nghiệm P(C_1) chứ không hẳn là hàm mật độ xác suất (pdf) evaluate tại C_1. Dù vậy, cách hiểu bản chất đại lượng không bị ảnh hưởng.
->
+> Ghi chú xuất sắc! Bạn đã biến nhận định mang tính trực giác của Bishop thành một bài toán tối ưu miền quyết định (decision region) rất chặt chẽ và chuẩn xác.
 >
 > **✓ Strengths**
-> - Diễn giải toán học rất sáng tạo và chính xác khi biến việc chọn decision rule thành bài toán tối ưu phân hoạch miền R1, R2.
-> - Chứng minh chặt chẽ việc rút gọn hàm mục tiêu về tích phân trên miền R1 và chọn điều kiện dấu âm để cực tiểu hóa.
-> - Hiểu đúng bản chất tại sao quy tắc cực đại hậu nghiệm (MAP) lại trực tiếp làm giảm thiểu sai số phân lớp.
+> - Biểu diễn bài toán dưới dạng tối ưu hóa phân hoạch không gian (partition) R1, R2 rất sáng tạo và chuẩn xác.
+> - Khai triển tách tích phân qua biến lề và chuyển về dạng tối ưu một tích phân duy nhất rất mạch lạc.
+> - Lập luận chọn điểm thuộc miền R1 dựa trên dấu của integrand để cực tiểu hóa giá trị tích phân hoàn toàn chính xác.
 >
 > **💡 Deeper notes**
-> - Trường hợp hòa (tie): Tại các điểm biên mà f(C1, x) = f(C2, x), giá trị của hàm dưới dấu tích phân bằng 0 nên việc gán x vào R1 hay R2 đều cho xác suất sai lầm như nhau. Với biến liên tục x, tập hợp các điểm này có độ đo Lebesgue bằng 0 (measure zero) nên không ảnh hưởng đến giá trị tích phân sai số.
+> - Trường hợp biên g(x) = 0 (tức f(C1, x) = f(C2, x)): việc gán x vào R1 hay R2 không làm thay đổi giá trị tích phân (trong phân phối liên tục, tập này thường có độ đo Lebesgue bằng 0), nên quy tắc gán tại biên có thể chọn tùy ý (tie-breaking).
 
 **🔗 See also:** [Generalized Linear Model for K Classes](./421_continuous_inputs.md#node-q8w0jnb)
 
@@ -630,10 +651,37 @@
 >
 >
 >
-> Mình phải nói trước: hình ảnh chỉ nên hiểu mang tính minh họa, vì 𝐱 vốn
-> đang là vector, ko thể thể hiện nó trên 1 trục như vậy được, hay nói cách
-> khác, ở đây coi như 𝐱 chỉ là vector 1-D, do nên ta thấy gs Bishop dùng
-> kí hiệu x thường (ko phải x bold: 𝐱 như trong phần trước)
+> Mình phải nói trước: hình ảnh chỉ nên hiểu mang tính minh họa, vì 𝐱 vốn đang là vector, ko thể thể hiện nó trên 1 trục như vậy được, hay nói cách khác, ở đây coi như 𝐱 chỉ là vector 1-D, do nên ta thấy gs Bishop dùng kí hiệu x thường (ko phải x bold: 𝐱 như trong phần trước)
+>
+>
+>
+> ---
+>
+>
+>
+> Nói tí xíu về decision boundary
+>
+>
+>
+> ví dụ trong 2D: và để dễ hình dung ta lấy hàm logistic regression, có decision rule là: Gán C1 nếu σ(𝐰ᵀ𝐱) &gt; 1/2 và ngược lại.
+>
+>
+>
+> σ(𝐰ᵀ𝐱) = 1/2 ⇔ 𝐰ᵀ𝐱 = 0 ⇔ w0+w1x1+w2x2 = 0. Nên decision boundary là đường thẳng {𝐱: w0+w1x1+w2x2 = 0} trong mặt phẳng, chia không gian 2D làm 2, 𝐰ᵀ𝐱 &lt; 0 (R1) và 𝐰ᵀ𝐱 &gt; 0 (R2).
+>
+>
+>
+> Ở đây trong 1D:
+>
+>
+>
+> σ(𝐰ᵀ𝐱) = 1/2 ⇔ 𝐰ᵀ𝐱 = 0 ⇔ w0 + wx = 0. Nên phương trình decision boundary ở đây là 1 điểm {x: w0 + wx = 0} (chính là x̂ ) trên trục R, chia không gian 1D làm 2: w0 + wx &lt; 0 (R1) và w0 + wx &gt; 0 (R2)
+>
+>
+>
+> ---
+>
+>
 >
 >
 >
@@ -645,54 +693,55 @@
 >
 >
 >
-> Và dĩ nhiên như đã học trong MIT 1801, ý nghĩa của tích phần ∫a:b f(t)dt là
-> diện tích của phần đồ thị bên dưới hàm f(t) từ a đến b.
+> Và dĩ nhiên như đã học trong MIT 1801, ý nghĩa của tích phần ∫a:b f(t)dt là diện tích của phần đồ thị bên dưới hàm f(t) từ a đến b.
 >
 >
 >
-> Nên (Mistake) là tổng diện tích của phần đồ thị hàm f(C2,x) với x ∈ R1 và
-> diện tích của phần đồ thị hàm f(C1,x) với x trong R2. chính là phần xanh
-> đỏ và xanh  lá
+> Nên (Mistake) là tổng diện tích của phần đồ thị hàm f(C2,x) với x ∈ R1 và diện tích của phần đồ thị hàm f(C1,x) với x trong R2. chính là phần đỏ + xanh dương và xanh lá
 >
 >
 >
-> Và bài toán đặt ra là tìm R1, R2 giúp minimize cái tổng diện tích này, và
-> điều này đồng nghĩa nhích cái decision boundary tại x^ qua lại.
+> Và bài toán đặt ra là tìm R1, R2 giúp minimize cái tổng diện tích này, và điều này đồng nghĩa nhích cái decision boundary x̂ qua lại.
 >
 >
 >
-> Thế thì đại ý rất dễ thấy đó là, khi dịch chuyển cái x^, thì tổng diện tích
-> vùng  xanh lá, xanh dương ko đổi. Nó chỉ thay đổi diện tích vùng đỏ. Và tại
-> x^ = x0 thì diện tích vùng đỏ là nhỏ nhất (= 0), đó chính là nơi mà từ tại đó,
-> ta có optimal decision rule:
+> Thế thì đại ý rất dễ thấy đó là, khi dịch chuyển cái x̂ , thì tổng diện tích vùng xanh lá, xanh dương ko đổi. Nó chỉ thay đổi diện tích vùng đỏ. Và tại x̂ = x0 thì diện tích vùng đỏ là nhỏ nhất (= 0), đó chính là nơi mà từ tại đó, ta có optimal decision rule:
 >
 >
 >
-> Assign C1 nếu f(C2|x) < f(C1|x) và ngược lại.
+> x0 chính là nghiệm của f(C1|x0) = f(C2|x0)
 >
 >
 >
-> Có nghĩa là cái optimal rule sẽ là: Assign C1 nếu x < x0 và ngược lại.
+> (nếu lấy ví dụ logistic regression model thì nó là σ(w0+wx) = 1-σ(w0+wx) ⇔ w0+wx = 0 ⇔ x = -w0/w → x0
+>
+>
+>
+> nên optimal rule là: assign C1 nếu x &lt; x0 và assign C2 nếu x &gt; x0
+>
+>
+>
+> Assign C1 nếu f(C2|x) &lt; f(C1|x) và ngược lại.
+>
+>
+>
+> Có nghĩa là cái optimal rule sẽ là: Assign C1 nếu x &lt; x0 và ngược lại.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=w2H10rAb_XM)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
-> Ghi chú nắm rất chắc bản chất hình học của bài toán tối thiểu hóa xác suất phân loại sai và lý do tại sao ngưỡng tối ưu nằm tại điểm cắt x0.
->
-> **🟡 Minor issues**
->
-> **1.** *"chính là phần xanh đỏ và xanh  lá"*
->
-> Có một lỗi gõ phím nhỏ khi liệt kê 3 vùng (thiếu từ 'xanh dương', thành 'xanh đỏ và xanh lá'), tuy nhiên đoạn kế tiếp bạn đã nêu rõ đầy đủ cả 3 vùng xanh dương, xanh lá và đỏ nên không ảnh hưởng đến hiểu bản chất.
->
+> Ghi chú thể hiện sự hiểu bài rất tốt, nắm bắt chính xác bản chất hình học của việc tối thiểu hóa xác suất phân loại sai và liên hệ trực quan tốt với mô hình Logistic Regression.
 >
 > **✓ Strengths**
-> - Nhận thức chính xác rằng hình vẽ đang xét trường hợp biến vô hướng 1 chiều x để minh họa trực quan thay vì vector tổng quát.
-> - Hiểu đúng bản chất tích phân là diện tích dưới đường cong của xác suất đồng thời và biểu diễn đúng tổng xác suất sai số.
-> - Giải thích chuẩn xác trực giác di chuyển ngưỡng x^ về x0 để triệt tiêu phần diện tích sai số phụ (vùng màu đỏ).
+> - Hiểu chính xác bản chất vì sao tổng diện tích xanh dương và xanh lá không đổi khi x̂ dịch chuyển, và việc tối ưu tương đương với triệt tiêu diện tích vùng đỏ.
+> - Liên hệ tốt giữa việc so sánh phân phối đồng thời p(x, C_k) và phân phối hậu nghiệm p(C_k|x) để tìm ngưỡng quyết định x0.
+> - Quan sát tinh tế về mặt ký hiệu 1-D (scalar x) so với vector x tổng quát.
 >
 > **💡 Deeper notes**
-> - Quy tắc quyết định phân chia R1 là x < x0 chỉ đúng khi hai đường cong chỉ cắt nhau đúng 1 lần tại x0; nếu phân phối phức tạp hơn (ví dụ đa mốt) và cắt nhau nhiều lần, vùng quyết định R1 có thể là hợp của nhiều khoảng rời rạc chứ không nhất thiết chỉ là một nửa đường thẳng x < x0.
+> - Điều kiện p(x, C1) = p(x, C2) tương đương p(C1|x) = p(C2|x) dựa trên công thức Bayes p(x, C_k) = p(C_k|x)p(x) (với điều kiện mật độ lề p(x) > 0).
+> - Mô hình Logistic Regression giả định log-odds tuyến tính dẫn đến ranh giới phẳng (hoặc 1 điểm trong 1D), trong khi ranh giới Bayes tối ưu tổng quát có thể phi tuyến hoặc gồm nhiều khoảng nếu phân phối p(x, C_k) phức tạp (chẳng hạn như đường cong p(x, C1) có nhiều đỉnh).
 
 <br>
 
