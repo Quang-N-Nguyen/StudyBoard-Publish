@@ -1,6 +1,6 @@
 # Lecture 8: Solving Ax = B: Row Reduced Form R
 
-📊 **Progress:** `35` Notes | `37` Screenshots
+📊 **Progress:** `35` Notes | `37` Screenshots | `1` AI Reviews
 
 ---
 <a id="node-lqdrk5u"></a>
@@ -724,6 +724,19 @@
 > mình biết elimination apply với A chính là nhân A với matrix E
 > thể hiện các bước elimination. Vậy EA = I. Điều này chứng tỏ
 > E chính là A⁻¹, đồng nghĩa A là **INVERTIBLE** MATRIX
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chính xác và xuất sắc; bạn đã tự suy luận đúng dạng của ma trận $R$ là $I$ và liên hệ chuẩn xác phép khử Gauss-Jordan với ma trận nghịch đảo $EA = I$.
+>
+> **✓ Strengths**
+> - Xác định chính xác dạng rút gọn bậc thang $R$ của ma trận vuông có hạng đầy đủ ($r=m=n$) là ma trận đơn vị $I$.
+> - Kết nối rất tốt giữa các phép biến đổi hàng sơ cấp (biểu diễn qua ma trận $E$) với định nghĩa ma trận nghịch đảo $EA = I \implies E = A^{-1}$.
+>
+> **💡 Deeper notes**
+> - Ma trận $E$ ở đây thực chất là tích của một chuỗi các ma trận sơ cấp $E_k \dots E_2 E_1$ biểu diễn toàn bộ các bước khử (phương pháp Gauss-Jordan).
+> - Đối với ma trận vuông hữu hạn chiều, sự tồn tại của nghịch đảo trái ($EA = I$) tự động đảm bảo nó cũng là nghịch đảo phải ($AE = I$).
 
 **🔗 See also:** [Ma trận vuông khả nghịch](./lecture_9_independece_basis_and_dimension.md#node-ojpu0lh)
 
