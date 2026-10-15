@@ -1,6 +1,6 @@
 # 11.1 & 2  introduction, One-way Anova
 
-📊 **Progress:** `18` Notes | `23` Screenshots | `15` AI Reviews
+📊 **Progress:** `20` Notes | `26` Screenshots | `17` AI Reviews
 
 ---
 <a id="node-c5qtmoe"></a>
@@ -837,20 +837,733 @@
 >
 >
 > Với: mean = Σi=1:k ai θi, variance = Σi=1:k ai² σ²/ni = σ² Σi=1:k ai²/ni
+>
+>
+>
+> Vì sao 11.2.6: \[(Σi=1:k aiȲi) - Σi aiθi\]/√\[S²\_p Σi ai²/ni\] \~ student t bậc tự do N-k
+>
+>
+>
+> Vì student t bậc tự do n-1 theo định nghĩa là phân phối của (X̄ - μ) / (S/√n) với random sample \~ normal.
+>
+>
+>
+> Hoặc là Z/√χ²\_p/p với Z, χ²\_p độc lập với Z \~ n(0,1), có nghĩa là:
+>
+>
+>
+> khi lấy một biến normal(0,1) chia cho (căn bậc hai của một biến χ²\_p chia cho bậc tự do p của nó), và tử số độc lập mẫu số, thì ta sẽ có một biến ngẫu nhiên theo phân phối student t có bậc tự do p
+>
+>
+>
+> Mà ở đây ta có:
+>
+>
+>
+> \[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²σ²/ni\] \~ n(0,1)
+>
+>
+>
+> Trong một theorem trước đây - 5.3.1 (xem link) ta đã chứng minh: (n-1) S²\_n / σ² \~ χ²\_n-1
+>
+>
+>
+> Nên (ni-1) Si²/σ² \~ χ²\_ni-1
+>
+>
+>
+> và Si độc lập, nên các (ni-1)Si²/σ² cũng độc lập.
+>
+>
+>
+> Nên Σi (ni-1)Si²/σ² = tổng các χ²\_ni-1 độc lập
+>
+>
+>
+> Mà χ² là một loại Gamma đặc biệt (β=1/2, α = p/2), mà tổng các Gamma độc lập (có chung rate param) cũng là Gamma với param alpha bằng tổng alpha (xem link).
+>
+>
+>
+> Cho nên tổng các Chi-square độc lập, cũng là Chi-square bậc tự do = tổng bậc tự do: χ²\_Σini - k = χ²\_N-k
+>
+>
+>
+> ... ⇔ Σi (ni-1)Si²/σ² \~ χ²\_N-k
+>
+>
+>
+> Đặt S²\_p = \[Σi (ni-1)Si²\]/(N-k)
+>
+>
+>
+> ⇒ S²\_p / σ² = \[Σi (ni-1)Si²/σ²\]/(N-k)
+>
+>
+>
+> thì nó chính là một biến ngẫu nhiên χ²\_N-k chia bậc tự do của nó: χ²\_N-k / (N-k)
+>
+>
+>
+> Vậy nên \[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²σ²/ni\] / √(S²\_p/σ²) chính là:
+>
+>
+>
+> một biến Z \~ n(0,1) / √(biến χ²\_p/p),
+>
+>
+>
+> Bên cạnh đó, S²\_p độc lập với mỗi Ȳi (tạm chấp nhận cái này, đây là bài tập 11.6)
+>
+>
+>
+> nên nó chính là student t bậc tự do p = N-k
+>
+>
+>
+> Rút gọn σ ta có:
+>
+>
+>
+> \[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²/ni\] / √(S²\_p) \~ t_N-k
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=ecVQI3CJzPc)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú đã hiểu đúng và tính chính xác kỳ vọng cùng phương sai của tổ hợp tuyến tính các trung bình mẫu để suy ra phân phối chuẩn tắc N(0,1).
+> Ghi chú xuất sắc! Bạn đã tự diễn giải và chứng minh lại công thức (11.2.6) một cách rất logic, đi từ định nghĩa phân phối t-Student, tính chất cộng của phân phối Chi-bình phương (qua Gamma) cho đến việc triệt tiêu σ.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"và Si độc lập, nên các (ni-1)Si²/σ² cũng độc lập."*
+>
+> Cách viết tắt 'Si độc lập' hơi giản lược một chút (chính xác hơn là do các mẫu quan sát từ k tổng thể/nhóm độc lập nhau, kéo theo các phương sai mẫu $S_i^2$ độc lập nhau).
+>
 >
 > **✓ Strengths**
-> - Xác định chính xác kỳ vọng của tổ hợp tuyến tính là mean = Σ a_i θ_i.
-> - Tính đúng phương sai của biến ngẫu nhiên tổng là variance = σ² Σ (a_i² / n_i) dựa trên tính độc lập của các nhóm mẫu.
+> - Nắm rất vững định nghĩa gốc của phân phối t-Student là tỉ số giữa biến chuẩn tắc chuẩn hóa và căn bậc hai của một biến Chi-bình phương chia cho bậc tự do tương ứng.
+> - Hiểu sâu nguồn gốc của tính chất cộng bậc tự do của các biến Chi-bình phương độc lập thông qua họ phân phối Gamma.
+> - Các bước biến đổi đại số để triệt tiêu độ lệch chuẩn tổng thể σ ở cả tử và mẫu rất rõ ràng và chuẩn xác.
 >
 > **💡 Deeper notes**
-> - Ghi chú đang dừng lại ở phân phối chuẩn khi biết σ; để ra thống kê phân phối Student's t ở công thức (11.2.6), ta thay σ² bằng ước lượng gộp S_p² và chia biến chuẩn tắc Z cho căn bậc hai của [(N-k)S_p² / σ²] / (N-k).
+> - Để $Z = \frac{\sum a_i \bar{Y}_i - \sum a_i \theta_i}{\sigma \sqrt{\sum a_i^2/n_i}} \sim N(0,1)$ và độc lập với $S_p^2$, giả định nền tảng của mô hình ANOVA là sai số phân phối chuẩn $Y_{ij} \sim N(\theta_i, \sigma^2)$ và phương sai đồng nhất giữa các nhóm (homoscedasticity).
 
-**🔗 See also:** [Tính chất Trung bình & Phương sai mẫu](./53_sampling_from_the_normal_distribution.md#node-aytwme7) · [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq) · [Phân phối và biến động trung bình mẫu](./53_sampling_from_the_normal_distribution.md#node-153vzn2)
+**🔗 See also:** [Tính chất Trung bình & Phương sai mẫu](./53_sampling_from_the_normal_distribution.md#node-aytwme7) · [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq) · [Phân phối và biến động trung bình mẫu](./53_sampling_from_the_normal_distribution.md#node-153vzn2) · [Tổng biến ngẫu nhiên Gamma](./46_multi_variate_distribution.md#node-08ciur5)
+
+🔗 **Video liên quan:** [Làm sao suy ra pdf Student's t từ tỉ số U/√(V/p) (cont)?](https://www.youtube.com/watch?v=MRIIRaMOWAs) · [Đọc ghi chú: "Derive pdf của phân phối t-Student"](./53_sampling_from_the_normal_distribution.md#node-5eltn4g)
+
+🔗 **Video liên quan:** [Chứng minh S² Chi-square — Statistical Inference - Casella](https://www.youtube.com/watch?v=V4s75gq78PI) · [Đọc ghi chú: "Chứng minh S² Chi-square"](./53_sampling_from_the_normal_distribution.md#node-nh8m52t)
+
+<br>
+
+<a id="node-gjyj05b"></a>
+
+###### Testing Linear Combinations of Means
+
+<p align="center"><kbd><img src="assets/yd539y7mbj.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/qg4e4szao2.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Để hiểu chỗ này tốt nhất là đi từ bài tập 8.38: Cho X1,..Xn iid n(θ, σ²). Muốn test: H0: θ = θ0 (θ ∈ Θ0={θ0}) vs H1: θ ≠ θ0 (θ ∈ Θ0c)
+>
+>
+>
+> Chứng minh rằng phép thử reject H0 khi |X̄ - θ0| &gt; t_n-1, α/2 √(S²/n) là size α test và test rule này có thể được derived từ LRT.
+>
+>
+>
+> Làm ý sau trước:
+>
+>
+>
+> Ôn nhanh về Likelihood Ratio Test: λ(𝐱) &lt; c mang ý nghĩa: Bác bỏ H0 nếu độ hợp lí lớn nhất trên không gian Θ0 chênh lệch đáng kể với độ hợp lí lớn nhất trên không gian Θ
+>
+>
+>
+> λ(𝐱) = sup\_Θ0 L(θ|𝐱) / sup\_Θ L(θ|𝐱) &lt; c
+>
+>
+>
+> ---
+>
+>
+>
+> Ở bài toán này:
+>
+>
+>
+> λ(𝐱) = sup\_{θ=θ0, σ²&gt;0} L((θ, σ²)|𝐱) / sup\_{θ, σ²&gt;0} L((θ, σ²)|𝐱) &lt; c
+>
+>
+>
+> sup\_{θ, σ²&gt;0} L((θ, σ²)|𝐱) = L((θ^, (σ²)^)|𝐱), tức likelihood tại MLE của θ, σ²
+>
+>
+>
+> Xét likelihood function L((θ, σ²)|𝐱) = f(𝐱|θ, σ²)
+>
+>
+>
+> = Πi f(xi|θ, σ²) (do iid)
+>
+>
+>
+> = Πi=1:n \[1/√(2πσ²)\] exp\[-(xi-θ)²/2σ²\]
+>
+>
+>
+> = \[1/√(2πσ²)\]ⁿ Πi exp\[-(xi-θ)²/2σ²\]
+>
+>
+>
+> ---
+>
+>
+>
+> Dùng kết quả chương 7 (xem link) ta đã có mle của θ và σ²:
+>
+>
+>
+> θ̂ (𝐗) = X̄
+>
+>
+>
+> σ̂ ²(𝐱) = \[1/n\] Σi (Xi - X̄)² = \[(n-1)/n(n-1)\] Σi (Xi - X̄)²
+>
+>
+>
+> = \[(n-1)/n\] S², với S² là unbiased sample variance = \[1/(n-1)\] Σi (Xi - X̄)²
+>
+>
+>
+> Nên L((θ, σ²)|𝐱)|θ=θ̂,σ²=σ̂ ² = \[1/√(2πσ̂ ²)\]ⁿ Πi exp\[-(xi-θ̂ )²/2σ̂ ²\]
+>
+>
+>
+> = \[1/√(2πσ̂ ²)\]ⁿ exp\[-Σi(xi-θ̂ )²/2σ̂ ²\] | (e^a)(e^b) = e^(a+b)
+>
+>
+>
+> σ̂ ² = (1/n) Σi (xi - θ̂ )² ⇔ Σi (xi - θ̂ )² = n σ̂ ²
+>
+>
+>
+> .. = \[1/√(2πσ̂ ²)\]ⁿ exp\[-nσ̂ ²/2σ̂ ²\]
+>
+>
+>
+> = \[1/√(2πσ̂ ²)\]ⁿ exp(-n/2)
+>
+>
+>
+> ---
+>
+>
+>
+> Xét tử số: sup\_{θ=θ0, σ²&gt;0} L((θ, σ²)|𝐱) = sup\_{σ²&gt;0} L((θ0, σ²)|𝐱)
+>
+>
+>
+> L((θ0, σ²)|𝐱) = \[1/√(2πσ²)\]ⁿ Πi exp\[-(xi-θ0)²/2σ²\]
+>
+>
+>
+> maximize\_σ² {\[1/√(2πσ²)\]ⁿ Πi exp\[-(xi-θ0)²/2σ²\]} s.t σ²&gt;0
+>
+>
+>
+> equivalent problem:
+>
+>
+>
+> maximize\_σ² log {\[1/√(2πσ²)\]ⁿ Πi exp\[-(xi-θ0)²/2σ²\]} s.t σ²&gt;0
+>
+>
+>
+> Biến đổi tí xíu: log {\[1/√(2πσ²)\]ⁿ Πi exp\[-(xi-θ0)²/2σ²\]}
+>
+>
+>
+> = log \[1/√(2πσ²)\]ⁿ + log {Πi exp\[-(xi-θ0)²/2σ²\]}
+>
+>
+>
+> = n log \[1/√(2πσ²)\] + log exp\[-Σi (xi-θ0)²/2σ²\]
+>
+>
+>
+> = n log \[(2πσ²)^(-1/2)\] - Σi (xi-θ0)²/2σ²
+>
+>
+>
+> = (-n/2) log (2πσ²) - Σi (xi-θ0)²/2σ²
+>
+>
+>
+> = (-n/2) log (2π) - (n/2) log(σ²) - Σi (xi-θ0)²/2σ²
+>
+>
+>
+> d/dσ² \[(-n/2) log (2π) - (n/2) log(σ²) - Σi (xi-θ0)²/2σ²\]
+>
+>
+>
+> = d/dσ² \[(-n/2) log (2π)\] - d/dσ²\[(n/2) log(σ²)\] - d/dσ²\[Σi (xi-θ0)²/2σ²\]
+>
+>
+>
+> = 0 - (n/2) d/dσ²\[ log(σ²)\] - \[Σi (xi-θ0)²/2\] d/dσ² (1/σ²)
+>
+>
+>
+> d/dσ²\[ log(σ²)\] = 1/σ²
+>
+>
+>
+> d/dσ² (1/σ²) = -1/(σ²)²
+>
+>
+>
+> .. = - (n/2) (1/σ²) - \[Σi (xi-θ0)²/2\] (-1/(σ²)²)
+>
+>
+>
+> = - (n/2σ²) - \[Σi (xi-θ0)²/2\] (-1/(σ²)²)
+>
+>
+>
+> Dùng điều kiện cần tối ưu bậc nhất (first neccessary optimality condition):
+>
+>
+>
+> \- (n/2σ²) - \[Σi (xi-θ0)²/2\] (-1/(σ²)²) = 0
+>
+>
+>
+> ⇔ \[Σi (xi-θ0)²\] / 2(σ²)²) = n/2σ²
+>
+>
+>
+> ⇔ \[Σi (xi-θ0)²\] /σ² = n
+>
+>
+>
+> ⇔ \[Σi (xi-θ0)²\] / n = σ²
+>
+>
+>
+> ⇔ σ² = Σi (xi-θ0)² / n → stationary point
+>
+>
+>
+> d/dσ² \[- (n/2σ²) - \[Σi (xi-θ0)²/2\] (-1/(σ²)²)\]
+>
+>
+>
+> = - (n/2) d/dσ² (1/σ²) + \[Σi (xi-θ0)²/2\] d/dσ² (1/(σ²)²)
+>
+>
+>
+> ---
+>
+>
+>
+> d/dσ² (1/σ²) = - 1/(σ²)²
+>
+>
+>
+> d/dσ² (1/(σ²)²) = d/d\[(1/(σ²)\] (1/(σ²)²) . d/dσ² \[(1/(σ²)α \]
+>
+>
+>
+> = (2/σ²) . \[- 1/(σ²)²\]
+>
+>
+>
+> = -2/(σ²)³
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy đạo hàm cấp 2 là: - (n/2) \[- 1/(σ²)²\] - \[Σi (xi-θ0)²/2\] (2/(σ²)^3)
+>
+>
+>
+> = n/2(σ²)²\] - 2 \[Σi (xi-θ0)²/2\]/(σ²)^3
+>
+>
+>
+> (trong video mình quá sớn xác mà kết luận ngay), phải lắp vào, tức tính cái đạo hàm cấp 2 này tại σ² = Σi (xi-θ0)² / n, ta sẽ thấy nó âm, nên theo secondary test, σ² = Σi (xi-θ0)² / n chính là local maximizer
+>
+>
+>
+> ---
+>
+>
+>
+> (σ̂ ²)\_0: restricted MLE của σ², đặt ε² cho gọn.
+>
+>
+>
+> σ̂ ²: unrestricted MLE của σ²
+>
+>
+>
+> ---
+>
+>
+>
+> λ(𝐱) = L(θ0, (σ̂ ²)\_0|𝐱) / L(θ̂, σ̂ ²|𝐱): LRT test statistic.
+>
+>
+>
+> test rule: reject H0 khi λ(𝐱) ≤ c
+>
+>
+>
+> L(θ0, (σ̂ ²)\_0|𝐱) = \[1/√(2πε²)\]ⁿ Πi exp\[-(xi-θ0)²/2ε²\]
+>
+>
+>
+> L(θ̂, σ̂ ²|𝐱) = \[1/√(2πσ̂ ²)\]ⁿ exp(-n/2)
+>
+>
+>
+> λ(𝐱) = { \[1/√(2πε²)\]ⁿ Πi exp\[-(xi-θ0)²/2ε²\] } / { \[1/√(2πσ̂ ²)\]ⁿ exp(-n/2) }
+>
+>
+>
+> = { \[1/√(ε²)\]ⁿ Πi exp\[-(xi-θ0)²/2ε²\] } / { \[1/√(σ̂ ²)\]ⁿ exp(-n/2) }
+>
+>
+>
+> = {(ε²)^(-n/2)\] Πi exp\[-(xi-θ0)²/2ε²\] } / { \[(σ̂ ²)^(-n/2)\] exp(-n/2) }
+>
+>
+>
+> = \[(ε²/σ̂ ²)^(-n/2)\] × Πi exp\[-(xi-θ0)²/2ε²\] } / exp(-n/2)
+>
+>
+>
+> = \[(ε²/σ̂ ²)^(-n/2)\] × exp\[-Σi(xi-θ0)²/2ε²\] } / exp(-n/2)
+>
+>
+>
+> ε² = Σi (xi-θ0)² / n ⇔ Σi (xi-θ0)² = n ε²
+>
+>
+>
+> = \[(ε²/σ̂ ²)^(-n/2)\] × exp\[-nε²/2ε²\] / exp(-n/2)
+>
+>
+>
+> = \[(ε²/σ̂ ²)^(-n/2)\] × exp\[-n/2\] / exp(-n/2)
+>
+>
+>
+> = (ε²/σ̂ ²)^(-n/2)
+>
+>
+>
+> ---
+>
+>
+>
+> Thay ε² = Σi (xi-θ0)² / n, σ̂ ² = (1/n) Σi (xi - θ̂ )²
+>
+>
+>
+> = \[Σi (xi-θ0)² / Σi (xi-θ̂ )²\]^(-n/2)
+>
+>
+>
+> = \[Σi (xi-x̄+x̄-θ0)² / Σi (xi-θ̂ )²\]^(-n/2)
+>
+>
+>
+> = { Σi \[(xi-x̄)² +2(xi-x̄)(x̄-θ0) + (x̄-θ0)²\] / Σi (xi-θ̂ )² }^(-n/2)
+>
+>
+>
+> = { \[Σi (xi-x̄)² +2Σi(xi-x̄)(x̄-θ0) + Σi(x̄-θ0)²\] / Σi (xi-θ̂ )² }^(-n/2)
+>
+>
+>
+> = { \[Σi (xi-x̄)² +2\[Σi(xi-x̄)\](x̄-θ0) +n(x̄-θ0)²\] / Σi (xi-θ̂ )² }^(-n/2)
+>
+>
+>
+> = { \[Σi (xi-x̄)² +2(nx̄-nx̄ )(x̄-θ0) +n(x̄-θ0)²\] / Σi (xi-θ̂ )² }^(-n/2)
+>
+>
+>
+> = { \[Σi (xi-x̄)² + n(x̄-θ0)²\] / Σi (xi-x̄)² }^(-n/2)
+>
+>
+>
+> = \[ 1 + n(x̄-θ0)²/Σi (xi-x̄)² \]^(-n/2)
+>
+>
+>
+> s² = \[1/(n-1)\] Σi (xi-x̄)² ⇒ Σi (xi-x̄)² = (n-1)s²
+>
+>
+>
+> .. = \[ 1 + n(x̄-θ0)²/(n-1)s² \]^(-n/2)
+>
+>
+>
+> = \[ 1 + (x̄-θ0)²/((n-1)s²/n) \]^(-n/2)
+>
+>
+>
+> (x̄-θ0)² / ((n-1)s²/n) = \[(x̄-θ0)/(s/√n)\]² / (n-1)
+>
+>
+>
+> = \[ 1 + \[(x̄-θ0)/(s/√n)\]² / (n-1) \]^(-n/2)
+>
+>
+>
+> Đặt t(𝐱) = (x̄-θ0)/(s/√n)
+>
+>
+>
+> x̄ (𝐱) = (Σi xi)/n, s² = s²(𝐱) = \[1/(n-1)\] Σi (xi - x̄)²
+>
+>
+>
+> = \[ 1 + t² / (n-1) \]^(-n/2)
+>
+>
+>
+> Viết lại: λ(𝐱) = \[ 1 + t² / (n-1) \]^(-n/2)
+>
+>
+>
+> LRT test rule: reject H0 nếu λ(𝐱) ≤ c
+>
+>
+>
+> ⇔ \[ 1 + t² / (n-1) \]^(-n/2) ≤ c
+>
+>
+>
+> ⇔ \[\[ 1 + t² / (n-1) \]^(-n/2)\]^(-2/n) ≥ c^(-2/n)
+>
+>
+>
+> ⇔ 1 + t² / (n-1) ≥ c^(-2/n)
+>
+>
+>
+> ⇔ t² ≥ \[c^(-2/n) - 1\](n-1)
+>
+>
+>
+> t(𝐱) = (x̄-θ0)/(s/√n)
+>
+>
+>
+> T(𝐗) = (X̄ -θ0)/(S/√n)
+>
+>
+>
+> ---
+>
+>
+>
+> μ, σ²: (X̄ -μ)/(S/√n) \~ t_n-1
+>
+>
+>
+> ---
+>
+>
+>
+> Dưới giả định H0: θ = θ0, thì (X̄ -θ0)/(S/√n) chính là một random variable \~ t_n-1
+>
+>
+>
+> Nên test rule: reject H0 khi t² ≥ \[c^(-2/n) - 1\](n-1)
+>
+>
+>
+> ---
+>
+>
+>
+> Size α test: sup\_Θ0 P\_θ(𝐗 ∈ R) = α
+>
+>
+>
+> Type I error: Reject H0 khi θ ∈ Θ0
+>
+>
+>
+> P\_θ(T² ≥ \[c^(-2/n) - 1\](n-1)) = α
+>
+>
+>
+> ⇔ P\_θ(|T| ≥ √\[\[c^(-2/n) - 1\](n-1)\]) = α
+>
+>
+>
+> ⇔ P\_θ(T≥ √\[\[c^(-2/n) - 1\](n-1)\] or T ≤ -√\[\[c^(-2/n) - 1\](n-1)\]) = α
+>
+>
+>
+> ⇔ P\_θ(T≥ √\[\[c^(-2/n) - 1\](n-1)\]) + P(T ≤ -√\[\[c^(-2/n) - 1\](n-1)\]) = α
+>
+>
+>
+> ⇔ 2P\_θ(T≥ √\[\[c^(-2/n) - 1\](n-1)\]) = α
+>
+>
+>
+> ⇔ P\_θ(T ≥ √\[\[c^(-2/n) - 1\](n-1)\]) = α/2
+>
+>
+>
+> ⇔ √\[\[c^(-2/n) - 1\](n-1)\] = t_n-1, α/2
+>
+>
+>
+> LRT size α test: reject H0 khi |T| ≥ t_n-1, α/2
+>
+>
+>
+> ⇔ |(X̄ -θ0)/(S/√n)| ≥ t_n-1, α/2
+>
+>
+>
+> ⇔ |(X̄ -θ0)| ≥ (t_n-1, α/2) |S/√n|
+>
+>
+>
+> ⇔ |(X̄ -θ0)| ≥ (t_n-1, α/2) √(S²/n)
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=7zjlggrD-iQ)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú xuất sắc, trình bày chi tiết và hoàn chỉnh từng bước suy dẫn kiểm định LRT cho phân phối chuẩn và tìm miền bác bỏ tương đương với phân phối Student t.
+>
+> **✓ Strengths**
+> - Thực hiện đầy đủ và chính xác toàn bộ quá trình tìm MLE tự do (unrestricted) và MLE ràng buộc (restricted).
+> - Khai triển đại số tách tổng bình phương sai lệch rất chuẩn xác để đưa tỉ số hợp lý về dạng hàm số của thống kê t.
+> - Chứng minh rõ ràng tính tương đương giữa quy tắc bác bỏ LRT và quy tắc kiểm định giả thuyết mức ý nghĩa alpha.
+>
+> **💡 Deeper notes**
+> - Do biến ngẫu nhiên T có phân phối liên tục (Student t) nên việc lấy dấu lớn hơn hoặc bằng (>=) hay dấu lớn hơn hẳn (>) không làm thay đổi xác suất sai lầm loại I (size alpha).
+
+**🔗 See also:** [Kiểm định LRT cho trung bình](./82_method_of_finding_tests.md#node-ouhenhy) · [LRT với tham số gây nhiễu](./82_method_of_finding_tests.md#node-elajwsz) · [MLEs phân phối chuẩn](./72_method_of_finding_estimators.md#node-6nhtwtp)
+
+<br>
+
+<a id="node-a1xjk4i"></a>
+
+<p align="center"><kbd><img src="assets/yd539y7mbj.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Ở note trước ta có \[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²/ni\] / √(S²\_p) \~ t_N-k
+>
+>
+>
+> và note trước gần nhất ta cũng chứng minh cái test reject H0: θ = θ0 vs H1 có rule sau đây sẽ là size α test:\
+> \
+> Reject H0 khi |(X̄ -θ0)| ≥ (t_n-1, α/2) √(S²/n)
+>
+>
+>
+> ---
+>
+>
+>
+> Xét cái ANOVA hypothesis testing: H0: Σi aiθi = 0 vs H1: Σi aiθi ≠ 0 thì tác giả cho rằng cái test 11.2.7 sẽ là level alpha test.
+>
+>
+>
+> Ít nhất ta có thể hiểu cái test 11.2.7 là ở đâu mọc ra, nó chính là có xuất phát từ LRT method mà thôi. 
+>
+>
+>
+> Giờ thử xem vì sao nó là level α test:
+>
+>
+>
+> Tính sup\_Θ0 P\_θ(reject H0)
+>
+>
+>
+> = P\_θ(|Σi aiȲi / √\[S²\_pΣi ai²/ni\]| &gt; t_N-k,α/2 | Σi aiθi = 0)
+>
+>
+>
+> = P\_θ(|Σi aiȲi / √\[S²\_pΣi ai²/ni\]| &gt; t_N-k,α/2 | Σi aiθi = 0)
+>
+>
+>
+> Mà như ở trên đã nói \[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²/ni\] / √(S²\_p) \~ t_N-k,
+>
+>
+>
+> nên xác suất này chính là:
+>
+>
+>
+> = P\_θ(|\[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2)
+>
+>
+>
+> = P\_θ(|T_N-k| &gt; t_N-k,α/2)
+>
+>
+>
+> = P\_θ(T_N-k &gt; t_N-k,α/2 or T_N-k &lt; -t_N-k,α/2)
+>
+>
+>
+> = P\_θ(T_N-k &gt; t_N-k,α/2) + P(T_N-k &lt; -t_N-k,α/2)
+>
+>
+>
+> = P\_θ(T_N-k &gt; t_N-k,α/2) + P(T_N-k &lt; -t_N-k,α/2)
+>
+>
+>
+> = 2P\_θ(T_N-k &gt; t_N-k,α/2) (do tính đối xứng của student t)
+>
+>
+>
+> và theo định nghĩa của t_N-k, α/2, đương nhiên P\_θ(T_N-k &gt; t_N-k,α/2) = α/2
+>
+>
+>
+> ..= 2 α/2 = α
+>
+>
+>
+> Vậy đây là size α test.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất tốt, tự dẫn xuất và giải thích tường tận vì sao quy tắc bác bỏ (11.2.7) cho ra một kiểm định có kích thước (size) chính xác bằng α dựa trên pivot của phân phối t-Student.
+>
+> **✓ Strengths**
+> - Hiểu đúng bản chất của pivot từ phương trình (11.2.6) và cách thay giả thuyết H0 (tổng aiθi = 0) vào để suy ra phân phối t_N-k của thống kê kiểm định dưới H0.
+> - Chứng minh xác suất sai lầm loại I (size của kiểm định) bằng đúng α một cách mạch lạc thông qua tính đối xứng của phân phối Student-t.
+> - Liên hệ tốt nguồn gốc của thống kê kiểm định với phương pháp kiểm định tỷ số khả tạo (LRT).
+>
+> **💡 Deeper notes**
+> - Dưới không gian giả thuyết H0, thống kê kiểm định t hoàn toàn không phụ thuộc vào tham số gây phiền (nuisance parameter) là phương sai sai số σ², do đó P_θ(reject H0) là hằng số bằng α trên toàn bộ Θ0, biến đây thành kiểm định kích thước chính xác (exact size α test).
+> - Có một lỗi nhỏ về trình bày (lặp lại 2 dòng công thức liên tiếp do copy-paste) nhưng hoàn toàn không ảnh hưởng đến logic toán học.
 
 <br>
 
