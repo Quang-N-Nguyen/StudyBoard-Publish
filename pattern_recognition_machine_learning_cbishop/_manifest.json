@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1791931663609,
+  "publishedAt": 1792022495895,
   "sections": [
     {
       "title": "📋 Overview",
@@ -72,7 +72,7 @@
       "title": "1.5 Decision Theory",
       "path": "pattern_recognition_machine_learning_cbishop/15_decision_theory.md",
       "noteCount": 30,
-      "imageCount": 45
+      "imageCount": 48
     },
     {
       "title": "1.6 Information Theory",
@@ -466,5 +466,5 @@
     }
   ],
   "totalNotes": 467,
-  "totalImages": 710
+  "totalImages": 713
 }
