@@ -1,6 +1,6 @@
 # 8.1 Introduction
 
-📊 **Progress:** `5` Notes | `5` Screenshots
+📊 **Progress:** `5` Notes | `5` Screenshots | `1` AI Reviews
 
 ---
 <a id="node-30ukzo4"></a>
@@ -76,6 +76,26 @@
 >
 >
 > (Gemini)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ⚠️ **88/100** · ✓ Move on
+>
+> Ghi chú tạo động lực và trực giác ban đầu rất tốt về bản chất của Kiểm định giả thuyết so với Ước lượng. Tuy nhiên, cách giải thích p-value trong ví dụ còn mắc lỗi diễn giải kinh điển (ngộ nhận xác suất điều kiện) và cần làm chuẩn xác hơn.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"p-value của em ra 0.001. Tức là xác suất em ăn may bốc trúng tập data dễ chỉ là 1 phần ngàn."*
+>
+> Đây là cách diễn đạt thiếu chuẩn xác về p-value. p-value là xác suất quan sát được dữ liệu (hoặc kết quả cực đoan hơn) giả sử giả thuyết vô hiệu $H_0$ là đúng ($P(\text{Data} \mid H_0)$), chứ không phải là xác suất bản thân việc 'ăn may/H0 đúng' xảy ra trên thực tế ($P(H_0 \mid \text{Data})$).
+>
+>
+> **✓ Strengths**
+> - Phân biệt rất rõ ràng và thực tế giữa mục đích của Chương 7 (Ước lượng tham số) và Chương 8 (Đánh giá tính ý nghĩa thống kê của kết quả).
+> - Kết nối chính xác giữa khái niệm Type I / Type II Error trong Thống kê với False Positive / False Negative trong Machine Learning.
+>
+> **💡 Deeper notes**
+> - Về mặt thuật ngữ LaTeX, ký hiệu mức ý nghĩa nên viết là $\alpha$ thay vì $\α$.
+> - Khi kiểm định hiệu năng mô hình ML trên dữ liệu test, việc chia tập train/val/test và cross-validation thường được dùng kết hợp với các kiểm định so sánh cặp (paired t-test, McNemar test) để so sánh giữa hai mô hình thay vì chỉ kiểm định độ chính xác trên một tập mẫu đơn lẻ.
 
 <br>
 
