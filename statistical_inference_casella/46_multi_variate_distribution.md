@@ -916,7 +916,7 @@
 > Và qua đó cho thấy Z cũng là Gamma rv với parm cũng là β nhưng 
 > α là tổng αi
 
-**🔗 See also:** [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq) · [Xây dựng khoảng tin cậy](./92_methods_of_finding_interval_estimators.md#node-9p7bal4)
+**🔗 See also:** [Bổ đề Chi-square](./53_sampling_from_the_normal_distribution.md#node-udtt0nq) · [Xây dựng khoảng tin cậy](./92_methods_of_finding_interval_estimators.md#node-9p7bal4) · [Pooled Estimator and Student t Distribution](./111_2_introduction_one_way_anova.md#node-680r0w1)
 
 <br>
 
@@ -1075,7 +1075,7 @@
 > **💡 Deeper notes**
 > - Cơ sở lý thuyết để kết luận $Z$ có phân phối chuẩn ở bước cuối cùng dựa trên 'Tính duy nhất của hàm sinh mô-men' (Uniqueness Theorem of MGF) — nếu mgf của $Z$ trùng với mgf của phân phối chuẩn trong một lân cận của 0 thì $Z$ tuân theo phân phối chuẩn đó.
 
-**🔗 See also:** [Điều kiện độc lập tổ hợp Normal](./53_sampling_from_the_normal_distribution.md#node-91dxhtz) · [Oneway ANOVA Assumptions](./111_2_introduction_one_way_anova.md#node-tp60spi)
+**🔗 See also:** [Điều kiện độc lập tổ hợp Normal](./53_sampling_from_the_normal_distribution.md#node-91dxhtz) · [Oneway ANOVA Assumptions](./111_2_introduction_one_way_anova.md#node-tp60spi) · [Convolution of Probit and Gaussian *(Pattern Recognition Machine Learning_C.Bishop)*](../pattern_recognition_machine_learning_cbishop/452_predictive_distribution.md#node-dtpl38s)
 
 <br>
 
