@@ -1,6 +1,6 @@
 # Lecture 9: Independece, Basis, And Dimension
 
-📊 **Progress:** `35` Notes | `40` Screenshots | `9` AI Reviews
+📊 **Progress:** `35` Notes | `43` Screenshots | `12` AI Reviews
 
 ---
 <a id="node-t2djvda"></a>
@@ -371,6 +371,10 @@
 
 <p align="center"><kbd><img src="assets/okpaw0ne3wo.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/fa5giff7y44.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/4u70edeahj.png" width="80%"></kbd></p>
+
 > [!NOTE]
 > Vậy, với trường hợp **mọi cols của A đều independence**, thì
 > chính là ta có **mỗi cột một pivot**, nên trường hợp này ta
@@ -380,6 +384,8 @@
 >
 > Còn với trường hợp các cols của A **dependence**, thì ta có
 > số **pivot < số cột**, đồng nghĩa có free columns , và rank < n
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=NrYt3dlnowY)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
@@ -416,6 +422,18 @@
 > cũng chính là nói rằng **CÁC COLUMNS CỦA A SPAN
 > COLUMN SPACE C(A)**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chính xác và tự nhiên bản chất khái niệm không gian sinh (span) thông qua liên hệ trực tiếp với column space C(A).
+>
+> **✓ Strengths**
+> - Hiểu đúng định nghĩa cốt lõi của 'span': tập hợp tất cả các tổ hợp tuyến tính của các vector đã cho.
+> - Liên hệ chính xác giữa các cột của ma trận A và không gian cột C(A) như một ví dụ cụ thể cho khái niệm span.
+>
+> **💡 Deeper notes**
+> - Cần phân biệt giữa 'span' (chỉ việc bao trùm toàn bộ không gian) và 'basis' (cơ sở: vừa span được không gian, vừa phải độc lập tuyến tính).
+
 **🔗 See also:** [Không gian cột ma trận](./lecture_5_transpose_permutations_spaces_rn.md#node-sobom5t)
 
 <br>
@@ -426,11 +444,26 @@
 
 <p align="center"><kbd><img src="assets/b33yk4wvfp.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/jzelbjtp4b.png" width="80%"></kbd></p>
+
 > [!NOTE]
 > vậy ta có định nghĩa của **span**: Ta nói rằng đám vector
 > v1,v2...vl **span một vector space** nếu vector space
 > được **tạo thành bởi mọi linear combination của các
 > vector đó**
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=RlPbmEXWyTM)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú nắm bắt rất chính xác và trọn vẹn định nghĩa không gian sinh (span) từ bài giảng.
+>
+> **✓ Strengths**
+> - Định nghĩa chuẩn xác: một tập hợp vector sinh ra một không gian vector khi mọi phần tử trong không gian đó đều biểu diễn được dưới dạng tổ hợp tuyến tính của chúng.
+>
+> **💡 Deeper notes**
+> - Một chi tiết kỹ thuật nhỏ: các hệ số trong tổ hợp tuyến tính (linear combinations) là các đại lượng vô hướng (scalars) thuộc về trường số mà không gian vector đó xác định trên (thường là tập số thực R).
 
 <br>
 
@@ -484,6 +517,24 @@
 >
 >
 > 2. Chúng **span space đó.**
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú đã nắm chính xác định nghĩa cốt lõi của cơ sở (basis) gồm hai điều kiện: độc lập tuyến tính và phủ kín (span) không gian.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Chúng independence"*
+>
+> Về mặt thuật ngữ chính xác trong đại số tuyến tính, nên dùng 'độc lập tuyến tính' (linearly independent) thay vì danh từ 'independence'.
+>
+>
+> **✓ Strengths**
+> - Nắm bắt chuẩn xác hai điều kiện nền tảng để một tập vector cấu thành một cơ sở (basis).
+>
+> **💡 Deeper notes**
+> - Trên bảng bài giảng dùng từ 'sequence' ($v_1, v_2, \dots, v_d$), nghĩa là một dãy có thứ tự; trong đại số tuyến tính, việc xác định thứ tự của các vector cơ sở (ordered basis) rất quan trọng khi biểu diễn tọa độ.
 
 <br>
 
