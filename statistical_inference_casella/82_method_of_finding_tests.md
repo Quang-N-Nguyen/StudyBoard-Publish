@@ -1,6 +1,6 @@
 # 8.2 Method Of Finding Tests
 
-📊 **Progress:** `21` Notes | `26` Screenshots | `2` AI Reviews
+📊 **Progress:** `21` Notes | `26` Screenshots | `6` AI Reviews
 
 ---
 <a id="node-ddu990f"></a>
@@ -58,6 +58,25 @@
 >
 > Chú ý, estimator, theo định nghĩa chính thức, là any function of random
 > sample, thì mle(𝐗) define ở trên cũng thỏa định nghĩa này.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc ý chính của phần mở đầu và liên hệ chính xác kiến thức về Likelihood function cùng MLE từ chương trước. Có một điểm nhỏ cần lưu ý là phương pháp này 'hầu như luôn' (almost always) áp dụng được chứ không phải tuyệt đối mọi trường hợp.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Đầu tiên là một method luôn có thể ứng dụng được"*
+>
+> Nguyên văn trong tài liệu là 'almost always applicable' (hầu như luôn áp dụng được), việc bỏ chữ 'almost' làm mất đi sắc thái rằng vẫn có những ngoại lệ hiếm hoi không thể áp dụng.
+>
+>
+> **✓ Strengths**
+> - Hiểu và tóm tắt chính xác mục đích tổng quan của mục 8.2 và 8.2.1.
+> - Khái quát lại bản chất của hàm hợp lý (likelihood function) và cực đại hóa hợp lý (MLE) rất rõ ràng và chuẩn xác về mặt trực giác toán học.
+>
+> **💡 Deeper notes**
+> - Về mặt chặt chẽ, điểm cực đại argmax_θ L(θ|X) không phải lúc nào cũng tồn tại duy nhất trên không gian tham số, dù khi tồn tại duy nhất thì nó tạo thành một estimator chuẩn tắc.
 
 <br>
 
@@ -1016,17 +1035,11 @@
 <p align="center"><kbd><img src="assets/nw5ehgly9r.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đoạn này đại ý tác giả là, likelihood ratio test cũng hữu ích trong những
-> tình huống mà ta có các tham số gây nhiễu (nuisance parameter), mà  sự
-> hiện diện của chúng không ảnh hưởng đến phương pháp LRT. (có nghĩa là,
-> với các method hypothesis testing khác, thì tham số gây nhiễu có thể tác
-> động xấu, nhưng với likelihood ratio test thì không.
+> Đoạn này đại ý tác giả là, likelihood ratio test cũng hữu ích trong những tình huống mà ta có các tham số gây nhiễu (nuisance parameter), mà sự hiện diện của chúng không ảnh hưởng đến phương pháp LRT. 
 >
 >
 >
-> Thế thì ví dụ này, cho X1,...Xn ~ n(μ, σ²) và ta chỉ quan tâm đến việc suy
-> luận về μ thôi, nên σ đóng vai tham số gây nhiễu. Cụ thể hai giả thuyết là
-> H0: μ ≤ μ0, và H1: μ > μ0.
+> Thế thì ví dụ này, cho X1,...Xn \~ n(μ, σ²) và ta chỉ quan tâm đến việc suy luận về μ thôi, nên σ đóng vai tham số gây nhiễu. Cụ thể hai giả thuyết là H0: μ ≤ μ0, và H1: μ &gt; μ0.
 >
 >
 >
@@ -1034,33 +1047,27 @@
 >
 >
 >
-> λ(𝐱) = sup_Θ0 L(θ|𝐱) / sup_Θ L(θ|𝐱)
+> λ(𝐱) = sup\_Θ0 L(θ|𝐱) / sup\_Θ L(θ|𝐱)
 >
 >
 >
-> = sup_{μ ≤ μ0, σ² ≥ 0} L(μ, σ²|𝐱) / sup_{μ ∈ (-inf,inf), σ² ≥ 0} L(μ,
-> σ²|𝐱)
+> = sup\_{μ ≤ μ0, σ² ≥ 0} L(μ, σ²|𝐱) / sup\_{μ ∈ (-inf,inf), σ² ≥ 0} L(μ, σ²|𝐱)
 >
 >
 >
-> Mẫu số, như đã biết, sẽ là likelihood function tại MLE (kí hiệu μ^ và (σ²)^):
-> L(μ^, (σ²)^|𝐱)
+> Mẫu số, như đã biết, sẽ là likelihood function tại MLE (kí hiệu μ^ và (σ²)^): L(μ^, (σ²)^|𝐱)
 >
 >
 >
-> Còn tử số, sup_{μ ≤ μ0, σ² ≥ 0} L(μ, σ²|x), ta sẽ xét hai trường hợp:
+> Còn tử số, sup\_{μ ≤ μ0, σ² ≥ 0} L(μ, σ²|x), ta sẽ xét hai trường hợp:
 >
 >
 >
-> Trường hợp 1: μ^ ≤ μ0. Có nghĩa là sao? Có nghĩa là lúc này, cái đỉnh L(μ^,
-> (σ²)^|𝐱) nó nằm bên trong / xảy ra bên trong phạm vi (μ, σ²) ∈ Θ0. Do
-> đó dĩ nhiên tử số, cũng phải là L(μ^, (σ²)^|𝐱) Vì tìm kiếm trong cả Θ tìm
-> thấy tại (μ^, (σ²)^) khiến L lớn nhất, thì khi (μ^, (σ²)^) nằm trong Θ0, thì
-> đó cũng phải là nơi khiến L cao nhất khi tìm kiếm trong Θ0
+> Trường hợp 1: μ^ ≤ μ0. Có nghĩa là sao? Có nghĩa là lúc này, cái đỉnh L(μ^, (σ²)^|𝐱) nó nằm bên trong / xảy ra bên trong phạm vi (μ, σ²) ∈ Θ0. Do đó dĩ nhiên tử số, cũng phải là L(μ^, (σ²)^|𝐱) Vì tìm kiếm trong cả Θ tìm thấy tại (μ^, (σ²)^) khiến L lớn nhất, thì khi (μ^, (σ²)^) nằm trong Θ0, thì đó cũng phải là nơi khiến L cao nhất khi tìm kiếm trong Θ0
 >
 >
 >
-> Trường hợp 2: μ^ > μ0. Lúc này ta cần hiểu như sau:
+> Trường hợp 2: μ^ &gt; μ0. Lúc này ta cần hiểu như sau:
 >
 >
 >
@@ -1068,40 +1075,39 @@
 >
 >
 >
-> = f(𝐱|μ, σ²) = Πi=1:n f(xi| μ, σ²)
+> = f(𝐱|μ, σ²) = Πi=1:n f(xi|μ, σ²)
 >
 >
 >
-> = Πi=1:n (1/σ√2π) exp[-(xi-μ)²/2σ²
+> = Πi=1:n (1/σ√2π) exp\[-(xi-μ)²/2σ²
 >
 >
 >
-> = (1/σ√2π)^n Πi=1:n exp[-(xi-μ)²/2σ²
+> = (1/σ√2π)^n Πi=1:n exp\[-(xi-μ)²/2σ²
 >
 >
 >
-> = (1/σ√2π)^n exp Σi=1:n[-(xi-μ)²/2σ²
+> = (1/σ√2π)^n exp Σi=1:n\[-(xi-μ)²/2σ²
 >
 >
 >
-> = (1/σ√2π)^n exp [-Σi=1:n[(xi-μ)²]/2σ²
+> = (1/σ√2π)^n exp \[-Σi=1:n\[(xi-μ)²\]/2σ²
 >
 >
 >
-> Khi giải bài toán tối ưu hàm này, ta sẽ được quyền giải bài toán equivalent:
-> dùng log của nó:
+> Khi giải bài toán tối ưu hàm này, ta sẽ được quyền giải bài toán equivalent: dùng log của nó:
 >
 >
 >
-> ⇨ log (1/σ√2π)^n exp [-Σi=1:n[(xi-μ)²]/2σ²
+> ⇨ log (1/σ√2π)^n exp \[-Σi=1:n\[(xi-μ)²\]/2σ²
 >
 >
 >
-> = log (1/σ√2π)^n + log[ exp [-Σi=1:n[(xi-μ)²]/2σ² ]
+> = log (1/σ√2π)^n + log\[ exp \[-Σi=1:n\[(xi-μ)²\]/2σ² \]
 >
 >
 >
-> = n log (1/σ√2π) - Σi=1:n[(xi-μ)²]/2σ²
+> = n log (1/σ√2π) - Σi=1:n\[(xi-μ)²\]/2σ²
 >
 >
 >
@@ -1109,8 +1115,7 @@
 >
 >
 >
-> Một điểm nữa, đã học trong Convex Optimization về việc ta có thể tạo bài
-> toán tối ưu equivalent bằng cách tối ưu hóa theo từng biến.
+> Một điểm nữa, đã học trong Convex Optimization về việc ta có thể tạo bài toán tối ưu equivalent bằng cách tối ưu hóa theo từng biến.
 >
 >
 >
@@ -1122,34 +1127,49 @@
 >
 >
 >
-> Như vậy khi μ đi từ -inf → μ^ thì hàm likelihood, cũng như log likelihood
-> monotone  increasing. và từ μ^ → inf, thì nó monotone decreasing.
+> Như vậy khi μ đi từ -inf → μ^ thì hàm likelihood, cũng như log likelihood monotone increasing. và từ μ^ → inf, thì nó monotone decreasing.
 >
 >
 >
-> Do đó, nếu μ0 < μ^ thì khi giới hạn vùng tìm kiếm của μ trong (-inf, μ0) thì
-> hàm phải đạt max tại μ0.
+> Do đó, nếu μ0 &lt; μ^ thì khi giới hạn vùng tìm kiếm của μ trong (-inf, μ0) thì hàm phải đạt max tại μ0.
 >
 >
 >
-> Sau đó khi maximize hàm này theo σ² để có (σ²)^_0 (chưa chắc trùng
-> với (σ²)^, cụ thể nó sẽ bằng (1/n) Σi (xi - μ0)².
+> Sau đó khi maximize hàm này theo σ² để có (σ²)^\_0 (chưa chắc trùng với (σ²)^, cụ thể nó sẽ bằng (1/n) Σi (xi - μ0)².
 >
 >
 >
-> Đó là lí do mà trong trường hợp này, tử số chính là L(μ0, (σ²)^_0)|𝐱)
+> Đó là lí do mà trong trường hợp này, tử số chính là L(μ0, (σ²)^\_0)|𝐱)
 >
 >
 >
-> ⇨ λ(x) = 1 hoặc L(μ0, (σ²)^_0)|𝐱) / L(μ0, (σ²)|𝐱) tùy theo μ^ ≤ hay > μ0.
+> ⇨ λ(x) = 1 hoặc L(μ0, (σ²)^\_0)|𝐱) / L(μ^, (σ²)^|𝐱) tùy theo μ^ ≤ hay &gt; μ0.
 >
 >
 >
-> Vậy thì đại ý tác giả dùng ví dụ này để ta thấy, dù thứ muốn test là μ, và
-> σ² thì không biết. Nhưng cách làm của likelihood khiến cho ta không bị
-> vướng ở σ², vì đơn giản là ta sẽ dùng mle (σ²)^ và (σ²)^_0 thôi.
+> Vậy thì đại ý tác giả dùng ví dụ này để ta thấy, dù thứ muốn test là μ, và σ² thì không biết. Nhưng cách làm của likelihood khiến cho ta không bị vướng ở σ², vì đơn giản là ta sẽ dùng mle (σ²)^ và (σ²)^\_0 thôi.
 
-**🔗 See also:** [Kiểm định LRT cho trung bình](#node-ouhenhy)
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, giải thích cặn kẽ và chặt chẽ bản chất hình học/tối ưu hóa của hàm likelihood khi tìm restricted MLE dưới sự hiện diện của tham số gây nhiễu.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"khi giới hạn vùng tìm kiếm của μ trong (-inf, μ0) thì hàm phải đạt max tại μ0."*
+>
+> Về mặt ký hiệu tập hợp, không gian tham số dưới H0 là nửa khoảng đóng $(-\infty, \mu_0]$ chứ không phải khoảng mở $(-\infty, \mu_0)$.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ và giải thích trực quan tại sao khi $\hat{\mu} \le \mu_0$ thì giá trị restricted supremum trùng với unrestricted supremum.
+> - Chứng minh thuyết phục tính đơn điệu của hàm likelihood theo $\mu$ (thông qua hàm bậc hai đối với $\mu$ khi cố định $\sigma^2$) để khẳng định cực đại bị chặn đạt tại biên $\mu_0$ khi $\hat{\mu} > \mu_0$.
+> - Nắm vững nguyên lý profiling (tối ưu hóa theo từng biến) khi xử lý tham số gây nhiễu trong LRT.
+>
+> **💡 Deeper notes**
+> - Từ biểu thức tỷ số $\lambda(\mathbf{x})$, khi thay các dạng phân phối chuẩn vào và rút gọn, tỷ số likelihood sẽ là một hàm nghịch biến theo thống kê kiểm định $t = \frac{\bar{X} - \mu_0}{S / \sqrt{n}}$, từ đó kiểm định LRT tương đương với One-sample Student's t-test quen thuộc.
+
+**🔗 See also:** [Kiểm định LRT cho trung bình](#node-ouhenhy) · [Testing Linear Combinations of Means](./111_2_introduction_one_way_anova.md#node-gjyj05b)
 
 <br>
 
@@ -1207,6 +1227,26 @@
 >
 >
 > P(θ ∈ Θ0c|𝐱) = P(H1 is true|𝐱)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và diễn giải trực quan tư tưởng cốt lõi của Bayesian Hypothesis Testing từ đoạn văn bản. Chỉ có một điểm thuật ngữ nhỏ cần làm rõ giữa không gian tham số và không gian mẫu.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"cũng chỉ là một subset của original sample space"*
+>
+> Về mặt thuật ngữ chuẩn xác, $\Theta_0$ là tập con của không gian tham số (parameter space $\Theta$), không phải 'sample space' (không gian mẫu - thường dùng để chỉ không gian chứa dữ liệu quan sát $\mathbf{x}$). Dù trong Bayesian thì $\theta$ là biến ngẫu nhiên nên $\{\theta \in \Theta_0\}$ thực sự là một biến cố (event), việc gọi là sample space dễ gây nhầm lẫn với không gian mẫu của dữ liệu.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ bản chất của Bayesian approach: xem tham số là biến ngẫu nhiên, từ đó biến giả thuyết thành các biến cố (events) có thể tính được xác suất trực tiếp.
+> - Tóm tắt mạch lạc chu trình từ Prior -> Bayes' Theorem -> Posterior -> Tính xác suất $P(H_0|\mathbf{x})$ và $P(H_1|\mathbf{x})$.
+>
+> **💡 Deeper notes**
+> - Khác với kiểm định Frequentist (nơi $H_0$ là một trạng thái cố định và chỉ có thể tính $P(\text{data}|H_0)$, việc tính $P(H_0|\text{data})$ là vô nghĩa), trong Bayesian ta tính được trực tiếp xác suất tiên lượng $P(H_0 \text{ is true}|\mathbf{x})$.
+> - Để thực sự đưa ra quyết định (test rule), bước tiếp theo của Bayesian test thường gắn thêm hàm mất mát (loss function) hoặc so sánh tỉ số posterior odds với prior odds (Bayes factor).
 
 <br>
 
@@ -1890,7 +1930,30 @@
 >
 > như đã nói ở ví dụ 8.2.6
 
-**🔗 See also:** [LRT với tham số gây nhiễu](#node-elajwsz) · [Phân phối và biến động trung bình mẫu](./53_sampling_from_the_normal_distribution.md#node-153vzn2) · [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge) · [Quan hệ UIT-LRT hai phía](./83_methods_of_evaluating_test.md#node-27dn67w)
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú rất tốt khi chủ động tự chứng minh lại vì sao LRT một phía tương đương với One-sided Student's t-test thay vì chỉ chép lại kết quả. Chỉ có một vài nhầm lẫn nhỏ ở phần bình luận phụ (như gọi MLE của phương sai là unbiased) và một lỗi gõ công thức đảo nghịch tỉ số.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"(σ²)^ = (1/n) Σi (xi - x̄)² (còn nhớ, nó là unbiased estimator của σ²)"*
+>
+> Ước lượng MLE (σ²)^ = (1/n)Σ(xi - x̄)² là ước lượng chệch (biased) vì có kỳ vọng bằng (n-1)/n σ². Ước lượng không chệch (unbiased) của phương sai là S² = 1/(n-1)Σ(xi - x̄)².
+>
+> **2.** *"⇔ [(σ²)^0 / (σ²)^]^(n/2) ≤ c"*
+>
+> Gõ nhầm thứ tự tử/mẫu so với dòng tính toán ngay phía trên (vốn là (σ²)^ / (σ²)^0). Rất may ở bước thế số ngay bên dưới bạn đã lấy đúng tỷ số nên không ảnh hưởng đến toàn bộ phép biến đổi tiếp theo.
+>
+>
+> **✓ Strengths**
+> - Tự lực biến đổi toàn diện từ tỷ số Likelihood Ratio sang Student's t statistic T thay vì chấp nhận công thức có sẵn.
+> - Tách đúng điều kiện x̄ > μ0 kết hợp với T² ≥ c' để suy ra miền bác bỏ một phía T ≥ tL một cách chặt chẽ.
+>
+> **💡 Deeper notes**
+> - Cần lưu ý thêm rằng ngưỡng tL được xác định theo mức ý nghĩa α dựa vào phân phối t của Student với n-1 bậc tự do dưới giả thuyết null tại biên μ = μ0.
+
+**🔗 See also:** [LRT với tham số gây nhiễu](#node-elajwsz) · [Phân phối và biến động trung bình mẫu](./53_sampling_from_the_normal_distribution.md#node-153vzn2) · [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge) · [Quan hệ UIT-LRT hai phía](./83_methods_of_evaluating_test.md#node-27dn67w) · [Testing Linear Combinations of Means](./111_2_introduction_one_way_anova.md#node-gjyj05b)
 
 <br>
 
