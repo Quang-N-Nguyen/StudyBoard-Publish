@@ -2570,6 +2570,8 @@
 >
 > CÁI NÀY CÓ MỘT KHÁI NIỆM MỚI PROFILE LIKELIHOOD của σ²
 
+**🔗 See also:** [Testing Linear Combinations of Means](./111_2_introduction_one_way_anova.md#node-gjyj05b)
+
 <br>
 
 <a id="node-auqb0ls"></a>
