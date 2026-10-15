@@ -1,6 +1,6 @@
 # 8.3 Methods Of Evaluating Test
 
-📊 **Progress:** `53` Notes | `64` Screenshots | `3` AI Reviews
+📊 **Progress:** `53` Notes | `64` Screenshots | `6` AI Reviews
 
 ---
 <a id="node-nxql2js"></a>
@@ -5509,6 +5509,19 @@
 > Và dĩ nhiên với các giá trị khác nhau của 𝐗 thì qua chu trình này, ta có các
 > giá trị khác nhau p(𝐱), từ đó giúp hiểu cái định nghĩa của p(𝐗) là sao
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú giải thích rất rõ ràng và chính xác bản chất toán học của việc định nghĩa thống kê p(X) từ hàm p(x). Bạn đã phân tích mạch lạc sự khác biệt giữa biến ngẫu nhiên và giá trị quan sát.
+>
+> **✓ Strengths**
+> - Phân biệt rất chuẩn xác giữa biến ngẫu nhiên X, giá trị quan sát x (hoặc u), và việc áp hàm p(·) lên biến ngẫu nhiên X để tạo thành thống kê p(X).
+> - Phân rã từng bước tính toán (tính thống kê mẫu, tính xác suất vượt ngưỡng theo tham số θ, lấy supremum trên không gian giả thuyết không Θ0) rất trực quan và đúng đắn.
+>
+> **💡 Deeper notes**
+> - Trong thực tế, khái niệm 'valid p-value' mang ý nghĩa kỹ thuật chuẩn là P_θ(p(X) ≤ α) ≤ α với mọi α ∈ (0, 1) và mọi θ ∈ Θ0; việc lấy supremum trên Θ0 chính là mấu chốt để chặn trên xác suất sai lầm loại I này.
+> - Khái niệm supremum (sup) là cận trên đúng, bao hàm cả trường hợp giá trị lớn nhất không đạt được (không có max trong không gian mở), dù về mặt trực giác có thể coi như một bài toán tối ưu hóa.
+
 <br>
 
 <a id="node-aax4fpl"></a>
@@ -5695,6 +5708,30 @@
 >
 >
 > Do đó, theo định nghĩa của p-value, nó chính là một valid p-value
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú giải thích chứng minh rất chi tiết, mạch lạc và thể hiện sự hiểu sâu sắc về bản chất biến ngẫu nhiên, ánh xạ tập hợp và phân phối xác suất. Có một vài lỗi gõ phím nhỏ (typo) không làm ảnh hưởng đến tính đúng đắn chung.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Vì W(𝐗) ≥ W(u) ⇔ -W(𝐗) ≤ W(u)"*
+>
+> Lỗi gõ phím (typo) thiếu dấu âm ở vế phải (đúng ra phải là -W(u)), tuy nhiên dòng ngay phía dưới bạn đã viết lại chính xác là -W(u).
+>
+> **2.** *"Và với việc đã gọi F_θ(w) là cdf của W, hay W(𝐗)"*
+>
+> Diễn đạt nhầm một chút về ký hiệu: F_θ(w) là cdf của -W(𝐗) chứ không phải của W(𝐗), dù đoạn sau bạn vẫn áp dụng đúng cho -W(𝐗).
+>
+>
+> **✓ Strengths**
+> - Giải thích rất sắc bén lý do tại sao hàm p(𝐗) không phụ thuộc θ nhưng khi tính xác suất vẫn phải dùng P_θ (do phân phối của 𝐗 vẫn phụ thuộc vào tham số thực θ).
+> - Chứng minh bất đẳng thức xác suất chặt chẽ thông qua quan hệ bao hàm của các tập biến cố: {𝐱: p(𝐱) ≤ α} ⊂ {𝐱: p_θ(𝐱) ≤ α}.
+> - Nắm vững ứng dụng của Probability Integral Transformation (biến ngẫu nhiên liên tục cho phân phối chuẩn Uniform(0,1), còn tổng quát/rời rạc thì stochastically greater than or equal).
+>
+> **💡 Deeper notes**
+> - Đối với biến ngẫu nhiên rời rạc, F_θ(-W(𝐗)) có các bước nhảy (jumps) khiến phân phối của nó bị 'stochastically larger' hơn Uniform(0,1), tức là P(p_θ(𝐗) ≤ α) ≤ α thay vì dấu bằng tuyệt đối.
 
 <br>
 
@@ -6601,6 +6638,39 @@
 >
 > hay p(𝐗) = P(Tn-1(X) ≥ (X̄-μ0) / (S/√n))
 
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **68/100** · ✗ Fix first
+>
+> Bạn nắm rất tốt ý tưởng tổng thể từ việc tìm MLE có ràng buộc, thiết lập tỉ số LRT cho đến chặn trên xác suất để tính p-value. Tuy nhiên, bước biến đổi đại số từ tổng bình phương sang bình phương của tổng là một lỗi toán học nghiêm trọng làm sai lệch phép dẫn xuất phân phối kiểm định.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"⇔ (1/c)^(2/n) ≤ [Σi(xi-μ0)² / [(n-1)S²/n]]
+
+⇔ (1/c)^(2/n) ≤ [Σi(xi-μ0) / (S/√n)]² / (n-1)"*
+>
+> Lỗi biến đổi sai bản chất: Bạn đã đồng nhất tổng các bình phương với bình phương của một tổng, tức là coi $\sum (x_i - \mu_0)^2 = [\sum (x_i - \mu_0)]^2$. Biến đổi đúng phải dựa trên phân tích đại số $\sum (x_i - \mu_0)^2 = \sum (x_i - \bar{x})^2 + n(\bar{x} - \mu_0)^2 = (n-1)S^2 + n(\bar{x} - \mu_0)^2$, từ đó tỉ số mới là $1 + \frac{1}{n-1} W(x)^2$.
+>
+>
+> **🟡 Minor issues**
+>
+> **1.** *"⇨ p(𝐱) = sup_{(μ, σ²):μ≤μ0} P(Tn-1(𝐗) ≥ W(𝐱) + (μ0-μ) / (s/√n))"*
+>
+> Trong biểu thức xác suất, mẫu số phải là biến ngẫu nhiên $S$ (viết hoa), không phải giá trị quan sát $s$ (viết thường). Sách gốc nhấn mạnh $(\mu_0 - \mu)/(S/\sqrt{n})$ là một biến ngẫu nhiên không âm, do đó biến cố con dẫn đến bất đẳng thức xác suất theo tính chất đơn điệu của độ đo xác suất, chứ không đơn thuần là dịch chuyển một mốc hằng số $a$ cố định trên trục số.
+>
+> **2.** *"= - (n/2) (1/σ²) - (1/2)Σi[(xi-μ)²] [-1/σ²]²"*
+>
+> Lỗi ký hiệu đạo hàm: Đạo hàm của $1/\sigma^2$ theo $\sigma^2$ là $-1/(\sigma^2)^2$, viết $[-1/\sigma^2]^2$ dễ gây hiểu nhầm thành $(-1/\sigma^2)^2 = +1/(\sigma^2)^4$.
+>
+>
+> **✓ Strengths**
+> - Tự lực giải chi tiết bài toán tối ưu có ràng buộc để tìm restricted MLE thay vì chỉ trích dẫn kết quả có sẵn.
+> - Hiểu chính xác lý do LRT không bác bỏ $H_0$ khi $\bar{x} < \mu_0$ (tỉ số likelihood đạt giá trị 1).
+> - Nắm vững logic chuẩn hóa để đưa về thống kê $T_{n-1}$ khi tính supremum của xác suất dưới $H_0$.
+>
+> **💡 Deeper notes**
+> - Bất đẳng thức $P(T_{n-1} \ge W(x) + Y) \le P(T_{n-1} \ge W(x))$ với $Y = (\mu_0 - \mu)/(S/\sqrt{n}) \ge 0$ luôn đúng cho mọi biến ngẫu nhiên $Y \ge 0$ hầu chắc chắn, vì biến cố $\{T_{n-1} \ge W(x) + Y\} \subseteq \{T_{n-1} \ge W(x)\}$.
+
 <br>
 
 <a id="node-e7v2aj1"></a>
@@ -7172,6 +7242,8 @@
 <br>
 
 <a id="node-7n5m9pk"></a>
+
+###### Loss Function Optimality
 
 <p align="center"><kbd><img src="assets/z6ij0ou3erp.png" width="80%"></kbd></p>
 
