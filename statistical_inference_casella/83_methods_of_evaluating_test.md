@@ -1,6 +1,6 @@
 # 8.3 Methods Of Evaluating Test
 
-📊 **Progress:** `53` Notes | `64` Screenshots | `6` AI Reviews
+📊 **Progress:** `53` Notes | `64` Screenshots | `7` AI Reviews
 
 ---
 <a id="node-nxql2js"></a>
@@ -1191,6 +1191,28 @@
 >
 > Khi đó, ta sẽ làm đúng như ý tưởng: Lọc ra một đám có Type I error đạt tiêu
 > chuẩn (lọc bằng upper bound) và trong đám đó tìm ra thằng tốt nhất
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ⚠️ **88/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và chính xác bản chất của size α test và level α test cùng lý do cần kiểm soát sai lầm loại I trước. Chỉ có một điểm nhầm lẫn nhỏ ở phần dự đoán cuối bài về việc tối thiểu hóa sai lầm loại II thông qua hàm lực kiểm định.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Hoặc, thậm chí ta sẽ tìm phép test có β(θ) nhỏ nhất trong đám β(θ) với mọi θ."*
+>
+> Trên miền đối thiết θ ∈ Θ₀ᶜ, hàm lực kiểm định β(θ) = 1 - P(Type II Error). Do đó, để xác suất sai lầm loại II nhỏ nhất, ta cần tìm phép kiểm định có β(θ) LỚN NHẤT (cực đại hóa power / lực kiểm định) trên miền đối thiết, chứ không phải tìm β(θ) nhỏ nhất.
+>
+>
+> **✓ Strengths**
+> - Phân biệt chính xác giữa size α test (sup bằng α) và level α test (sup nhỏ hơn hoặc bằng α).
+> - Hiểu rõ mối quan hệ tập hợp: tập các level α test bao hàm tập các size α test.
+> - Nắm đúng bản chất trực giác vì sao thực tế đôi khi phải chấp nhận level α test thay vì size α test (do mô hình phức tạp hoặc khó khăn tính toán).
+> - Hiểu đúng chiến lược 2 vòng kiểm soát: vòng 1 chặn trên xác suất sai lầm loại I, vòng 2 tối ưu sai lầm loại II.
+>
+> **💡 Deeper notes**
+> - Trong thực hành kiểm định, người ta thường chọn α rất nhỏ (như 0.05, 0.01) thay vì 0.7 để bảo vệ giả thuyết null H₀ một cách khắt khe.
+> - Khái niệm tìm phép kiểm định làm cực đại hóa β(θ) với mọi θ ∈ Θ₀ᶜ trong lớp các kiểm định level α chính là định nghĩa của phép kiểm định mạnh nhất đều (Uniformly Most Powerful - UMP test) sẽ học ở các phần tiếp theo.
 
 <br>
 
