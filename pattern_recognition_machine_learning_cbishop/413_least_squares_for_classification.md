@@ -1,6 +1,6 @@
 # 4.1.3 Least squares for classification
 
-📊 **Progress:** `7` Notes | `9` Screenshots | `7` AI Reviews
+📊 **Progress:** `7` Notes | `13` Screenshots | `7` AI Reviews
 
 ---
 <a id="node-f00j3uu"></a>
@@ -13,8 +13,10 @@
 
 <p align="center"><kbd><img src="assets/9h4ptfhdxbi.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/9f7lbhmalm7.png" width="80%"></kbd></p>
+
 > [!NOTE]
-> Quan phần này ta sẽ học về cách train ra giá trị của parameter của discriminant function.
+> Qua phần này ta sẽ học về cách train ra giá trị của parameter của discriminant function.
 >
 >
 >
@@ -22,18 +24,30 @@
 >
 >
 >
-> Thì đại ý là, trong bài toán regression, mình dùng hàm y(𝐰,𝐱) để dự đoán target value, với giả định T|𝐱 \~ 𝒩(y(𝐱,𝐰), 1/β). Và điều này đồng nghĩa ta đang dùng y(𝐰,𝐱) để estimate cho E\[T|𝐱\], vì với phân phối normal, mean của nó chính là location.
+> Thì đại ý là, trong bài toán regression, mình dùng hàm y(𝐰,𝐱) để dự đoán target value, với giả định T|𝐱 \~ 𝒩(y(𝐱,𝐰), 1/β). Và điều này nên được hiểu hàm ý hai thứ:
+>
+>
+>
+> i) Ta giả định T|𝐱 \~ 𝒩(𝐰ᵀΦ(𝐱), 1/β): cho rằng T|𝐱 là biến ngẫu nhiên theo phân phối normal có tâm là hàm tuyến tính của 𝐰 và Φ(𝐱), phương sai là hằng số với mọi 𝐱.
+>
+>
+>
+> ii) Và khi suy luận được phân phối của T|𝐱, ta dùng mean của nó để dự đoán: y(𝐱,𝐰) = E\[T|𝐱\] (cũng là 𝐰ᵀΦ(𝐱)) - mà theo decision theory, đây chính là cách làm giúp giảm thiểu E\[Square loss\].
+>
+>
+>
+> ---
 >
 > \
 > Thì với classification, ta cũng muốn dự đoán E\[𝐓|𝐱\], với 𝐓 theo phân phối theo kiểu 1-of-K binary coding scheme: Tức là random variable 𝐓 có K possible discrete value \[1,0,..0\]ᵀ, \[0,1,...0\]ᵀ, ..., \[0,0,...,1\]ᵀ ứng với class 𝒞1,𝒞2,...𝒞K. Điều này cũng đồng nghĩa các random variable T1,...TK của random variable vector 𝐓, sẽ đều là random variable với chỉ 2 possible value: 0 hoặc 1. Và dễ thấy, điều này có nghĩa là: T1,..TK đều là các Bernouli random variable (Stat110 đã học: Bất cứ khi nào random variable chỉ có 2 possible value thì nó \~ Bernouli)
 >
 >
 >
-> Và ta dự đoán bằng y(𝐰,𝐱) là hàm vector \[y1(𝐱), y2(𝐱),...yK(𝐱)\] = \[𝐰1T𝐱 + w10, 𝐰2T𝐱 + w20, ..., 𝐰Kᵀ𝐱 + wK0\] (xem link bài trước) 
+> Và ta dự đoán bằng y(𝐰,𝐱) là hàm vector \[y1(𝐱), y2(𝐱),...yK(𝐱)\] = \[𝐰1T𝐱 + w10, 𝐰2T𝐱 + w20, ..., 𝐰Kᵀ𝐱 + wK0\] (xem link bài trước)
 >
 >
 >
-> Và như vậy E\[𝐓|𝐱\] là gì? 
+> Và như vậy E\[𝐓|𝐱\] là gì?
 >
 >
 >
@@ -44,7 +58,11 @@
 >
 >
 >
-> Với công thức expected value đã học trong Stat110: là weighted average của possible value với coefficient là pmf, và Ti \~ Bernouily, chỉ có hai possible value 0,1, ta có 
+> Với công thức expected value đã học trong Stat110: là weighted average của possible value với coefficient là pmf, và Ti \~ Bernouily, chỉ có hai possible value 0,1, ta có
+>
+>
+>
+> X discrete {x1,x2,x3}, E\[X\] = weighted average = P(X=x1)x1 + P(X=x2)x2 + P(X=x3)x3
 >
 >
 >
@@ -56,7 +74,7 @@
 >
 >
 >
-> Nên E\[T1|𝐱\] = P(T1=1|𝐱) = P(𝐓 = \[1,0,...0\]ᵀ|𝐱) = P(𝒞1|𝐱), và đây chính là posterior probability của f(𝒞|𝐱) evaluate tại 𝒞 = 𝒞1, tức xác suất random variable (class 𝒞) mang giá trị 𝒞1 dựa trên giá trị input 𝐱. 
+> Nên E\[T1|𝐱\] = P(T1=1|𝐱) = P(𝐓 = \[1,0,...0\]ᵀ|𝐱) = P(𝒞1|𝐱), và đây chính là posterior probability của f(𝒞|𝐱) evaluate tại 𝒞 = 𝒞1, tức xác suất random variable (class 𝒞) mang giá trị 𝒞1 dựa trên giá trị input 𝐱.
 >
 >
 >
@@ -96,11 +114,11 @@
 >
 >
 >
-> cũng đồng nghĩa là: 
+> cũng đồng nghĩa là:
 >
 >
 >
-> lấy y(𝐰1,𝐱) = w10 + w11x1 + w12x2 + ..w1DxD, để dự đoán E\[T1|𝐱\] = f(𝒞1|𝐱) 
+> lấy y(𝐰1,𝐱) = w10 + w11x1 + w12x2 + ..w1DxD, để dự đoán E\[T1|𝐱\] = f(𝒞1|𝐱)
 >
 >
 >
@@ -122,10 +140,20 @@
 >
 > Đây chính là lí do ông Bishop nói : "Thật không may, các giá trị xác suất này về cơ bản là được ước lượng rất tệ vì nó có thể ra giá trị ngoài range (0,1), và lí do bắt nguồn từ hạn chế về độ flexible của hàm tuyến tính."
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=PN_OLQMByOU)
+
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
-> Ghi chú rất xuất sắc, giải thích cặn kẽ và chính xác bản chất toán học của kỳ vọng có điều kiện và lý do mô hình tuyến tính thất bại khi xấp xỉ xác suất. Bạn chỉ cần chú ý ký hiệu xác suất để tránh nhầm lẫn giữa hàm mật độ xác suất và xác suất rời rạc.
+> Ghi chú rất xuất sắc, hiểu sâu sắc bản chất xác suất của vector mã hóa 1-of-K và làm rõ lý do tại sao xấp xỉ bình phương tối thiểu cho bài toán phân loại lại gặp vấn đề về miền giá trị.
+>
+> **✓ Strengths**
+> - Chứng minh chi tiết và chính xác vì sao kỳ vọng có điều kiện E[t|x] của vector mã hóa 1-of-K chính là vector xác suất hậu nghiệm P(C_k|x).
+> - Chỉ rõ mâu thuẫn cốt lõi: mô hình tuyến tính có miền giá trị không giới hạn trong khi xác suất bị ràng buộc chặt chẽ trong đoạn [0, 1].
+>
+> **💡 Deeper notes**
+> - Trong lý thuyết quyết định (decision theory), nghiệm tối ưu cho hàm mất mát bình phương (squared loss) luôn là kỳ vọng có điều kiện E[t|x] với mọi phân phối, không bắt buộc phải có giả định phân phối chuẩn (phân phối chuẩn chỉ dùng để suy ra bình phương tối thiểu từ góc nhìn Maximum Likelihood).
+> - Một tính chất thú vị được Bishop phân tích ở các dòng tiếp theo trong sách: nếu mô hình tuyến tính có hệ số tự do (bias/intercept), tổng các dự đoán vẫn sẽ luôn bằng 1 với mọi x, nhưng từng giá trị riêng lẻ y_k(x) vẫn có thể bị âm hoặc lớn hơn 1.
 
 **🔗 See also:** [K-Class Linear Discriminant Functions](./412_multiple_class.md#node-yhoheyw)
 
@@ -165,9 +193,17 @@
 > Và như đã biết ở phần 4.1.2, cách làm của mô hình dự đoán sẽ là tính ra y(𝐱) và xem chỉ số k nào trong các số từ 1, 2, ..K là ứng với phần tử lớn nhất, thì assign class 𝒞k cho input
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú giải thích rất trực quan, chính xác về cơ chế ghép vector (vectorization) và quy tắc ra quyết định theo đúng nội dung sách. Tuy nhiên, cần lưu ý không nên ký hiệu thành f(Ck|x) vì hàm phân biệt tuyến tính ở đây chỉ trả về giá trị discriminant trực tiếp chứ chưa phải xác suất hay hàm mật độ điều kiện.
+> Ghi chú rất chuẩn xác, giải thích trực quan và rõ ràng từng bước ghép vector mở rộng và xây dựng ma trận trọng số để vector hóa mô hình phân loại nhiều lớp.
+>
+> **✓ Strengths**
+> - Hiểu rất rõ và giải thích cặn kẽ cách ghép bias vào vector mở rộng x̃ và w̃_k.
+> - Lập luận chính xác về mặt đại số tuyến tính: cột của W̃ trở thành hàng của W̃ᵀ, dẫn đến phép nhân W̃ᵀx̃ sinh ra vector các giá trị y_k.
+> - Nắm đúng quy tắc ra quyết định (decision rule) là chọn class có y_k lớn nhất (argmax).
+>
+> **💡 Deeper notes**
+> - Ở hàm phân biệt tuyến tính trực tiếp (linear discriminant functions), các đầu ra y_k(x) không nhất thiết là xác suất hậu nghiệm P(C_k|x) được chuẩn hóa (có thể âm hoặc lớn hơn 1), mà chỉ đóng vai trò là điểm số phân biệt để so sánh độ lớn.
 
 <br>
 
@@ -176,6 +212,12 @@
 #### Sum-of-Squares Error Matrix Form
 
 <p align="center"><kbd><img src="assets/3mxhdb46h4v.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/bjzi5x0dkpr.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/5qwq95n94bu.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/vm1cqgkhn2.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Rồi, như đã nói, ta sẽ đi định ra, tìm ra giá trị của matrix tham số 𝐖̃ theo cách làm là đi minimize hàm sum of squares error (còn gọi là cách làm least square). Thì đầu tiên cần define thêm hai matrix: 𝐓 và 𝐗̃ (𝐗 tilde):
@@ -282,10 +324,20 @@
 >
 > Vậy E_D(𝐖̃) = (1/2) trace(𝐄ᵀ𝐄) =(1/2) trace((𝐗̃𝐖̃-𝐓)ᵀ(𝐗̃𝐖̃-𝐓))
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=AvNmmtQ7ZiA)
+
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú giải thích rất cặn kẽ, chính xác bản chất đại số tuyến tính từ góc nhìn phép nhân ma trận đến tính chất của hàm Trace. Bạn chỉ cần chú ý đồng nhất ký hiệu dấu ngã trên ma trận thiết kế ($\widetilde{\mathbf{X}}$) để tránh nhầm lẫn với ma trận không có bias.
+> Ghi chú xuất sắc! Bạn đã tự diễn giải và chứng minh công thức (4.15) một cách cực kỳ mạch lạc thông qua góc nhìn nhân ma trận và tính chất vòng lặp của trace.
+>
+> **✓ Strengths**
+> - So sánh rõ ràng sự khác biệt về cấu trúc nhãn mục tiêu giữa hồi quy đơn biến (vector t) và phân loại đa lớp (ma trận T gồm các hàng one-hot vector t_n^T).
+> - Áp dụng chính xác góc nhìn tổ hợp tuyến tính của phép nhân ma trận để chứng minh ma trận sai số E = X_tilde * W_tilde - T.
+> - Chứng minh chặt chẽ việc chuyển từ tổng bình phương norm vector sang Trace(EE^T), sau đó dùng tính chất xoay vòng Tr(AB) = Tr(BA) để ra công thức sách giáo khoa.
+>
+> **💡 Deeper notes**
+> - Về mặt tính toán thực tế, ma trận EE^T có kích thước N x N (với N là số lượng mẫu, thường rất lớn), trong khi E^T E có kích thước K x K (với K là số lớp). Việc chuyển sang tính Tr(E^T E) thông qua tính chất trace xoay vòng giúp tiết kiệm chi phí tính toán đáng kể khi N >> K.
 
 <br>
 
@@ -340,7 +392,7 @@
 >
 >
 >
-> = tr(𝐖̃ᵀ𝐗̃ᵀ𝐗𝐖̃) - 2tr(𝐓ᵀ𝐗̃𝐖̃) + tr(𝐓ᵀ𝐓)
+> = tr(𝐖̃ᵀ𝐗̃ᵀ𝐗̃𝐖̃) - 2tr(𝐓ᵀ𝐗̃𝐖̃) + tr(𝐓ᵀ𝐓)
 >
 >
 >
@@ -408,7 +460,7 @@
 >
 >
 >
-> Và trong sách không nói, nhưng nhờ MIT 18.06 ta biết 𝐗̃ᵀ𝐗̃ chỉ invertible khi 𝐗̃ full column rank, khi đó, nhân hai vế cho inverse của 𝐗̃ᵀ𝐗̃
+> Và trong sách không nói, nhưng nhờ MIT 18.06 ta biết 𝐗̃ᵀ𝐗̃ chỉ invertible khi 𝐗̃ full column rank, khi đó, nhân hai vế cho inverse của 𝐗̃ᵀ𝐗̃ 
 >
 >
 >
@@ -420,11 +472,25 @@
 >
 >
 >
+> A đối xứng, xᵀAx &gt; 0 với mọi x khác 0 
+>
+>
+>
+> N(A) = {𝟎} Ax = 0 ⇔ x = 0
+>
+>
+>
+> xᵀAx = xᵀQ 𝚲 Qᵀx = yᵀ𝚲y = Σi λi yi² 
+>
+>
+>
+>
+>
 > ---
 >
 >
 >
-> Vậy 𝐖̃ = (𝐗̃ᵀ𝐗̃)⁻¹ 𝐗̃ᵀ𝐓 là W thõa điều kiện cần, đúng ra phải xét tiếp đạo hàm bậc hai mới kết luận được 𝐖̃ là minimizer. Nhưng cũng dễ thấy với đạo hàm là 𝐗̃ᵀ𝐗̃𝐖̃ - 𝐗̃ᵀ𝐓, thì đạo hàm bậc hai đối với 𝐖̃ chính là 𝐗̃ᵀ𝐗̃, và theo MIT 18.06 ta đã biết đây là matrix positive semi definite, nên có thể kết luận chính là minimizer của hàm objective.
+> Vậy 𝐖̃ = (𝐗̃ᵀ𝐗̃)⁻¹ 𝐗̃ᵀ𝐓 là W thõa điều kiện cần, đúng ra phải xét tiếp đạo hàm bậc hai mới kết luận được 𝐖̃ là minimizer. Nhưng cũng dễ thấy với đạo hàm là 𝐗̃ᵀ𝐗̃𝐖̃ - 𝐗̃ᵀ𝐓, thì đạo hàm bậc hai đối với 𝐖̃ chính là 𝐗̃ᵀ𝐗̃, và theo MIT 18.06 ta đã biết đây là matrix positive definite, nên có thể kết luận chính là minimizer của hàm objective.
 >
 >
 >
@@ -432,7 +498,7 @@
 >
 >
 >
-> Cuối cùng lắp 𝐖̃ = (𝐗̃ᵀ𝐗̃)⁻¹ 𝐗̃ᵀ𝐓 vào y(𝐱) = 𝐖̃ᵀ𝐱̃ 
+> Cuối cùng lắp 𝐖̃ = (𝐗̃ᵀ𝐗̃)⁻¹ 𝐗̃ᵀ𝐓 vào y(𝐱) = 𝐖̃ᵀ𝐱̃
 >
 >
 >
@@ -446,10 +512,20 @@
 >
 > = 𝐓ᵀ (𝐗̃⁺)ᵀ 𝐱̃
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=CsOAZYm9BHE)
+
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú rất xuất sắc, chi tiết và hoàn toàn chính xác trong từng bước đạo hàm ma trận cũng như phân tích điều kiện tối ưu bậc hai. Bạn chỉ cần lưu ý một điểm nhỏ là khi $\widetilde{\mathbf{X}}$ có full column rank thì $\widetilde{\mathbf{X}}^T\widetilde{\mathbf{X}}$ sẽ là ma trận xác định dương (strictly positive definite), đảm bảo cực tiểu toàn cục duy nhất.
+> Ghi chú rất xuất sắc, tự thực hiện trọn vẹn và chính xác các bước đạo hàm ma trận thông qua trace mà sách giáo trình lược bỏ.
+>
+> **✓ Strengths**
+> - Khai triển hàm mất mát dạng vết (trace) và áp dụng chính xác các quy tắc đạo hàm ma trận đối với hàm vô hướng.
+> - Lập luận chặt chẽ về điều kiện khả nghịch của ma trận dựa trên hạng đầy đủ theo cột (full column rank).
+> - Kiểm tra điều kiện đủ bậc hai (Hessian/positive definite) để khẳng định nghiệm tìm được là điểm cực tiểu toàn cục.
+>
+> **💡 Deeper notes**
+> - Ma trận tích $\widetilde{\mathbf{X}}^{\mathrm{T}}\widetilde{\mathbf{X}}$ nói chung luôn là nửa xác định dương (positive semi-definite); nó chỉ xác định dương (positive definite) chặt chẽ khi $\widetilde{\mathbf{X}}$ có các cột độc lập tuyến tính (full column rank) như bạn đã chú thích ở bước khả nghịch.
 
 **🔗 See also:** [Đạo hàm Trace Ma trận](./appendix_c_matrices.md#node-0oculhd) · [Đạo hàm hàm vết ma trận](./appendix_c_matrices.md#node-f8fc5lg)
 
@@ -553,24 +629,17 @@
 📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=D1LgZ77Hxgs)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **96/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú xuất sắc! Bạn không chỉ hiểu đúng bản chất lý thuyết mà còn tự tạo ví dụ số học (numerical example) cực kỳ trực quan để giải thích hiện tượng 'too correct' bị phạt bởi Sum-of-Squares Error (SSE).
-> ### Điểm mạnh
-> - **Hiểu sâu sắc và trực quan:** Việc bạn đặt ra ví dụ số học so sánh Model 1 ($y_1=10, y_2=-1$) và Model 2 ($y_1=0, y_2=2$) là một cách tiếp cận tuyệt vời để làm sáng tỏ cụm từ *'penalizes predictions that are too correct'*. Đây là điểm mấu chốt mà nhiều người đọc sách thường bỏ qua hoặc không hiểu thấu đáo.
-> - **Nắm vững bản chất Discriminant Function:** Bạn đã phân biệt chuẩn xác giữa hàm phân định (mapping trực tiếp) và mô hình xác suất, cũng như hiểu rõ ý nghĩa của closed-form solution.
-> - **Liên hệ tốt với hiện tượng Outlier:** Phân tích đúng việc các điểm nằm sâu về phía đúng (right-hand side of Figure 4.4) kéo lệch đường phân chia của Least Squares do lỗi bình phương tăng vọt theo khoảng cách.
+> Ghi chú rất xuất sắc, giải thích trực quan và chuẩn xác bản chất vì sao hàm lỗi bình phương tối thiểu (SSE) lại phạt các điểm 'quá đúng' (too correct) và dẫn đến nhạy cảm với outlier.
 >
-> ### Điểm cần lưu ý & Cải thiện nhỏ
-> - **Lỗi in của sách:** Trong chú thích của Figure 4.4 trong sách gốc có ghi nhầm là *'extra data points are added at the bottom left'*, nhưng thực tế trên đồ thị các điểm outlier nằm ở **bottom right** (góc dưới bên phải). Việc nhận ra chi tiết này sẽ giúp ghi chú của bạn chuẩn xác tuyệt đối.
-> - **Ký hiệu vector:** Để chặt chẽ hơn trong toán học, bạn có thể nhắc nhẹ rằng target coding trong phân loại nhiều lớp ở đây là **1-of-K coding scheme** (hay còn gọi là one-hot encoding).
+> **✓ Strengths**
+> - Hiểu rất rõ và trực quan hóa chính xác khái niệm 'penalizes predictions that are too correct' qua ví dụ số học hai mô hình cụ thể.
+> - Phân biệt rành mạch giữa mục tiêu khớp giá trị số học của SSE và mục tiêu phân loại nhãn đúng/sai.
+> - Nắm vững các đặc tính cốt lõi của least squares cho classification: có nghiệm closed-form, là hàm phân biệt trực tiếp không có bản chất phân phối xác suất, và kém bền vững với outlier.
 >
-> ### Gợi ý đào sâu
-> - Hãy thử tự đặt câu hỏi: *'Tại sao Logistic Regression hay Cross-Entropy loss lại không bị vấn đề penalize too correct này?'* (Gợi ý: Hàm sigmoid nén giá trị ra khoảng $(0, 1)$ và tiệm cận với target mà không bị bùng nổ khoảng cách Euclidean).
->
-> **⭐ Bonus points**
-> - Tự xây dựng ví dụ số học định lượng (numerical proof) để minh họa cụ thể cho khái niệm 'too correct' vốn trừu tượng trong sách giáo trình.
-> - Liên kết chính xác bản chất của regression loss (bình phương khoảng cách Euclidean) với sự sai lệch trong bài toán classification.
+> **💡 Deeper notes**
+> - Về mặt tối ưu hóa toàn cục: Khi có điểm dữ liệu nằm rất xa về phía đúng (outlier nằm sâu trong miền của class), giá trị hàm dự đoán tại điểm đó rất lớn dẫn đến phần dư (residual) lớn. Để cực tiểu hóa tổng bình phương sai số của toàn bộ tập dữ liệu, siêu phẳng nghiệm buộc phải xoay hoặc dời về phía outlier đó để kéo residual của nó xuống, vô tình cắt phạm vào cụm điểm chuẩn ban đầu.
 
 <br>
 
