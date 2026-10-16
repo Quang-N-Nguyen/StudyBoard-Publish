@@ -1,6 +1,6 @@
 # 11.1 & 2  introduction, One-way Anova
 
-📊 **Progress:** `20` Notes | `26` Screenshots | `17` AI Reviews
+📊 **Progress:** `21` Notes | `27` Screenshots | `18` AI Reviews
 
 ---
 <a id="node-c5qtmoe"></a>
@@ -1468,6 +1468,8 @@
 
 <a id="node-a1xjk4i"></a>
 
+###### Kiểm định ANOVA size α
+
 <p align="center"><kbd><img src="assets/yd539y7mbj.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -1564,6 +1566,269 @@
 > **💡 Deeper notes**
 > - Dưới không gian giả thuyết H0, thống kê kiểm định t hoàn toàn không phụ thuộc vào tham số gây phiền (nuisance parameter) là phương sai sai số σ², do đó P_θ(reject H0) là hằng số bằng α trên toàn bộ Θ0, biến đây thành kiểm định kích thước chính xác (exact size α test).
 > - Có một lỗi nhỏ về trình bày (lặp lại 2 dòng công thức liên tiếp do copy-paste) nhưng hoàn toàn không ảnh hưởng đến logic toán học.
+
+<br>
+
+<a id="node-b20gnve"></a>
+
+###### Confidence Interval for Linear Combinations
+
+<p align="center"><kbd><img src="assets/h73lwf8i8gm.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> \[(Σi=1:k aiȲi) - Σi aiθi\]/√Σi ai²/ni\] / √(S²\_p) \~ t_N-k cũng là một pivot - là random variable có dính tới tham số chưa biết nhưng ta lại biết nó có phân phối không phụ thuộc tham số đó.
+>
+>
+>
+> Cụ thể ở đây dù chưa biết Σi aiθi (do chưa biết θi) nhưng ta biết cục này là \~ t_N-k
+>
+>
+>
+> Nhắc lại bài toán kiểm định H0: Σi aiθi = 0 vs H1 Σi aiθi ≠ 0.
+>
+>
+>
+> Đặt Σi aiθi là γ, và γ0 = 0, H0 viết lại thành: γ = γ0, vs H1: γ ≠ γ0
+>
+>
+>
+> Và note trước ta đã chứng minh rằng với bài toán kiểm định trên thì cái test có rule sau đây được chứng minh là size α test
+>
+>
+>
+> reject H0 khi |\[(Σi=1:k aiȲi)\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2
+>
+>
+>
+> Tuy nhiên có một sự thật là:
+>
+>
+>
+> Với dù Σi aiθi mang giá trị thật γ\* nào thì khi đặt ra bài toán kiểm định: H0: Σi aiθi = γ\* vs H1: Σi aiθi khác γ thì phép kiểm định sau đây vẫn luôn là size alpha test:
+>
+>
+>
+> reject H0 khi |\[(Σi=1:k aiȲi) - γ\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2
+>
+>
+>
+> Vì sao? Vì test rule dựa trên một biến ngẫu nhiên tuy dính đến giá trị thật γ của của Σi aiθi nhưng nó luôn là một t_N-k random variable.
+>
+>
+>
+> Nên VỚI MỌI γ\*: sup\_γ∈{γ\*}  P\_γ(|\[(Σi=1:k aiȲi) - γ\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2)
+>
+>
+>
+> = P(|\[(Σi=1:k aiȲi) - γ\*\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2)
+>
+>
+>
+> = P(|T_N-k| &gt; t_N-k,α/2)
+>
+>
+>
+> = P(-t_N-k,α/2 &lt; T_N-k or T_N-k &gt; t_N-k,α/2)
+>
+>
+>
+> = P(T_N-k &lt; -t_N-k,α/2 ) + P(T_N-k &gt; t_N-k,α/2)
+>
+>
+>
+> = α/2 + α/2 = α
+>
+>
+>
+> Nên ta nên hiểu rằng:
+>
+>
+>
+> Với bài toán kiểm định H0: Σi aiθi = 0 (γ0) vs H1: Σi aiθi ≠ 0 thì test rule reject H0 khi |(Σi=1:k aiȲi)/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2 là level alpha test (1)
+>
+>
+>
+> nhưng với các bài toán khác, tạo thành vô số bài toán H0: Σi aiθi = γ vs H1: Σi aiθi ≠ γ, với bất kì γ nào, thì test rule reject H0 khi |\[(Σi=1:k aiȲi) - γ\] / √Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2 CŨNG ĐỀU level alpha test (2)
+>
+>
+>
+> Do đó, khi nói invert cái level α test để có 1-α confidence interval cho Σi aiθi thì phải hiểu là ta sẽ invert cái TEST RULE CỦA BÀI TOÁN KIỂM ĐỊNH VỚI γ BẤT KÌ CHỨ KO PHẢI LÀ CÁI TEST RULE CHO BÀI TOÁN (1) ẤY.
+>
+>
+>
+> ---
+>
+>
+>
+> Và ta làm như sau
+>
+>
+>
+> Rejection region: {𝐱: |(Σi aiȲi - γ)/ √\[S²\_pΣi ai²/ni\]| &gt; t_N-k,α/2} 
+>
+>
+>
+> Acceptance region: {𝐱: |(Σi aiȲi - Σi aiθi) / √\[S²\_pΣi ai²/ni\]| ≤ t_N-k,α/2}
+>
+>
+>
+> Đặt là A(γ) (γ = Σi aiθi)
+>
+>
+>
+> |(Σi aiȲi - Σi aiθi) / √\[S²\_pΣi ai²/ni\]| ≤ t_N-k,α/2
+>
+>
+>
+> (biến đổi đại số tí xíu)
+>
+>
+>
+> ⇔ Σi aiȲi - (t_N-k,α/2) √\[S²\_pΣi ai²/ni\] ≤ Σi aiθi ≤ Σi aiȲi + (t_N-k,α/2) √\[S²\_pΣi ai²/ni\]
+>
+>
+>
+> Đặt C(𝐱) = {γ: Σi aiȲi - (t_N-k,α/2) √\[S²\_pΣi ai²/ni\] ≤ γ ≤ Σi aiȲi + (t_N-k,α/2) √\[S²\_pΣi ai²/ni\] }
+>
+>
+>
+> Thế thì 𝐱 ∈ A(γ) ⇔ γ ∈ C(𝐱)
+>
+>
+>
+> Nên P\_γ(𝐗 ∈ A(γ)) = P\_γ(γ ∈ C(𝐗))
+>
+>
+>
+> Mà như đã nói, với mọi γ, bài toán kiểm định H0: Σi aiθi = γ vs H1 thì test rule này (|(Σi aiȲi - γ)/ √\[S²\_pΣi ai²/ni\]| &gt; t_N-k,α/2) sẽ đều là size α test,
+>
+>
+>
+> nên với mọi giá trị thật γ của Σi aiθi thì P\_γ(𝐗 ∈ A(γ)) luôn = 1-α.
+>
+>
+>
+> Vậy mọi giá trị thật γ P\_γ(γ ∈ C(𝐗)) = 1-α, mang ý nghĩa dù γ là gì thì C(𝐗) luôn có xác suất coverage 1-α
+>
+>
+>
+> Vậy P\_γ(γ ∈ C(𝐗)) = P\_γ(𝐗 ∈ A(γ)) = 1 - α ∀γ. Do đó C(𝐗) là interval estimation có coverage probability 1-α, và confidence coefficient cũng là 1-α
+>
+>
+>
+> ---
+>
+>
+>
+> Active recall nhanh vì sao invert 1 level α test sẽ được 1-α confidence interval
+>
+>
+>
+> Lập luận khái quát là:
+>
+>
+>
+> Cho bài toán kiểm định: H0: θ=θ0 vs H1: θ ≠ θ0, và cho rằng ta đang có level α test, tức là test có:
+>
+>
+>
+> sup\_θ∈{θ0} P\_θ(𝐗 ∈ R) = P\_θ0(𝐗 ∈ R) ≤ α
+>
+>
+>
+> **NHƯNG MỘT ĐIỂM CỰC QUAN TRỌNG ĐÓ LÀ**: Ta phải có điều này với mọi giá trị θ0 bất kì nào.
+>
+>
+>
+> Ví dụ 
+>
+>
+>
+> θ0 = 1, thì P\_θ(𝐗 ∈ R|θ=1) ≤ α,
+>
+>
+>
+> θ0 = 2, thì P\_θ(𝐗 ∈ R|θ=2) ≤ α,
+>
+>
+>
+> VỚI MỌI θ0, thì P\_θ(𝐗 ∈ R|θ=θ0) ≤ α
+>
+>
+>
+> Trước tiên nên hiểu rõ cái này nghĩa là gì:
+>
+>
+>
+> i) Với mọi θ
+>
+>
+>
+> ⇒ 1 - P\_θ0(𝐗 ∈ R) ≥ 1 - α
+>
+>
+>
+> ⇔ P\_θ0(𝐗 ∈ Rc) ≥ 1 - α
+>
+>
+>
+> ⇔ P\_θ0(𝐗 ∈ A(θ0)) ≥ 1 - α
+>
+>
+>
+> Đặt C(𝐱) = {θ: 𝐱 ∈ A(θ)}
+>
+>
+>
+> ⇒ 𝐱 ∈ A(θ) ⇔ θ ∈ C(𝐱)
+>
+>
+>
+> ⇒ 𝐗 ∈ A(θ) ⇔ θ ∈ C(𝐗)
+>
+>
+>
+> nên tiếp nối (1): ta đang có P\_θ0(𝐗 ∈ A(θ0)) ≥ 1 - α thì do 𝐗 ∈ A(θ0) ⇔ θ0 ∈ C(𝐗) thành ra
+>
+>
+>
+> P\_θ0(θ0 ∈ C(𝐗)) cũng ≥ 1 - α
+>
+>
+>
+> Như vậy xác suất C(𝐗) bắt được θ0 là 1 - α
+>
+>
+>
+> Mà θ0 này, có thể là bất cứ giá trị cụ thể nào của θ như đã nhấn mạnh ban đầu.
+>
+>
+>
+> Do đó, với mọi giá trị thật sự θ0 của θ thì P\_θ0(θ0 ∈ C(𝐗)) cũng ≥ 1 - α, do đó, đây là 1-α confidence interval.
+>
+>
+>
+> Khi mình có test rule dựa trên một pivot quantity, thì tự nhiên ta sẽ thỏa điều kiện nhấn mạnh ở trên, đó là vì pivot dù là random quantity phụ thuộc tham số nhưng phân phối của nó thì xác định, không phụ thuộc tham số đó. Do đó, nếu ta có phép kiểm định có level alpha mà dựa trên pivot quantity, thì đương nhiên nó sẽ thỏa điều kiện.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Bạn đã hiểu rất sâu sắc và diễn giải cực kỳ chính xác bản chất của việc đảo phép kiểm định (test inversion) cũng như vai trò của pivotal quantity trong việc xây dựng khoảng tin cậy.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"reject H0 khi |[(Σi=1:k aiȲi) - γ]/√Σi ai²/ni] / √(S²_p)| > t_N-k,α/2"*
+>
+> Cách đóng mở ngoặc ở mẫu số hơi lỏng lẻo một chút về mặt ký hiệu (thừa ngoặc vuông), dù về mặt ngữ cảnh người đọc vẫn hiểu mẫu số là √(S²_p * Σ a_i²/n_i).
+>
+>
+> **✓ Strengths**
+> - Nhận thức rất sắc bén và chính xác: đảo kiểm định để tìm khoảng tin cậy là đảo một họ các bài toán kiểm định với mọi tham số γ* chứ không phải chỉ đảo riêng kiểm định với γ = 0.
+> - Chứng minh tường minh mối quan hệ đối ngẫu x ∈ A(γ) ⇔ γ ∈ C(x) và xác suất phủ (coverage probability) chặt chẽ.
+> - Liên hệ rất tốt giữa khái niệm pivotal quantity và việc các kiểm định thành phần luôn giữ đúng mức ý nghĩa α với mọi giá trị của tham số.
+>
+> **💡 Deeper notes**
+> - Việc đảo test tổng quát có thể cho ra tập tin cậy (confidence set) không nhất thiết là một khoảng (interval) liên tục nếu rejection region có hình dạng phức tạp; tuy nhiên ở đây do thống kê t đơn điệu theo γ nên tập tin cậy luôn là một khoảng bị chặn hai đầu.
 
 <br>
 
