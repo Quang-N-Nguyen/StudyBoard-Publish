@@ -1,6 +1,6 @@
 # 1.5 Decision Theory
 
-📊 **Progress:** `30` Notes | `48` Screenshots | `25` AI Reviews
+📊 **Progress:** `30` Notes | `49` Screenshots | `26` AI Reviews
 
 ---
 <a id="node-0es6zw7"></a>
@@ -752,7 +752,7 @@
 <p align="center"><kbd><img src="assets/lcinhi9o1rb.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Nói qua khái quát bài toán lên K classes thay vì 2 classes, ông cho rằng sẽ dễ hơn nếu ta đặt objective cho việc tìm rule tối ưu là maximize xác suất phân loại đúng thay vì minimize xác suất phân loại sai.
+> Nói qua khái quát bài toán lên K classes thay vì 2 classes, ông cho rằng sẽ dễ hơn nếu ta đặt objective cho việc tìm rule tối ưu là **maximize xác suất phân loại đúng** thay vì **minimize xác suất phân loại sai**.
 >
 >
 >
@@ -768,7 +768,7 @@
 >
 >
 >
-> Là vì, event "correct" dễ định nghĩa hơn event "mistake" trong trường hợp có nhiều classes.
+> Là vì, event "correct" **dễ định nghĩa hơn** event "mistake" trong trường hợp có nhiều classes.
 >
 >
 >
@@ -780,7 +780,7 @@
 >
 >
 >
-> hoặc \[T = CK, decision rule phán là CK\])
+> .. hoặc \[T = CK, decision rule phán là CK\])
 >
 >
 >
@@ -796,15 +796,15 @@
 >
 >
 >
-> tương tự, đây là union của các disjoint events nên theo axiom 2 (hay 3 nếu theo sách Casella)
+> tương tự, đây là union của các **disjoint** events nên theo axiom 2 (hay 3 nếu theo sách Casella)
 >
 >
 >
-> .. = P\[(T = C1, 𝐗 ∈ R1) + P(T = C2, 𝐗 ∈ R2) +...+ P(T = CK, 𝐗 ∈ Rk)\]
+> .. = P(T = C1, 𝐗 ∈ R1) + P(T = C2, 𝐗 ∈ R2) +...+ P(T = CK, 𝐗 ∈ Rk)
 >
 >
 >
-> và tương tự như hồi nãy, nó chính là ∫R1 f(C1,𝐱)d𝐱 + ...∫RK f(CK, 𝐱)d𝐱
+> và tương tự như hồi nãy, nó chính là ∫R1 f(C1,𝐱)d𝐱 + ...+ ∫RK f(CK, 𝐱)d𝐱
 >
 >
 >
@@ -812,39 +812,30 @@
 >
 >
 >
-> Và tương tự như khi K = 2, cái decision rule khiến maximize P("correct") có thể đoán được cũng sẽ chính là cái rule này: Assign class Ck nếu joint pdf f(Ck, 𝐱) và cũng là posterior pdf f(Ck|𝐱) là cao nhất trong các k = 1,..K
+> Và tương tự như khi K = 2, cái **decision rule khiến maximize** P("correct") có thể đoán được cũng sẽ chính là cái rule này: Assign class Ck nếu joint pdf f(Ck, 𝐱) và cũng là posterior f(Ck|𝐱) là cao nhất trong các k = 1,..K
 >
 >
 >
-> =====
+> ---
 >
 >
 >
-> Vậy ở đây giúp ta hiểu sâu hơn như sau: Nếu tiêu chí của ta, mục tiêu của ta là giảm thiểu tỉ lệ sai xót tổng thể, thì cách phân loại tốt nhất chính là dựa trên posterior probability
+>  Vậy ở đây giúp ta hiểu sâu hơn như sau: Nếu tiêu chí của ta, mục tiêu của ta là **giảm thiểu tỉ lệ sai xót tổng thể**, thì cách **phân loại tốt nhất chính là dựa trên posterior probability**
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=0DIv7EViwmk)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú thể hiện sự hiểu bài rất tốt, giải thích rõ ràng lý do chuyển từ việc cực tiểu hóa sai số sang cực đại hóa độ chính xác và đi tới đúng kết luận về posterior probability. Có một vài điểm nhỏ về ký hiệu ngoặc và dùng từ xác suất rời rạc vs hàm mật độ.
->
-> **🟡 Minor issues**
->
-> **1.** *".. = P[(T = C1, 𝐗 ∈ R1) + P(T = C2, 𝐗 ∈ R2) +...+ P(T = CK, 𝐗 ∈ Rk)]"*
->
-> Lỗi gõ ký hiệu: Thừa dấu ngoặc vuông và chữ P ở đầu biểu thức tổng xác suất (đúng ra là P(...) + P(...) + ... + P(...)).
->
-> **2.** *"posterior pdf f(Ck|𝐱)"*
->
-> Nhãn lớp Ck là biến ngẫu nhiên rời rạc, do đó P(Ck|x) là xác suất (hoặc pmf), không phải là hàm mật độ xác suất (pdf), dù x là biến liên tục.
->
+> Ghi chú rất xuất sắc, giải thích cặn kẽ và trực quan lý do tại sao tối đa hóa xác suất đúng lại tương đương và dễ làm hơn tối thiểu hóa sai số trong bài toán $K$ lớp.
 >
 > **✓ Strengths**
-> - Giải thích rất trực quan và chính xác lý do toán học vì sao cực tiểu hóa P(mistake) tương đương với cực đại hóa P(correct).
-> - Hiểu rõ tại sao khi tổng quát lên K lớp thì việc biểu diễn biến cố 'đoán đúng' lại thuận tiện và gọn hơn nhiều so với biến cố 'đoán sai'.
-> - Nắm chắc lập luận lược bỏ p(x) chung để quy về quy tắc chọn lớp có xác suất hậu nghiệm (posterior) lớn nhất.
+> - Lập luận chặt chẽ về mặt tối ưu: tối thiểu hóa hàm mục tiêu tương đương tối đa hóa số bù khi hai biến cố là bù nhau.
+> - Chỉ ra được bản chất trực giác: biến cố 'đoán đúng' gồm các biến cố rời nhau nên chỉ cần lấy tổng các thành phần đường chéo, đơn giản hơn nhiều so với việc liệt kê mọi trường hợp đoán sai của $K$ lớp.
+> - Trình bày chuẩn xác bước chuyển từ xác suất hợp các biến cố rời nhau sang tích phân hàm mật độ đồng thời trên từng vùng quyết định.
 >
 > **💡 Deeper notes**
-> - Trong trường hợp có nhiều hơn một lớp đạt cùng giá trị posterior lớn nhất tại một điểm x (tie-breaking), việc gán vào bất kỳ lớp nào trong số đó đều cho cùng xác suất phân loại đúng tối ưu.
+> - Về mặt ký hiệu, $T$ là nhãn rời rạc còn $\mathbf{x}$ là biến ngẫu nhiên liên tục, do đó $p(\mathbf{x}, \mathcal{C}_k)$ thường được hiểu là hàm mật độ hỗn hợp (joint density-mass) thay vì ký hiệu thuần túy $f(\mathcal{C}_k, \mathbf{x})$.
 
 <br>
 
@@ -855,60 +846,47 @@
 <p align="center"><kbd><img src="assets/i2en93qrj8n.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Qua đây, đại ý là, trong nhiều trường hợp, mục tiêu không đơn giản chỉ là
-> giảm tỉ lệ sai sót nói chung.
+> Qua đây, đại ý là, trong nhiều trường hợp, mục tiêu không đơn giản chỉ là giảm tỉ lệ sai sót nói chung.
 >
 >
 >
-> Quay lại ví dụ việc xác định bệnh nhân có bệnh hay không, đôi khi hai
-> loại lỗi nó có mức độ hậu qủa khác nhau. Ví dụ như không có ung thư mà
-> phán là có, thì có thể cùng lắm là khiến bệnh nhân lo lắng và xét nghiệm
-> thêm các kiểu tốn tìền. Nhưng nếu có ung thư mà chẩn đoán là không thì
-> người ta có thể sẽ chết vì không được chữa trị.
+> Quay lại ví dụ việc xác định bệnh nhân có bệnh hay không, đôi khi **hai loại lỗi nó có mức độ hậu qủa** khác nhau. Ví dụ như **không có ung thư mà phán là có**, thì có thể cùng lắm là khiến bệnh nhân lo lắng và xét nghiệm thêm các kiểu tốn tìền. Nhưng nếu có ung thư mà chẩn đoán là không thì người ta có thể sẽ chết vì không được chữa trị.
 >
 >
 >
-> Lúc này, mục tiêu của ta có thể là ưu tiên loại error thứ hai, chấp nhận
-> error thứ nhất (ý là nếu so sánh performance của các quy trình chẩn đoán
-> thì có thể ưu tiện chọn cái có tỉ lệ error thứ hai nhỏ nhất, dù error thứ nhất
-> nó ko phải là nhỏ nhất)
+> Lúc này, mục tiêu của ta có thể là **ưu tiên loại error thứ hai**, chấp nhận error thứ nhất (ý là nếu so sánh performance của các quy trình chẩn đoán thì có thể ưu tiện chọn cái có tỉ lệ error thứ hai nhỏ nhất, dù error thứ nhất nó ko phải là nhỏ nhất)
 >
 >
 >
-> Lại liên hệ nó với hypothesis testing cho vui. Mình đã review lại một ít
-> trong các note trước, rằng trong bài toán này, ta cũng sẽ có hai loại error:
-> Type I error, là khi θ thật sự thuộc Θ0, nhưng lại kết luận là reject H0, hay
-> 𝐗 ∈ R và Type II error là khi θ ∈ Θ0c mà lại kết luận là accept H0: 𝐗
-> ∈ Rc.
+> ---
 >
 >
 >
-> Thì còn nhớ, trong sách Casella, ta đã nghe là, trong thực tế, người ta sẽ
-> dành Type I error để chỉ lại sai lầm mà ta muốn  tránh bằng mọi giá, ưu
-> tiên tránh, vì mang lại hậu quả lớn. Ví dụ như trong nghiên cứu thuốc
-> mới, nếu thuốc gây tác dụng phụ nguy hiểm mà kết quả test lại kết luận
-> thuốc không có tác dụng phụ gì, thì hậu quả sẽ rất lớn. Do đó, ta sẽ đặt
-> H0: θ ∈ Θ0 ứng với: Thuốc có tác dụng phụ. Để rồi Type I error sẽ là:
-> thuốc có tác dụng phụ mà lại công bố là không.
+> Lại liên hệ nó với hypothesis testing cho vui. Mình đã review lại một ít trong các note trước, rằng trong bài toán này, ta cũng sẽ có hai loại error: Type I error, là khi θ thật sự thuộc Θ0, nhưng lại kết luận là reject H0, hay 𝐗 ∈ R và Type II error là khi θ ∈ Θ0c mà lại kết luận là accept H0: 𝐗 ∈ Rc.
 >
 >
 >
-> Khi đó, bằng cách định nghĩa như vầy, ta sẽ tập trung xây dựng level α
-> test, ví dụ level 0.001 test, theo định nghĩa, là các test có xác suất mắc lỗi
-> loại I cao nhất cũng không bao giờ vượt quá 0.001.
+> Thì còn nhớ, trong sách Casella, ta đã nghe là, trong thực tế, người ta sẽ dành **Type I error** để chỉ **loại sai lầm mà ta muốn tránh bằng mọi giá**, ưu tiên tránh, vì mang lại hậu quả lớn. Ví dụ như trong nghiên cứu thuốc mới, nếu thuốc gây tác dụng phụ nguy hiểm mà kết quả test lại kết luận thuốc không có tác dụng phụ gì, thì hậu quả sẽ rất lớn. Do đó, ta sẽ đặt H0: θ ∈ Θ0 ứng với: Thuốc có tác dụng phụ. Để rồi Type I error sẽ là: thuốc có tác dụng phụ mà lại công bố là không.
 >
 >
 >
-> Sau đó, ta mới đi tìm trong các level 0.001 test, cái nào có xác suất mắc
-> Type II error thấp nhất.
+> Khi đó, bằng cách định nghĩa như vầy, ta sẽ tập trung xây dựng **level α test**, ví dụ level 0.001 test, theo định nghĩa, là các test có **xác suất mắc lỗi loại I cao nhất cũng không bao giờ vượt quá 0.001**.
+>
+>
+>
+> Sau đó, ta mới **đi tìm trong các level 0.001 test, cái nào có xác suất mắc Type II error thấp nhất**.
 >
 >
 >
 > Đây là một cách tiếp cận của việc đánh giá (evaluating) hypothesis test
 >
-> Thế thì vừa rồi mình đã ôn lại cách tiếp cận vấn đề đánh giá một hypothesis testing trong
-> Casella, dĩ nhiên còn vài vấn đề khác, ví dụ như khi không tồn tại Uniformly Most Powerful
-> test, rồi p-values.
+>
+>
+> ---
+>
+>
+>
+> Thế thì vừa rồi mình đã ôn lại cách tiếp cận vấn đề đánh giá một hypothesis testing trong Casella, dĩ nhiên còn vài vấn đề khác, ví dụ như khi không tồn tại Uniformly Most Powerful test, rồi p-values.
 >
 >
 >
@@ -916,51 +894,39 @@
 >
 >
 >
-> Trong thống kê cổ điển như cuốn Casella, mình nhớ là với Point estimator, Hypothesis
-> testing, Interval estimator đều nói đến cách tiếp cận của decision theory để đánh giá (7.3.
-> 4, 8.3.5, 9.3.4)
+> Trong thống kê cổ điển như cuốn Casella, mình nhớ là với Point estimator, Hypothesis testing, Interval estimator đều nói đến cách tiếp cận của decision theory để đánh giá (7.3.4, 8.3.5, 9.3.4)
 >
 >
 >
-> Ôn lại vài khái niệm liên quan đến decision theory đã học trong phần Point estimation và
-> Interval estimation Casella: Đầu tiên, đối với point estimator thì khi dẫn dắt ta về cái này,
-> gs Casella nói rằng, trong decision theory, action space là không gian những action, mà áp
-> vào bối cảnh point estimation thì action đó là "(đưa ra) một estimation của θ", để rồi action
-> space, là tập hợp mọi estimation của θ. Thế thì, theo decision theory, một action sẽ tạo ra
-> một loss, và hàm loss sẽ là hàm được định nghĩa để phản ánh mức độ nghiêm trọng của
-> action. Với bài toán estimation, thì loss có thể dùng **squared error loss** L(θ, δ(𝐱)) =
-> (δ(𝐱)-θ)² hoặc **absolute error loss** L(θ,δ(𝐱)) = |δ(𝐱) - θ|
+> ---
 >
 >
 >
-> Và như vậy thì, với loss function, ta sẽ có một hàm số phụ thuộc θ phản ánh chất lượng
-> của estimator δ(𝐗) ứng với θ cụ thể nào đó.
+> Ôn lại vài khái niệm liên quan đến decision theory đã học trong phần Point estimation và Interval estimation Casella: Đầu tiên, đối với point estimator thì khi dẫn dắt ta về cái này, gs Casella nói rằng, trong decision theory, **action space là không gian những action**, mà áp vào bối cảnh point estimation thì action đó là "(đưa ra) một estimation của θ", để rồi action space, là tập hợp mọi estimation của θ. Thế thì, theo decision theory, một action sẽ tạo ra một loss, và hàm loss sẽ là hàm được định nghĩa để phản ánh mức độ nghiêm trọng của action. Với bài toán estimation, thì loss có thể dùng **squared error loss** L(θ, δ(𝐱)) = (δ(𝐱)-θ)² hoặc **absolute error loss** L(θ,δ(𝐱)) = |δ(𝐱) - θ|
 >
 >
 >
-> Và để có một con số duy nhất, không phụ thuộc 𝐗, phản ánh chất lượng của estimator
-> δ(𝐗) nói chung, ta sẽ định nghĩa cái gọi là risk function:
+> Và như vậy thì, với loss function, ta sẽ có một hàm số phụ thuộc θ phản ánh chất lượng của estimator δ(𝐗) ứng với θ cụ thể nào đó.
 >
 >
 >
-> R(δ(𝐗), θ) = E_θ[L(δ(𝐗), θ)], với phân tích ý nghĩa như sau:
+> Và để có một con số duy nhất, không phụ thuộc 𝐗, phản ánh chất lượng của estimator δ(𝐗) nói chung, ta sẽ định nghĩa cái gọi là risk function:
 >
 >
 >
-> L(δ(𝐗), θ) sẽ là một random variable, vì nó là kết quả do áp một function lên δ(𝐗)
-> nên phụ thuộc δ(𝐗), nên phụ thuộc 𝐗.
+> R(δ(𝐗), θ) = E\_θ\[L(δ(𝐗), θ)\], với phân tích ý nghĩa như sau:
 >
 >
 >
-> Lấy kì vọng cái random variable này, thì tính cái này, thì ta sẽ dùng distribution của
-> L(δ(𝐗),θ), mang ý nghĩa là marginalizing mọi giá trị khả dĩ của L, nên kết quả sẽ là fix,
-> không còn là random variable nữa, không phụ thuộc 𝐗 nữa. nhưng nó vẫn là hàm theo
-> θ.
+> L(δ(𝐗), θ) sẽ là một random variable, vì nó là kết quả do áp một function lên δ(𝐗) nên phụ thuộc δ(𝐗), nên phụ thuộc 𝐗.
 >
 >
 >
-> Và bằng cách tìm cái δ(𝐗) có risk nhỏ nhất với mọi θ thì ta sẽ có cái estimator tốt nhất,
-> tức là minimum risk estimator.
+> Lấy kì vọng cái random variable này, thì tính cái này, thì ta sẽ dùng distribution của L(δ(𝐗),θ), mang ý nghĩa là marginalizing mọi giá trị khả dĩ của L, nên kết quả sẽ là fix, không còn là random variable nữa, không phụ thuộc 𝐗 nữa. nhưng nó vẫn là hàm theo θ.
+>
+>
+>
+> Và bằng cách tìm cái δ(𝐗) có risk nhỏ nhất với mọi θ thì ta sẽ có cái estimator tốt nhất, tức là **minimum risk estimator.**
 >
 >
 >
@@ -968,16 +934,15 @@
 >
 >
 >
-> R(δ(𝐗), θ) = E_θ[(δ(𝐗) - θ)²] thì đây chính là định nghĩa của hàm MSE:
+> R(δ(𝐗), θ) = E\_θ\[(δ(𝐗) - θ)²\] thì đây chính là định nghĩa của hàm MSE:
 >
 >
 >
-> MSE củan estimator W(𝐗), define bởi: MSE(W(𝐗),θ) = E_θ[(W(𝐗) - θ)²].
+> MSE củan estimator W(𝐗), define bởi: MSE(W(𝐗),θ) = E\_θ\[(W(𝐗) - θ)²\].
 >
 >
 >
-> Từ đó, ta mới liên hệ với việc tìm estimator **minimize MSE cũng chính là tìm estimator
-> minimize square error loss risk function**.
+> Từ đó, ta mới liên hệ với việc tìm estimator **minimize MSE cũng chính là tìm estimator minimize square error loss risk function**.
 >
 >
 >
@@ -985,32 +950,35 @@
 >
 >
 >
-> Dùng VarX = EX² - (EX)² ⇨ Var[W(𝐗) - θ] = E[(W(𝐗) - θ)²] - E[W(𝐗) - θ])²
+> Dùng VarX = EX² - (EX)² ⇨ Var\[W(𝐗) - θ\] = E\[(W(𝐗) - θ)²\] - (E\[W(𝐗) - θ\])²
 >
 >
 >
-> Do đó MSE(W(𝐗), θ) = R(W(𝐗), θ)_squared error loss = E_θ[(W(𝐗) - θ)²]
+> Do đó MSE(W(𝐗), θ) = R(W(𝐗), θ)\_squared error loss = E\_θ\[(W(𝐗) - θ)²\]
 >
 >
 >
-> = Var[Var(𝐗) - θ] + (E[W(𝐗) - θ])²
+> = Var\[W(𝐗) - θ\] + (E\[W(𝐗) - θ\])²
 >
 >
 >
-> = Var[Var(𝐗)] + (E[W(X) - θ])²
+> = Var\[W(𝐗)\] + (E\[W(𝐗) - θ\])²
 >
 >
 >
-> Và E[W(𝐗) - θ] lại chính là definition của Bias(W(X), θ)
+> Và E\[W(𝐗) - θ\] lại chính là definition của Bias(W(𝐗), θ)
 >
 >
 >
-> ⇨ MSE(W(𝐗), θ) = Var[W(𝐗)] + [Bias(W(𝐗), θ)]²
+> ⇨ MSE(W(𝐗), θ) = Var\[W(𝐗)\] + \[Bias(W(𝐗), θ)\]²
 >
 >
 >
-> Nếu là theo trường phái Bayesian với Bayes estimator, thì từ risk function R(δ(𝐗), θ) 
-> người ta sẽ lấy trung bình trên mọi possible value của θ:
+> ---
+>
+>
+>
+> Nếu là theo trường phái Bayesian với Bayes estimator, thì từ risk function R(δ(𝐗), θ) người ta sẽ lấy **trung bình trên mọi possible value của θ**:
 >
 >
 >
@@ -1018,62 +986,55 @@
 >
 >
 >
-> Thay R(δ(𝐗), θ) = E_θ[L(δ(𝐗), θ)] = ∫_/𝐗 /L(δ(𝐱), θ) f(𝐱|θ) d𝐱 vào:
+> Thay R(δ(𝐗), θ) = E\_θ\[L(δ(𝐗), θ)\] = ∫\_𝓧 L(δ(𝐱), θ) f(𝐱|θ) d𝐱 vào:
 >
 >
 >
-> Bayes risk = ∫_Θ ∫_/𝐗/ L(δ(𝐱), θ) f(𝐱|θ) d𝐱 π(θ) dθ 
+> Bayes risk = ∫*Θ* ∫\_𝓧 L(δ(𝐱), θ) f(𝐱|θ) d𝐱 π(θ) dθ
 >
 >
 >
-> = ∫_Θ ∫_/𝐗/ L(δ(𝐱), θ) [f(θ|𝐱) f(𝐱)/π(θ)] / d𝐱 π(θ) dθ
+> = ∫Θ ∫\_𝓧 L(δ(𝐱), θ) \[f(θ|𝐱) f(𝐱)/π(θ)\] d𝐱 π(θ) dθ
 >
 >
 >
-> = ∫_Θ ∫_𝐗 L(δ(𝐱), θ) f(θ|𝐱) f(𝐱) d𝐱 dθ
+> = ∫\_Θ ∫\_𝓧 L(δ(𝐱), θ) f(θ|𝐱) f(𝐱) d𝐱 dθ
 >
 >
 >
-> = ∫_𝐗 [ ∫_Θ L(δ(𝐱), θ) f(θ|𝐱) dθ ] f(𝐱) d𝐱 
+> = ∫\_𝐗 \[ ∫\_Θ L(δ(𝐱), θ) f(θ|𝐱) dθ \] f(𝐱) d𝐱
 >
 >
 >
-> Thì cái ∫_Θ L(δ(𝐱), θ) f(θ|𝐱) dθ = E[L(δ, θ)|𝐗=𝐱] được gọi là **posterior expected loss**
+> Thì cái ∫\_Θ L(δ(𝐱), θ) f(θ|𝐱) dθ = E\[L(δ, θ)|𝐗=𝐱\] được gọi là **posterior expected loss**
 >
 >
 >
-> -----
+> ---
 >
 >
 >
-> Sang tới interval estimator, thì lúc này loss function cần phản ánh hai thứ: độ chính xác
-> (C(𝐗) chứa θ và kích thước C(𝐗). Do đó, loss sẽ là kết hợp  của một indicator
-> function I_{C(𝐗) chứa θ} (= 0 khi C(𝐗) chứa và bằng 1 khi  C(𝐗) không chứa θ) và
-> Size(C(𝐗)) với một tham số b giúp điều chỉnh tương quan giữa hai sub-objective này:
+> Sang tới interval estimator, thì lúc này loss function cần phản ánh hai thứ: độ chính xác (C(𝐗) chứa θ và kích thước C(𝐗). Do đó, loss sẽ là kết hợp của một indicator function I\_{C(𝐗) chứa θ} (= 0 khi C(𝐗) chứa và bằng 1 khi C(𝐗) không chứa θ) và Size(C(𝐗)) với một tham số b giúp điều chỉnh tương quan giữa hai sub-objective này:
 >
 >
 >
-> L(C(𝐗), θ) = I_{θ ∈ C(𝐗)} + b Size(C(𝐗)), thể hiện: nếu C(𝐗) chứa θ và có size
-> nhỏ thì loss sẽ nhỏ.
+> L(C(𝐗), θ) = I\_{θ ∉ C(𝐗)} + b Size(C(𝐗)), thể hiện: nếu C(𝐗) chứa θ và có size nhỏ thì loss sẽ nhỏ.
 >
 >
 >
-> Và ta cũng sẽ đặt ra risk function của interval estimator là kì vọng của loss này. Để rồi tìm
-> cách tìm estimator mà giảm thiểu risk:
+> Và ta cũng sẽ đặt ra risk function của interval estimator là kì vọng của loss này. Để rồi tìm cách tìm estimator mà giảm thiểu risk:
 >
 >
 >
-> R(C(𝐗), θ) = E_θ[L(C(𝐗), θ)].
+> R(C(𝐗), θ) = E\_θ\[L(C(𝐗), θ)\].
 >
 >
 >
-> -----
+> ---
 >
 >
 >
-> Còn với bài toán Hypothesis testing, trong 8.3.5 Casella ta được biết rằng, với bài toán
-> này, action sẽ chỉ là một trong hai: a0, a1 biểu diễn kết luận của test rule là accept H0 hay
-> reject H0. Và ta cũng sẽ define loss function, gọi là 1-0 loss để phản ảnh hậu quả:
+> Còn với bài toán Hypothesis testing, trong 8.3.5 Casella ta được biết rằng, với bài toán này, action sẽ chỉ là một trong hai: a0, a1 biểu diễn kết luận của test rule là accept H0 hay reject H0. Và ta cũng sẽ define loss function, gọi là 1-0 loss để phản ảnh hậu quả:
 >
 >
 >
@@ -1089,35 +1050,19 @@
 >
 >
 >
-> Chỗ này cần nói rõ cho dễ hiểu: Định nghĩa của loss, luôn gắn với một action. Với point
-> estimator, loss kí hiệu là L(δ(𝐗), θ), để rồi nó là một random variable, mà khi nhận giá trị
-> 𝐗 = 𝐱, kéo theo δ(𝐗) mang giá trị estimate cho θ: δ(𝐱) (là một action), kéo theo
-> phát sinh loss L(δ(𝐱), **θ**) từ action này. Và vì L(δ(𝐗), θ) là random variable, nên
-> risk = lấy kì vọng, chính là dựa trên distribution của cái thằng L này, và truy nguyên nguòn
-> gốc thì c**ũng chỉ là xuất phát từ distribution của X**: f(𝐱|θ), do đó risk mới là hàm phụ
-> thuộc θ.
+> Chỗ này cần nói rõ cho dễ hiểu: Định nghĩa của loss, luôn gắn với một action. Với point estimator, loss kí hiệu là L(δ(𝐗), θ), để rồi nó là một random variable, mà khi nhận giá trị 𝐗 = 𝐱, kéo theo δ(𝐗) mang giá trị estimate cho θ: δ(𝐱) (là một action), kéo theo phát sinh loss L(δ(𝐱), **θ**) từ action này. Và vì L(δ(𝐗), θ) là random variable, nên risk = lấy kì vọng, chính là dựa trên distribution của cái thằng L này, và truy nguyên nguòn gốc thì c**ũng chỉ là xuất phát từ distribution của X**: f(𝐱|θ), do đó risk mới là hàm phụ thuộc θ.
 >
 >
 >
-> Tương tự, với interval estimator, thì action là một interval C(𝐱), loss L(C(𝐗), θ) cũng
-> là random variable, mà yếu tố random của nó đến từ C(𝐗). Khi quan sát 𝐗 = 𝐱,
-> C(𝐗) mang giá trị C(𝐱), thì nó mang ý nghĩa là một action được đưa ra: một interval
-> được dự đoán sẽ chứa θ, và với action đó, phát sinh loss: L(C(𝐱), θ). Nên lấy kì vọng
-> cái này để có risk, thì ta sẽ dựa trên **distribution của C(X)**, tất nhiên, C(𝐗), nếu là
-> random interval, thì cũng sẽ được cấu thành bởi hai random variable L(𝐗), U(𝐗), nên
-> tương tự, cũng chỉ là xuất phát từ distribution của 𝐗
+> Tương tự, với interval estimator, thì action là một interval C(𝐱), loss L(C(𝐗), θ) cũng là random variable, mà yếu tố random của nó đến từ C(𝐗). Khi quan sát 𝐗 = 𝐱, C(𝐗) mang giá trị C(𝐱), thì nó mang ý nghĩa là một action được đưa ra: một interval được dự đoán sẽ chứa θ, và với action đó, phát sinh loss: L(C(𝐱), θ). Nên lấy kì vọng cái này để có risk, thì ta sẽ dựa trên **distribution của C(X)**, tất nhiên, C(𝐗), nếu là random interval, thì cũng sẽ được cấu thành bởi hai random variable L(𝐗), U(𝐗), nên tương tự, cũng chỉ là xuất phát từ distribution của 𝐗
 >
 >
 >
-> Còn trong hypothesis testing, action là một kết luận mang một trong hai giá trị a0 hoặc a1,
-> nên ta có thể thể hiện nó bởi λ(𝐗) nào đó, là một Bernoulli random variable, để rồi khi
-> quan sát 𝐗 = 𝐱, λ(𝐗) ghi nhận giá trị cụ thể λ(𝐱) (= a0 hoặc a1), loss ghi nhận
-> giá trị cụ thể L(θ, λ(𝐱)) (là L(θ, a0) hoặc L(θ, a1)).
+> Còn trong hypothesis testing, action là một **kết luận mang một trong hai giá trị a0 hoặc a1**, nên ta có thể thể hiện nó bởi λ(𝐗) nào đó, là một Bernoulli random variable, để rồi khi quan sát 𝐗 = 𝐱, λ(𝐗) ghi nhận giá trị cụ thể λ(𝐱) (= a0 hoặc a1), loss ghi nhận giá trị cụ thể L(θ, λ(𝐱)) (là L(θ, a0) hoặc L(θ, a1)).
 >
 >
 >
-> Nhờ vậy, ta hiểu trong hypothesis testing, loss L(θ, λ(𝐗)) là một Bernoulli random
-> variable
+> Nhờ vậy, ta hiểu trong hypothesis testing, loss L(θ, λ(𝐗)) là một Bernoulli random variable
 >
 >
 >
@@ -1125,19 +1070,19 @@
 >
 >
 >
-> R(θ, λ(𝐗)) = E_θ[L(θ, λ(𝐗)]
+> R(θ, λ(𝐗)) = E\_θ\[L(θ, λ(𝐗)\]
 >
 >
 >
-> = L(θ, a0) * P_θ[L(θ, λ(𝐗)) = L(θ, a0)] + L_θ(θ, a1) * P[L(θ, λ(𝐗) = L(θ, a1)]
+> = L(θ, a0) × P\_θ\[L(θ, λ(𝐗)) = L(θ, a0)\] + L\_θ(θ, a1) × P\[L(θ, λ(𝐗) = L(θ, a1)\]
 >
 >
 >
-> = L(θ, a0) * P_θ(λ(𝐗) = a0) + L_θ(θ, a1) * P(λ(𝐗) =  a1)
+> = L(θ, a0) × P\_θ(λ(𝐗) = a0) + L\_θ(θ, a1) × P(λ(𝐗) = a1)
 >
 >
 >
-> = L(θ, a0) * P_θ(𝐗 ∈ Acceptance region Rc) + L(θ, a1) * P_θ(𝐗 ∈ Rejection region R)
+> = L(θ, a0) × P\_θ(𝐗 ∈ Acceptance region Rc) + L(θ, a1) × P\_θ(𝐗 ∈ Rejection region R)
 >
 >
 >
@@ -1145,16 +1090,15 @@
 >
 >
 >
-> θ ∈ Θ0 ⇨ R = 0 * P_θ(𝐗 ∈ Rc) + 1 * P_θ(𝐗 ∈ R) = β(θ)
+> θ ∈ Θ0 ⇨ R = 0 × P\_θ(𝐗 ∈ Rc) + 1 × P\_θ(𝐗 ∈ R) = β(θ)
 >
 >
 >
-> θ ∈ Θ0c = R = 1 * P_θ(𝐗 ∈ Rc) + 0 * P_θ(𝐗 ∈ R) = P_θ(𝐗 ∈ Rc) = 1 - β(θ)
+> θ ∈ Θ0c = R = 1 × P\_θ(𝐗 ∈ Rc) + 0 × P\_θ(𝐗 ∈ R) = P\_θ(𝐗 ∈ Rc) = 1 - β(θ)
 >
 >
 >
-> Cuối cùng, nếu muốn thay đổi tương quan giữa hậu quả của hai loại Type I và II error, ta
-> có thể thay đổi định nghĩa của loss, gọi là generalized 1-0 loss
+> Cuối cùng, nếu muốn thay đổi tương quan giữa hậu quả của hai loại Type I và II error, ta có thể thay đổi định nghĩa của loss, gọi là **generalized 1-0 loss**
 >
 >
 >
@@ -1170,41 +1114,24 @@
 >
 >
 >
-> Khi θ ∈ Θ0: R = cI * P_θ(𝐗 ∈ R) + 0 * P_θ(X ∈ Rc) = cI * β(θ)
+> Khi θ ∈ Θ0: R = cI × P\_θ(𝐗 ∈ R) + 0 × P\_θ(X ∈ Rc) = cI × β(θ)
 >
 >
 >
-> Khi θ ∈ Θ0c: R = cII * P_θ(𝐗 ∈ R) + 0 * P_θ(X ∈ Rc) = cII * (1 - β(θ))
+> Khi θ ∈ Θ0c: R = 0 × P\_θ(𝐗 ∈ R) + cII × P\_θ(X ∈ Rc) = cII × (1 - β(θ))
 
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú nắm rất chắc ý tưởng của đoạn trích và mở rộng đối chiếu xuất sắc sang Decision Theory trong thống kê cổ điển và Bayes (Casella & Berger). Một vài chỗ có lỗi gõ nhầm ký hiệu (typo) trong biến đổi đại số nhưng không làm sai lệch bản chất tư duy.
->
-> **🟡 Minor issues**
->
-> **1.** *"= Var[Var(𝐗) - θ] + (E[W(𝐗) - θ])² 
-
- = Var[Var(𝐗)] + (E[W(X) - θ])²"*
->
-> Lỗi gõ nhầm (typo): viết nhầm `Var(X)` thay vì `W(X)`. Đúng ra phải là `= Var[W(X) - θ] + (E[W(X) - θ])² = Var[W(X)] + [Bias(W(X), θ)]²` vì phương sai của hằng số θ bằng 0.
->
-> **2.** *"L(C(𝐗), θ) = I_{θ ∈ C(𝐗)} + b Size(C(𝐗)), thể hiện: nếu C(𝐗) chứa θ và có size nhỏ thì loss sẽ nhỏ."*
->
-> Quy ước hàm chỉ thị (indicator function) thông thường nhận giá trị 1 nếu mệnh đề đúng và 0 nếu sai. Do đó, nếu muốn nhận giá trị 0 khi chứa θ và 1 khi không chứa θ, ký hiệu chuẩn phải là $I_{\{\theta \notin C(X)\}}$ hoặc $1 - I_{\{\theta \in C(X)\}}$, thay vì viết trực tiếp $I_{\{\theta \in C(X)\}}$, dù lời giải thích bằng lời đi kèm là đúng.
->
-> **3.** *"Khi θ ∈ Θ0c: R = cI * P_θ(𝐗 ∈ R) + 0 * P_θ(X ∈ Rc) = cI * (1 - β(θ))"*
->
-> Lỗi nhầm vị trí xác suất khi viết chi tiết: khi θ ∈ Θ0c, lỗi loại II (loss = cII) xảy ra khi không bác bỏ H0, tức là $X \in R^c$. Biểu thức đúng phải là $R = c_{II} P_\theta(X \in R^c) + 0 \cdot P_\theta(X \in R) = c_{II}(1 - \beta(\theta))$. Kết quả cuối cùng bạn viết đúng nhưng bước trung gian bị tráo $R$ và $R^c$.
->
+> Ghi chú xuất sắc! Bạn không chỉ nắm vững ý nghĩa thực tế của việc bất cân xứng giữa các loại lỗi (asymmetric loss) trong phân loại y tế từ giáo trình Bishop, mà còn liên hệ và tổng hợp rất bài bản, chính xác toàn bộ bức tranh Decision Theory trong thống kê cổ điển (Casella & Berger).
 >
 > **✓ Strengths**
-> - Hiểu rất rõ và tóm tắt chính xác luận điểm của sách Bishop: trong thực tế, các loại sai số có hậu quả rất khác nhau nên không thể chỉ tối thiểu hóa tỷ lệ phân loại sai thuần túy.
-> - Khả năng kết nối kiến thức rất tốt khi liên hệ trực tiếp với kiểm định giả thuyết (Type I vs Type II error, level alpha test) và lý thuyết quyết định (Statistical Decision Theory).
-> - Trình bày chi tiết và chính xác mối liên hệ giữa risk function, MSE (phân rã Bias-Variance) và Bayes risk / posterior expected loss.
+> - Hiểu rất đúng và trực quan về việc phân bổ trọng số/hậu quả khác nhau giữa False Positive và False Negative trong chẩn đoán y tế.
+> - Liên hệ chuẩn xác giữa kiểm định giả thuyết (Type I, Type II error) và cách tiếp cận Neyman-Pearson khi cố định mức ý nghĩa alpha rồi tối thiểu hóa beta.
+> - Khai triển toán học rất chuẩn xác và mạch lạc về Decision Theory qua 3 bài toán lớn: Point Estimation (Risk, MSE decomposition, Bayes Risk/Posterior Loss), Interval Estimation (độ phủ kết hợp độ dài), và Hypothesis Testing (0-1 loss và generalized 0-1 loss liên hệ với power function β(θ)).
 >
 > **💡 Deeper notes**
-> - Trong bài toán phân loại của Bishop sắp tới (mục 1.5.2 tiếp tục), ma trận loss $L_{kj}$ thường được định nghĩa với $k$ là nhãn thực tế và $j$ là nhãn dự đoán (action), từ đó việc tối thiểu hóa expected loss quy về việc so sánh các posterior probabilities $p(C_k|x)$ nhân với trọng số loss tương ứng.
+> - Trong Bishop 1.5.2, việc tối thiểu hóa expected loss với generalized 0-1 loss (gọi là loss matrix L_{kj}) sẽ dẫn đến việc dịch chuyển ranh giới quyết định (decision boundary): thay vì chọn class có posterior probability lớn nhất p(C_k|x), ta sẽ chọn class k tối thiểu hóa ∑_j L_{kj} p(C_j|x). Điều này hoàn toàn tương thích với việc chọn decision rule tối thiểu hóa posterior expected loss mà bạn đã viết ở mục Bayesian.
 
 <br>
 
@@ -1217,12 +1144,11 @@
 <p align="center"><kbd><img src="assets/96j7nj1zgb.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Quay lại đây, trong bối cảnh machine learning, gs Bishop giới thiệu về cách tiếp
-> cận decision theory: Ta sẽ dùng loss function (hay cost function) để phản ánh
-> những hậu quả do các quyết định tạo ra. Thì có thể thấy nó y chang những gì đã
-> học trong Casella. Chỉ khác là ta mở rộng lên K class, tức là decision rule không
-> còn chỉ đưa ra một trong hai action a0 a1 nữa. Mà là a1,...aK, hay như trong
-> sách, là C1,...Ck
+> Quay lại đây, trong bối cảnh machine learning, gs Bishop giới thiệu về cách tiếp cận decision theory: Ta sẽ dùng loss function (hay cost function) để phản ánh những hậu quả do các quyết định tạo ra.
+>
+>
+>
+> Thì có thể thấy nó **y chang những gì đã học trong Casella**. Chỉ khác là ta **mở rộng lên K class**, tức là decision rule không còn chỉ đưa ra một trong hai action a0 a1 nữa. Mà là a1,...aK, hay như trong sách, là C1,...Ck
 >
 >
 >
@@ -1230,35 +1156,35 @@
 >
 >
 >
-> phần từ Lkj sẽ mang ý nghĩa là: [sự thật: T = k, decision rule gán cho class j],
-> nên:
+> phần từ Lkj sẽ mang ý nghĩa là: \[sự thật: T = k, decision rule gán cho class j\], nên:
 >
 >
 >
-> khi k = j, tức là phần từ Lkk trên đường chéo, thì ta cho giá trị bằng 0: vì lúc này
-> decision rule đoán đúng.
+> khi k = j, tức là phần từ Lkk **trên đường chéo, thì ta cho giá trị bằng 0**: vì lúc này decision rule đoán đúng.
 >
 >
 >
-> còn k khác j, thì ta cho nó một giá trị dương ckj phản ảnh mức độ nghiêm trong
-> của việc "đoán sai là class j trong khi thật sự là class k" này.
+> còn k khác j, thì ta cho nó **một giá trị dương ckj phản ảnh mức độ nghiêm trọng** của việc "đoán sai là class j trong khi thật sự là class k" này.
 >
 >
 >
-> Tất nhiên với K = 2, thì cái matrix loss này cũng chỉ cách thể hiện matrix cái hàm
-> generalized loss mà ta vừa ôn trong Casella, đây nhé:
+> ---
 >
 >
 >
-> Vừa nãy mới nói, ta define generalized loss:
+> Tất nhiên với K = 2, thì cái matrix loss này cũng chỉ cách thể hiện matrix cái hàm generalized loss mà ta vừa ôn trong Casella, đây nhé:
 >
 >
 >
-> L(θ, a0) = 0 khi θ ∈ Θ0 và = cII khi θ ∈ Θ0c
+> Vừa nãy mới nói, ta define **generalized loss**:
 >
 >
 >
-> L(θ, a1) = 0 nếu θ ∈ Θ0c, = cI nếu θ ∈ Θ0,
+> L(θ, a0) = 0 khi θ ∈ Θ0 và L(θ, a0) = cII khi θ ∈ Θ0c
+>
+>
+>
+> L(θ, a1) = 0 nếu θ ∈ Θ0c, L(θ, a1) = cI nếu θ ∈ Θ0,
 >
 >
 >
@@ -1270,8 +1196,7 @@
 >
 >
 >
-> L12 = cI, thể hiện loss khi θ ∈ Θ0 và dự đoán lại là a1: θ ∈ Θ0c, đây là Type I
-> error
+> L12 = cI, thể hiện loss khi θ ∈ Θ0 và dự đoán lại là a1: θ ∈ Θ0c, đây là Type I error
 >
 >
 >
@@ -1283,87 +1208,64 @@
 >
 >
 >
-> Nhưng lưu ý, θ **tuy đóng vai trò của** T **ở đây** nhưng **trong bối cảnh
-> Casella, nó là fixed but unknown**. Do đó mới có vụ phải chia công thức của Risk
-> function ra làm hai trường hợp ứng với θ nằm ở đâu.
+> Nhưng lưu ý, θ **tuy đóng vai trò của** T **ở đây** nhưng **trong bối cảnh Casella, nó là fixed but unknown**. Do đó mới có vụ phải chia công thức của Risk function ra làm hai trường hợp ứng với θ nằm ở đâu.
 >
 >
 >
-> Còn **trong bối cảnh Bishop**, T **cũng là random variable**. Nên **ứng với mỗi ô
-> trong loss matrix, là một joint event** của T và 𝐗.
+> Còn **trong bối cảnh Bishop**, T **cũng là random variable**. Nên **ứng với mỗi ô trong loss matrix, là một joint event** của T và 𝐗.
 >
 >
 >
-> Ví dụ, ô Lkj sẽ là loss của event: T = k (class thật là j) và "mô hình phân lại là
-> class j" , cũng là 𝐗 ∈ Rj
+> Ví dụ, ô Lkj sẽ là loss của event: T = k (class thật là k) và "mô hình phân lại là class j" , cũng là 𝐗 ∈ Rj
 >
 >
 >
-> Vậy thì ở đây gs Bishop chính là đang tính Bayes risk: Trong Casella, khi ta 
-> xét Bayes estimator, thì ngoài risk function R(δ(𝐗), θ), người ta còn average nó,
-> theo prior distribution của θ: Nghĩa là, hàm risk function, vốn dĩ đã chỉ còn phụ
-> thuộc θ, vì theo trường phái Bayes, lúc này θ là random variable, nên risk function
-> cũng thành random variable nốt, ta mới đi average nó, đặt là Bayes risk:
+> Vậy thì ở đây gs Bishop **chính là đang tính Bayes risk**: Trong Casella, khi ta xét Bayes estimator, thì ngoài risk function R(δ(𝐗), θ), người ta còn average nó, theo prior distribution của θ: Nghĩa là, hàm risk function, vốn dĩ đã chỉ còn phụ thuộc θ, vì theo trường phái Bayes, lúc này θ là random variable, nên risk function cũng thành random variable nốt, ta mới đi average nó, đặt là Bayes risk:
 >
 >
 >
-> Bayes risk của δ(𝐗): E[R(θ, δ(𝐗)] = ∫_Θ R(θ, δ(𝐗)) π(θ) dθ 
+> Bayes risk của δ(𝐗): E\[R(θ, δ(𝐗)\] = ∫\_Θ R(θ, δ(𝐗)) π(θ) dθ
 >
 >
 >
-> Lắp R(θ, δ(𝐗)) = E_θ[L(δ(𝐗), θ)] = ∫_/𝐗 /L(δ(𝐱), θ) f(𝐱|θ) d𝐱 vào.
+> Lắp R(θ, δ(𝐗)) = E\_θ\[L(δ(𝐗), θ)\] = ∫\_𝓧 L(δ(𝐱), θ) f(𝐱|θ) d𝐱 vào.
 >
 >
 >
-> Bayes risk của δ(𝐗): = ∫_Θ ∫_/𝐗/ L(δ(𝐱), θ) f(𝐱|θ) d𝐱 π(θ) dθ 
+> Bayes risk của δ(𝐗): = ∫\_Θ ∫\_𝓧 L(δ(𝐱), θ) f(𝐱|θ) d𝐱 π(θ) dθ
 >
 >
 >
-> Tới đây biến đổi chút xíu (thay f(𝐱|θ) = π(θ|𝐱) f(𝐱) / π(θ), ta sẽ thấy nó 
-> trở thành ∫_/𝐗 /[/**∫**/_Θ L(δ(𝐱), θ) π(θ|𝐱) dθ] f(𝐱) d𝐱, trong đó ∫_Θ L(δ(𝐱), θ) π(θ|𝐱) dθ
-> chính là E[L(δ(X),θ)|𝐗=𝐱], là kì vọng của loss dưới phân phối posterior: posterior
-> expected loss. (hiểu nó thế này: với 𝐗 = 𝐱, L(δ(𝐗), θ) là random variable tạo bởi
-> θ, và θ ~ posterior π(θ|𝐱) ⇨ lấy kì vọng, theo lotus)
+> Tới đây biến đổi chút xíu (thay f(𝐱|θ) = π(θ|𝐱) f(𝐱) / π(θ), ta sẽ thấy nó trở thành ∫\_𝓧 ∫\_Θ L(δ(𝐱), θ) π(θ|𝐱) dθ\] f(𝐱) d𝐱, trong đó ∫\_Θ L(δ(𝐱), θ) π(θ|𝐱) dθ chính là E\[L(δ(𝐗),θ)|𝐗=𝐱\], là kì vọng của loss dưới phân phối posterior: posterior expected loss. (hiểu nó thế này: với 𝐗 = 𝐱, L(δ(𝐗), θ) là random variable tạo bởi θ, và θ \~ posterior π(θ|𝐱) ⇨ lấy kì vọng, theo lotus)
 >
 >
 >
-> Nhưng nếu làm tiếp từ ∫_Θ ∫_/𝐗/ L(δ(𝐱), θ) f(𝐱|θ) d𝐱 π(θ) dθ, nhập f(𝐱|θ) π(θ)
-> lại = f(𝐱, θ), ta sẽ có:
+> Nhưng nếu làm tiếp từ ∫\_Θ ∫\_𝓧 L(δ(𝐱), θ) f(𝐱|θ) d𝐱 π(θ) dθ, nhập f(𝐱|θ) π(θ) lại = f(𝐱, θ), ta sẽ có:
 >
 >
 >
-> ∫_Θ ∫_/𝐗/ L(δ(𝐱), θ) f(𝐱, θ) d𝐱 dθ 
+> ∫Θ ∫\_𝓧 L(δ(𝐱), θ) f(𝐱, θ) d𝐱 dθ
 >
 >
 >
-> Đây chính là gì? **CHÍNH LÀ** **LẤY TRUNG BÌNH CỦA LOSS DỰA TRÊN
-> JOINT DISTRIBUTION CỦA** 𝐗 và θ
+> Đây chính là gì? **CHÍNH LÀ** **LẤY TRUNG BÌNH CỦA LOSS DỰA TRÊN JOINT DISTRIBUTION CỦA** 𝐗 và θ
 >
 >
 >
-> Để rồi ta sẽ thấy **CHÍNH XÁC LÀ** **NGÀI BISHOP ĐANG TÍNH BAYES RISK** (tính **kì
-> vọng của loss (tổng loss) trên joint distribution của** T **và** 𝐗)
+> Để rồi ta sẽ thấy **CHÍNH XÁC LÀ** **NGÀI BISHOP ĐANG TÍNH BAYES RISK** (tính **kì vọng của loss (tổng loss) trên joint distribution của** T **và** 𝐗)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú thể hiện sự hiểu biết sâu sắc và kết nối xuất sắc giữa lý thuyết quyết định Bayes trong thống kê cổ điển (Casella) và học máy (Bishop). Có một lỗi viết nhầm ký hiệu nhỏ trong một câu ví dụ nhưng không ảnh hưởng đến mô hình tư duy tổng thể.
->
-> **🟡 Minor issues**
->
-> **1.** *"Ví dụ, ô Lkj sẽ là loss của event: T = k (class thật là j) và "mô hình phân lại là class j""*
->
-> Lỗi viết nhầm (typo) trong dấu ngoặc: nếu sự kiện là $T = k$ thì class thật phải là $k$, không phải $j$.
->
+> Ghi chú xuất sắc! Bạn đã liên hệ rất sâu sắc và chính xác giữa lý thuyết quyết định thống kê (Casella & Berger) với lý thuyết quyết định trong Machine Learning của Bishop, đặc biệt là nhận diện đúng bản chất việc cực tiểu hóa expected loss của Bishop chính là Bayes risk.
 >
 > **✓ Strengths**
-> - Hiểu rất rõ cách cấu trúc của Loss matrix $L_{kj}$ với hàng là nhãn thực tế và cột là nhãn dự đoán.
-> - Liên hệ chính xác giữa việc gán nhãn 2 lớp với bài toán kiểm định giả thuyết thống kê (Type I / Type II error và hàm generalized 0-c loss).
-> - Nhận diện cực kỳ chuẩn xác bản chất việc Bishop tối thiểu hóa expected loss thực chất chính là bài toán tìm quy tắc quyết định tối thiểu hóa Bayes Risk (tương đương với tối thiểu hóa posterior expected loss).
+> - Hiểu rất rõ và ánh xạ chuẩn xác ma trận tổn thất L_kj (hàng là true class k, cột là quyết định j) với Generalized 0-c Loss trong kiểm định giả thuyết (Type I và Type II errors).
+> - Phân biệt sắc bén bản chất giữa quan điểm Frequentist (theta là tham số cố định) và Bayesian/Bishop (nhãn lớp T là biến ngẫu nhiên tuân theo phân phối xác suất đồng thời p(x, C_k)).
+> - Biến đổi và chứng minh chính xác công thức Bayes risk theo hai hướng: trung bình trên posterior expected loss E[L|X=x] và trung bình trực tiếp trên phân phối đồng thời f(x, theta).
 >
 > **💡 Deeper notes**
-> - Dù trên thực tế đường chéo $L_{kk}$ thường được chuẩn hóa về 0 (không phạt khi đoán đúng), trong lý thuyết tổng quát các phần tử này chỉ cần thỏa mãn $L_{kk} < L_{kj}$ với $k \neq j$.
-> - Trong bối cảnh bài toán phân loại giám sát của Bishop, $(X, T)$ là cặp biến ngẫu nhiên đồng thời (joint distribution), việc chia phân vùng không gian quyết định $\mathcal{R}_j$ dẫn đến việc chỉ cần chọn $j$ cực tiểu hóa $\sum_k L_{kj} p(\mathcal{C}_k|\mathbf{x})$ cho từng điểm $\mathbf{x}$ cụ thể.
+> - Về ma trận tổn thất tổng quát, các phần tử trên đường chéo L_kk thường được chuẩn hóa về 0 nếu đoán đúng không gây tổn thất phát sinh, tuy nhiên trong một số bài toán quyết định kinh tế/y tế tổng quát, các quyết định đúng vẫn có thể gắn kèm một chi phí thực hiện nhất định (cost of action).
 
 <br>
 
@@ -1372,6 +1274,8 @@
 ###### Cấu trúc hàm mất mát
 
 <p align="center"><kbd><img src="assets/4a2jgmogvng.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/i7ijydnkb6s.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Từ đó giúp ta hiểu bản chất của cái công thức 1.80: chỉ là Bayes risk trong Casella mà thôi,
@@ -1386,8 +1290,7 @@
 >
 >
 >
-> Mà giá trị khả dĩ (possible value) của nó, sẽ phụ thuộc T và decision rule, và ta dùng cái loss matrix để liệt kê các possible
-> value này. Ví dụ,
+> Mà giá trị khả dĩ (possible value) của nó, sẽ dùng cái loss matrix để liệt kê các possible value này. Ví dụ,
 >
 >
 >
@@ -1419,7 +1322,7 @@
 >
 >
 >
-> t bằng mấy (C1 hay ...CK), ví dụ là Ck đi)
+> t bằng mấy (C1 hay ...CK), ví dụ là Ck
 >
 >
 >
@@ -1435,7 +1338,7 @@
 >
 >
 >
-> Hay g(t,𝐱) = Lkj với k là index từ 1,..K sao cho t = Ck, j là index từ 1,..K sao cho 𝐱 ∈ Rj
+> Khái quát: g(t,𝐱) = Lkj với k là index từ 1,..K sao cho t = Ck, j là index từ 1,..K sao cho 𝐱 ∈ Rj
 >
 >
 >
@@ -1443,91 +1346,159 @@
 >
 >
 >
-> I_(t = Ck), có giá trị = 1 khi t = Ck, = 0 kh t ≠ Ck
+> 𝐈\_(A) = 1 nếu A xảy ra vs 0 nếu A không xảy ra. Bern()
 >
 >
 >
-> I_(𝐱 ∈ Rj), có giá trị = 1 khi 𝐱 ∈ Rj, = 0 khi x không thuộc Rj
+>  𝐈\_(t = Ck), có giá trị = 1 khi t = Ck, = 0 kh t ≠ Ck
 >
 >
 >
-> g(t, 𝐱) = Σk=1:K Σj=1:K Lkj I_(t = Ck) I_(𝐱 ∈ Rj)
+> 𝐈\_(𝐱 ∈ Rj), có giá trị = 1 khi 𝐱 ∈ Rj, = 0 khi x không thuộc Rj
 >
 >
 >
-> Từ đó giúp ta thấy rõ, việc tính cái kì vọng của cái biến ngẫu nhiên Loss này, đơn giản là dùng LOTUS:
+> g(t, 𝐱) = Σk=1:K Σj=1:K Lkj 𝐈\_(t = Ck) 𝐈\_(𝐱 ∈ Rj)
 >
 >
 >
-> Nhớ lại LOTUS, nó nói rằng, khi ta có biến ngẫu nhiên Y được tạo thành bằng cách áp hàm g(x) lên biến ngẫu nhiên X, thì
-> ta có thể tính EY bằng cách dùng pmf/pdf của X: EY = Σ{possible  x của X} g(x)P(X=x) hoặc ∫_{range X} g(x)f(x)dx
+> ---
 >
 >
 >
-> Mà dù là tích phân hay sum thì đều có nghĩa là: marginalizing over mọi possible value của X đối với cụm g(x)f(x)
+> E\[Loss\] = E\[g(T,𝐗)\]
 >
 >
 >
-> Vậy thì đây, ta có LOSS, là **biến ngẫu nhiên có được bằng cách áp hàm** g(t,𝐱) lên hai biến ngẫu nhiên T, 𝐗, thì việc
-> tính E[LOSS] **cũng theo LOTUS**:
+> E\[X\] = weighted average. x1, x2, x3. E\[X\] = ∫xfX(x)dx
 >
 >
 >
-> E[LOSS] = marginalizing mọi possible value của T và 𝐗 đối với g(t,𝐱)f(t,𝐱).
+> Y = g(X), EY = ∫g(x)fX(x)dx (theo LOTUS)
 >
 >
 >
-> Và để thực hiện cái việc marginalizing, vì ở đây T là biến rời rạc, nhận các giá trị possible value C1, C2,... CK. Còn 𝐗 là
-> biến liên tục. nên công thức sẽ là:
+> Từ đó giúp ta thấy rõ, việc tính cái kì vọng của cái biến ngẫu nhiên Loss này, đơn giản là dùng LOTUS (2D LOTUS: Z=g(X,Y), EZ = ∫∫g(x,y)f(x,y)dxdy)
 >
 >
 >
-> Σ_{mọi possible value Cm của T} ∫_range_𝐗 g(t, 𝐱) f(t, 𝐱) d𝐱
+> LOSS = g(T,𝐗)
 >
 >
 >
-> = Σ_{mọi possible value Cm của T} ∫_range_𝐗 [Σk=1:K Σj=1:K Lkj I_(t = Ck) I_(𝐱 ∈ Rj)] f(t, 𝐱) d𝐱
+> Vậy thì đây, ta có LOSS, là **biến ngẫu nhiên có được bằng cách áp hàm** g(t,𝐱) lên hai biến ngẫu nhiên T, 𝐗, thì việc tính E\[LOSS\] **cũng theo LOTUS**:
 >
 >
 >
-> = Σ_{mọi possible value Cm của T} ∫_range_𝐗 [Σk=1:K Σj=1:K Lkj I_(t = Ck) I_(𝐱 ∈ Rj)] | t=Cm f(Cm, 𝐱) d𝐱
+> E\[LOSS\] =∫∫g(t,𝐱)f(t,𝐱)dtd𝐱, nhưng vì T discrete, ta sẽ có công thức tương tự:
 >
 >
 >
-> Với t = Cm, [Σk=1:K Σj=1:K Lkj I_(t = Ck) I_(𝐱 ∈ Rj)] | t=Cm = [Σj=1:K Lkj I_(𝐱 ∈ Rj)]
+> Σ\_{i=1,..,K} ∫g(Ci,𝐱) p(T=Ci,𝐱)d𝐱
 >
 >
 >
-> = Σ_{mọi possible value Cm của T} ∫_range_𝐗 [Σj=1:K Lmj I_(𝐱 ∈ Rj)] f(Cm, 𝐱) d𝐱
+> Với g(t, 𝐱) = Σk Σj Lkj 𝐈\_(t = Ck) 𝐈\_(𝐱 ∈ Rj)
 >
 >
 >
-> = Σ_m=1:K ∫_range_𝐗 [Σj=1:K Lmj I_(𝐱 ∈ Rj)] f(Cm, 𝐱) d𝐱
+> = Σ\_{i=1,..,K} ∫ \[Σk Σj Lkj 𝐈\_(Ci = Ck) 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱
 >
 >
 >
-> Tách cái tích phân trên toàn range 𝐗 thành tổng tích phân các vùng R1,... RK
+> ---
 >
 >
 >
-> = Σ_m=1:K Σn=1,..K ∫_Rn [ Σj=1:K Lmj I(𝐱 ∈ Rj) ] f(Cm,𝐱) d𝐱
+> Xét Σk Σj Lkj 𝐈\_(Ci = Ck) 𝐈\_(𝐱 ∈ Rj), viết tường minh vài cái cho dễ hiểu:
 >
 >
 >
-> với việc đã xét n=1,...K ở miền ngoài tích phân thì cái tổng [ Σj=1:K Lmj I_(t = Ck) I(𝐱 ∈ Rj) ] bên trong vòng lặp này chỉ
-> còn [ Σj=1:K Lmj I_(t = Ck) I(𝐱 ∈ Rj) ] | j=n ] chỉ còn là [ Lmn ]
+> Σj L1j 𝐈\_(Ci = C1) 𝐈\_(𝐱 ∈ Rj) + Σj L2j 𝐈\_(Ci = C2) 𝐈\_(𝐱 ∈ Rj) + ... + Σj Lij 𝐈\_(Ci = Ci) 𝐈\_(𝐱 ∈ Rj) + ...
 >
 >
 >
-> = Σ_m=1:K Σn=1,..K ∫_Rn [  Lmn ] f(Cm,𝐱) d𝐱
+> = 0 + 0 + ..+ Σj Lij 1 × 𝐈\_(𝐱 ∈ Rj) + 0 +..
 >
 >
 >
-> Và và vì m, n chỉ là dummy name, đặt lại tên biến là k, j ta có
+> = Σj Lij 𝐈\_(𝐱 ∈ Rj)
 >
 >
 >
-> Σ_k=1:K Σj=1,..K ∫_Rj Lkj f(Ck,𝐱) d𝐱
+> Nên Σk Σj Lkj 𝐈\_(Ci = Ck) 𝐈\_(𝐱 ∈ Rj) = Σj Lij 𝐈\_(𝐱 ∈ Rj)
+>
+>
+>
+> ---
+>
+>
+>
+> Do đó Σ\_{i=1,..,K} ∫ \[Σk Σj Lkj 𝐈\_(Ci = Ck) 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱
+>
+>
+>
+> = Σ\_{i=1,..,K} ∫ \[Σj Lij 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱 (1)
+>
+>
+>
+> ---
+>
+>
+>
+> Tách cái tích phân trên toàn miền thành tổng tích phân các vùng R1,... RK (do decision rule ngầm hiểu sẽ chia không gian thành các partition)
+>
+>
+>
+> ∫ \[Σj Lij 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱 = Σn ∫\_Rn \[Σj Lij 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱 (2)
+>
+>
+>
+> Viết tường minh vài term cho dễ thấy:
+>
+>
+>
+> ∫\_R1 \[Σj Lij 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱 + ∫\_R2 \[Σj Lij 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) d𝐱  + ..
+>
+>
+>
+> term thứ nhất, vì đã xét trong R1, nên cái tổng Σj Lij 𝐈\_(𝐱 ∈ Rj)\] p(T=Ci, 𝐱) sẽ là:
+>
+>
+>
+> Li1 𝐈\_(𝐱 ∈ R1)\] p(T=Ci, 𝐱) + Li2 𝐈\_(𝐱 ∈ R2)\] p(T=Ci, 𝐱) + ..
+>
+>
+>
+> = Li1 p(T=Ci, 𝐱) + Li2 × 0 × p(T=Ci, 𝐱) + ..
+>
+>
+>
+> = Li1 p(T=Ci, 𝐱)
+>
+>
+>
+> tương tự term thứ hai chỉ còn Li2 p(T=Ci, 𝐱)
+>
+>
+>
+> nên ta có: (2) = Σn ∫\_Rn Lin p(T=Ci, 𝐱) d𝐱
+>
+>
+>
+> Và (1) = Σ\_{i=1,..,K} Σn ∫\_Rn Lin p(T=Ci, 𝐱) d𝐱
+>
+>
+>
+> ---
+>
+>
+>
+> Và và vì i, n chỉ là dummy name, đặt lại tên biến là k, j ta có
+>
+>
+>
+> Σ\_{k=1,..,K} Σj ∫\_Rj Lkj p(T=Ck, 𝐱) d𝐱
 >
 >
 >
@@ -1535,32 +1506,26 @@
 >
 >
 >
-> Nhờ việc hiểu bản chất Loss là biến ngẫu nhiên define bởi hàm g, thì áp dụng kiến thức LOTUS, giúp ta hiểu vì sao công
-> thức E[Loss] lại là như vậy.
+> Nhờ việc hiểu bản chất Loss là biến ngẫu nhiên define bởi hàm g, thì áp dụng kiến thức LOTUS, giúp ta hiểu vì sao công thức E\[Loss\] lại là như vậy.
 >
 >
 >
 > Còn nhờ học Casella, ta hiểu thấu bản chất đây chỉ là Bayes risk mà thôi.
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=Rdn5CyR1QgI)
+
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú xuất sắc! Bạn đã giải thích và chứng minh công thức (1.80) một cách chặt chẽ từ góc nhìn biến ngẫu nhiên, định lý LOTUS và hàm chỉ thị (indicator function).
->
-> **🟡 Minor issues**
->
-> **1.** *"với việc đã xét n=1,...K ở miền ngoài tích phân thì cái tổng [ Σj=1:K Lmj I_(t = Ck) I(𝐱 ∈ Rj) ] bên trong vòng lặp này..."*
->
-> Có một lỗi gõ nhỏ (typo) khi viết lại cụm có chứa I_(t = Ck) dù trước đó đã rút gọn và gán t = Cm, tuy nhiên biểu thức rút gọn cuối cùng Lmn vẫn hoàn toàn chính xác.
->
+> Ghi chú xuất sắc! Bạn đã giải thích rất trực quan và chặt chẽ bản chất của công thức 1.80 thông qua LOTUS, hàm chỉ thị (indicator function) và việc phân hoạch không gian quyết định.
 >
 > **✓ Strengths**
-> - Hiểu rất sâu sắc bản chất hàm Loss là một biến ngẫu nhiên hình thành từ ánh xạ g(T, X) trên không gian tích.
-> - Ứng dụng chuẩn xác định lý LOTUS cho cặp biến ngẫu nhiên hỗn hợp (T rời rạc, X liên tục) để dẫn xuất từng bước ra công thức 1.80.
-> - Liên hệ chính xác với khái niệm Bayes risk trong thống kê cổ điển (Casella & Berger).
+> - Mô hình hóa hàm Loss rất chính xác dưới dạng hàm ngẫu nhiên g(t, x) dùng hàm chỉ thị (indicator function).
+> - Áp dụng định lý LOTUS cho biến hỗn hợp (T rời rạc, x liên tục) và chứng minh tường minh từng bước rút gọn tổng kép.
+> - Liên hệ sâu sắc và chính xác với khái niệm Bayes risk trong thống kê cổ điển (Casella & Berger).
 >
 > **💡 Deeper notes**
-> - Phép phân tách tích phân toàn miền range(X) thành tổng các tích phân trên Rn dựa trên giả định ngầm định rằng các vùng quyết định Rj tạo thành một phân hoạch (partition) của không gian đầu vào X (các vùng rời nhau và phủ kín không gian, sai khác nhiều nhất là tập có độ đo 0).
+> - Ký hiệu p(x, Ck) trong Bishop thực chất là hàm mật độ kết hợp (joint density-mass): p(x, Ck) = p(x | Ck) P(Ck). Việc xử lý tích phân theo x và tổng theo Ck như bạn làm là hoàn toàn chính xác theo lý thuyết độ đo.
 
 <br>
 
@@ -1880,6 +1845,25 @@
 >
 >
 > Với mỗi 𝐱, gán cho nó class Cj với j = argmin Σk=1:K Lkj f(Ck|𝐱)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và diễn giải trực quan, chính xác quy tắc quyết định Bayes để tối thiểu hóa tổn thất kỳ vọng (Bayes risk).
+>
+> **🟡 Minor issues**
+>
+> **1.** *"j = argmin_{Σk=1:K Lkj f(𝐱, Ck)}"*
+>
+> Ký hiệu toán học viết dưới argmin nên là biến tối ưu hóa j (tức là argmin_j) thay vì viết toàn bộ biểu thức vào subscript.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ bản chất của hàm argmin là tìm chỉ số j tương ứng với tổn thất nhỏ nhất để phân lớp.
+> - Giải thích chính xác lý do có thể loại bỏ thành phần chung f(x) (hoặc p(x)) do nó không phụ thuộc vào j và luôn không âm.
+>
+> **💡 Deeper notes**
+> - Trong trường hợp có nhiều hơn một chỉ số j cùng đạt giá trị cực tiểu (tie), về mặt lý thuyết ta có thể chọn ngẫu nhiên một trong các nhãn đó mà không làm thay đổi rủi ro Bayes.
 
 **🔗 See also:** [K-Nearest Neighbor Classification](./252_nearest_neighbour_methods.md#node-mtmr0qc)
 
