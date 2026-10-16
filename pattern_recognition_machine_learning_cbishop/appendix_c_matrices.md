@@ -671,9 +671,24 @@
 > Và ta có công thức ∂/∂Aij \[tr(AB)\] = Bji → chính là công thức C.23
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
-> Phân tích của bạn rất kỹ lưỡng và chính xác, sử dụng phương pháp vi phân để dẫn xuất các công thức C.23 và C.24 một cách hoàn hảo. Các bước giải thích rõ ràng từ tính chất tuyến tính, tính chất cyclic của trace đến việc liên hệ đạo hàm ma trận với các phần tử của nó.
+> Ghi chú rất tốt, bạn đã tự chứng minh công thức thông qua vi phân ma trận (matrix differential) và tích vô hướng Frobenius thay vì chỉ chép lại sách.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"ta chuyển nó thành inner product của Bᵀ và dA: <B . dA>, hay ghi là Bᵀ . dA cũng được"*
+>
+> Ký hiệu `<B . dA>` là một sơ suất nhỏ về cách viết nháp, vì tích vô hướng Frobenius đúng ở đây là giữa Bᵀ và dA: ⟨Bᵀ, dA⟩ = tr((Bᵀ)ᵀ dA) = tr(B dA). Tuy nhiên, bạn đã giải thích chuẩn xác ở ngay câu liền sau.
+>
+>
+> **✓ Strengths**
+> - Sử dụng thành thạo vi phân cấp 1 và tính chất cyclic của trace để tìm gradient ma trận.
+> - Hiểu rõ mối liên hệ giữa vi phân dTr(AB), tích vô hướng Frobenius và đạo hàm ma trận.
+> - Quy đổi chính xác từ dạng đạo hàm ma trận thu gọn sang từng phần tử chỉ số (ij).
+>
+> **💡 Deeper notes**
+> - Quy ước đạo hàm ma trận ở đây theo chuẩn giải tích ma trận (matrix calculus) thông dụng trong Machine Learning (numerator layout / chuẩn gradient tương thích với vi phân df = Tr((∂f/∂A)ᵀ dA)).
 
 **🔗 See also:** [Least Squares Discriminant Function](./413_least_squares_for_classification.md#node-uez5xzu)
 
@@ -781,9 +796,18 @@
 > ⇨ đạo hàm của tr(ABAᵀ) wrt A là A(Bᵀ+B)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Bạn đã chứng minh các đạo hàm ma trận C.25, C.26 và C.27 một cách chính xác và chi tiết, thể hiện sự hiểu biết sâu sắc về vi phân ma trận và các tính chất của vết ma trận. Tuy nhiên, việc sử dụng ký hiệu cho tích vô hướng giữa các ma trận (ví dụ: "B . dA" hoặc "(dA)T . (BAT)") chưa hoàn toàn chuẩn và có thể gây nhầm lẫn; bạn nên làm rõ định nghĩa tích vô hướng được sử dụng.
+> Ghi chú xuất sắc! Bạn đã chứng minh chính xác các công thức đạo hàm ma trận C.25, C.26 và C.27 bằng phương pháp vi phân (differential) và tích vô hướng Frobenius.
+>
+> **✓ Strengths**
+> - Áp dụng phương pháp vi phân kết hợp tích vô hướng Frobenius rất mạch lạc, chuẩn xác và thanh lịch.
+> - Nhận xét tinh tế khi suy ra C.26 từ C.25 bằng cách đặt B = I.
+> - Biến đổi đại số ở C.27 chặt chẽ, triệt tiêu đúng các số hạng bậc cao và tận dụng tính chất đối xứng của tích vô hướng ma trận.
+>
+> **💡 Deeper notes**
+> - Ký hiệu tích vô hướng Frobenius thường được viết là ⟨A, B⟩ hoặc A : B thay vì dấu chấm thông thường để tránh nhầm lẫn với phép nhân ma trận.
+> - Thay vì khai triển d[tr(X)] = tr(X + dX) - tr(X), bạn có thể dùng trực tiếp quy tắc tuyến tính của vi phân d[tr(X)] = tr(dX) và quy tắc tích d(UV) = (dU)V + U(dV) để chứng minh ngắn gọn hơn.
 
 **🔗 See also:** [Least Squares Discriminant Function](./413_least_squares_for_classification.md#node-uez5xzu)
 
