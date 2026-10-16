@@ -1,6 +1,6 @@
 # 9.2 Methods Of Finding Interval Estimators
 
-📊 **Progress:** `52` Notes | `61` Screenshots | `13` AI Reviews
+📊 **Progress:** `52` Notes | `61` Screenshots | `15` AI Reviews
 
 ---
 <a id="node-7s1kn1j"></a>
@@ -370,40 +370,46 @@
 <p align="center"><kbd><img src="assets/07qhdsbr6ae.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Theorem 9.2.2 này sẽ chính thức tuyên bố quan hệ này: Hiểu đại khái
-> cái theorem này như sau:
+> Theorem 9.2.2 này sẽ chính thức tuyên bố quan hệ này: Hiểu đại khái cái theorem này như sau:
 >
 >
 >
-> Đầu tiên, nó nói nếu như ta xét tập A(θ0) là acceptance region, (đương
-> nhiên, nó là tập chứa 𝐱) của một bài toán kiểm định H0: θ=θ0, và cái
-> test tạo acceptance region này có level α. Thì ta có thể dùng nó để tạo
-> một confidence set C(𝐗) có coefficient 1-α bằng cách như sau:
+> Đầu tiên, nó nói nếu như ta xét tập A(θ0) là acceptance region, (đương nhiên, nó là tập chứa 𝐱) của một bài toán kiểm định H0: θ=θ0, và cái test tạo acceptance region này có level α.
 >
 >
 >
-> Xây dựng một hàm tập: 𝐱 → tập C(𝐱) chứa các θ0 mà tập A(θ0) của nó
-> có chứa 𝐱. Nói bằng lời, cái hàm hàm này nhận vào 𝐱,rồi bên trong gom
-> các θ0 mà A(θ0) chứa 𝐱 lại, và trả cái tập đó ra. Thì với cái hàm tập C(𝐱)
-> này, áp nó lên random sample 𝐗, ta sẽ có một RANDOM SET C(𝐗). Và,
-> đây chính là một confidence set có confidence coefficient 1 - α (theo định
-> nghĩa, interval estimator, hay confidence set về bản chất chỉ là một random
-> interval hay khái quát hơn là random set)
+> VÀ, **QUAN TRỌNG LÀ: TA CÓ ĐIỀU NÀY VỚI MỖI θ0 TRONG Θ!** (cái chữ For each này cực quan trọng)
 >
 >
 >
-> -----
+> Thì ta có thể dùng nó để tạo một confidence set C(𝐗) có coefficient 1-α bằng cách như sau:
 >
 >
 >
-> Ở chiều ngược lại, nó nói, nếu ta có một confidence set C(𝐗) (mà bản chất
-> như vừa nói, chỉ là một random set, define bởi một hàm tập - set function
-> c(𝐱) áp lên random variable 𝐗) có coefficient 1-α. Thì theorem này nói rằng
-> ta có thể dùng nó để mà xây dựng một test cho bài toán kiểm định H0: θ = θ0
-> có level α. Làm như sau: Ta sẽ dùng cái hàm tập này, để tạo một tập như
-> sau: gom các 𝐱 mà C(x) chứa θ0, thành tập kí hiệu là A(θ0), thì cái tập này
-> chính là acceptance region của cái test đang cần, dĩ nhiên đồng nghĩa đã
-> định ra cái test đó.
+> Xây dựng một hàm tập: 𝐱 → tập C(𝐱) chứa các θ0 mà tập A(θ0) của nó có chứa 𝐱. Nói bằng lời, cái hàm hàm này nhận vào 𝐱,rồi bên trong gom các θ0 mà A(θ0) chứa 𝐱 lại, và trả cái tập đó ra. Thì với cái hàm tập C(𝐱) này, áp nó lên random sample 𝐗, ta sẽ có một RANDOM SET C(𝐗). Và, đây chính là một confidence set có confidence coefficient 1 - α (theo định nghĩa, interval estimator, hay confidence set về bản chất chỉ là một random interval hay khái quát hơn là random set)
+>
+>
+>
+> ---
+>
+>
+>
+> Ở chiều ngược lại, nó nói, nếu ta có một confidence set C(𝐗) (mà bản chất như vừa nói, chỉ là một random set, define bởi một hàm tập - set function c(𝐱) áp lên random variable 𝐗) có coefficient 1-α. Thì theorem này nói rằng ta có thể dùng nó để mà xây dựng một test cho bài toán kiểm định H0: θ = θ0 có level α. Làm như sau: Ta sẽ dùng cái hàm tập này, để tạo một tập như sau: gom các 𝐱 mà C(x) chứa θ0, thành tập kí hiệu là A(θ0), thì cái tập này chính là acceptance region của cái test đang cần, dĩ nhiên đồng nghĩa đã định ra cái test đó.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=DwlKo2-RcYc)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú giải thích rất xuất sắc, nắm trọn vẹn bản chất hai chiều của Định lý 9.2.2 về mối tương quan giữa miền chấp nhận (acceptance region) và tập tin cậy (confidence set).
+>
+> **✓ Strengths**
+> - Nhận thức rất chính xác tầm quan trọng của điều kiện 'với mỗi θ0' để có thể gom thành tập C(x).
+> - Phân biệt rành mạch giữa tập giá trị quan sát C(x) và tập ngẫu nhiên C(X).
+> - Diễn giải trực quan và chính xác phép nghịch đảo x ∈ A(θ0) tương đương θ0 ∈ C(x) ở cả hai chiều.
+>
+> **💡 Deeper notes**
+> - Về mặt thuật ngữ chặt chẽ trong giáo trình (Casella & Berger): test có 'level α' (nghĩa là xác suất bác bỏ sai ≤ α) sẽ tạo ra '1 - α confidence set' (xác suất bao phủ ≥ 1 - α). Nếu test có đúng 'size α' thì confidence coefficient mới đạt chính xác bằng 1 - α.
 
 <br>
 
@@ -418,62 +424,79 @@
 >
 >
 >
-> i) Ý đầu tiên nói nếu ta có A(θ0) là một tập acceptance region (của một test) có level α 
-> cho bài toán kiểm tra H0: θ = θ0, thì ta sẽ có thể xây dựng một confidence set
-> có coefficient 1 - α bằng cách như sau: Tạo hàm tập nhận vào một giá trị 𝐱,
-> trả ra tập như sau: Xem trong các θ0 ∈ Θ, cái nào có A(θ0) chứa 𝐱, thì gom lại
-> thành tập C(𝐱) = {θ0 ∈ Θ: 𝐱 ∈A(θ0)}. Khi đó áp cái hàm này lên 𝐗, sẽ cho ta 
-> một random set, hay random interval, là nó chính là một confidence set có 
-> confidence coefficient = 1-α:
+> Nhớ rằng điều kiện là VỚI MỖI θ0 ∈ Θ, TA SẼ CÓ MỘT BÀI TOÁN (H0: θ = θ0 vs H1: θ ≠ θ0), VÀ ĐỀU CÓ MỘT PHÉP KIỂM ĐỊNH LEVEL α
 >
 >
 >
-> Vậy đầu tiên ta có level α acceptance region A(θ0) nên A(θ0) là rejection region.
-> Theo định nghĩa của level α test, ta có sup_θ∈Θ0 P_θ(𝐗 ∈ A(θ0)c) ≤ α. 
+> Xét một θ0 cụ thể và 1 bài toán kiểm định cụ thể
 >
 >
 >
-> sup_θ=θ0 P_θ(X ∈ A(θ0)c) ≤ α.
+> i) Ý đầu tiên nói nếu ta có A(θ0) là một tập acceptance region (của một test) có level α cho bài toán kiểm tra H0: θ = θ0, thì ta sẽ có thể xây dựng một confidence set có coefficient 1 - α bằng cách như sau: Tạo hàm tập nhận vào một giá trị 𝐱, trả ra tập như sau: Xem trong các θ0 ∈ Θ, cái nào có A(θ0) chứa 𝐱, thì gom lại thành tập C(𝐱) = {θ0 ∈ Θ: 𝐱 ∈A(θ0)}. Khi đó áp cái hàm này lên 𝐗, sẽ cho ta một random set, hay random interval, là nó chính là một confidence set có confidence coefficient = 1-α:
 >
 >
 >
-> ⇔ P_θ0(𝐗 ∈ A(θ0)c) ≤ α.
+> Vậy đầu tiên ta có level α test nên gọi R(θ0) = cũng là complement của A(θ0) là rejection region của bài toán này, ta có: 
 >
 >
 >
-> ⇔ 1 - P_θ0(𝐗 ∈ A(θ0)) ≤ α 
+> sup\_θ∈Θ0 P\_θ(𝐗 ∈ R(θ0)) ≤ α.
 >
 >
 >
-> ⇔ 1 - α ≤ P_θ0(𝐗 ∈ A(θ0)) 
+> ⇔ P\_θ0(𝐗 ∈ R(θ0)) ≤ α.
 >
 >
 >
-> Nhớ rằng thứ ta đang có là do giả thuyết cho level α acceptance region A(θ0)
-> của bài toán test H0: θ = θ0
+> ⇔ 1 - P\_θ0(𝐗 ∈ A(θ0)) ≤ α
 >
 >
 >
-> Rồi đến đây ta mới xem cách xây dựng 1-α confidence set, nhắc lại cho nhớ: với mỗi
-> x trong range X. tạo tập C(x) = {θ0 ∈ Θ: A(θ0) chứa x}. Vì cách tạo này nên:
+> ⇔ 1 - α ≤ P\_θ0(𝐗 ∈ A(θ0))
 >
 >
 >
-> nếu θ0 thuộc Θ mà A(θ0) chứa x (tức x ∈ A(θ0)) thì nó (θ0) sẽ chứa trong C(x) và 
-> ngược lại, nếu θ0 nằm trong C(x) thì nhất định A(θ0) của nó sẽ chứa x. Nên ta có
-> quan hệ: θ0 ∈ C(x) ⇔ x ∈ A(θ0)
+> ---
 >
 >
 >
-> Rồi, vậy giờ xét P_θ0(𝐗 ∈ A(θ0)), về bản chất nó là cái gì:
+> Tiếp theo gọi C(𝐱) = {θ ∈ Θ: A(θ) chứa 𝐱}
 >
 >
 >
-> theo lí thuyết xác suất, nó chính là: P_θ0({s ∈ Ω: 𝐗(s) ∈ A(θ0)})
+> Ví von cho dễ hiểu: C(𝐱) là tập các cô θ mà thằng 𝐱 thích. Và A(θ) là tập các anh 𝐱 thích cô này. Thì đương nhiên ta sẽ có quan hệ: Anh 𝐱 thuộc tập A(θ) (tức anh 𝐱 thích cô θ) đương nhiên cô θ phải thuộc tập C(𝐱) (tức cô θ nằm trong list anh 𝐱 để ý). Và đây là một quan hệ logic đúng với mọi anh 𝐱 cụ thể và cô θ cụ thể.
 >
 >
 >
-> = P_θ0({𝐱 ∈ range 𝐗: 𝐱 ∈ A(θ0)})
+> Do đó, xét cô θ0: thì một anh 𝐱 thích cô θ0: 𝐱 ∈ A(θ0) thì dĩ nhiên cô θ0 thuộc danh sách các cô mà anh 𝐱 thích: θ0 ∈ C(𝐱). (và ngược lại) 
+>
+>
+>
+> Vậy θ0 ∈ C(𝐱) ⇔ 𝐱 ∈ A(θ0)
+>
+>
+>
+> Nên thay 𝐱 bởi 𝐗 ta có hai event tương đương: θ0 ∈ C(𝐗) ⇔ 𝐗 ∈ A(θ0)
+>
+>
+>
+> ---
+>
+>
+>
+> Nếu lập luận về bản chất để thấy rõ ý trên thì như sau: 
+>
+>
+>
+> Rồi, vậy giờ xét P\_θ0(𝐗 ∈ A(θ0)), về bản chất nó là cái gì:
+>
+>
+>
+> theo lí thuyết xác suất, nó chính là: P\_θ0({s ∈ Ω: 𝐗(s) ∈ A(θ0)})
+>
+>
+>
+> = P\_θ0({𝐱 ∈ range 𝐗: 𝐱 ∈ A(θ0)})
 >
 >
 >
@@ -481,11 +504,15 @@
 >
 >
 >
-> ⇨ = P_θ0({x ∈ range X: x ∈ A(θ0)}) = P_θ0({𝐱 ∈ range 𝐗: θ0 ∈ C(x)})
+> ⇨ = P\_θ0({x ∈ range 𝐗: x ∈ A(θ0)}) = P\_θ0({𝐱 ∈ range 𝐗: θ0 ∈ C(x)})
 >
 >
 >
-> và đây chính là P_θ0(θ0 ∈ C(𝐗))
+> và đây chính là P\_θ0(θ0 ∈ C(𝐗))
+>
+>
+>
+> ---
 >
 >
 >
@@ -493,29 +520,27 @@
 >
 >
 >
-> 1 - α ≤ P_θ0(θ0 ∈ C(𝐗)) 
+> 1 - α ≤ P\_θ0(θ0 ∈ C(𝐗))
 >
 >
 >
-> và điều này đúng với θ0 tùy ý, vì θ0 có từ giả thuyết là giá trị tùy ý trong Θ, hoàn toàn
-> không có ràng buộc nào.
+> ---
 >
 >
 >
-> Do đó ta có thể ghi là:
+> Và như đã nói, điều kiện ban đầu của theorem đó là VỚI MỖI θ0 ∈ Θ THÌ bài toán testing H0: θ = θ0 vs not H0, ĐỀU CÓ MỘT LEVEL α test
 >
 >
 >
-> 1 - α ≤ P_θ(θ ∈ C(𝐗))
+> nên ta có thể nói VỚI MỌI giá trị thật θ0 của θ thì 1 - α ≤ P\_θ0(θ0 ∈ C(𝐗))
 >
 >
 >
-> và do đó 1 - α ≤ inf_θ∈Θ P_θ(θ ∈ C(𝐗))
+> và do đó 1 - α ≤ inf\_θ∈Θ P\_θ(θ ∈ C(𝐗))
 >
 >
 >
-> Và đây chính là định nghĩa của một 1-α confidence set, một cái lưới giăng bẫy θ mà
-> xác suất bắt dính được θ (dù chưa biết nó ở đâu) cũng luôn từ 1-α trở lên.
+> Và đây chính là định nghĩa của một 1-α confidence set, một cái lưới giăng bẫy θ mà xác suất bắt dính được θ (dù chưa biết nó ở đâu) cũng luôn từ 1-α trở lên.
 >
 >
 >
@@ -523,81 +548,51 @@
 >
 >
 >
-> Ngược lại, nếu xuất phát điểm của ta có là một 1-α confidence set C(𝐗), thì theorem
-> này nói là có thể xây dựng một test có level α cho bài toán kiểm định H0: θ = θ0 với
-> θ0 bất kì trong Θ. Và cách xây dựng như sau: Còn nhớ, một test, thật ra là một rule,
-> và cái rule này có thể được nhìn nhận ở dạng một cái rejection region R hay phần bù
-> của nó, acceptance region Rc. Vậy thì, từ confidence set C(𝐗), ta sẽ xài cái hàm C(𝐱)
-> để gom hết các thằng 𝐱 ∈ range 𝐗 nào mà C(𝐱) của nó chứa θ0 (θ0 của H0: θ = θ0 
-> đang xét), và gom lại thành tập gọi là A(θ0). Thì cái tập này, theo theorem, chính là
-> Rc của tạo bởi một level α test của bài toán kiểm định H0: θ = θ0.
+> Ngược lại, nếu có 1-α confidence interval C(𝐗) tức inf\_ θ∈Θ P\_θ(θ ∈ C(𝐗)) ≥ 1-α
 >
 >
 >
-> Chứng minh: Ta có 1-α confidence set C(𝐗), nên theo định nghĩa của confidence 
-> coefficient:
+> ⇒  P\_θ0(θ0 ∈ C(𝐗)) ≥ 1-α
 >
 >
 >
-> inf_θ∈Θ P_θ(θ ∈ C(𝐗)) = 1 - α 
+> ⇔ P\_θ0(𝐗 ∈ A(θ0)) ≥ 1-α
 >
 >
 >
-> ⇨ 1 - α ≤ P_θ(θ ∈ C(𝐗)) ∀θ 
+> ⇔ 1 - P\_θ0(𝐗 ∈ A(θ0)\_c) ≥ 1-α
 >
 >
 >
-> (mang ý nghĩa, cái lưới C(𝐗) này, luôn có xác suất bắt được θ) ít nhất là từ 1 - α trở lên, 
-> dù θ nằm ở đâu)
+> ⇔ P\_θ0(𝐗 ∈ A(θ0)\_c) ≤ α
 >
 >
 >
-> vì nó đúng với mọi θ nên nó đúng với θ = θ0 mà ta đang xét bài toán kiểm tra H0: θ = θ0
+> ⇔ sup\_θ∈{θ0} P\_θ0(𝐗 ∈ A(θ0)\_c) ≤ α
 >
 >
 >
-> 1 - α ≤ P_θ0(θ0 ∈ C(𝐗)) (1)
+> Do đó A(θ0)\_c: {𝐱: θ0 ∈ C(𝐱)}\_c = {𝐱: θ0 ∉ C(𝐱)} chính là rejection region của 1 level α test của bài toán kiểm định H0: θ = θ0 vs H1 = not H0
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **96/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, hiểu sâu sắc mối quan hệ đối ngẫu hai chiều giữa miền chấp nhận của kiểm định giả thuyết và tập tin cậy (test inversion). Lập luận logic, trực quan và giải thích rõ bản chất xác suất.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"= P_θ0({𝐱 ∈ range 𝐗: 𝐱 ∈ A(θ0)})"*
+>
+> Về mặt ký hiệu lý thuyết xác suất chặt chẽ, P_θ0 là độ đo xác suất trên không gian mẫu gốc Ω (xét biến cố {s ∈ Ω: X(s) ∈ A(θ0)}). Khi chuyển sang miền giá trị (range/support của X), ta đang dùng phân phối cảm sinh (induced measure) P_X. Cách viết này tuy trực giác nhưng hơi lẫn lộn giữa biến ngẫu nhiên và biến cố gốc.
 >
 >
+> **✓ Strengths**
+> - Nắm vững tính tương đương logic then chốt giữa sự kiện x ∈ A(θ0) và θ0 ∈ C(x).
+> - Hiểu rõ bản chất việc lấy infimum trên toàn bộ không gian tham số Θ để định nghĩa confidence coefficient 1 - α.
+> - Chứng minh đầy đủ cả hai chiều (từ họ phép kiểm định suy ra tập tin cậy và ngược lại) một cách mạch lạc.
 >
-> lưu ý, đên đây chỉ đon thuần kết quả là do giả thuyết ta có 1-α confidence set.
->
->
->
-> Bây giờ ta mới xét cách xây dựng test, chính xác là tập Rc của nó: tập A(θ0) là tập chứa
-> các giá trị 𝐱 ∈ range 𝐗 sao cho C(𝐱) chứa θ0. Vì cách xây dựng như vậy cho nên ta có
-> quan hệ: 𝐱 mà thuộc A(θ0) thì có nghĩa là θ0 thuộc C(𝐱) và ngược lại, θ0 thuộc C(𝐱) thì
-> 𝐱 nằm trong A(θ0): 𝐱 ∈ A(θ0) ⇔ θ0 ∈ C(𝐱)
->
->
->
-> Như vậy, ta xét event θ0 ∈ C(𝐗), event này có bản chất là {𝐱 ∈ 𝐗: θ0 ∈ C(𝐱)} và vì cái ta có
-> ở trên nên tập này bằng tập {𝐱 ∈ 𝐗: x ∈ A(θ0)} = 𝐗 ∈ A(θ0)
->
->
->
-> ⇨ P_θ0(θ0 ∈ C(𝐗)) = P_θ0(𝐗 ∈ A(θ0))
->
->
->
-> vậy (1) ⇔ 1 - α ≤ P_θ0(𝐗 ∈ A(θ0))
->
->
->
-> ⇔ 1 - α ≤ 1 - P_θ0(𝐗 ∈ A(θ0)c)) 
->
->
->
-> ⇔ P_θ0(𝐗 ∈ A(θ0)c)) ≤ α 
->
->
->
-> ⇔ sup_θ∈Θ0={θ0} P_θ(𝐗 ∈ A(θ0)c)) ≤ α   
->
->
->
-> Và đây chính là nói rằng test có rejection region A(θ0)c (cũng là acceptance region A(θ0)
-> là một level α test. Chứng minh xong.
+> **💡 Deeper notes**
+> - Định nghĩa tập tin cậy 1 - α chuẩn mực trong sách thường yêu cầu inf_θ P_θ(θ ∈ C(X)) ≥ 1 - α (đôi khi gọi là level 1 - α), và nếu đạt dấu bằng thì gọi là confidence coefficient chính xác bằng 1 - α.
 
 <br>
 
