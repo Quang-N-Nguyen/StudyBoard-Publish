@@ -479,6 +479,8 @@
 >
 > Trong hình minh họa thì trượt trên đường thẳng Ax = b cũng chính là trượt song song N(A)
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=V688_8gu1X4)
+
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
