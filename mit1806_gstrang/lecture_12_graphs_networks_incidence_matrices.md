@@ -352,7 +352,7 @@
 >
 > Cũng có thể lập luận vì có **dim nullspace N(A) = 1**, nên Ax = 0, **có 1 special solution**, đồng nghĩa **có 3 pivots** -&gt; **3 linearly independent cols** -&gt; **basis của cols space có 3 vector -&gt; dim của columns space = 3 -&gt; rank = 3**
 
-**🔗 See also:** [linked note](./lecture_10_the_four_fundamental_subspaces.md#node-bsozk2k) · [linked note](#node-e7n8l7p)
+**🔗 See also:** [Số chiều Rowspace và Nullspace](./lecture_10_the_four_fundamental_subspaces.md#node-bsozk2k) · [linked note](#node-e7n8l7p)
 
 <br>
 
@@ -393,7 +393,7 @@
 >
 > Có thể giải thích ngắn hơn: Ta biết định lý **Rank-Nullity** nói rằng với **matrix A \[m,n\] thì C(A) và N(Aᵀ) đều là subspace của Rm** (có m rows nên columns có m components, cũng là cần m coefficients để combine m rows để cho ra 0 (ý nói Aᵀy = 0). Và **cùng với nhau chúng sẽ cover Rm**: dim C(A) + dim N(Aᵀ) = m từ đó dim N(Aᵀ) = m - dim C(A) = m - r = 5 - 3 = 2
 
-**🔗 See also:** [linked note](./lecture_10_the_four_fundamental_subspaces.md#node-z9zvfsz)
+**🔗 See also:** [Số chiều không gian hàng](./lecture_10_the_four_fundamental_subspaces.md#node-z9zvfsz)
 
 <br>
 
