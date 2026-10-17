@@ -1,6 +1,6 @@
 # 15.3 Elimination Of Variables
 
-📊 **Progress:** `5` Notes | `11` Screenshots | `5` AI Reviews
+📊 **Progress:** `7` Notes | `15` Screenshots | `7` AI Reviews
 
 ---
 <a id="node-eavmrgx"></a>
@@ -389,4 +389,142 @@
 > - Toàn bộ suy luận ngầm giả định ma trận ràng buộc A có rank đầy đủ theo hàng (rank = m), đảm bảo tồn tại khối B khả nghịch kích thước m x m.
 
 <br>
+
+<a id="node-frgne4v"></a>
+
+###### Simple Elimination for Feasible Points
+
+<p align="center"><kbd><img src="assets/rdc7mag9dq.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/ba2u7fl2kfb.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/zym76zwfbsq.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Phần này sẽ nói về ý nghĩa hình học của các làm simple elimination:
+>
+>
+>
+> x = Yb + ZxN
+>
+>
+>
+> Active recall nhanh lại cái này: Các bước của simple elimimation - giúp loại bỏ constraint Ax = b, tích hợp nó vào objective f(x):
+>
+>
+>
+> Dùng P để chuyển A (full row rank) về dạng AP = \[B|N\], B full rank, tạo bởi các cột độc lập của A, và N là các cột còn lại.
+>
+>
+>
+> Cho rằng A có sẵn ở dạng này rồi thì P = I
+>
+>
+>
+> Đặt Y = \[B⁻¹; 0\]; Z = \[-B⁻¹N; I\] thì 
+>
+>
+>
+> x = \[xB;xN\] = Yb + ZxN = x_particular + x_null
+>
+>
+>
+>  Bài toán trở thành unconstraint problem: minimize_xN h(xN) = f(Yb + ZxN)
+>
+>
+>
+> trong đó, ta đã tích hợp constraint Ax=b vào trong objective: vì với mọi xN, thì x = Yb + ZxN đều đã feasible (thỏa Ax=b), nên nhiệm vụ bây giờ chỉ là tìm xN để minimize f(Yb + ZxN) thôi.
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy giả sử nghiệm là x\* = Yb + Z xN\*
+>
+>
+>
+> Quá trình sẽ diễn ra như sau:
+>
+>
+>
+> Bắt đầu tại x = \[xB; xN\] = \[0;0\] (hiểu xB, xN là hai subvector 0, mà trong minh họa 15.3, khi xB, xN đều là R^1 vector, tức là 2 con số 0\]
+>
+>
+>
+> Ta sẽ tìm cách đến được Yb (= \[B⁻¹b;0\]): Rõ ràng từ \[0;0\] đi tới \[B⁻¹b;0\] chính là giữ xN = 0, thay đổi xB sao nó bằng B⁻¹b 
+>
+>
+>
+> Lúc này x = Yb = \[B⁻¹b;0\] đã thỏa constraint, ta đã đến được và nằm trên đường thằng Ax=b
+>
+>
+>
+> Sau đó, nhiệm vụ là đi từ đó đến x\* = Yb + Z xN\*
+>
+>
+>
+> Mà như vậy ta cần di chuyển theo hướng vector x\* - x = Yb + Z xN\* - Yb = Z xN\*, mà vector này, chính là nullspace vector.
+>
+>
+>
+> Nên mới nói bước một là giữ n-m component của x (ứng với xN) bằng 0, và thay đổi m component còn lại (ứng với xB) để có được x = Yb để thỏa constraint.
+>
+>
+>
+> sau đó thì move along = di chuyển song song với hướng của nullspace vector để đến được x\* là điểm minimize f
+>
+>
+>
+> Trong hình minh họa thì trượt trên đường thẳng Ax = b cũng chính là trượt song song N(A)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, nắm bắt trọn vẹn và giải thích cực kỳ trực quan ý nghĩa hình học của bước coordinate relaxation và displacement dọc theo nullspace.
+>
+> **✓ Strengths**
+> - Hiểu chính xác vai trò của nghiệm riêng Yb như một bước coordinate relaxation từ gốc tọa độ đến siêu phẳng ràng buộc.
+> - Giải thích rõ ràng cơ chế cố định n-m biến tự do (xN = 0) và nới lỏng m biến cơ sở (xB) để chạm tới mặt phẳng nghiệm.
+> - Liên hệ chuẩn xác việc di chuyển từ nghiệm riêng tới nghiệm tối ưu là phép tịnh tiến dọc theo không gian hạch (null space) của ma trận A.
+>
+> **💡 Deeper notes**
+> - Ma trận B có kích thước m x m khả nghịch (do A có full row rank m), vì vậy n - m chính là số chiều của không gian nghiệm (null space) của A.
+
+<br>
+
+<a id="node-jp4ulmy"></a>
+
+###### Numerical Instabilities in Elimination
+
+<p align="center"><kbd><img src="assets/jqmxr29g05.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> ok, cách làm simple elimination đại khái là có vấn đề nếu như ví dụ như trong hình trên, đường thẳng Ax=b gần như song song với x1 thì sao, khi đó để đi đến x = Yb, x1 sẽ có giá trị cực lớn, và từ đó đi dọc theo Ax=b (song song với nullspace) thì cơ bản ta sẽ tính hiệu của hai điểm mà tọa độ cực lớn như vậy sẽ khiến gây ra hiện tượng numerical cancellation đã học trong chap 7.
+>
+>
+>
+> Một cách làm để khắc phục là đổi basis, để thay vì trượt theo x1 để có Yb thì trượt theo x2, đồng nghĩa với hành động đổi một bộ vector độc lập khác (basis khác) của C(A). Nhưng làm sao biết nên chọn basis nào từ đầu (nên mới nói chọn best basis là vấn đề ko dễ)
+>
+>
+>
+> Do đó phần tới ta sẽ học một chiến lược khác tốt hơn: Mà một trường hợp đặc biệt của nó chính là đi tìm Yb là minimum-norm của constraint (tức là ta sẽ giải bài toán tì minimize ||x|| s.t thỏa Ax = b để có Yb)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và diễn giải trực quan, chính xác nội dung của đoạn trích về hiện tượng triệt tiêu số (numerical cancellation), bài toán chọn basis và hướng giải quyết bằng nghiệm chuẩn cực tiểu (minimum-norm solution).
+>
+> **✓ Strengths**
+> - Giải thích trực quan và chính xác lý do tại sao khi đường ràng buộc gần song song với trục x1 thì bước relaxation theo x1 lại cực lớn dẫn đến triệt tiêu số học (numerical cancellation).
+> - Hiểu đúng bản chất việc chọn lại biến/trục cơ sở tương đương với việc chọn một basis khác trong elimination.
+> - Liên hệ chuẩn xác nghiệm particular solution Yb với bài toán tối ưu chuẩn cực tiểu (minimum-norm: minimize ||x|| s.t Ax = b).
+>
+> **💡 Deeper notes**
+> - Về mặt đại số tuyến tính, việc chọn 'basis của C(A)' ở đây cụ thể là chọn tập các cột độc lập tuyến tính của A tương ứng với các biến cơ sở (basic variables) để tạo thành ma trận khả nghịch B phục vụ cho phép thế/khử.
+
+<br>
+
+<a id="node-9xbg7s5"></a>
 
