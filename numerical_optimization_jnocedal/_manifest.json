@@ -1,6 +1,6 @@
 {
   "title": "Numerical Optimization_J.Nocedal",
-  "publishedAt": 1791659696411,
+  "publishedAt": 1792260715090,
   "sections": [
     {
       "title": "📋 Overview",
@@ -209,8 +209,8 @@
     {
       "title": "15.3 Elimination Of Variables",
       "path": "numerical_optimization_jnocedal/153_elimination_of_variables.md",
-      "noteCount": 5,
-      "imageCount": 11
+      "noteCount": 7,
+      "imageCount": 15
     },
     {
       "title": "16.0 Quadratic Programming",
@@ -243,6 +243,6 @@
       "imageCount": 11
     }
   ],
-  "totalNotes": 440,
-  "totalImages": 645
+  "totalNotes": 442,
+  "totalImages": 649
 }
