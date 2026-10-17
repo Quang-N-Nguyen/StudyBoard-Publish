@@ -1,6 +1,6 @@
 # Lecture 10: The Four Fundamental Subspaces
 
-📊 **Progress:** `24` Notes | `29` Screenshots | `1` AI Reviews
+📊 **Progress:** `24` Notes | `33` Screenshots | `5` AI Reviews
 
 ---
 <a id="node-no1m6a6"></a>
@@ -15,7 +15,11 @@
 
 <a id="node-0n3uikz"></a>
 
+### Không gian hàng và cột
+
 <p align="center"><kbd><img src="assets/f5dol5ztoc.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/rkvn54c1kth.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Ok, đại khái là gs nói rằng trong bài trước **có một sai
@@ -44,11 +48,36 @@
 > Và bài này gs sẽ cho ta thấy **sự liên hệ giữa columns
 > space và row spaces.**
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=fdjo2Nbwk2E)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, nắm bắt chính xác sai sót thú vị của giáo sư Strang trên bảng và hiểu sâu sắc bản chất: hàng 1 bằng hàng 2 dẫn đến rank tối đa là 2 (số pivot hàng = số pivot cột), do đó 3 cột không thể độc lập tuyến tính.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"chỉ cần vector thứ 3 không phải là linear dependent của hai cái kia"*
+>
+> Thuật ngữ chính xác nên là 'không phải là tổ hợp tuyến tính (linear combination) của hai vector kia' hoặc 'độc lập tuyến tính với hai vector kia'.
+>
+>
+> **✓ Strengths**
+> - Nhận diện chính xác sai lầm trên bảng khi các cột [1 1 2]^T, [2 2 5]^T, [3 3 8]^T tạo thành ma trận có hàng 1 và hàng 2 trùng nhau.
+> - Hiểu rất rõ định lý nền tảng: số pivot theo hàng bằng số pivot theo cột (row rank = column rank), từ đó suy ra 3 vector cột không thể tạo thành cơ sở cho R^3.
+>
+> **💡 Deeper notes**
+> - Việc hàng 1 bằng hàng 2 triệt tiêu ngay lập tức một pivot khi khử Gauss (R2 - R1 = 0), đảm bảo ma trận có định thức bằng 0 và không khả nghịch.
+
 <br>
 
 <a id="node-ds72qgh"></a>
 
+#### Không gian hàng ma trận
+
 <p align="center"><kbd><img src="assets/13gkl9dtrktc.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/bvghx6dxshm.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Và ta sẽ nói về một subspace quan trọng thứ 3 bên cạnh
@@ -69,6 +98,19 @@
 > tôi có thể dùng **columns của Aᵀ** để chỉ row của A. Vậy **rowspace
 > của A là columns space của Aᵀ**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chính xác và nắm bắt trọn vẹn bản chất của không gian hàng (row space), mối liên hệ với C(Aᵀ) cũng như phân biệt rõ ràng giữa tập sinh (span) và cơ sở (basis).
+>
+> **✓ Strengths**
+> - Định nghĩa chính xác row space là không gian sinh bởi tất cả các tổ hợp tuyến tính của các hàng trong ma trận A.
+> - Hiểu rõ sự khác biệt giữa tập sinh và cơ sở khi nhấn mạnh các hàng chỉ là cơ sở khi chúng độc lập tuyến tính.
+> - Nắm bắt chuẩn xác đẳng thức kỹ thuật quan trọng: row space của A chính là column space của Aᵀ, tức C(Aᵀ).
+>
+> **💡 Deeper notes**
+> - Nếu ma trận A có kích thước m x n, thì các hàng nằm trong Rⁿ, do đó row space C(Aᵀ) là một không gian con của Rⁿ (khác với column space C(A) là không gian con của Rᵐ).
+
 <br>
 
 <a id="node-cvbcftc"></a>
@@ -76,6 +118,8 @@
 ##### The Four Fundamental Subspaces
 
 <p align="center"><kbd><img src="assets/i8445mfza.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/zdrecrpec39.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Và fundamental subspace thứ 4 là **null-space của Aᵀ** hay
@@ -100,20 +144,51 @@
 >
 > Và **N(Aᵀ) sẽ là subspace của Rm**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chính xác và tóm tắt đúng bản chất của 4 không gian con cơ bản cùng không gian chứa (R^m hoặc R^n) tương ứng của ma trận kích thước m x n.
+>
+> **✓ Strengths**
+> - Xác định chính xác tên gọi và không gian bao chứa (R^m hoặc R^n) cho cả 4 không gian con cơ bản.
+> - Giải thích trực quan và đúng đắn lý do vì sao mỗi không gian con lại thuộc về R^m hay R^n dựa trên số chiều của các vector cột, hàng và nghiệm.
+>
+> **💡 Deeper notes**
+> - Tên gọi 'left nullspace' (không gian không bên trái) xuất phát từ việc phương trình Aᵀy = 0 có thể viết lại thành yᵀA = 0ᵀ, trong đó vector hàng yᵀ nhân vào ma trận A từ phía bên trái.
+> - Trong các bài học tiếp theo, số chiều cụ thể của từng không gian con sẽ gắn liền với hạng r của ma trận: dim(C(A)) = dim(C(Aᵀ)) = r, dim(N(A)) = n - r, và dim(N(Aᵀ)) = m - r.
+
 <br>
 
 <a id="node-ztmow5b"></a>
 
+###### Bốn không gian con
+
 <p align="center"><kbd><img src="assets/89v3kq4sl8.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/f8ujwosc3j7.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Gs phác thảo **rowspace và null-space là subspace
 > của Rn** và **columns space và nullspace of Aᵀ là
 > subspace của Rm**
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất chính xác sơ đồ 4 không gian con cơ bản của ma trận A kích thước m x n mà Giáo sư Gilbert Strang đang phác thảo trên bảng.
+>
+> **✓ Strengths**
+> - Xác định đúng không gian hàng (row space) và không gian nghiệm (nullspace) thuộc R^n.
+> - Xác định đúng không gian cột (column space) và không gian nghiệm trái N(A^T) thuộc R^m.
+>
+> **💡 Deeper notes**
+> - Hai cặp không gian con này không chỉ nằm trong R^n và R^m mà còn là phần bù trực giao (orthogonal complements) của nhau: Row Space ⟂ Nullspace trong R^n, và Column Space ⟂ N(A^T) trong R^m.
+
 <br>
 
 <a id="node-2d3dwhx"></a>
+
+###### Bốn không gian con nền tảng
 
 <p align="center"><kbd><img src="assets/pfa3fltxxte.png" width="80%"></kbd></p>
 
@@ -145,6 +220,8 @@
 <br>
 
 <a id="node-shgezta"></a>
+
+###### Cơ sở không gian cột
 
 <p align="center"><kbd><img src="assets/nrph2nhmni.png" width="80%"></kbd></p>
 
@@ -179,6 +256,8 @@
 
 <a id="node-z9zvfsz"></a>
 
+###### Số chiều không gian hàng
+
 <p align="center"><kbd><img src="assets/rjf9o940n2.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -199,6 +278,8 @@
 <br>
 
 <a id="node-m0vwas1"></a>
+
+###### Rank và không gian cột
 
 <p align="center"><kbd><img src="assets/giy8e6hg4y9.png" width="80%"></kbd></p>
 
@@ -387,6 +468,8 @@
 
 <a id="node-bsozk2k"></a>
 
+###### Số chiều Rowspace và Nullspace
+
 <p align="center"><kbd><img src="assets/kcn59rbyfbk.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -474,6 +557,8 @@
 
 <a id="node-l74e1x1"></a>
 
+###### Cấu trúc ma trận rút gọn
+
 <p align="center"><kbd><img src="assets/sexfn4relz9.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -483,6 +568,8 @@
 <br>
 
 <a id="node-2b7s698"></a>
+
+###### Không gian hàng và cột
 
 <p align="center"><kbd><img src="assets/dytkd4gypxf.png" width="80%"></kbd></p>
 
