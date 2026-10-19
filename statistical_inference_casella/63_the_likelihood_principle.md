@@ -318,6 +318,8 @@
 
 <a id="node-qlgywct"></a>
 
+###### Suy luận fiducial
+
 <p align="center"><kbd><img src="assets/nxli0o3fhnl.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -326,6 +328,8 @@
 <br>
 
 <a id="node-zz9vhcc"></a>
+
+###### Phân phối fiducial chuẩn
 
 <p align="center"><kbd><img src="assets/2uow5pqjqar.png" width="80%"></kbd></p>
 
@@ -1127,6 +1131,8 @@
 <br>
 
 <a id="node-s0mg8pj"></a>
+
+###### Nguyên lý Điều kiện
 
 <p align="center"><kbd><img src="assets/g47452efr8.png" width="80%"></kbd></p>
 
