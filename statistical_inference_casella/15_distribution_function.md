@@ -118,6 +118,8 @@
 
 <a id="node-ehjraqn"></a>
 
+#### Hàm phân phối tích lũy
+
 <p align="center"><kbd><img src="assets/eqm0zchkwfj.png" width="80%"></kbd></p>
 
 <br>
