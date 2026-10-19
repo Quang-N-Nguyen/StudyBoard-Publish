@@ -1,6 +1,6 @@
 # 2.1 Binary Variables
 
-📊 **Progress:** `16` Notes | `24` Screenshots
+📊 **Progress:** `16` Notes | `24` Screenshots | `7` AI Reviews
 
 ---
 <a id="node-22kgh3n"></a>
@@ -14,17 +14,15 @@
 <p align="center"><kbd><img src="assets/5phyg9jgp38.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, đầu tiên gặp lại (cái mà trong Stat110 hay Casella gọi là Bern(p): Phân
-> phối Bernoulli.
+> Rồi, đầu tiên gặp lại (cái mà trong Stat110 hay Casella gọi là Bern(p): Phân phối Bernoulli.
 >
 >
 >
-> Dĩ nhiên gs Bishop ở đây ko nói gì mới cả, nó là một discrete distribution với
-> hai possible value 0, 1.
+> Dĩ nhiên gs Bishop ở đây ko nói gì mới cả, nó là một discrete distribution với hai possible value 0, 1.
 >
 >
 >
-> pmf của X ~ Bern(μ) thì như đã biết f(1) = P(X=1) = μ và f(0) = p(X=0) = 1 - μ.
+> pmf của X \~ Bern(μ) thì như đã biết f(1) = P(X=1) = μ và f(0) = p(X=0) = 1 - μ.
 >
 >
 >
@@ -32,8 +30,7 @@
 >
 >
 >
-> Ông nói chứng minh nó normalized tức là chứng minh tính valid của f(x) bằng
-> cách chứng minh Σ{x=0,1} f(x) = 1, cái này thì quá rõ rồi: 
+> Ông nói chứng minh nó normalized tức là chứng minh tính valid của f(x) bằng cách chứng minh Σ{x=0,1} f(x) = 1, cái này thì quá rõ rồi:
 >
 >
 >
@@ -45,24 +42,27 @@
 >
 >
 >
-> EX, theo định nghĩa, là weighted sum các possible value của X, với weighted
-> là xác suất  tương ứng: EX = 1 * f(1) + 0*f(0) = 1 * μ = μ.
+> EX, theo định nghĩa, là weighted sum các possible value của X, với weighted là xác suất tương ứng: EX = 1 × f(1) + 0  × f(0) = 1 × μ = μ.
 >
 >
 >
-> VarX, theo công thức thứ nhất: 
+> (Trong sách dùng p, mình dùng f cho quen thuộc. Trong sách toán, f(x) vẫn có thể được dùng cho PMF)
 >
 >
 >
-> = E[(X - EX)²], = E[(X - μ)²],
+> VarX, theo công thức thứ nhất:
 >
 >
 >
->  áp dụng LOTUS = Σ{x=1,0} (x-μ)²f(x) 
+> = E\[(X - EX)²\], = E\[(X - μ)²\],
 >
 >
 >
-> = (1-μ)² μ + (0-μ)² (1-μ) 
+> áp dụng LOTUS = Σ{x=1,0} (x-μ)²f(x)
+>
+>
+>
+> = (1-μ)² μ + (0-μ)² (1-μ)
 >
 >
 >
@@ -76,6 +76,102 @@
 >
 > = μ - 2μ² + μ³ + μ² - μ³ = μ - μ² = μ(1-μ)
 
+<details>
+<summary>🌐 English translation of the original note</summary>
+
+> *This is an AI-translated version of the original note.*
+>
+> Alright, first encounter again (what in Stat110 or Casella is called Bern(p): Bernoulli distribution.
+>
+>
+>
+> Of course prof Bishop here doesn't say anything new at all, it is a discrete distribution with two possible value 0, 1.
+>
+>
+>
+> pmf of X \~ Bern(μ) then as already known f(1) = P(X=1) = μ and f(0) = p(X=0) = 1 - μ.
+>
+>
+>
+> and expressed in a combined way f(x) = μ^x(1-μ)^(1-x),
+>
+>
+>
+> He said proving it normalized means proving the validity of f(x) by proving Σ{x=0,1} f(x) = 1, this thing is already too obvious:
+>
+>
+>
+> μ^1(1-μ)^0 + μ^0(1-μ)^1 = μ + 1 - μ = 1
+>
+>
+>
+> Redoing the calculating EX, VarX thing already done in Stat110, Casella:
+>
+>
+>
+> EX, by definition, is the weighted sum of the possible value of X, with weighted being the corresponding probability: EX = 1 × f(1) + 0  × f(0) = 1 × μ = μ.
+>
+>
+>
+> (In the book they use p, I use f for familiarity. In math books, f(x) can still be used for PMF)
+>
+>
+>
+> VarX, according to the first formula:
+>
+>
+>
+> = E\[(X - EX)²\], = E\[(X - μ)²\],
+>
+>
+>
+> applying LOTUS = Σ{x=1,0} (x-μ)²f(x)
+>
+>
+>
+> = (1-μ)² μ + (0-μ)² (1-μ)
+>
+>
+>
+> = (1-μ)² μ + μ²(1-μ)
+>
+>
+>
+> = (1-2μ+μ²)μ + μ² - μ³
+>
+>
+>
+> = μ - 2μ² + μ³ + μ² - μ³ = μ - μ² = μ(1-μ)
+
+---
+
+**🤖 AI Check (English)**
+
+Summary: Very accurate notes, independently carried out all steps to check normalization as well as deriving expectation and variance that the Bishop textbook only states results.
+
+Strengths:
+• Clearly understands the nature of the compact form of the probability mass function (pmf) f(x) = μ^x(1-μ)^(1-x) of the Bernoulli distribution.
+• Independently interpreted in detail and accurately the normalization condition (total probability equals 1) which the book only writes 'easily verified'.
+• Independently calculated in detail the expectation and variance via definition and the LOTUS theorem with explicit algebraic transformation steps.
+
+Deeper notes:
+• For the binary random variable x ∈ {0, 1}, there is a useful property that x² = x, therefore E[X²] = E[X] = μ. Then calculating the variance via the formula Var(X) = E[X²] - (E[X])² = μ - μ² = μ(1-μ) will be faster than expanding directly according to the definition E[(X-μ)²].
+
+</details>
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chuẩn xác, tự triển khai đầy đủ các bước kiểm tra tính chuẩn hóa (normalization) cũng như suy dẫn kỳ vọng và phương sai mà giáo trình Bishop chỉ nêu kết quả.
+>
+> **✓ Strengths**
+> - Hiểu rõ bản chất hàm khối xác suất (pmf) dạng rút gọn f(x) = μ^x(1-μ)^(1-x) của phân phối Bernoulli.
+> - Tự diễn giải chi tiết và chính xác điều kiện chuẩn hóa (tổng xác suất bằng 1) mà sách chỉ ghi 'easily verified'.
+> - Tự tính toán chi tiết kỳ vọng và phương sai qua định nghĩa và định lý LOTUS với các bước biến đổi đại số tường minh.
+>
+> **💡 Deeper notes**
+> - Đối với biến ngẫu nhiên nhị phân x ∈ {0, 1}, có một tính chất hữu ích là x² = x, do đó E[X²] = E[X] = μ. Khi đó tính phương sai qua công thức Var(X) = E[X²] - (E[X])² = μ - μ² = μ(1-μ) sẽ nhanh hơn cách khai triển trực tiếp theo định nghĩa E[(X-μ)²].
+
 <br>
 
 <a id="node-6ibllcz"></a>
@@ -85,36 +181,27 @@
 <p align="center"><kbd><img src="assets/qyaa4fic15b.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, đoạn này đại ý là nếu ta có dataset {x1,....xN} là các giá trị quan sát được của x và
-> công thức likelihood function
+> Rồi, đoạn này đại ý là nếu ta có dataset 𝒟 (hay 𝐱) = {x1,....xN} là các giá trị quan sát được của 𝒟 (hay 𝐱) và công thức likelihood function
 >
 >
 >
-> Ôn lại chút, trong Casella, định nghiã của một random sample size n, là khi ta muốn quan
-> sát giá trị của một đại lượng mang tính chất uncertainty n lần, mỗi lần đại diện bởi một
-> random variable: X1,X2,....Xn, và được tiến hành sao cho các rvs này mutually
-> independent và chúng có cùng distribution  population distribution kí hiệu là f(x|θ).
+> Ôn lại chút, trong Casella, định nghiã của một random sample size n, là khi ta muốn quan sát giá trị của một đại lượng mang tính chất uncertainty n lần, mỗi lần đại diện bởi một random variable: X1,X2,....Xn, và được tiến hành sao cho các rvs này mutually independent và chúng có cùng distribution population distribution kí hiệu là f(x|θ).
 >
 >
 >
-> Khi đó, nếu xét joint pdf/pmf của X1,...Xn thì nhờ tính chất independent, ta có thể tách
-> thành tích các marginal pdf: f(𝐱|θ) = Πi=1:n f(xi|θ)
+> Khi đó, nếu xét joint pdf/pmf của X1,...Xn thì nhờ tính chất independent, ta có thể tách thành tích các marginal pdf: f(𝐱|θ) = Πi=1:n f(xi|θ)
 >
 >
 >
-> Và ta trong các bài trước nhiều lần nhắc đến likelihood function, được định nghĩa là hàm
-> của θ: L(θ|𝐱) = f(𝐱|θ) mang ý nghĩa độ hợp lí của θ khi giá trị quan sát được của 𝐗
-> là 𝐱.
+> Và ta trong các bài trước nhiều lần nhắc đến likelihood function, được định nghĩa là hàm của θ: L(θ|𝐱) = f(𝐱|θ) mang ý nghĩa độ hợp lí của θ khi giá trị quan sát được của 𝐗 là 𝐱.
 >
 >
 >
-> và đi giải bài toán maximize_θ ∈ Θ L(θ|𝐱) ta sẽ tìm được Maximum Likelihood estimator
-> của θ: θ^_ml(𝐗)
+> và đi giải bài toán maximize\_θ ∈ Θ L(θ|𝐱) ta sẽ tìm được Maximum Likelihood estimator của θ: θ^\_ml(𝐗)
 >
 >
 >
-> Quay lại đây, cái mà ta có cũng chính là một observed value của một random sample 𝐗
-> =(X1,...XN) iid: chúng mutually independent và indicator distributed Xi ~ Bern(μ).
+> Quay lại đây, cái mà ta có cũng chính là một observed value của một random sample 𝐗 =(X1,...XN) iid: chúng mutually independent và indicator distributed Xi \~ Bern(μ).
 >
 >
 >
@@ -122,21 +209,19 @@
 >
 >
 >
-> = Πn=1:N f(xi|μ) = Πn=1:N μ^xn(1-μ)^(1-xn). là công thức 2.5 trong sách.
+> = Πn=1:N f(xn|μ) = Πn=1:N μ^xn(1-μ)^(1-xn). là công thức 2.5 trong sách.
 >
 >
 >
-> ------
+> ---
 >
 >
 >
-> Rồi, như vừa nói xong, gs Bishop cũng nhắc lại, trong trường phái Frequetist ta thường đi
-> tìm μ khiến maximize likelihood function.
+> Rồi, như vừa nói xong, gs Bishop cũng nhắc lại, trong trường phái Frequetist ta thường đi tìm μ khiến maximize likelihood function.
 >
 >
 >
-> Và bài toán tối ưu này như đã biết, ta có thể chuyển thành bài toán tương đương dùng
-> hàm ln: maximize ln likelihood:
+> Và bài toán tối ưu này như đã biết, ta có thể chuyển thành bài toán tương đương dùng hàm ln: maximize ln likelihood:
 >
 >
 >
@@ -156,17 +241,15 @@
 >
 >
 >
-> = Σn=1:N [xn ln μ] + Σn=1:N [(1-xn) ln (1-μ)]
+> = Σn=1:N \[xn ln μ\] + Σn=1:N \[(1-xn) ln (1-μ)\] → 2.6
 >
 >
 >
-> **Vì sao phải nhắc đến Frequentist** (hay trong Casella gọi là Classical, trường phái thống
-> kê cổ điển) là vì trong cách tiếp cận này, ta coi θ (hay ở đây là μ) là fixed và unknown, chứ
-> không phải là biến ngẫu nhiên). Trong Casella, ngay sau khi học về ML estimator ta học về
-> Bayes estimator, thì chính là làm theo trường phái Bayesian, nơi ta coi θ là random
-> variables. Từ đó ta chọn prior distribution cho θ, kí hiệu là π(θ). Và dùng Bayes rule để xây
-> dựng distribution của θ conditioned on 𝐗 = 𝐱: π(θ|𝐱)  = f(𝐱|θ)π(θ)/f(𝐱). Khi
-> đó, ta sẽ làm theo optimality theory để xây dựng Bayes  estimator:
+> ---
+>
+>
+>
+> **Vì sao phải nhắc đến Frequentist** (hay trong Casella gọi là Classical, trường phái thống kê cổ điển) là vì trong cách tiếp cận này, ta coi θ (hay ở đây là μ) là fixed và unknown, chứ không phải là biến ngẫu nhiên). Trong Casella, ngay sau khi học về ML estimator ta học về Bayes estimator, thì chính là làm theo trường phái Bayesian, nơi ta coi θ là random variables. Từ đó ta chọn prior distribution cho θ, kí hiệu là π(θ). Và dùng Bayes rule để xây dựng distribution của θ conditioned on 𝐗 = 𝐱: π(θ|𝐱) = f(𝐱|θ)π(θ)/f(𝐱). Khi đó, ta sẽ làm theo optimality theory để xây dựng Bayes estimator:
 >
 >
 >
@@ -178,11 +261,11 @@
 >
 >
 >
-> R(W(𝐗), θ) = E_θ[L(W(𝐗), θ] = ∫L(W(𝐱),θ)f(𝐱|θ) d𝐱 là hàm số theo θ.
+> R(W(𝐗), θ) = E\_θ\[L(W(𝐗), θ\] = ∫L(W(𝐱),θ)f(𝐱|θ) d𝐱 là hàm số theo θ.
 >
 >
 >
-> Và vì θ  là random variable, nên risk function vẫn là random variable.
+> Và vì θ là random variable, nên risk function vẫn là random variable.
 >
 >
 >
@@ -190,16 +273,15 @@
 >
 >
 >
-> E_θ~π(θ) [R(W(𝐗),θ)] để được một fixed value không còn phụ thuộc θ, gọi là Bayes
-> risk.
+> E\_θ\~π(θ) \[R(W(𝐗),θ)\] để được một fixed value không còn phụ thuộc θ, gọi là Bayes risk.
 >
 >
 >
-> = ∫[∫L(W(𝐱),θ)f(𝐱|θ)d𝐱]π(θ)dθ
+> = ∫\[∫L(W(𝐱),θ)f(𝐱|θ)d𝐱\]π(θ)dθ
 >
 >
 >
-> = ∫∫L(W(𝐱),θ)[π(θ|𝐱)f(𝐱)/π(θ)]π(θ)dθd𝐱
+> = ∫∫L(W(𝐱),θ)\[π(θ|𝐱)f(𝐱)/π(θ)\]π(θ)dθd𝐱
 >
 >
 >
@@ -211,12 +293,25 @@
 >
 >
 >
-> Thì cái này ∫L(W(𝐱),θ)π(θ|𝐱)dθ gọi là **posterior expected loss** 
+> Thì cái này ∫L(W(𝐱),θ)π(θ|𝐱)dθ gọi là **posterior expected loss**
 >
 >
 >
-> Từ đó, đi minimize_W(𝐗) E_θ~π(θ|x) [R(W(𝐗), θ)] cũng là minimize posterior
-> expected loss  ta sẽ có "Bayes estimator that minimize Bayes risk" cho θ.
+> Từ đó, đi minimize_W(𝐗) E\_θ\~π(θ) \[R(W(𝐗), θ)\] cũng là minimize posterior expected loss (∫L(W(𝐱),θ)π(θ|𝐱)dθ) ta sẽ có "Bayes estimator that minimize Bayes risk" cho θ.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, không chỉ giải thích chi tiết từng bước biến đổi từ likelihood sang log-likelihood mà còn liên hệ sâu sắc giữa trường phái Frequentist và Bayesian (từ góc nhìn ra quyết định thống kê theo Casella & Berger).
+>
+> **✓ Strengths**
+> - Diễn giải và thực hiện từng bước khai triển hàm log-likelihood một cách chuẩn xác, rõ ràng.
+> - Liên hệ nền tảng rất vững với định nghĩa mẫu ngẫu nhiên (random sample i.i.d.) và hàm hợp lý trong sách Casella & Berger.
+> - Giải thích thấu đáo lý do tác giả nhấn mạnh 'In a frequentist setting' bằng cách đối chiếu với trường phái Bayesian, phân tích chuẩn xác từ loss, risk function, Bayes risk cho đến posterior expected loss.
+>
+> **💡 Deeper notes**
+> - Cụm từ 'indicator distributed Xi ~ Bern(μ)' thực chất là biến ngẫu nhiên Bernoulli; bản thân biến Bernoulli chính là biến chỉ thị (indicator variable) của biến cố thành công {X=1}.
+> - Khi chuyển từ cực tiểu hóa Bayes risk sang cực tiểu hóa posterior expected loss cho từng x, về mặt giải tích ngầm hiểu điều kiện phân phối cận biên f(x) > 0 và tích phân tồn tại hữu hạn.
 
 <br>
 
@@ -476,6 +571,26 @@
 > MLE và Bayes. Cho thấy Bayes ít cho các extreme (thái quá) estimate hơn.
 > Nguyên nhân cũng là nhờ prior distribution.
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, hiểu sâu sắc bản chất của thống kê đủ (sufficient statistic), định lý Factorization và cách giải bài toán MLE kết hợp góc nhìn Bayesian. Chỉ có một nhầm lẫn nhỏ về danh xưng nhân vật trong câu chuyện trực giác của Casella & Berger.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"ông A dựa vào T(𝐗) = T(𝐱), generate các giá trị của 𝐘 sao cho P(𝐘 = 𝐲 | T(𝐗) = T(𝐱)) = P(𝐗 = 𝐲 | T(𝐗) = T(𝐱))"*
+>
+> Trong thí nghiệm tưởng tượng của Casella & Berger, chính ông B (người chỉ biết giá trị T(X) chứ không biết toàn bộ mẫu X) mới là người dùng một cơ chế ngẫu nhiên độc lập với θ để generate ra mẫu Y có cùng phân phối với X, từ đó chứng minh B sở hữu đầy đủ thông tin về θ ngang với A.
+>
+>
+> **✓ Strengths**
+> - Tự thực hiện đầy đủ hai cách chứng minh tính thống kê đủ (bằng định nghĩa điều kiện và bằng định lý Factorization) rất chuẩn xác.
+> - Đạo hàm tìm nghiệm MLE chi tiết và có lập luận chặt chẽ về tính lõm (concavity) của hàm mục tiêu để xác nhận điểm cực đại toàn cục.
+> - Liên kết xuất sắc giữa ví dụ over-fitting của Bishop với bảng so sánh ước lượng Bayes trong sách Casella & Berger.
+>
+> **💡 Deeper notes**
+> - Về mặt tối ưu hóa: Khi m = 0 hoặc m = N, nghiệm MLE μ nằm ở biên của đoạn [0, 1]. Khi đó đạo hàm không triệt tiêu bên trong khoảng mở (0, 1) mà nghiệm tối ưu đạt được trực tiếp tại biên.
+
 <br>
 
 <a id="node-g9e6klg"></a>
@@ -629,6 +744,30 @@
 >
 > = Σ{m=0,1,...N} (m - EM)² Bin(m|N,μ)
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú rất tốt, thể hiện sự hiểu sâu sắc bản chất (story) của phân phối nhị thức qua tổng các biến ngẫu nhiên Bernoulli i.i.d. để tính kỳ vọng và phương sai cực kỳ nhanh gọn thay vì tính trực tiếp bằng giải tích.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Tuy nhiên vì không care thứ tự các object nên ta đã đếm thừa với mỗi cách chọn n! lần, nên để adjust ta sẽ chia cho k!"*
+>
+> Lỗi diễn đạt/nhầm lẫn nhỏ: Ta đếm thừa k! lần (số hoán vị của k vật thể được chọn), chứ không phải đếm thừa n! lần (dù ngay sau đó bạn vẫn chia đúng cho k!).
+>
+> **2.** *"Khi đó EX = E[Σi I_{Aj}]"*
+>
+> Ký hiệu chỉ số bị lệch nhẹ giữa i và j (Σ theo i nhưng biến ngẫu nhiên lại đánh chỉ số Aj).
+>
+>
+> **✓ Strengths**
+> - Vận dụng xuất sắc tư duy 'story' (tổng của các biến chỉ thị / Bernoulli i.i.d.) để tính kỳ vọng và phương sai nhanh chóng thông qua tính chất tuyến tính của kỳ vọng và tính cộng của phương sai.
+> - Hiểu rõ bản chất công thức trong sách Bishop chỉ là áp dụng định nghĩa gốc của kỳ vọng và luật LOTUS cho hàm của biến ngẫu nhiên.
+> - Nhận thức và phân biệt chuẩn xác quy ước ký hiệu biến ngẫu nhiên (chữ hoa) và giá trị nhận được (chữ thường) so với ký hiệu gộp của Bishop.
+>
+> **💡 Deeper notes**
+> - Sách của Bishop có nhắc đến việc chứng minh (2.11) và (2.12) trực tiếp bằng giải tích (calculus): phương pháp này thường dùng đạo hàm của khai triển nhị thức Newton đối với tham số μ (hoặc hàm sinh mô-men), đây cũng là một kỹ thuật toán rất đẹp nên biết.
+
 <br>
 
 <a id="node-ixw17hk"></a>
@@ -776,6 +915,27 @@
 > như gs Bishop nói đến trong câu "form of prior distribution that has a simple
 > interpretation as well as some useful analytical properties"
 
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, nắm vững bản chất của liên hợp (conjugacy), kỹ thuật nhận diện kernel và tự tay dẫn xuất chính xác posterior distribution cho mô hình Beta-Bernoulli.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"tạo thành normalizing constant của π(x|μ), giúp đảm bảo ∫π(μ|𝐱)dμ = 1"*
+>
+> Lỗi gõ nhầm ký hiệu: bạn viết nhầm thành π(x|μ) thay vì posterior π(μ|x), dù ở vế tích phân ngay sau đó bạn đã viết đúng ∫π(μ|𝐱)dμ = 1.
+>
+>
+> **✓ Strengths**
+> - Hiểu rõ động lực chuyển từ MLE sang tiếp cận Bayes để tránh hiện tượng overfitting khi cỡ mẫu nhỏ.
+> - Trình bày chuẩn xác khái niệm conjugacy và kỹ thuật nhận diện họ phân phối thông qua kernel bỏ qua hằng số chuẩn hóa.
+> - Tự thực hiện đầy đủ và chính xác derivation toán học từ likelihood và prior đến posterior Beta(Σxi + a, N - Σxi + b).
+>
+> **💡 Deeper notes**
+> - Khẳng định 'Normal là conjugate prior của Normal' chỉ đúng hoàn toàn khi ước lượng kỳ vọng (mean) với phương sai (variance) đã biết; nếu phương sai cũng là tham số chưa biết thì cần dùng phân phối liên hợp dạng Gaussian-Gamma hoặc Gaussian-Inverse-Wishart.
+> - Tham số a và b của phân phối Beta thường được diễn giải trực quan là 'số lượng quan sát ảo' (effective number of observations hoặc pseudo-counts) của các lần thành công và thất bại trước khi quan sát dữ liệu thực tế.
+
 <br>
 
 <a id="node-c0yn0on"></a>
@@ -891,6 +1051,27 @@
 >
 > a, b theo gs Bishop gọi là hyperparam, vì nó sẽ quyết định hình dạng của 
 > distribution
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú rất tốt, bạn đã tự thiết lập và chứng minh thành công công thức moment tổng quát E[Xⁿ] của phân phối Beta để suy ra kỳ vọng và moment bậc hai. Điểm trừ nhỏ là bạn chưa hoàn thành nốt bước rút gọn đại số cuối cùng cho phương sai.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Từ đó, áp dụng công thức thứ 2 của VarX = EX² - (EX)² và biến đổi đại số thì sẽ ra công thức trong sách"*
+>
+> Ghi chú bỏ qua bước quy đồng và rút gọn đại số cụ thể từ E[X²] - (E[X])² về dạng ab / ((a+b)²(a+b+1)). Dù đây chỉ là thao tác đại số cơ bản nhưng nên viết ra để hoàn tất trọn vẹn chứng minh cho Var[X].
+>
+>
+> **✓ Strengths**
+> - Cách tiếp cận tổng quát hóa bằng cách tính moment bậc n (E[Xⁿ]) thông qua kỹ thuật nhận diện kernel của phân phối Beta rất chuẩn xác và thanh lịch.
+> - Nắm vững tính chất của hàm Gamma: Γ(z+1) = zΓ(z) để triệt tiêu các thừa số trong E[X] và E[X²].
+> - Ghi nhớ đúng vai trò của a và b là hyperparameters (siêu tham số) vì chúng tham số hóa phân phối của chính tham số μ.
+>
+> **💡 Deeper notes**
+> - Điều kiện để các tích phân và moment bậc n hội tụ là các tham số hình dạng phải thỏa mãn a > 0, b > 0 và n > -a.
+> - Bước biến đổi đại số cụ thể cho Var(X): E[X²] - (E[X])² = [a(a+1) / ((a+b)(a+b+1))] - [a² / (a+b)²] = [a / (a+b)] * [(a+1)/(a+b+1) - a/(a+b)] = [a / (a+b)] * [b / ((a+b)(a+b+1))] = ab / ((a+b)²(a+b+1)).
 
 <br>
 
@@ -1801,6 +1982,29 @@
 > Và điều này nhằm chứng minh cho nhận định mà gs Bishop đặt vấn đề lúc nãy: liệu đây có phải là tính chất khái quát không,
 > rằng càng có nhiều data thì posteriori sẽ ngày càng có variance nhỏ lại, (variance cũng là thể hiện tính uncertainty) hay
 > không?
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc khi tự chứng minh chi tiết Eve's Law và phân biệt rõ ràng giữa biến ngẫu nhiên và giá trị cụ thể khi condition. Tuy nhiên, ở phần diễn giải trực giác cuối bài, cần làm rõ rằng phương sai chỉ chắc chắn giảm 'trung bình trên mọi bộ dữ liệu', còn với một bộ dữ liệu cụ thể thì phương sai posterior hoàn toàn có thể tăng so với prior.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Cũng chính là nói: Khi ta chưa biết gì về D, chưa quan sát thấy data, lúc này chỉ dựa vào prior distribution, thì ta có variance của θ là nhiêu đó, ví dụ = a, thì sau khi có dữ liệu để rồi ta cập nhật lại distribution của θ, để có posterior distribution, thì variance của θ lúc này, ví dụ b, thì b sẽ NHỎ HƠN a"*
+>
+> Cách diễn giải ví dụ này dễ gây ngộ nhận rằng cứ mỗi lần thu thập được một bộ dữ liệu cụ thể thì phương sai posterior b luôn nhỏ hơn prior a. Thực tế, như Bishop đã nhấn mạnh ở câu cuối ('for a particular observed data set it is possible for the posterior variance to be larger than the prior variance'), b chỉ nhỏ hơn hoặc bằng a khi b là 'phương sai posterior trung bình' E_D[Var(θ|D)], chứ không phải cho mọi bộ dữ liệu cụ thể D=d.
+>
+> **2.** *"thì variance của Y conditioned on X sẽ là Var(Y|X) = E[(Y - E(Y|X)²|X]"*
+>
+> Lỗi gõ dấu ngoặc trong biểu thức: thiếu đóng ngoặc vuông sau E(Y|X) và trước lũy thừa 2, đúng ra là E[(Y - E[Y|X])² | X].
+>
+>
+> **✓ Strengths**
+> - Tự triển khai và chứng minh đầy đủ, chính xác định lý phân rã phương sai (Eve's Law / Law of Total Variance) từ định nghĩa và Adam's Law.
+> - Phân biệt rất chuẩn xác bản chất của E[θ|D=d] (ước lượng điểm, giá trị cố định) với E[θ|D] (biến ngẫu nhiên là hàm của D), cũng như Var(θ|D=d) với Var(θ|D).
+>
+> **💡 Deeper notes**
+> - Một trực giác thú vị về việc tại sao một dataset cụ thể có thể làm tăng phương sai: nếu dữ liệu quan sát được mâu thuẫn mạnh mẽ với niềm tin tiên nghiệm (hoặc dữ liệu bất ngờ làm phát sinh tính đa cực - multimodal posterior), sự không chắc chắn (uncertainty/variance) sau khi thấy dữ liệu đó có thể tạm thời cao hơn so với prior tập trung ban đầu.
 
 <br>
 
