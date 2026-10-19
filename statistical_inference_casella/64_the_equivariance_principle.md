@@ -552,6 +552,8 @@
 
 <a id="node-ciq8wo3"></a>
 
+###### Bất biến vị trí chuẩn
+
 <p align="center"><kbd><img src="assets/7w03f47qogw.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/x012f1rx1q9.png" width="80%"></kbd></p>
