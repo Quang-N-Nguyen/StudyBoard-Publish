@@ -2524,6 +2524,8 @@
 
 <a id="node-kshuy97"></a>
 
+###### Chuỗi Markov Monte Carlo
+
 <p align="center"><kbd><img src="assets/rkp7x3e40ed.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/v1iy8nt4ss.png" width="80%"></kbd></p>
