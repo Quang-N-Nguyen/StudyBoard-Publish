@@ -530,6 +530,8 @@
 
 <a id="node-j3ve8th"></a>
 
+###### Kỳ vọng biến Chi bình phương
+
 <p align="center"><kbd><img src="assets/7w7akzdwqd5.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/noorva6j2tc.png" width="80%"></kbd></p>
@@ -541,6 +543,8 @@
 
 <a id="node-va86ec1"></a>
 
+###### Định lý Hwang
+
 <p align="center"><kbd><img src="assets/qejil6rrzoq.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -549,6 +553,8 @@
 <br>
 
 <a id="node-19ngua9"></a>
+
+###### Mô-men bậc cao Poisson
 
 <p align="center"><kbd><img src="assets/bce7qrm12qw.png" width="80%"></kbd></p>
 
