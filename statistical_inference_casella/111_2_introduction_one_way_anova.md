@@ -1,6 +1,6 @@
 # 11.1 & 2  introduction, One-way Anova
 
-📊 **Progress:** `21` Notes | `27` Screenshots | `18` AI Reviews
+📊 **Progress:** `22` Notes | `27` Screenshots | `18` AI Reviews
 
 ---
 <a id="node-c5qtmoe"></a>
@@ -1616,7 +1616,7 @@
 >
 >
 >
-> Nên VỚI MỌI γ\*: sup\_γ∈{γ\*}  P\_γ(|\[(Σi=1:k aiȲi) - γ\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2)
+> Nên VỚI MỌI γ\*: sup\_γ∈{γ\*} P\_γ(|\[(Σi=1:k aiȲi) - γ\]/√Σi ai²/ni\] / √(S²\_p)| &gt; t_N-k,α/2)
 >
 >
 >
@@ -1664,7 +1664,7 @@
 >
 >
 >
-> Rejection region: {𝐱: |(Σi aiȲi - γ)/ √\[S²\_pΣi ai²/ni\]| &gt; t_N-k,α/2} 
+> Rejection region: {𝐱: |(Σi aiȲi - γ)/ √\[S²\_pΣi ai²/ni\]| &gt; t_N-k,α/2}
 >
 >
 >
@@ -1740,7 +1740,7 @@
 >
 >
 >
-> Ví dụ 
+> Ví dụ
 >
 >
 >
@@ -1829,6 +1829,15 @@
 >
 > **💡 Deeper notes**
 > - Việc đảo test tổng quát có thể cho ra tập tin cậy (confidence set) không nhất thiết là một khoảng (interval) liên tục nếu rejection region có hình dạng phức tạp; tuy nhiên ở đây do thống kê t đơn điệu theo γ nên tập tin cậy luôn là một khoảng bị chặn hai đầu.
+
+<br>
+
+<a id="node-g1b4gie"></a>
+
+###### Nội dung xem lại sau
+
+> [!NOTE]
+> QUAY LẠI SAU
 
 <br>
 
