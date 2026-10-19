@@ -1,6 +1,6 @@
 # 5.1 Basic Concepts Of Random Samples
 
-📊 **Progress:** `13` Notes | `16` Screenshots
+📊 **Progress:** `13` Notes | `16` Screenshots | `1` AI Reviews
 
 ---
 <a id="node-qlce1dx"></a>
@@ -55,6 +55,20 @@
 >
 > Trong chương 4 mình đã biết về khái niệm mutually independent. Nó mạnh
 > hơn là pair-wise independent, và nó imply pair-wise independent.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chính xác và đầy đủ về định nghĩa toán học của mẫu ngẫu nhiên (random sample / i.i.d.), đồng thời có sự liên hệ kiến thức rất tốt về tính độc lập tương hỗ.
+>
+> **✓ Strengths**
+> - Nắm vững và diễn đạt chính xác định nghĩa toán học của mẫu ngẫu nhiên (random sample) cỡ n từ quần thể f(x).
+> - Phân tích đúng hai điều kiện cốt lõi: tính độc lập tương hỗ (mutually independent) và cùng hàm mật độ/khối lượng xác suất biên (identically distributed).
+> - Liên hệ chính xác tính chất độc lập tương hỗ mạnh hơn và suy ra độc lập đôi một từ kiến thức chương trước.
+>
+> **💡 Deeper notes**
+> - Trong thống kê toán, cần lưu ý phân biệt giữa mẫu ngẫu nhiên ở dạng các biến ngẫu nhiên X1, ..., Xn (trước khi thực hiện phép đo/thu thập) và các giá trị quan sát cụ thể x1, ..., xn (sau khi đã thu thập dữ liệu).
+> - Hệ quả trực tiếp quan trọng nhất của định nghĩa này là hàm mật độ/khối lượng xác suất đồng thời (joint pdf/pmf) của mẫu ngẫu nhiên sẽ bằng tích các hàm biên: f(x1, ..., xn) = f(x1) * ... * f(xn).
 
 <br>
 
