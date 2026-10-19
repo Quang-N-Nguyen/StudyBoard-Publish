@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1792194676811,
+  "publishedAt": 1792450238938,
   "sections": [
     {
       "title": "📋 Overview",
@@ -459,6 +459,18 @@
       "imageCount": 0
     },
     {
+      "title": "5.0 Neural Network",
+      "path": "pattern_recognition_machine_learning_cbishop/50_neural_network.md",
+      "noteCount": 3,
+      "imageCount": 3
+    },
+    {
+      "title": "5.1 Feed-forward Network Functions",
+      "path": "pattern_recognition_machine_learning_cbishop/51_feed_forward_network_functions.md",
+      "noteCount": 4,
+      "imageCount": 8
+    },
+    {
       "title": "Appendix C. Matrices",
       "path": "pattern_recognition_machine_learning_cbishop/appendix_c_matrices.md",
       "noteCount": 19,
@@ -469,14 +481,8 @@
       "path": "pattern_recognition_machine_learning_cbishop/appendix_d_calculus_of_variation.md",
       "noteCount": 5,
       "imageCount": 7
-    },
-    {
-      "title": "Untitled",
-      "path": "pattern_recognition_machine_learning_cbishop/untitled.md",
-      "noteCount": 0,
-      "imageCount": 0
     }
   ],
-  "totalNotes": 467,
-  "totalImages": 718
+  "totalNotes": 474,
+  "totalImages": 729
 }
