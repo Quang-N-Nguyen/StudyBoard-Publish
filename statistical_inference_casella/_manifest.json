@@ -1,6 +1,6 @@
 {
   "title": "Statistical Inference - Casella",
-  "publishedAt": 1792194735569,
+  "publishedAt": 1792432781254,
   "sections": [
     {
       "title": "📋 Overview",
@@ -150,7 +150,7 @@
       "title": "4.5 Covariance & Correlation",
       "path": "statistical_inference_casella/45_covariance_correlation.md",
       "noteCount": 18,
-      "imageCount": 25
+      "imageCount": 27
     },
     {
       "title": "4.6 Multi-variate Distribution",
@@ -305,10 +305,16 @@
     {
       "title": "11.1 & 2  introduction, One-way Anova",
       "path": "statistical_inference_casella/111_2_introduction_one_way_anova.md",
-      "noteCount": 21,
+      "noteCount": 22,
       "imageCount": 27
+    },
+    {
+      "title": "11.3 Simple Linear Regression",
+      "path": "statistical_inference_casella/113_simple_linear_regression.md",
+      "noteCount": 4,
+      "imageCount": 6
     }
   ],
-  "totalNotes": 900,
-  "totalImages": 1176
+  "totalNotes": 905,
+  "totalImages": 1184
 }
