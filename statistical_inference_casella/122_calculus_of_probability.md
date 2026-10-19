@@ -290,6 +290,8 @@
 
 <a id="node-ouabc44"></a>
 
+###### Bất đẳng thức Boole
+
 <p align="center"><kbd><img src="assets/vzbpemqtduc.png" width="80%"></kbd></p>
 
 <br>
