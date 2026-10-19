@@ -5061,7 +5061,7 @@
 >
 > Xem phần note của ví dụ 8.3.28, mình đã tự tay xây dựng two-side LRT
 
-**🔗 See also:** [Kiểm định LRT cho trung bình](./82_method_of_finding_tests.md#node-ouhenhy) · [linked note](#node-yn1ggv1)
+**🔗 See also:** [Kiểm định LRT cho trung bình](./82_method_of_finding_tests.md#node-ouhenhy) · [P-value kiểm định hai phía](#node-yn1ggv1)
 
 <br>
 
@@ -5758,6 +5758,8 @@
 <br>
 
 <a id="node-yn1ggv1"></a>
+
+###### P-value kiểm định hai phía
 
 <p align="center"><kbd><img src="assets/mxmsg14fxbr.png" width="80%"></kbd></p>
 
@@ -6696,6 +6698,8 @@
 <br>
 
 <a id="node-e7v2aj1"></a>
+
+###### P-value qua thống kê đủ
 
 <p align="center"><kbd><img src="assets/ka1ajflr28g.png" width="80%"></kbd></p>
 
