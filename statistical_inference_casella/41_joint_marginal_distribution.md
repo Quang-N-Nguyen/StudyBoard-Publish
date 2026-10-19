@@ -770,6 +770,8 @@
 
 <a id="node-oseaes6"></a>
 
+###### Tính xác suất đồng thời
+
 <p align="center"><kbd><img src="assets/4l6i0x9ccst.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/amssfjgt5e.png" width="80%"></kbd></p>
@@ -780,6 +782,8 @@
 <br>
 
 <a id="node-f4kayb1"></a>
+
+###### Hàm phân phối tích lũy đồng thời
 
 <p align="center"><kbd><img src="assets/2ejqpwkfj3b.png" width="80%"></kbd></p>
 
