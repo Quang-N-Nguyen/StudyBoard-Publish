@@ -1,6 +1,6 @@
 # 4.5 Covariance & Correlation
 
-📊 **Progress:** `18` Notes | `25` Screenshots | `2` AI Reviews
+📊 **Progress:** `18` Notes | `27` Screenshots | `3` AI Reviews
 
 ---
 <a id="node-0rdjr6h"></a>
@@ -1242,12 +1242,242 @@
 
 <a id="node-ljt1bsi"></a>
 
+###### Phân phối chuẩn hai biến
+
 <p align="center"><kbd><img src="assets/d1hbfbygb19.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/ku4u3l55mfn.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/v62x8y6rluj.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/52yoc1h1snk.png" width="80%"></kbd></p>
+
 > [!NOTE]
-> QUAY LẠI SAU
+> Giải bài 4.46:
+>
+>
+>
+> X = axZ1 + bxZ2 + cx, Y = ayZ1 + byZ2 + cy
+>
+>
+>
+> a)
+>
+>
+>
+> EX = E\[axZ1 + bxZ2 + cx\] =  E\[axZ1\] + E\[bxZ2\] + E\[cx\] (linearity)
+>
+>
+>
+> = axE\[Z1\] + bxE\[Z2\] + E\[cx\]
+>
+>
+>
+> = ax × 0 + bx × 0 + cx = cx
+>
+>
+>
+> Với EY tương tự
+>
+>
+>
+> Var(X) = Var(axZ1 + bxZ2 + cx)
+>
+>
+>
+> Dùng tính chất Var(X + a) =  Var(X)
+>
+>
+>
+> .. = Var(axZ1 + bxZ2)
+>
+>
+>
+> = Var(axZ1) + Var(bxZ2) + 2Cov(axZ1, bxZ2)
+>
+>
+>
+> ---
+>
+>
+>
+> Dùng kiến thức nếu X, Y độc lập, thì Cov(X,Y) = 0. 
+>
+>
+>
+> Cov(X,Y)  = E\[(X-EX)(Y-EY)\] = E\[(XY-(EX)Y-X(EY)+(EX)(EY)\] 
+>
+>
+>
+> = E(XY)-E\[(EX)Y\]-E\[X(EY)\]+E\[(EX)(EY)\]
+>
+>
+>
+> = E(XY)-(EX)(EY)-(EX)(EY)+(EX)(EY)
+>
+>
+>
+> = E(XY)-(EX)(EY)
+>
+>
+>
+> Nếu X, Y độc lập, thì E\[XY\] = (EX)(EY) ⇒ Cov(X,Y) = E(XY)-(EX)(EY) = 0
+>
+>
+>
+> E\[XY\] = ∫∫xyf(x,y)dxdy = ∫∫xyf(x)f(y)dxdy = ∫y(∫xf(x)dx)f(y)dy
+>
+>
+>
+> = ∫y(EX)f(y)dy = (EX) ∫yf(y)dy = EX EY
+>
+>
+>
+> ---
+>
+>
+>
+> Do đó ở đây Cov(axZ1, bxZ2) là cov của hai biến độc lập (do Z1, Z2 độc lập)
+>
+>
+>
+> Và dùng tính chất Var(cX) =  c² Var(X)
+>
+>
+>
+> ...= ax² Var(Z1) + bx² Var(Z2)
+>
+>
+>
+> = ax² + bx² 
+>
+>
+>
+> Tương tự cho Var(Y)
+>
+>
+>
+> ---
+>
+>
+>
+> Tính Var(X) theo cách khác:
+>
+>
+>
+> X = axZ1 + bxZ2 + cx
+>
+>
+>
+> Theo location scale theorem: Z \~ standard member (location = 0, scale = 1), thì σZ + μ \~ location = μ, scale = σ
+>
+>
+>
+> Và normal chính là một location scale family, với location = mean, scale = standard deviation
+>
+>
+>
+> Z1 \~ n(0,1), axZ1 \~ n(0, ax²)
+>
+>
+>
+> Tương tự bxZ2 \~ n(0, bx²)
+>
+>
+>
+> Nếu axZ1 +  bxZ2 \~ n(0, ax² + bx²)
+>
+>
+>
+> X = axZ1 +  bxZ2 + cx \~  n(cx, ax² + bx²)
+>
+>
+>
+> Var(X) = ax² + bx²
+>
+>
+>
+> ---
+>
+>
+>
+> Cov(X,Y) = E\[(X-EX)(Y-EY)\]
+>
+>
+>
+> X - EX =  axZ1 + bxZ2 + cx - cx = axZ1 + bxZ2
+>
+>
+>
+> Y - EY = ayZ1 + byZ2
+>
+>
+>
+> (X-EX)(Y-EY) = (axZ1 + bxZ2)(ayZ1 + byZ2)
+>
+>
+>
+> = axayZ1² + bxayZ1Z2 + axbyZ1Z2 + bxbyZ2²
+>
+>
+>
+> = axayZ1² + (bxay+axby)Z1Z2 + bxbyZ2²
+>
+>
+>
+> E\[(X-EX)(Y-EY)\] = E\[axayZ1² + (bxay+axby)Z1Z2 + bxbyZ2²\]
+>
+>
+>
+> = E\[axayZ1²\] + E\[(bxay+axby)Z1Z2\] + E\[bxbyZ2²\]
+>
+>
+>
+> = axayE\[Z1²\] + (bxay+axby)E\[Z1Z2\] + bxbyE\[Z2²\]
+>
+>
+>
+> = axayE\[Z1²\] + (bxay+axby)E\[Z1\]\[Z2\] + bxbyE\[Z2²\]
+>
+>
+>
+> = axayE\[Z1²\] + bxbyE\[Z2²\]
+>
+>
+>
+> Var(Z1) = E\[(Z1-E\[Z1\])²\] = E\[Z1²\] - \[E(Z1)\]²
+>
+>
+>
+> E\[Z1²\] = Var(Z1) + (E\[Z1\])² = 1 + 0, tương tự E\[Z2²\] = 1
+>
+>
+>
+> .. = axay + bxby
+>
+>
+>
+> ---
+>
+> ---
+>
+>
+>
+> b)
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=6upP75ujeSM)
+
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+>
+> Ghi chú hiện tại chưa có bất kỳ nội dung hay kiến thức nào về phân phối chuẩn hai chiều mà chỉ để lại lời nhắc quay lại sau. Bạn cần ghi chú tóm tắt hoặc phân tích định nghĩa cùng các tính chất trước khi tiếp tục.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"QUAY LẠI SAU"*
+>
+> Chưa có nội dung học tập hoặc ghi chú nào được thực hiện từ tài liệu tham khảo.
+>
 
 <br>
 
