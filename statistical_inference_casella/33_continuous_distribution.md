@@ -1133,6 +1133,8 @@
 
 <a id="node-sa5jpw2"></a>
 
+###### Phân phối Weibull
+
 <p align="center"><kbd><img src="assets/4d007hcm2pu.png" width="80%"></kbd></p>
 
 > [!NOTE]
@@ -2583,6 +2585,8 @@
 <br>
 
 <a id="node-wumf3cm"></a>
+
+###### Phân phối mũ kép
 
 <p align="center"><kbd><img src="assets/4a7r8j5zpx7.png" width="80%"></kbd></p>
 
