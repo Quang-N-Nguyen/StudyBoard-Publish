@@ -9,6 +9,8 @@
 
 <a id="node-sewmhuc"></a>
 
+## Các phân phối thống kê
+
 <p align="center"><kbd><img src="assets/wlumxi8bkq7.png" width="80%"></kbd></p>
 
 > [!NOTE]
