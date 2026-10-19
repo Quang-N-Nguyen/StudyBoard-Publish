@@ -62,7 +62,7 @@
 > Do đó ở đây gs đề nghị ta **chỉ xét discrete** T(𝐗) và chỉ ra những điểm tương
 > đồng với continuous case
 
-**🔗 See also:** [Thống kê đủ loại bỏ θ](./73_methods_of_evaluating_estimators.md#node-ap81sh3) · [linked note](./83_methods_of_evaluating_test.md#node-e7v2aj1)
+**🔗 See also:** [Thống kê đủ loại bỏ θ](./73_methods_of_evaluating_estimators.md#node-ap81sh3) · [P-value qua thống kê đủ](./83_methods_of_evaluating_test.md#node-e7v2aj1)
 
 <br>
 
@@ -4275,6 +4275,8 @@
 <br>
 
 <a id="node-bbbhmwa"></a>
+
+###### Thống kê đủ tối thiểu
 
 <p align="center"><kbd><img src="assets/3h268ahyag.png" width="80%"></kbd></p>
 
