@@ -1232,6 +1232,8 @@
 
 <a id="node-7d519ii"></a>
 
+###### Thống kê thứ tự
+
 <p align="center"><kbd><img src="assets/wur25a07knn.png" width="80%"></kbd></p>
 
 <br>
