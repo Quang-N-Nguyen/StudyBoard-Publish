@@ -2076,7 +2076,7 @@
 > **💡 Deeper notes**
 > - Trong thực tế với kiểm định hai phía đối xứng ở mức ý nghĩa α, người ta thường chọn t_L = -t_U = t_{n-1, α/2} để xác suất sai lầm loại I được chia đều cho hai đuôi.
 
-**🔗 See also:** [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge) · [linked note](./83_methods_of_evaluating_test.md#node-yn1ggv1)
+**🔗 See also:** [Kiểm định hợp-giao cỡ α](./83_methods_of_evaluating_test.md#node-aruspge) · [P-value kiểm định hai phía](./83_methods_of_evaluating_test.md#node-yn1ggv1)
 
 <br>
 
