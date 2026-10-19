@@ -195,6 +195,8 @@
 
 <a id="node-rm16ntz"></a>
 
+##### Hàm mật độ xác suất
+
 <p align="center"><kbd><img src="assets/qd45nt1omzh.png" width="80%"></kbd></p>
 
 > [!NOTE]
