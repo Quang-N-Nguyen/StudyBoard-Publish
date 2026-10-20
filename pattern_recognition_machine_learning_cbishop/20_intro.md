@@ -1,6 +1,6 @@
 # 2.0 Intro
 
-📊 **Progress:** `4` Notes | `5` Screenshots
+📊 **Progress:** `4` Notes | `5` Screenshots | `1` AI Reviews
 
 ---
 <a id="node-9hoqrts"></a>
@@ -46,6 +46,26 @@
 > nghiệm. Tức là, với observed data trên, thì thật ra có nhiều hàm phân
 > phối p(x) chứ không phải chỉ có một, và nhiệm vụ là ta đi tìm cái nào tốt
 > nhất
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú nắm rất tốt các ý chính của đoạn giới thiệu từ PRML và có sự liên hệ kiến thức thực tế với Thống kê suy luận (Casella & Berger). Cần lưu ý rằng ước lượng mật độ tổng quát hơn bài toán ước lượng tham số thuần túy vì còn bao gồm cả các phương pháp phi tham số.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Vì mục đích cũng là, dựa trên giá trị quan sát được cuả một random sample X1,X2,...,Xn iid (mutually independent và identically distributed) ~ f(𝐱|θ), ta sẽ muốn estimate ra θ"*
+>
+> Đồng nhất hoàn toàn density estimation với việc ước lượng tham số θ là chưa bao quát. Cách hiểu f(x|θ) thuộc trường phái tham số (parametric density estimation); trong khi bài toán density estimation nói chung còn bao gồm các phương pháp phi tham số (non-parametric như KDE, histogram, k-NN) không cần giả định một phân phối tham số cụ thể f(x|θ).
+>
+>
+> **✓ Strengths**
+> - Hiểu chính xác vai trò của các phân phối xác suất như những khối xây dựng (building blocks) cho các mô hình phức tạp hơn sau này.
+> - Nắm chuẩn định nghĩa bài toán ước lượng mật độ xác suất (density estimation) cùng giả định độc lập cùng phân phối (i.i.d.).
+> - Hiểu đúng bản chất tại sao density estimation là một bài toán ill-posed (vô số nghiệm thỏa mãn) và liên hệ chuẩn xác tới bài toán lựa chọn mô hình (model selection).
+>
+> **💡 Deeper notes**
+> - Khái niệm 'ill-posed' (Hadamard): Một bài toán được gọi là ill-posed nếu nghiệm không tồn tại, không duy nhất, hoặc không liên tục phụ thuộc vào dữ liệu. Ở đây nghiệm không duy nhất (bất kỳ p(x) > 0 tại các điểm dữ liệu đều hợp lệ), do đó đòi hỏi các giả định tiên nghiệm (inductive bias/prior) hoặc ràng buộc độ trơn để chọn ra nghiệm phù hợp.
 
 <br>
 
