@@ -1,6 +1,6 @@
 # 5.1 Feed-forward Network Functions
 
-📊 **Progress:** `4` Notes | `8` Screenshots | `4` AI Reviews
+📊 **Progress:** `8` Notes | `20` Screenshots | `7` AI Reviews
 
 ---
 <a id="node-hb0d5sh"></a>
@@ -293,12 +293,72 @@
 
 <p align="center"><kbd><img src="assets/uuyi97lcrdj.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/zfunkx0m6dh.png" width="80%"></kbd></p>
+
 > [!NOTE]
 > Đại ý là nói nếu hidden unit không dùng activation function, thì network này có thể tương đương một network không có hidden unit. Lí do là các hợp của các linear transformation sẽ cũng tạo linear transformation
 >
 >
 >
-> (cái này dễ thấy)
+> Ví dụ:
+>
+>
+>
+> z1 = σ(w⁽¹⁾11 x1 + w⁽¹⁾12 x2 + w⁽¹⁾13 x3 + w⁽¹⁾10)
+>
+>
+>
+> z2 = σ(w⁽¹⁾21 x1 + w⁽¹⁾22 x2 + w⁽¹⁾23 x3 + w⁽¹⁾20)
+>
+>
+>
+> y = w⁽²⁾1 z1 + w⁽²⁾2 z2
+>
+>
+>
+> Nếu thay σ = identity function (một linear function) thì
+>
+>
+>
+> với 𝐀 là matrix các hệ số w⁽¹⁾11,w⁽¹⁾12,....
+>
+>
+>
+> và 𝐛 là bias vector
+>
+>
+>
+> 𝐳 = 𝐀 𝐱 + 𝐛
+>
+>
+>
+> y = 𝐰⁽²⁾ᵀ𝐳 
+>
+>
+>
+> = 𝐰⁽²⁾ᵀ(𝐀 𝐱 + 𝐛)
+>
+>
+>
+> = 𝐰⁽²⁾ᵀ𝐀 𝐱 + 𝐰⁽²⁾ᵀ𝐛
+>
+>
+>
+> = (𝐀ᵀ𝐰⁽²⁾)ᵀ 𝐱 + 𝐰⁽²⁾ᵀ𝐛
+>
+>
+>
+> Đặt 𝐀ᵀ𝐰⁽²⁾ = 𝛉 và 𝛉0 = 𝐰⁽²⁾ᵀ𝐛
+>
+>
+>
+> = 𝛉ᵀ𝐱 + 𝛉0
+>
+>
+>
+> Như vậy lúc này network chỉ như linear model
+>
+>
 >
 >
 >
@@ -312,19 +372,281 @@
 >
 > Nên network dùng linear unit hầu như ko có ích lợi gì
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=ue09Y3gKJVI)
+
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
-> Ghi chú tóm tắt rất chính xác và mạch lạc nội dung cốt lõi của đoạn trích về mạng nơ-ron có các tầng ẩn tuyến tính.
+> Ghi chú rất xuất sắc, hiểu đúng bản chất lý thuyết và tự diễn giải, chứng minh lại bằng đại số tuyến tính có kèm bias một cách chuẩn xác.
 >
 > **✓ Strengths**
-> - Nắm chính xác bản chất toán học: hợp của các phép biến đổi tuyến tính liên tiếp vẫn là một phép biến đổi tuyến tính.
-> - Hiểu đúng hệ quả về chiều (rank): khi số hidden units nhỏ hơn input hoặc output thì ma trận biểu diễn bị giới hạn rank, dẫn đến mất thông tin và không thể biểu diễn mọi ánh xạ tuyến tính tổng quát.
-> - Tổng hợp và rút ra kết luận thực tế chuẩn xác rằng mạng nhiều tầng tuyến tính nhìn chung không mang lại nhiều giá trị biểu diễn phi tuyến.
+> - Diễn giải toán học rất rõ ràng và chuẩn xác khi đưa vector bias vào biến đổi tuyến tính kết hợp.
+> - Nắm bắt chính xác bản chất vì sao mạng tuyến tính nhiều tầng có thể quy về mô hình tuyến tính đơn tầng.
+> - Hiểu đúng tác động của nút thắt cổ chai (bottleneck) khi số hidden units nhỏ hơn số input/output dẫn đến giới hạn về hạng (rank) của phép biến đổi.
 >
 > **💡 Deeper notes**
-> - Về mặt thuật ngữ, 'không dùng activation function' thường ngầm hiểu là hàm đồng nhất (identity), trong khi sách đề cập tổng quát là 'hàm kích hoạt tuyến tính' (linear activation function).
-> - Mặc dù nhìn chung ít được ứng dụng thực tế do tính chất tuyến tính, mạng tuyến tính có tầng ẩn thắt nút (bottleneck) vẫn có ý nghĩa lý thuyết quan trọng vì nó liên hệ trực tiếp với phương pháp Phân tích Thành phần Chính (PCA) như sách có đề cập.
+> - Dù mạng tuyến tính nhiều tầng ít được ứng dụng làm bộ xấp xỉ hàm phi tuyến, trường hợp mạng có tầng ẩn thu hẹp tuyến tính (linear bottleneck / autoencoder) lại có mối liên hệ mật thiết với PCA (Phân tích thành phần chính), phục vụ việc học không gian biểu diễn tuyến tính tối ưu.
+
+<br>
+
+<a id="node-wo5a8sb"></a>
+
+###### Counting Layers in Neural Networks
+
+<p align="center"><kbd><img src="assets/ojirr2guiaa.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/0xkxhuj4m0d.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Không có gì quan trọng. chỉ là nói sơ qua ràng có khi ta có thể có một skip connection - đi thẳng từ input - output như trong hình 5.2
+>
+>
+>
+> Dù thực tế có thể bắt chước hành vi của skip layer bằng cách set (learn) giá trị tham số nhưng sẽ không hiệu quả bằng dùng cách trực tiếp.
+>
+>
+>
+> Cái này chính là ý tưởng cho ra đời residual net (ResNet)
+
+<br>
+
+<a id="node-j2qvqft"></a>
+
+###### General Feed-Forward Network Architecture
+
+<p align="center"><kbd><img src="assets/c5vcjrlimyj.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> đại ý là, do có sự tương ứng giữa sơ đồ network và hàm số toán học của nó. nên ta có thể phát triển các sơ đồ phức tạp hơn.
+>
+>
+>
+> Tuy nhiên, luôn phải giới hạn trong khuôn khổ feed-forward - tức là không được có cái kiểu nối vòng tròn (x - y rồi y - x)  (no closed directed cycles), vì để đảm bải tính chất deterministic - tính tất định (nhận cùng một input thì cho ra cùng output)
+>
+>
+>
+> Và hàm số khi đó có thể tính theo lối tuần tự được
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất chính xác và súc tích bản chất của đoạn trích, nắm đúng cốt lõi về cấu trúc mạng feed-forward và tính chất ánh xạ hàm tất định.
+>
+> **✓ Strengths**
+> - Nắm bắt chính xác lý do cần kiến trúc feed-forward (không có chu trình có hướng) là để đảm bảo đầu ra là hàm tất định (deterministic) của đầu vào.
+> - Hiểu đúng ý nghĩa của việc áp dụng liên tiếp công thức (5.10) chính là cơ chế tính toán tuần tự từ đầu vào đến đầu ra.
+>
+> **💡 Deeper notes**
+> - Về mặt lý thuyết đồ thị, cấu trúc feed-forward tương ứng với đồ thị có hướng không chu trình (DAG - Directed Acyclic Graph), cho phép tìm một thứ tự tô-pô (topological order) để lan truyền tiến (forward pass).
+> - Nếu mạng có chu trình có hướng (directed cycles), nó sẽ trở thành mạng hồi quy (RNN), khi đó đầu ra còn phụ thuộc vào trạng thái ẩn/thời gian trước đó thay vì là một hàm số tĩnh đơn giản.
+
+<br>
+
+<a id="node-flxqmj6"></a>
+
+###### Universal Approximation of Neural Networks
+
+<p align="center"><kbd><img src="assets/ldtw4odx46o.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/6b5gsuib4du.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/vb9ndc7xkik.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/kg7rfkj2y1s.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Đại ý là có nhiều nghiên cứu về khả năng của neural network, với kết luận là: Đây là một universal approximator:
+>
+>
+>
+> một 2-layer network với linear ouput, nếu có đủ lớn số hidden unit thì sẽ có thể ước lượng xấp xỉ được bất kì hàm số liên tục nào.
+>
+>
+>
+> Và kết quả này vẫn đúng với nhiều loại activation function, trừ hàm đa thức.
+>
+>
+>
+> Tuy nhiên vấn đề là làm sao học được giá trị tham số từ data
+>
+>
+>
+> Cuối cùng là minh họa về khả năng bắt chước (xấp xỉ hàm) các hàm số khác nhau
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất tốt và chính xác ý chính của đoạn văn về định lý xấp xỉ phổ quát (Universal Approximation Theorem) cũng như vấn đề học tham số từ dữ liệu.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"có thể ước lượng xấp xỉ được bất kì hàm số liên tục nào"*
+>
+> Định lý gốc có điều kiện toán học quan trọng là hàm liên tục trên 'miền compact' (compact input domain) và xấp xỉ ở mức 'xấp xỉ đều' (uniformly approximate) đến độ chính xác tùy ý, việc lược bỏ điều kiện tập compact có thể dẫn đến hiểu nhầm là mạng luôn xấp xỉ tốt trên toàn bộ không gian vô hạn.
+>
+>
+> **✓ Strengths**
+> - Nắm bắt chính xác bản chất mạng 2 lớp (1 tầng ẩn) với đầu ra tuyến tính là bộ xấp xỉ phổ quát khi có đủ số lượng nơ-ron ẩn.
+> - Ghi nhớ chính xác ngoại lệ quan trọng về hàm kích hoạt (không áp dụng cho hàm đa thức).
+> - Nhận diện đúng mấu chốt thực tế: định lý chỉ chứng minh sự tồn tại, còn thách thức thực sự là thuật toán tìm tham số từ dữ liệu.
+>
+> **💡 Deeper notes**
+> - Thuật ngữ 'two-layer network' trong sách của Bishop tính theo số lớp trọng số (tương đương mạng 1 lớp ẩn và 1 lớp đầu ra).
+> - Định lý đảm bảo tính xấp xỉ (representation capability) nhưng không đảm bảo thuật toán tối ưu (như gradient descent) sẽ luôn tìm được bộ trọng số tối ưu đó một cách hiệu quả.
+
+<br>
+
+<a id="node-vz6c0nx"></a>
+
+###### 5.1.1 Weight-Space Symmetries
+
+<p align="center"><kbd><img src="assets/smd59b7xzdq.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/ayhuehdbwyt.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/e6cyungncz6.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/en2bt1l23ts.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Đại khái là nói về một tính chất vài bữa sẽ dùng: Đại ý là có thể có hai bộ giá trị weight khác nhau nhưng tạo ra cùng một mapping function.
+>
+>
+>
+> Ý này không khó để thấy: ví dụ một hidden unit nào đó dùng hàm tanh(): z1 = tanh(Σi w⁽¹⁾1i xi + w⁽¹⁾0), và z1 tham gia tính a1,a2,...:
+>
+>
+>
+> w⁽²⁾11 z1 + w⁽²⁾12 z2 + ..+ w⁽²⁾10 = a1
+>
+>
+>
+> w⁽²⁾21 z1 + w⁽²⁾22 z2 + ..+ w⁽²⁾20 = a2
+>
+>
+>
+> ...
+>
+>
+>
+> Vậy chỉ cần đổi dấu toàn bộ w⁽¹⁾11, w⁽¹⁾12,...w⁽¹⁾10 thì z1 sẽ đổi dấu do tanh(-u) = - tanh(u).
+>
+>
+>
+> Khi đó ta lại đổi dấu w⁽²⁾11, w⁽²⁾21,.... và thì kết quả tính a1 sẽ y nguyên (là ý exactly compensate)
+>
+>
+>
+> Do đó ta chỉ như vậy ta thấy có hai bộ weight value khác nhau mà mapping vẫn y nhau.
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy với 1 hiddent unit, ta có 2^1 bộ weight value, thì M hidden unit sẽ là 2^M
+>
+>
+>
+> ---
+>
+>
+>
+> Còn ý sau đại khái vầy:
+>
+>
+>
+> Giả sử xét z1, z2:
+>
+>
+>
+> z1 = σ(Σi w⁽¹⁾1i xi + w⁽¹⁾10) = σ(2x1 + 3x2 + 4x3 + 1)
+>
+>
+>
+> z2 = σ(Σi w⁽¹⁾2i xi + w⁽¹⁾20) = σ(5x1 + 6x2 + 7x3 + 2)
+>
+>
+>
+> a1 = 8z1 + 9z2
+>
+>
+>
+> 𝐰 = \[1, 2, 2, 3, 4, 5, 6, 7, 8, 9\]
+>
+>
+>
+> Giờ đổi lại: Lấy w⁽¹⁾1i tính z2, và w⁽¹⁾2i tính z1
+>
+>
+>
+> z1 = σ(Σi w⁽¹⁾2i xi + w⁽¹⁾20) = σ(5x1 + 6x2 + 7x3 + 2)
+>
+>
+>
+> z2 = σ(Σi w⁽¹⁾1i xi + w⁽¹⁾10) = σ(2x1 + 3x2 + 4x3 + 1)
+>
+>
+>
+> Và đổi trọng số của z2 và z1 cho nhau:
+>
+>
+>
+> a = 8z2 + 9z1
+>
+>
+>
+> 𝐰 = \[2,1, 5, 6, 7, 2, 3, 4, 9, 8\]
+>
+>
+>
+> Dĩ nhiên là có cùng mapping
+>
+>
+>
+> Và có thể thấy cơ bản chỉ là ta hoán vị thứ tự các hidden unit.
+>
+>
+>
+> Vậy có M hidden unit → có M! cách hoán vị → M! vector weight khác nhau
+>
+>
+>
+> Và cùng với cái trên sẽ thành ra M! × 2^M weight vector khác nhau (vì sao nhân: vì mỗi 1 hoán vị cụ thể sẽ là có 2^M bộ giá trị vector w do cái vụ flip side)
+>
+>
+>
+> ---
+>
+>
+>
+> Cuối cùng đại ý là nếu có nhiều hơn 2 layer thì con số này nhân nhau.
+>
+>
+>
+> Và tính chất này không riêng gì cho tanh mà có nhiều hàm số activation khác.
+>
+>
+>
+> Và ta sẽ thấy tuy phần lớn trường hợp không có tác dụng gì, nhưng phần 5.7 ta sẽ thấy một case cần tính đến tính chất này.
+>
+> ---
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=OjExYWYwgbQ)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, giải thích trực quan và chính xác cả hai loại đối xứng (đổi dấu và hoán vị) cùng công thức tổng quát $M!2^M$.
+>
+> **✓ Strengths**
+> - Hiểu rõ bản chất đối xứng lật dấu (sign-flip symmetry) nhờ tính chất hàm lẻ của tanh và cách bù trừ ở tầng kế tiếp.
+> - Tự xây dựng ví dụ số học rất trực quan để minh họa tính đối xứng hoán vị (permutation symmetry).
+> - Giải thích chính xác vì sao nhân hai đại lượng lại thành $M! 2^M$ và nắm được quy tắc nhân cho mạng nhiều tầng ẩn.
+>
+> **💡 Deeper notes**
+> - Đối xứng hoán vị ($M!$) áp dụng cho hầu hết mọi hàm kích hoạt, trong khi đối xứng đổi dấu ($2^M$) yêu cầu hàm kích hoạt phải là hàm lẻ (như $\tanh$) hoặc có tính đối xứng dấu cụ thể.
 
 <br>
 
