@@ -1,6 +1,6 @@
 # 15.3 Elimination Of Variables
 
-📊 **Progress:** `7` Notes | `15` Screenshots | `7` AI Reviews
+📊 **Progress:** `8` Notes | `19` Screenshots | `8` AI Reviews
 
 ---
 <a id="node-eavmrgx"></a>
@@ -528,5 +528,81 @@
 
 <br>
 
-<a id="node-9xbg7s5"></a>
+<a id="node-oyz2ue4"></a>
+
+###### Reduction Strategies for Linear Constraints
+
+<p align="center"><kbd><img src="assets/ft7y5mk5a2j.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/jzyr3p1p7dl.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/zc9w3lkrulf.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/tctt9p7uso.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Làm rõ vài ý: Chọn Y,Z sao cho \[Y|Z\] full rank và Z là basis của N(A) thì vì sao AY full rank?
+>
+>
+>
+> Do \[Y|Z\] nên rank của A \[Y|Z\] = rank A 
+>
+>
+>
+> (Nhân với matrix full rank thì không đổi hạng)
+>
+>
+>
+> Và rank A = m (do A full row rank) Mà AZ = 0, nên dĩ nhiên rank AY = m, và AY là matrix m × m, nên AY full rank.
+>
+>
+>
+> Từ đó, thể hiện x thoả Ax = b thành x = Y xY + Z xZ? Là sao?
+>
+>
+>
+> Một điểm nữa trong video ko nói: vì \[Y|Z\] là matrix n × n full rank, nên các cột của nó (của Y và Z hợp lại sẽ tạo basis của R^n, nên x là R^n vector bất kì sẽ đều có thể thể hiện bởi các basis vector này: Do đó ta mới cho rằng bất kì vector x nào để có thể thể hiện bởi Y xY + Z xZ. Sau đó cho nó thỏa ràng buộc Ax = b để rút xY ra.
+>
+>
+>
+> b = A(Y xY + Z xZ) = AY xY + AZ xZ = AY xY
+>
+>
+>
+> xY = (AY)⁻¹b
+>
+>
+>
+> ⇒ feasible x = Y (AY)⁻¹b + Z xZ, có nghĩa là với xZ bất kì, Y (AY)⁻¹b + Z xZ luôn thỏa ràng buộc. Từ đó 
+>
+>
+>
+> ta thay bài toán bởi bài toán tương đương không ràng buộc: 
+>
+>
+>
+> minimize f(x) s.t Ax = b tương đương minimize_xZ f(Y (AY)⁻¹b + Z xZ)
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=zUdZtRFHlYg)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, giải thích cặn kẽ và chính xác bản chất hình học cũng như đại số tuyến tính đằng sau các bước rút gọn mà giáo trình viết vắn tắt.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Do [Y|Z] nên rank của A [Y|Z] = rank A (Nhân với matrix full rank thì không đổi hạng)"*
+>
+> Cách diễn đạt hơi tắt một chút: chính xác là do $[Y|Z]$ là ma trận vuông cấp $n$ khả nghịch (nonsingular / invertible) nên việc nhân bên phải không làm thay đổi hạng của $A$.
+>
+>
+> **✓ Strengths**
+> - Hiểu rất rõ lý do $AY$ khả nghịch dựa trên tính chất bảo toàn hạng khi nhân ma trận vuông khả nghịch và khối cột triệt tiêu $AZ = 0$.
+> - Chỉ ra được trực giác quan trọng mà giáo trình bỏ qua: vì $[Y|Z]$ khả nghịch nên các cột của nó tạo thành một cơ sở của $\mathbb{R}^n$, do đó mọi vector $x \in \mathbb{R}^n$ đều biểu diễn được duy nhất dưới dạng $Y x_Y + Z x_Z$.
+>
+> **💡 Deeper notes**
+> - Phép biến đổi này phân rã không gian $\mathbb{R}^n$ thành hai thành phần: thành phần nghiệm riêng (particular solution) phụ thuộc vào $b$ thông qua $Y(AY)^{-1}b$ (nằm trong không gian bổ sung của null space), và thành phần nghiệm thuần nhất $Zx_Z$ tự do nằm hoàn toàn trong không gian hạt nhân $\mathcal{N}(A)$.
+
+<br>
 
