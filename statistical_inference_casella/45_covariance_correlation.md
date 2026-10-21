@@ -1,6 +1,6 @@
 # 4.5 Covariance & Correlation
 
-📊 **Progress:** `18` Notes | `27` Screenshots | `3` AI Reviews
+📊 **Progress:** `19` Notes | `29` Screenshots | `8` AI Reviews
 
 ---
 <a id="node-0rdjr6h"></a>
@@ -1238,6 +1238,30 @@
 > giá trị của X, Y tập trung quanh parabol, cho thấy quan hệ của nó rất
 > mạnh với nhau. Tuy nhiên khi correlation lại là 0
 
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú rất tốt, thể hiện việc tự tính toán và hiểu sâu sắc bản chất hình học cũng như ý nghĩa của hệ số tương quan đối với quan hệ phi tuyến. Chỉ có hai lỗi nhỏ về công thức viết tắt của Covariance và Correlation cần chỉnh sửa lại cho chuẩn.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Cov(X,Y) = EXEY - EXY"*
+>
+> Định nghĩa chính xác của hiệp phương sai là Cov(X, Y) = E[XY] - E[X]E[Y]. Bạn đã viết ngược thứ tự hai số hạng; dù trong bài này cả hai đều bằng 0 nên kết quả vẫn là 0, nhưng viết ngược sẽ làm đổi dấu hiệp phương sai trong các bài toán khác.
+>
+> **2.** *"Corr(X,Y) = Cov(X,Y) / Var(X)Var(Y) =  0"*
+>
+> Mẫu số của hệ số tương quan là tích của các độ lệch chuẩn σX * σY (tức là căn bậc hai của Var(X)Var(Y)), không phải là tích hai phương sai.
+>
+>
+> **✓ Strengths**
+> - Tự triển khai chi tiết bước chứng minh phân phối có điều kiện f_{Y|X} bằng phép biến đổi biến tuyến tính thay vì chỉ chép lại kết luận của sách.
+> - Nắm rất vững ý nghĩa thống kê cốt lõi: hệ số tương quan chỉ đo lường mối quan hệ tuyến tính, mối quan hệ phi tuyến dù rất mạnh (dải parabol hẹp) vẫn có thể cho tương quan bằng 0.
+>
+> **💡 Deeper notes**
+> - Để hệ số tương quan ρ_{XY} xác định, ta luôn ngầm hiểu phương sai của X và Y phải hữu hạn và khác 0 (điều này thỏa mãn trong bài do X là uniform và Y bị chặn).
+> - Ví dụ này là phản ví dụ kinh điển cho chiều đảo: Cov(X, Y) = 0 (uncorrelated) không đồng nghĩa với X và Y độc lập (independent).
+
 <br>
 
 <a id="node-ljt1bsi"></a>
@@ -1265,7 +1289,7 @@
 >
 >
 >
-> EX = E\[axZ1 + bxZ2 + cx\] =  E\[axZ1\] + E\[bxZ2\] + E\[cx\] (linearity)
+> EX = E\[axZ1 + bxZ2 + cx\] = E\[axZ1\] + E\[bxZ2\] + E\[cx\] (linearity)
 >
 >
 >
@@ -1285,7 +1309,7 @@
 >
 >
 >
-> Dùng tính chất Var(X + a) =  Var(X)
+> Dùng tính chất Var(X + a) = Var(X)
 >
 >
 >
@@ -1301,11 +1325,11 @@
 >
 >
 >
-> Dùng kiến thức nếu X, Y độc lập, thì Cov(X,Y) = 0. 
+> Dùng kiến thức nếu X, Y độc lập, thì Cov(X,Y) = 0.
 >
 >
 >
-> Cov(X,Y)  = E\[(X-EX)(Y-EY)\] = E\[(XY-(EX)Y-X(EY)+(EX)(EY)\] 
+> Cov(X,Y) = E\[(X-EX)(Y-EY)\] = E\[(XY-(EX)Y-X(EY)+(EX)(EY)\]
 >
 >
 >
@@ -1341,7 +1365,7 @@
 >
 >
 >
-> Và dùng tính chất Var(cX) =  c² Var(X)
+> Và dùng tính chất Var(cX) = c² Var(X)
 >
 >
 >
@@ -1349,7 +1373,7 @@
 >
 >
 >
-> = ax² + bx² 
+> = ax² + bx²
 >
 >
 >
@@ -1385,11 +1409,11 @@
 >
 >
 >
-> Nếu axZ1 +  bxZ2 \~ n(0, ax² + bx²)
+> Nếu axZ1 + bxZ2 \~ n(0, ax² + bx²)
 >
 >
 >
-> X = axZ1 +  bxZ2 + cx \~  n(cx, ax² + bx²)
+> X = axZ1 + bxZ2 + cx \~ n(cx, ax² + bx²)
 >
 >
 >
@@ -1405,7 +1429,7 @@
 >
 >
 >
-> X - EX =  axZ1 + bxZ2 + cx - cx = axZ1 + bxZ2
+> X - EX = axZ1 + bxZ2 + cx - cx = axZ1 + bxZ2
 >
 >
 >
@@ -1463,21 +1487,317 @@
 >
 >
 >
-> b)
+> b) aX = σX√\[(1+ρ)/2\], bX = σX√\[(1-ρ)/2\], cX = μX
+>
+>
+>
+>  aY = σY√\[(1+ρ)/2\], bY = -σY√\[(1-ρ)/2\], cY = μY
+>
+>
+>
+> Từ a) nên EX = μX, EY = μY
+>
+>
+>
+> Var(X) = aX² + bX² = σX²(1+ρ)/2 + σX²(1-ρ)/2 = σX²
+>
+>
+>
+> Tương tự Var(Y) = σY²
+>
+>
+>
+> Cor(X,Y) = Cov(X,Y)/STD(X)STD(Y) = (aXaY + bXbY)/σXσY 
+>
+>
+>
+> = \[(σXσY(1+ρ)/2 - σXσY(1-ρ)/2\]/σXσY
+>
+>
+>
+> = ρ
+>
+>
+>
+> ---
+>
+>
+>
+> c) Derive công thức join pdf của X, Y
+>
+>
+>
+> Ôn lại transformation chút:
+>
+>
+>
+> (U,V) = (g1(X,Y), g2(X,Y)) và nếu ta có mapping 1-1 giữa 𝒜 - support set của (X,Y) (nơi joint pdf &gt; 0) với image của 𝒜: ℬ = {(u,v): u = g1(x,y), v = g2(x,y)} thì khi đó có nghĩa là với u,v ∈ ℬ tồn tại duy nhất (x,y) ∈ 𝒜 sao cho: (x,y) = (h1(u,v), h2(u,v))
+>
+>
+>
+> Khi đó ta có:
+>
+>
+>
+> fU,V(u,v) = fX,Y(x,y) |det ∂(x,y)/∂(u,v)|
+>
+>
+>
+> X = axZ1 + bxZ2 + cx, Y = ayZ1 + byZ2 + cy
+>
+>
+>
+> X - cx = axZ1 + bxZ2, Y - cy = ayZ1 + byZ2 
+>
+>
+>
+> \[X-cx, Y-cy\]ᵀ = \[ax, bx; ay by\] \[Z1, Z2\]ᵀ 
+>
+>
+>
+> đặt A = \[ax, bx; ay by\], det A = axby - bxay 
+>
+>
+>
+> = σX√(1 + ρ)/2 × \[-σY√\[(1-ρ)/2\] - σX√\[(1-ρ)/2\] × σY√\[(1+ρ)/2\]
+>
+>
+>
+> = -σXσY √\[(1 + ρ)(1-ρ)/4\] - σXσY√\[(1 + ρ)(1-ρ)/4\]
+>
+>
+>
+> = -σXσY √(1 - ρ²)/2 - σXσY√(1-ρ²)/2
+>
+>
+>
+> = -σXσY √(1 - ρ²)
+>
+>
+>
+> nên det A⁻¹ = -1/\[σXσY√(1 - ρ²)\]
+>
+>
+>
+> ⇒ |det A⁻¹| = 1/\[σXσY√(1 - ρ²)\]
+>
+>
+>
+> ---
+>
+>
+>
+> = A \[Z1, Z2\]ᵀ 
+>
+>
+>
+> ⇒ \[Z1, Z2\]ᵀ = A⁻¹ \[X-cx, Y-cy\]ᵀ 
+>
+>
+>
+> = A⁻¹ \[X-cx, Y-cy\]ᵀ 
+>
+>
+>
+> = A⁻¹ \[X, Y\]ᵀ - A⁻¹ \[cx, cy\]ᵀ
+>
+>
+>
+> ⇒ ∂(z1,z2)/∂(x,y) = A⁻¹
+>
+>
+>
+> Vậy f(x,y) = f(z1,z2) |det A⁻¹|
+>
+>
+>
+> = f(z1)f(z2) |det A⁻¹|
+>
+>
+>
+> = (1/√2π) exp(-z1²/2)(1/√2π) exp(-z2²/2) |det A⁻¹|
+>
+>
+>
+> = (1/2π) exp\[-(z1²+z2²)/2\] |det A⁻¹|
+>
+>
+>
+> = (1/2π) exp\[-(z1²+z2²)/2\] |det A⁻¹|
+>
+>
+>
+> ---
+>
+>
+>
+> Đi tính z1²+z2²
+>
+>
+>
+> \[z1, z2\]ᵀ = A⁻¹ \[x-cx, y-cy\]ᵀ 
+>
+>
+>
+> = (det A)⁻¹ \[by -bx; -ay ax\] \[x-cx, y-cy\]ᵀ 
+>
+>
+>
+> = (det A)⁻¹ \[by(x-cx)-bx(y-cy); -ay(x-cx) + ax(y-cy)\]ᵀ
+>
+>
+>
+> ⇒ (z1² + z2²) = ((det A)⁻¹)² \[by(x-cx)-bx(y-cy)\]² + \[-ay(x-cx) + ax(y-cy)\]²
+>
+>
+>
+> Xét hai cái term bình phương.
+>
+>
+>
+> \[by(x-cx)-bx(y-cy)\]² = \[by(x-cx)\]²+\[bx(y-cy)\]²-2by(x-cx)bx(y-cy)
+>
+>
+>
+> \[-ay(x-cx) + ax(y-cy)\]² = \[-ay(x-cx)\]² + \[ax(y-cy)\]²-2ay(x-cx)ax(y-cy)
+>
+>
+>
+> cộng lại:
+>
+>
+>
+> \[by(x-cx)\]²+\[bx(y-cy)\]²-2by(x-cx)bx(y-cy) + \[-ay(x-cx)\]² + \[ax(y-cy)\]²-2ay(x-cx)ax(y-cy)
+>
+>
+>
+> = \[by(x-cx)\]² + \[-ay(x-cx)\]² + \[bx(y-cy)\]² + \[ax(y-cy)\]² - 2by(x-cx)bx(y-cy) -2ay(x-cx)ax(y-cy)
+>
+>
+>
+> = (by²+ay²)(x-cx)² + (bx²+ax²)(y-cy)² - 2(bybx+ayax)(x-cx)(y-cy)
+>
+>
+>
+> = σ²y(x-cx)² + σ²x(y-cy)² - 2(ρσxσy)(x-cx)(y-cy)
+>
+>
+>
+>
+>
+> Nên  (z1² + z2²) = ((det A)⁻¹)² \[by(x-cx)-bx(y-cy)\]² + \[-ay(x-cx) + ax(y-cy)\]²
+>
+>
+>
+> Thay |det A⁻¹| = 1/\[σXσY√(1 - ρ²)\] ⇒ ((det A)⁻¹)² = 1/σ²Xσ²Y(1 - ρ²)
+>
+>
+>
+> = 1/σ²Xσ²Y(1 - ρ²) × \[σ²y(x-cx)² + σ²x(y-cy)² - 2(ρσxσy)(x-cx)(y-cy)\]
+>
+>
+>
+> = 1/(1 - ρ²) × \[(x-cx)²/σ²X + (y-cy)²/σ²y - 2ρ\[(x-cx)/σx\]\[(y-cy)/σy\]
+>
+>
+>
+> = \[1/(1 - ρ²)\] × \[(x-μx)²/σ²x + (y-μy)²/σ²y - 2ρ\[(x-cx)/σx\]\[(y-cy)/σy\]
+>
+>
+>
+>
+>
+> ---
+>
+>
+>
+>
+>
+> ⇒ f(x,y) = (1/2π) exp\[-(z1²+z2²)/2\] × 1/\[σXσY√(1 - ρ²)\]
+>
+>
+>
+> = (1/2π) exp{\[-1/2(1 - ρ²)\] \[(x-μx)²/σ²x + (y-μy)²/σ²y - 2ρ\[(x-μx)/σx\]\[(y-μy)/σy\]} × 1/\[σXσY√(1 - ρ²)\]
+>
+>
+>
+>
+>
+> ---
 
 📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=6upP75ujeSM)
 
 > [!TIP]
-> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
-> Ghi chú hiện tại chưa có bất kỳ nội dung hay kiến thức nào về phân phối chuẩn hai chiều mà chỉ để lại lời nhắc quay lại sau. Bạn cần ghi chú tóm tắt hoặc phân tích định nghĩa cùng các tính chất trước khi tiếp tục.
+> Ghi chú xuất sắc, các bước biến đổi và chứng minh từ câu (a) đến câu (c) cực kỳ chi tiết, mạch lạc và hoàn toàn chính xác. Bạn chỉ chưa làm phần (d) của bài toán.
 >
-> **🔴 Critical issues**
+> **✓ Strengths**
+> - Các bước tính kỳ vọng, phương sai và hiệp phương sai ở câu (a) và (b) được lập luận chặt chẽ từ định nghĩa và tính chất độc lập.
+> - Phần biến đổi hàm mật độ đồng thời ở câu (c) sử dụng định lý phép đổi biến (Jacobian) và biến đổi đại số dạng toàn phương rất chính xác và tỉ mỉ.
 >
-> **1.** *"QUAY LẠI SAU"*
+> **💡 Deeper notes**
+> - Bài 4.46 còn có câu (d) yêu cầu chỉ ra nghiệm ở câu (b) không phải là duy nhất (nghiệm hệ phương trình ma trận hiệp phương sai có vô số nghiệm do liên quan đến phép quay trực giao).
+> - Phép đổi biến bằng ma trận khả nghịch đòi hỏi det(A) ≠ 0, tức là điều kiện -1 < ρ < 1 (nếu ρ = ±1 thì phân phối suy biến, không tồn tại hàm mật độ bivariate normal thông thường).
+
+**🔗 See also:** [Section 11.3 Simple Linear Regression](./113_simple_linear_regression.md#node-73smgnz)
+
+<br>
+
+<a id="node-e9v9gbu"></a>
+
+###### Bivariate Normal Distribution Definition
+
+<p align="center"><kbd><img src="assets/d1hbfbygb19.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/ku4u3l55mfn.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Định nghĩa của pdf của bivariate normal (mà mình đã derive qua bài tập vừa rồi)
 >
-> Chưa có nội dung học tập hoặc ghi chú nào được thực hiện từ tài liệu tham khảo.
 >
+>
+> f(x,y) = (1/2π) exp{\[-1/2(1 - ρ²)\] \[(x-μx)²/σ²x + (y-μy)²/σ²y - 2ρ\[(x-μx)/σx\]\[(y-μy)/σy\]} × 1/\[σXσY√(1 - ρ²)\]
+>
+>
+>
+> trong đó μX, μY là mean, variance là σ²X,σ²Y và correlation ρ
+>
+>
+>
+> Vài tính chất quan trọng:
+>
+>
+>
+> marginal pdf của X và Y sẽ là n(μX, σ²X) và n(μY, σ²Y)
+>
+>
+>
+> Correlation giữa X và Y là ρXY = ρ
+>
+>
+>
+> Và với a, b là hằng số bất kì, aX + bY sẽ là n(aμX + bμY, a²σ²X + b²σ²Y + 2abρσXσY)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú đã tóm tắt chính xác dạng hàm mật độ bivariate normal và các tính chất cơ bản về phân phối biên và hệ số tương quan.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"trong đó μX, μY là mean, variance là σ²X,σ²Y và correlation ρ"*
+>
+> Chưa nêu điều kiện miền xác định của các tham số: độ lệch chuẩn phải dương (σ_X > 0, σ_Y > 0) và hệ số tương quan bị chặn nghiêm ngặt trong khoảng (-1, 1).
+>
+>
+> **✓ Strengths**
+> - Ghi chép chính xác công thức hàm mật độ xác suất (pdf) của phân phối chuẩn hai chiều.
+> - Nắm đúng các tính chất quan trọng về phân phối lề (marginal) và hệ số tương quan của phân phối chuẩn hai chiều.
+>
+> **💡 Deeper notes**
+> - Khi ρ = ±1, ma trận hiệp phương sai bị suy biến (singular) và hàm mật độ thông thường không tồn tại (trở thành phân phối suy biến). Do đó điều kiện -1 < ρ < 1 là bắt buộc để hàm mật độ xác định.
+> - Một tính chất rất đặc trưng và hữu dụng khác của phân phối chuẩn hai chiều (mục d trong tài liệu) là mọi tổ hợp tuyến tính aX + bY cũng luôn có phân phối chuẩn 1 chiều.
 
 <br>
 
@@ -1490,6 +1810,18 @@
 > [!NOTE]
 > QUAY LẠI SAU
 
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+>
+> Ghi chú chưa có nội dung nào được thực hiện (học viên đánh dấu quay lại sau). Cần hoàn thiện việc đọc hiểu hoặc giải tiếp các bước biến đổi tích phân trong tài liệu tham khảo.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"QUAY LẠI SAU"*
+>
+> Chưa có bất kỳ nội dung ghi chú, tính toán hay tóm tắt nào được thực hiện.
+>
+
 <br>
 
 <a id="node-gn8tsfs"></a>
@@ -1501,16 +1833,42 @@
 > [!NOTE]
 > QUAY LẠI SAU
 
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+>
+> Ghi chú chưa có nội dung học tập hay biến đổi nào được thực hiện ngoài việc đánh dấu 'QUAY LẠI SAU'.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"QUAY LẠI SAU"*
+>
+> Chưa có bất kỳ nội dung ghi chú, lập luận hay giải thích nào được thực hiện so với tài liệu tham khảo.
+>
+
 <br>
 
 <a id="node-g2hs1nk"></a>
 
 ###### Hội tụ phân phối có điều kiện
 
-<p align="center"><kbd><img src="assets/bho5nvb5f2f.png" width="80%"></kbd></p>
+<p align="center"><kbd><img src="assets/gvojsipxjp.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > QUAY LẠI SAU
+
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+>
+> Bạn chưa ghi chép nội dung kiến thức nào từ tài liệu tham khảo mà chỉ để lại ghi chú quay lại sau. Hãy đọc và tóm tắt lại các ý chính về phân phối có điều kiện của phân phối chuẩn hai biến.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"QUAY LẠI SAU"*
+>
+> Ghi chú hoàn toàn chưa có nội dung học tập, phân tích hay tóm tắt kiến thức từ tài liệu tham khảo.
+>
+
+**🔗 See also:** [Section 11.3 Simple Linear Regression](./113_simple_linear_regression.md#node-73smgnz)
 
 <br>
 
