@@ -1,6 +1,6 @@
 # 5.2 Training
 
-📊 **Progress:** `2` Notes | `5` Screenshots | `2` AI Reviews
+📊 **Progress:** `5` Notes | `10` Screenshots | `5` AI Reviews
 
 ---
 <a id="node-90vy3g2"></a>
@@ -46,6 +46,8 @@
 >
 > **💡 Deeper notes**
 > - Cụm từ 'output unit nonlinearity' trong sách đề cập cụ thể đến hàm kích hoạt ở tầng đầu ra (output layer activation), ví dụ như hàm đồng nhất cho hồi quy Gauss, hàm sigmoid cho Bernoulli, hay softmax cho phân loại đa lớp, chứ không phải các hàm kích hoạt ở các tầng ẩn (hidden layers).
+
+**🔗 See also:** [Maximum Likelihood Noise Precision](#node-8uvuv10)
 
 <br>
 
@@ -302,6 +304,524 @@
 > - Về việc chọn identity activation function cho output: Ngoài việc giúp output nhận bất kỳ giá trị thực nào trên $(-\infty, \infty)$ để làm mean cho phân phối chuẩn, sách còn nhấn mạnh tính chất mạng neural với output tuyến tính có khả năng xấp xỉ bất kỳ hàm liên tục nào từ $\mathbf{x}$ sang $y$ (theo định lý Universal Approximation).
 
 **🔗 See also:** [Linear Regression and Conditional Expectation *(Statistical Inference - Casella)*](../statistical_inference_casella/113_simple_linear_regression.md#node-5swaigg)
+
+<br>
+
+<a id="node-8uvuv10"></a>
+
+#### Maximum Likelihood Noise Precision
+
+<p align="center"><kbd><img src="assets/0ghj2h3g13lp.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/gqripwvtb6d.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Sau khi tìm được 𝐰ML, ta tìm βML:
+>
+>
+>
+> maximize over β {(-1/2) N ln (2π) + (1/2) N ln(β) - (β/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]}
+>
+>
+>
+> equivalent
+>
+>
+>
+> maximize over β {(1/2) N ln(β) - (β/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]}
+>
+>
+>
+> d/dβ {(1/2) N ln(β) - (β/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]} = d/dβ \[(1/2) N ln(β)\] - d/dβ (β/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]}
+>
+>
+>
+> = (1/2) N (1/β) - (1/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]}
+>
+>
+>
+> = N/2β - (1/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]}
+>
+>
+>
+> Cho bằng 0 tìm điểm dừng: N/2β - (1/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\] = 0 ⇔ N/2β = (1/2) Σn \[(tn-y(𝐱n, 𝐰ML))²\]
+>
+>
+>
+> ⇔ 1/β = (1/N) Σn \[(tn-y(𝐱n, 𝐰ML))²\]
+>
+>
+>
+> Như vậy 1/βML (cũng là MLE của phương sai) là (1/N) Σn \[(tn-y(𝐱n, 𝐰ML))²\] → 5.15
+>
+>
+>
+> ---
+>
+>
+>
+> Nếu ta có bài toán multiple target, tức T bây giờ là vector, giả sử là R³ vector đi (tức là cho K = 3) cho dễ:
+>
+>
+>
+> 𝐓 = (T1, T2,T3)ᵀ, đồng thời ta giả định rằng: Ti|𝐱 \~ 𝒩(μi(𝐱), 1/β) và giả định 𝛍(𝐱) = (μ1(𝐱), μ2(𝐱),...)ᵀ là hàm số vector - vector phi tuyến theo 𝐰, 𝐱 biểu diễn bởi neural network có đầu ra là (vector) y(𝐰, 𝐱), và giả định thêm nữa là T1|𝐱, T2|𝐱,T3|𝐱 độc lập.
+>
+>
+>
+> Chú ý, lúc này, data set là N cặp (vector 𝐱, vector 𝐭): (𝐱1, 𝐭1),(𝐱2, 𝐭2),....(𝐱N, 𝐭N). là giá trị quan sát được của N random VECTOR 𝐓: 𝐓1|𝐱1, 𝐓2|𝐱2,...𝐓N|𝐱N. Trong đó pdf của 𝐓i|𝐱i sẽ là như sau đây (và sau đó ta mới nói về joint pdf của toàn bộ N random vector 𝐓i: 𝐓1|𝐱1, 𝐓2|𝐱2,...𝐓N|𝐱N)
+>
+>
+>
+> Nhấn mạnh ở đây nói joint pdf, nhưng là của 3 biến scalar T1,T2,T3 phần tử của random vector 𝐓 (ví dụ như cái 𝐓1|𝐱1 trong bộ dataset có N random vector nói trên, tí nữa ta mới nói joint pdf của N cái random vector 𝐓 này)
+>
+>
+>
+> Xét joint pdf của T1,T2,T3 conditioned on 𝐱:
+>
+>
+>
+> p(t1,t2,t3|𝐱,𝐰), do ta đang giả định tính độc lập của T1|𝐱, T2|𝐱, T3|𝐱 = Πi=1:3 𝒩(ti|μi(𝐱), 1/β)
+>
+>
+>
+> = Πi=1,2,3 (1/√2πβ⁻¹) exp\[-(ti-μi(𝐱))²/2β⁻¹\]
+>
+>
+>
+> = (1/√2πβ⁻¹)³ Πi=1,2,3 exp\[-(ti-μi(𝐱))²/2β⁻¹\]
+>
+>
+>
+> = (1/√2πβ⁻¹)³ exp\[-Σi=1,2,3 (ti-μi(𝐱))²/2β⁻¹\]
+>
+>
+>
+> = (1/√2πβ⁻¹)³ exp\[-(β/2) Σi=1,2,3 (ti-μi(𝐱))²\]
+>
+>
+>
+> Xét Σi=1,2,3 (ti-μi(𝐱))², nó chính là ||(𝐭-𝛍(𝐱)||², cũng là (𝐭-𝛍(𝐱))ᵀ(𝐭-𝛍(𝐱))
+>
+>
+>
+> = (1/√2πβ⁻¹)³ exp\[-(β/2) (𝐭-𝛍(𝐱)ᵀ(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> = (1/√2πβ⁻¹)³ exp\[-(1/2) (𝐭-𝛍(𝐱)ᵀβ(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> = (1/√2πβ⁻¹)³ exp\[-(1/2) (𝐭-𝛍(𝐱)ᵀβ𝐈(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> Mà β𝐈 = \[(1/β)𝐈\]⁻¹
+>
+>
+>
+> = (1/√2πβ⁻¹)³ exp\[-(1/2) (𝐭-𝛍(𝐱)ᵀ\[(1/β)𝐈\]⁻¹(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> = (1/√2π)³ 1/√(β⁻¹)³ exp\[-(1/2) (𝐭-𝛍(𝐱)ᵀ\[(1/β)𝐈\]⁻¹(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> = (1/√2π)³ 1/√(β⁻¹)³ exp\[-(1/2) (𝐭-𝛍(𝐱)ᵀ\[(1/β)𝐈\]⁻¹(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> Xét matrix (1/β)𝐈, có đường chéo là 1/β,1/β,1/β, det của nó chính là (1/β)³ = (β⁻¹)³
+>
+>
+>
+> = (1/√2π)³ (1/√|det ((1/β)𝐈)| exp\[-(1/2) (𝐭-𝛍(𝐱))ᵀ\[(1/β)𝐈\]⁻¹(𝐭-𝛍(𝐱)\]
+>
+>
+>
+> Xem lại link của pdf normal đa biến: 𝒩(𝐱|𝛍, 𝚺) = \[(2π)^-D/2\] \[1/|𝚺|^1/2\] exp\[-(𝐱 - **μ**)ᵀ𝚺⁻¹(𝐱 - μ)/2\]
+>
+>
+>
+> đây chính là pdf của multivariate normal 𝒩(𝛍(𝐱), (1/β)𝐈) = 𝒩(y(𝐰, 𝐱), (1/β)𝐈) → 5.16
+>
+>
+>
+> ---
+>
+>
+>
+> Như đã nói, đây mới chỉ là pdf của random vector 𝐓|𝐱 (ví dụ 𝐓1|𝐱1 trong đám 𝐓1|𝐱1, 𝐓2|𝐱2,..𝐓N|𝐱N), mà bản thân nó là joint pdf của T1|𝐱, T2|𝐱, T3|𝐱
+>
+>
+>
+> Giờ ta mới xét joint pdf của 𝐓1|𝐱1, 𝐓2|𝐱2,..𝐓N|𝐱N, để xây dựng likelihood:
+>
+>
+>
+> p(𝐭1,𝐭2,..𝐭N|𝐱1,..𝐱N,𝐰,β) = Πn=1:N p(𝐭n|𝐱n,𝐰,β) (do các data point độc lập)
+>
+>
+>
+> = Πn=1:N 𝒩(𝐭n| y(𝐰, 𝐱n), (1/β)𝐈)
+>
+>
+>
+> likelihood: L(𝐰, β|𝐭1,𝐭2,..𝐭N,𝐱1,..𝐱N) theo định nghĩa cũng chính là hàm joint pdf trên (nhưng với tư cách là hàm số của 𝐰, β)
+>
+>
+>
+> ln likelihood: ln L(𝐰, β|𝐭1,𝐭2,..𝐭N,𝐱1,..𝐱N) = ln Πn=1:N 𝒩(𝐭n | 𝛍n(𝐱)=y(𝐰, 𝐱n), (1/β)𝐈) (1)
+>
+>
+>
+> = Σn=1:N ln 𝒩(𝐭n| y(𝐰, 𝐱n), (1/β)𝐈)
+>
+>
+>
+> = Σn=1:N ln { (1/√2π)³ (1/√|det ((1/β)𝐈)| exp\[-(1/2) (𝐭n-𝛍n(𝐱))ᵀ\[(1/β)𝐈\]⁻¹(𝐭n-𝛍n(𝐱)\] }
+>
+>
+>
+> = Σn=1:N { ln (1/√2π)³ + ln (1/√|det ((1/β)𝐈)| + ln exp \[-(1/2) (𝐭n-𝛍n(𝐱))ᵀ\[(1/β)𝐈\]⁻¹(𝐭n-𝛍n(𝐱)\] }
+>
+>
+>
+> = Σn=1:N ln (1/√2π)³ + Σn=1:N ln (1/√|det ((1/β)𝐈)| + Σn=1:N { ln exp \[-(1/2) (𝐭n-𝛍n(𝐱)ᵀ\[(1/β)𝐈\]⁻¹(𝐭n-𝛍n(𝐱)\] }
+>
+>
+>
+> = const + Σn=1:N ln (1/√(β⁻¹)³ + Σn=1:N \[-(1/2) (𝐭n-𝛍n(𝐱)ᵀβ(𝐭n-𝛍n(𝐱)\]
+>
+>
+>
+> = const + Σn=1:N ln ((β⁻¹)^(-3/2)) - (β/2) Σn=1:N \[ (𝐭n-𝛍n(𝐱)ᵀ(𝐭n-𝛍n(𝐱)\]
+>
+>
+>
+> = const - (3/2) Σn=1:N ln (β⁻¹) - (β/2) Σn=1:N ||𝐭n-𝛍n(𝐱)||²
+>
+>
+>
+> = const - (3/2) Σn=1:N ln (β⁻¹) - (β/2) Σn=1:N ||𝐭n - y(𝐰, 𝐱n)||²
+>
+>
+>
+> = const + (3N/2) ln (β) - (β/2) Σn=1:N ||𝐭n - y(𝐰, 𝐱n)||²
+>
+>
+>
+> ---
+>
+>
+>
+> Tới đây có thể thấy, đi tìm 𝐰ML của bài toán regression với t là vector này: thì cũng lại chính là chuyển thành bài toán tương đương:
+>
+>
+>
+> maximize - (β/2) Σn=1:N ||𝐭n - y(𝐰, 𝐱n)||²
+>
+>
+>
+> equivalent minimize (1/2) Σn=1:N ||𝐭n - y(𝐰, 𝐱n)||² → chính là 5.11
+>
+>
+>
+> (coi như ta giải xong ex 5.2)
+>
+>
+>
+> Tương tự ta giải bài toán này có 𝐰ML, xong giải tiếp tìm βML
+>
+>
+>
+> Và lấy đạo hàm theo β để tìm βML:
+>
+>
+>
+> d/dβ ( (3N/2) ln (β) - (β/2) Σn=1:N ||𝐭n - y(𝐰ML, 𝐱n)||²)
+>
+>
+>
+> = (3N/2) (1/β) - (1/2) Σn=1:N ||𝐭n - y(𝐰ML, 𝐱n)||²
+>
+>
+>
+> cho bằng 0: (3N/2) (1/β) - (1/2) Σn=1:N ||𝐭n - y(𝐰ML, 𝐱n)||² = 0
+>
+>
+>
+> ⇔ (3N/2) (1/β) = (1/2) Σn=1:N ||𝐭n - y(𝐰ML, 𝐱n)||²
+>
+>
+>
+> ⇔ (1/β) = 1/(3N) Σn=1:N ||𝐭n - y(𝐰ML, 𝐱n)||²
+>
+>
+>
+> 3 ở đây chính là K (ở trên ta đặt K = 3)
+>
+>
+>
+> ⇔ (1/β) = 1/(NK) Σn=1:N ||𝐭n - y(𝐰ML, 𝐱n)||² → 5.17
+>
+>
+>
+> ---
+>
+>
+>
+>  Làm bài 5.3 luôn:
+>
+>
+>
+> Theo đó thay vì ta có p(𝐭|𝐱,𝐰) = 𝒩(𝐭|y(𝐰, 𝐱), (1/β)𝐈) thì nay ta có p(𝐭|𝐱,𝐰) = 𝒩(𝐭| y(𝐰, 𝐱), 𝚺)
+>
+>
+>
+> Tiếp nối luôn từ (1)
+>
+>
+>
+> ln L(𝐰, 𝚺|𝐭1,𝐭2,..𝐭N,𝐱1,..𝐱N) = ln Πn=1:N 𝒩(𝐭n | 𝛍n(𝐱)=y(𝐰, 𝐱n), 𝚺)
+>
+>
+>
+> = Σn=1:N ln 𝒩(𝐭n| y(𝐰, 𝐱n), 𝚺)
+>
+>
+>
+> Thay pdf normal đa biến ở trên vô
+>
+>
+>
+> = Σn=1:N ln {\[(2π)^-K/2\] \[1/|𝚺|^1/2\] exp\[-(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))/2\]}
+>
+>
+>
+> = Σn=1:N ln \[(2π)^-K/2\] + Σn=1:N ln \[1/|𝚺|^1/2\] + Σn=1:N ln exp\[-(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))/2\]
+>
+>
+>
+> = Σn=1:N (-K/2) ln (2π) + Σn=1:N (-1/2) ln |𝚺| + Σn=1:N \[-(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))/2\]
+>
+>
+>
+> = (-NK/2) ln (2π) - (N/2) ln |𝚺| -(1/2) Σn=1:N \[(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))\]
+>
+>
+>
+> Để tìm MLE của 𝐰: giải bài toán maximize likelihood, tương đương:
+>
+>
+>
+> maximize\_𝐰 {-(1/2) Σn=1:N \[(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))\]}
+>
+>
+>
+> tương đương tiếp:
+>
+>
+>
+> minimize\_𝐰 {(1/2) Σn=1:N \[(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))\]}
+>
+>
+>
+> Tạm thời thoát vai 𝐓 là random vector, mượn lại chữ 𝐓 để chỉ matrix có các cột là 𝐭1,..𝐭N, và 𝐘 là matrix có các cột là y(𝐰, 𝐱1),...y(𝐰, 𝐱N) thì objective này chính là: (1/2)tr\[(𝐓 - 𝐘)ᵀ𝚺⁻¹(𝐓 - 𝐘)\]
+>
+>
+>
+> (vì hàng n của (𝐓 - 𝐘)ᵀ𝚺⁻¹ chính là \[𝐭n - y(𝐰, 𝐱n)\]ᵀ 𝚺⁻¹
+>
+>
+>
+> nên (𝐓 - 𝐘)ᵀ𝚺⁻¹ (𝐓 - 𝐘) có phần tử nn là \[𝐭n - y(𝐰, 𝐱n)\]ᵀ 𝚺⁻¹ \[𝐭n - y(𝐰, 𝐱n)\]
+>
+>
+>
+> nên tr\[(𝐓 - 𝐘)ᵀ𝚺⁻¹ (𝐓 - 𝐘)\] chính là Σn \[𝐭n - y(𝐰, 𝐱n)\]ᵀ 𝚺⁻¹ \[𝐭n - y(𝐰, 𝐱n)\])
+>
+>
+>
+> Nếu như 𝚺 fix, bài toán là minimize (1/2)tr\[(𝐓 - 𝐘)ᵀ𝚺⁻¹(𝐓 - 𝐘)\] theo 𝐰, giải tìm 𝐰ML
+>
+>
+>
+> Nếu ngược lại, đương nhiên cần minimize 𝐰, 𝚺 {(N/2) ln |𝚺| + (1/2) Σn=1:N \[(𝐭n - y(𝐰, 𝐱n))ᵀ𝚺⁻¹(𝐭n - y(𝐰, 𝐱n))\]}, giải tìm 𝐰ML, 𝚺ML
+>
+>
+>
+> = (N/2) ln |𝚺| + (1/2) tr\[(𝐓 - 𝐘)ᵀ𝚺⁻¹(𝐓 - 𝐘)\]
+>
+>
+>
+> = (N/2) ln |𝚺| + (1/2) tr\[𝚺⁻¹(𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ\]
+>
+>
+>
+> |𝚺| = 1/ |𝚺⁻¹| = (|𝚺⁻¹|)⁻¹
+>
+>
+>
+> = (N/2) ln |𝚺⁻¹|⁻¹ + (1/2) tr\[𝚺⁻¹(𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ\]
+>
+>
+>
+> = (-N/2) ln |𝚺⁻¹| + (1/2) tr\[𝚺⁻¹(𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ\]
+>
+>
+>
+> Và để có công thức tính 𝚺⁻¹\_ML (nghịch đảo của nó chính là 𝚺\_ML) ta lấy đạo hàm theo 𝚺⁻¹:
+>
+>
+>
+> d/d(𝚺⁻¹) ln |𝚺⁻¹| = ((𝚺⁻¹)⁻¹)ᵀ = 𝚺ᵀ = 𝚺
+>
+>
+>
+> d/d𝚺⁻¹ \[tr\[𝚺⁻¹(𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ\]\]
+>
+>
+>
+> = \[(𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ\]ᵀ
+>
+>
+>
+> = (𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ
+>
+>
+>
+> Vậy d/d𝚺⁻¹ \[(-N/2) ln |𝚺⁻¹| + (1/2) tr\[(𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ𝚺⁻¹\]\]
+>
+>
+>
+> = (-N/2) 𝚺 + (1/2) (𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ
+>
+>
+>
+> Cho bằng 0: (-N/2) 𝚺 + (1/2) (𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ = 0
+>
+>
+>
+> ⇔ 𝚺 = (1/N) (𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=COfLYidpH6w)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú xuất sắc, giải chi tiết và trọn vẹn từ việc thiết lập phân phối nhiều chiều đến đạo hàm ma trận trong Bài 5.2 và Bài 5.3.
+>
+> **✓ Strengths**
+> - Thiết lập bài toán từ trường hợp cụ thể (K = 3) để hiểu bản chất phân phối chuẩn nhiều chiều trước khi tổng quát hóa rất rõ ràng.
+> - Biến đổi và chứng minh tương đương giữa bài toán cực đại hợp lý (MLE) và hàm mất mát bình phương tối thiểu (5.11) chính xác.
+> - Sử dụng khéo léo biến phụ trace và đạo hàm ma trận theo nghịch đảo ma trận hiệp phương sai để giải bài tập 5.3.
+>
+> **💡 Deeper notes**
+> - Sự ràng buộc (coupled) giữa w và Σ trong Bài 5.3: do Σ⁻¹ nằm xen kẽ giữa sai số từng mẫu, ta không thể tách riêng bài toán tối ưu w ra độc lập với Σ như trong trường hợp nhiễu đẳng hướng (Σ = β⁻¹I). Trong thực tế, điều này đòi hỏi tối ưu luân phiên (alternating optimization) hoặc giải đồng thời.
+> - Về mặt giải tích ma trận, do Σ (và Σ⁻¹) là ma trận đối xứng, khi lấy đạo hàm chuẩn tắc cần lưu ý tính đối xứng, tuy nhiên vì (𝐓 - 𝐘)(𝐓 - 𝐘)ᵀ cũng là ma trận đối xứng nên kết quả điểm dừng vẫn hoàn toàn bảo toàn.
+
+**🔗 See also:** [PDF Gaussian Đa Biến](./124_the_gaussian_distribution.md#node-40ke7sj) · [Section 5.2 Network Training](#node-sk6e97t) · [Đạo hàm Trace Ma trận](./appendix_c_matrices.md#node-0oculhd) · [Đạo hàm hàm vết ma trận](./appendix_c_matrices.md#node-f8fc5lg)
+
+<br>
+
+<a id="node-f2ydksp"></a>
+
+##### Error Function Derivative for Regression
+
+<p align="center"><kbd><img src="assets/6vxl88quq5n.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> (1/2) Σn=1:N ||𝐭n - y(𝐰, 𝐱n)||
+>
+>
+>
+> E(𝐰) của 1 điểm data là (1/2) ||𝐭 - y(𝐰, 𝐱)|| = (1/2) \[𝐭 - y(𝐰, 𝐱)\]ᵀ\[𝐭 - y(𝐰, 𝐱)\]
+>
+>
+>
+>  = (1/2) (𝐭 - 𝐲)ᵀ(𝐭 - 𝐲)
+>
+>
+>
+> = (1/2) Σi=1:K (ti-yi)²
+>
+>
+>
+> ∂/∂yk = ∂/∂yk \[(1/2) Σi=1:K (ti-yi)²\] 
+>
+>
+>
+> = (1/2) Σi=1:K ∂/∂yk (ti-yi)²
+>
+>
+>
+> = (1/2) Σi=1:K,i≠k ∂/∂k (ti-yi)² + (1/2) ∂/∂yk (tk-yk)²
+>
+>
+>
+> = -(1/2) 2(tk-yk)
+>
+>
+>
+> = yk - tk
+>
+>
+>
+> Và vì yk = ak do neural network dùng output activation function là identity
+>
+>
+>
+> nên ∂/∂ak E = yk - tk
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú rất tốt, bạn đã tự suy dẫn chi tiết từng bước đạo hàm của hàm lỗi sum-of-squares theo activation $a_k$ thay vì chỉ thừa nhận công thức trong sách. Chỉ có vài lỗi ký hiệu nhỏ không làm ảnh hưởng đến bản chất.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"(1/2) ||𝐭 - y(𝐰, 𝐱)|| = (1/2) [𝐭 - y(𝐰, 𝐱)]ᵀ[𝐭 - y(𝐰, 𝐱)]"*
+>
+> Ký hiệu chuẩn vector bị thiếu số mũ 2 (chuẩn bình phương). Ký hiệu chuẩn xác nên là ||𝐭 - y(𝐰, 𝐱)||².
+>
+> **2.** *"(1/2) Σi=1:K,i≠k ∂/∂k (ti-yi)²"*
+>
+> Gõ thiếu biến lấy đạo hàm ở mẫu số, viết đúng phải là ∂/∂yk thay vì ∂/∂k.
+>
+>
+> **✓ Strengths**
+> - Tự triển khai tường minh phép đạo hàm của hàm lỗi một mẫu theo y_k rất mạch lạc và chính xác.
+> - Kết nối chính xác việc output activation function là identity (y_k = a_k) với đạo hàm cuối cùng ∂E/∂a_k = y_k - t_k.
+>
+> **💡 Deeper notes**
+> - Cần lưu ý phân biệt giữa hàm lỗi tổng trên toàn bộ tập dữ liệu E và hàm lỗi của một điểm dữ liệu En; công thức bạn dẫn ra là cho một điểm dữ liệu, vốn thường dùng trực tiếp trong lan truyền ngược (stochastic/online backpropagation).
+
+<br>
+
+<a id="node-esrera4"></a>
+
+###### Binary Classification and Logistic Sigmoid
+
+<p align="center"><kbd><img src="assets/rc4ircpqqxk.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/714rwfxcszk.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Qua bài toán binary classification:
+
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+>
+> Ghi chú đang bị bỏ dở giữa chừng và hoàn toàn chưa có nội dung tóm tắt hay kiến thức nào được trình bày.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"Tương tự như trong phần"*
+>
+> Ghi chú chưa hoàn thành, câu văn bị ngắt quãng và chưa ghi lại bất kỳ nội dung nào từ bài học để có thể đánh giá.
+>
 
 <br>
 
