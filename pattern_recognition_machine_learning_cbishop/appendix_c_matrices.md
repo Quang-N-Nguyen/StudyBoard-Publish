@@ -595,9 +595,29 @@
 > hay ∂/∂x ln |A|) chính là tr(A⁻¹ (∂A/∂x)). Đây chính là công thức C.22
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
 >
-> Bản ghi chú cung cấp một phân tích rất chi tiết và sâu sắc để chứng minh công thức C.22, thể hiện sự hiểu biết vững chắc về giá trị riêng, định thức và vi phân ma trận. Cách tiếp cận từng bước, từ đạo hàm của det(A) đến log(det(A)), rất rõ ràng và logic, tuy nhiên có một vài lỗi nhỏ trong việc khai triển ví dụ và việc gán [λ^(n-2)] cho tr(M) là không chính xác.
+> Ghi chú rất xuất sắc, tự chứng minh trọn vẹn và chuẩn xác công thức Jacobi/đạo hàm của log det A thông qua vi phân và tích vô hướng ma trận.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"+ [λ^(n-2)](Σ của các tích của các cặp λi(M)) ) → cái này là [λ^(n-2)] tr(M)"*
+>
+> Nhầm lẫn vị trí ghi chú: Hệ số của λ^(n-1) mới chính là tổng các trị riêng ∑λ_i = tr(M), còn hệ số của λ^(n-2) là tổng các tích từng đôi một (chính là tr(adj_2(M))). Dù vậy ở dòng xấp xỉ bên dưới bạn vẫn dùng đúng λ^(n-1) tr(M).
+>
+> **2.** *"= λ³ + λ²(λ1 + λ2 + λ3) + λ(λ1λ2 + λ1λ3 + λ2λ3 + λ1λ2λ3"*
+>
+> Lỗi gõ thiếu dấu ngoặc đóng sau bộ đôi và dấu cộng trước λ1λ2λ3: đúng ra là λ³ + λ²(λ1 + λ2 + λ3) + λ(λ1λ2 + λ1λ3 + λ2λ3) + λ1λ2λ3.
+>
+>
+> **✓ Strengths**
+> - Tiến hành tự chứng minh chi tiết công thức (C.22) thay vì chỉ thừa nhận như trong tài liệu tham khảo.
+> - Nắm rất vững mối liên hệ giữa đa thức đặc trưng, trị riêng, trace và định thức để suy ra công thức xấp xỉ cấp một det(I + M) ≈ 1 + tr(M).
+> - Sử dụng chuẩn xác khái niệm vi phân toàn phần (Fréchet derivative) thông qua dạng toán tử tuyến tính/Frobenius inner product.
+>
+> **💡 Deeper notes**
+> - Công thức ln|A| và vi phân này ngầm định ma trận A khả nghịch (để A⁻¹ tồn tại) và det(A) ≠ 0.
+> - Xấp xỉ trị riêng thực chất tương đương với khai triển tuyến tính bậc một của hàm det quanh I (công thức Jacobi).
 
 <br>
 
@@ -690,7 +710,7 @@
 > **💡 Deeper notes**
 > - Quy ước đạo hàm ma trận ở đây theo chuẩn giải tích ma trận (matrix calculus) thông dụng trong Machine Learning (numerator layout / chuẩn gradient tương thích với vi phân df = Tr((∂f/∂A)ᵀ dA)).
 
-**🔗 See also:** [Least Squares Discriminant Function](./413_least_squares_for_classification.md#node-uez5xzu)
+**🔗 See also:** [Least Squares Discriminant Function](./413_least_squares_for_classification.md#node-uez5xzu) · [Maximum Likelihood Noise Precision](./52_training.md#node-8uvuv10)
 
 <br>
 
@@ -809,7 +829,7 @@
 > - Ký hiệu tích vô hướng Frobenius thường được viết là ⟨A, B⟩ hoặc A : B thay vì dấu chấm thông thường để tránh nhầm lẫn với phép nhân ma trận.
 > - Thay vì khai triển d[tr(X)] = tr(X + dX) - tr(X), bạn có thể dùng trực tiếp quy tắc tuyến tính của vi phân d[tr(X)] = tr(dX) và quy tắc tích d(UV) = (dU)V + U(dV) để chứng minh ngắn gọn hơn.
 
-**🔗 See also:** [Least Squares Discriminant Function](./413_least_squares_for_classification.md#node-uez5xzu)
+**🔗 See also:** [Least Squares Discriminant Function](./413_least_squares_for_classification.md#node-uez5xzu) · [Maximum Likelihood Noise Precision](./52_training.md#node-8uvuv10)
 
 <br>
 
