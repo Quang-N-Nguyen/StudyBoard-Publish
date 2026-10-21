@@ -1,6 +1,6 @@
 {
   "title": "Statistical Inference - Casella",
-  "publishedAt": 1792432781254,
+  "publishedAt": 1792606131389,
   "sections": [
     {
       "title": "📋 Overview",
@@ -149,8 +149,8 @@
     {
       "title": "4.5 Covariance & Correlation",
       "path": "statistical_inference_casella/45_covariance_correlation.md",
-      "noteCount": 18,
-      "imageCount": 27
+      "noteCount": 19,
+      "imageCount": 29
     },
     {
       "title": "4.6 Multi-variate Distribution",
@@ -311,10 +311,10 @@
     {
       "title": "11.3 Simple Linear Regression",
       "path": "statistical_inference_casella/113_simple_linear_regression.md",
-      "noteCount": 4,
-      "imageCount": 6
+      "noteCount": 9,
+      "imageCount": 19
     }
   ],
-  "totalNotes": 905,
-  "totalImages": 1184
+  "totalNotes": 911,
+  "totalImages": 1199
 }
