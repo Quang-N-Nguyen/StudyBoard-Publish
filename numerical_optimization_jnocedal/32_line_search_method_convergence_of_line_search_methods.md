@@ -69,7 +69,7 @@
 > [!NOTE]
 > Để chứng minh thì đầu tiên dùng 3.6b (curvature condition)
 >
-> ∇f(xk + αkpk)Tpk ≥ c2 ∇fkTpk
+> ∇f(xk + αkpk)ᵀpk ≥ c2 ∇fkTpk
 >
 > Ý là, vì theorem này nói rằng ta thực hiện một bước update có dạng xk+1 = xk + αkpk với 
 >
@@ -77,11 +77,11 @@
 >
 > **αk thỏa Wolfe condition**, tức là nó sẽ khiến xk+1 thỏa điều kiện Amijo (Sufficient decrease 
 >
-> → f(xk + αpk) ≤ f(xk) + c1 α (∇fk)T pk
+> → f(xk + αpk) ≤ f(xk) + c1 α (∇fk)ᵀ pk
 >
 > và curvature condition, nên ta sẽ có độ dốc theo hướng pk tại xk+1 bớt âm so với độ dốc theo hướng pk tại xk)
 >
-> ⇨ ∇f(xk+1)Tpk ≥ c2 ∇f(xk)Tpk
+> ⇨ ∇f(xk+1)ᵀpk ≥ c2 ∇f(xk)ᵀpk
 >
 > hay viết tắt là ∇fk+1Tpk ≥ c2 ∇fkTpk
 >
@@ -89,7 +89,7 @@
 >
 > ∇fk+1Tpk - ∇fkTpk ≥ c2 ∇fkTpk - ∇fkTpk
 >
-> ⇔ (∇fk+1 - ∇fk)Tpk ≥ (c2 - 1) ∇fkTpk (1)
+> ⇔ (∇fk+1 - ∇fk)ᵀpk ≥ (c2 - 1) ∇fkTpk (1)
 >
 > Tới đây, dùng giả định ban đầu ta có tính chất của gradient ∇f là Lipschitz continuous trên N mà tính chất này thể hiện theo toán học là:
 >
@@ -107,19 +107,19 @@
 >
 > ⇔ ||∇fk+1 - ∇fk||||pk|| ≤ αkL(||pk||)^2 (nhân hai vế cho ||pk||)
 >
-> mà (∇fk+1 - ∇fk)Tpk = ||∇fk+1 - ∇fk||||pk||cos θ ≤ ||∇fk+1 - ∇fk||||pk||*1 
+> mà (∇fk+1 - ∇fk)ᵀpk = ||∇fk+1 - ∇fk||||pk||cos θ ≤ ||∇fk+1 - ∇fk||||pk||*1 
 >
 > (θ là góc giữa ∇fk+1 - ∇fk và pk)
 >
-> ⇨ (∇fk+1 - ∇fk)Tpk ≤ αk L(||pk||)^2
+> ⇨ (∇fk+1 - ∇fk)ᵀpk ≤ αk L(||pk||)^2
 >
 > Chia hai vế cho (||pk||)^2 là số dương)
 >
-> ⇨ αk ≥ (∇fk+1 - ∇fk)Tpk / L(||pk||)^2  
+> ⇨ αk ≥ (∇fk+1 - ∇fk)ᵀpk / L(||pk||)^2  
 >
-> Tới đây kết hợp (∇fk+1 - ∇fk)Tpk ≥ (c2 - 1) ∇fkTpk
+> Tới đây kết hợp (∇fk+1 - ∇fk)ᵀpk ≥ (c2 - 1) ∇fkTpk
 >
-> ⇨ αk ≥ (∇fk+1 - ∇fk)Tpk / L(||pk||)^2 ≥ (c2 - 1) ∇fkTpk /  L(||pk||)^2
+> ⇨ αk ≥ (∇fk+1 - ∇fk)ᵀpk / L(||pk||)^2 ≥ (c2 - 1) ∇fkTpk /  L(||pk||)^2
 >
 > ⇔ αk ≥ [(c2 - 1) / L] (∇fkTpk / (||pk||)^2)
 >
@@ -127,7 +127,7 @@
 >
 > Đặt vế phải là cục A, ta có αk ≥ cục A.
 >
-> Tới đây dùng điều kiện Amijo: f(xk + αpk) ≤ f(xk) + c1 α (∇fk)T pk
+> Tới đây dùng điều kiện Amijo: f(xk + αpk) ≤ f(xk) + c1 α (∇fk)ᵀ pk
 >
 > Cũng là fk+1 ≤ fk + c1αk∇fkTpk =  fk + αk c1∇fkTpk
 >
@@ -243,7 +243,7 @@
 >
 > Và từ đó, ý nghĩa quan trọng của theorem này là:
 >
-> **CHỈ CẦN TA CHỌN SEARCH DIRECTION KO VUÔNG GÓC VỚI GRADIENT, VÀ LINE SEARCH TÌM αk THỎA WOLFE HAY GOLDSTEIN CONDITION THÌ NORM CỦA GRADIENT ∇fk SẼ DẦN DẦN HỘI TỤ VỀ 0, MÀ ĐIỀU NÀY CÓ NGHĨA LÀ, NÓ SẼ DẦN ĐẾN ĐƯỢC ĐIỂM CÓ GRADIENT VANISH**
+> **CHỈ CẦN TA CHỌN SEARCH DIRECᵀION KO VUÔNG GÓC VỚI GRADIENT, VÀ LINE SEARCH TÌM αk THỎA WOLFE HAY GOLDSTEIN CONDITION THÌ NORM CỦA GRADIENT ∇fk SẼ DẦN DẦN HỘI TỤ VỀ 0, MÀ ĐIỀU NÀY CÓ NGHĨA LÀ, NÓ SẼ DẦN ĐẾN ĐƯỢC ĐIỂM CÓ GRADIENT VANISH**
 >
 > Tuy nhiên nó ko chắc là local minimizer, vì có thể là saddle point
 
@@ -293,9 +293,9 @@
 >
 > (ôn lại tí xíu: Nếu pk là Newton direction, thì nó là nghiệm của hệ: Bk pk = - ∇fk với Bk là Hessian tại k: ∇^2 fk, còn với quasi Newton direction, thì người ta thay bằng matrix Bk nào đó (tính bằng vài cách) xấp xỉ cho Hessian) 
 >
-> Như vậy, ở đây, khi họ **assume Bk positive definite**, dĩ nhiên là ta có thể có (Bk)inv:
+> Như vậy, ở đây, khi họ **assume Bk positive definite**, dĩ nhiên là ta có thể có (Bk)⁻¹:
 >
-> ⇨ pk = - (Bk)inv ∇fk cũng như là ∇fk = - Bk pk
+> ⇨ pk = - (Bk)⁻¹ ∇fk cũng như là ∇fk = - Bk pk
 >
 > Và cũng assume tồn tại hằng số M sao cho ||Bk|| ||Bvinv|| ≤ M với mọi k, gọi là uniformly bounded condition number.
 >
@@ -303,37 +303,37 @@
 >
 > Thay pk vào:
 >
-> cos θk = - ∇fkTpk / ||∇fk||.||pk|| = cos θk = - ∇fkT[-(Bk)inv ∇fk] / ||-Bk pk||.||pk||
+> cos θk = - ∇fkTpk / ||∇fk||.||pk|| = cos θk = - ∇fkT[-(Bk)⁻¹ ∇fk] / ||-Bk pk||.||pk||
 >
-> = ∇fkT (Bk)inv ∇fk / ||Bk pk||.||pk||
+> = ∇fkT (Bk)⁻¹ ∇fk / ||Bk pk||.||pk||
 >
-> = ∇fkT (Bk)inv Bk (Bk)inv ∇fk / ||Bk pk||.||pk||
+> = ∇fkT (Bk)⁻¹ Bk (Bk)⁻¹ ∇fk / ||Bk pk||.||pk||
 >
-> = ((Bk)inv∇fk)T Bk ((Bk)inv ∇fk) / ||Bk pk||.||pk||
+> = ((Bk)⁻¹∇fk)ᵀ Bk ((Bk)⁻¹ ∇fk) / ||Bk pk||.||pk||
 >
-> = (-pk)T Bk (-pk) / ||Bk pk||.||pk||
+> = (-pk)ᵀ Bk (-pk) / ||Bk pk||.||pk||
 >
-> = (pk)T Bk pk / ||Bk pk||.||pk||
+> = (pk)ᵀ Bk pk / ||Bk pk||.||pk||
 >
-> Vậy tới đây ta có cos θk = (pk)T Bk pk / ||Bk pk||.||pk||
+> Vậy tới đây ta có cos θk = (pk)ᵀ Bk pk / ||Bk pk||.||pk||
 >
-> Tiếp, nhìn lại bức tranh tổng thể thì ta muốn chứng minh rằng nếu dùng pk là Newton / quasi Newton direction thì nếu Bk p.d và có tính chất ||Bk|| ||Bkinv|| ≤ M thì ta sẽ chứng minh rằng cái (cos θk) ≥ 1/M nhằm mục đích là cho thấy rằng khi đó ta sẽ chứng minh rằng gradient ∇fk sẽ → 0, tức là chứng minh rằng phương pháp này cũng sẽ global convergence.
+> Tiếp, nhìn lại bức tranh tổng thể thì ta muốn chứng minh rằng nếu dùng pk là Newton / quasi Newton direction thì nếu Bk p.d và có tính chất ||Bk|| ||Bk⁻¹|| ≤ M thì ta sẽ chứng minh rằng cái (cos θk) ≥ 1/M nhằm mục đích là cho thấy rằng khi đó ta sẽ chứng minh rằng gradient ∇fk sẽ → 0, tức là chứng minh rằng phương pháp này cũng sẽ global convergence.
 >
 > Vậy thử tử số có ≥ gì, và mẫu số ≤ gì.
 >
-> Tử số, (pk)T Bk pk là quadratic form của Bk, là positive definite matrix như ban đầu assume
+> Tử số, (pk)ᵀ Bk pk là quadratic form của Bk, là positive definite matrix như ban đầu assume
 >
-> Phân tách Bk = Q Λ QT, thì ta có (pk)T Bk pk = (QTpk)T Λ (QTpk), 
+> Phân tách Bk = Q Λ Qᵀ, thì ta có (pk)ᵀ Bk pk = (Qᵀpk)ᵀ Λ (Qᵀpk), 
 >
 > (Λ là matrix eigenvalue của Bk, Q là orthogonal matrix tạo bởi các eigenvectors của Bk)
 >
-> = Σi λi ((QTpk)_i)^2 ≥ Σi λmin(Bk) (QTpk)_i^2 
+> = Σi λi ((Qᵀpk)_i)^2 ≥ Σi λmin(Bk) (Qᵀpk)_i^2 
 >
-> = λmin(Bk) Σi (QTpk)_i^2 = λmin(Bk) ||QTpk||^2 
+> = λmin(Bk) Σi (Qᵀpk)_i^2 = λmin(Bk) ||Qᵀpk||^2 
 >
-> = λmin(Bk) ||pk||^2  (do ||QTpk|| = ||pk||)
+> = λmin(Bk) ||pk||^2  (do ||Qᵀpk|| = ||pk||)
 >
-> Vậy (pk)T Bk pk ≥ λmin(Bk) ||pk||^2
+> Vậy (pk)ᵀ Bk pk ≥ λmin(Bk) ||pk||^2
 >
 > ====
 >
@@ -373,31 +373,31 @@
 >
 > maximize (g(x))^2 = (||Ax||)^2 / (||x||)^2, ví với u không âm thì u1 > u2 thì u1^2 > u2^2
 >
-> maximize x  (||Ax||)^2 / (||x||)^2  = (Ax)T(Ax) / xTx = (xT ATA x) / xTx
+> maximize x  (||Ax||)^2 / (||x||)^2  = (Ax)ᵀ(Ax) / xᵀx = (xᵀ AᵀA x) / xᵀx
 >
-> Rồi, ATA dĩ nhiên là **symmetric**, nên nó **luôn có đủ các eigenvector độc lập để có thể diagonalizable**: 
+> Rồi, AᵀA dĩ nhiên là **symmetric**, nên nó **luôn có đủ các eigenvector độc lập để có thể diagonalizable**: 
 >
-> ATA = Q Λ QT
+> AᵀA = Q Λ Qᵀ
 >
-> Xét xTATAx / xTx = xTQ Λ QTx / xTx 
+> Xét xᵀAᵀAx / xᵀx = xᵀQ Λ Qᵀx / xᵀx 
 >
-> = Σi λ(ATA)_i (QTx)_i^2 / xTx
+> = Σi λ(AᵀA)_i (Qᵀx)_i^2 / xᵀx
 >
-> ≤  Σi λmax(ATA) (QTx)_i^2 / xTx (1)
+> ≤  Σi λmax(AᵀA) (Qᵀx)_i^2 / xᵀx (1)
 >
-> = λmax(ATA) Σi (QTx)_i^2 / xTx
+> = λmax(AᵀA) Σi (Qᵀx)_i^2 / xᵀx
 >
-> =λmax(ATA) ||QTx||^2 / xTx
+> =λmax(AᵀA) ||Qᵀx||^2 / xᵀx
 >
-> = λmax(ATA) ||x||^2 / xTx    | Do QTx ko thay đổi norm
+> = λmax(AᵀA) ||x||^2 / xᵀx    | Do Qᵀx ko thay đổi norm
 >
-> = λmax(ATA) ||x||^2 / ||x||^2
+> = λmax(AᵀA) ||x||^2 / ||x||^2
 >
-> = λmax(ATA)
+> = λmax(AᵀA)
 >
-> Vậy max x ≠ 0 ||Ax||^2 / ||x||^2 = λmax(ATA)
+> Vậy max x ≠ 0 ||Ax||^2 / ||x||^2 = λmax(AᵀA)
 >
-> ⇨ max x ||Ax|| / ||x|| = √λmax(ATA) 
+> ⇨ max x ||Ax|| / ||x|| = √λmax(AᵀA) 
 >
 > Suy nghĩ đơn giản thôi: 
 >
@@ -411,7 +411,7 @@
 >
 > mà với matrix Bk positive definite thì ta có:
 >
-> BkTBk = (Q Λ QT)T (Q Λ QT) = Q Λ QT Q Λ QT = Q Λ^2 QT
+> BkTBk = (Q Λ Qᵀ)ᵀ (Q Λ Qᵀ) = Q Λ Qᵀ Q Λ Qᵀ = Q Λ^2 Qᵀ
 >
 > Và cái này chính là **singular value decomposition của BkTBk**, mà **cũng là eigenvalue decomposition của nó.**
 >
@@ -433,43 +433,43 @@
 >
 > ====
 >
-> Vậy tử số (pk)T Bk pk ≥ λmin(Bk) ||pk||^2 
+> Vậy tử số (pk)ᵀ Bk pk ≥ λmin(Bk) ||pk||^2 
 >
 > còn mẫu số ||Bk pk|| ≤ λmax(Bk) ||pk||
 >
 > ⇨ ||Bk pk|| ||pk|| ≤ λ(Bk)_max ||pk||^2
 >
-> ⇨ cos θk = (pk)T Bk pk / ||Bk pk|| ||pk||  (kết qủa ta có ở trên) 
+> ⇨ cos θk = (pk)ᵀ Bk pk / ||Bk pk|| ||pk||  (kết qủa ta có ở trên) 
 >
 > ≥ λmin(Bk) ||pk||^2 / λmax(Bk) ||pk||^2 
 >
 > ⇔ **θk ≥ λmin(Bk) / λmax(Bk)**
 >
-> Mà đề bài cho gì: ||Bk|| ||Bkinv|| ≤ M ⇨ 1/(||Bk|| ||Bkinv||) ≥ 1/M
+> Mà đề bài cho gì: ||Bk|| ||Bk⁻¹|| ≤ M ⇨ 1/(||Bk|| ||Bk⁻¹||) ≥ 1/M
 >
 > Mà cần chứng minh gì, cos θk ≥ 1/M
 >
-> Vậy thử xem cos θk có lớn hơn 1/(||Bk|| ||Bk_inv||) không?
+> Vậy thử xem cos θk có lớn hơn 1/(||Bk|| ||Bk⁻¹||) không?
 >
 > Ta đang có cos θk ≥ λmin(Bk) / λmax(Bk)
 >
 > Mà λmax(Bk)  = ||Bk|| (hồi nãy đã chứng minh lại rồi đó, xem lại điểm (1) ở trên)
 >
->  ||Bkinv||, cũng tương tự = λmax(Bkinv)
+>  ||Bk⁻¹||, cũng tương tự = λmax(Bk⁻¹)
 >
-> Mà λ(Binv) = 1 / λ(B) ⇨ λmax(Binv) = 1/λmin(Bk)
+> Mà λ(B⁻¹) = 1 / λ(B) ⇨ λmax(B⁻¹) = 1/λmin(Bk)
 >
-> ⇔ **1/λmax(Binv) = λmin(Bk)**
+> ⇔ **1/λmax(B⁻¹) = λmin(Bk)**
 >
-> ⇨ cos θk ≥ λmin(Bk) / λmax(Bk) = (1/||Bkinv||) / ||Bk||  = 1/(||Bkinv|| ||Bk||)
+> ⇨ cos θk ≥ λmin(Bk) / λmax(Bk) = (1/||Bk⁻¹||) / ||Bk||  = 1/(||Bk⁻¹|| ||Bk||)
 >
-> Và 1/(||Bk|| ||Bk_inv||) ≥ 1/M
+> Và 1/(||Bk|| ||Bk⁻¹||) ≥ 1/M
 >
 > ⇨ **θk ≥ 1/M**. Chứng minh xong. 
 >
 > Và kết hợp với kết qủa (cos θk)^2 ||∇fk||^2 → 0 thì điều này có nghĩa là ∇fk → 0
 >
-> Và như vậy ta có thể kết luận rằng **chỉ cần Bk positive definite và có tính chất là tồn tại M sao cho ||Bk|| ||Bkinv|| ≤ M thì ta sẽ có global convergnence.**
+> Và như vậy ta có thể kết luận rằng **chỉ cần Bk positive definite và có tính chất là tồn tại M sao cho ||Bk|| ||Bk⁻¹|| ≤ M thì ta sẽ có global convergnence.**
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
