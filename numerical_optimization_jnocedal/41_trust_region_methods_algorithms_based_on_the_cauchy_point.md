@@ -108,13 +108,13 @@
 <p align="center"><kbd><img src="assets/rxmw51qcqf.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, qua bài toán sau: minimize mk(τ) = fk + gT(τp) + (1/2)(τp)TBk(τp) 
+> Rồi, qua bài toán sau: minimize mk(τ) = fk + gᵀ(τp) + (1/2)(τp)ᵀBk(τp) 
 >
 > Với p là pks = - (Δk / ||gk||) gk, g là gradient của f tại xk
 >
 > Thì lập luận là, ta sẽ xét 2 trường hợp:
 >
-> gkTBkgk ≤ 0: Thì (τp)TBk(τp) = τ^2 pTBkp = τ^2 (Δk / ||gk||)^2 gkTBkgk cũng sẽ ≤ 0 ∀ τ
+> gkTBkgk ≤ 0: Thì (τp)ᵀBk(τp) = τ^2 pᵀBkp = τ^2 (Δk / ||gk||)^2 gkTBkgk cũng sẽ ≤ 0 ∀ τ
 >
 > mk(τ) = fk + τ gkT [-(Δk / ||gk||) gk] + (1/2) τ^2 (Δk / ||gk||)^2 gkTBkgk
 >
@@ -216,7 +216,7 @@
 >
 > Và đại khái là **Cauchy point, mình nhớ, bước tính pkS, tức là chọn hướng, về cơ bản chính là đi theo steepest descent direction**. Chính là ý mà tác giả nói, **Bk, vốn là có thể chứa thông tin curvature giúp xác định hướng tốt hơn** (giống như Hessian, giúp chọn Newton step tốt hơn là steepest descent direction vậy) **thì lại không tham gia vào việc tính pkS**. Mà nó **chỉ tham gia vào bước xác định step size**. Xem lại là hiểu.
 >
-> Do đó, tác giả nói, **có vài trust region method sẽ làm theo cách là tính Cauchy point trước, sau đó cải thiện thêm**. Và **cách thức có thể là bằng cách lôi Bk vào bước tính direction**. Cụ thể là nếu Bk xác định dương là thì nó sẽ tính pkB = - Bkinvgk.
+> Do đó, tác giả nói, **có vài trust region method sẽ làm theo cách là tính Cauchy point trước, sau đó cải thiện thêm**. Và **cách thức có thể là bằng cách lôi Bk vào bước tính direction**. Cụ thể là nếu Bk xác định dương là thì nó sẽ tính pkB = - Bk⁻¹gk.
 >
 > (Chỗ này chưa rõ lắm, pkB là để dùng luôn cho pk hay là sao)
 >
@@ -224,7 +224,7 @@
 >
 > Ôn lại chút chỗ này: 4.3 là bài toán này:
 >
-> minimize fk + gkTp + (1/2)pTBkp s.t ||p|| ≤ Δk
+> minimize fk + gkTp + (1/2)pᵀBkp s.t ||p|| ≤ Δk
 >
 > Thì đại khái là ta **có thể không cần giải chính xác solution**. Mà chỉ cần approx solution thôi, dựa trên yêu cầu là nó đủ tốt (so sánh bởi / với Cauchy step).
 >
@@ -255,42 +255,42 @@
 > [!NOTE]
 > Đại khái là vầy: Phương pháp này nó sẽ làm như sau:
 >
-> Đầu tiên mình **xét bài toán minimize m(p) = f + gTp + (1/2)pTBp không constraint**, thì dễ thấy **solution của nó chính là -(B)inv g**
+> Đầu tiên mình **xét bài toán minimize m(p) = f + gᵀp + (1/2)pᵀBp không constraint**, thì dễ thấy **solution của nó chính là -(B)⁻¹ g**
 >
 > (**giống như công thức Newton step** khi B là Hessian vậy).
 >
-> Và ta có thể **coi như đây là solution của bài toán có constraint ||p|| ≤ Δ có điều cho Δ rất lớn**. Nên mình **ghi p*(Δ) = - Binv g** thể hiện là nó sẽ là giá trị này nếu Δ rất lớn, nên nó **cũng phụ thuộc Δ**.
+> Và ta có thể **coi như đây là solution của bài toán có constraint ||p|| ≤ Δ có điều cho Δ rất lớn**. Nên mình **ghi p*(Δ) = - B⁻¹ g** thể hiện là nó sẽ là giá trị này nếu Δ rất lớn, nên nó **cũng phụ thuộc Δ**.
 >
 > Tương tự, **nếu Δ rất nhỏ, thì solution của bài toán này với constraint ||p|| ≤ Δ cũng sẽ có norm rất nhỏ**. 
 >
-> Mà **khi đó thì m(p) = f + gTp + (1/2)pTBp sẽ ≈ m(p) = f + gTp**. 
+> Mà **khi đó thì m(p) = f + gᵀp + (1/2)pᵀBp sẽ ≈ m(p) = f + gᵀp**. 
 >
-> Do đó ta **dùng solution của bài toán minimize k(p) = f + gTp s.t ||p|| ≤ Δ để coi như (approx) cho solution của bài toán minimize m(p) = f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ**.
+> Do đó ta **dùng solution của bài toán minimize k(p) = f + gᵀp s.t ||p|| ≤ Δ để coi như (approx) cho solution của bài toán minimize m(p) = f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ**.
 >
 > Mà **solution của bài toán minimize k(p) thì cơ bản chính là pkS mà ta biết trong phần định nghĩa của Cauchy points**. Nên nó là = -(Δ/||g||) g
 >
 > Và do đó với Δ nhỏ thì solution của bài toán minimize mk s.t ||p|| ≤ Δ, p*(Δ) sẽ ≈ -(Δ/||g||) g. Đó là lí do có dấu approx. (Vì ta chỉ mượn solution của bài toán xấp xỉ, minimize k(p), chứ m(p) phải có cái quadratic term)
 >
-> Vậy thì đại ý là thế này: Ta thấy Δ mà lớn thì p*(Δ) nó khác mà Δ nhỏ thì nó khác. Do đó đại ý là khi Δ tăng từ nhỏ đến lớn thì p*(Δ) sẽ thay đổi từ từ, để **TẠO NÊN MỘT QUỸ ĐẠO (TRAJECTORY)** là cái đường cong cong trong hình.
+> Vậy thì đại ý là thế này: Ta thấy Δ mà lớn thì p*(Δ) nó khác mà Δ nhỏ thì nó khác. Do đó đại ý là khi Δ tăng từ nhỏ đến lớn thì p*(Δ) sẽ thay đổi từ từ, để **TẠO NÊN MỘT QUỸ ĐẠO (TRAJECᵀORY)** là cái đường cong cong trong hình.
 >
 > Vậy thì giờ mới nói về dogleg method: Nó sẽ làm vầy: Đại khái là nó sẽ **dùng một cái quỹ đạo tạm hiểu là xấp xỉ cái đường cong đó**, tạo bởi 2 phần, tạo thành hình chân chó. pU và pB.
 >
-> Trong đó pU là solution của bài toán **minimize f + gTp + (1/2)pTBp**
-> nhưng **RESTRICT TO HƯỚNG STEEPEST: -g**. 
+> Trong đó pU là solution của bài toán **minimize f + gᵀp + (1/2)pᵀBp**
+> nhưng **RESTRICᵀ TO HƯỚNG STEEPEST: -g**. 
 >
 > Hay nói cách khác, thì pU là solution của bài toán: 
 >
-> minimize g(t) = m(tp)|p=-g = f + gT(-gt) + (1/2)(-gt)TB(-gt) 
+> minimize g(t) = m(tp)|p=-g = f + gᵀ(-gt) + (1/2)(-gt)ᵀB(-gt) 
 >
-> = f - t||g||^2 + (1/2) t^2 gTBg. 
+> = f - t||g||^2 + (1/2) t^2 gᵀBg. 
 >
 > Đây là **hàm đơn biến bậc hai theo t**. Dễ thấy solution của bài toán này là:
 >
-> g'(t) = 0 ⇔ - ||g||^2 + 2t gTBg = 0 ⇔ t = ||g||^2 / gTBg
+> g'(t) = 0 ⇔ - ||g||^2 + 2t gᵀBg = 0 ⇔ t = ||g||^2 / gᵀBg
 >
-> ⇨ pU chính là  ||g||^2 / gTBg (-g) = - [||g||^2 / gTB] g chính là công thức 4.15 trong sách.
+> ⇨ pU chính là  ||g||^2 / gᵀBg (-g) = - [||g||^2 / gᵀB] g chính là công thức 4.15 trong sách.
 >
-> Rồi, còn pB thì dễ rồi, nó là -Binv g (cũng là cái p*(Δ) với Δ rất lớn (coi như unconstrain ở trên)
+> Rồi, còn pB thì dễ rồi, nó là -B⁻¹ g (cũng là cái p*(Δ) với Δ rất lớn (coi như unconstrain ở trên)
 >
 > Vậy thì cái chân chó sẽ là: đi từ điểm xuất phát xk đến xk + pU, và từ xk + pU đến xk + pB.
 >
@@ -359,27 +359,27 @@
 >
 > Đầu tiên nhắc lại, p_tilde(τ) là = τpU khi τ ∈ [0, 1] và pB + (τ - 1)(pB - pU) khi τ ∈ [1, 2]
 >
-> với pU = - [gTg / gTBg] g
+> với pU = - [gᵀg / gᵀBg] g
 >
 > Vậy thì khi τ ∈ [0, 1], p_tilde(τ) = τpU, ⇨ ||p_tilde(τ)|| = |τ| ||pU|| = τ ||pU||. Để xét xem có phải là hàm tăng không thì xét d/dt ||p_tilde(τ)|| thôi, dễ thấy nó sẽ bằng ||pU||, là không âm → hàm non-dereasing / increasing hoặc nếu giả sử g khác 0, thì cái này còn dương → hàm strictly increasing.
 >
 > Còn m(p_tilde(τ)): 
 >
-> = f + gTp_tilde(τ) + (1/2)p_tilde(τ)TBp_tilde(τ)
+> = f + gᵀp_tilde(τ) + (1/2)p_tilde(τ)ᵀBp_tilde(τ)
 >
-> = f + gTτpU + (1/2)[τpU]TBτpU
+> = f + gᵀτpU + (1/2)[τpU]TBτpU
 >
-> = f + τgTpU + (1/2)(τ^2)pUTBpU
+> = f + τgᵀpU + (1/2)(τ^2)pUᵀBpU
 >
-> Xét đạo hàm theo τ: dễ thấy = gTpU + pUTBpU τ 
+> Xét đạo hàm theo τ: dễ thấy = gᵀpU + pUᵀBpU τ 
 >
-> = gT {- [gTg / gTBg] g} + {- [gTg / gTBg] g}T B {- [gTg / gTBg] g} τ
+> = gᵀ {- [gᵀg / gᵀBg] g} + {- [gᵀg / gᵀBg] g}T B {- [gᵀg / gᵀBg] g} τ
 >
-> = - [gTg / gTBg] gTg + [gTg / gTBg]^2 gTBg τ
+> = - [gᵀg / gᵀBg] gᵀg + [gᵀg / gᵀBg]^2 gᵀBg τ
 >
-> = - (gTg)^2 / (gTBg) + [(gTg)^2 / (gTBg)] τ
+> = - (gᵀg)^2 / (gᵀBg) + [(gᵀg)^2 / (gᵀBg)] τ
 >
-> = (gTg)^2(-1 + τ) / (gTBg)
+> = (gᵀg)^2(-1 + τ) / (gᵀBg)
 >
 > Với τ ∈ [0,1] thì -1 + τ ∈ [-1, 0] nên cái này ≤ 0 → m decreasing function of τ
 >
@@ -409,29 +409,29 @@
 >
 > = (1/2) ||pU + α(pB - pU)||^2
 >
-> = (1/2) (pU + α(pB - pU))T(pU + α(pB - pU)
+> = (1/2) (pU + α(pB - pU))ᵀ(pU + α(pB - pU)
 >
-> = (1/2) (pUT + α(pB - pU)T)(pU + α(pB - pU)
+> = (1/2) (pUᵀ + α(pB - pU)ᵀ)(pU + α(pB - pU)
 >
-> = (1/2) [pUTpU + α(pB - pU)TpU + pUTα(pB - pU) + α(pB - pU)Tα(pB - pU)]
+> = (1/2) [pUᵀpU + α(pB - pU)ᵀpU + pUᵀα(pB - pU) + α(pB - pU)ᵀα(pB - pU)]
 >
-> = (1/2) [pUTpU + 2α(pB - pU)TpU + α^2 (pB - pU)T(pB - pU)]
+> = (1/2) [pUᵀpU + 2α(pB - pU)ᵀpU + α^2 (pB - pU)ᵀ(pB - pU)]
 >
-> = (1/2) ||pU|| + α(pB - pU)TpU + (1/2) α^2 ||pB - pU||^2
+> = (1/2) ||pU|| + α(pB - pU)ᵀpU + (1/2) α^2 ||pB - pU||^2
 >
-> h'(α) = (pB - pU)TpU + α ||pB - pU||^2
+> h'(α) = (pB - pU)ᵀpU + α ||pB - pU||^2
 >
 > vì α ||pB - pU||^2 ≥ 0 
 >
-> ⇨ h'(α) ≥ (pB - pU)TpU, hay -pUT(pU - pB) cho giống sách cũng được.
+> ⇨ h'(α) ≥ (pB - pU)ᵀpU, hay -pUᵀ(pU - pB) cho giống sách cũng được.
 >
 > Thay vô:
 >
-> .. ≥ -[- [gTg / gTBg] g]T([- [gTg / gTBg] g] - pB)
+> .. ≥ -[- [gᵀg / gᵀBg] g]T([- [gᵀg / gᵀBg] g] - pB)
 >
-> = [gTg / gTBg] gT([- [gTg / gTBg] g] - (-Binv g))
+> = [gᵀg / gᵀBg] gᵀ([- [gᵀg / gᵀBg] g] - (-B⁻¹ g))
 >
-> = [gTg / gTBg] gT([- [gTg / gTBg] g] + Binv g)
+> = [gᵀg / gᵀBg] gᵀ([- [gᵀg / gᵀBg] g] + B⁻¹ g)
 >
 > ... Khúc cuối do dùng bdt Cauchy và ý ii) quay lại sau
 
@@ -449,7 +449,7 @@
 <p align="center"><kbd><img src="assets/i25fchdkvml.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, nhắc lại tí cho đỡ quên context, bổ đề vừa rồi cho biết hàm norm của p_tilde(τ), tức τpU khi τ ∈ [0,1] và pU + (τ - 1)(pB - pU) khi τ ∈ [1,2] là increasing function theo τ, và mk(p_tilde(τ)) là hàm decreasing function. Mà ý nghĩa của nó, nôm na là:
+> Rồi, nhắc lại tí cho đỡ quên contexᵀ, bổ đề vừa rồi cho biết hàm norm của p_tilde(τ), tức τpU khi τ ∈ [0,1] và pU + (τ - 1)(pB - pU) khi τ ∈ [1,2] là increasing function theo τ, và mk(p_tilde(τ)) là hàm decreasing function. Mà ý nghĩa của nó, nôm na là:
 >
 > KHI TA ĐI TRÊN QUỸ ĐẠO HÌNH GẤP KHÚC thì độ lớn của p_tilde(τ) luôn tăng và hàm m luôn giảm.
 >
@@ -478,7 +478,7 @@
 <p align="center"><kbd><img src="assets/c38vwbyrmh.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đại khái là nói về B trong bài toán minimize f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ, thì như đã biết B có thể là Hessian, hay xấp xỉ Hessian. Thì ở đây là nói lại ý đó, cụ thể là nếu trong tình huống mà ta có Hessian avaiable (dĩ nhiên đây là Hessian tại điểm bắt đầu, xk, vì đây thật ra viết đầy đủ là bài toán minimize f(xk) + gkTpk + (1/2)pkTBkpk s.t ||pk|| ≤ Δ, giúp tìm pk gíúp giảm đủ), và available có nghĩa là có thể tính được hay có được mà không quá tốn kém, vì thật ra nguyên nhân chủ yếu của việc không có Hessian là vì chi phí tính toán, thì ta sẽ dùng B = Hessian, tức ∇^2f(xk).
+> Đại khái là nói về B trong bài toán minimize f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ, thì như đã biết B có thể là Hessian, hay xấp xỉ Hessian. Thì ở đây là nói lại ý đó, cụ thể là nếu trong tình huống mà ta có Hessian avaiable (dĩ nhiên đây là Hessian tại điểm bắt đầu, xk, vì đây thật ra viết đầy đủ là bài toán minimize f(xk) + gkTpk + (1/2)pkTBkpk s.t ||pk|| ≤ Δ, giúp tìm pk gíúp giảm đủ), và available có nghĩa là có thể tính được hay có được mà không quá tốn kém, vì thật ra nguyên nhân chủ yếu của việc không có Hessian là vì chi phí tính toán, thì ta sẽ dùng B = Hessian, tức ∇^2f(xk).
 >
 > Khi đó cái mà ta có từ phương pháp dogleg gọi là **Newton-doglog step**.
 >
@@ -486,7 +486,7 @@
 >
 > Đoạn sau đại khái nói thế này: Việc dùng modified Hessian trong phương pháp dogleg thật ra không phù hợp lắm bởi vì việc chỉnh sửa Hessian mà ta còn nhớ nó sẽ thay đổi đường chéo của Hessian để giúp nó thành xác định dương, thì việc này xảy ra có tính chất tùy tiện (arbitrary), và lợi ích của phương pháp trust-region có thể không được nhận ra một cách đầy đủ.
 >
-> Cụ thể là ở phần sau ta sẽ thấy đại ý là khi tính solution của bài toán trên với Bk là Hessian, thì solution nó là (∇^2f(xk) + λI)inv gk trong đó λ được chọn sao cho (∇^2f(xk) + λI) xác định dương rồi, có nghĩa là, bản thân phương pháp trust region thì có thể coi như nó cũng đã thực hiện cái việc chỉnh sửa Hessian rồi, khiến việc chỉnh sửa bởi các thuật toán modified Hessian không cần thiết (redundant)
+> Cụ thể là ở phần sau ta sẽ thấy đại ý là khi tính solution của bài toán trên với Bk là Hessian, thì solution nó là (∇^2f(xk) + λI)⁻¹ gk trong đó λ được chọn sao cho (∇^2f(xk) + λI) xác định dương rồi, có nghĩa là, bản thân phương pháp trust region thì có thể coi như nó cũng đã thực hiện cái việc chỉnh sửa Hessian rồi, khiến việc chỉnh sửa bởi các thuật toán modified Hessian không cần thiết (redundant)
 >
 > Rồi, tác giả kết luận Newton-dogleg method sẽ phù hợp với tình huống mà objective function convex (khi đó như đã biết từ Convex Optim Boyd, Hessian luôn xác định bán dương).
 >
@@ -501,7 +501,7 @@
 
 <a id="node-nk72thi"></a>
 
-###### Two-dimensional Subspace Minimization
+###### Two-dimensional Subspace Minimizaᵀion
 
 <p align="center"><kbd><img src="assets/r01tksxdgp9.png" width="80%"></kbd></p>
 
@@ -514,11 +514,11 @@
 > [!NOTE]
 > Đoạn đầu đại ý là: Nói rằng khi B xác định dương, thì ta có thể LÀM CHO PHƯƠNG PHÁP DOGLEG PHỨC TẠP HƠN TÍ, bằng cách mở rộng không gian tìm kiếm chút xíu. Nói rõ hơn, đại khái là vầy: Để hiểu rõ ngọn ngành thì ta cần ôn lại chút về ý tưởng của dogleg method: Mục đích ngắn gọn của nó là CẢI THIỆN CAUCHY POINT. Là sao? 
 >
-> Là vầy, tác giả đã nói, tương tự như bên line search, ta có thể không cần thiết phải tốn công đi tìm exact (optimal) step length, mà chỉ cần step length đủ tốt, như thỏa Wolfe / Strong Wolfe conditions là được, vì như vậy cũng đủ giúp hội tụ toàn cục rồi. Thì ở đây cũng vậy, ta cũng chỉ cần pk (hay bỏ qua subscript k) p, giúp giảm đủ là được.Thì cái sự đủ ở đây chính là đối chiếu / lấy tấm gương của Cauchy point. Và Cauchy point, là p được tính bởi 2 bước: Tìm pkS là hướng steepest descent, và giải tìm pU = tpkS: minimize hàm m(p) (= f + gTp + (1/2)pTBp) nhưng restrict to hướng pkS (minimize g + gTpkS × t + (1/2)pkSTBpkS × t^2 và ||pkS t|| ≤ Δ)
+> Là vầy, tác giả đã nói, tương tự như bên line search, ta có thể không cần thiết phải tốn công đi tìm exact (optimal) step length, mà chỉ cần step length đủ tốt, như thỏa Wolfe / Strong Wolfe conditions là được, vì như vậy cũng đủ giúp hội tụ toàn cục rồi. Thì ở đây cũng vậy, ta cũng chỉ cần pk (hay bỏ qua subscript k) p, giúp giảm đủ là được.Thì cái sự đủ ở đây chính là đối chiếu / lấy tấm gương của Cauchy point. Và Cauchy point, là p được tính bởi 2 bước: Tìm pkS là hướng steepest descent, và giải tìm pU = tpkS: minimize hàm m(p) (= f + gᵀp + (1/2)pᵀBp) nhưng restrict to hướng pkS (minimize g + gᵀpkS × t + (1/2)pkSTBpkS × t^2 và ||pkS t|| ≤ Δ)
 >
 > Thế thì, vấn đề là, cái hướng của Cauchy point, là steepest gradient descent, mà ta đã biết, nó hội tụ rất tệ, vì nó không dùng thông tin curvature (chứa trong Bk, tức B). Thành ra người ta mới tìm cách cải thiện Cauchy point, mà đầu tiên là dogleg: Họ sẽ lập luận thế này: khi Δ thay đổi từ rất nhỏ đến rất lớn, thì solution của bài toán minimize m(p) s.t ||p|| ≤ Δ sẽ thay đổi từ pU đến pB, tạo ra một quỹ đạo hình cẳng chó. Vậy thì dogleg method mới định ra một đường gấp khúc xấp xỉ cái cẳng chó đó, và minimize hàm m(p) s.t ||p|| ≤ Δ restrict to cái đường gấp khúc này.
 >
-> Vậy thì, quay lại đây, ta sẽ thấy việc vừa nói, chính là tìm kiếm trong một 1D subspace (đường gấp khúc). Thì có khi cái điểm tốt nhất lại nằm ngoài cái đường đó. Lí do là vì ta đang dùng cái cây gậy gấp khúc để xấp xỉ cái đường chân chó chứ không phải là cái quỹ đạo chân chó thật sự, nên điểm tốt nhất có thể không nằm trên cây gậy, mà nằm ở ngoài. Do đó người ta mới mở rộng phạm vi tìm kiếm ra thành subspace span bởi pU và pB, thì cũng là span bởi g và Binvg (vì đã nói pU chính là hướng pkS, tức là hướng steepest descent → -g.
+> Vậy thì, quay lại đây, ta sẽ thấy việc vừa nói, chính là tìm kiếm trong một 1D subspace (đường gấp khúc). Thì có khi cái điểm tốt nhất lại nằm ngoài cái đường đó. Lí do là vì ta đang dùng cái cây gậy gấp khúc để xấp xỉ cái đường chân chó chứ không phải là cái quỹ đạo chân chó thật sự, nên điểm tốt nhất có thể không nằm trên cây gậy, mà nằm ở ngoài. Do đó người ta mới mở rộng phạm vi tìm kiếm ra thành subspace span bởi pU và pB, thì cũng là span bởi g và B⁻¹g (vì đã nói pU chính là hướng pkS, tức là hướng steepest descent → -g.
 >
 > Chỉ vậy thôi, và tác giả nói bài toán này cũng không quá expensive.
 >
@@ -528,11 +528,11 @@
 >
 > Rồi, đoạn tiếp theo là nói rằng phương pháp này có thể MỞ RỘNG ĐỂ DEAL VỚI TÌNH HUỐNG MÀ B INDEFINITE. Vậy phải chú ý rằng phương pháp trên chỉ áp dụng với B xác định dương, rõ ràng, là bởi khi B xác định dương thì pB mới là descent direction:
 >
-> Ta nhớ lại chỗ này: Đạo hàm theo hướng d tại xk: ∇f(xk)Td, hay gTd (xem link Điểm dừng và tối ưu hóa..) ⇨ đạo hàm theo hướng (-Binv g, chú ý nhé, pU = - Binv g, còn span thì dùng Binv g cũng được vì cũng là cùng một phương như nhau) tại xk: - gT Binv g. Và với việc B không xác định dương thì gT Binv g chưa chắc là luôn dương ⇨ - gT Binv g chưa chắc là luôn âm. Mà directional theo hướng d = -Binv g tại xk chưa chắc luôn âm thì có nghĩa là d chưa chắc là descent direction.
+> Ta nhớ lại chỗ này: Đạo hàm theo hướng d tại xk: ∇f(xk)ᵀd, hay gᵀd (xem link Điểm dừng và tối ưu hóa..) ⇨ đạo hàm theo hướng (-B⁻¹ g, chú ý nhé, pU = - B⁻¹ g, còn span thì dùng B⁻¹ g cũng được vì cũng là cùng một phương như nhau) tại xk: - gᵀ B⁻¹ g. Và với việc B không xác định dương thì gᵀ B⁻¹ g chưa chắc là luôn dương ⇨ - gᵀ B⁻¹ g chưa chắc là luôn âm. Mà directional theo hướng d = -B⁻¹ g tại xk chưa chắc luôn âm thì có nghĩa là d chưa chắc là descent direction.
 >
-> Rồi, thế thì đại ý là, nếu như B indefinite, để rồi pB = -Binv g không chắc là descent direction, thì việc tìm kiếm trong span [g, Binv g] có thể sẽ cho ra kết quả không tốt. Do đó người ta sẽ thay span [g, Binv g] bởi span [g, (B + αI)inv g] với α đâu đó từ (-λ1 tới -2λ1] và λ1 là **trị riêng âm nhất** của B. Mục đích là, dễ thấy B + αI sẽ không còn trị riêng âm nữa → ma trận trở thành xác định dương (chú ý cái khoảng của α là (-λ1 tới -2λ1], nên chắc chắn trị riêng của B + αI đều dương). Còn sở dĩ giới hạn bởi -2λ1 thì hiểu đại khái là để không trị riêng không quá lớn (có thể là yếu tố kinh nghiệm, hoặc vì lí do nào đó, ở đây tác giả chỉ nói sơ (salient point), khuyên ta đọc paper của Byrd, Schnabel,....)
+> Rồi, thế thì đại ý là, nếu như B indefinite, để rồi pB = -B⁻¹ g không chắc là descent direction, thì việc tìm kiếm trong span [g, B⁻¹ g] có thể sẽ cho ra kết quả không tốt. Do đó người ta sẽ thay span [g, B⁻¹ g] bởi span [g, (B + αI)⁻¹ g] với α đâu đó từ (-λ1 tới -2λ1] và λ1 là **trị riêng âm nhất** của B. Mục đích là, dễ thấy B + αI sẽ không còn trị riêng âm nữa → ma trận trở thành xác định dương (chú ý cái khoảng của α là (-λ1 tới -2λ1], nên chắc chắn trị riêng của B + αI đều dương). Còn sở dĩ giới hạn bởi -2λ1 thì hiểu đại khái là để không trị riêng không quá lớn (có thể là yếu tố kinh nghiệm, hoặc vì lí do nào đó, ở đây tác giả chỉ nói sơ (salient point), khuyên ta đọc paper của Byrd, Schnabel,....)
 >
-> Và cũng vì lí do nào đó, mà khi ||(B + αI)inv g|| ≤ Δ, ta sẽ bỏ vụ tìm kiếm trong subspace đi, thay nó bằng p = -(B + αI)inv g + v với v thỏa vT(B + αI)inv g ≤ 0 .
+> Và cũng vì lí do nào đó, mà khi ||(B + αI)⁻¹ g|| ≤ Δ, ta sẽ bỏ vụ tìm kiếm trong subspace đi, thay nó bằng p = -(B + αI)⁻¹ g + v với v thỏa vT(B + αI)⁻¹ g ≤ 0 .
 >
 > Rồi khi B có trị riêng 0, và ko có trị riêng âm (tức là B xác định dương) thì cho p = pC (cauchy point)
 >
@@ -540,11 +540,11 @@
 >
 > ====
 >
-> Cái đoạn áp chót, nói khi exact Hessian available thì ta có thể cho B = Hessian và khi Hessian xác định dương thì bài và  Δ đủ lớn thì bài toán subspace minimization có thể được giải bởi Newton step là sao nhỉ: Thì đơn giản là vì khi đó Newton step - Hinv g thỏa constraint ||p|| ≤ Δ, nó cũng nằm trong span [g, Hinv g] (dĩ nhiên) và đương nhiên ta biết nó sẽ minimize f + gTp + (1/2)pTHp, nên nó là solution chứ sao. 
+> Cái đoạn áp chót, nói khi exact Hessian available thì ta có thể cho B = Hessian và khi Hessian xác định dương thì bài và  Δ đủ lớn thì bài toán subspace minimization có thể được giải bởi Newton step là sao nhỉ: Thì đơn giản là vì khi đó Newton step - H⁻¹ g thỏa constraint ||p|| ≤ Δ, nó cũng nằm trong span [g, H⁻¹ g] (dĩ nhiên) và đương nhiên ta biết nó sẽ minimize f + gᵀp + (1/2)pᵀHp, nên nó là solution chứ sao. 
 >
 > ====
 >
-> Nói chung là tác giả nói, cách làm này (2D subspace minimization) giúp đem đến một mức giảm hàm f gần bằng với mức giảm tạo bởi EXACT SOLUTION nhưng tốt ít chi phí tính toán hơn (vì chỉ tốn 1 bước factorizatizion matrix B hoặc B + αI thay vì 2 hoặc 3)
+> Nói chung là tác giả nói, cách làm này (2D subspace minimization) giúp đem đến một mức giảm hàm f gần bằng với mức giảm tạo bởi EXACᵀ SOLUᵀION nhưng tốt ít chi phí tính toán hơn (vì chỉ tốn 1 bước factorizatizion matrix B hoặc B + αI thay vì 2 hoặc 3)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ⚠️ **82/100** · ✓ Move on
