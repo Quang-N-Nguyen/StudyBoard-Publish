@@ -52,9 +52,9 @@
 >
 > xk+1 = xk + pkN
 >
-> Mà pkN thì biết rồi, = -(∇^2fk)inv ∇fk, công thức này xuất xứ từ việc: tại iteration
+> Mà pkN thì biết rồi, = -(∇^2fk)⁻¹ ∇fk, công thức này xuất xứ từ việc: tại iteration
 > k ta xấp xỉ hàm f bởi quadratic approximation của nó mk(p) = fk + ∇fkTp +
-> (1/2)pT∇^2fkp và từ đó, giải bài toán minimize hàm mk(p), dùng điều kiện cần
+> (1/2)pᵀ∇^2fkp và từ đó, giải bài toán minimize hàm mk(p), dùng điều kiện cần
 > bậc nhất:
 >
 > ∇mk(p) = 0 ⇔ ∇^2fk p + ∇fk = 0
@@ -85,7 +85,7 @@
 > direction thì tính Newton step thế nào (quasi Newton và inexact Newton)
 >
 > Thế thì ôn lại cái BFGS, là một quasi-Newton, ý tưởng chính của nó là
-> vầy:  Để tính pkN = -(∇^2fk)inv ∇fk, thì thay vì dùng Hessian thật ta sẽ
+> vầy:  Để tính pkN = -(∇^2fk)⁻¹ ∇fk, thì thay vì dùng Hessian thật ta sẽ
 > dùng một  matrix Bk xấp xỉ của Hessian.
 >
 > Và ý tưởng cốt lõi để có Bk: Ta sẽ cập nhật nó từ từ, liên tục sau mỗi vòng
@@ -96,7 +96,7 @@
 > Giả sử mình đã đi từ xk → xk+1. Thì mình sẽ dùng thông tin độ cong có
 > được để cập nhật Bk, (nói cách khác là tính lại Bk+1). Dùng thế nào, hay
 > cập nhật thế nào: Đó là ta sẽ đặt điều kiện cho Bk+1 sao cho mk+1(p)
-> (xấp xỉ bậc hai của f tại xk+1: fk+1 + ∇fk+1Tp + (1/2)pT Bk+1 p) phải tính
+> (xấp xỉ bậc hai của f tại xk+1: fk+1 + ∇fk+1Tp + (1/2)pᵀ Bk+1 p) phải tính
 > được  chính xác độ dốc hàm f tại xk. Thì hành động này, hay điều kiện
 > này cũng chính là ép Bk+1 phải chứa thông tin curvature của hàm số khi
 > đi từ xk đến xk+1. Và từ đó ta sẽ có cái gọi là secant equation.
@@ -121,7 +121,7 @@
 >
 > Nói chung đó cơ bản là ý tưởng chính của BFGS, nhưng sau đó có thêm
 > vài bước cải tiến: Đó là thay vì tạo ra công thức để cập nhật Bk, ta sẽ
-> dùng một công thức biến đổi, để tạo ra công thức giúp cập nhật (Bk)inv,
+> dùng một công thức biến đổi, để tạo ra công thức giúp cập nhật (Bk)⁻¹,
 > gọi là Hk, vì chung quy lại mục đích chính là tính Newton step. Từ đó ta
 > có thuật toán BFGS hoàn chỉnh.
 
@@ -284,11 +284,11 @@
 >
 > ix) Tính V5Tr + s5α5
 >
-> = (I - ρ5y5s5T)Tr = (IT  - (ρ5y5s5T)T) r + s5α5
+> = (I - ρ5y5s5T)ᵀr = (IT  - (ρ5y5s5T)ᵀ) r + s5α5
 >
-> = (r - (ρ5y5s5T)T) r + s5α5
+> = (r - (ρ5y5s5T)ᵀ) r + s5α5
 >
-> = r - (ρ5y5s5T)Tr + s5α5
+> = r - (ρ5y5s5T)ᵀr + s5α5
 >
 > = r - ρ5s5y5Tr + s5α5
 >
@@ -529,15 +529,15 @@
 >
 > Ta có yk = G^ksk
 >
-> ⇨ ykTsk = (G^ksk)Tsk = skTG^ksk = skTLLsk = skTLT Lsk (L đối xứng)
+> ⇨ ykTsk = (G^ksk)ᵀsk = skTG^ksk = skTLLsk = skTLᵀ Lsk (L đối xứng)
 >
-> = (Lsk)T(Lsk)
+> = (Lsk)ᵀ(Lsk)
 >
 > Đặt zk = Lsk, ta có zkTzk
 >
-> Mẫu số: ykTyk = (G^ksk)T(G^ksk) = skTG^kTG^ksk
+> Mẫu số: ykTyk = (G^ksk)ᵀ(G^ksk) = skTG^kTG^ksk
 >
-> = skTLTLTLLsk = (Lsk)T LL Lsk = zkT G^k zk
+> = skTLᵀLᵀLLsk = (Lsk)ᵀ LL Lsk = zkT G^k zk
 >
 > Như vậy ykTsk/ykTyk = zkTzk / zkT G^k zk
 >
@@ -547,9 +547,9 @@
 >
 > Xét zkTG^kzk. vì G^k là matrix xác định dương, nên có thể phân tách thành
 >
-> G^k = QT Λ Q
+> G^k = Qᵀ Λ Q
 >
-> Ta có zkT QT Λ Q zk = (QTzk)T Λ Qzk. Đặt y = QTzk. Ta có yTΛy
+> Ta có zkT Qᵀ Λ Q zk = (Qᵀzk)ᵀ Λ Qzk. Đặt y = Qᵀzk. Ta có yTΛy
 >
 > = yT[λ1y1, ..λnyn] = λ1y1^2 + λ2y2^2 + ...= Σλi yi^2
 >
@@ -565,7 +565,7 @@
 >
 > ⇔ λmin ≤ Σλi yi^2 / yTy ≤ λmax
 >
-> ⇔ λmin ≤ zkT QTΛQ zk / zkQTQTzk ≤ λmax
+> ⇔ λmin ≤ zkT QᵀΛQ zk / zkQᵀQᵀzk ≤ λmax
 >
 > ⇔ λmin ≤ zkTG^kzk / zkTzk ≤ λmax
 >
@@ -578,8 +578,8 @@
 > Do đó nghịch đảo của nó, tức zkTzk / zkTG^kzk sẽ gần với một trị riêng nào đó của
 > nghịch đảo của G^k.
 >
-> Mà G^k thì là Hessian trung bình, nên nó sẽ approximate (∇^2fk)inv giúp kết  luận
-> zkTzk / zkTG^kzk sẽ gần với một trị riêng nào đó của (∇^2fk)inv.
+> Mà G^k thì là Hessian trung bình, nên nó sẽ approximate (∇^2fk)⁻¹ giúp kết  luận
+> zkTzk / zkTG^kzk sẽ gần với một trị riêng nào đó của (∇^2fk)⁻¹.
 >
 > Từ đó bằng cách gán H0 = (zkTzk / zkTG^kzk)I sẽ giúp ta có matrix mà độ lớn của
 > trị riêng sẽ gần với ít nhất một trị riêng nào đó của Hessian inverse thật giúp cho độ
@@ -693,7 +693,7 @@
 > thông tin curvature của các step trước đó).
 >
 > Đoạn say là một cái bảng cho thấy hiệu suất của thuật toán L-BFGS
-> với nhiều cấp độ bộ nhớ, thể hiển với hai chỉ số là CPT time và tổng
+> với nhiều cấp độ bộ nhớ, thể hiển với hai chỉ số là CPᵀ time và tổng
 > số lần tính (evaluation) hàm f và gradient.
 >
 > Kết luận của tác giả là đây có thể coi như là thuật toán TỐT NHẤT
@@ -752,7 +752,7 @@
 > tốt bằng. 
 >
 > Cuối cùng, nhắc lại là ta sẽ kí hiệu Bk là approx của Hessian, Hk là approx
-> của Hessian inverse. Và Bkinv = Hk
+> của Hessian inverse. Và Bk⁻¹ = Hk
 
 <br>
 
@@ -934,23 +934,23 @@
 > thì con số này ko bao nhiêu.
 >
 > Nhưng vì sao lại cần factor? À là vì nếu gọi B1 là block đầu, B2 lại block
-> giữa thì Bk = δk*I - B1(B2)inv B1T
+> giữa thì Bk = δk*I - B1(B2)⁻¹ B1T
 >
 > Tuy nhiên, mục đích ko phải là tính Bk explicitly, mà là tính Bk v với vector
 > v nào đó. Ta sẽ xem chi phí của cái này:
 >
-> Bk v = [δk*I - B1(B2)inv B1T] v
+> Bk v = [δk*I - B1(B2)⁻¹ B1T] v
 >
-> = δk*I v - B1(B2)inv B1Tv
+> = δk*I v - B1(B2)⁻¹ B1Tv
 >
-> Trong đây tốn nhất dĩ nhiên là B1(B2)inv B1Tv:
+> Trong đây tốn nhất dĩ nhiên là B1(B2)⁻¹ B1Tv:
 >
 > Tính B1Tv: Đây là phép nhân matrix (2m, n) với vector R^n tốn: 2m phép
 > dot product R^n vs R^n vector: tốn n+n-1 = 2n-1 flops. ⇨ tổng cộng:
 > 2m(2n-1) = 4mn - 2m flops. Nhưng nếu chỉ tính multiplication thì tốn
 > 2mn
 >
-> Tính (B2)inv B1Tv thì chính là giải B2 z = B1Tv tìm z
+> Tính (B2)⁻¹ B1Tv thì chính là giải B2 z = B1Tv tìm z
 >
 > Và như đã học ở phần Appendix của Convex Optimization S. Boyd, người
 > ta sẽ  dùng Factor-Solve approach:
@@ -973,7 +973,7 @@
 >
 > Do đó chi phí của bước solve sẽ là O(m^2)
 >
-> Tính B1(B2)inv B1Tv: Chính là nhân B1 với z: là matrix (n, 2m) nhân R^2m
+> Tính B1(B2)⁻¹ B1Tv: Chính là nhân B1 với z: là matrix (n, 2m) nhân R^2m
 > vector Tốn n phép dot product giữa hai R^2m vector, tốn 2m+2m-1 flops =
 > 4m-1 flops. Tổng cộng tốn n(4m-1) = 4mn - n flops. Nếu chỉ tính phép
 > nhân: n2m = 2mn
@@ -1104,7 +1104,7 @@
 <p align="center"><kbd><img src="assets/wtg1a5h309l.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Ôn lại chút xíu những bài trước, đại khái là phần trước, bối cảnh là ta bàn tới việc muốn có một cách tính Bk (xấp xỉ Hessian) nhưng làm theo kiểu đắp mặt nạ giống như L-BFGS làm với Hk ở mỗi vòng, vì một số thuật toán cần Bk thay vì Bk_inv (Hk).
+> Ôn lại chút xíu những bài trước, đại khái là phần trước, bối cảnh là ta bàn tới việc muốn có một cách tính Bk (xấp xỉ Hessian) nhưng làm theo kiểu đắp mặt nạ giống như L-BFGS làm với Hk ở mỗi vòng, vì một số thuật toán cần Bk thay vì Bk⁻¹ (Hk).
 >
 > Thế rồi, ta mới biết đến một theorem cho thấy rằng công thức update Bk 6.19 (là công thức update Bk được tạo ra bằng cách dùng công thức chuyển đổi SWM, đối với công thức update Hk của BFGS) chính là có thể thể hiện bằng một dạng "đắp mặt nạ compact form",  để tính Bk từ B0 và bộ thông tin curvature yi, si (chứa trong matrix S, Y). Để rồi ta có thể cũng chỉ cần dùng m cặp yi, si gần nhất thôi. Nói chung có nghĩa là ta có thể có cách tính Bk theo kiểu "đắp mặt nạ nhưng compact form"
 >
