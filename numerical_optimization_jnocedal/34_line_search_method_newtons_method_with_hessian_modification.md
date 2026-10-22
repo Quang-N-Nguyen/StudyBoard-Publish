@@ -61,7 +61,7 @@
 >
 > Nên ở đây người ta **có cách làm để sửa nó lại, bằng cách thay Hessian tại k bởi Bk bằng cách cộng thêm Ek vào Hessian khiến Bk là positive definite matrix**, từ đó giúp pk trở thành descent direction.
 >
-> Tác giả nói thêm vài ý hiểu đại khái là **có nhiều cách làm** (trong việc tính ra Ek) trong đó **có khi người ta ko tính Ek, mà có thêm các bước extra trong quá trình factorization**, thực hiện **theo lối "on the fly" (hiểu đại khái là làm trong lúc đang xảy ra) sao đó kết quả ta có PD matrix**. Những chiến thuật này dựa trên việc chỉnh sửa Cholesky factorization
+> Tác giả nói thêm vài ý hiểu đại khái là **có nhiều cách làm** (trong việc tính ra Ek) trong đó **có khi người ta ko tính Ek, mà có thêm các bước exᵀra trong quá trình factorization**, thực hiện **theo lối "on the fly" (hiểu đại khái là làm trong lúc đang xảy ra) sao đó kết quả ta có PD matrix**. Những chiến thuật này dựa trên việc chỉnh sửa Cholesky factorization
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **92/100** · ✓ Move on
@@ -81,9 +81,9 @@
 > [!NOTE]
 > Đại khái là ta có thể chứng minh rằng thuật toán 3.2, **nếu như việc chọn Ek thỏa cái gọi là bounded modified factorization**, tức là chuỗi matrix Bk sẽ có **condition number** bị chặn nếu như chuỗi Hessian bị chặn:
 >
-> Thể hiện bởi toán học: k(Bk) = ||Bk|| ||Bkinv|| ≤ C với some C dương, và mọi k = 0,1,2,...
+> Thể hiện bởi toán học: k(Bk) = ||Bk|| ||Bk⁻¹|| ≤ C với some C dương, và mọi k = 0,1,2,...
 >
-> Chỗ này ôn lại chút về conditinon number, tại sao k(Bk) = ||Bk|| ||Bkinv||:
+> Chỗ này ôn lại chút về conditinon number, tại sao k(Bk) = ||Bk|| ||Bk⁻¹||:
 >
 > k(A) theo định nghĩa là tỉ lệ giữa stretching factor lớn nhất và nhỏ nhất bởi matrix A.
 >
@@ -95,75 +95,75 @@
 >
 > Vì ||Ax|| / ||x|| không âm nên ta có thể giải bài toán tương đương:
 >
-> maximize over x ||Ax||^2 / ||x||^2 = xTATAx / xTx
+> maximize over x ||Ax||^2 / ||x||^2 = xᵀAᵀAx / xᵀx
 >
-> xTATAx = xTQΛQTx = Σ_i=1:n ((QTx)_i)^2 λi
+> xᵀAᵀAx = xᵀQΛQᵀx = Σ_i=1:n ((Qᵀx)_i)^2 λi
 >
 > Và cái này thì áp dụng λmin ≤ λi ≤ λmax
 >
-> Σ_i=1:n ((QTx)_i)^2 (λmin) ≤ Σ_i=1:n ((QTx)_i)^2 λi ≤ Σ_i=1:n ((QTx)_i)^2 λmax
+> Σ_i=1:n ((Qᵀx)_i)^2 (λmin) ≤ Σ_i=1:n ((Qᵀx)_i)^2 λi ≤ Σ_i=1:n ((Qᵀx)_i)^2 λmax
 >
-> ⇔ λmin Σ_i=1:n ((QTx)_i)^2 ≤ Σ_i=1:n ((QTx)_i)^2 λi ≤ λmax Σ_i=1:n ((QTx)_i)^2 
+> ⇔ λmin Σ_i=1:n ((Qᵀx)_i)^2 ≤ Σ_i=1:n ((Qᵀx)_i)^2 λi ≤ λmax Σ_i=1:n ((Qᵀx)_i)^2 
 >
-> ⇔ λmin ||QTx||^2 ≤ Σ_i=1:n ((QTx)_i)^2 λi ≤ λmax ||QTx||^2 
+> ⇔ λmin ||Qᵀx||^2 ≤ Σ_i=1:n ((Qᵀx)_i)^2 λi ≤ λmax ||Qᵀx||^2 
 >
-> ⇔ λmin ||x||^2 ≤ Σ_i=1:n ((QTx)_i)^2 λi ≤ λmax ||x||^2
+> ⇔ λmin ||x||^2 ≤ Σ_i=1:n ((Qᵀx)_i)^2 λi ≤ λmax ||x||^2
 >
-> ⇔ λmin ≤ Σ_i=1:n ((QTx)_i)^2 λi ≤ λmax
+> ⇔ λmin ≤ Σ_i=1:n ((Qᵀx)_i)^2 λi ≤ λmax
 >
-> ⇨ λmin ≤ xTATAx / xTx ≤ λmax
+> ⇨ λmin ≤ xᵀAᵀAx / xᵀx ≤ λmax
 >
-> Lưu ý nãy giờ λ là của ATA
+> Lưu ý nãy giờ λ là của AᵀA
 >
-> ⇨ max_x ||Ax||^2 / ||x||^2 = λmax(ATA)
+> ⇨ max_x ||Ax||^2 / ||x||^2 = λmax(AᵀA)
 >
-> ⇨ max_x ||Ax|| / ||x|| = √λmax(ATA)
+> ⇨ max_x ||Ax|| / ||x|| = √λmax(AᵀA)
 >
-> và min_x ||Ax||^2 / ||x||^2 = λmin(ATA)
+> và min_x ||Ax||^2 / ||x||^2 = λmin(AᵀA)
 >
-> ⇨ min_x ||Ax|| / ||x|| = √λmin(ATA)
+> ⇨ min_x ||Ax|| / ||x|| = √λmin(AᵀA)
 >
-> Mà quan hệ giữa eigenvalue của A và Ainv là: λ(A) = 1/λ(Ainv) 
+> Mà quan hệ giữa eigenvalue của A và A⁻¹ là: λ(A) = 1/λ(A⁻¹) 
 >
-> ⇨ λ(ATA) = 1 / λ[(ATA)inv]
+> ⇨ λ(AᵀA) = 1 / λ[(AᵀA)⁻¹]
 >
-> ⇨ λmin(ATA) = 1 / λmax[(ATA)inv]  (ví dụ λ(A) = 2, 3 ⇨ λ(Ainv) = 1/3, 1/2)
+> ⇨ λmin(AᵀA) = 1 / λmax[(AᵀA)⁻¹]  (ví dụ λ(A) = 2, 3 ⇨ λ(A⁻¹) = 1/3, 1/2)
 >
-> Chỗ này coi chừng lộn nhé, phải là **"1 chia λmax(Ainv)**. Ví dụ λ(A) = 2, 3 thì λ(Ainv) = 1/3, 1/2. 
+> Chỗ này coi chừng lộn nhé, phải là **"1 chia λmax(A⁻¹)**. Ví dụ λ(A) = 2, 3 thì λ(A⁻¹) = 1/3, 1/2. 
 >
-> ⇨ λmin(A) (=2) = 1 / λmax(Ainv) (=1/(1/2)) 
+> ⇨ λmin(A) (=2) = 1 / λmax(A⁻¹) (=1/(1/2)) 
 >
 > Vậy [stretching factor lớn nhất] / [stretching factor nhỏ nhất] 
 >
-> =√ {λmax(ATA) / λmin[(ATA)]}
+> =√ {λmax(AᵀA) / λmin[(AᵀA)]}
 >
-> =√ {λmax(ATA) / [1/ λmax[(ATA)inv]]} 
+> =√ {λmax(AᵀA) / [1/ λmax[(AᵀA)⁻¹]]} 
 >
-> =√ {λmax(ATA) . λmax[(ATA)inv]} 
+> =√ {λmax(AᵀA) . λmax[(AᵀA)⁻¹]} 
 >
-> Mà như đã thấy √λmax(ATA) = ||A||, thì √λmax[(ATA)inv] = ||Ainv||
+> Mà như đã thấy √λmax(AᵀA) = ||A||, thì √λmax[(AᵀA)⁻¹] = ||A⁻¹||
 >
-> Như vậy k(A) thì cũng là ||A|| . ||Ainv||
+> Như vậy k(A) thì cũng là ||A|| . ||A⁻¹||
 >
-> ⇨ k(A) = ||A|| . ||Ainv||
+> ⇨ k(A) = ||A|| . ||A⁻¹||
 >
-> = √ λmax(ATA) . √λmax(ATAinv)
+> = √ λmax(AᵀA) . √λmax(AᵀA⁻¹)
 >
-> Mà λ(ATA) thì chính là σ(A)^2 (cũng như λ(ATAinv) = σ(Ainv)^2
+> Mà λ(AᵀA) thì chính là σ(A)^2 (cũng như λ(AᵀA⁻¹) = σ(A⁻¹)^2
 >
-> ⇨ [max stret] = √λmax(ATA) = σmax(A)
+> ⇨ [max stret] = √λmax(AᵀA) = σmax(A)
 >
-> Và [min stret] = √λmin(ATA) = σmin(A)
+> Và [min stret] = √λmin(AᵀA) = σmin(A)
 >
 > và k(A) = [max stret]  / [min stret]= σmax(A) / σmin(A)
 >
 > Vậy tóm lại:
 >
-> k(A) = [stretching factor max] / [stretching factor min] = ||A|| ||Ainv||
+> k(A) = [stretching factor max] / [stretching factor min] = ||A|| ||A⁻¹||
 >
-> = √λmax(ATA) . √λmax(ATAinv)
+> = √λmax(AᵀA) . √λmax(AᵀA⁻¹)
 >
-> = √λmax(ATA) / √λmin(ATA) 
+> = √λmax(AᵀA) / √λmin(AᵀA) 
 >
 > = σmax(A) / σmin(A)
 >
@@ -171,13 +171,13 @@
 >
 > Một trường hợp đặc biệt khi A là symmetric positive definite matrix:
 >
-> Thì khi đó A = QΛQT cũng là UΣVT, nên σ(A) = ||λ(A)|| = √λ(ATA)
+> Thì khi đó A = QΛQᵀ cũng là UΣVᵀ, nên σ(A) = ||λ(A)|| = √λ(AᵀA)
 >
-> ⇨ k(A) = [max stret] / [min stret] = √λmax(ATA) / √λmin(ATA)  
+> ⇨ k(A) = [max stret] / [min stret] = √λmax(AᵀA) / √λmin(AᵀA)  
 >
 > = λmax(A) / λmin(A) = σmax(A) / σmin(A)
 >
-> Vậy áp dụng ở đây thì k(Bk) = ||Bk|| . ||Bkinv||
+> Vậy áp dụng ở đây thì k(Bk) = ||Bk|| . ||Bk⁻¹||
 >
 > và theo tác giả thì nếu như **với mọi matrix Bk th2i con số condition number đều bị chặn dưới bởi C dương** nào thì khi đó theorem 3.8 có thể xác nhận rằng **thuật toán Newton method mà trong đó Hessian được sửa đổi để có descent step** sẽ có thể **global convergence**.
 
@@ -216,9 +216,9 @@
 > [!NOTE]
 > Đoạn này đại ý là nếu ta soi thuật toán 3.2 sẽ thấy rằng nếu chuỗi xk converge về x* nơi có ∇^2 f(x*) có tính sufficiently positive definite theo nghĩa là chiến lược chỉnh sửa (mà ta sẽ xem xét trong phần kế tiếp) trả về một matrix Ek = 0, 
 >
-> Mà điều này có nghĩa là khi xk tiến gần đến x* thì Hessian tại đó dần trở thành xác định dương rồi, nên thuật toán chỉnh sửa bằng cách cộng Ek vào Hessian để tạo Bk xác định dương và giúp pk = - (Bk)inv ∇fk thỏa yêu cầu là descent direction) không cần add Ek gì nữa
+> Mà điều này có nghĩa là khi xk tiến gần đến x* thì Hessian tại đó dần trở thành xác định dương rồi, nên thuật toán chỉnh sửa bằng cách cộng Ek vào Hessian để tạo Bk xác định dương và giúp pk = - (Bk)⁻¹ ∇fk thỏa yêu cầu là descent direction) không cần add Ek gì nữa
 >
-> Thì khi đó về cơ bản thuật toán 3.2 chỉ là Newton method bởi nó dùng pk là Newton step, = - (∇^2f_k)inv ∇fk chứ không cần - (Bk)inv ∇fk nữa.
+> Thì khi đó về cơ bản thuật toán 3.2 chỉ là Newton method bởi nó dùng pk là Newton step, = - (∇^2f_k)⁻¹ ∇fk chứ không cần - (Bk)⁻¹ ∇fk nữa.
 >
 > Hơn nữa, theo theorem 3.2 thì với k đủ lớn, tức xk đủ gần x* thì αk = 1 sẽ luôn được chọn khiến full Newton step, và theo phân tích của Newton method convergence analysis thì ta biết tốc độ hội tụ sẽ là quadratic
 
@@ -236,17 +236,17 @@
 <p align="center"><kbd><img src="assets/kr123zrb7bi.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Ôn lại một chút về cái đang nói: Đó là dùng Newton method khi mà Hessian tại xk không xác định dương, khiến Newton direction - (∇^2f_k)inv ∇f_k không phải descent direction. Thì người ta khắc phục bằng cách thay Hessian ∇^2 f_k bởi B_k bằng ∇^2 f_k + E_k, để có được B_k là xác định dương. ⇨ - (Bk)inv ∇f_k là descent direction.
+> Ôn lại một chút về cái đang nói: Đó là dùng Newton method khi mà Hessian tại xk không xác định dương, khiến Newton direction - (∇^2f_k)⁻¹ ∇f_k không phải descent direction. Thì người ta khắc phục bằng cách thay Hessian ∇^2 f_k bởi B_k bằng ∇^2 f_k + E_k, để có được B_k là xác định dương. ⇨ - (Bk)⁻¹ ∇f_k là descent direction.
 >
 > Thế thì, như note trước vừa nói, nếu mọi chuyện tốt đẹp thì khi đến một lúc nào đó (k nào đó) Hessian tại k sẽ bắt đầu xác định dương, và việc chỉnh sửa sẽ không còn cần nữa, tức Ek thành 0 và thuật toán trở thành Newton method thật sự, với các đặc điểm tốt đẹp là hội tụ nhanh.
 >
 > Nhưng điều này không phải luôn xảy ra, không phải lúc nào Hessian gần x* cũng xác định dương. Cụ thể là khi bản thân Hessian tại x* rất gần singular, tức vẫn xác định dương, nhưng λmin của nó rất ≈ 0. Khi đó dĩ nhiên khi xk → x* thì Hessian tại xk cũng vậy. 
 >
-> Khi đó, thuật toán không thể dùng E_k = 0 được, vì nếu vậy thì B_k = ∇^2 f_k + E_k cũng sẽ gần singular ⇨ việc tính - (Bk)inv ∇f_k sẽ bị vấn đề.
+> Khi đó, thuật toán không thể dùng E_k = 0 được, vì nếu vậy thì B_k = ∇^2 f_k + E_k cũng sẽ gần singular ⇨ việc tính - (Bk)⁻¹ ∇f_k sẽ bị vấn đề.
 >
 > Và do đó, thuật toán này sẽ không dần trở thành Newton method được (vì Ek không thể trở thành 0) khiến cho nó sẽ không đạt được quadratic convergence rate mà chỉ là linear rate → chậm.
 >
-> Ý tiếp theo đại khái là nói rằng ta cần đảo bảo Bk có well conditioned ⇨ Thỏa theorem 3.8 cũng như là cần phải modify cái Hessian càng ít càng tốt, tức giữ Ek càng nhỏ càng tốt, mục đích là để giữ được thông tin về độ cong giúp estimate chính xác, hay hiểu theo nghĩa là cần phải giữ - (Bk)inv ∇fk càng gần giống Newton direction càng tốt. 
+> Ý tiếp theo đại khái là nói rằng ta cần đảo bảo Bk có well conditioned ⇨ Thỏa theorem 3.8 cũng như là cần phải modify cái Hessian càng ít càng tốt, tức giữ Ek càng nhỏ càng tốt, mục đích là để giữ được thông tin về độ cong giúp estimate chính xác, hay hiểu theo nghĩa là cần phải giữ - (Bk)⁻¹ ∇fk càng gần giống Newton direction càng tốt. 
 >
 > Và lẽ dĩ nhiên ta cũng cần phép phân tách được tính toán với chi phí càng thấp càng tốt.
 >
@@ -270,15 +270,15 @@
 > [!NOTE]
 > Rồi, đại khái là thế này: Tác giả minh họa một tính huống mà nếu ta chỉnh sửa cái Hessian tại k để có được một Bk xác định dương thì thật ra sẽ là thảm họa:
 >
-> Trong ví dụ này ta có gradient ∇f_k = (1, -3, 2)T, và Hessian tại k là diagonal matrix diag(10, 3, -1), rõ ràng đây là clearly indefinite matrix, tức là ma trận không xác định (các eigenvalues vừa âm vừa dương, không xác định âm cũng không xác định dương).
+> Trong ví dụ này ta có gradient ∇f_k = (1, -3, 2)ᵀ, và Hessian tại k là diagonal matrix diag(10, 3, -1), rõ ràng đây là clearly indefinite matrix, tức là ma trận không xác định (các eigenvalues vừa âm vừa dương, không xác định âm cũng không xác định dương).
 >
 >  Thế thì tính thử, dù như đã biết, H_k không xác định dương thì chưa chắc Newton step đã là descent direction: 
 >
-> Tính thử - (Hk)inv ∇f_k
+> Tính thử - (Hk)⁻¹ ∇f_k
 >
 > = - diag(1/10, 1/3, 1/-1) [1, -3, 2]T
 >
-> Ở đây nói về kiến thức đại số tuyến tính chút xíu, nhờ MIT 1806 mình đã biết: Với diagonal matrix (hay nói chung triangular matrix) thì eigenvalues nằm trên đường chéo. Và λ(Ainv) = 1 / λ(A) ⇨ Ta có (Hk)inv như vậy, hoặc cũng có thể dùng Hk (Hk)inv = I để suy ra (Hk)inv.
+> Ở đây nói về kiến thức đại số tuyến tính chút xíu, nhờ MIT 1806 mình đã biết: Với diagonal matrix (hay nói chung triangular matrix) thì eigenvalues nằm trên đường chéo. Và λ(A⁻¹) = 1 / λ(A) ⇨ Ta có (Hk)⁻¹ như vậy, hoặc cũng có thể dùng Hk (Hk)⁻¹ = I để suy ra (Hk)⁻¹.
 >
 > Kết quả phép nhân trên cho ra vector pk = [-1/10, 1, 2]T. 
 >
@@ -292,7 +292,7 @@
 >
 > Khi đó B_k = diag(10, 3, 10^-8) đã xác định dương. Thử tính lại pk:
 >
-> pk = - (Bk)inv ∇f_k = - diag(1/10, 1/3, 1/δ) [1, -3, 2]T 
+> pk = - (Bk)⁻¹ ∇f_k = - diag(1/10, 1/3, 1/δ) [1, -3, 2]T 
 >
 > = - [(1/10) × 1, (1/3) × (-3), (1/δ) × 2]T
 >
@@ -302,9 +302,9 @@
 >
 > H_k = I Hk I = I Hk IT . Và H_k với bản thân là diagonal matrix thì ta có thể coi như đây là eigendecomposition của nó. Có nghĩa là các eigenvector của nó chính là các basis e's. 
 >
-> Và nhớ lại Q Λ QT với các góc nhìn thứ hai khi nhân Q và Λ đã học từ MIT 1806, ta sẽ thấy nó là:
+> Và nhớ lại Q Λ Qᵀ với các góc nhìn thứ hai khi nhân Q và Λ đã học từ MIT 1806, ta sẽ thấy nó là:
 >
-> [λ1q1, λ2q2, ..λnqn] QT 
+> [λ1q1, λ2q2, ..λnqn] Qᵀ 
 >
 > và theo góc nhìn thứ 4, ta sẽ có tổng các rank 1 matrix: λ1q1q1T +..λnqnqnT
 >
@@ -312,11 +312,11 @@
 >
 > ⇨ H = Σ_i=1:n λiqiqiT (λ1, λ2, λ3 là các trị riêng)
 >
-> Dĩ nhiên cũng không khó để thấy H_inv cũng = Σ_i=1:n (1/λi)qiqiT
+> Dĩ nhiên cũng không khó để thấy H⁻¹ cũng = Σ_i=1:n (1/λi)qiqiT
 >
 > Và Bk = diag(λ1, λ2, δ) thì ta có:
 >
-> pk = - (Bk)inv ∇fk = [ (1/λ1)q1q1T + (1/λ2)q2q2T + (1/δ)q3q3T ] ∇fk
+> pk = - (Bk)⁻¹ ∇fk = [ (1/λ1)q1q1T + (1/λ2)q2q2T + (1/δ)q3q3T ] ∇fk
 >
 > = (1/λ1)q1q1T∇fk + (1/λ2)q2q2T∇fk + (1/δ)q3q3T∇fk 
 >
@@ -387,11 +387,11 @@
 > [!NOTE]
 > Đại khái đoạn này là vầy, tạm thời bỏ qua cái vụ nếu chọn δ không kĩ thì sẽ có vấn đề, ta sẽ xem xét kĩ hơn cái bước sửa matrix để nó thành xác định dương. Và tác giả nói rằng, việc sửa matrix, có thể có cách để chứng minh rằng cách sau đâu sẽ là tối ưu. Và tối ưu ở đây theo nghĩa là, ta sẽ chỉ cần add một matrix ΔA vào A để thành A + ΔA xác định dương với ΔA tối thiểu. 
 >
-> Và tối thiểu ở đây đo bằng Frobenius norm. Và cái matrix ΔA có F norm tối thiểu đó chính là: Q diag(τ1,...τn) QT với τi = 0 nếu eigenvalue tương ứng của A, λi đã ok, tức đã dương và cụ thể hơn là đã lớn hơn δ là giá trị dương nhỏ nhất mà ta có thể xài (ví dụ như √u, machine precision hồi nãy). Và τi = δ - λi nếu như λi chưa ≥ δ.
+> Và tối thiểu ở đây đo bằng Frobenius norm. Và cái matrix ΔA có F norm tối thiểu đó chính là: Q diag(τ1,...τn) Qᵀ với τi = 0 nếu eigenvalue tương ứng của A, λi đã ok, tức đã dương và cụ thể hơn là đã lớn hơn δ là giá trị dương nhỏ nhất mà ta có thể xài (ví dụ như √u, machine precision hồi nãy). Và τi = δ - λi nếu như λi chưa ≥ δ.
 >
-> Thế thì, làm rõ vài ý: Vì sao ΔA = Q diag(τi) QT?
+> Thế thì, làm rõ vài ý: Vì sao ΔA = Q diag(τi) Qᵀ?
 >
-> ⇨ Đơn giản thôi khi đó A + ΔA = Q Λ QT + Q diag(τi) QT = Q (Λ + diag(τi)) QT. 
+> ⇨ Đơn giản thôi khi đó A + ΔA = Q Λ Qᵀ + Q diag(τi) Qᵀ = Q (Λ + diag(τi)) Qᵀ. 
 >
 > Và matrix này sẽ có eigenvalues là λi + τi. Và với τi như vậy thì sẽ đảm bảo các eigenvalues của nó đều ≥ δ.
 >
@@ -405,19 +405,19 @@
 >
 > miminize ||ΔA||_F subject to λ(A + ΔA) ≥ δ
 >
-> Thế thì vì A đối xứng nên dĩ nhiên ΔA cũng đối xứng (dễ hiểu mà, nếu để tạo A + ΔA xác định dương thì nó phải vẫn đối xứng trước đã), nên ΔA = QT diag(τi) QT. Đây chỉ là việc đang nói là vì ΔA đối xưng nên có thể phân tách thành "dạng Q Λ QT" thôi nhé.
+> Thế thì vì A đối xứng nên dĩ nhiên ΔA cũng đối xứng (dễ hiểu mà, nếu để tạo A + ΔA xác định dương thì nó phải vẫn đối xứng trước đã), nên ΔA = Qᵀ diag(τi) Qᵀ. Đây chỉ là việc đang nói là vì ΔA đối xưng nên có thể phân tách thành "dạng Q Λ Qᵀ" thôi nhé.
 >
-> ⇨ ||ΔA||_F = ||Qdiag(τi)QT||.
+> ⇨ ||ΔA||_F = ||Qdiag(τi)Qᵀ||.
 >
-> Tới đây, hãy nhớ lại tính chất của Frobenius norm của A theo định nghĩa, nó chỉ là căn bậc hai của tổng tất cả các phần tử của ma trận ⇨ ||A||F = Σ_ij (Ajj)^2. Và ta nhớ là có thể thể hiện cái này bởi tr(ATA), vì tr(ATA) là tổng các entries đường chéo của ATA.
+> Tới đây, hãy nhớ lại tính chất của Frobenius norm của A theo định nghĩa, nó chỉ là căn bậc hai của tổng tất cả các phần tử của ma trận ⇨ ||A||F = Σ_ij (Ajj)^2. Và ta nhớ là có thể thể hiện cái này bởi tr(AᵀA), vì tr(AᵀA) là tổng các entries đường chéo của AᵀA.
 >
-> ⇨||ΔA||_F = tr[(ΔA)TΔA)] = tr{[Qdiag(τi)QT]T(QTdiag(τi)QT)}
+> ⇨||ΔA||_F = tr[(ΔA)ᵀΔA)] = tr{[Qdiag(τi)Qᵀ]T(Qᵀdiag(τi)Qᵀ)}
 >
-> = tr{Qdiag(τi)QTQdiag(τi)QT} = tr{Qdiag(τi)^2QT}
+> = tr{Qdiag(τi)QᵀQdiag(τi)Qᵀ} = tr{Qdiag(τi)^2Qᵀ}
 >
-> = tr{Qdiag(τi)^2QT]T} | tr(A) = tr(AT)
+> = tr{Qdiag(τi)^2Qᵀ]T} | tr(A) = tr(Aᵀ)
 >
-> = tr{QQTdiag(τi)^2}
+> = tr{QQᵀdiag(τi)^2}
 >
 > = tr{diag(τi)^2}
 >
@@ -559,7 +559,7 @@
 >
 > Nên nhìn vào thuật toán ta thấy: Nó check entries đường chéo nhỏ nhất (min i aii) xem có âm không, nếu không âm thì thôi, còn nếu âm thì cộng vào giá trị để nó dương, ví dụ min i aii = -2, thì cho τ = +2 + con số β dương nhỏ nữa ví dụ 10^-3 để nó thành 10^-3, dương.
 >
-> Qua bước sau, nó chạy thuật toán Cholesky factorization: LLT = A + τi I
+> Qua bước sau, nó chạy thuật toán Cholesky factorization: LLᵀ = A + τi I
 >
 > nếu thuật toán thành công tức A đã xác định dương thì return L
 >
@@ -577,7 +577,7 @@
 >
 > 3) Mọi leading principal: tức các matrix con tính từ góc trái mở rộng xuống dưới cũng phải có det dương
 >
-> 4) Quadratic form: xTAx phải dương với mọi x khác 0.
+> 4) Quadratic form: xᵀAx phải dương với mọi x khác 0.
 >
 > Và từ cái 4 ta sẽ thấy mọi entries đường chéo phải dương, nếu mà âm thì chắc chắn là không xác định dương:
 >
@@ -644,9 +644,9 @@
 >
 > Vậy thì đầu tiên là ôn lại về Cholesky factorization. Ông nói mọi matrix đối xứng xác định dương sẽ đều có thể phân tách thành:
 >
-> A = LD(LT) với L là ma trận tam giác dưới có đường chéo unit, tức = 1 hết. D là chéo 
+> A = LD(Lᵀ) với L là ma trận tam giác dưới có đường chéo unit, tức = 1 hết. D là chéo 
 >
-> Mình nghĩ: Trong MIT 18.06 chưa được học về Cholesky factorization (có thể đọc sách kĩ hơn thầy có nói). Nhưng ta nhớ nếu A symmetric thì ta có A = Q Λ QT.
+> Mình nghĩ: Trong MIT 18.06 chưa được học về Cholesky factorization (có thể đọc sách kĩ hơn thầy có nói). Nhưng ta nhớ nếu A symmetric thì ta có A = Q Λ Qᵀ.
 >
 > Rồi thế thì quay lại đây tác giả sẽ nói vè việc tính các entries của L D bằng cách equate entries của hai vế.
 
@@ -676,14 +676,14 @@
 >
 > Vì sao a11 = d1?
 >
-> Dễ thôi, đã học 4 góc nhìn (hay bức tranh) nhân hai matrix A và B trong MIT 18.06. Thì theo column picture, xét cột 1 của LD(LT):
+> Dễ thôi, đã học 4 góc nhìn (hay bức tranh) nhân hai matrix A và B trong MIT 18.06. Thì theo column picture, xét cột 1 của LD(Lᵀ):
 >
 > Nó sẽ là kết quả của:
 >
 > 1) Tính LD: Ta sẽ linearly combine 3 cột của L với entries cột 1 của D, tức là ta có d1 × cột L1 
 >
-> 2) Sau đó (trong bước nhân với LT) thì lại linear combine các cột của LD với cột 1 của LT: và nó chỉ y nguyên, do cột đó là [1 0 0]T.
-> Thành ra hàng 1 cột 1 của LD(LT) chính là d1L_11 = d1.
+> 2) Sau đó (trong bước nhân với Lᵀ) thì lại linear combine các cột của LD với cột 1 của Lᵀ: và nó chỉ y nguyên, do cột đó là [1 0 0]T.
+> Thành ra hàng 1 cột 1 của LD(Lᵀ) chính là d1L_11 = d1.
 >
 > Nói chung lập luận tương tự ta sẽ hiểu các equation khác, từ đó có công thức tính các entries của L và D
 
@@ -696,12 +696,12 @@
 
 <a id="node-bapd4vr"></a>
 
-###### Thuật toán Cholesky LDLT
+###### Thuật toán Cholesky LDLᵀ
 
 <p align="center"><kbd><img src="assets/5y3lov0gk13.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đây là thuật toán Cholesky Factorization: Nhắc lại, nó chỉ là thuật toán giúp tính ra matrix L và D, để giúp factor A thành LD(LT), chứ không phải là thuật toán Modified Cholesky Factorization đang sắp nói
+> Đây là thuật toán Cholesky Factorization: Nhắc lại, nó chỉ là thuật toán giúp tính ra matrix L và D, để giúp factor A thành LD(Lᵀ), chứ không phải là thuật toán Modified Cholesky Factorization đang sắp nói
 >
 > Nhìn vào thì cơ bản là nó làm cái bước mà ta vừa xem ở note trước thôi. Nhưng để ý chỗ này để thấy vấn đề của nó:
 >
@@ -736,13 +736,13 @@
 <p align="center"><kbd><img src="assets/rqp4b7ukzcd.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đây là thuật toán Cholesky Factorization chuẩn. Tách A = L(LT), hay M(MT).
+> Đây là thuật toán Cholesky Factorization chuẩn. Tách A = L(Lᵀ), hay M(Mᵀ).
 >
-> Có lẽ cũng không khó để hiểu. Bằng cách cho các entries tương ứng của A và L(LT) bằng nhau mình sẽ hiểu các bước của thuật toán này.
+> Có lẽ cũng không khó để hiểu. Bằng cách cho các entries tương ứng của A và L(Lᵀ) bằng nhau mình sẽ hiểu các bước của thuật toán này.
 >
 > Ví dụ vì sao Lii = √Aii:
 >
-> Xét A11, thì entry 11 của LLT chính là: Lấy L nhân với cột 1 của LT và lấy phần tử đầu tiên. cột 1 của LT là hàng 1 của L, là [L11,0...] (vì L là tam giác dưới) Vậy L . [cột 1 của LT] cho ra L11 nhân cột 1 của L, rồi lấy phần tử đầu tiên thì chính là L11^2
+> Xét A11, thì entry 11 của LLᵀ chính là: Lấy L nhân với cột 1 của Lᵀ và lấy phần tử đầu tiên. cột 1 của Lᵀ là hàng 1 của L, là [L11,0...] (vì L là tam giác dưới) Vậy L . [cột 1 của Lᵀ] cho ra L11 nhân cột 1 của L, rồi lấy phần tử đầu tiên thì chính là L11^2
 >
 > Vậy A11 = L11^2 ⇨ L11 = √A11
 >
@@ -766,7 +766,7 @@
 <p align="center"><kbd><img src="assets/wv2sb5vvpd.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, đại khái là vầy: Nhìn vào các bước của thuật toán Cholesky Factorization (A = LDLT hay A = MMT) thì sẽ thấy ngay cả khi A có thể factorized thì nếu các phần tử của L và D có thể rất lớn dẫn đến lỗi (numerical unstable)
+> Rồi, đại khái là vầy: Nhìn vào các bước của thuật toán Cholesky Factorization (A = LDLᵀ hay A = MMᵀ) thì sẽ thấy ngay cả khi A có thể factorized thì nếu các phần tử của L và D có thể rất lớn dẫn đến lỗi (numerical unstable)
 >
 > (Ví dụ bước ljj = cjj)
 >
@@ -778,12 +778,12 @@
 >
 > 1) Nó phải ít nhất là giữ nguyên nếu như cái bước đó đã ok, tức nếu cij đã đủ tốt, có nghĩa là lớn, và dương: thì ta sẽ lấy |cjj|
 >
-> 2) Nó phải là một số dương tối thiểu. Ta sẽ chọn δ = 10^-6. Đây là cái bước sửa matrix trở thành xác định dương. Vì trong A = LD(LT) thì D chính là diagonal matrix chứa các pivot của nó. Mà ta nhớ, trong MIT1806, nếu các pivot đều dương thì matrix xác định dương.
+> 2) Nó phải là một số dương tối thiểu. Ta sẽ chọn δ = 10^-6. Đây là cái bước sửa matrix trở thành xác định dương. Vì trong A = LD(Lᵀ) thì D chính là diagonal matrix chứa các pivot của nó. Mà ta nhớ, trong MIT1806, nếu các pivot đều dương thì matrix xác định dương.
 > Vậy nếu như đảm bảo việc chọn dj ít nhất là bằng δ thì kết quả ta sẽ có một matrix xác định dương.
 >
 > Lưu ý theo thuật toán 3.4 thường (ko có vụ chỉnh sửa), thì thuật toán này sẽ crash (fail) trong các case sau: dj ra số 0 hoặc rất nhỏ ≈ 0 khiến cij / dj rất lớn (explode). Nên nếu A ban đầu indefinite, thì khi đó pivot có thể bằng 0 (xác định dương / âm thì pivot nhất định dương / âm) → thuật toán crash. Như vậy ngay cả khi nó xác định âm thì có thể nó vẫn ko crash. 
 >
-> Đây cũng là khác biệt so với Cholesky Factorization chuẩn (A = M (MT)), vì nó sẽ yêu cầu pivot phải dương nên thuật toán sẽ crash nếu A không xác định dương.
+> Đây cũng là khác biệt so với Cholesky Factorization chuẩn (A = M (Mᵀ)), vì nó sẽ yêu cầu pivot phải dương nên thuật toán sẽ crash nếu A không xác định dương.
 >
 > Tóm lại, việc đảm bảo dj ít nhất là phải dương tối thiểu (δ) mục đích để:
 >
@@ -793,7 +793,7 @@
 >
 > 3) Nó phải đảm bảo kết quả không quá lớn. Mà kết quả ở đây là phần tử mij của M:
 >
-> Tức là ta có A = LD(LT), cũng là M(MT) với M = LD^1/2. Từ đó ta sẽ có entries của M như sau:
+> Tức là ta có A = LD(Lᵀ), cũng là M(Mᵀ) với M = LD^1/2. Từ đó ta sẽ có entries của M như sau:
 >
 > Ví dụ Mij = [hàng i của L] ⋅ [cột j của D^1/2]
 >
@@ -914,7 +914,7 @@
 > [!NOTE]
 > Đại khái là cái vụ modified Cholesky factorization có thể thể hiện dưới dạng toán học là thế này:
 >
-> P A PT + E = L D LT  = M MT
+> P A Pᵀ + E = L D Lᵀ  = M Mᵀ
 >
 > Trong đó P là matrix hoán vị.
 >
@@ -944,7 +944,7 @@
 >
 > Tác giả nói ta có thể dùng một chiến thuật khác để chỉnh sửa indefinite Hessian đó là dùng symmetric indefinite factorization. 
 >
-> Nhớ lại, trong note liền trước, mình đã hiểu, A dù là indefinite vẫn có thể được phân tách thành L D LT, (có nghĩa là thuật toán nó vẫn không crash, nếu hên, khi indefinite matrix A có pivot khác không) 
+> Nhớ lại, trong note liền trước, mình đã hiểu, A dù là indefinite vẫn có thể được phân tách thành L D Lᵀ, (có nghĩa là thuật toán nó vẫn không crash, nếu hên, khi indefinite matrix A có pivot khác không) 
 >
 > Tuy nhiên, vấn đề có thể xảy ra, cũng là ý giáo sư nói không được khuyên (nên tránh) việc này, là vì, dù pivot khác 0, khiến thuật toán không crash, nhưng nó quá nhỏ thì sẽ vẫn gây vấn đề.
 >
@@ -954,11 +954,11 @@
 >
 > Vậy thì đại ý là ở đây tác giả nói rằng, dựa trên một kiến thức toán học nói rằng bất kể matrix đối xứng A nào cũng có thể được viết ở dạng:
 >
-> PA(PT) = LB(LT) với B là một block diagonal matrix (matrix chéo dạng block, sẽ hiểu kĩ hơn sau khi đọc Appendix)
+> PA(Pᵀ) = LB(Lᵀ) với B là một block diagonal matrix (matrix chéo dạng block, sẽ hiểu kĩ hơn sau khi đọc Appendix)
 >
 > Và ta sẽ dựa trên cái này, để mà xây dựng một thuật toán chỉnh sửa Hessian bị indefinite mà có tính chất là ổn định về mặt tính toán nhờ tính chất tốt đẹp của việc dùng diagonal block matrix. Cụ thể thì hiểu nôm nà là vầy:
 >
-> Thì cái này nó có cái hay là vầy: Giống như khi ta khử Gausse theo cách thông thường, tức là các pivot là các con số. Thì ta có thể bị cái vụ nói trên nếu pivot quá nhỏ. Nhưng cũng có thể khử Gause theo cách khác gọi là theo block. Thì khi đó, pivot là một block matrix. Và cái vụ tính multipler bằng a22 / pivot 1 sẽ tương ứng với lấy [block 22] nhân [pivot block 1]_inv.
+> Thì cái này nó có cái hay là vầy: Giống như khi ta khử Gausse theo cách thông thường, tức là các pivot là các con số. Thì ta có thể bị cái vụ nói trên nếu pivot quá nhỏ. Nhưng cũng có thể khử Gause theo cách khác gọi là theo block. Thì khi đó, pivot là một block matrix. Và cái vụ tính multipler bằng a22 / pivot 1 sẽ tương ứng với lấy [block 22] nhân [pivot block 1]⁻¹.
 >
 > Và cái hay là, có thể nếu xét single number pivot thì nó nhỏ gây lỗi, nhưng khi làm bởi block pivot thì dạng invert của nó vẫn ổn định.
 >
@@ -973,14 +973,14 @@
 
 <a id="node-g9xdq5g"></a>
 
-###### Ví dụ của P A PT = L B LT
+###### Ví dụ của P A Pᵀ = L B Lᵀ
 
 <p align="center"><kbd><img src="assets/izxpdmxmdd.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Đại khái là ông cho xem một ví dụ trong đó cái matrix A, để ý nhé, pivot 1 = 0. Nếu khử Gausse như cách cổ điển, nó sẽ crash ở bước tính multipler.
 >
-> Nhưng ta vẫn có thể phân tách nó thành dạng P A PT = L B LT với B và L như vầy.
+> Nhưng ta vẫn có thể phân tách nó thành dạng P A Pᵀ = L B Lᵀ với B và L như vầy.
 >
 > Nói chung là Appendix A có nói về các thuật toán giúp factor A thành L và B như này.
 
@@ -997,7 +997,7 @@
 <p align="center"><kbd><img src="assets/3v37lr7146q.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đầu tiên, tác giả cho rằng, ta nên biết có một định lý nói rằng, trong quan hệ phân rã nói trên (của matrix đối xứng A bất kì, xác định dương, xác định âm hay không xác định): P A PT = L B LT thì thằng B là matrix có cùng inertia với A. Tức là số lượng trị riêng dương, âm, bằng 0 của chúng giống nhau. 
+> Đầu tiên, tác giả cho rằng, ta nên biết có một định lý nói rằng, trong quan hệ phân rã nói trên (của matrix đối xứng A bất kì, xác định dương, xác định âm hay không xác định): P A Pᵀ = L B Lᵀ thì thằng B là matrix có cùng inertia với A. Tức là số lượng trị riêng dương, âm, bằng 0 của chúng giống nhau. 
 >
 > Tác giả nói đến cái này là muốn lót đường cho việc chỉnh sửa: Nếu ta chỉnh sửa B để giúp mọi trị riêng của nó đều dương thì tự động trị riêng của A cũng sẽ dương, khiến A trở nên xác định dương. (Làm rõ khỏi bắt bẻ: Ta nói là ta sửa B để A thành xác định dương thì phải hiểu là ta sửa B bằng cách cộng vào cho nó một matrix ΔB khiến có được B + ΔB xác định dương, khi đó ta sẽ có kết quả phân rã của một matrix A + ΔA xác định dương. Chứ bản chất A xác định âm thì bố nó cũng không biến nó thành xác định dương được)
 >
@@ -1013,18 +1013,18 @@
 >
 > Rồi, vậy thì cách sửa thế nào? 
 >
-> Đó là ta sẽ dùng cái cách giống như trong 3.43: Trong đó mình dùng ΔA = Q diag(τi) QT với τi = 0 nếu trị riêng tương ứng λi đã ok rồi (đã dương rồi, và cụ thể là đã > δ, một con số dương tối thiểu rồi) còn nếu chưa thì τi = δ - λi để mà nâng nó lên, bơm nó lên.
+> Đó là ta sẽ dùng cái cách giống như trong 3.43: Trong đó mình dùng ΔA = Q diag(τi) Qᵀ với τi = 0 nếu trị riêng tương ứng λi đã ok rồi (đã dương rồi, và cụ thể là đã > δ, một con số dương tối thiểu rồi) còn nếu chưa thì τi = δ - λi để mà nâng nó lên, bơm nó lên.
 >
 > Trong phần đó mình cũng nhớ tác giả nói rằng, đây là cái ΔA có Frobenius norm nhỏ nhất giúp sửa lại cho A (thành A +ΔA) trở thành xác định dương.
 >
-> Thì ở đây cũng vậy ta sẽ sửa cái B: bằng cách cộng với F = Q diag(τi) QT, với τi = 0 nếu λ(B)i đã ≥ δ và τi = δ - λ(B)i nếu chưa,
+> Thì ở đây cũng vậy ta sẽ sửa cái B: bằng cách cộng với F = Q diag(τi) Qᵀ, với τi = 0 nếu λ(B)i đã ≥ δ và τi = δ - λ(B)i nếu chưa,
 >
 > Và again, F cũng là cái có F norm nhỏ nhất giúp sửa B thành ra (B + F) xác định dương, để rồi cũng chính là giúp ta có kết quả phân rã của một matrix A đã chỉnh sửa (thành A + E nào đó) mà A + E xác định dương.
 >
-> Cuối cùng là một điểm đáng lưu ý đó là: Giáo sư nhấn mạnh với modified Cholesky factorization thì về cơ bản là ta chỉ sửa các phần tử đường chéo của A mà thôi (cái bước gán dj bởi max (|cjj|, δ, (θj/β)^2). Để rồi thể hiện matrix chỉnh sửa A bởi: P A PT + E = L D LT 
+> Cuối cùng là một điểm đáng lưu ý đó là: Giáo sư nhấn mạnh với modified Cholesky factorization thì về cơ bản là ta chỉ sửa các phần tử đường chéo của A mà thôi (cái bước gán dj bởi max (|cjj|, δ, (θj/β)^2). Để rồi thể hiện matrix chỉnh sửa A bởi: P A Pᵀ + E = L D Lᵀ 
 > thì E là diagonal matrix.
 >
-> Còn ở đây, ta ko chỉ sửa đường chéo của A, mà thay đổi hoàn toàn cấu trúc của A, tức là  thể hiện ở dạng P(A + E)PT = L(B + F)LT thì E ko phải là diagonal matrix
+> Còn ở đây, ta ko chỉ sửa đường chéo của A, mà thay đổi hoàn toàn cấu trúc của A, tức là  thể hiện ở dạng P(A + E)Pᵀ = L(B + F)Lᵀ thì E ko phải là diagonal matrix
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
