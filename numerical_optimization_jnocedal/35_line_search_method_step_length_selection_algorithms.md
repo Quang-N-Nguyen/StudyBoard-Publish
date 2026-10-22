@@ -35,30 +35,30 @@
 >
 > ====
 >
-> Thế thì nếu f là hàm quadratic, có dạng f(x) = (1/2)xTQx - bTx thì có thể tính ra minimizer
+> Thế thì nếu f là hàm quadratic, có dạng f(x) = (1/2)xᵀQx - bᵀx thì có thể tính ra minimizer
 > của nó dọc theo tia xk + αpk một cách analytically. Là vầy:
 >
 > Nhờ MIT 18s096: Không khó để derive ∇f(x) = Qx - b
 >
 > ⇨ Directional derivative của f wrt pk tại xk, cũng là Φ'(α) sẽ là:
 >
-> ∇f(xk + αpk)Tpk = [Q(xk + αpk) - b]Tpk
+> ∇f(xk + αpk)ᵀpk = [Q(xk + αpk) - b]Tpk
 >
 > Để tìm α khiến Φ(α) nhỏ nhất. Ta cho đạo hàm bằng 0:
 >
 > [Q(xk + αpk) - b]Tpk = 0
 >
-> ⇔ Q(xk + αpk)Tpk - bTpk = 0
+> ⇔ Q(xk + αpk)ᵀpk - bᵀpk = 0
 >
-> ⇔ Q(xk + αpk)Tpk = bTpk 
+> ⇔ Q(xk + αpk)ᵀpk = bᵀpk 
 >
-> ⇔ Q(xkTpk + αpkTpk) = bTpk 
+> ⇔ Q(xkTpk + αpkTpk) = bᵀpk 
 >
-> ⇔ QxkTpk + QαpkTpk = bTpk 
+> ⇔ QxkTpk + QαpkTpk = bᵀpk 
 >
-> ⇔ QαpkTpk = - QxkTpk + bTpk 
+> ⇔ QαpkTpk = - QxkTpk + bᵀpk 
 >
-> ⇔ αQpkTpk = - [QxkTpk - bTpk]
+> ⇔ αQpkTpk = - [QxkTpk - bᵀpk]
 >
 > ⇔ αQpkTpk = - [Qxk - b]Tpk
 >
@@ -323,39 +323,39 @@
 >
 > Ta đã biết 1st order approximation (linear approximation) của f: Đi từ x0 → x nếu x ≈ x0 ta sẽ có:
 >
-> f(x) ≈ f(x0) + ∇f(x0)T(x-x0)
+> f(x) ≈ f(x0) + ∇f(x0)ᵀ(x-x0)
 >
 > (sẵn ôn lại, cái này chỉ là từ Taylor theorem nói rằng:
 >
-> f(x) = f(x0) + ∇f(ξ)T(x-x0) for some ξ in [x0, x]
+> f(x) = f(x0) + ∇f(ξ)ᵀ(x-x0) for some ξ in [x0, x]
 >
 > cũng là f(x) = f(x0) + ∇f(x0 + t(x - x0))(x - x0) for some t in [0,1]
 >
-> Với x gần x0 thì ta có thể xấp xỉ ∇f(x0 + t(x - x0)) ≈ ∇f(x0) để có linear approximation: f(x) ≈ f(x0) + ∇f(x0)T(x-x0))
+> Với x gần x0 thì ta có thể xấp xỉ ∇f(x0 + t(x - x0)) ≈ ∇f(x0) để có linear approximation: f(x) ≈ f(x0) + ∇f(x0)ᵀ(x-x0))
 >
 > Áp dụng vào 
 >
-> f(xk) ≈ f(xk-1) + ∇f(xk-1)T(xk-xk-1)
+> f(xk) ≈ f(xk-1) + ∇f(xk-1)ᵀ(xk-xk-1)
 >
-> Độ giảm tại step k: Δf_k =  ∇f(xk-1)T(xk - xk-1) = ∇f(xk-1)Tpk-1αk-1
+> Độ giảm tại step k: Δf_k =  ∇f(xk-1)ᵀ(xk - xk-1) = ∇f(xk-1)ᵀpk-1αk-1
 >
-> f(xk+1) ≈ f(xk) + ∇f(xk)T(xk+1 - xk)
+> f(xk+1) ≈ f(xk) + ∇f(xk)ᵀ(xk+1 - xk)
 >
-> Độ giảm tại step k+1: Δf_k+1 ≈ ∇f(xk)Tpkαk
+> Độ giảm tại step k+1: Δf_k+1 ≈ ∇f(xk)ᵀpkαk
 >
 > Assum độ giảm bậc 1 bằng nhau: 
 >
-> ∇f(xk-1)Tpk-1αk-1 = ∇f(xk)Tpkαk
+> ∇f(xk-1)ᵀpk-1αk-1 = ∇f(xk)ᵀpkαk
 >
-> ⇨∇f(xk-1)Tpk-1αk-1 / ∇f(xk)Tpk = αk
+> ⇨∇f(xk-1)ᵀpk-1αk-1 / ∇f(xk)ᵀpk = αk
 >
 > Và với assumption này thì người ta cho giá trị ban đầu của αk, tức αk_0 là bằng như vậy. Do đó ta có công thức 
 >
-> α0 (hiểu là αk_0) = ∇f(xk-1)Tpk-1αk-1 / ∇f(xk)Tpk
+> α0 (hiểu là αk_0) = ∇f(xk-1)ᵀpk-1αk-1 / ∇f(xk)ᵀpk
 >
 > ====
 >
-> Một chiến thuật khác là là dùng interpolation to quadratic: Với việc đã biết f(xk-1), f(xk) và ∇f(xk-1)T(pk-1) (tức là directional derivative wrt pk-1 tại xk-1). Nếu như gọi xk-1 là B, xk là A, pk-1 là xk - xk-1 là vector từ A → B, thì ∇f(xk-1)T(pk-1) chính là độ dốc theo hướng A→B của hàm f. Hình dung ta có hàm f bị giới hạn theo hướng AB sẽ như hàm đơn biến, nó đi điểm A, B và biết độ dốc tại A. Ta sẽ xấp xỉ / coi nó là hàm bậc hai. Và đi tìm điểm cực tiểu. (Xem hình minh họa) và đó chính là αk_0, giá trị khởi điểm cho αk
+> Một chiến thuật khác là là dùng interpolation to quadratic: Với việc đã biết f(xk-1), f(xk) và ∇f(xk-1)ᵀ(pk-1) (tức là directional derivative wrt pk-1 tại xk-1). Nếu như gọi xk-1 là B, xk là A, pk-1 là xk - xk-1 là vector từ A → B, thì ∇f(xk-1)ᵀ(pk-1) chính là độ dốc theo hướng A→B của hàm f. Hình dung ta có hàm f bị giới hạn theo hướng AB sẽ như hàm đơn biến, nó đi điểm A, B và biết độ dốc tại A. Ta sẽ xấp xỉ / coi nó là hàm bậc hai. Và đi tìm điểm cực tiểu. (Xem hình minh họa) và đó chính là αk_0, giá trị khởi điểm cho αk
 >
 > Cách dựng hàm bậc hai thì cũng như đã biết ở phần trước, là ta đặt hàm g(α) = aα^2 + bα + c
 >
@@ -365,7 +365,7 @@
 >
 > Đi qua xk: tức là ứng với α = αk-1, pk-1, g(αk-1) = f(xk) ⇔ aαk-1^2 + bαk-1 + c = f(xk)
 >
-> Độ dốc tại xk-1: g'(0) = ∇f(xk-1)Tpk-1 = 2a × 0 + b = b ⇨ b = ∇f(xk-1)Tpk-1. viết là Φ'(0) cho gọn
+> Độ dốc tại xk-1: g'(0) = ∇f(xk-1)ᵀpk-1 = 2a × 0 + b = b ⇨ b = ∇f(xk-1)ᵀpk-1. viết là Φ'(0) cho gọn
 >
 > Thay 1, 3 vào 2:
 >
@@ -450,11 +450,11 @@
 >
 > Thế rồi gỉa sử với một giá trị α khác, giúp đến được điểm mà tại đó độ dốc là -4, lúc này đã lớn  hơn -5, **báo hiệu tại đây hàm số đã bớt dốc rồi, nếu đi xa hơn nữa có thể không giảm được thêm bao nhiêu mà còn có nguy cơ vượt lố qua cực tiểu α***, nên dừng được rồi.
 >
-> ∇f(xk + αkpk)Tpk ≥ c2 ∇fkTpk
+> ∇f(xk + αkpk)ᵀpk ≥ c2 ∇fkTpk
 >
 > Và để phòng tránh trường hợp α thỏa điều kiện trên nhưng có thể bao gồm cả giá trị dương thể hiện hàm số đã bắt đầu dốc lên, đồng nghĩa đã đi quá lố α*, thì người ta** đưa thêm điều kiện để không chế không độ dốc trở nên lớn**. Đây là **strong curvature condition**.
 >
-> |∇f(xk + αkpk)Tpk| ≤ c2|∇fkTpk| 
+> |∇f(xk + αkpk)ᵀpk| ≤ c2|∇fkTpk| 
 >
 > Thì Armijo + Curvature condition = Wolfe
 >
