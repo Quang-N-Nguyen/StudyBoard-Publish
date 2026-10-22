@@ -463,7 +463,7 @@
 > qua nhưng lúc đó chưa hiểu rõ.
 >
 > Trong đó, ông nói "for a number x, the number ε|x| is the size of the last significant digit of x, so that
-> the next floating point number is ≈ x(1 + ε)" chính là ý nói:
+> the nexᵀ floating point number is ≈ x(1 + ε)" chính là ý nói:
 >
 > (Trong bối cảnh bài giảng của gs Allan thì ε chính là 2^-52)
 >
@@ -474,12 +474,12 @@
 > (khi trong ngữ cảnh khác, ví dụ nói 15 first significant digit thì
 > có thể phải hiểu là 15 chữ số đầu tiên của số gốc x) 
 >
-> "so that the next floating point number is ≈ x(1 + ε)"
+> "so that the nexᵀ floating point number is ≈ x(1 + ε)"
 >
 > Nếu ta có số x, thì bằng cách đổi cái bit thứ 52 trong Mantissa của nó, ta sẽ có hàng xóm floating
 > point gần nhất của nó sẽ ≈ x + x ε
 >
-> Là sao? Như đã hiểu, ở (I) ở trên nếu ta có x, thì next floating number của nó sẽ là fl(x) +/- 2^-52 2^e
+> Là sao? Như đã hiểu, ở (I) ở trên nếu ta có x, thì nexᵀ floating number của nó sẽ là fl(x) +/- 2^-52 2^e
 >
 > sau đó ở (II) ta tính gần đúng bằng fl(x) +/- 2^-52 * |x|
 >
@@ -487,11 +487,11 @@
 > báo biến x trong máy tính", tức là, mình sẽ tự hiểu x mang giá trị trong máy tính, chứ ko phải số thực
 > tuyệt đối. Nói cách khác, ví dụ mình gõ x = 3.14123123 thì bản thân nó đã là fl(x) rồi.
 >
-> Nên công thức mà thầy ghi "next floating point number is ≈ x(1 + ε)" 
+> Nên công thức mà thầy ghi "nexᵀ floating point number is ≈ x(1 + ε)" 
 >
 > thực chất chính là nói 
 >
-> "next floating point number fl(x) +/- 2^-52 * |x|"
+> "nexᵀ floating point number fl(x) +/- 2^-52 * |x|"
 
 <br>
 
@@ -758,7 +758,7 @@
 
 > [!NOTE]
 > Ta có thể hiểu đại khái như vầy trước, về hiện tượng gọi là
-> CANCELATION mà mình đã nghe qua trong MIT 18s096.
+> CANCELAᵀION mà mình đã nghe qua trong MIT 18s096.
 >
 > Như nãy vừa nói, với unit round off u = 2^-53 =1.11×10⁻¹⁶  thì bất cứ
 > con số nào trên máy tính thì ta chỉ có thể tin tưởng 15 chữ số đầu
