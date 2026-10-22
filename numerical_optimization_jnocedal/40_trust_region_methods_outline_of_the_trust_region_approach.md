@@ -25,7 +25,7 @@
 >
 > Đại khái là thế này: Quadratic approx của hàm f tại xk:
 >
-> f(xk + p) ≈ f(xk) + ∇f(xk)Tp + (1/2)pT∇^2f(xk)p
+> f(xk + p) ≈ f(xk) + ∇f(xk)ᵀp + (1/2)pᵀ∇^2f(xk)p
 >
 > Đặt vế phải là hàm mk(p) 
 >
@@ -33,17 +33,17 @@
 >
 > Và dựa vào đó ta xác định p là vector khiến minimize hàm bậc hai này.
 >
-> Viết lại mk(p) = fk + ∇fkTp + (1/2)pTHkp
+> Viết lại mk(p) = fk + ∇fkTp + (1/2)pᵀHkp
 >
 > ∇mk(p) = Hkp + ∇fk
 >
-> First order condition: ∇mk(p) = 0 ⇔ Hkp + ∇fk = 0 ⇔ p = - ∇fk(Hk)inv. Đây chính là Newton step
+> First order condition: ∇mk(p) = 0 ⇔ Hkp + ∇fk = 0 ⇔ p = - ∇fk(Hk)⁻¹. Đây chính là Newton step
 >
-> Nếu dùng Bk thay Hk, tức là một matrix xấp xỉ Hessian, thì ta sẽ có p = - ∇fk(Bk)inv, là quasi-newton step
+> Nếu dùng Bk thay Hk, tức là một matrix xấp xỉ Hessian, thì ta sẽ có p = - ∇fk(Bk)⁻¹, là quasi-newton step
 >
 > Còn nếu dùng (1/α) I thay cho Hk, tức là một hằng số nhân với Identity. Ta sẽ có:
 >
-> p = -∇fk (1/α I)inv  = -∇fk α = -α∇fk Thì đây chính là steepest gradient descent.
+> p = -∇fk (1/α I)⁻¹  = -∇fk α = -α∇fk Thì đây chính là steepest gradient descent.
 >
 > Do đó thật ra đều là xấp xỉ hàm objective bởi quadratic, chẳng qua là khác nhau cách chọn dùng matrix Hessian. Nếu chọn cách tính chính xác Hessian, thì ta có Newton step, với việc có được thông tin về curvature dẫn đường thì dĩ nhiên là rất tốt. Còn nếu thay bởi xấp xỉ của Hessian cho giảm nhẹ tính toán thì ta có quasi Newton method, vẫn nhanh tuy không bằng Newton method xịn. Cuối cùng là coi như không dùng thông tin curvature thì ta có steepest gradient descent.
 
@@ -134,26 +134,26 @@
 >
 > Nói rằng khi đi từ xk → xk + p, ta có:
 >
-> f(xk + p) = f(xk) + ∇f(xk)Tp + (1/2)pT ∇^2f(xk + tp)p for some t in (0,1) (4.1)
+> f(xk + p) = f(xk) + ∇f(xk)ᵀp + (1/2)pᵀ ∇^2f(xk + tp)p for some t in (0,1) (4.1)
 >
 > Rồi, từ cái này mình sẽ lập luận rằng, nếu t nhỏ trong phạm vi nào đó thì Hessian tại xk + tp có thể coi như bằng Hessian tại xk. Từ đó ta có quadratic approximation:
 >
-> f(xk + p) ≈ f(xk) + ∇f(xk)Tp + (1/2)pT ∇^2f(xk)p
+> f(xk + p) ≈ f(xk) + ∇f(xk)ᵀp + (1/2)pᵀ ∇^2f(xk)p
 >
 > Còn trong sách, tác giả nói nếu ta thay Hessian tại xk + tp bởi ma trận xấp xỉ Bk symmetric nào đó (mà nếu Bk là Hessian tại k thì ta có kết quả trên) thì ta sẽ có:
 >
-> f(xk + p) ≈ f(xk) + ∇f(xk)Tp + (1/2)pT Bk p 
+> f(xk + p) ≈ f(xk) + ∇f(xk)ᵀp + (1/2)pᵀ Bk p 
 >
 > Và vế phải là hàm sẽ dùng để approx hàm f
 >
-> mk(p) =  f(xk) + ∇f(xk)Tp + (1/2)pT Bk p (4.2)
+> mk(p) =  f(xk) + ∇f(xk)ᵀp + (1/2)pᵀ Bk p (4.2)
 >
 > Vậy thì sai khác giữa mk(p) và f(xk+p) sẽ là O(||p||^2) là vì sao?
 >
-> ⇨ Là vì f(xk + p) - mk(p) sẽ là (1/2)pT (Bk - H(xk+pt)) p. Và đây là O(||p||^2)
+> ⇨ Là vì f(xk + p) - mk(p) sẽ là (1/2)pᵀ (Bk - H(xk+pt)) p. Và đây là O(||p||^2)
 > vì nó có dạng Σ αi pi^2
 >
-> Thì là vì f(xk + p) - mk(p) = (1/2)pT(Bk - ∇^2f(xk+tp)) p
+> Thì là vì f(xk + p) - mk(p) = (1/2)pᵀ(Bk - ∇^2f(xk+tp)) p
 >
 > Rồi tại sao khi Bk chính xác là Hessian thì ta sẽ có sai khác O(||p^3||)???
 >
@@ -167,17 +167,17 @@
 >
 > minimize mk(p) subject to ||p|| ≤ Δk (4.3)
 >
-> Và vì ||.|| ở đây là L2 norm, nên về cơ bản là ta giải bài toán minimize quadratic function với constraint cũng quadratic vì ||p|| ≤ Δk thì tương đương pTp ≤ Δk^2)
+> Và vì ||.|| ở đây là L2 norm, nên về cơ bản là ta giải bài toán minimize quadratic function với constraint cũng quadratic vì ||p|| ≤ Δk thì tương đương pᵀp ≤ Δk^2)
 >
-> Rồi nếu Bk xác định dương và ||Bkinv gk|| ≤ Δk thì ta có solution là pk_B = - (Bk)inv gk Và trong trường hợp này pk_B gọi là full step.
+> Rồi nếu Bk xác định dương và ||Bk⁻¹ gk|| ≤ Δk thì ta có solution là pk_B = - (Bk)⁻¹ gk Và trong trường hợp này pk_B gọi là full step.
 >
-> ?? Vì sao?  Dễ thôi, vì minimizer của mk(p) dễ thấy sẽ là -(Bk)inv gk (y như công thức quasi Newton step đó). Và nếu như  ||(Bk)inv gk|| ≤ Δk (feasible) thì dĩ nhiên chính là thỏa constraint ⇨ là solution của bài toán. 
+> ?? Vì sao?  Dễ thôi, vì minimizer của mk(p) dễ thấy sẽ là -(Bk)⁻¹ gk (y như công thức quasi Newton step đó). Và nếu như  ||(Bk)⁻¹ gk|| ≤ Δk (feasible) thì dĩ nhiên chính là thỏa constraint ⇨ là solution của bài toán. 
 >
 > Và vì nó là solution, nên dùng nó để đi ngay từ xk đến đấy luôn, tức là vector dài nhiêu thì đi theo đó bấy nhiêu nên gọi là full step. 
 >
 > Còn vì sao phải xác định dương thì là bởi đây là điều kiện đủ bậc hai mình đã biết ở chương 2 
 >
-> Còn trong trường hợp khác (ko thỏa Bk xác định dương và ||Bkinv gk|| ≤ Δk) thì ta sẽ tìm cách giải bằng các ước lượng.
+> Còn trong trường hợp khác (ko thỏa Bk xác định dương và ||Bk⁻¹ gk|| ≤ Δk) thì ta sẽ tìm cách giải bằng các ước lượng.
 >
 > #4.1, 4.2, 4.3
 
@@ -186,7 +186,7 @@
 >
 > Phân tích của bạn rất sâu sắc và chi tiết, đặc biệt là phần giải thích về 'full step' và điều kiện xác định dương của Bk, cho thấy sự hiểu biết vững chắc về lý thuyết. Tuy nhiên, khi tính sai khác f(xk + p) - mk(p), hãy cẩn trọng hơn về dấu của các thành phần trong biểu thức; và lần tới cần hoàn thiện các phần "Quay lại sau" để đạt điểm tối đa.
 
-**🔗 See also:** [4.3 Iterative Solution Of The Subproblem](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-gal0ace)
+**🔗 See also:** [4.3 Iteraᵀive Soluᵀion Of The Subproblem](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-gal0ace)
 
 <br>
 
@@ -203,7 +203,7 @@
 >
 > Để rồi dựa vào đó, **line search sẽ xác định direction, và step size**. Còn **trust region thì làm ngược thứ tự lại, xác định step size trước** (chính xác hơn thì xác định phạm vi của step size trước, tức trust region), sau đó, mới giải bài toán tối ưu - minimize hàm quadratic với constraint là trong phạm vi trust region để **tìm direction**.
 >
-> Thế thì, nếu đánh giá về line search, ta sẽ thấy rằng, vấn đề của nó là, nó **dựa vào việc estimate hàm objective bởi quadratic (mk(p) = fk + gkTp + (1/2)pTAp**, để rồi với việc dùng **A = I hay Hessian tại k hay matrix xấp xỉ Hessian tại k, Bk, mà ta có steepest gradient descent, quasi-newton hay Newton method)**, để từ đó giải bài toán minimize hàm mk(p) để xác định direction
+> Thế thì, nếu đánh giá về line search, ta sẽ thấy rằng, vấn đề của nó là, nó **dựa vào việc estimate hàm objective bởi quadratic (mk(p) = fk + gkTp + (1/2)pᵀAp**, để rồi với việc dùng **A = I hay Hessian tại k hay matrix xấp xỉ Hessian tại k, Bk, mà ta có steepest gradient descent, quasi-newton hay Newton method)**, để từ đó giải bài toán minimize hàm mk(p) để xác định direction
 >
 > Thì điểm không ổn là theo Taylor theorem nói rằng, **trừ khi hàm f là hàm quadratic, còn không thì việc xấp xỉ này chỉ đúng trong một phạm vi nhỏ mà thôi**. Do đó, ngay cả khi dùng Newton method, thì nó chỉ tỏ ra hiệu quả khi xk đã tới gần x*, khiến cho việc ước lượng tại đó, và giải tìm minimizer của hàm mk nó diễn ra trong một phạm vi nhỏ, dẫn đến bảo đảm việc xấp xỉ là chấp nhận được, nên phương pháp phát huy hiệu quả, và dẫn đến tốc độ hội tụ bậc hai.
 >
@@ -271,7 +271,7 @@
 
 <a id="node-4oyhvi4"></a>
 
-###### Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pTBkp subject to ||pk|| ≤ Δk
+###### Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pᵀBkp subject to ||pk|| ≤ Δk
 
 <p align="center"><kbd><img src="assets/3grwxoweoot.png" width="80%"></kbd></p>
 
@@ -284,7 +284,7 @@
 >
 >
 >
-> Thì bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pTBkp subject to ||pk|| ≤ Δk
+> Thì bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pᵀBkp subject to ||pk|| ≤ Δk
 >
 >
 >
@@ -296,7 +296,7 @@
 >
 >
 >
-> minimize f + gTp + (1/2)pTBp subject to ||p|| ≤ Δ 
+> minimize f + gᵀp + (1/2)pᵀBp subject to ||p|| ≤ Δ 
 >
 >
 >
@@ -310,7 +310,7 @@
 >
 > #4.5, 4.6
 
-**🔗 See also:** [4.3 Iterative Solution Of The Subproblem](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-gal0ace) · [Proof of theorem 4.1: Lemma 4.7](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-k08q2ml) · [Convergence of algorithms based on nearly exact solution](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-tr8868m)
+**🔗 See also:** [4.3 Iteraᵀive Soluᵀion Of The Subproblem](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-gal0ace) · [Proof of theorem 4.1: Lemma 4.7](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-k08q2ml) · [Convergence of algorithms based on nearly exact solution](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-tr8868m)
 
 <br>
 
@@ -325,7 +325,7 @@
 > [!NOTE]
 > Theorem 4.1
 >
-> Rồi, theorem vừa nhắc đến, nó rằng p* là global solution của bài toán minimize m(p) = f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ KHI VÀ CHỈ KHI p* feasible và tồn tại λ ≥ 0 thỏa:
+> Rồi, theorem vừa nhắc đến, nó rằng p* là global solution của bài toán minimize m(p) = f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ KHI VÀ CHỈ KHI p* feasible và tồn tại λ ≥ 0 thỏa:
 >
 > (B + λI)p* = -g (4.8a)
 >
@@ -355,9 +355,9 @@
 >
 > Có chỗ dễ gây lú: 
 >
-> Ta đứng tại xk, và giải bài toán minimize mk(p) = fk + gkTp + (1/2)pTBkp s.t ||p|| ≤ Δ, để có mk(p*) là điểm thấp nhất trong phạm vi cho phép.
+> Ta đứng tại xk, và giải bài toán minimize mk(p) = fk + gkTp + (1/2)pᵀBkp s.t ||p|| ≤ Δ, để có mk(p*) là điểm thấp nhất trong phạm vi cho phép.
 >
-> Thì thật ra bản chất ý nghĩa của việc xấp xỉ f(xk + p) ≈ f(xk) + gkTp + (1/2)pT Hk p nói rằng khi đi từ xk → ra khỏi xk thì trong phạm vi nào đó thì ta có thể xem nó hành xử như hàm quadratic.
+> Thì thật ra bản chất ý nghĩa của việc xấp xỉ f(xk + p) ≈ f(xk) + gkTp + (1/2)pᵀ Hk p nói rằng khi đi từ xk → ra khỏi xk thì trong phạm vi nào đó thì ta có thể xem nó hành xử như hàm quadratic.
 >
 > và nếu mình tìm ra p* là cái giảm thiểu cái này, thì cũng chính là p* dẫn ta từ xk đi đến xk + p* là điểm thấp nhất
 >
@@ -369,9 +369,9 @@
 >
 > Nói rõ hơn: mình phải nhận thức rõ, hàm mk(p), vì là hàm của p, mà bản chất là gì, là x - xk, vì mk(p) vốn xuất thân từ xấp xỉ bậc 2, cũng là Taylor expansion của f xung quanh xk:
 >
-> f(x) ≈ f(xk) + ∇f(xk)T(x-xk) + (1/2)(x-xk)T ∇^2f(xk) (x-xk) 
+> f(x) ≈ f(xk) + ∇f(xk)ᵀ(x-xk) + (1/2)(x-xk)ᵀ ∇^2f(xk) (x-xk) 
 >
-> Rồi ta mới lấy vế phải, đặt p = x - xk, và đăt hàm mk(p) = f(xk) + ∇f(xk)Tp + (1/2)p ∇^2f(xk) p
+> Rồi ta mới lấy vế phải, đặt p = x - xk, và đăt hàm mk(p) = f(xk) + ∇f(xk)ᵀp + (1/2)p ∇^2f(xk) p
 >
 > Thì theo đó, sự tương ứng sẽ là: **Trong hệ quy chiếu x, ta đi từ xk → xk + p*, thì tương ứng với trong hệ quy chiếu p, thì ta đi từ p = 0, đến p = p***
 >
@@ -420,7 +420,7 @@
 > - Tham khảo khóa học MIT 18s096 khi diễn giải gradient.
 > - Phân tích sâu sắc mối quan hệ giữa gradient của mô hình bậc hai và gradient thực của hàm mục tiêu sau khi chuyển đổi tọa độ.
 
-**🔗 See also:** [4.3 Iterative Solution Of The Subproblem](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-gal0ace) · [The Hard Case: Khi q1Tg = 0](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-ty435bj) · [Proof of theorem 4.1: Lemma 4.7](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-k08q2ml) · [Proof of theorem 4.1: Chứng minh điều kiện đủ](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-csqy8ix) · [Convergence of algorithms based on nearly exact solution](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-tr8868m) · [Lemma 10.2: Trust-Region Solution](./103_algorithms_for_nonlinear_least_squares_problem.md#node-za3zjv6) · [Solving Least-Squares Subproblem](./103_algorithms_for_nonlinear_least_squares_problem.md#node-1z7vmo9)
+**🔗 See also:** [4.3 Iteraᵀive Soluᵀion Of The Subproblem](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-gal0ace) · [The Hard Case: Khi q1Tg = 0](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-ty435bj) · [Proof of theorem 4.1: Lemma 4.7](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-k08q2ml) · [Proof of theorem 4.1: Chứng minh điều kiện đủ](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-csqy8ix) · [Convergence of algorithms based on nearly exact solution](./43_trust_region_methods_iterative_solution_of_the_subproblem.md#node-tr8868m) · [Lemma 10.2: Trust-Region Solution](./103_algorithms_for_nonlinear_least_squares_problem.md#node-za3zjv6) · [Solving Least-Squares Subproblem](./103_algorithms_for_nonlinear_least_squares_problem.md#node-1z7vmo9)
 
 <br>
 
@@ -650,7 +650,7 @@
 >
 > Section 4.1 sẽ bàn về cách giải solution của bài toán 4.3 - tức là bài toán minimize over p mk(p) constraint ||p|| ≤ Δ (mà ý nghĩa là từ xk đi tới đâu trong phạm vi vòng tròn chop phép đề xuống được thấp nhất nếu coi như đang đi trên cái bát quadratic mk). Thì có vài cách để giải bài toán này, tùy theo là Bk có tính chất gì.
 >
-> (nhớ lại: mk(p) = fk + ∇fkTp + (1/2)pT Bk p. Và Bk có thể chọn là ma trận xấp xỉ Hessian tại k hoặc cũng có thể là Hessian tại k, và mỗi cách chọn nó sẽ cho ra phương pháp khác)
+> (nhớ lại: mk(p) = fk + ∇fkTp + (1/2)pᵀ Bk p. Và Bk có thể chọn là ma trận xấp xỉ Hessian tại k hoặc cũng có thể là Hessian tại k, và mỗi cách chọn nó sẽ cho ra phương pháp khác)
 >
 > Thì nếu Bk xác định dương thì ta sẽ dùng phương pháp "dogleg"
 >
