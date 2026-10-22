@@ -126,7 +126,7 @@
 > ta dùng case lí tưởng: objective là quadratic function và ta sẽ dùng exact line
 > search.
 >
-> Hàm f có dạng (1/2)xTQx - bTx với Q symmetric positive definite
+> Hàm f có dạng (1/2)xᵀQx - bᵀx với Q symmetric positive definite
 >
 > Gradient lúc này ∇f(x) = Qx - b thì đối với mình giờ dễ hiểu rồi (nếu cần dùng
 > cách làm holistically của mit 18s096 là ra ngay).
@@ -152,7 +152,7 @@
 >
 > = d/d(xk - αk∇fk) f(xk - αk∇fk) . d/dαk (xk - αk∇fk)
 >
-> = ∇f(xk - αk∇fk)T(-∇fk)
+> = ∇f(xk - αk∇fk)ᵀ(-∇fk)
 >
 > Vì sao d/d(xk - αk∇fk) f(xk - αk∇fk) = ∇f(xk - αk∇fk)
 >
@@ -172,11 +172,11 @@
 >
 > ⇨ dh = - ∇fkdαk ⇨ d/dαk h(αk) = - ∇fk
 >
-> = - ∇f(xk - αk∇fk)T(∇fk)
+> = - ∇f(xk - αk∇fk)ᵀ(∇fk)
 >
 > Mà ∇f(xk) = Qx - b
 >
-> ⇨ - ∇f(xk - αk∇fk)T(∇fk) = - ∇f(xk - αk∇fk)T(∇fk)
+> ⇨ - ∇f(xk - αk∇fk)ᵀ(∇fk) = - ∇f(xk - αk∇fk)ᵀ(∇fk)
 >
 > = - [Q(xk - αk∇fk) - b]T∇fk
 >
@@ -220,37 +220,37 @@
 >
 > Thế thì tại sao tác giả nói "the contour of f là các ellipsoids có trục trùng (lie along) các orthogonal eigenvectors của Q?
 >
-> Giải thích đại khái như sau: f, như đã nói, là quadratic function f(x) = (1/2)xTQx - bTx
+> Giải thích đại khái như sau: f, như đã nói, là quadratic function f(x) = (1/2)xᵀQx - bᵀx
 >
 > Và contour plot thì như đã biết, là level set, là tập các điểm mà hàm số đồng giá trị:
 >
-> c-level set = {x: f(x) = c}  = {x: (1/2)xTQx - bTx = c}
+> c-level set = {x: f(x) = c}  = {x: (1/2)xᵀQx - bᵀx = c}
 >
 > Thế thì nếu ta đặt y = x - x* ⇨ x = y + x*:
 >
-> Khi đó, (1/2)xTQx + bTx = c 
+> Khi đó, (1/2)xᵀQx + bᵀx = c 
 >
-> ⇔ (1/2) (y + x*)TQ(y + x*) - bT(y + x*) = c
+> ⇔ (1/2) (y + x*)ᵀQ(y + x*) - bᵀ(y + x*) = c
 >
-> ⇔ (1/2)(yTQ + x*TQ)(y + x*) - bTy + bTx* = c
+> ⇔ (1/2)(yTQ + x*TQ)(y + x*) - bᵀy + bᵀx* = c
 >
-> ⇔ (1/2)(yTQy + x*TQy + yTQx* + x*TQx*) - bTy - bTx* = c
+> ⇔ (1/2)(yTQy + x*TQy + yTQx* + x*TQx*) - bᵀy - bᵀx* = c
 >
-> ⇔ (1/2)yTQy + (1/2)x*TQy + (1/2)yTQx* + (1/2)x*TQx* - bTy - bTx* = c
+> ⇔ (1/2)yTQy + (1/2)x*TQy + (1/2)yTQx* + (1/2)x*TQx* - bᵀy - bᵀx* = c
 >
-> ⇔ (1/2)yTQy + x*TQy - bTy + (1/2)x*TQx* - bTx* = c
+> ⇔ (1/2)yTQy + x*TQy - bᵀy + (1/2)x*TQx* - bᵀx* = c
 >
-> Tới đây, QTx* - b = 0 do đây là gradient tại minimum và (1/2)x*TQx* - bTx* chỉ là constant, ta chuyển luôn sang vế phải, chuyển luôn 1/2 sang luôn, để rồi phương trình này trở thành:
+> Tới đây, Qᵀx* - b = 0 do đây là gradient tại minimum và (1/2)x*TQx* - bᵀx* chỉ là constant, ta chuyển luôn sang vế phải, chuyển luôn 1/2 sang luôn, để rồi phương trình này trở thành:
 >
 > **yTQy = c**
 >
 > Động tác đặt y = x - x* chỉ là dời trục tọa độ tịnh tiến mà thôi, để rồi level set bây giờ có dạng của một paraboloid tâm tại gốc tọa độ.
 >
-> Thế thì: xem xét yTQy = c, vì Q p.d nên phân tách nó thành VΛVT với S là orthogonal matrix các eigenvectors của Q, Λ là diagonal matrix các eigenvalues của Q
+> Thế thì: xem xét yTQy = c, vì Q p.d nên phân tách nó thành VΛVᵀ với S là orthogonal matrix các eigenvectors của Q, Λ là diagonal matrix các eigenvalues của Q
 >
-> Nên ta có yT V Λ VT y = c
+> Nên ta có yT V Λ Vᵀ y = c
 >
-> Xét VTy, nhớ lại kiến thức của phần nói về change of basis trong MIT 18.06:
+> Xét Vᵀy, nhớ lại kiến thức của phần nói về change of basis trong MIT 18.06:
 >
 > Khi xây dựng một matrix đại diện cho một phép biến đổi tuyến tính T(v), thì ta sẽ làm như sau, nói một cách ngắn gọn là: Thực hiện phép biến đổi đối với các basis v's của input T(v) và thể hiện nó dưới dạng linear combination của các output basis w's. Khi đó các hệ số sẽ là các cột của matrix biến đổi. Ví dụ biến đổi v1, để có T(v1), thể hiện nó bởi w's: α1w1 + α2w2 + .. Thì cột 1 của A sẽ là (α1, α2,...).
 >
@@ -263,9 +263,9 @@
 >
 > Và như vậy nếu như v's là standard basis, thì matrix A = VWinv = IWinv = Winv chính là matrix đổi tọa độ từ standard basis e's sang basis w's
 >
-> Thế thì, quay lại đây, xét VTy, cũng là Vinv y (V là orthogonal matrix nên VT = Vinv)
+> Thế thì, quay lại đây, xét Vᵀy, cũng là V⁻¹ y (V là orthogonal matrix nên Vᵀ = V⁻¹)
 >
-> thì VTy, thì nó chính chuyển tọa độ của y từ standard basis sang basis v's, tức các eigen basis của Q. Và về khía cạnh hình học, nó chỉ là việc ta xoay trục tọa độ thẳng góc lại với các eigenvector của Q mà thôi. Và gọi z = VTy, thì z chỉ là tọa độ của cùng vector y nhưng mà là khi trục tọa độ thẳng góc với eigenvectors của Q.
+> thì Vᵀy, thì nó chính chuyển tọa độ của y từ standard basis sang basis v's, tức các eigen basis của Q. Và về khía cạnh hình học, nó chỉ là việc ta xoay trục tọa độ thẳng góc lại với các eigenvector của Q mà thôi. Và gọi z = Vᵀy, thì z chỉ là tọa độ của cùng vector y nhưng mà là khi trục tọa độ thẳng góc với eigenvectors của Q.
 >
 > Thế thì khi đó yTQy = c là phương trình của level set trong hệ trục standard thì zTΛz = c là phương trình của level set trong hệ trục eigenbasis của Q, và ta sẽ thấy zTΛz = c ⇔ z1^2 λ1 + z2^2 λ2 + .. = c. Đây chính là phương trình của một ellipsoids.
 >
@@ -312,23 +312,23 @@
 <p align="center"><kbd><img src="assets/c9ql3edobn.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Tiếp theo đại khái là, tác giả cho rằng ta sẽ dùng một công cụ: weighted norm, có công thức là: ||x||_Q = xTQx. Khi đó, dùng thêm quan hệ Qx* = b (đây là ∇f(x*) = 0) ta sẽ có:
+> Tiếp theo đại khái là, tác giả cho rằng ta sẽ dùng một công cụ: weighted norm, có công thức là: ||x||_Q = xᵀQx. Khi đó, dùng thêm quan hệ Qx* = b (đây là ∇f(x*) = 0) ta sẽ có:
 >
 > (1/2)||x-x*||_Q = f(x) - f(x*).
 >
 > Là sao ta? 
 >
-> → Theo định nghĩa của weighted norm ở trên: ||x - x*||^2_Q = (x - x*)TQ(x - x*)
+> → Theo định nghĩa của weighted norm ở trên: ||x - x*||^2_Q = (x - x*)ᵀQ(x - x*)
 >
-> = (xT - x*T)Q(x - x*) = (xTQ - x*QT)(x - x*) = xTQx - x*QTx - xTQx* - x*QTx*
+> = (xᵀ - x*T)Q(x - x*) = (xᵀQ - x*Qᵀ)(x - x*) = xᵀQx - x*Qᵀx - xᵀQx* - x*Qᵀx*
 >
-> = xTQx - xTQx* - x*QTx  - x*QTx*
+> = xᵀQx - xᵀQx* - x*Qᵀx  - x*Qᵀx*
 >
-> = xTQx - xTb - x*QTx  - bTx*  (dùng Qx* = QTx* = b)
+> = xᵀQx - xᵀb - x*Qᵀx  - bᵀx*  (dùng Qx* = Qᵀx* = b)
 >
-> = xTQx - bTx - x*QTx  - bTx*
+> = xᵀQx - bᵀx - x*Qᵀx  - bᵀx*
 >
-> = f(x) - f(x*) (vì f(x) = xTQx - bTx)
+> = f(x) - f(x*) (vì f(x) = xᵀQx - bᵀx)
 >
 > Rồi, ở trên ta đã kết quả (công thức 3.26):
 >
@@ -482,7 +482,7 @@
 > [!NOTE]
 > Ta sẽ phân tích qua convergence rate của Newton method 
 >
-> Như đã biết, Newton direction sẽ có công thức là pk_N = - (∇^2f_k)inv ∇f_k
+> Như đã biết, Newton direction sẽ có công thức là pk_N = - (∇^2f_k)⁻¹ ∇f_k
 >
 > (Tại sao lại có công thức này thì đến nay mình đã dễ hiểu rồi, không cần nói lại, có thể ôn nhanh: đó là vì với pp này ta sẽ (đứng tại xk), approx hàm f bởi quadratic approximation (khai triển Taylor bậc hai của f). Khi đó, có thể tìm minimum của hàm approx này bằng cách cho gradient  = 0, và nó sẽ cho ta hệ tuyến tính ∇^2 f_k pk_N = - ∇f_k
 >
@@ -495,13 +495,13 @@
 >
 > Directional derivative theo hướng pk_N:
 >
-> = ∇f_k T pk_N = ∇f_k T (- (∇^2f_k)inv ∇f_k) = - ∇f_k T (∇^2f_k)inv ∇f_k
+> = ∇f_k T pk_N = ∇f_k T (- (∇^2f_k)⁻¹ ∇f_k) = - ∇f_k T (∇^2f_k)⁻¹ ∇f_k
 >
 > Khi Hessian không positive definite ⇨ mọi eigenvalue chưa chắc đã dương thì ⇨ mọi eigenvalue của Hessian inverse cũng vậy ⇨ Hessian inverse cũng sẽ không positive defite
 >
-> ⇨ quadratic form ∇f_k T (∇^2f_k)inv ∇f_k sẽ không chắc luôn dương
+> ⇨ quadratic form ∇f_k T (∇^2f_k)⁻¹ ∇f_k sẽ không chắc luôn dương
 >
-> ⇨ - ∇f_k T (∇^2f_k)inv ∇f_k sẽ không chắc luôn âm
+> ⇨ - ∇f_k T (∇^2f_k)⁻¹ ∇f_k sẽ không chắc luôn âm
 >
 > ⇨ chưa chắc đi theo hướng pk_N đã giảm f 
 >
@@ -569,25 +569,25 @@
 > Từ đó bài toán đặt ra là maximize ||Ax|| / ||x|| mà cái này ko âm,
 > nên nó tương đương bài toán maximize ||Ax||^2 / ||x||^2, tức 
 >
-> (Ax)T(Ax) / xTx = xTATAx / xTx 
+> (Ax)ᵀ(Ax) / xᵀx = xᵀAᵀAx / xᵀx 
 >
-> = xTQ Λ QTx / xTx = Σi (QTx)i^2 λ(ATA)i
+> = xᵀQ Λ Qᵀx / xᵀx = Σi (Qᵀx)i^2 λ(AᵀA)i
 >
-> Và cái này ≤ Σi (QTx)i^2 λ(ATA)max = λ(ATA)max Σi (QTx)i^2 
+> Và cái này ≤ Σi (Qᵀx)i^2 λ(AᵀA)max = λ(AᵀA)max Σi (Qᵀx)i^2 
 >
-> = λ(ATA)max ||QTx||^2 = λ(ATA)max ||x||^2 = λ(ATA)max xTx
+> = λ(AᵀA)max ||Qᵀx||^2 = λ(AᵀA)max ||x||^2 = λ(AᵀA)max xᵀx
 >
-> Vậy (Ax)T(Ax) / xTx ≤ λ(ATA)max xTx / xTx = λ(ATA)max
+> Vậy (Ax)ᵀ(Ax) / xᵀx ≤ λ(AᵀA)max xᵀx / xᵀx = λ(AᵀA)max
 >
-> ⇔ ||Ax||^2 / ||x||^2 ≤ λ(ATA)max
+> ⇔ ||Ax||^2 / ||x||^2 ≤ λ(AᵀA)max
 >
-> ⇨ ||A|| / ||x|| ≤ √λ(ATA)max
+> ⇨ ||A|| / ||x|| ≤ √λ(AᵀA)max
 >
 > Và vì định nghĩa ||A|| = max x ||Ax|| / ||x|| nên ||A||  ≥ ||Ax|| / ||x|| ∀x
 >
 > ⇔ ||A||||x|| ≥ ||Ax||. Chính là một inequality quan trọng.
 >
-> Vậy áp dụng ở đây ||Au|| ≤ ||A|| ||u|| = λ(ATA)max ||u||
+> Vậy áp dụng ở đây ||Au|| ≤ ||A|| ||u|| = λ(AᵀA)max ||u||
 
 <br>
 
@@ -602,25 +602,25 @@
 >
 > Đầu tiên: xk + pkN - x* = xk - x* + pkN
 >
-> Với pkN = - (∇^2fk)inv ∇fk
+> Với pkN = - (∇^2fk)⁻¹ ∇fk
 >
-> ∴ = xk - x* - (∇^2fk)inv ∇fk
+> ∴ = xk - x* - (∇^2fk)⁻¹ ∇fk
 >
-> ∴ = I (xk - x*) - (∇^2f_k)inv ∇fk
+> ∴ = I (xk - x*) - (∇^2f_k)⁻¹ ∇fk
 >
-> = ∇^2fk (∇^2fk)inv (xk - x*) - (∇^2fk)inv ∇fk 
+> = ∇^2fk (∇^2fk)⁻¹ (xk - x*) - (∇^2fk)⁻¹ ∇fk 
 >
-> = ∇^2fk (∇^2fk)inv (xk - x*) - (∇^2fk)inv ∇fk + (∇^2fk)inv 0
+> = ∇^2fk (∇^2fk)⁻¹ (xk - x*) - (∇^2fk)⁻¹ ∇fk + (∇^2fk)⁻¹ 0
 >
-> = ∇^2fk (∇^2fk)inv (xk - x*) - (∇^2fk)inv ∇fk + (∇^2fk)inv ∇f(x*)
+> = ∇^2fk (∇^2fk)⁻¹ (xk - x*) - (∇^2fk)⁻¹ ∇fk + (∇^2fk)⁻¹ ∇f(x*)
 >
 > (Do gradient tại x* = 0, ∇f(x*) = 0)
 >
-> = ∇^2fk (∇^2fk)inv (xk - x*) - (∇^2fk)inv (∇fk - ∇f*)
+> = ∇^2fk (∇^2fk)⁻¹ (xk - x*) - (∇^2fk)⁻¹ (∇fk - ∇f*)
 >
-> =  (∇^2fk)inv ∇^2fk (xk - x*) - (∇^2fk)inv (∇fk - ∇f*)
+> =  (∇^2fk)⁻¹ ∇^2fk (xk - x*) - (∇^2fk)⁻¹ (∇fk - ∇f*)
 >
-> = (∇^2fk)inv [∇^2fk (xk - x*) - (∇fk - ∇f*)] → đây là 3.31
+> = (∇^2fk)⁻¹ [∇^2fk (xk - x*) - (∇fk - ∇f*)] → đây là 3.31
 >
 > ----
 >
@@ -713,63 +713,63 @@
 >
 > Thế thì vì tính liên tục của Hessian nên Hessian inverse cũng liên tục.
 >
-> Và có nghĩa là khi x tới gần x* thì Hinv tại x cũng → Hinv tại x*.
+> Và có nghĩa là khi x tới gần x* thì H⁻¹ tại x cũng → H⁻¹ tại x*.
 >
-> Dẫn tới norm của Hinv tại x cũng → norm của Hinv tại x*
+> Dẫn tới norm của H⁻¹ tại x cũng → norm của H⁻¹ tại x*
 >
-> Do đó **phải tồn tại một khoảng cách giữa x và x* sao cho chênh lệch giữa Hinv(x) và Hinv(x*) ko quá lớn**. Và độ lớn của chênh lệch ở đây đo bằng norm tức ||Hinv(x) - Hinv(x*)||
+> Do đó **phải tồn tại một khoảng cách giữa x và x* sao cho chênh lệch giữa H⁻¹(x) và H⁻¹(x*) ko quá lớn**. Và độ lớn của chênh lệch ở đây đo bằng norm tức ||H⁻¹(x) - H⁻¹(x*)||
 >
 > Vậy phát biểu lại, đó là:
 >
-> "Phải tồn tại một bán kính r để khi x đủ gần x* (trong bán kính này thì) ||Hinv(x) - Hinv(x*)|| không quá lớn"
+> "Phải tồn tại một bán kính r để khi x đủ gần x* (trong bán kính này thì) ||H⁻¹(x) - H⁻¹(x*)|| không quá lớn"
 >
 > Và để cụ thể hóa cái chữ "không quá lớn", ta chọn nó như sau:
 >
-> Không quá lớn = ||Hinv(x) - Hinv(x*)|| ≤ ||Hinv(x)|| (2)
+> Không quá lớn = ||H⁻¹(x) - H⁻¹(x*)|| ≤ ||H⁻¹(x)|| (2)
 >
 > Thế thì ta xét
 >
-> Hinv(x) = Hinv(x) - Hinv(x*) + Hinv(x*)
+> H⁻¹(x) = H⁻¹(x) - H⁻¹(x*) + H⁻¹(x*)
 >
-> ⇨ ||Hinv(x)|| = ||Hinv(x) - Hinv(x*) + Hinv(x*)||
+> ⇨ ||H⁻¹(x)|| = ||H⁻¹(x) - H⁻¹(x*) + H⁻¹(x*)||
 >
-> ≤ ||Hinv(x) - Hinv(x*)||  + ||Hinv(x*)|| (áp dụng inequality tam giác)
+> ≤ ||H⁻¹(x) - H⁻¹(x*)||  + ||H⁻¹(x*)|| (áp dụng inequality tam giác)
 >
-> và áp dụng tiếp cái (2):  ||Hinv(x) - Hinv(x*)|| ≤ ||Hinv(x)||
+> và áp dụng tiếp cái (2):  ||H⁻¹(x) - H⁻¹(x*)|| ≤ ||H⁻¹(x)||
 >
-> ta có Hinv(x) ≤ ||Hinv(x*)|| + ||Hinv(x*)|| = 2||Hinv(x*)||
+> ta có H⁻¹(x) ≤ ||H⁻¹(x*)|| + ||H⁻¹(x*)|| = 2||H⁻¹(x*)||
 >
-> Như vậy ta hiểu chỗ này tại sao sách nói rằng **vì Hessian tại x* khả nghịch, nên tồn tại bán kính r dương sao cho khi xk đủ gần x* trong bán kính đó (tức là ||xk - x*|| ≤ r) thì ta sẽ có Hinv(x) ≤ 2||Hinv(x*)||**
+> Như vậy ta hiểu chỗ này tại sao sách nói rằng **vì Hessian tại x* khả nghịch, nên tồn tại bán kính r dương sao cho khi xk đủ gần x* trong bán kính đó (tức là ||xk - x*|| ≤ r) thì ta sẽ có H⁻¹(x) ≤ 2||H⁻¹(x*)||**
 >
 > ====
 >
-> Vậy xét ||xk + pkN - x*|| = ||xk - x* - ∇^2fk_inv ∇fk||
+> Vậy xét ||xk + pkN - x*|| = ||xk - x* - ∇^2fk⁻¹ ∇fk||
 >
-> Nhờ 3.31 ta đã có xk + pkN - x* = (∇^2fk)inv[∇^2fk (xk - x*) - (∇fk - ∇f*)
+> Nhờ 3.31 ta đã có xk + pkN - x* = (∇^2fk)⁻¹[∇^2fk (xk - x*) - (∇fk - ∇f*)
 >
-> ⇨ ||xk + pkN - x*|| = || (∇^2fk)inv[∇^2fk (xk - x*) - (∇fk - ∇f*)] ||
+> ⇨ ||xk + pkN - x*|| = || (∇^2fk)⁻¹[∇^2fk (xk - x*) - (∇fk - ∇f*)] ||
 >
 > và áp dùng ||Au|| ≤ ||A|| ||u||
 >
-> Thì vế phải ≤  || (∇^2fk)inv|| ||[∇^2fk (xk - x*) - (∇fk - ∇f*)] || (
+> Thì vế phải ≤  || (∇^2fk)⁻¹|| ||[∇^2fk (xk - x*) - (∇fk - ∇f*)] || (
 >
 > Nhờ tiếp 3.32: ||[∇^2fk (xk - x*) - (∇fk - ∇f*)] || ≤ (1/2)L ||xk - x*||^2
 >
-> Nên vế phải ở trên tiếp tục ≤ ||(∇^2fk)inv|| (1/2)L ||xk - x*||^2
+> Nên vế phải ở trên tiếp tục ≤ ||(∇^2fk)⁻¹|| (1/2)L ||xk - x*||^2
 >
-> Nhờ tiếp kết quả trên Hinv(x) ≤ 2||Hinv(x*)||, cũng là ||(∇^2fk)inv|| ≤ 2 ||(∇^2f(x*))inv||
+> Nhờ tiếp kết quả trên H⁻¹(x) ≤ 2||H⁻¹(x*)||, cũng là ||(∇^2fk)⁻¹|| ≤ 2 ||(∇^2f(x*))⁻¹||
 >
-> ⇨ vế phải tiếp tục ≤ 2 ||(∇^2f(x*))inv|| (1/2)L ||xk - x*||^2
+> ⇨ vế phải tiếp tục ≤ 2 ||(∇^2f(x*))⁻¹|| (1/2)L ||xk - x*||^2
 >
-> = L ||(∇^2f(x*))inv|| ||xk - x*||^2
+> = L ||(∇^2f(x*))⁻¹|| ||xk - x*||^2
 >
-> Đặt L~ = L ||(∇^2f(x*))inv||
+> Đặt L~ = L ||(∇^2f(x*))⁻¹||
 >
 > ∴ = L~ ||xk - x*||^2
 >
 > Vậy cuối cùng ta có: 
 >
-> ||xk - x* - (∇^2fk)inv ∇fk|| ≤ L~ ||xk - x*||^2
+> ||xk - x* - (∇^2fk)⁻¹ ∇fk|| ≤ L~ ||xk - x*||^2
 >
 > cũng chính là: ||xk + pkN - x*|| ≤ L~ ||xk - x*||^2
 >
@@ -863,25 +863,25 @@
 >
 > = L || pkN ||^2 / 2 
 >
-> = L || - ∇^2fk_inv ∇fk ||^2 / 2 
+> = L || - ∇^2fk⁻¹ ∇fk ||^2 / 2 
 >
-> = L || ∇^2fk_inv ∇fk ||^2 / 2 
+> = L || ∇^2fk⁻¹ ∇fk ||^2 / 2 
 >
-> ≤ L || ∇^2fk_inv ||^2 || ∇fk ||^2 / 2  (Dùng ||Au|| ≤ ||A|| ||u||)
+> ≤ L || ∇^2fk⁻¹ ||^2 || ∇fk ||^2 / 2  (Dùng ||Au|| ≤ ||A|| ||u||)
 >
-> Áp dụng tiếp cái này H_inv(x) ≤ 2||H_inv(x*)|| (xem note liền trước)
+> Áp dụng tiếp cái này H⁻¹(x) ≤ 2||H⁻¹(x*)|| (xem note liền trước)
 >
-> ⇨ L || ∇^2fk_inv ||^2 || ∇fk ||^2 / 2 ≤ L 2^2 || ∇^2f(x*)_inv ||^2 || ∇fk ||^2 / 2
+> ⇨ L || ∇^2fk⁻¹ ||^2 || ∇fk ||^2 / 2 ≤ L 2^2 || ∇^2f(x*)⁻¹ ||^2 || ∇fk ||^2 / 2
 >
-> = || ∇^2f(x*)_inv || || ∇fk ||^2
+> = || ∇^2f(x*)⁻¹ || || ∇fk ||^2
 >
-> Tóm lại ta có: **||∇f(xk+1)|| ≤ 2L || ∇^2f(x*)_inv || || ∇fk ||^2**
+> Tóm lại ta có: **||∇f(xk+1)|| ≤ 2L || ∇^2f(x*)⁻¹ || || ∇fk ||^2**
 >
-> CHO THẤY GRADIENT → 0 RẤT NHANH (QUADRATICALLY)
+> CHO THẤY GRADIENT → 0 RẤT NHANH (QUADRAᵀICALLY)
 >
 > Nếu chưa hiểu thì vì đại khái là vầy:
 >
-> ví dụ cho 2L || ∇^2f(x*)_inv || là constant = 10, 
+> ví dụ cho 2L || ∇^2f(x*)⁻¹ || là constant = 10, 
 >
 > ||∇f0|| = 0.01 thì ||∇f1|| ≤ 10 × 0.01^2 = 0.001 
 >
@@ -913,7 +913,7 @@
 <p align="center"><kbd><img src="assets/fpbkw5xha9f.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Chuyển qua  phân tích cho phương pháp quasi-Newton. Như đã biết, search direction sẽ có dạng: pk = - (Bk)inv ∇fk
+> Chuyển qua  phân tích cho phương pháp quasi-Newton. Như đã biết, search direction sẽ có dạng: pk = - (Bk)⁻¹ ∇fk
 >
 > Trong đó Bk sẽ là matrix symmetric, positive definite matrix, được update tại mỗi iteration.
 > Nhớ lại chút xíu về ý tưởng chủ đạo của Quasi-Newton method: Nó sẽ tính toán một matrix Bk với mục đích là xấp xỉ matrix Hessian, và từ đó tính search direction. Mục đích là, **giảm chi phí tính toán khi thay vì phải tính Hessian, ta có cách khác để dùng một bản ước lượng của Hessian**. Mục đích dĩ nhiên là để **hưởng lợi được những tính chất tốt đẹp của Newton method như tốc độ hội tụ nhanh**.
@@ -1061,7 +1061,7 @@
 <p align="center"><kbd><img src="assets/hx3mrgow5vl.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Theorem này nói: với xk+1 = xk + pk, và pk = -(Bk)inv ∇fk của quasi Newton method, và xk hội tụ về x* có gradient = 0 và Hessian PD.
+> Theorem này nói: với xk+1 = xk + pk, và pk = -(Bk)⁻¹ ∇fk của quasi Newton method, và xk hội tụ về x* có gradient = 0 và Hessian PD.
 >
 > Thì **xk sẽ hội tụ siêu tuyến tính khi và chỉ khi ta có cái limit 3.36**
 >
