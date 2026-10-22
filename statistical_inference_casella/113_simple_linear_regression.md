@@ -1,6 +1,6 @@
 # 11.3 Simple Linear Regression
 
-📊 **Progress:** `9` Notes | `19` Screenshots | `9` AI Reviews
+📊 **Progress:** `12` Notes | `22` Screenshots | `12` AI Reviews
 
 ---
 <a id="node-m4lr6nj"></a>
@@ -59,6 +59,8 @@
 >
 > **💡 Deeper notes**
 > - Trong thống kê cổ điển (fixed design), x_i thường được xem là các giá trị cố định được chọn trước thay vì biến ngẫu nhiên. Khi chuyển sang góc nhìn tổng quát hơn (random design như trong Bishop), ta viết rõ là kỳ vọng có điều kiện E[Y|X=x].
+
+**🔗 See also:** [Best Linear Unbiased Estimators](#node-l6jbbvb)
 
 <br>
 
@@ -547,6 +549,325 @@
 <p align="center"><kbd><img src="assets/7yzz0mpqg7f.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/oyl4bmgxic.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Đại khái là, qua phần này, ta sẽ tiếp tục biện minh cho giá trị estimate cho α và β với công thức 11.3.8 theo một mô hình khác. còn nhớ, phần trước ta đã thấy đó chính là giá trị của c, d giúp minimize SSE - tạo ra đường thẳng đi sát nhất với data theo tiêu chí vertical distance. Và còn nhớ tác giả nói, kết quả đó hoàn toàn chưa phải là một statistical inference, vì ta chưa dựa trên giả định gì về phân phối của data.
+>
+>
+>
+> Còn ở đây, đại ý là ta sẽ làm statistical inference thật sự, và cũng cho ra công thức đó.
+>
+>
+>
+> Thế thì giả định về phân phối của data như sau, mà theo tác giả là một giả định rất khiêm tốn:
+>
+>
+>
+> Đối chiếu với một bài toán point estimation điển hình, nơi đề bài cho:
+>
+>
+>
+> Các random varible X1, X2,....Xn \~ n(μ, σ²) iid, và quan sát được giá trị của chúng: x1,x2,...xn. Thì đây chính là nói ta giả định x1,x2,...xn là giá trị quan sát được của đám biến ngẫu nhiên X1,...Xn độc lập và có cùng phân phối là n(μ, σ²)
+>
+>
+>
+> Thì ở đây, đề bài là ta có:
+>
+>
+>
+> Random variable Y1, Y2,....Yn, có giá trị quan sát y1, y2,...yn.
+>
+>
+>
+> Và không như giả định X1,X2,....\~ n(μ, σ²), ở đây ta chỉ giả định E\[Yi\] = α + βxi, và Y1,....Yn uncorrelate và Var(Yi) = σ² ∀i.
+>
+>
+>
+> Nói vậy để thấy, giả định của ta rất khiêm tốn, khi ko giả định dạng của phân phối, mà chỉ là dạng của hai moment đầu tiên.
+>
+>
+>
+> Và cái giả định này hoàn toàn có thể thể hiện bởi kiểu khác:
+>
+>
+>
+> y1,...yn là giá trị quan sát của Y1,...Yn với 
+>
+>
+>
+> Yi = α + βxi + εi, εi uncorrelate
+>
+>
+>
+> và E\[εi\] = 0, Var(εi) = σ²
+>
+>
+>
+> Thêm nữa, trong mô hình (giả định) này, x1,x2,...xn không phải là giá trị quan sát của biến ngẫu nhiên X gì hết, nó chỉ là giá trị fix có sẵn. Còn y1,y2,...mới là observed value của biến ngẫu nhiên Y
+>
+>
+>
+>
+>
+> ---
+>
+>
+>
+> Dừng lại tí xíu, có thể sẽ lú, vì hình như mình đã gặp cái này rồi, chẳng phải là ở phần đầu khi nói về simple linear regression đã nói rồi sao?
+>
+>
+>
+> Thì đúng là như vậy, đây chính là nhắc lại chuyện đó: có nghĩa là trong simple linear regression, ta giả định regression của Y on X, tức E\[Y|X=x\] là hàm tuyến tính theo x và theo tham số: E\[Y|x\] = α + βx, bên cạnh đó còn giả định ràng Var(Y|x) là σ², cố định, không phụ thuộc x. Nhưng ở đây, có thêm giả định: y1, y2,...là gía trị quan sát của Y1, Y2,....và đám này uncorrelate.
+>
+>
+>
+> Nói cách khác, simple linear regression vốn đã giả định Y = α + βx + ε với E\[ε\] = 0, Var(ε) = σ². Thì qua đây, ta CÓ THÊM GIẢ ĐỊNH NỮA: y1,y2,...là gía trị quan sát của Y1, Y2,....và đám Yi này uncorrelate.
+>
+>
+>
+> ---
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và chính xác bản chất thống kê của mô hình: phân biệt rõ giữa bình phương tối thiểu thuần túy (hình học) và suy diễn thống kê, hiểu đúng vai trò của các biến $x_i$ (giá trị cố định) so với $Y_i$ (biến ngẫu nhiên), cũng như nhận thức sâu sắc việc mô hình Gauss-Markov chỉ yêu cầu hai moment đầu tiên mà không cần giả định phân phối cụ thể.
+>
+> **✓ Strengths**
+> - Phân biệt rất rõ ràng giữa tối thiểu hóa SSE thuần túy hình học ở phần trước và mô hình suy diễn thống kê ở phần này.
+> - Hiểu chính xác rằng $x_1, \dots, x_n$ là các giá trị cố định (fixed design) được chọn trước chứ không phải biến ngẫu nhiên.
+> - Nắm được tính 'khiêm tốn' nhưng mạnh mẽ của giả định Gauss-Markov: chỉ cần giả định về hai moment đầu (kỳ vọng tuyến tính, phương sai không đổi và không tương quan) mà không cần phân phối chuẩn.
+>
+> **💡 Deeper notes**
+> - Trong thiết kế thực nghiệm với $x_i$ cố định (fixed-X design), việc các sai số $\epsilon_i$ không tương quan dẫn trực tiếp đến các $Y_i$ không tương quan; nếu mở rộng sang mô hình $X$ ngẫu nhiên (random design), ta thường cần điều kiện kỳ vọng có điều kiện $E[\epsilon|X]=0$ và các cặp $(X_i, Y_i)$ độc lập.
+
+**🔗 See also:** [Simple Linear Regression](#node-0xbdf1h)
+
+<br>
+
+<a id="node-9e061wl"></a>
+
+###### Linear Unbiased Estimator for Slope
+
+<p align="center"><kbd><img src="assets/vm8bd7fm619.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/g563p68lzyh.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Tiếp, đại khái là ta sẽ học một class / lớp / loại estimator gọi là estimator tuyến tính (linear estimator). được định nghĩa là estimator (của β) có dạng:
+>
+>
+>
+> W(𝐘) = Σi di Yi
+>
+>
+>
+> vì sao ghi W(𝐘), vì estimator về bản chất chỉ là hàm số của sample, sample ở đây chính là Y1,...Yn, y như tìm point estimator của θ trong bài toán point estimator là đi tìm hàm W(𝐗), để khi lắp observed value 𝐱 vào, 𝐖(𝐱) sẽ có một point estimate cho θ.
+>
+>
+>
+> Rồi, ta sẽ lại chỉ giới hạn tìm kiếm trong những unbiased estimator. Nhớ lại trong chương 7, nếu E\[W(𝐗)\] = θ, thì đó gọi là unbiased estimator của θ.
+>
+>
+>
+> Vậy thì ở đây, unbised linear estimator, chính là W(𝐘) có: E\[W(𝐘)\] = β với mọi giá trị của β và α
+>
+>
+>
+> ⇔ E\[Σi di Yi\] = β
+>
+>
+>
+> ⇔ Σi di EYi = β
+>
+>
+>
+> ⇔ Σi di (α + βxi) = β
+>
+>
+>
+> ⇔ Σi di α + Σi di βxi = β
+>
+>
+>
+> ⇔ α Σi di  + β Σi di xi = β
+>
+>
+>
+> Và như vậy Σi di phải bằng 0 và Σi di xi phải bằng 1 để E\[W(𝐘)\] = β với mọi giá trị của β và α
+>
+>
+>
+> Do đó công thức của unbiased linear estimator là W(𝐘) = Σi di Yi, Σi di = 0 và Σi di xi = 1
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất tốt, trình bày chuẩn xác và tường minh từng bước biến đổi đại số cũng như liên kết rất tốt với bản chất của ước lượng điểm đã học ở chương trước.
+>
+> **✓ Strengths**
+> - Hiểu rất rõ bản chất của một estimator là hàm của mẫu số liệu và liên hệ chính xác với khái niệm W(X) ở chương ước lượng điểm.
+> - Tự diễn giải và triển khai đầy đủ, mạch lạc từng bước biến đổi đại số từ kỳ vọng đến hệ điều kiện của d_i.
+>
+> **💡 Deeper notes**
+> - Trong mô hình hồi quy tuyến tính cổ điển, các giá trị x_i được xem là các hằng số đã biết (fixed constants), tương tự như các hệ số d_i, do đó chúng không bị ảnh hưởng bởi toán tử lấy kỳ vọng E.
+
+<br>
+
+<a id="node-xyldl8i"></a>
+
+###### Best Linear Unbiased Estimator (BLUE)
+
+<p align="center"><kbd><img src="assets/chu05f305s4.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Active recall tí xíu về best unbiased estimator:
+>
+>
+>
+> Bài toán point estimation đại khái là có đề bài như sau:
+>
+>
+>
+> Cho random sample 𝐗 = X1,...Xn có giá trị quan sát được là 𝐱 = (x1,...xn) iid \~ f(x|θ), ví dụ n(μ, 1). Nhiệm vụ là đi tìm good estimator của θ, tức μ.
+>
+>
+>
+> Point estimator của θ được định nghĩa là: hàm số của sample W(𝐗), để khi lắp 𝐱 vào, ta có point estimate cho θ
+>
+>
+>
+> W(𝐱) = argmax\_θ L(θ|𝐱)
+>
+>
+>
+> W(𝐗) = argmax\_θ L(θ|𝐗)
+>
+>
+>
+> Bias(W) = E\[W(𝐗)\] - θ
+>
+>
+>
+> Bias(W) = 0 ⇔ E\_θ\[W(𝐗)\] = θ, thì W(𝐗) được gọi là unbiased estimator của θ.
+>
+>
+>
+> Square Loss L(W(𝐗),θ) = \[W(𝐗) - θ\]²
+>
+>
+>
+> MSE: E\_θ\[L(W(𝐗),θ)\] = E\_θ\[(W(𝐗) - θ)²\]
+>
+>
+>
+> Xét (W(𝐗) - θ)² = W(𝐗)² - 2W(𝐗)θ + θ²
+>
+>
+>
+> E\_θ\[(W(𝐗) - θ)²\] = E\_θ\[W(𝐗)² - 2W(𝐗)θ + θ²\]
+>
+>
+>
+> = E\_θ\[W(𝐗)²\] - E\_θ\[2W(𝐗)θ\] + E\_θ\[θ²\] 
+>
+>
+>
+> (linearity của kì vọng: E(aX + bY + c) = aEX + bEY + c)
+>
+>
+>
+> = E\_θ\[W(𝐗)²\] - 2θ E\_θ\[W(𝐗)\] + θ² + (E\_θ\[W(𝐗)\])² - (E\_θ\[W(𝐗)\])²
+>
+>
+>
+> = E\_θ\[W(𝐗)²\] - (E\_θ\[W(𝐗)\])² + (E\_θ\[W(𝐗)\])²  - 2θ E\_θ\[W(𝐗)\] + θ² 
+>
+>
+>
+> ---
+>
+>
+>
+> Xét (E\_θ\[W(𝐗)\])²  - 2θ E\_θ\[W(𝐗)\] + θ²
+>
+>
+>
+> = {E\_θ\[W(𝐗)\] - θ}²
+>
+>
+>
+> = Bias(W(𝐗))²
+>
+>
+>
+> ---
+>
+>
+>
+> E\_θ\[W(𝐗)²\] - (E\_θ\[W(𝐗)\])²
+>
+>
+>
+> Nhớ lại công thức Var(X) = E\[(X-EX)²\]
+>
+>
+>
+> = E\[(X²-2X(EX) + (EX)²\]
+>
+>
+>
+> = E\[X²\]-E\[2X(EX)\] + E\[(EX)²\]
+>
+>
+>
+> = E(X²) - (EX)²
+>
+>
+>
+> ---
+>
+>
+>
+> E\_θ\[W(𝐗)²\] - (E\_θ\[W(𝐗)\])² chính là Var\[W(𝐗)\] 
+>
+>
+>
+> Như vậy MSE(W(𝐗)) =  Var\[W(𝐗)\] + Bias(W(𝐗))²
+>
+>
+>
+> Bây giờ nếu như mình có unbiased estimator của θ: Bias(W(𝐗)) = 0
+>
+>
+>
+> Khi đó MSE(W(𝐗)) = Var\[W(𝐗)\]
+>
+>
+>
+> Best unbiased estimator của θ: có variance nhỏ nhất.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=0QxT5Qi1RfE)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú rất tốt, tự suy dẫn trọn vẹn phân rã MSE = Var + Bias² để làm sáng tỏ lý do vì sao ước lượng không chệch tốt nhất (best) lại tương đương với phương sai nhỏ nhất. Có một điểm nhỏ cần lưu ý là không nên đồng nhất ước lượng điểm nói chung với công thức của MLE.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Point estimator của θ được định nghĩa là: hàm số của sample W(𝐗), để khi lắp 𝐱 vào, ta có point estimate cho θ
+
+W(𝐱) = argmax_θ L(θ|𝐱)"*
+>
+> Đoạn này dễ gây nhầm lẫn: hàm cực đại hóa likelihood (MLE) chỉ là một phương pháp tìm ước lượng cụ thể, không phải là định nghĩa tổng quát của mọi ước lượng điểm W(X).
+>
+>
+> **✓ Strengths**
+> - Tự chứng minh đầy đủ, chính xác từng bước phân rã MSE thành tổng của Variance và Bias².
+> - Hiểu rõ bản chất vì sao khi một ước lượng là không chệch (Bias = 0) thì tiêu chí tối thiểu hóa MSE đồng nhất với việc tìm ước lượng có phương sai nhỏ nhất (Best Unbiased Estimator).
+>
+> **💡 Deeper notes**
+> - Trong bối cảnh bài học ở sách giáo khoa (BLUE - Gauss-Markov Theorem), chữ 'Linear' (tuyến tính) giới hạn không gian tìm kiếm chỉ trong các hàm tuyến tính của biến phản hồi Y; do đó BLUE là ước lượng có phương sai nhỏ nhất trong lớp ước lượng tuyến tính không chệch, chứ không nhất thiết là nhỏ nhất trên toàn bộ không gian ước lượng phi tuyến (UMVUE).
 
 <br>
 
