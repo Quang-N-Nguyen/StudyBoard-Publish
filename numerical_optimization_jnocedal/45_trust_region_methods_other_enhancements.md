@@ -105,37 +105,37 @@
 > [!NOTE]
 > Algorithm 4.4 (Generalized Cauchy Point Calculation)
 >
-> Ôn lại chút về Cauchy Point: Đại khái là, ta nhớ bài toán subproblem là minimize mk(p) = fk + gkTp + (1/2)pTBkp s.t ||p|| ≤ Δ. Thì Cauchy point nằm trong bối cảnh là ta muốn p thỏa mãn điều kiện giúp giảm f một mức đủ để giúp sự hội tụ toàn cục (global convergence), và Cauchy point là một bước đi đủ tốt để làm tiêu chuẩn giúp so sánh. 
+> Ôn lại chút về Cauchy Point: Đại khái là, ta nhớ bài toán subproblem là minimize mk(p) = fk + gkTp + (1/2)pᵀBkp s.t ||p|| ≤ Δ. Thì Cauchy point nằm trong bối cảnh là ta muốn p thỏa mãn điều kiện giúp giảm f một mức đủ để giúp sự hội tụ toàn cục (global convergence), và Cauchy point là một bước đi đủ tốt để làm tiêu chuẩn giúp so sánh. 
 >
 > Thế thì ý tưởng của Cauchy point, đó là ta coi hàm f như hàm bậc nhất, để rồi đi theo hướng dốc nhất tại điểm đang đứng, và xem thử trong phạm vi cho phép, thì bước đi là bao nhiêu xa thì giúp giảm m xuống thấp nhất. Khi đó sẽ có hai khả năng, là bước đi nằm trong phạm vi hoặc nằm ngay trên biên. Do đó ta thấy để tính Cauchy point cần hai bước:
 >
 > pks = argmin p ∈ R^n {fk + gkTp} s.t ||p|| ≤ Δ. thì đây chính là xấp xỉ hàm f bởi linear function: fk + gkTp (linear approx. tại xk của nó). Giải bài toán này sẽ ra pks = -gk (ý la hướng negative gradient, nhưng chiều dài sẽ là Δ) 
 >
-> Tất nhiên đây là bài toán ràng buộc bất đẳng thức, equivalent với minimize fk + gkTp s.t pTp - Δ^2 ≤ 0. Dùng KKT conditions:
+> Tất nhiên đây là bài toán ràng buộc bất đẳng thức, equivalent với minimize fk + gkTp s.t pᵀp - Δ^2 ≤ 0. Dùng KKT conditions:
 >
-> Stationary condition: Lagrangian: L(p, ν) = fk + gkTp + v(pTp - Δ^2).
+> Stationary condition: Lagrangian: L(p, ν) = fk + gkTp + v(pᵀp - Δ^2).
 >
-> = vpTp + gkTp + fk - vΔ^2
+> = vpᵀp + gkTp + fk - vΔ^2
 >
 > Tìm gradient ∇L theo phương pháp đã học trong MIT 18s096:
 >
-> dL = L(p+dp) - L(p) = v(p+dp)T(p+dp) + gkT(p+dp) - vpTp - gkTp
+> dL = L(p+dp) - L(p) = v(p+dp)ᵀ(p+dp) + gkT(p+dp) - vpᵀp - gkTp
 >
-> = v(pTp+dpTp+pTdp+dpTdp) + gkT(p+dp) - vpTp - gkTp
+> = v(pᵀp+dpᵀp+pᵀdp+dpᵀdp) + gkT(p+dp) - vpᵀp - gkTp
 >
-> = vpTp+2vpTdp + gkTp + gkTdp - vpTp - gkTp
+> = vpᵀp+2vpᵀdp + gkTp + gkTdp - vpᵀp - gkTp
 >
-> = 2vpTdp + gkTdp  
+> = 2vpᵀdp + gkTdp  
 >
-> = (2vp + gk)Tdp  ⇨ ∇L = 2vp + gk
+> = (2vp + gk)ᵀdp  ⇨ ∇L = 2vp + gk
 >
 > ∇L = 0 ⇔ 2vp + gk = 0 ⇔ p = -gk/v
 >
-> Complenetary slackness: v(pTp - Δ^2) = 0. Vì v khác 0 nên pTp - Δ^2 = 0 ⇔ ||p|| = Δ
+> Complenetary slackness: v(pᵀp - Δ^2) = 0. Vì v khác 0 nên pᵀp - Δ^2 = 0 ⇔ ||p|| = Δ
 >
 > Vậy p = - (Δ/||gk||) gk, cũng là pks.
 >
-> Sau đó, giải tìm τk > 0 để minimize mk(τpks) = fk + gkT(τpks) + (1/2)(τpks)TBk(τpks) (s.t ||τpks|| ≤ Δ
+> Sau đó, giải tìm τk > 0 để minimize mk(τpks) = fk + gkT(τpks) + (1/2)(τpks)ᵀBk(τpks) (s.t ||τpks|| ≤ Δ
 >
 > ⇔ minimize mk(τpks) = fk + τgkTpks + (1/2)τ^2pksTBkpks s.t |τ|||pks|| ≤ Δ
 >
@@ -181,21 +181,21 @@
 >
 > Stationary condition: Lagrangian : L(p, ν) = fk + gkTp + ν(||Dp||^2 - Δ^2).
 >
-> = fk + gkTp + ν((Dp)T(Dp) - Δ^2)
+> = fk + gkTp + ν((Dp)ᵀ(Dp) - Δ^2)
 >
-> = fk + gkTp + ν(pTDTDp - Δ^2)
+> = fk + gkTp + ν(pᵀDTDp - Δ^2)
 >
-> = νpTDTDp + gkTp - νΔ^2 + fk
+> = νpᵀDTDp + gkTp - νΔ^2 + fk
 >
 > Nhờ MIT 18s096 tìm gradient quá dễ, ∇L = 2νDTDp + gk 
 >
 > ∇L = 0 ⇔ 2νDTDp + gk = 0 ⇔ DTDp = -(1/2ν)gk 
 >
-> ⇔ p = -(1/2ν)(D^2)inv gk
+> ⇔ p = -(1/2ν)(D^2)⁻¹ gk
 >
 > ⇔ p = -(1/2ν)(D^-2) gk = pks 
 >
-> Complenetary slackness: ν(pTDTDp - Δ^2) = 0. Vì ν khác 0 nên pTDTDp - Δ^2 = 0 
+> Complenetary slackness: ν(pᵀDTDp - Δ^2) = 0. Vì ν khác 0 nên pᵀDTDp - Δ^2 = 0 
 >
 > ⇔ ||Dp|| = Δ 
 >
