@@ -245,7 +245,7 @@
 >
 > đầu tiên ta có công thức 2.4: 
 >
-> f(x + p) = f(x) + ∇f(x + tp)Tpvới t ∈ (0, 1). Công thức này ở đâu ra ?
+> f(x + p) = f(x) + ∇f(x + tp)ᵀpvới t ∈ (0, 1). Công thức này ở đâu ra ?
 >
 > Nhớ lại hồi học mit 1801 mình được học một theorem tên là **Mean Value Theorem**: đại khaí nói là, cho interval [a, b], thì nhất định có điểm c nào đó trong đoạn này (a < c < b) sao cho:
 >
@@ -256,13 +256,13 @@
 > Nhìn vào cái này, mình có thể đóan ràng với multivariate case, thì mean value theorem sẽ là, (cho interval [a, b] thì sẽ **tồn tại c nằm trên đoạn [a,b]**
 > sao cho:
 >
-> **f(b) = f(a) + ∇f(c)T(b - a)** (b, a lúc này là vector, và derivative lúc này là gradient  vector)
+> **f(b) = f(a) + ∇f(c)ᵀ(b - a)** (b, a lúc này là vector, và derivative lúc này là gradient  vector)
 >
 > Vậy nếu gọi a là điểm x, và b = a + p (p = b - a)
 >
-> thì ta có: f(x + p) = f(x) + ∇f(c)Tp
+> thì ta có: f(x + p) = f(x) + ∇f(c)ᵀp
 >
-> và vì **c là điểm nằm đâu đó trong đoạn [a, b]**, nên **có thể thể hiện c ở dạng  là mixture** (hay line segment, hay convex combination của a và b): 
+> và vì **c là điểm nằm đâu đó trong đoạn [a, b]**, nên **có thể thể hiện c ở dạng  là mixᵀure** (hay line segment, hay convex combination của a và b): 
 >
 > **c = αb + (1 - α)a**, với α ∈ (0, 1)để khi α nhỏ thì c ở gần a và khi α lớn thì c chạy
 > đến gần b.
@@ -271,7 +271,7 @@
 >
 > = 1 + tp
 >
-> Nên ta có (x + p) = f(x) + ∇f(x + tp)Tp là vậy
+> Nên ta có (x + p) = f(x) + ∇f(x + tp)ᵀp là vậy
 >
 > =====
 >
@@ -303,7 +303,7 @@
 >
 > =====
 >
-> Còn cái 2.6: f(x + p) = f(x) + ∇f(x)Tp + (1/2)p ∇^2f(x + tp)p
+> Còn cái 2.6: f(x + p) = f(x) + ∇f(x)ᵀp + (1/2)p ∇^2f(x + tp)p
 >
 > Đầu tiên phải dùng / nói đến định lý Taylor trước:
 >
@@ -347,53 +347,53 @@
 >
 > g'(t), tức d/dt g(t) = d/dt f(x + tp) = d/d(x + tp) f(x + tp) . d/dt (x + tp) 
 >
-> = ∇f(x + tp)Tp
+> = ∇f(x + tp)ᵀp
 >
-> ⇨ g'(t)|t=0 = ∇f(x + tp)Tp|t=0 = ∇f(x)Tp
+> ⇨ g'(t)|t=0 = ∇f(x + tp)ᵀp|t=0 = ∇f(x)ᵀp
 >
 > Tính g''(t):
 >
-> g''(t) = d/dt g'(t) = d/dt ∇f(x + tp)Tp
+> g''(t) = d/dt g'(t) = d/dt ∇f(x + tp)ᵀp
 >
-> d/d(x + tp) ∇f(x + tp)Tp . d/dt (x + tp)
+> d/d(x + tp) ∇f(x + tp)ᵀp . d/dt (x + tp)
 >
-> Xét d/d(x + tp) ∇f(x + tp)Tp:
+> Xét d/d(x + tp) ∇f(x + tp)ᵀp:
 >
-> Đặt u = x + tp ⇨ d/du ∇f(u)Tp
+> Đặt u = x + tp ⇨ d/du ∇f(u)ᵀp
 >
-> đặt h(u) = ∇f(u)Tp ⇨  dh = h(u+du) - h(u)
+> đặt h(u) = ∇f(u)ᵀp ⇨  dh = h(u+du) - h(u)
 >
-> = ∇f(u+du)Tp - ∇f(u)Tp = [∇f(u+du) - ∇f(u)]Tp = d∇f(u)Tp 
+> = ∇f(u+du)ᵀp - ∇f(u)ᵀp = [∇f(u+du) - ∇f(u)]Tp = d∇f(u)ᵀp 
 >
 > Mà d∇f(u) = ∇^2f(u) du  (vì đạo hàm của hàm ∇f chính là Hessian ∇^2f)
 >
-> Do đó dh = d ∇f(u)Tp = [∇^2f(u)du]Tp 
+> Do đó dh = d ∇f(u)ᵀp = [∇^2f(u)du]Tp 
 >
-> = duT ∇^2f(u)T p . Và vì cái này là scalar (u, du là scalar)
+> = duT ∇^2f(u)ᵀ p . Và vì cái này là scalar (u, du là scalar)
 >
-> = (duT ∇^2f(u)T p)T
+> = (duT ∇^2f(u)ᵀ p)ᵀ
 >
-> = (∇^2f(u)T p)T duTT
+> = (∇^2f(u)ᵀ p)ᵀ duTT
 >
-> = (pT∇^2f(u)TT) du
+> = (pᵀ∇^2f(u)ᵀT) du
 >
-> = pT∇^2f(u) du
+> = pᵀ∇^2f(u) du
 >
-> Vậy dh(u) = = pT∇^2f(u) du 
+> Vậy dh(u) = = pᵀ∇^2f(u) du 
 >
-> ⇨ d/du h(u) = pT∇^2f(u) = pT∇^2f(x + tp)
+> ⇨ d/du h(u) = pᵀ∇^2f(u) = pᵀ∇^2f(x + tp)
 >
-> Vậy d/d(x + tp) ∇f(x + tp)Tp = pT∇^2f(x + tp)
+> Vậy d/d(x + tp) ∇f(x + tp)ᵀp = pᵀ∇^2f(x + tp)
 >
-> ⇨ d/d(x + tp) ∇f(x + tp)Tp . d/dt (x + tp) = pT∇^2f(x + tp) . d/dt (x + tp) 
+> ⇨ d/d(x + tp) ∇f(x + tp)ᵀp . d/dt (x + tp) = pᵀ∇^2f(x + tp) . d/dt (x + tp) 
 >
-> = pT∇^2f(x + tp) . p
+> = pᵀ∇^2f(x + tp) . p
 >
-> = pT∇^2f(x + tp)p
+> = pᵀ∇^2f(x + tp)p
 >
-> Vậy g''(t)  = pT∇^2f(x + tp)p
+> Vậy g''(t)  = pᵀ∇^2f(x + tp)p
 >
-> ⇨ g''(t)|t=ξ = pT∇^2f(x + ξp)p
+> ⇨ g''(t)|t=ξ = pᵀ∇^2f(x + ξp)p
 >
 > g(1) = g(0) + g'(0)(1 - 0) + (1/2) g''(ξ)(1-0)^2
 >
@@ -403,11 +403,11 @@
 >
 > g(0) = f(x)
 >
-> g'(0) = ∇f(x)Tp
+> g'(0) = ∇f(x)ᵀp
 >
-> g''(t) = pT∇^2f(x + tp)p
+> g''(t) = pᵀ∇^2f(x + tp)p
 >
-> Vậy f(x + p)  = f(x) + ∇f(x)Tp + (1/2) pT∇^2f(x + tp)p
+> Vậy f(x + p)  = f(x) + ∇f(x)ᵀp + (1/2) pᵀ∇^2f(x + tp)p
 >
 > Chứng minh xong
 
@@ -471,18 +471,18 @@
 >
 > Thế thì ta có **∇f(x*) khác 0** (tức là vector khác 0, ta phải hiểu ∇f(x) là vector,
 > gradient, không phải scalar). Thì, bằng cách **chọn một vector p = - ∇f(x*)**, ta sẽ
-> có **∇f(x*)Tp = -∇f(x*)T∇f(x*) = -(||∇f(x*)||)^2**
+> có **∇f(x*)ᵀp = -∇f(x*)ᵀ∇f(x*) = -(||∇f(x*)||)^2**
 >
 > Vậy thì có thể thấy ∇f(x) là vector khác 0 thì dẫn đến ||∇f(x*)||^2 là square
-> norm của nó, phải là số dương ⇨ pT ∇f(x*) = -||∇f(x*)||^2 phải **âm**.
+> norm của nó, phải là số dương ⇨ pᵀ ∇f(x*) = -||∇f(x*)||^2 phải **âm**.
 >
-> Tiếp, ta sẽ xét hàm **g(t) = pT∇f(x* + tp)**, đại ý là thể hiện **giá trị của pT∇f(x)**
+> Tiếp, ta sẽ xét hàm **g(t) = pᵀ∇f(x* + tp)**, đại ý là thể hiện **giá trị của pᵀ∇f(x)**
 > sẽ thay đổi như thế nào **khi đi từ x → x + p**, hay, đi theo hướng vector p
 >
 > Cái hàm g(t) này, để ý, nó là hàm theo t (scalar), và output cũng là scalar (dot
 > product của vector p và vector gradient tại x* + tp
 >
-> Vậy thì đại khái là, **tại t = 0, ta đã có g(t)|t=0 = pT ∇f(x*) mang giá trị âm vì **.
+> Vậy thì đại khái là, **tại t = 0, ta đã có g(t)|t=0 = pᵀ ∇f(x*) mang giá trị âm vì **.
 >
 > Mà, **f là hàm liên tục, nên g(t) cũng vậy**. Vậy thì, g(t) là hàm liên tục, mà tại t =
 > 0 nó mang giá trị âm. Thế thì, tính liên tục của hàm số nói rằng, khi tăng hay
@@ -492,20 +492,20 @@
 > thay đổi mà nó từ âm sang dương** được.
 >
 > Do đó ta hiểu đại khái chỗ này là như vậy, nên sách nói, **tồn tại T sao cho t
-> trong khoảng [0, T] thì g(t) = pT ∇f(x* + tp) vẫn âm**
+> trong khoảng [0, T] thì g(t) = pᵀ ∇f(x* + tp) vẫn âm**
 >
-> Còn tại sao lại xét hàm g(t) = pT ∇f(x* + tp) là vì để phục vụ cho việc lập luận
+> Còn tại sao lại xét hàm g(t) = pᵀ ∇f(x* + tp) là vì để phục vụ cho việc lập luận
 > tiếp với Taylor theorem:
 >
 > Rồi, tới đây ta áp dụng Taylor theorem ở trên, nói là: 
 >
-> f(x + p) = f(x) + ∇f(x + tp)Tp với t nào đó ∈ (0,1) 
+> f(x + p) = f(x) + ∇f(x + tp)ᵀp với t nào đó ∈ (0,1) 
 >
 > ⇨ Áp dụng vào đây với t_bar p đóng vai trò của p trong công thức (1) ta có: 
 >
-> f(x* + t_bar p) = f(x*) + ∇f(x + t t_bar p)T(t_bar p)
+> f(x* + t_bar p) = f(x*) + ∇f(x + t t_bar p)ᵀ(t_bar p)
 >
-> vế phải = f(x*) + t_bar ∇f(x + t t_bar p)Tp  for some t in (0,1)
+> vế phải = f(x*) + t_bar ∇f(x + t t_bar p)ᵀp  for some t in (0,1)
 >
 > (Đưa scalar t_bar lên trước, vì nó là scalar  nên có thể di chuyển tùy ý)
 >
@@ -515,9 +515,9 @@
 >
 > thay t t_bar bằng t luôn (ý là gom lại dùng một cái để dùng)
 >
-> f(x* + t_bar p) = f(x*) + t_bar ∇f(x + t p)Tp   | t ∈ (0, t_bar)
+> f(x* + t_bar p) = f(x*) + t_bar ∇f(x + t p)ᵀp   | t ∈ (0, t_bar)
 >
-> Tới đây vì **∇f(x + t p)Tp âm** như trên đã nói, nên có thể kết luận:
+> Tới đây vì **∇f(x + t p)ᵀp âm** như trên đã nói, nên có thể kết luận:
 >
 > f(x* + t_bar p) < f(x*) với mọi t_bar ∈ (0, T]
 >
@@ -527,25 +527,25 @@
 >
 > Tóm tắt ý tưởng đại khái là:
 >
-> 1) Giả sử ∇f(x*) khác 0 thì  p = - ∇f(x*) thì pT ∇f(x) = -∇f(x*)T ∇f(x*) < 0
+> 1) Giả sử ∇f(x*) khác 0 thì  p = - ∇f(x*) thì pᵀ ∇f(x) = -∇f(x*)ᵀ ∇f(x*) < 0
 >
-> Xét g(t) = pT∇f(x* + ptbar) thì nó ẫn âm trong khoảng x* → x* + p tbar nào
+> Xét g(t) = pᵀ∇f(x* + ptbar) thì nó ẫn âm trong khoảng x* → x* + p tbar nào
 > đó, tức là từ tbar = 0 đến tbar = T nào đó.
 >
 > Mà Taylor theorem nói rằng trong khoảng từ x* → x* + p tbar thì nhất định có
 > một điểm c  mà tại đó
 >
-> f(x* + p tbar) = f(x*) + ∇f(c)Tp với c nào đó in (x*, x* + p tbar)
+> f(x* + p tbar) = f(x*) + ∇f(c)ᵀp với c nào đó in (x*, x* + p tbar)
 >
 > Tương đương
 >
-> f(x* + p tbar) = f(x*) + ∇f(x* + t tbar p)Tp với t nào đó in (0,1)
+> f(x* + p tbar) = f(x*) + ∇f(x* + t tbar p)ᵀp với t nào đó in (0,1)
 >
 > Tương đương
 >
-> f(x* + ptbar) = f(x*) + ∇f(x* + tp)Tp với t nào đó trong (0, tbar)
+> f(x* + ptbar) = f(x*) + ∇f(x* + tp)ᵀp với t nào đó trong (0, tbar)
 >
-> và với t này thì ∇f(x* + tp)Tp âm cho nên f(x* + p tbar) < f(x*)
+> và với t này thì ∇f(x* + tp)ᵀp âm cho nên f(x* + p tbar) < f(x*)
 >
 > Nên ý nghĩa của cái này là
 >
@@ -578,37 +578,37 @@
 >
 > Chứng minh Phản chứng, giả sử x* là local minimizer nhưng Hessian tại đó
 > không positive semi definite. Mà như vậy thì từ mit 1806 đã biết, sẽ có nghĩa là
-> **tồn tại vector p nào đó khiến quadratic form của nó âm pT ∇f(x*) p < 0 **
+> **tồn tại vector p nào đó khiến quadratic form của nó âm pᵀ ∇f(x*) p < 0 **
 >
-> Tiếp, dựa vào tính liên tục (Hessian là liên tục như đề cho thì g(t) cũng phải là hàm liên tục). Thì ta đặt hàm g(t) = pT ∇f(x* + tp) p thì, phải tồn tại một khoảng (0,T) nào đó sao cho pT ∇f(x* + tp) p vẫn âm. Vì như đã nói, không thể nào hàm g(t) đang âm mà nhảy kịch một phát thành dương ngay khi dịch t một tí được
+> Tiếp, dựa vào tính liên tục (Hessian là liên tục như đề cho thì g(t) cũng phải là hàm liên tục). Thì ta đặt hàm g(t) = pᵀ ∇f(x* + tp) p thì, phải tồn tại một khoảng (0,T) nào đó sao cho pᵀ ∇f(x* + tp) p vẫn âm. Vì như đã nói, không thể nào hàm g(t) đang âm mà nhảy kịch một phát thành dương ngay khi dịch t một tí được
 >
 > Thì dựa vào Taylor theorem:
 >
-> f(x* + p) = f(x*) + ∇f(x*)Tp + (1/2) pT∇^2 f(x + tp)p for some t in (0,1)
+> f(x* + p) = f(x*) + ∇f(x*)ᵀp + (1/2) pᵀ∇^2 f(x + tp)p for some t in (0,1)
 >
 > Áp dụng vào đây với t_bar p đóng vài trò p, ta có:
 >
-> f(x* + t_bar p) = f(x*) + ∇f(x*)T t_bar p + (1/2) (t_bar p)T ∇^2 f(x + t t_bar p) t_bar p
+> f(x* + t_bar p) = f(x*) + ∇f(x*)ᵀ t_bar p + (1/2) (t_bar p)ᵀ ∇^2 f(x + t t_bar p) t_bar p
 >
-> = f(x*) + t_bar∇f(x*)Tp + (1/2) (t_bar)^2 pT ∇^2 f(x + t t_bar p) p
+> = f(x*) + t_bar∇f(x*)ᵀp + (1/2) (t_bar)^2 pᵀ ∇^2 f(x + t t_bar p) p
 >
 > với t_bar ∈ (0, T), và some t in (0,1) ⇨ t × t_bar thay bằng some t in (0, t_bar)
 >
-> = f(x*) + t_bar∇f(x*)Tp + (1/2) (t_bar)^2 pT ∇^2 f(x + t p) p for some t in (0, t_bar)
+> = f(x*) + t_bar∇f(x*)ᵀp + (1/2) (t_bar)^2 pᵀ ∇^2 f(x + t p) p for some t in (0, t_bar)
 >
-> = f(x*) + (1/2) (t_bar)^2 pT ∇^2f(x + t p) p for some t in (0, t_bar)
+> = f(x*) + (1/2) (t_bar)^2 pᵀ ∇^2f(x + t p) p for some t in (0, t_bar)
 >
 > (gradient ∇f(x*) = 0)
 >
-> Và như trên ta có với t ∈ (0,T) thì pT ∇f(x* + tp) p < 0
+> Và như trên ta có với t ∈ (0,T) thì pᵀ ∇f(x* + tp) p < 0
 >
 > thì ở đây ta có tồn tại t nào đó trong (0, t_bar) thì ta có cái equation:
 >
-> f(x* + tbar p) = f(x*) + (1/2) (t_bar)^2 pT ∇^2 f(x + t p) p for some t in (0, t_bar)
+> f(x* + tbar p) = f(x*) + (1/2) (t_bar)^2 pᵀ ∇^2 f(x + t p) p for some t in (0, t_bar)
 >
 > Và dĩ nhiên trong khoảng này thì cũng là trong khoảng (0, T)
 >
-> ⇨ pT ∇^2 f(x + t p) p < 0
+> ⇨ pᵀ ∇^2 f(x + t p) p < 0
 >
 > ⇨ f(x* + t_bar p) < f(x*) ⇨ ta đã có thể đi thêm theo hướng p để giảm f 
 >
@@ -621,11 +621,11 @@
 > Tóm tắt ý chính cái này chút:
 >
 > Ta giả sử x* là local minimizer nhưng Hessian tại đó ∇^2 f(x*) không positive
-> semi definite. Tức tồn tại p sao cho pT ∇^2 f(x*) p < 0
+> semi definite. Tức tồn tại p sao cho pᵀ ∇^2 f(x*) p < 0
 >
-> Theo tính liên tục, thì nếu đặt g(tbar) = pT ∇^2f(x* + ptbar) p thì g(tbar) phải tiếp
+> Theo tính liên tục, thì nếu đặt g(tbar) = pᵀ ∇^2f(x* + ptbar) p thì g(tbar) phải tiếp
 > tục âm trong một khoảng nào đó từ x* (tbar = 0) đến x* + p T (tbar = T), nói cách
-> khác là tồn tại T nào đó mà từ tbar = 0 đến T, thì g(tbar) = pT ∇^2 f(x* + ptbar) p
+> khác là tồn tại T nào đó mà từ tbar = 0 đến T, thì g(tbar) = pᵀ ∇^2 f(x* + ptbar) p
 > nhất định âm
 >
 > Thế thì, theo Taylor theorem nói rằng:
@@ -633,17 +633,17 @@
 > Dù tbar có bằng bao nhiêu thì trong khoảng từ x* đến x* + p tbar thì sẽ luôn có
 > một thằng t nào đó khiến ta được phép thể hiện f(x* + p tbar) bởi f(x*):
 >
-> f(x* + p tbar) = f(x*) + ∇f(x*)Tp + (1/2) (p tbar)T∇f^2(x* + t p tbar)(p tbar)
+> f(x* + p tbar) = f(x*) + ∇f(x*)ᵀp + (1/2) (p tbar)ᵀ∇f^2(x* + t p tbar)(p tbar)
 >
-> = f(x*) + 0Tp + (1/2) tbar^2 pT∇f^2(x* + t p tbar)p
+> = f(x*) + 0Tp + (1/2) tbar^2 pᵀ∇f^2(x* + t p tbar)p
 >
-> = f(x*) + (1/2) tbar^2 pT∇f^2(x* + t p tbar)p
+> = f(x*) + (1/2) tbar^2 pᵀ∇f^2(x* + t p tbar)p
 >
 > Và ý chính của cái này, nhắc lại là với mọi tbar in (0,T) thì ta luôn được phép thể
 > hiện f(x* + p tbar) = f(x*) + something.
 >
-> mà cái something này âm vì pT∇f^2(x* + t p tbar)p với some t in (0,1) thì cũng
-> như pT∇f^2(x* + tp)p với some t in (0, tbar) và do đó nó âm
+> mà cái something này âm vì pᵀ∇f^2(x* + t p tbar)p với some t in (0,1) thì cũng
+> như pᵀ∇f^2(x* + tp)p với some t in (0, tbar) và do đó nó âm
 >
 > Do đó ⇨ với mọi tbar in (0,T) thì f(x* + p tbar) < f(x*)
 
@@ -714,15 +714,15 @@
 >
 > Thì Taylor theorem nói rằng:
 >
-> f(x* + p) = f(x*) + ∇f(x*)Tp + (1/2) pT ∇^2 f(z) p với z là điểm nào đó nằm giữa 
+> f(x* + p) = f(x*) + ∇f(x*)ᵀp + (1/2) pᵀ ∇^2 f(z) p với z là điểm nào đó nằm giữa 
 > x* và x* + p, tức khoảng (x*, x* + p), cũng có thể ghi là z = x* + pt với t là giá trị
 > nào đó trong (0,1).
 >
-> Với ∇f(x*) = 0 ta có f(x* + p) = f(x*) + (1/2) pT ∇^2 f(z) p  với z = x* + pt với some 
+> Với ∇f(x*) = 0 ta có f(x* + p) = f(x*) + (1/2) pᵀ ∇^2 f(z) p  với z = x* + pt với some 
 > t ∈ (0,1).
 >
 > Và có nghĩa là f(x* + p) có thể được thể hiện bởi f(x*) + something mà something
-> này, là bằng (1/2) pT ∇^2 f(z) p sẽ DƯƠNG vì z vẫn trong quả banh nói trên có
+> này, là bằng (1/2) pᵀ ∇^2 f(z) p sẽ DƯƠNG vì z vẫn trong quả banh nói trên có
 > mọi điểm trong đó đều có Hessian positive definite
 >
 > Vậy, f(x* + p) = f(x*) + số dương ⇨ f(x* + p) > f(x*) với mọi p sao cho ||p|| < r
@@ -775,13 +775,13 @@
 >
 > Vậy ở đây điều kiện đủ bậc 2 nói là:
 >
-> [thì x* là STRICT local minimizer] ⇐ Hessian tại x* xác định dương và
+> [thì x* là STRICᵀ local minimizer] ⇐ Hessian tại x* xác định dương và
 > gradient = 0
 >
 > Vậy ở đây người ta nói rằng Cái điều kiện đủ bậc 2 không phải là điều kiện
 > cần, thì ý là ta ko có dấu ngược lại
 >
-> [thì x* là STRICT local minimizer] ⇨  Hessian tại x* xác định dương và
+> [thì x* là STRICᵀ local minimizer] ⇨  Hessian tại x* xác định dương và
 > gradient = 0
 >
 > Vậy tóm lại:
@@ -851,14 +851,14 @@
 > [!NOTE]
 > Để chứng minh phần sau ta cũng phản chứng, giả sử x* là stationary point mà x* ko phải global minimizer ⇨ tồn tại z thấp hơn.
 >
-> ∇f(x*)T(z - x*) = d/dλ f(x* + λ(z - x*)) | λ = 0 là sao?
+> ∇f(x*)ᵀ(z - x*) = d/dλ f(x* + λ(z - x*)) | λ = 0 là sao?
 >
 > có thể thấy vế trái, chính là directional derivative đối với vector d = z - x* (chỉ 
-> hướng từ x* → z) và evaluate tại x* ta đã biết công thức là ∇f(x*)Td 
+> hướng từ x* → z) và evaluate tại x* ta đã biết công thức là ∇f(x*)ᵀd 
 >
 > Nếu đặt g(λ) = f(x* + λ(z - x*)) thì g là hàm đơn biến thể hiện giá trị của f 
 > trên hướng vector d, khi λ = 0, g(0) = f(x*), λ = 1, g(1) = f(z). Và đạo hàm
-> của g tại λ = 0 cũng chính là ∇f(x*)Td
+> của g tại λ = 0 cũng chính là ∇f(x*)ᵀd
 >
 > (vì bản chất định nghĩa của directional derivative đối với hướng d):
 >
@@ -884,13 +884,13 @@
 >
 > và đây là con số âm do f(z) < f(x*)
 >
-> ⇨ ∇f(x*)T(z - x*) < 0 điều này chứng tỏ ∇f(x*) khác vector 0 ⇨ x* không phải
+> ⇨ ∇f(x*)ᵀ(z - x*) < 0 điều này chứng tỏ ∇f(x*) khác vector 0 ⇨ x* không phải
 > stationary point
 >
 > Và giáo sư nhận xét: Như mọi thuật toán đều tìm kiếm điểm gradient
 > vanish
 
-**🔗 See also:** [Two-dimensional Subspace Minimization](./41_trust_region_methods_algorithms_based_on_the_cauchy_point.md#node-nk72thi)
+**🔗 See also:** [Two-dimensional Subspace Minimizaᵀion](./41_trust_region_methods_algorithms_based_on_the_cauchy_point.md#node-nk72thi)
 
 <br>
 
