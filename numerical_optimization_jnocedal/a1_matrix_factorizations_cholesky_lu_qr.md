@@ -52,7 +52,7 @@
 >
 >
 >
-> EPA = U ⇨ PA = Einv U, Einv chính là L.
+> EPA = U ⇨ PA = E⁻¹ U, E⁻¹ chính là L.
 >
 >
 >
@@ -68,7 +68,7 @@
 >
 >
 >
-> Vậy E là matrix tam giác dưới → Einv, chính là L cũng vậy. Vì sao? Vì EL = I ⇨ hàng 1 của I, là e1T, = linear combination các hàng của L với hệ số là row 1 của E, mà vector này chỉ có E11 khác 0. Nên hàng 1 của EL = E11 × \[row 1 của L\] + 0 × \[row 2 của L\] + ... = E11 × \[row 1 của L\]. Muốn ra kết quả là e1T thì nhất định row 1 của L phải có dạng: \[1/E11, 0, 0....0\].
+> Vậy E là matrix tam giác dưới → E⁻¹, chính là L cũng vậy. Vì sao? Vì EL = I ⇨ hàng 1 của I, là e1T, = linear combination các hàng của L với hệ số là row 1 của E, mà vector này chỉ có E11 khác 0. Nên hàng 1 của EL = E11 × \[row 1 của L\] + 0 × \[row 2 của L\] + ... = E11 × \[row 1 của L\]. Muốn ra kết quả là e1T thì nhất định row 1 của L phải có dạng: \[1/E11, 0, 0....0\].
 >
 >
 >
@@ -202,7 +202,7 @@
 >
 >
 >
-> Vì sao L có shape m × m? Là vì L là Einv, và E, như đã nói, là matrix biến đổi các hàng của A để khử các vị trí dưới mỗi pivot, nên để kết quả có đủ m hàng, thì E dĩ nhiên phải có m hàng, cũng như vì A có m hàng, nên mỗi hàng của E, đóng vai trò là một bộ hệ số để tổ hợp tuyến tính chúng, cũng phải có m con số → E có m cột. Nên E phải có shape m × m ⇨ L là Einv, có thể nhìn theo cách khác là matrix đảo ngược quá trình đó biến U → A, nên L cũng phải có shape m × m.
+> Vì sao L có shape m × m? Là vì L là E⁻¹, và E, như đã nói, là matrix biến đổi các hàng của A để khử các vị trí dưới mỗi pivot, nên để kết quả có đủ m hàng, thì E dĩ nhiên phải có m hàng, cũng như vì A có m hàng, nên mỗi hàng của E, đóng vai trò là một bộ hệ số để tổ hợp tuyến tính chúng, cũng phải có m con số → E có m cột. Nên E phải có shape m × m ⇨ L là E⁻¹, có thể nhìn theo cách khác là matrix đảo ngược quá trình đó biến U → A, nên L cũng phải có shape m × m.
 >
 >
 >
@@ -214,7 +214,7 @@
 >
 >
 >
-> Tương tự, nếu shape của A là m × n với m < n, thì A là matrix mập, lùn. Thì đại khái là thay vì "làm" cho A, người ta làm cho AT, tức là lật nó lại để trở về trường hợp khử Gauss cho matrix cao ốm.
+> Tương tự, nếu shape của A là m × n với m < n, thì A là matrix mập, lùn. Thì đại khái là thay vì "làm" cho A, người ta làm cho Aᵀ, tức là lật nó lại để trở về trường hợp khử Gauss cho matrix cao ốm.
 >
 >
 >
@@ -226,43 +226,43 @@
 >
 >
 >
-> AM = A PT \[L1invTL2T; -I\] UinvT
+> AM = A Pᵀ \[L1⁻¹TL2T; -I\] U⁻¹ᵀ
 >
 >
 >
-> = A PT \[L1invTL2T; -I\] UinvT
+> = A Pᵀ \[L1⁻¹TL2T; -I\] U⁻¹ᵀ
 >
 >
 >
-> Từ P AT = \[L1; L2\] U ⇨ A = Pinv \[L1; L2\] U = PT \[L1; L2\] U
+> Từ P Aᵀ = \[L1; L2\] U ⇨ A = P⁻¹ \[L1; L2\] U = Pᵀ \[L1; L2\] U
 >
 >
 >
-> ⇨ AT = UT \[L1; L2\]T P = UT \[L1T, L2T\] P
+> ⇨ Aᵀ = Uᵀ \[L1; L2\]T P = Uᵀ \[L1T, L2T\] P
 >
 >
 >
-> ⇨ A PT \[L1invTL2T; -I\] UinvT
+> ⇨ A Pᵀ \[L1⁻¹TL2T; -I\] U⁻¹ᵀ
 >
 >
 >
-> = UT \[L1T, L2T\] P PT \[L1invTL2T; -I\] UinvT
+> = Uᵀ \[L1T, L2T\] P Pᵀ \[L1⁻¹TL2T; -I\] U⁻¹ᵀ
 >
 >
 >
-> = UT \[L1T, L2T\] \[L1invTL2T; -I\] UinvT
+> = Uᵀ \[L1T, L2T\] \[L1⁻¹TL2T; -I\] U⁻¹ᵀ
 >
 >
 >
-> = UT (L1TL1invTL2T - L2T) UinvT (L1T nhân L1invT = (L1inv L1 )T = (I)T = I
+> = Uᵀ (L1TL1⁻¹TL2T - L2T) U⁻¹ᵀ (L1T nhân L1⁻¹T = (L1⁻¹ L1 )ᵀ = (I)ᵀ = I
 >
 >
 >
-> = UT (L2T - L2T) UinvT
+> = Uᵀ (L2T - L2T) U⁻¹ᵀ
 >
 >
 >
-> = UT (0) UinvT
+> = Uᵀ (0) U⁻¹ᵀ
 >
 >
 >
@@ -277,7 +277,7 @@
 <p align="center"><kbd><img src="assets/989i20hitic.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Tiếp, đại khái là khi A là matrix đối xứng xác định dương, thì dạng khử Gauss PA = LU nó trở thành một dạng phân tách đẹp hơn nữa: A = L(LT). Có nghĩa là, với PA = LU, thì L, và U là matrix tam giác dưới và trên. Còn với A đối xứng thì U trở thành chính là LT (L transpose), và chẳng cần phải đổi hàng bằng matrix P làm gì nữa. Và cái này có tên là Cholesky Factorization, nó có chi phí chỉ bằng một nửa của PA = LU (khử Gauss), tức n^3/3
+> Tiếp, đại khái là khi A là matrix đối xứng xác định dương, thì dạng khử Gauss PA = LU nó trở thành một dạng phân tách đẹp hơn nữa: A = L(Lᵀ). Có nghĩa là, với PA = LU, thì L, và U là matrix tam giác dưới và trên. Còn với A đối xứng thì U trở thành chính là Lᵀ (L transpose), và chẳng cần phải đổi hàng bằng matrix P làm gì nữa. Và cái này có tên là Cholesky Factorization, nó có chi phí chỉ bằng một nửa của PA = LU (khử Gauss), tức n^3/3
 >
 >
 >
@@ -293,7 +293,7 @@
 >
 >
 >
-> A = LLT
+> A = LLᵀ
 >
 >
 >
@@ -445,7 +445,7 @@
 <p align="center"><kbd><img src="assets/3i6d2a4cy3s.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đại khái là, không như thuật toán khử Gauss, vốn có thể cần bước swap row, thì Cholesky thì ko. Tuy nhiên có thể dùng matrix permutation để sắp xếp lại các hàng của A giúp cho kết quả phân tách ra L(L)T sẽ có thể sparse hơn. Khi đó, ta có phương trình thể hiện việc phân tách: (PT)AP = L(LT)
+> Đại khái là, không như thuật toán khử Gauss, vốn có thể cần bước swap row, thì Cholesky thì ko. Tuy nhiên có thể dùng matrix permutation để sắp xếp lại các hàng của A giúp cho kết quả phân tách ra L(L)ᵀ sẽ có thể sparse hơn. Khi đó, ta có phương trình thể hiện việc phân tách: (Pᵀ)AP = L(Lᵀ)
 
 <br>
 
@@ -460,7 +460,7 @@
 >
 >
 >
-> Giải Ax = b, cũng như tác dụng của thuật toán khử Gauss trong việc này, ta sẽ rã A thành L(LT), sau đó giải Ax = b ⇔ L(LT)x = b, và việc này dẫn đến giải hai hệ với matrix tam giác: L u = b, LT x = u, và đây chỉ có O(n^2) vì chỉ là backward / forward substitution.
+> Giải Ax = b, cũng như tác dụng của thuật toán khử Gauss trong việc này, ta sẽ rã A thành L(Lᵀ), sau đó giải Ax = b ⇔ L(Lᵀ)x = b, và việc này dẫn đến giải hai hệ với matrix tam giác: L u = b, Lᵀ x = u, và đây chỉ có O(n^2) vì chỉ là backward / forward substitution.
 >
 >
 >
@@ -548,27 +548,27 @@
 >
 >
 >
-> QTr = 0 ⇔ QT(a3 - p) = 0
+> Qᵀr = 0 ⇔ Qᵀ(a3 - p) = 0
 >
 >
 >
-> ⇔ QTa3 = QTp
+> ⇔ Qᵀa3 = Qᵀp
 >
 >
 >
-> ⇔ QTa3 = QTQx (Đây là normal equation)
+> ⇔ Qᵀa3 = QᵀQx (Đây là normal equation)
 >
 >
 >
-> Mà vì Q có hai cột orthogonal và unit norm nên QTQ = I ⇨ Ta có QTa3 = x
+> Mà vì Q có hai cột orthogonal và unit norm nên QᵀQ = I ⇨ Ta có Qᵀa3 = x
 >
 >
 >
-> ⇨ x = QTa3
+> ⇨ x = Qᵀa3
 >
 >
 >
-> ⇨ p = Qx = QQTa3 = (q1Ta3)q1 + (a2Ta3)q2
+> ⇨ p = Qx = QQᵀa3 = (q1Ta3)q1 + (a2Ta3)q2
 >
 >
 >
@@ -642,7 +642,7 @@
 >
 >
 >
-> Là vì khi đó, x = Ainv b = (QR)inv b = Rinv Qinv b, từ đó cách giải hệ Ax = b như sau:
+> Là vì khi đó, x = A⁻¹ b = (QR)⁻¹ b = R⁻¹ Q⁻¹ b, từ đó cách giải hệ Ax = b như sau:
 >
 >
 >
@@ -650,15 +650,15 @@
 >
 >
 >
-> ii) Tính Qinv b, mà vì Q là orthogonal matrix, nên Qinv = QT, tính Qinvb chỉ là tính QTb, là phép nhân matrix với vector. (gán kết quả thành b\~)
+> ii) Tính Q⁻¹ b, mà vì Q là orthogonal matrix, nên Q⁻¹ = Qᵀ, tính Q⁻¹b chỉ là tính Qᵀb, là phép nhân matrix với vector. (gán kết quả thành b\~)
 >
 >
 >
-> iii) Giải Rinv b\~, dĩ nhiên là không phải đi tìm Rinv, mà là ta sẽ giải Rx = b\~, và đây là hệ có matrix tam giác ⇨ chỉ là back-substitution.
+> iii) Giải R⁻¹ b\~, dĩ nhiên là không phải đi tìm R⁻¹, mà là ta sẽ giải Rx = b\~, và đây là hệ có matrix tam giác ⇨ chỉ là back-substitution.
 >
 >
 >
-> Nếu nói về phân tách AP = QR, thì giải Ax = b ⇔ QR(PT)x = b thì như vậy sau khi giải bước 3 mới chỉ là Rz = b\~, cần làm thêm bước cuối: PTx = z ⇨ x = Pz
+> Nếu nói về phân tách AP = QR, thì giải Ax = b ⇔ QR(Pᵀ)x = b thì như vậy sau khi giải bước 3 mới chỉ là Rz = b\~, cần làm thêm bước cuối: Pᵀx = z ⇨ x = Pz
 
 > [!TIP]
 > 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
