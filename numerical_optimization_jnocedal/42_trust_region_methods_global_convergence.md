@@ -17,7 +17,7 @@
 <p align="center"><kbd><img src="assets/k26h25yyq0m.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đầu tiên, đại ý là, trong những phần trước tác giả đã nhấn mạnh nhiều lần rằng để phương pháp trust region có thể có hội tụ toàn cục (global convergence) thì cái bài toán subproblem (tức là trong iteration xk, tìm xk+1, bằng cách giải bài toán minimize m(p) = fk + gkTp + (1/2)pTBkp s.t ||p|| ≤ Δ, thì p phải giúp giảm f đủ nhiều, và sự đủ ở đây sẽ so sánh với mức giảm bởi Cauchy point.
+> Đầu tiên, đại ý là, trong những phần trước tác giả đã nhấn mạnh nhiều lần rằng để phương pháp trust region có thể có hội tụ toàn cục (global convergence) thì cái bài toán subproblem (tức là trong iteration xk, tìm xk+1, bằng cách giải bài toán minimize m(p) = fk + gkTp + (1/2)pᵀBkp s.t ||p|| ≤ Δ, thì p phải giúp giảm f đủ nhiều, và sự đủ ở đây sẽ so sánh với mức giảm bởi Cauchy point.
 >
 > Ôn lại chút, Cauchy point là gì: Đại khái là tính thế này: Chọn hướng steepest descent: pkS, rồi xem thử đi theo hướng đó, trong phạm vi cho phép thì mk đến đâu là xuống được thấp nhất
 >
@@ -27,7 +27,7 @@
 >
 > Còn bước sau, chính là bài toán: 
 >
-> minimize mk(t × pkS) = fk + gT τ pkS + (1/2)(τpkS)TBk(τpkS) s.t ||(t × pkS)|| ≤ Δ. Giải ra τ*, ta  có pkC, tức Cauchy point = τ* × pkS.
+> minimize mk(t × pkS) = fk + gᵀ τ pkS + (1/2)(τpkS)ᵀBk(τpkS) s.t ||(t × pkS)|| ≤ Δ. Giải ra τ*, ta  có pkC, tức Cauchy point = τ* × pkS.
 >
 > Quay lại đây, thế thì, ta sẽ bắt đầu phân tích hội tụ bằng cách **tính mức giảm của m khi đi theo Cauchy point**. Và dùng kết quả này để mà chứng minh rằng chuỗi gradient {gk} tính bởi thuật toán 4.1 (link) sẽ có điểm tích lũy tại 0 (hiểu nôm na là gradient sẽ giảm về 0) và thật sự sẽ hội tụ về 0 khi η dương.
 
@@ -51,7 +51,7 @@
 >
 > mk(0) - mk(pk) ≥ c1 ||gk|| min (Δk, ||gk|| / ||Bk||) for some constant c1 ∈ (0, 1] (4.20)
 >
-> Gỉai thích một chút, vế trái, là thay đổi của mk khi từ 0 đến pk. Cần hiểu k ở đây là để chỉ ta đang xét outer iteration thứ k, nơi ta đang đứng ở xk, và thực hiện bước đi để đến xk+1. Và để làm vậy, theo phương pháp trust region, ta sẽ giải bài toán: minimize over p của mk(p) = fk + gkTp + (1/2)pTBkp s.t ||p|| ≤ Δ. Với ý nghĩa / cách hiểu nôm na là: Ta giả bộ / coi như hàm mục tiêu hành xử như một hàm quadratic, thì trong một phạm vi nhất định quy định bởi ||p|| ≤ Δ thì điều này có thể chấp nhận được, khi đó ta sẽ tìm hướng đi, p sao cho được hàm quadratic này nhiều nhất có thể trong phạm vi cho phép. Như vậy mk(0), chính là f(xk), là "độ cao" ở điểm ban đầu, và mk(p) sẽ là độ cao (tính bởi hàm quadratic tại điểm xk + p, (hay xk + pk, nếu muốn gắn k vào p để chỉ rõ đây là tìm p ở iteration thứ k). Và **như vậy điều kiện 4.20 này quy định là: À, nếu muốn sự hội tụ tốt toàn cục thì tại mỗi iteration, bước đi p phải giúp giảm hàm mk một khoảng tối thiểu, chính là vế phải.**
+> Gỉai thích một chút, vế trái, là thay đổi của mk khi từ 0 đến pk. Cần hiểu k ở đây là để chỉ ta đang xét outer iteration thứ k, nơi ta đang đứng ở xk, và thực hiện bước đi để đến xk+1. Và để làm vậy, theo phương pháp trust region, ta sẽ giải bài toán: minimize over p của mk(p) = fk + gkTp + (1/2)pᵀBkp s.t ||p|| ≤ Δ. Với ý nghĩa / cách hiểu nôm na là: Ta giả bộ / coi như hàm mục tiêu hành xử như một hàm quadratic, thì trong một phạm vi nhất định quy định bởi ||p|| ≤ Δ thì điều này có thể chấp nhận được, khi đó ta sẽ tìm hướng đi, p sao cho được hàm quadratic này nhiều nhất có thể trong phạm vi cho phép. Như vậy mk(0), chính là f(xk), là "độ cao" ở điểm ban đầu, và mk(p) sẽ là độ cao (tính bởi hàm quadratic tại điểm xk + p, (hay xk + pk, nếu muốn gắn k vào p để chỉ rõ đây là tìm p ở iteration thứ k). Và **như vậy điều kiện 4.20 này quy định là: À, nếu muốn sự hội tụ tốt toàn cục thì tại mỗi iteration, bước đi p phải giúp giảm hàm mk một khoảng tối thiểu, chính là vế phải.**
 >
 > Tác giả cho rằng ta sẽ thấy cái này hữu ích trong những phần sau.
 >
@@ -86,7 +86,7 @@
 >
 > mk(0) - mk(pk) ≥ c1 ||gk|| min (Δk, ||gk|| / ||Bk||) for some constant c1 ∈ (0, 1]
 >
-> Gỉai thích một chút, vế trái, là thay đổi của mk khi từ 0 đến pk. Cần hiểu k ở đây là để chỉ ta đang xét outer iteration thứ k, nơi ta đang đứng ở xk, và thực hiện bước đi để đến xk+1. Và để làm vậy, theo phương pháp trust region, ta sẽ giải bài toán: minimize over p của mk(p) = fk + gkTp + (1/2)pTBkp s.t ||p|| ≤ Δ. Với ý nghĩa / cách hiểu nôm na là: Ta giả bộ / coi như hàm mục tiêu hành xử như một hàm quadratic, thì trong một phạm vi nhất định quy định bởi ||p|| ≤ Δ thì điều này có thể chấp nhận được, khi đó ta sẽ tìm hướng đi, p sao cho được hàm quadratic này nhiều nhất có thể trong phạm vi cho phép. Như vậy mk(0), chính là f(xk), là "độ cao" ở điểm ban đầu, và mk(p) sẽ là độ cao (tính bởi hàm quadratic tại điểm xk + p, (hay xk + pk, nếu muốn gắn k vào p để chỉ rõ đây là tìm p ở iteration thứ k). Và như vậy điều kiện 4.20 này quy định là: À, nếu muốn sự hội tụ tốt toàn cục thì tại mỗi iteration, bước đi p phải giúp giảm hàm mk một khoảng tối thiểu, chính là vế phải.
+> Gỉai thích một chút, vế trái, là thay đổi của mk khi từ 0 đến pk. Cần hiểu k ở đây là để chỉ ta đang xét outer iteration thứ k, nơi ta đang đứng ở xk, và thực hiện bước đi để đến xk+1. Và để làm vậy, theo phương pháp trust region, ta sẽ giải bài toán: minimize over p của mk(p) = fk + gkTp + (1/2)pᵀBkp s.t ||p|| ≤ Δ. Với ý nghĩa / cách hiểu nôm na là: Ta giả bộ / coi như hàm mục tiêu hành xử như một hàm quadratic, thì trong một phạm vi nhất định quy định bởi ||p|| ≤ Δ thì điều này có thể chấp nhận được, khi đó ta sẽ tìm hướng đi, p sao cho được hàm quadratic này nhiều nhất có thể trong phạm vi cho phép. Như vậy mk(0), chính là f(xk), là "độ cao" ở điểm ban đầu, và mk(p) sẽ là độ cao (tính bởi hàm quadratic tại điểm xk + p, (hay xk + pk, nếu muốn gắn k vào p để chỉ rõ đây là tìm p ở iteration thứ k). Và như vậy điều kiện 4.20 này quy định là: À, nếu muốn sự hội tụ tốt toàn cục thì tại mỗi iteration, bước đi p phải giúp giảm hàm mk một khoảng tối thiểu, chính là vế phải.
 >
 > Vậy thì bổ đề này nói rằng: pkC, Cauchy point thỏa được cái này, và cụ thể c1 = 1/2.
 >
@@ -102,41 +102,41 @@
 >
 > Bước 2, gỉai bài toán tối ưu hàm đơn biến: 
 >
-> minimize over τ hàm g(τ) = f + gT(τpS) + (1/2)(τpS)T B (τpS) s.t ||τpS|| ≤ Δ
+> minimize over τ hàm g(τ) = f + gᵀ(τpS) + (1/2)(τpS)ᵀ B (τpS) s.t ||τpS|| ≤ Δ
 >
-> = f + τ gT(pS) + (1/2)(pS)TB(pS) τ^2  
+> = f + τ gᵀ(pS) + (1/2)(pS)ᵀB(pS) τ^2  
 >
-> = f + τ gT(- (Δ / ||g||) g) + (1/2)(- (Δ / ||g||) g)TB(- (Δ / ||g||) g) τ^2
+> = f + τ gᵀ(- (Δ / ||g||) g) + (1/2)(- (Δ / ||g||) g)ᵀB(- (Δ / ||g||) g) τ^2
 >
-> = f - τ Δ ||g|| + (1/2)(Δ / ||g||)^2 gTBg τ^2
+> = f - τ Δ ||g|| + (1/2)(Δ / ||g||)^2 gᵀBg τ^2
 >
 > Khi đó ta sẽ có hai trường hợp mà đã nói ở phần Cauchy point
 >
-> 1) Khi gTBg ≤ 0, đại khái là ta sẽ có thể chứng minh đạo hàm của g(τ) sẽ âm với mọi τ, từ đó hàm là monotone decreasing, thành ra solution sẽ là τ = 1 ⇨ pC = - (Δ / ||g||) g
+> 1) Khi gᵀBg ≤ 0, đại khái là ta sẽ có thể chứng minh đạo hàm của g(τ) sẽ âm với mọi τ, từ đó hàm là monotone decreasing, thành ra solution sẽ là τ = 1 ⇨ pC = - (Δ / ||g||) g
 >
 > HÌnh ảnh rất dễ hiểu, độ cong của hàm m tại xk âm, và với việc m là quadratic function, nên giới hạn trong hướng pS thì nó g là hàm bậc hai đơn biến thì độ cong của nó là hằng số, có nghĩa là ở đâu thì nó cũng chỉ đang cong xuống, nên dĩ nhiên dễ hiểu là điểm thấp nhất sẽ đụng hàng rào
 >
-> ⇨ m(pC) = f + gTpC + (1/2) pCT B pC 
+> ⇨ m(pC) = f + gᵀpC + (1/2) pCᵀ B pC 
 >
-> = f + gT[- (Δ / ||g||) g] + (1/2) [- (Δ / ||g||) g]T B [- (Δ / ||g||) g]
+> = f + gᵀ[- (Δ / ||g||) g] + (1/2) [- (Δ / ||g||) g]T B [- (Δ / ||g||) g]
 >
-> = f - (Δ / ||g||) gTg + (1/2) (Δ / ||g||)^2  gTBg
+> = f - (Δ / ||g||) gᵀg + (1/2) (Δ / ||g||)^2  gᵀBg
 >
-> = f - (Δ / ||g||) ||g||^2 + (1/2) (Δ / ||g||)^2  gTBg
+> = f - (Δ / ||g||) ||g||^2 + (1/2) (Δ / ||g||)^2  gᵀBg
 >
-> = f - Δ ||g|| + (1/2) (Δ / ||g||)^2  gTBg
+> = f - Δ ||g|| + (1/2) (Δ / ||g||)^2  gᵀBg
 >
-> Từ đó m(0) - m(pC) = f - [f - Δ ||g|| + (1/2) (Δ / ||g||)^2  gTBg]
+> Từ đó m(0) - m(pC) = f - [f - Δ ||g|| + (1/2) (Δ / ||g||)^2  gᵀBg]
 >
-> = f - f + Δ ||g|| - (1/2) (Δ / ||g||)^2  gTBg
+> = f - f + Δ ||g|| - (1/2) (Δ / ||g||)^2  gᵀBg
 >
-> = Δ ||g|| - (1/2) (Δ / ||g||)^2  gTBg
+> = Δ ||g|| - (1/2) (Δ / ||g||)^2  gᵀBg
 >
-> Viết lại: m(0) - m(pC) = Δ ||g|| - (1/2) (Δ / ||g||)^2  gTBg
+> Viết lại: m(0) - m(pC) = Δ ||g|| - (1/2) (Δ / ||g||)^2  gᵀBg
 >
-> Tới đây ta xét B thỏa: gTBg ≤ 0, điều này ⇔ - (1/2) (Δ / ||g||)^2  gTBg ≥ 0
+> Tới đây ta xét B thỏa: gᵀBg ≤ 0, điều này ⇔ - (1/2) (Δ / ||g||)^2  gᵀBg ≥ 0
 >
-> ⇨ Δ ||g|| - (1/2) (Δ / ||g||)^2  gTBg ≥ Δ ||g||
+> ⇨ Δ ||g|| - (1/2) (Δ / ||g||)^2  gᵀBg ≥ Δ ||g||
 >
 > Và Δ dĩ nhiên ≥ min(Δ, ||g|| / ||B||) 
 >
@@ -146,51 +146,51 @@
 >
 > ≥ 1/2 ||g|| min(Δ, ||g|| / ||B||) (vì ||g|| min(Δ, ||g|| / ||B||) là số không âm, nên a ≥ (1/2) a)
 >
-> Vậy đã chứng minh được với gTBg ≤ 0 thì pC thỏa 4.21.
+> Vậy đã chứng minh được với gᵀBg ≤ 0 thì pC thỏa 4.21.
 >
 > ====
 >
-> 2) Còn khi gTBg > 0, thì hình ảnh lúc này là hàm bậc hai đơn biến g(τ) có độ cong dương tại điểm bắt đầu (và cũng sẽ không âm tại mọi điểm)
+> 2) Còn khi gᵀBg > 0, thì hình ảnh lúc này là hàm bậc hai đơn biến g(τ) có độ cong dương tại điểm bắt đầu (và cũng sẽ không âm tại mọi điểm)
 >
-> Khi đó, đơn giản là dùng điều kiện cần bậc 1, và vì đây là hàm convex nên nó cũng đủ để kết luận minimum τ* = (||g||)^3 / ΔgTBg, pC* = [(||g||)^3 / ΔgTBg] [-g Δ / ||g||] và lúc này sẽ có hai trường hợp xảy ra: 
+> Khi đó, đơn giản là dùng điều kiện cần bậc 1, và vì đây là hàm convex nên nó cũng đủ để kết luận minimum τ* = (||g||)^3 / ΔgᵀBg, pC* = [(||g||)^3 / ΔgᵀBg] [-g Δ / ||g||] và lúc này sẽ có hai trường hợp xảy ra: 
 >
 > a) là điểm thấp nhất này nằm ở trong khoảng từ xk đến xk + pkS, tức là: ||τ* pkS|| ≤ Δ cũng là τ* ≤ 1
 >
-> Khi đó ta kết luận τ* = (||g||)^3 / Δ gTBg.
+> Khi đó ta kết luận τ* = (||g||)^3 / Δ gᵀBg.
 >
 > b) điểm thấp nhất nằm ngoài phạm vi cho phép, thì lúc này solution lại là đụng hàng rào: τ = 1
 >
-> Tổng hợp lại ⇨ τ = min(1,  (||g||)^3 / Δ gTBg)
+> Tổng hợp lại ⇨ τ = min(1,  (||g||)^3 / Δ gᵀBg)
 >
-> Vậy quay lại đây, xét case 2a: với τ = (||g||)^3 / Δ gTBg, để pC có thỏa điều kiện giảm đủ không:
+> Vậy quay lại đây, xét case 2a: với τ = (||g||)^3 / Δ gᵀBg, để pC có thỏa điều kiện giảm đủ không:
 >
-> Khi đó pC = [(||g||)^3 / Δ gTBg] [-g Δ / ||g||] 
+> Khi đó pC = [(||g||)^3 / Δ gᵀBg] [-g Δ / ||g||] 
 >
-> = [(||g||)^2 / gTBg] [-g] 
+> = [(||g||)^2 / gᵀBg] [-g] 
 >
-> = - [(||g||)^2 / gTBg] g
+> = - [(||g||)^2 / gᵀBg] g
 >
 > m(0) - m(pC) 
 >
-> = f - [f + gT{- [(||g||)^2 / gTBg] g} + (1/2) {- [(||g||)^2 / gTBg] g}TB{- [(||g||)^2 / gTBg] g}
+> = f - [f + gᵀ{- [(||g||)^2 / gᵀBg] g} + (1/2) {- [(||g||)^2 / gᵀBg] g}TB{- [(||g||)^2 / gᵀBg] g}
 >
-> = gTg [(||g||)^2 / gTBg] - (1/2) [||g||^4 / (gTBg)^2] gTBg
+> = gᵀg [(||g||)^2 / gᵀBg] - (1/2) [||g||^4 / (gᵀBg)^2] gᵀBg
 >
-> = [(||g||)^4 / gTBg] - (1/2) [||g||^4 / (gTBg)]
+> = [(||g||)^4 / gᵀBg] - (1/2) [||g||^4 / (gᵀBg)]
 >
-> = (1/2) ||g||^4 / (gTBg)
+> = (1/2) ||g||^4 / (gᵀBg)
 >
-> Tới đây xét cái quaratic form ở mẫu: gTBg. Ta sẽ có gTBg ≤ ||B|| ||g||^2. Vì sao:
+> Tới đây xét cái quaratic form ở mẫu: gᵀBg. Ta sẽ có gᵀBg ≤ ||B|| ||g||^2. Vì sao:
 >
 > Nhớ lại định nghĩa của norm of matrix B. Nói bằng lời, nó là stretch factor lớn nhất khi linear transform một vector bởi B: max_u ||Bu|| / ||u||. Nên ||B|| ≥ ||Bu|| / ||u|| Từ đó ta có inequality ||B|| ||u|| ≥ ||Bu||. ⇨ Áp dụng với g: ||B|| ||g|| ≥ ||Bg||
 >
-> Thế thì xét gTBg, nó chính là gT(Bg), theo công thức dot product, = ||g|| ||Bg|| cos θ(g, Bg). Và với tính chất cosine ≤ 1 ta có: gT(Bg) ≤ ||g|| ||Bg||
+> Thế thì xét gᵀBg, nó chính là gᵀ(Bg), theo công thức dot product, = ||g|| ||Bg|| cos θ(g, Bg). Và với tính chất cosine ≤ 1 ta có: gᵀ(Bg) ≤ ||g|| ||Bg||
 >
-> Mà ở trên ta có ||B|| ||g|| ≥ ||Bg|| ⇨ gT(Bg) ≤ ||g|| ||B|| ||g||   
+> Mà ở trên ta có ||B|| ||g|| ≥ ||Bg|| ⇨ gᵀ(Bg) ≤ ||g|| ||B|| ||g||   
 >
-> Vậy gT(Bg) ≤ ||B|| ||g||^2 (*)
+> Vậy gᵀ(Bg) ≤ ||B|| ||g||^2 (*)
 >
-> ⇨ (1/2) ||g||^4 / (gTBg) ≥ (1/2) ||g||^4 / ||B|| ||g||^2  
+> ⇨ (1/2) ||g||^4 / (gᵀBg) ≥ (1/2) ||g||^4 / ||B|| ||g||^2  
 >
 > = (1/2) ||g||^2 / ||B|| = (1/2) (||g|| / ||B||) ||g|| 
 >
@@ -200,21 +200,21 @@
 >
 > ====
 >
-> Còn case thứ 2b, khi τ = 1: Xảy ra khi t* > 1, tức (||g||)^3 / ΔgTBg > 1
+> Còn case thứ 2b, khi τ = 1: Xảy ra khi t* > 1, tức (||g||)^3 / ΔgᵀBg > 1
 >
-> ⇔ (||g||)^3 / Δ > gTBg. 
+> ⇔ (||g||)^3 / Δ > gᵀBg. 
 >
 > Lúc này việc chứng minh cũng y như case 1, vì pC = -(Δ/||g||) g
 >
-> m(0) - m(pC)  = Δ ||g|| - (1/2) (Δ / ||g||)^2 gTBg
+> m(0) - m(pC)  = Δ ||g|| - (1/2) (Δ / ||g||)^2 gᵀBg
 >
-> Chỉ khác là gTBg > 0 ta phải lập luận khác: 
+> Chỉ khác là gᵀBg > 0 ta phải lập luận khác: 
 >
-> Với (||g||)^3 / Δ > gTBg ⇔ - (||g||)^3 / Δ < - gTBg hay - gTBg > - (||g||)^3 / Δ 
+> Với (||g||)^3 / Δ > gᵀBg ⇔ - (||g||)^3 / Δ < - gᵀBg hay - gᵀBg > - (||g||)^3 / Δ 
 >
-> ⇨ -(1/2) (1/2) (Δ / ||g||)^2 gTBg > - (1/2) (Δ / ||g||)^2 (||g||)^3 / Δ 
+> ⇨ -(1/2) (1/2) (Δ / ||g||)^2 gᵀBg > - (1/2) (Δ / ||g||)^2 (||g||)^3 / Δ 
 >
-> ⇨ m(0) - m(pC)  = Δ ||g|| - (1/2) (Δ / ||g||)^2 gTBg > - (1/2) (Δ / ||g||)^2 (||g||)^3 / Δ 
+> ⇨ m(0) - m(pC)  = Δ ||g|| - (1/2) (Δ / ||g||)^2 gᵀBg > - (1/2) (Δ / ||g||)^2 (||g||)^3 / Δ 
 >
 > = Δ ||g|| - (1/2) Δ ||g||
 >
@@ -432,7 +432,7 @@
 >
 > Tiếp theo là áp dụng định lý Taylor để có kết quả 
 >
-> f(xk + pk) = f(xk) + g(xk)Tpk + ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt 
+> f(xk + pk) = f(xk) + g(xk)ᵀpk + ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt 
 >
 > Là sao?
 >
@@ -440,9 +440,9 @@
 >
 > ⇨ d/dt h(t) (hay h'(t)) = d/dt f(x + tp) = d/d(x + tp) f(x + tp) . d/dt (x + tp)
 >
-> = ∇f(x + tp) . p = ∇f(x + tp)Tp
+> = ∇f(x + tp) . p = ∇f(x + tp)ᵀp
 >
-> Viết lại h'(t) = ∇f(x + tp)Tp
+> Viết lại h'(t) = ∇f(x + tp)ᵀp
 >
 > Rồi, ta mới áp dụng FTC 1, trong đó nói rằng: Nếu G là nguyên hàm của f tức: G'(x) = f(x) thì ∫a:b f(x)dx = G(b) - G(a)
 >
@@ -450,33 +450,33 @@
 >
 > ⇨ ∫0:1 h'(t)dt = h(1) - f(0)
 >
-> Thay h'(t) = ∇f(x + tp)Tp, 
+> Thay h'(t) = ∇f(x + tp)ᵀp, 
 >
 > h(1) = f(x + 1 × p) = f(x + p), h(0) = f(x) thì ta có:
 >
-> **∫0:1 ∇f(x + tp)Tpdt = f(x + p) - f(x)**
+> **∫0:1 ∇f(x + tp)ᵀpdt = f(x + p) - f(x)**
 >
 > Tới đây chú ý, trong sách kí hiệu g(.) là hàm gradient, tức ∇f(x + tp) chính là g(x + tp), tức gradient tại x + tp.
 >
-> Viết lại ta có: f(x + p) - f(x) = ∫0:1 g(x + tp)Tpdt
+> Viết lại ta có: f(x + p) - f(x) = ∫0:1 g(x + tp)ᵀpdt
 >
-> Cộng và trừ bớt cho g(x)Tp
+> Cộng và trừ bớt cho g(x)ᵀp
 >
 > f(x + p) - f(x) = ∫0:1 [g(x + tp) - g(x) + g(x)]Tpdt 
 >
-> ⇔ f(x + p) - f(x) = ∫0:1 [g(x + tp) - g(x)]Tpdt  + ∫0:1 g(x)Tpdt 
+> ⇔ f(x + p) - f(x) = ∫0:1 [g(x + tp) - g(x)]Tpdt  + ∫0:1 g(x)ᵀpdt 
 >
-> ⇔ f(x + p) - f(x) = ∫0:1 [g(x + tp) - g(x)]Tpdt  + g(x)Tp ∫0:1 dt 
+> ⇔ f(x + p) - f(x) = ∫0:1 [g(x + tp) - g(x)]Tpdt  + g(x)ᵀp ∫0:1 dt 
 >
-> (đưa g(x)Tp ra ngoài tích phân vì không dính đến t)
+> (đưa g(x)ᵀp ra ngoài tích phân vì không dính đến t)
 >
-> ⇔ f(x + p) = f(x) + g(x)Tp + ∫0:1 [g(x + tp) - g(x)]Tpdt   
+> ⇔ f(x + p) = f(x) + g(x)ᵀp + ∫0:1 [g(x + tp) - g(x)]Tpdt   
 >
 > Đấy chính là công thức mà tác giả nói là từ Taylor's theorem, nhưng đáng lý tác giả nói từ FTC thì dễ hiểu hơn vì nếu soi từ 3 công thức Taylor theorem 2.4 → 2.6 thì hơi khó nhìn ra 
 >
 > Áp dụng vào đây ta có:
 >
-> f(xk + pk) = f(xk) + g(xk)Tpk + ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt 
+> f(xk + pk) = f(xk) + g(xk)ᵀpk + ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt 
 >
 > **CHÚ Ý, TÁC GIẢ GHI SAI / THỪA "for some t ∈ (0,1)"**
 >
@@ -484,9 +484,9 @@
 >
 > |mk(pk) - f(xk + pk)| 
 >
-> = |f(xk) + gkTpk + (1/2)pkTBkpk - [f(xk) + g(xk)Tpk + ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt ]|
+> = |f(xk) + gkTpk + (1/2)pkTBkpk - [f(xk) + g(xk)ᵀpk + ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt ]|
 >
-> = |f(xk) + gkTpk + (1/2)pTBkpk - f(xk) - g(xk)Tpk - ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt ]|
+> = |f(xk) + gkTpk + (1/2)pᵀBkpk - f(xk) - g(xk)ᵀpk - ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt ]|
 >
 > = |(1/2)pkTBkpk - ∫0:1 [g(xk + tpk) - g(xk)]Tpkdt ]|
 >
