@@ -93,7 +93,7 @@
 >
 > Và mô hình m_k thường được chọn là quadratic function (nhớ nhé, mô hình, là mô hình để mô phỏng lại f, nên là function)
 >
-> m_k(x_k + p) = f_k + pT ∇f_k + (1/2) pT B_k p
+> m_k(x_k + p) = f_k + pᵀ ∇f_k + (1/2) pᵀ B_k p
 >
 > f_k, ∇f_k thì là hàm f và gradient tại x_k rồi,
 >
@@ -177,33 +177,33 @@
 >
 > Ôn lại Taylor theorem: Nói rằng:
 >
-> Khi đi từ a → b, thì f(b) = f(a) + ∇f(a)T(b-a) + (1/2) (b-a)T ∇^2 f(c) (b-a) với some c in (a, b) 
+> Khi đi từ a → b, thì f(b) = f(a) + ∇f(a)ᵀ(b-a) + (1/2) (b-a)ᵀ ∇^2 f(c) (b-a) với some c in (a, b) 
 >
 > Cũng là áp dụng ở đây:
 >
-> f(x_k + αp) = f(x_k) + ∇f_k T(αp) + (1/2) (αp)T ∇f(c) αp với some c in (x_k, x_k + αp)
+> f(x_k + αp) = f(x_k) + ∇f_k T(αp) + (1/2) (αp)ᵀ ∇f(c) αp với some c in (x_k, x_k + αp)
 >
 > tương đương: 
 >
-> f(x_k + αp) = f(x_k) + ∇f_k T(αp) + (1/2) (αp)T ∇f(x_k + tαp) αp với some t in (0,1)
+> f(x_k + αp) = f(x_k) + ∇f_k T(αp) + (1/2) (αp)ᵀ ∇f(x_k + tαp) αp với some t in (0,1)
 >
 > tương đương
 >
-> f(x_k + αp) = f(x_k) + ∇f_k T(αp) + (1/2) (αp)T ∇f(x_k + tp) αp với some t in (0, α)
+> f(x_k + αp) = f(x_k) + ∇f_k T(αp) + (1/2) (αp)ᵀ ∇f(x_k + tp) αp với some t in (0, α)
 >
 > viết lại chút:
 >
-> f(x_k + αp) = f(x_k) + α ∇f_k Tp + (1/2) (α)^2 pT ∇f(x_k + tp) p với some t in (0, α)
+> f(x_k + αp) = f(x_k) + α ∇f_k Tp + (1/2) (α)^2 pᵀ ∇f(x_k + tp) p với some t in (0, α)
 >
 > Và như vậy, tương đương tiếp:
 >
-> [f(x_k + αp) - f(x_k)] / α = ∇f_k Tp + (1/2) α pT ∇f(x_k + tp) p
+> [f(x_k + αp) - f(x_k)] / α = ∇f_k Tp + (1/2) α pᵀ ∇f(x_k + tp) p
 >
 > Lấy lim α → 0:
 >
 > thì vế trái là lim α → 0 [f(x_k + αp) - f(x_k)] / α, nó chính là đạo hàm theo hướng p, directional derivative, cũng là rate of change theo hướng p của hàm f tại x_k
 >
-> Còn vế phải sẽ là lim α → 0 ∇f_k Tp + (1/2) α pT ∇f(xk + tp) p = ∇f_k Tp
+> Còn vế phải sẽ là lim α → 0 ∇f_k Tp + (1/2) α pᵀ ∇f(xk + tp) p = ∇f_k Tp
 >
 > Nói chung, có thể coi như giáo sư đã liên hệ định nghĩa directional derivative với Taylor theorem
 >
@@ -253,13 +253,13 @@
 >
 > Dùng Taylor theorem, với p là hướng góc tù với gradient nói trên, bắt đầu tại x_k
 >
-> f(x_k + αp) = f(x_k) + ∇f(x_k)T(αp) + (1/2) (αp)T ∇^2 f(x_k + tαp) (αp) for some t in (0, 1)
+> f(x_k + αp) = f(x_k) + ∇f(x_k)ᵀ(αp) + (1/2) (αp)ᵀ ∇^2 f(x_k + tαp) (αp) for some t in (0, 1)
 >
-> ≡ f(x_k + αp) = f(x_k) + ∇f(x_k)T(αp) + (1/2) (α)^2 pT ∇^2 f(x_k + tp) p for some t in (0, α)
+> ≡ f(x_k + αp) = f(x_k) + ∇f(x_k)ᵀ(αp) + (1/2) (α)^2 pᵀ ∇^2 f(x_k + tp) p for some t in (0, α)
 >
-> Và ta gọi (1/2) (α)^2 pT ∇^2 f(x_k + tp) p là O((α)^2) chỉ term sẽ tăng theo lũy thừa 2 của α.
+> Và ta gọi (1/2) (α)^2 pᵀ ∇^2 f(x_k + tp) p là O((α)^2) chỉ term sẽ tăng theo lũy thừa 2 của α.
 >
-> Viết lại f(x_k + αp) = f(x_k) + ∇f(x_k)Tαp + O((α)^2)
+> Viết lại f(x_k + αp) = f(x_k) + ∇f(x_k)ᵀαp + O((α)^2)
 >
 > ⇔ f(x_k + αp) = f(x_k) + α||∇f(x_k)||.||p||.cos(θ) + O((α)^2), θ là góc giữa p và ∇f(x_k)
 >
@@ -327,9 +327,9 @@
 > [!NOTE]
 > Rồi, ta gặp lại người bạn cũ **Newton direction**, tác giả nói một search direction quan trọng có thể là quan trọng nhất chính là Newton direction. Đựơc derive bằng cách dùng xấp xỉ Taylor bậc hai của f(x_k + p).
 >
-> f(x_k + p) ≈ f(x_k) + ∇f(x_k)T p + (1/2) pT∇^2 f(x_k) p 
+> f(x_k + p) ≈ f(x_k) + ∇f(x_k)ᵀ p + (1/2) pᵀ∇^2 f(x_k) p 
 >
-> Ghi gọn vế trái là f_k + ∇f_k Tp + (1/2) pT∇^2 f_k p 
+> Ghi gọn vế trái là f_k + ∇f_k Tp + (1/2) pᵀ∇^2 f_k p 
 >
 > (đây là xấp xỉ Taylor bậc hai, ko phải Taylor theorem)
 >
@@ -337,11 +337,11 @@
 >
 > Thế thì như đã biết ở ee364a, để tìm Newton step chính là ta xấp xỉ, hàm f, nói dễ hiểu hơn là ta coi hàm f như hàm bậc hai, để rồi giải tìm minimum của nó: 
 >
-> minimize f_hat (p) = f_k + ∇f_k Tp + (1/2) pT∇^2 f_k p 
+> minimize f_hat (p) = f_k + ∇f_k Tp + (1/2) pᵀ∇^2 f_k p 
 >
 > Và để giải tìm local minimizer ta cũng dùng điều kiện bậc 1: gradient = 0.
 >
-> Gradient của f_hat (p): Đây là hàm quadratic, mà gradient của hàm quadratic f(x) = (1/2)xTPx + qTx + r dễ dàng derive công thức là PTx + q.
+> Gradient của f_hat (p): Đây là hàm quadratic, mà gradient của hàm quadratic f(x) = (1/2)xᵀPx + Qᵀx + r dễ dàng derive công thức là Pᵀx + q.
 >
 > ⇨ ∇f_hat (p) = ∇^2 (f^)_k p + ∇f_k (Hessian đối xứng nên bỏ transpose)
 >
@@ -400,11 +400,11 @@
 >
 > Vậy thì, công thức 2.6 của Taylor theorem cho ta cái hàm chính xác có thể thay f(x_k + p):
 >
-> f(x_k + p) = f(x_k) + ∇f(x_k)T p + (1/2) pT ∇^2 f(x_k + tp) p for some t in (0,1)
+> f(x_k + p) = f(x_k) + ∇f(x_k)ᵀ p + (1/2) pᵀ ∇^2 f(x_k + tp) p for some t in (0,1)
 >
 > Còn khi ta mô phỏng f bởi xấp xỉ bậc hai:
 >
-> f(x_k + p) ≈  f(x_k) + ∇f_k Tp + (1/2) pT ∇^2 f_k p
+> f(x_k + p) ≈  f(x_k) + ∇f_k Tp + (1/2) pᵀ ∇^2 f_k p
 >
 > Thì **cơ bản là ta đã thay ∇^2 f(x_k + tp) bởi ∇^2 f(x_k), nên từ dấu bằng, trở thành xấp xỉ ≈** 
 >
@@ -444,7 +444,7 @@
 <p align="center"><kbd><img src="assets/j0oy9mtoev9.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đại khái là chỗ này tác giả muốn nói **Newton direction CŨNG LÀ DESCENT DIRECTION**, nên nó cũng có thể được dùng trong line search (vì trong line search, ta nhớ đầu tiên là chọn hướng để đi, p, là một descent direction. Sau đó mới chọn sải bước tối ưu hoặc chấp nhận được.
+> Đại khái là chỗ này tác giả muốn nói **Newton direction CŨNG LÀ DESCENT DIRECᵀION**, nên nó cũng có thể được dùng trong line search (vì trong line search, ta nhớ đầu tiên là chọn hướng để đi, p, là một descent direction. Sau đó mới chọn sải bước tối ưu hoặc chấp nhận được.
 >
 > Nhưng điều này chỉ đúng khi Hessian tại x_k, ∇^2 f_k positive definite. Nói sơ trước khi đi vào chi tiết, là vì ta tính ra directional derivative theo hướng Newton tại x_k của f sẽ thấy nó là (âm) quadratic form của Hessian của f tại x_k, do đó, chỉ khi Hessian tại x_k positive definite thì ta mới đảm bảo là cái giá trị đạo hàm theo hướng Newton tại x_k âm, để cho thấy là đi theo hướng đó sẽ giảm f.
 >
@@ -456,45 +456,45 @@
 > ab
 > (∇)_(pkN) f(x) | (x=x_k) = (∇)_(pkN) f_k = ∇f_k T pkN,
 >
-> với Newton direction (step) : pkN như nãy đã biết, = - (∇^2f_k)inv ∇fk
+> với Newton direction (step) : pkN như nãy đã biết, = - (∇^2f_k)⁻¹ ∇fk
 >
-> ⇨ (∇)_(pkN) f_k = - ∇f_k T (∇^2f_k)inv ∇f_k
+> ⇨ (∇)_(pkN) f_k = - ∇f_k T (∇^2f_k)⁻¹ ∇f_k
 >
 > Tới đây thì theo mình thì đã có thể kết luận cái này âm rồi:
 >
-> Lí do là nếu ∇^2 f_k positive definite, thì mọi eigenvalue của nó đều dương và dĩ nhiên mọi nghịch đảo của eigenvalue cũng dương ⇨ (∇^2f_k)inv cũng positive definite.
+> Lí do là nếu ∇^2 f_k positive definite, thì mọi eigenvalue của nó đều dương và dĩ nhiên mọi nghịch đảo của eigenvalue cũng dương ⇨ (∇^2f_k)⁻¹ cũng positive definite.
 >
-> Mà với positive definite A thì ta biết tính chất là quadratic form xTAx luôn dương với mọi x khác 0,  và chỉ bằng 0 khi x = 0.
+> Mà với positive definite A thì ta biết tính chất là quadratic form xᵀAx luôn dương với mọi x khác 0,  và chỉ bằng 0 khi x = 0.
 >
-> Vậy thì từ đó  ∇f_k T (∇^2fk)inv ∇f_k, sẽ luôn dương khi gradient tại x_k, tức ∇f_k khác 0, và chỉ bằng 0 khi gradient bằng 0 
+> Vậy thì từ đó  ∇f_k T (∇^2fk)⁻¹ ∇f_k, sẽ luôn dương khi gradient tại x_k, tức ∇f_k khác 0, và chỉ bằng 0 khi gradient bằng 0 
 >
-> Do đó -  ∇f_k T (∇^2f_k)inv ∇f_k luôn âm khi gradient khác 0.
+> Do đó -  ∇f_k T (∇^2f_k)⁻¹ ∇f_k luôn âm khi gradient khác 0.
 >
 > Còn ở trong sách, ta có thể biến đổi thêm chút: nhân cho Identity matrix:
 >
-> (∇)_(pkN) f_k = - ∇f_k T (∇^2f_k)inv ∇f_k
+> (∇)_(pkN) f_k = - ∇f_k T (∇^2f_k)⁻¹ ∇f_k
 >
-> = - ∇f_k I (∇^2f_k)inv ∇f_k
+> = - ∇f_k I (∇^2f_k)⁻¹ ∇f_k
 >
-> = - ∇f_k T (∇^2f_k)inv ∇^2 f_k (∇^2f_k)inv ∇f_k
+> = - ∇f_k T (∇^2f_k)⁻¹ ∇^2 f_k (∇^2f_k)⁻¹ ∇f_k
 >
-> = - [(∇^2f_k)inv ∇fk]T ∇^2 f_k [(∇^2f_k)inv ∇f_k]
+> = - [(∇^2f_k)⁻¹ ∇fk]T ∇^2 f_k [(∇^2f_k)⁻¹ ∇f_k]
 >
-> = - (pkN)T ∇^2 f_k pkN
+> = - (pkN)ᵀ ∇^2 f_k pkN
 >
-> Và lập luận tương tự, cái này luôn âm nhờ tính positive definite của Hessian và chỉ bằng 0 khi pkN = 0 ⇔ (∇^2f_k)inv ∇f_k = 0. 
+> Và lập luận tương tự, cái này luôn âm nhờ tính positive definite của Hessian và chỉ bằng 0 khi pkN = 0 ⇔ (∇^2f_k)⁻¹ ∇f_k = 0. 
 >
-> Và vì (∇^2f_k)inv positive definite nên dĩ nhiên là full rank, nên nullspace chỉ có {0}, dẫn tới là (∇^2f_k)inv ∇f_k = 0 ⇔ ∇f_k = 0: 
+> Và vì (∇^2f_k)⁻¹ positive definite nên dĩ nhiên là full rank, nên nullspace chỉ có {0}, dẫn tới là (∇^2f_k)⁻¹ ∇f_k = 0 ⇔ ∇f_k = 0: 
 >
-> Còn cái vụ - (pkN)T ∇^2 f_k pkN ≤  - σk (||pkN||)^2?
+> Còn cái vụ - (pkN)ᵀ ∇^2 f_k pkN ≤  - σk (||pkN||)^2?
 >
-> Đó là eigen-decomposition của một symmetric matrix A thành dạng QΛQT (hoặc gọi cụ thể hơn còn gọi là diagonalization, dù bản chất vẫn là eigen-decomposition vì nó phân rã matrix thành một matrix diagonal)
+> Đó là eigen-decomposition của một symmetric matrix A thành dạng QΛQᵀ (hoặc gọi cụ thể hơn còn gọi là diagonalization, dù bản chất vẫn là eigen-decomposition vì nó phân rã matrix thành một matrix diagonal)
 >
 > Đặt u = pkN, A =∇^2 f_k
 >
-> ⇨ (pkN)T ∇^2 f_k pkN = uTAu 
+> ⇨ (pkN)ᵀ ∇^2 f_k pkN = uTAu 
 >
-> = uTQ Λ QTu. Đặt v = QTu, cái ta có sẽ là vTΛv = Σ_i=1:n λ_i (v_i)^2 (λ_i là các eigenvalues của Hessian ∇^2 f_k)
+> = uTQ Λ Qᵀu. Đặt v = Qᵀu, cái ta có sẽ là vTΛv = Σ_i=1:n λ_i (v_i)^2 (λ_i là các eigenvalues của Hessian ∇^2 f_k)
 >
 > Và cái này Σi λmin (v_i)^2 ≤ Σ λi (v_i)^2 ≤  Σi λmax (v_i)^2
 >
@@ -502,15 +502,15 @@
 >
 > ⇔ - Σ λi (v_i)^2 ≤ - λmin (vTv)
 >
-> ⇔ - Σ λi (v_i)^2 ≤ - λmin (QTu)T(QTu)
+> ⇔ - Σ λi (v_i)^2 ≤ - λmin (Qᵀu)ᵀ(Qᵀu)
 >
-> ⇔ - Σ λi (v_i)^2 ≤ - λmin uTQQTu
+> ⇔ - Σ λi (v_i)^2 ≤ - λmin uTQQᵀu
 >
 > ⇔ - Σ λi (v_i)^2 ≤ - λmin uTu
 >
 > ⇔ - Σ λi (v_i)^2 ≤ - λmin (||u||)^2
 >
-> Áp dụng vào đây, - (pkN)T ∇^2 f_k pkN ≤ - λmin (||pkN||)^2
+> Áp dụng vào đây, - (pkN)ᵀ ∇^2 f_k pkN ≤ - λmin (||pkN||)^2
 >
 > nên σk ở trên chính là λmin của Hessian ∇^2 f_k
 
@@ -622,7 +622,7 @@
 >
 > Và người ta sẽ t**ính toán một matrix xấp xỉ của Hessian tại xk, gọi là Bk** theo cách làm là ta sẽ tận dụng thông tin có được sau mỗi step để update B và nó tận dụng sự thật là: 
 >
-> **SỰ THAY ĐỔI CỦA GRADIENT SAU MỖI STEP CÓ ĐEM ĐẾN MỘT LƯỢNG THÔNG TIN NÀO ĐÓ VỀ ĐẠO HÀM BẬC HAI THEO HƯỚNG SEARCH DIRECTION**
+> **SỰ THAY ĐỔI CỦA GRADIENT SAU MỖI STEP CÓ ĐEM ĐẾN MỘT LƯỢNG THÔNG TIN NÀO ĐÓ VỀ ĐẠO HÀM BẬC HAI THEO HƯỚNG SEARCH DIRECᵀION**
 >
 > Lập luận như sau:
 >
@@ -748,7 +748,7 @@
 >
 > Trong khi o(||x_(k+1) - x_k||)  thì giảm nhanh hơn là giảm tuyến tính độ giảm của sải bước sải bước x_(k+1) - x_k (vì như trên đã phân tích)
 >
-> Do đó, chỉ cần ∇^2 f_k(x_(k+1) - x_k) KHÔNG ĐỘT NHIÊN BẰNG 0, THÌ CHẮC CHẮN NÓ SẼ CÓ LÚC DOMINATE o(||x_(k+1) - x_k||).
+> Do đó, chỉ cần ∇^2 f_k(x_(k+1) - x_k) KHÔNG ĐỘT NHIÊN BẰNG 0, THÌ CHẮC CHẮN NÓ SẼ CÓ LÚC DOMINAᵀE o(||x_(k+1) - x_k||).
 >
 > VÌ SAO NÓI NÓ KHÔNG ĐƯỢC ĐỘT NHIÊN BẰNG 0? 
 >
@@ -760,7 +760,7 @@
 >
 > VẬY THÌ VÌ SAO GẦN x* THÌ HESSIAN LẠI POSITIVE DEFINITE?  
 >
-> LÀ VÌ Ở ĐÂY NGƯỜI TA ĐANG ĐẶT RA ASSUMPTION NHƯ VẬY (ko phải là điều luôn đúng, vì theo điều kiện cần bậc 2, thì nếu x* là local minimizer thì chỉ có thể kết luận Hessian tại đó xác định bán dương)
+> LÀ VÌ Ở ĐÂY NGƯỜI TA ĐANG ĐẶT RA ASSUMPᵀION NHƯ VẬY (ko phải là điều luôn đúng, vì theo điều kiện cần bậc 2, thì nếu x* là local minimizer thì chỉ có thể kết luận Hessian tại đó xác định bán dương)
 >
 > Tóm lại nếu những giả định trên thỏa mãn (Hessian xác định dương khi gần x*) thì giúp ta có thể nói rằng: *khi x_k, x_(k+1) gần solution x* thì o(||xk+1 - xk||) coi như quá nhỏ, coi như bỏ đi dẫn đến ta có xấp xỉ:
 >
@@ -792,7 +792,7 @@
 >
 > Người ta mới **chọn** B_(k+1), là một xấp xỉ của Hessian sao cho nó thỏa tính chất trên. 
 >
-> Và đó chính là **SECANT EQUATION**:
+> Và đó chính là **SECANT EQUAᵀION**:
 >
 > B_(k+1) s_k = y_k với s_k = x_(k+1) - x_k, y_k = ∇f_(k+1) - ∇f_k
 >
@@ -835,19 +835,19 @@
 > [!NOTE]
 > Thế thì, khi ta t**hay Hessian (∇^2)_k, bằng cách dùng B_k**, thì cái mà ta có sẽ là **Quasi-Newton search direction** (thay vì Newton direction)
 >
-> pk = - (Bk)inv ∇f_k
+> pk = - (Bk)⁻¹ ∇f_k
 >
 > Tiếp, một số cách thực hiện của quasi-Newton method **cố gắng tránh việc phải mỗi lần iterate là mỗi lần factorized Bk**, và họ làm việc này bằng cách** update inverse của Bk thay vì update Bk.**
 >
-> Thế thì ở đây nói phải factorized Bk là sao? là vì giả sử ta chế ra Bk, thì để tính ra Quasi-Newton direction ta sẽ phải tính (Bk)inv
+> Thế thì ở đây nói phải factorized Bk là sao? là vì giả sử ta chế ra Bk, thì để tính ra Quasi-Newton direction ta sẽ phải tính (Bk)⁻¹
 >
-> Mà như đã học ở phần phụ lục của Convex Optimization, việc tìm Ainv vốn dĩ là giải một loạt các hệ A u_i = e_i, với e_i là standard basis vector, để có u_i là cột i của Ainv. 
+> Mà như đã học ở phần phụ lục của Convex Optimization, việc tìm A⁻¹ vốn dĩ là giải một loạt các hệ A u_i = e_i, với e_i là standard basis vector, để có u_i là cột i của A⁻¹. 
 >
 > Thì việc giải hệ phương trình thì như đã biết, ta sẽ làm bằng **factor-solve approach**, tức đầu tiên là factor A thành tích các matrix có cấu trúc đơn giản. Ví dụ CDE, sau đó giải A u_i =  e_i chính là giải lần lượt C v_i = e_i, D z_i = v_i, E u_i = z_i. Mà lí do là vì tổng chi phí sẽ ít hơn là gỉải trực tiếp A u_i = e_i
 >
-> Bởi vậy ở đây người ta mới update, tính ra (Bk)inv luôn, khỏi phải tính Bk rồi tính (Bk)inv
+> Bởi vậy ở đây người ta mới update, tính ra (Bk)⁻¹ luôn, khỏi phải tính Bk rồi tính (Bk)⁻¹
 >
-> Và cái (Bk)inv của hai công thức SR1 và BFGS là như này.
+> Và cái (Bk)⁻¹ của hai công thức SR1 và BFGS là như này.
 >
 > Khi đó pk chỉ việc dùng, pk = -Hk ∇fk
 >
@@ -871,11 +871,11 @@
 >
 > Thì ở đây tác giả cho biết, ý tưởng, cảm hứng của nó ban đầu là để giải hệ Ax = b, mà cụ thể là giải hệ này thông qua việc giải bài toán tương đương: 
 >
-> minimize hàm Φ(x) = (1/2)xTAx - bTx
+> minimize hàm Φ(x) = (1/2)xᵀAx - bᵀx
 >
 > Cái này mình đã gặp ở **Convex Optimization** rồi, nên hiểu. Là vì khi ta giải Ax = b, chính là giải Ax - b = 0 Vậy nếu coi Ax - b là gradient của một hàm số nào đó, thì tìm x để Ax - b = 0 chính là tìm local minimizer của hàm số đó. 
 >
-> Và ∇f(x) = Ax - b, là hàm tuyến tính, thì f là hàm bậc hai: f(x) = 1/2 xTAx - bTx. 
+> Và ∇f(x) = Ax - b, là hàm tuyến tính, thì f là hàm bậc hai: f(x) = 1/2 xᵀAx - bᵀx. 
 >
 > Và từ đó cho ta phương pháp để giải hệ Ax = b bằng cách dùng các tiếp cận iterative trong việc giải bài toán tối ưu.
 >
@@ -903,29 +903,29 @@
 >
 > Thế thì tác giả nói, nếu ta cho Bk = 0 trong 2.12 (Chiến lược Trust Region)
 >
-> m_k(x_k + p) = f_k + pT ∇f_k + (1/2) pT B_k p
+> m_k(x_k + p) = f_k + pᵀ ∇f_k + (1/2) pᵀ B_k p
 >
-> sẽ trở thành m_k(x_k + p) = f_k + pT ∇f_k
+> sẽ trở thành m_k(x_k + p) = f_k + pᵀ ∇f_k
 >
 > ====
 >
 > Ôn lại một chút về trust region: Ý tưởng sẽ là, ta dùng một sự thật là, **khi xét trong một phạm vi đủ nhỏ nào đó (quanh x_k), thì hàm số sẽ hành xử giống như hàm bậc hai**. Cụ thể là như sau: Dựa vào Taylor theorem, nói rằng khi đi từ x đến x + p thì ta có:
 >
-> f(x + p) = f(x) + ∇f(x_k)Tp + (1/2) pT ∇^2 f(z) p với z là điểm nào đó ∈ (x, x+p)
+> f(x + p) = f(x) + ∇f(x_k)ᵀp + (1/2) pᵀ ∇^2 f(z) p với z là điểm nào đó ∈ (x, x+p)
 >
-> ≡ f(x + p) = f(x) + ∇f(x_k)Tp + (1/2) pT ∇^2 f(x + tp) p với t là giá trị nào đó ∈ (0, 1)
+> ≡ f(x + p) = f(x) + ∇f(x_k)ᵀp + (1/2) pᵀ ∇^2 f(x + tp) p với t là giá trị nào đó ∈ (0, 1)
 >
 > Và nếu xét trong phạm vi nhỏ nào đó khiến ∇^2 f(x + tp) ≈ ∇^2 f(x) thì ta sẽ có:
 >
-> f(x + p) ≈ f(x) + ∇f(x_k)Tp + (1/2) pT ∇^2 f(x ) p đây là chính là nói nếu xét trong phạm vi đủ nhỏ quanh x thì có thể coi hàm số hành xử như quadratic function: 
+> f(x + p) ≈ f(x) + ∇f(x_k)ᵀp + (1/2) pᵀ ∇^2 f(x ) p đây là chính là nói nếu xét trong phạm vi đủ nhỏ quanh x thì có thể coi hàm số hành xử như quadratic function: 
 >
-> g(p) = f_hat (x + p) = (1/2) pT ∇^2 f(x) p + ∇f(x_k)Tp +  f(x) 
+> g(p) = f_hat (x + p) = (1/2) pᵀ ∇^2 f(x) p + ∇f(x_k)ᵀp +  f(x) 
 >
 > Từ đó, ta sẽ **mô phỏng hàm f bởi một hàm bậc hai, nhưng đảm bảo là chỉ trong một trust region nhất định.**
 >
 > Để rồi, để tìm pk, ta giải bài toán **minimize quadratic function có constraint**:
 >
-> minimize m_k (x_k + p) = f_k + pT∇f_k + (1/2)pT B_k p 
+> minimize m_k (x_k + p) = f_k + pᵀ∇f_k + (1/2)pᵀ B_k p 
 >
 > constrained ||p|| < trust region radius Δk
 >
@@ -935,15 +935,15 @@
 >
 > ====
 >
-> Quay lại đây, khi Bk = 0, thì ta có bài toán minimize f_k + pT∇f_k subject to ||p|| ≤ Δk
+> Quay lại đây, khi Bk = 0, thì ta có bài toán minimize f_k + pᵀ∇f_k subject to ||p|| ≤ Δk
 >
 > Thế thì, solution có nó có thể có dạng đóng là pk = - Δk ∇f_k / ||∇f_k||
 >
 > Là sao ta?
 >
-> Hàm m_k(x_k + p) = f_k + pT∇f_k lúc này là hàm tuyến tính
+> Hàm m_k(x_k + p) = f_k + pᵀ∇f_k lúc này là hàm tuyến tính
 >
-> Và f_k fixed rồi, nên đơn giản là ta minimize pT∇f_k = ||p|| ||∇fk|| cos(θ) subject to ||p|| ≤ Δk
+> Và f_k fixed rồi, nên đơn giản là ta minimize pᵀ∇f_k = ||p|| ||∇fk|| cos(θ) subject to ||p|| ≤ Δk
 >
 > Mà -1 ≤ cos(θ) ≤ 1 ⇨ - ||p|| ||∇f_k|| ≤ ||p|| ||∇f_k|| cos(θ) ≤ ||p|| ||∇f_k|| nên nó sẽ đạt giá trị nhỏ nhất khi:
 >
@@ -1012,7 +1012,7 @@
 <p align="center"><kbd><img src="assets/3qnx14q0tig.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đại khái là, hiệu quả của thuật toán tối ưu sẽ **PHỤ THUỘC CỰC LỚN VÀO CÁCH MÀ VẤN ĐỀ ĐƯỢC FORMULATED.**
+> Đại khái là, hiệu quả của thuật toán tối ưu sẽ **PHỤ THUỘC CỰC LỚN VÀO CÁCH MÀ VẤN ĐỀ ĐƯỢC FORMULAᵀED.**
 >
 > Và một vấn đề quan trọng của cái này là **SCALING**.
 >
