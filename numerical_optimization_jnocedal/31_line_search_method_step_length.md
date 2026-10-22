@@ -29,18 +29,18 @@
 >
 > Tác giả cho biết **phần lớn line search algo đều yêu cầu p_k là descent direction**, tức p_k . ∇f_k (directional derivative wrt p_k không âm)** nhằm đảm bảo là ta sẽ giảm hàm f** khi đi theo hướng đó (tất nhiên phải có step size phù hợp nữa)
 >
-> Thế thì như **search direction có dạng chung chung là pk = -(Bk)inv ∇f_k**
+> Thế thì như **search direction có dạng chung chung là pk = -(Bk)⁻¹ ∇f_k**
 >
 > Để khi Bk là I thì pk = - ∇f_k, chính là steepest descent direction
 >
-> Còn Bk là Hessian ∇^2 f_k thì nó chính là - (∇^2f_k)inv ∇f_k, là Newton direction
+> Còn Bk là Hessian ∇^2 f_k thì nó chính là - (∇^2f_k)⁻¹ ∇f_k, là Newton direction
 >
 > Còn khi Bk được chọn là một xấp xỉ gần đúng của Hessian như trong công thức ở phần trước thì ta có quasi-Newton direction
 >
-> Và khi **miễn là đảm bảo Bk positive definite** thì ta **chắc chắn pk = -(Bk)inv ∇fk sẽ là
+> Và khi **miễn là đảm bảo Bk positive definite** thì ta **chắc chắn pk = -(Bk)⁻¹ ∇fk sẽ là
 > descent direction**: Đơn giản là vì khi đó directional derivative wrt pk:
 >
-> = p_k . ∇f_k = - ∇fkT (Bk)inv ∇fk là (negative) quadratic form của (Bk)inv cũng là positive definite ⇨ luôn âm miễn là gradient ∇fk ko vanish.
+> = p_k . ∇f_k = - ∇fkT (Bk)⁻¹ ∇fk là (negative) quadratic form của (Bk)⁻¹ cũng là positive definite ⇨ luôn âm miễn là gradient ∇fk ko vanish.
 >
 > ====
 >
@@ -63,7 +63,7 @@
 >
 > Nhưng để giải bài toán này thì **đại khái là ta phải inference hàm f và có thể là cả gradient ∇f rất nhiều lần** → tăng chi phí.
 >
-> Do đó thường người ta sẽ dùng **cách tiếp cận INEXACT, tìm αk giúp giảm f đủ tốt nhưng với chi phí tính toán tối thiểu**.
+> Do đó thường người ta sẽ dùng **cách tiếp cận INEXACᵀ, tìm αk giúp giảm f đủ tốt nhưng với chi phí tính toán tối thiểu**.
 >
 > (cái này mình đã học trong Convex Optimization ở đây chỉ nhắc lại thôi)
 
@@ -114,13 +114,13 @@
 > [!NOTE]
 > Đại khái là, đây một loại condition cho inexact line search phổ biến, qui định rằng yêu cầu đầu tiên cho αk đó là nó phải khiến **tạo ra một mức giảm đủ lớn** (sufficient decrease) đối với function f, thể hiện bởi:
 >
-> f(xk + αpk) ≤ f(xk) + c1 α (∇fk)T pk với c1 có giá trị nào đó trong (0,1)
+> f(xk + αpk) ≤ f(xk) + c1 α (∇fk)ᵀ pk với c1 có giá trị nào đó trong (0,1)
 >
-> Và ý nghĩa của cái này là, mức giảm tối thiểu của f phải tỉ lệ thuận với step length αk và directional derivative (∇fk)T pk. Là sao? 
+> Và ý nghĩa của cái này là, mức giảm tối thiểu của f phải tỉ lệ thuận với step length αk và directional derivative (∇fk)ᵀ pk. Là sao? 
 >
-> ⇨ Thì cái trên ⇔ f(xk) - f(xk + αpk) ≥ - c1 α (∇fk)T pk
+> ⇨ Thì cái trên ⇔ f(xk) - f(xk + αpk) ≥ - c1 α (∇fk)ᵀ pk
 >
-> ⇔ mức giảm của f ≥ - c1 α (∇fk)T pk, và đây đương nhiên là hàm tuyến tính của pk và α. Tức là nếu giữ pk, thì nó tuyến tính theo α và ngược lại. 
+> ⇔ mức giảm của f ≥ - c1 α (∇fk)ᵀ pk, và đây đương nhiên là hàm tuyến tính của pk và α. Tức là nếu giữ pk, thì nó tuyến tính theo α và ngược lại. 
 >
 > Điều kiện này còn có tên là **Armijo condition**.
 >
@@ -163,11 +163,11 @@
 >
 > Do đó người ta mới thêm một điều kiện nữa: **Curvature condition**.
 >
-> ∇f(xk + αkpk)Tpk ≥ c2 ∇fkTpk
+> ∇f(xk + αkpk)ᵀpk ≥ c2 ∇fkTpk
 >
 > Vế trái, tương tự như ∇fkTpk, là directional derivative của f wrt pk tại xk, thì.. 
 >
-> **∇f(xk + αkpk)Tpk là directional derivative wrt pk tại xk + αkpk**
+> **∇f(xk + αkpk)ᵀpk là directional derivative wrt pk tại xk + αkpk**
 >
 > Và vì đã hiểu **directional derivative của hàm f wrt pk thì cũng là đạo hàm hàm Φ(α) = f(xk + αpk)** nên: 
 >
@@ -238,7 +238,7 @@
 >
 > f(xk + αkpk) ≤ f(xk) + c1 αk ∇fkTpk (**Armijo**)
 >
-> |∇f(xk + αkpk)Tpk| ≤ c2|∇fkTpk| (**Strong Curvature condition**)
+> |∇f(xk + αkpk)ᵀpk| ≤ c2|∇fkTpk| (**Strong Curvature condition**)
 >
 > Và ý nghĩa của nó là, tại xk + αkpk, **độ dốc phải vừa bớt âm nhưng cũng ko được qúa dương**
 
@@ -337,19 +337,19 @@
 >
 > Và dĩ nhiên Φ(α) là scalar - scalar, nên 
 >
-> ∇f(x_k + ξ p_k)T p_k. Nên kết quả trên.. ∇f(x_k + α p_k) ∘ p_k phải là dot product của hai vector
+> ∇f(x_k + ξ p_k)ᵀ p_k. Nên kết quả trên.. ∇f(x_k + α p_k) ∘ p_k phải là dot product của hai vector
 >
-> => (1) = α' ∇f(x_k + ξ p_k)T p_k (2)
+> => (1) = α' ∇f(x_k + ξ p_k)ᵀ p_k (2)
 >
-> Từ (1) và (2) ⇨  α' c1 ∇f_k T p_k = α' ∇f(x_k + ξ p_k)T p_k
+> Từ (1) và (2) ⇨  α' c1 ∇f_k T p_k = α' ∇f(x_k + ξ p_k)ᵀ p_k
 >
-> ⇔ c1 ∇f_k T p_k = ∇f(x_k + ξ p_k)T p_k
+> ⇔ c1 ∇f_k T p_k = ∇f(x_k + ξ p_k)ᵀ p_k
 >
-> ⇔ ∇f(x_k + ξ p_k)Tpk = c1 ∇f_k T p_k
+> ⇔ ∇f(x_k + ξ p_k)ᵀpk = c1 ∇f_k T p_k
 >
 > Mà assumption c1 < c2, đồng thời ta có ∇f_k T p_k âm
 >
-> → ∇f(x_k + ξ p_k)T p_k = c1 ∇f_k T p_k < c2 ∇f_k T p_k
+> → ∇f(x_k + ξ p_k)ᵀ p_k = c1 ∇f_k T p_k < c2 ∇f_k T p_k
 >
 > Như vậy, tại ξ, thì ta đã thỏa curvature condition (vì mean value theorem, nói nhất định phải tồn tại ξ)
 >
@@ -388,7 +388,7 @@
 
 <a id="node-sf5t6wa"></a>
 
-###### Sufficient Decrease And Bactracking
+###### Sufficient Decrease And Bacᵀracking
 
 <p align="center"><kbd><img src="assets/e41cb964ygp.png" width="80%"></kbd></p>
 
