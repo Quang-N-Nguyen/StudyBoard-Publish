@@ -56,37 +56,37 @@
 >
 > Lặp vào lại 6.22:
 >
-> Bksk + σ(δ(yk - Bksk)Tsk)δ(yk - Bksk) = yk
+> Bksk + σ(δ(yk - Bksk)ᵀsk)δ(yk - Bksk) = yk
 >
-> ⇔ σ(δ(yk - Bksk)Tsk)δ(yk - Bksk) = yk - Bksk
+> ⇔ σ(δ(yk - Bksk)ᵀsk)δ(yk - Bksk) = yk - Bksk
 >
-> ⇔ σδ^2(yk - Bksk)Tsk = 1
+> ⇔ σδ^2(yk - Bksk)ᵀsk = 1
 >
-> Rồi, lập luận như sau: vì đã nói σ sẽ là số +1 hoặc -1, mà ở đây, vế phải dương, còn δ^2 ở vế trái không âm, nên σ × (yk - Bksk)Tsk phải dương. do đó σ phải có dấu cùng dấu với (yk - Bksk)Tsk ⇨ σ = sign((yk - Bksk)Tsk)
+> Rồi, lập luận như sau: vì đã nói σ sẽ là số +1 hoặc -1, mà ở đây, vế phải dương, còn δ^2 ở vế trái không âm, nên σ × (yk - Bksk)ᵀsk phải dương. do đó σ phải có dấu cùng dấu với (yk - Bksk)ᵀsk ⇨ σ = sign((yk - Bksk)ᵀsk)
 >
-> Tiếp theo, để phương trình cân bằng ta cần δ^2|(yk - Bksk)Tsk| = 1
+> Tiếp theo, để phương trình cân bằng ta cần δ^2|(yk - Bksk)ᵀsk| = 1
 >
-> ⇨ δ^2 = 1/|(yk - Bksk)Tsk|
+> ⇨ δ^2 = 1/|(yk - Bksk)ᵀsk|
 >
-> ⇨ δ = (+/-) 1/√|(yk - Bksk)Tsk|
+> ⇨ δ = (+/-) 1/√|(yk - Bksk)ᵀsk|
 >
 > Thế là ta đã có công thức rank 1 update cho Bk+1
 >
-> Bk+1 = Bk + σvvT = Bk + sign((yk - Bksk)Tsk) × δ^2(yk - Bksk)(yk - Bksk)T
+> Bk+1 = Bk + σvvT = Bk + sign((yk - Bksk)ᵀsk) × δ^2(yk - Bksk)(yk - Bksk)ᵀ
 >
-> = Bk + sign((yk - Bksk)Tsk) × δ^2(yk - Bksk)(yk - Bksk)T
+> = Bk + sign((yk - Bksk)ᵀsk) × δ^2(yk - Bksk)(yk - Bksk)ᵀ
 >
-> = Bk + sign((yk - Bksk)Tsk) × [(+/-)1/√|(yk - Bksk)Tsk|]^2 × (yk - Bksk)(yk - Bksk)T 
+> = Bk + sign((yk - Bksk)ᵀsk) × [(+/-)1/√|(yk - Bksk)ᵀsk|]^2 × (yk - Bksk)(yk - Bksk)ᵀ 
 >
-> = Bk + sign((yk - Bksk)Tsk) × [1/|(yk - Bksk)Tsk|] × (yk - Bksk)(yk - Bksk)T 
+> = Bk + sign((yk - Bksk)ᵀsk) × [1/|(yk - Bksk)ᵀsk|] × (yk - Bksk)(yk - Bksk)ᵀ 
 >
-> = Bk + [sign((yk - Bksk)Tsk) / |(yk - Bksk)Tsk|] × (yk - Bksk)(yk - Bksk)T 
+> = Bk + [sign((yk - Bksk)ᵀsk) / |(yk - Bksk)ᵀsk|] × (yk - Bksk)(yk - Bksk)ᵀ 
 >
-> = Bk + 1 / [(yk - Bksk)Tsk] × (yk - Bksk)(yk - Bksk)T 
+> = Bk + 1 / [(yk - Bksk)ᵀsk] × (yk - Bksk)(yk - Bksk)ᵀ 
 >
-> = Bk + (yk - Bksk)(yk - Bksk)T / (yk - Bksk)Tsk
+> = Bk + (yk - Bksk)(yk - Bksk)ᵀ / (yk - Bksk)ᵀsk
 >
-> và lại dùng cái công thức Sherman-Morrison, chỉ đơn giản là giúp chuyển cái công thức update Bk+1 sang công thức update (Bk+1)inverse, mà mục đích là để ta khỏi phải làm hai bước (i) update Bk+1 → (ii) tín (Bk+1)inv, thì ta sẽ có công thức rank 1 update cho matrix Hk+1
+> và lại dùng cái công thức Sherman-Morrison, chỉ đơn giản là giúp chuyển cái công thức update Bk+1 sang công thức update (Bk+1)⁻¹erse, mà mục đích là để ta khỏi phải làm hai bước (i) update Bk+1 → (ii) tín (Bk+1)⁻¹, thì ta sẽ có công thức rank 1 update cho matrix Hk+1
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
@@ -106,23 +106,23 @@
 > [!NOTE]
 > Đại khái nói là cái này có một nhược điểm dễ thấy, đó là nếu Bk xác định dương thì cũng không có gì đảm bảo Bk+1 cũng vậy (tương tự với Hk, Hk+1). Thử xem vì sao.
 >
-> Bk+1 = Bk + (yk - Bksk)(yk - Bksk)T / (yk - Bksk)Tsk
+> Bk+1 = Bk + (yk - Bksk)(yk - Bksk)ᵀ / (yk - Bksk)ᵀsk
 >
 > Xét quadratic form của Bk+1: zTBk+1z với z khác 0 bất kì.
 >
-> = zT[Bk + (yk - Bksk)(yk - Bksk)T / (yk - Bksk)Tsk]z
+> = zT[Bk + (yk - Bksk)(yk - Bksk)ᵀ / (yk - Bksk)ᵀsk]z
 >
-> = zT[Bkz + (yk - Bksk)(yk - Bksk)Tz / (yk - Bksk)Tsk]
+> = zT[Bkz + (yk - Bksk)(yk - Bksk)ᵀz / (yk - Bksk)ᵀsk]
 >
-> = zTBkz + zT(yk - Bksk)(yk - Bksk)Tz / (yk - Bksk)Tsk
+> = zTBkz + zT(yk - Bksk)(yk - Bksk)ᵀz / (yk - Bksk)ᵀsk
 >
 > nếu Bk ≻ 0 ⇨ zTBkz > 0 ∀z
 >
-> xét term thứ 2: zT(yk - Bksk)(yk - Bksk)Tz / (yk - Bksk)Tsk
+> xét term thứ 2: zT(yk - Bksk)(yk - Bksk)ᵀz / (yk - Bksk)ᵀsk
 >
-> = [zT(yk - Bksk)]^2 / (yk - Bksk)Tsk
+> = [zT(yk - Bksk)]^2 / (yk - Bksk)ᵀsk
 >
-> cái này chưa chắc đã không âm vì dù tử số không âm nhưng (yk - Bksk)Tsk thì có thể âm
+> cái này chưa chắc đã không âm vì dù tử số không âm nhưng (yk - Bksk)ᵀsk thì có thể âm
 >
 > Do đó cả cái cụm này chưa chắc sẽ dương ⇨ Bk+1 chưa chắc ≻ 0 dù Bk ≻ 0
 >
@@ -146,19 +146,19 @@
 <p align="center"><kbd><img src="assets/9f858xim7t7.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đoạn này đại khái là: SR1 có nhược điểm quan trọng. đó là: có thể xảy ra vấn đề là: KHÔNG PHẢI LÚC NÀO CŨNG CÓ THỂ CÓ RANK 1 UPDATE. Hay nói ngắn gọn là không phải cái công thức update Bk+1 lúc nào cũng work.
+> Đoạn này đại khái là: SR1 có nhược điểm quan trọng. đó là: có thể xảy ra vấn đề là: KHÔNG PHẢI LÚC NÀO CŨNG CÓ THỂ CÓ RANK 1 UPDAᵀE. Hay nói ngắn gọn là không phải cái công thức update Bk+1 lúc nào cũng work.
 >
 > Lí do, ta hãy nhớ lại trong lập luận dẫn đến công thức
 >
-> Bk+1 = Bk + (yk - Bksk)(yk - Bksk)T / (yk - Bksk)Tsk (1)
+> Bk+1 = Bk + (yk - Bksk)(yk - Bksk)ᵀ / (yk - Bksk)ᵀsk (1)
 >
 > Thì cách lập luận chính là: cho rằng Bk+1 = Bk + σvvT, với σ = +/-1. Thay Bk+1 có dạng này vào secant equation, để dẫn ta đến phương trình. 
 >
-> σ(δ(yk - Bksk)Tsk)δ(yk - Bksk) = yk - Bksk
+> σ(δ(yk - Bksk)ᵀsk)δ(yk - Bksk) = yk - Bksk
 >
 > Vậy thì dĩ nhiên, nếu phương trình này có nghiệm thì công thức update Bk+1 mới work, mà không có gì đảm bảo điều này.
 >
-> Cụ thể, nếu yk - Bksk khác 0, nhưng (yk - Bksk)Tsk lại bằng 0, thì phương trình vô nghiệm ⇨ không tồn tại cách update Bk+1 nào cả (cũng có thể thấy công thức (1) chỉ valid nếu (yk - Bksk)Tsk khác 0.
+> Cụ thể, nếu yk - Bksk khác 0, nhưng (yk - Bksk)ᵀsk lại bằng 0, thì phương trình vô nghiệm ⇨ không tồn tại cách update Bk+1 nào cả (cũng có thể thấy công thức (1) chỉ valid nếu (yk - Bksk)ᵀsk khác 0.
 >
 > (Khi yk - Bksk = 0 thì vẫn công thức (1) trở thành Bk+1 = Bk vẫn tạm chấp nhận được)
 >
@@ -192,13 +192,13 @@
 > [!NOTE]
 > Đoạn này đại khái là nói về cách giải quyết cái yếu điểm của SR1, đơn giản là đặt ra một cái điều kiện để thực hiện update, và cho phép skip nếu không đạt. 
 >
-> Cụ thể như note vừa rồi mình đã hiểu, vấn đề sẽ xảy ra khi (yk - Bksk)Tsk = 0, đồng nghĩa yk - Bksk vuông góc sk. Nên cách giải quyết là đặt ra điều kiện là chỉ update khi góc giữa chúng không quá gần 90 độ:
+> Cụ thể như note vừa rồi mình đã hiểu, vấn đề sẽ xảy ra khi (yk - Bksk)ᵀsk = 0, đồng nghĩa yk - Bksk vuông góc sk. Nên cách giải quyết là đặt ra điều kiện là chỉ update khi góc giữa chúng không quá gần 90 độ:
 >
 > cos(yk - Bksk,sk) ≥ r với r là số trong (0,1) nhỏ, ví dụ 10^-8.
 >
-> ⇔ (yk - Bksk)Tsk / ||yk - Bksk|| × ||sk|| ≥ r
+> ⇔ (yk - Bksk)ᵀsk / ||yk - Bksk|| × ||sk|| ≥ r
 >
-> ⇔ (yk - Bksk)Tsk ≥ r × ||yk - Bksk|| × ||sk|| (6.26)
+> ⇔ (yk - Bksk)ᵀsk ≥ r × ||yk - Bksk|| × ||sk|| (6.26)
 >
 > Và sau đó là vài biện minh cho cách làm này so với làm tương tự trong BFGS
 >
@@ -265,13 +265,13 @@
 >
 > Cuối cùng là update Bk:
 >
-> Nếu thỏa điều kiện 6.26: (yk - Bksk)Tsk ≥ r × ||yk - Bksk|| × ||sk||, tính Bk+1 và update, còn không thì giữ nguyên.
+> Nếu thỏa điều kiện 6.26: (yk - Bksk)ᵀsk ≥ r × ||yk - Bksk|| × ||sk||, tính Bk+1 và update, còn không thì giữ nguyên.
 >
 > Như vậy ta thấy một chi tiết thế này: Dù là uy tín có thấp hay cao, thì ta không dùng nó để có / không updaye Bk, mà ta chỉ dựa vào điều kiện 6.26 mà thôi.
 >
-> Và gs nói, ý này quan trọng là vì: Nếu uy tín thấp. và ta ko thực hiện update vị trí, thì ta **VẪN UPDATE Bk VÌ ĐIỀU ĐÓ SẼ GIÚP CẢI THIỆN MÔ HÌNH mk. VÌ RÕ RÀNG VIỆC MÔ HÌNH mk UY TÍN THẤP CHỨNG TỎ BK KHÔNG APPROX TỐT HESSIAN**, vậy thì phải update nó để nó có thể tốt hơn lên thêm thì ở vòng sau (vẫn đứng vị trí cũ, nhưng với Bk tốt hơn, bán kính có thể đã nhỏ hơn) thì có thể lần này mô hình sẽ uy tín cao hơn → giúp sk được chấp nhận, vị trí được update.
+> Và gs nói, ý này quan trọng là vì: Nếu uy tín thấp. và ta ko thực hiện update vị trí, thì ta **VẪN UPDAᵀE Bk VÌ ĐIỀU ĐÓ SẼ GIÚP CẢI THIỆN MÔ HÌNH mk. VÌ RÕ RÀNG VIỆC MÔ HÌNH mk UY TÍN THẤP CHỨNG TỎ BK KHÔNG APPROX TỐT HESSIAN**, vậy thì phải update nó để nó có thể tốt hơn lên thêm thì ở vòng sau (vẫn đứng vị trí cũ, nhưng với Bk tốt hơn, bán kính có thể đã nhỏ hơn) thì có thể lần này mô hình sẽ uy tín cao hơn → giúp sk được chấp nhận, vị trí được update.
 >
-> Ngược lại, **NẾU TA CHỈ UPDATE BK KHI MK UY TÍN, THÌ KHI NÓ KHÔNG UY TÍN, BK VỐN DĨ TỆ LẠI VẪN ĐƯỢC GIỮ NGUYÊN** → điều này sẽ **KHIẾN THUẬT TOÁN MẮC KỆT TẠI ĐÂY HOÀI VÌ KHÔNG THÓAT ĐƯỢC VÒNG LUẨN QUẨN**: **Bk tệ → mk ko uy tín → không update Bk → Bk tệ → mk ko uy tín** Đây là cái gs Nocedal gọi là REPEATED REJECTION
+> Ngược lại, **NẾU TA CHỈ UPDAᵀE BK KHI MK UY TÍN, THÌ KHI NÓ KHÔNG UY TÍN, BK VỐN DĨ TỆ LẠI VẪN ĐƯỢC GIỮ NGUYÊN** → điều này sẽ **KHIẾN THUẬT TOÁN MẮC KỆT TẠI ĐÂY HOÀI VÌ KHÔNG THÓAᵀ ĐƯỢC VÒNG LUẨN QUẨN**: **Bk tệ → mk ko uy tín → không update Bk → Bk tệ → mk ko uy tín** Đây là cái gs Nocedal gọi là REPEAᵀED REJECᵀION
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
