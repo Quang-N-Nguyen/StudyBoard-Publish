@@ -1,6 +1,6 @@
 {
   "title": "Numerical Optimization_J.Nocedal",
-  "publishedAt": 1792470398852,
+  "publishedAt": 1792687290744,
   "sections": [
     {
       "title": "📋 Overview",
@@ -129,8 +129,8 @@
       "imageCount": 29
     },
     {
-      "title": "8.2 Automatic differentiation(*extremely important for AI)",
-      "path": "numerical_optimization_jnocedal/82_automatic_differentiationextremely_important_for_ai.md",
+      "title": "8.2 Automatic differentiation(*exᵀremely important for AI)",
+      "path": "numerical_optimization_jnocedal/82_automatic_differentiationexremely_important_for_ai.md",
       "noteCount": 36,
       "imageCount": 46
     },
@@ -207,10 +207,10 @@
       "imageCount": 12
     },
     {
-      "title": "15.3 Elimination Of Variables",
-      "path": "numerical_optimization_jnocedal/153_elimination_of_variables.md",
-      "noteCount": 8,
-      "imageCount": 19
+      "title": "15.3 Eliminaᵀion Of Variables",
+      "path": "numerical_optimization_jnocedal/153_eliminaion_of_variables.md",
+      "noteCount": 9,
+      "imageCount": 27
     },
     {
       "title": "16.0 Quadratic Programming",
@@ -243,6 +243,6 @@
       "imageCount": 11
     }
   ],
-  "totalNotes": 443,
-  "totalImages": 653
+  "totalNotes": 444,
+  "totalImages": 661
 }
