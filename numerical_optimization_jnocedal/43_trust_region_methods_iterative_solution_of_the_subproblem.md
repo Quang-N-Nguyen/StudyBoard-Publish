@@ -12,7 +12,7 @@
 
 <a id="node-gal0ace"></a>
 
-## 4.3 Iterative Solution Of The Subproblem
+## 4.3 Iteraᵀive Soluᵀion Of The Subproblem
 
 <p align="center"><kbd><img src="assets/6gen72754h.png" width="80%"></kbd></p>
 
@@ -27,7 +27,7 @@
 >
 >
 >
-> Phần này đại ý là tác giả sẽ dùng đặc điểm 4.6 trong đó nói rằng: với bài toán 4.5: minimize f + gTp + (1/2)pTBp subject to ||p|| ≤ Δ, thì nếu p\* là solution của bài toán 4.5 bài toán thì nó sẽ phải thỏa: (B + λI)p\* = -g). Và ta sẽ dùng cái này để giải tìm λ
+> Phần này đại ý là tác giả sẽ dùng đặc điểm 4.6 trong đó nói rằng: với bài toán 4.5: minimize f + gᵀp + (1/2)pᵀBp subject to ||p|| ≤ Δ, thì nếu p\* là solution của bài toán 4.5 bài toán thì nó sẽ phải thỏa: (B + λI)p\* = -g). Và ta sẽ dùng cái này để giải tìm λ
 >
 >
 >
@@ -35,7 +35,7 @@
 >
 >
 >
-> (4.3 là bài toán sau: minimize mk(p) = f(xk) + ∇f(xk)Tp + (1/2)pT Bk p subject to ||p|| ≤ Δk, bỏ k đi cho gọn để có 4.5)
+> (4.3 là bài toán sau: minimize mk(p) = f(xk) + ∇f(xk)ᵀp + (1/2)pᵀ Bk p subject to ||p|| ≤ Δk, bỏ k đi cho gọn để có 4.5)
 >
 >
 >
@@ -55,7 +55,7 @@
 >
 >
 >
-> Và về cơ bản là thuật toán **sẽ ráng xác định λ sao cho solution p**\* của bài toán minimize f + gTp + (1/2)pTBp subject to ||p|| ≤ Δ (4.5) sẽ có thể thỏa được (B + λI)p = -g\* (4.6)
+> Và về cơ bản là thuật toán **sẽ ráng xác định λ sao cho solution p**\* của bài toán minimize f + gᵀp + (1/2)pᵀBp subject to ||p|| ≤ Δ (4.5) sẽ có thể thỏa được (B + λI)p = -g\* (4.6)
 >
 >
 >
@@ -71,27 +71,27 @@
 >
 >
 >
-> minimize f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ
+> minimize f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ
 >
 >
 >
-> Vì ||p|| không âm, và hàm square u^2 với u không âm sẽ đồng biến nên ta có ||p|| ≤ Δ ⇔ ||p||^2 ≤ Δ^2 ⇔ pTp ≤ Δ^2 ⇔ pTp - Δ^2 ≤ 0 ⇔ (1/2)(pTp - Δ^2) ≤ 0
+> Vì ||p|| không âm, và hàm square u^2 với u không âm sẽ đồng biến nên ta có ||p|| ≤ Δ ⇔ ||p||^2 ≤ Δ^2 ⇔ pᵀp ≤ Δ^2 ⇔ pᵀp - Δ^2 ≤ 0 ⇔ (1/2)(pᵀp - Δ^2) ≤ 0
 >
 >
 >
-> Nên bài toán equivalent minimize f + gTp + (1/2)pTBp s.t (1/2)(pTp - Δ^2) ≤ 0
+> Nên bài toán equivalent minimize f + gᵀp + (1/2)pᵀBp s.t (1/2)(pᵀp - Δ^2) ≤ 0
 >
 >
 >
-> Lagragian: f + gTp + (1/2)pTBp + (1/2)λ(pTp - Δ^2)
+> Lagragian: f + gᵀp + (1/2)pᵀBp + (1/2)λ(pᵀp - Δ^2)
 >
 >
 >
-> = f + gTp + (1/2)pTBp + (1/2)λpTp - (1/2)λΔ^2
+> = f + gᵀp + (1/2)pᵀBp + (1/2)λpᵀp - (1/2)λΔ^2
 >
 >
 >
-> = (1/2)pT(B + λI)p + gTp + f - λΔ^2
+> = (1/2)pᵀ(B + λI)p + gᵀp + f - λΔ^2
 >
 >
 >
@@ -151,7 +151,7 @@
 >
 >
 >
-> Vì là bài toán với constraint ||p|| ≤ Δ cũng equivalent với pTp ≤ Δ^2 nên ta có quyền xài điều kiện này ở bài toán nào cũng được. Hoặc nếu thích thì cứ dùng điều kiện này ở bài toán equivalent:
+> Vì là bài toán với constraint ||p|| ≤ Δ cũng equivalent với pᵀp ≤ Δ^2 nên ta có quyền xài điều kiện này ở bài toán nào cũng được. Hoặc nếu thích thì cứ dùng điều kiện này ở bài toán equivalent:
 >
 >
 >
@@ -226,7 +226,7 @@
 > Nếu thỏa, tức là đã thỏa 4.8c.
 >
 > \
-> Và 4.8a trở thành Bp\* = -g ⇒ p\* = -Binv g (?) và **check nó có norm thoả điều kiện ||p|| ≤ Δ không**, nếu thỏa thì chốt nghiệm p\*.
+> Và 4.8a trở thành Bp\* = -g ⇒ p\* = -B⁻¹ g (?) và **check nó có norm thoả điều kiện ||p|| ≤ Δ không**, nếu thỏa thì chốt nghiệm p\*.
 >
 >
 >
@@ -246,7 +246,7 @@
 >
 >
 >
-> iib) ||p(λ)|| = Δ để thỏa 4.8b với p(λ) = -(B + λI)inv g 
+> iib) ||p(λ)|| = Δ để thỏa 4.8b với p(λ) = -(B + λI)⁻¹ g 
 >
 >
 >
@@ -254,14 +254,14 @@
 >
 >
 >
-> Và bài toán ||-(B + λI)inv g|| = Δ, chỉ là giải một phương trình đơn biến tìm λ thôi.
+> Và bài toán ||-(B + λI)⁻¹ g|| = Δ, chỉ là giải một phương trình đơn biến tìm λ thôi.
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
 > Bản dịch chính xác và việc trình bày chi tiết điều kiện KKT cho thấy sự hiểu biết sâu sắc về lý thuyết tối ưu hóa. Tuy nhiên, cần loại bỏ các lỗi chính tả nhỏ và các nhận xét không chính thức để nâng cao tính chuyên nghiệp của bài ghi chú.
 
-**🔗 See also:** [Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pTBkp subject to ||pk|| ≤ Δk](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-4oyhvi4) · [Theorem 4.1](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-6p1mgzb) · [#4.1, 4.2, 4.3](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-9ozcgzk)
+**🔗 See also:** [Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pᵀBkp subject to ||pk|| ≤ Δk](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-4oyhvi4) · [Theorem 4.1](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-6p1mgzb) · [#4.1, 4.2, 4.3](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-9ozcgzk)
 
 <br>
 
@@ -276,25 +276,25 @@
 >
 >
 >
-> Vì B đối xứng, nên có thể phân tách thành Q Λ QT với Q là orthogonal matrix có các cột là eigenvector của B
+> Vì B đối xứng, nên có thể phân tách thành Q Λ Qᵀ với Q là orthogonal matrix có các cột là eigenvector của B
 >
-> p(λ) = -(B + λI)inv g
->
->
->
-> = -(Q Λ QT + λI)inv g
+> p(λ) = -(B + λI)⁻¹ g
 >
 >
 >
-> = -(Q Λ QT + λQQT)inv g (do QQT = QTQ = I)
+> = -(Q Λ Qᵀ + λI)⁻¹ g
 >
 >
 >
-> = -(Q Λ QT + Q λI QT)inv g
+> = -(Q Λ Qᵀ + λQQᵀ)⁻¹ g (do QQᵀ = QᵀQ = I)
 >
 >
 >
-> = -Q(Λ + λI)inv QT g
+> = -(Q Λ Qᵀ + Q λI Qᵀ)⁻¹ g
+>
+>
+>
+> = -Q(Λ + λI)⁻¹ Qᵀ g
 >
 >
 >
@@ -302,11 +302,11 @@
 >
 >
 >
-> Xét Q(Λ + λI)inv, các cột của nó là gì:
+> Xét Q(Λ + λI)⁻¹, các cột của nó là gì:
 >
 >
 >
-> Các cột của Q là q1, q2,....qn, khi nhân với diagonal matrix M = (Λ + λI)inv, thì theo góc nhìn thứ hai nhân matrix với matrix: cột 1 của QM là linear combination các cột của Q, với hệ số là cột 1 của M. Mà cột một của M chỉ có cái đầu tiên khác 0. nên kết quả sẽ chỉ là M11 q1. Tương tự cột 2 của QM là M22q2,....
+> Các cột của Q là q1, q2,....qn, khi nhân với diagonal matrix M = (Λ + λI)⁻¹, thì theo góc nhìn thứ hai nhân matrix với matrix: cột 1 của QM là linear combination các cột của Q, với hệ số là cột 1 của M. Mà cột một của M chỉ có cái đầu tiên khác 0. nên kết quả sẽ chỉ là M11 q1. Tương tự cột 2 của QM là M22q2,....
 >
 >
 >
@@ -314,15 +314,15 @@
 >
 >
 >
-> Nhân QM cho QT: theo góc nhìn thứ 4 nói trên, ta sẽ có tổng:
+> Nhân QM cho Qᵀ: theo góc nhìn thứ 4 nói trên, ta sẽ có tổng:
 >
 >
 >
-> Σi (cột i của QM: Mii qi) outer product \[row i của QT: qiT\]
+> Σi (cột i của QM: Mii qi) outer product \[row i của Qᵀ: qiT\]
 >
 >
 >
-> ⇨ QMQT = Σi Mii qiqiT
+> ⇨ QMQᵀ = Σi Mii qiqiT
 >
 >
 >
@@ -330,7 +330,7 @@
 >
 >
 >
-> Vậy p(λ) = -Q(Λ + λI)inv QT g = - { Σi \[qiqiT / (λi + λ)\] } g
+> Vậy p(λ) = -Q(Λ + λI)⁻¹ Qᵀ g = - { Σi \[qiqiT / (λi + λ)\] } g
 >
 >
 >
@@ -388,7 +388,7 @@
 >
 >
 >
-> Ôn lại xíu để hiểu bối cảnh: Nói ngắn gọn, ta đang muốn giải bài toán con (subproblem) ở mỗi iteration trong quá trình tối ưu: minimize mk(p) = fk + gkTp + (1/2)pBkp s.t ||p|| ≤ Δ. Bỏ đi k cho gọn: ta có bài toán minimize m(p) = f + gTp + (1/2)pBp s.t ||p|| ≤ Δ. Thì bài toán này, ta đã đi qua một theorem đã nói về điều kiện của p\* để trở thành solution: (B + λI)p\* = -g (mà mình đã hiểu xuất phát từ KKT conditopns) Và từ đó, người ta thiết kế thuật toán giải.
+> Ôn lại xíu để hiểu bối cảnh: Nói ngắn gọn, ta đang muốn giải bài toán con (subproblem) ở mỗi iteration trong quá trình tối ưu: minimize mk(p) = fk + gkTp + (1/2)pBkp s.t ||p|| ≤ Δ. Bỏ đi k cho gọn: ta có bài toán minimize m(p) = f + gᵀp + (1/2)pBp s.t ||p|| ≤ Δ. Thì bài toán này, ta đã đi qua một theorem đã nói về điều kiện của p\* để trở thành solution: (B + λI)p\* = -g (mà mình đã hiểu xuất phát từ KKT conditopns) Và từ đó, người ta thiết kế thuật toán giải.
 >
 >
 >
@@ -452,7 +452,7 @@
 >
 >
 >
-> Khi **gTq1 khác 0**, thì khi λ đi ngang qua mốc -λ1 khiến p(λ) vọt lên ∞ và giảm xuống lại, thì **chắc chắn sẽ cắt đường y = Δ tại đâu đó**, do đó, **chắc chắn tồn tại λ &gt;-λ1 khiến ||p(λ)|| = Δ** (còn khi gTq1 = 0, nó là ca khó ta sẽ xét sau).
+> Khi **gᵀq1 khác 0**, thì khi λ đi ngang qua mốc -λ1 khiến p(λ) vọt lên ∞ và giảm xuống lại, thì **chắc chắn sẽ cắt đường y = Δ tại đâu đó**, do đó, **chắc chắn tồn tại λ &gt;-λ1 khiến ||p(λ)|| = Δ** (còn khi gᵀq1 = 0, nó là ca khó ta sẽ xét sau).
 >
 >
 >
@@ -460,11 +460,11 @@
 >
 >
 >
-> Còn ca này không thỏa thì ta mới làm quy trình sau để tìm λ khiến B + λI xác định dương và |p\*(λ)|| = ||-(B+λI)inv g|| = Δ.
+> Còn ca này không thỏa thì ta mới làm quy trình sau để tìm λ khiến B + λI xác định dương và |p\*(λ)|| = ||-(B+λI)⁻¹ g|| = Δ.
 >
 >
 >
-> Thế thì quay lại đây, **xét trường hợp gTq1 khác 0** và ta muốn giải phương trình **Φ1(λ) = ||p(λ)|| = Δ**. Với **λ &gt; -λ1**
+> Thế thì quay lại đây, **xét trường hợp gᵀq1 khác 0** và ta muốn giải phương trình **Φ1(λ) = ||p(λ)|| = Δ**. Với **λ &gt; -λ1**
 >
 >
 >
@@ -472,7 +472,7 @@
 >
 >
 >
-> Thử suy nghĩ: Phương trình cần giải ||-(B + λI)inv g|| = Δ
+> Thử suy nghĩ: Phương trình cần giải ||-(B + λI)⁻¹ g|| = Δ
 >
 >
 >
@@ -498,7 +498,7 @@
 >
 >
 >
-> m(d) = F(xk) + ∇F(xk)Td + (1/2) dT∇^2F(xk)d, và tìm minimum của hàm này để có xk+1 = xk + d
+> m(d) = F(xk) + ∇F(xk)ᵀd + (1/2) dT∇^2F(xk)d, và tìm minimum của hàm này để có xk+1 = xk + d
 >
 >
 >
@@ -514,11 +514,11 @@
 >
 >
 >
-> ⇔ d = - ∇^2F(xk)inv ∇F(xk)
+> ⇔ d = - ∇^2F(xk)⁻¹ ∇F(xk)
 >
 >
 >
-> = - ∇f(xk)inv f(xk)
+> = - ∇f(xk)⁻¹ f(xk)
 >
 >
 >
@@ -578,7 +578,7 @@
 >
 >
 >
-> Do đó, tác giả mới nói, ta sẽ **REFORMULATE**, **TÁI CẤU TRÚC** lại bài toán, **sao cho nó gần như là tuyến tính tại optimal λ**.Thực hiện bằng cách định nghĩa ra hàm Φ2(λ) = 1/Δ - 1/||p(λ)||
+> Do đó, tác giả mới nói, ta sẽ **REFORMULAᵀE**, **TÁI CẤU TRÚC** lại bài toán, **sao cho nó gần như là tuyến tính tại optimal λ**.Thực hiện bằng cách định nghĩa ra hàm Φ2(λ) = 1/Δ - 1/||p(λ)||
 >
 >
 >
@@ -692,11 +692,11 @@
 >
 >
 >
-> Với hàm này ta dùng mẹo một chút: \[f(x)\]^2 = ||x||^2 = xTx:
+> Với hàm này ta dùng mẹo một chút: \[f(x)\]^2 = ||x||^2 = xᵀx:
 >
 >
 >
-> Đặt u = xTx, Ta có f^2 = u
+> Đặt u = xᵀx, Ta có f^2 = u
 >
 >
 >
@@ -708,31 +708,31 @@
 >
 >
 >
-> du = d(xTx) = (x+dx)T(x+dx) - xTx
+> du = d(xᵀx) = (x+dx)ᵀ(x+dx) - xᵀx
 >
 >
 >
-> = (xT+dxT)(x+dx) - xTx
+> = (xᵀ+dxᵀ)(x+dx) - xᵀx
 >
 >
 >
-> = xTx+dxTx+xTdx+dxTdx - xTx
+> = xᵀx+dxᵀx+xᵀdx+dxᵀdx - xᵀx
 >
 >
 >
-> = dxTx+xTdx+dxTdx
+> = dxᵀx+xᵀdx+dxᵀdx
 >
 >
 >
-> = dxTx+xTdx (bỏ đi higher order term dxTdx)
+> = dxᵀx+xᵀdx (bỏ đi higher order term dxᵀdx)
 >
 >
 >
-> = 2xTdx (dxTx là scalar → dxTx = (dxTx)T)
+> = 2xᵀdx (dxᵀx là scalar → dxᵀx = (dxᵀx)ᵀ)
 >
 >
 >
-> Vậy df = 2xTdx/2f = xTdx/||x|| = (1/||x||) xTdx
+> Vậy df = 2xᵀdx/2f = xᵀdx/||x|| = (1/||x||) xᵀdx
 >
 >
 >
@@ -762,7 +762,7 @@
 >
 >
 >
-> = \[1/||p(λ)||^3\] p(λ)T d/dλ p(λ)
+> = \[1/||p(λ)||^3\] p(λ)ᵀ d/dλ p(λ)
 >
 >
 >
@@ -774,11 +774,11 @@
 >
 >
 >
-> Xét tiếp d/dλ p(λ), = d/dλ \[-(B + λI)inv g\]
+> Xét tiếp d/dλ p(λ), = d/dλ \[-(B + λI)⁻¹ g\]
 >
 >
 >
-> p(λ) = -(B + λI)inv g
+> p(λ) = -(B + λI)⁻¹ g
 >
 >
 >
@@ -804,9 +804,9 @@
 >
 > ⇔ dλ p(λ) + (B + λI) d p(λ) = 0
 >
-> ⇔ dp(λ) = -(B + λI)inv p(λ) dλ
+> ⇔ dp(λ) = -(B + λI)⁻¹ p(λ) dλ
 >
-> ⇔ dp(λ)/dλ = -(B + λI)inv p(λ)
+> ⇔ dp(λ)/dλ = -(B + λI)⁻¹ p(λ)
 >
 >
 >
@@ -814,11 +814,11 @@
 >
 >
 >
-> φ'2(λ) = \[1/||p(λ)||^3\] p(λ)T d/dλ p(λ)
+> φ'2(λ) = \[1/||p(λ)||^3\] p(λ)ᵀ d/dλ p(λ)
 >
-> = \[1/||p(λ)||^3\] p(λ)T \[-(B + λI)inv p(λ)\]
+> = \[1/||p(λ)||^3\] p(λ)ᵀ \[-(B + λI)⁻¹ p(λ)\]
 >
-> = - 1/\[||p(λ)||^3\] p(λ)T (B + λI)inv p(λ)
+> = - 1/\[||p(λ)||^3\] p(λ)ᵀ (B + λI)⁻¹ p(λ)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
@@ -868,41 +868,41 @@
 >
 > λ\_l+1 = λ\_l - Φ2(λ^(l)) / Φ'2(λ^(l))
 >
-> =  λ\_l - \[1/Δ - 1/||p(λ)||\] / \[-1/\[||p(λ)||^3\] p(λ)T (B + λI)inv p(λ)\]
+> =  λ\_l - \[1/Δ - 1/||p(λ)||\] / \[-1/\[||p(λ)||^3\] p(λ)ᵀ (B + λI)⁻¹ p(λ)\]
 >
-> =  λ\_l - \[(||p(λ)|| - Δ) / ||p(λ)||Δ\] / \[-1/\[||p(λ)||^3\] p(λ)T (B + λI)inv p(λ)\]
+> =  λ\_l - \[(||p(λ)|| - Δ) / ||p(λ)||Δ\] / \[-1/\[||p(λ)||^3\] p(λ)ᵀ (B + λI)⁻¹ p(λ)\]
 >
-> =  λ\_l + \[(||p(λ)|| - Δ)\] ||p(λ)||^3 / \[||p(λ)||Δ\] \[p(λ)T (B + λI)inv p(λ)\]
+> =  λ\_l + \[(||p(λ)|| - Δ)\] ||p(λ)||^3 / \[||p(λ)||Δ\] \[p(λ)ᵀ (B + λI)⁻¹ p(λ)\]
 >
-> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)T (B + λI)inv p(λ)\]
->
->
->
-> Phân tách Cholesky: B + λI = RTR
+> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)ᵀ (B + λI)⁻¹ p(λ)\]
 >
 >
 >
-> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)T (RTR)inv p(λ)\]
->
-> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)T Rinv RTinv p(λ)\]
->
-> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)T Rinv RinvT p(λ)\]
+> Phân tách Cholesky: B + λI = RᵀR
 >
 >
 >
-> (ATinv = AinvT: Chứng minh nhanh: AAinv = AinvA = I ⇔ (AAinv)T = IT = I ⇔ AinvT AT = I ⇨ (AT)inv chính là AinvT)
+> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)ᵀ (RᵀR)⁻¹ p(λ)\]
+>
+> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)ᵀ R⁻¹ Rᵀinv p(λ)\]
+>
+> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[p(λ)ᵀ R⁻¹ R⁻¹ᵀ p(λ)\]
 >
 >
 >
-> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[\[RinvTp(λ)\]T RinvT p(λ)\]
+> (Aᵀ⁻¹ = A⁻¹ᵀ: Chứng minh nhanh: AA⁻¹ = A⁻¹A = I ⇔ (AA⁻¹)ᵀ = IT = I ⇔ A⁻¹ᵀ Aᵀ = I ⇨ (Aᵀ)⁻¹ chính là A⁻¹ᵀ)
 >
 >
 >
-> Đặt q = RinvTp(λ) 
+> =  λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ \[\[R⁻¹ᵀp(λ)\]T R⁻¹ᵀ p(λ)\]
 >
 >
 >
-> .. = λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ (qTq)
+> Đặt q = R⁻¹ᵀp(λ) 
+>
+>
+>
+> .. = λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ (Qᵀq)
 >
 > = λ\_l + (||p(λ)|| - Δ) ||p(λ)||^2 / Δ ||q||^2
 >
@@ -926,21 +926,21 @@
 >
 >
 >
-> i) Phân tách Cholesky B + λ\_l I thành RTR.
+> i) Phân tách Cholesky B + λ\_l I thành RᵀR.
 >
 >
 >
-> ii) Giải p: p là solution của (B + λI) p = g ⇔ - RTR p = g
+> ii) Giải p: p là solution của (B + λI) p = g ⇔ - RᵀR p = g
 >
 >
 >
-> Tách thành hai bước: B1: Giải - RTu = g, và B2: R p = u
+> Tách thành hai bước: B1: Giải - Rᵀu = g, và B2: R p = u
 >
 > Cả hai đều dính với matrix tam giác nên giải rất nhanh (chỉ là forward / backward substitution)
 >
 >
 >
-> iii) Tính q: q = RinvTp ⇔ q = RTinvp ⇔ RTq = p. Tức là để có q ta sẽ giải RTq = p, cũng rất nhanh.
+> iii) Tính q: q = R⁻¹ᵀp ⇔ q = Rᵀinvp ⇔ Rᵀq = p. Tức là để có q ta sẽ giải Rᵀq = p, cũng rất nhanh.
 >
 >
 >
@@ -986,7 +986,7 @@
 >
 >
 >
-> Bài toán ta đang giải, subproblem: minimize f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ, thì Theorem 4.1 cho biết điều kiện cần và đủ của nghiệm bài toán này, đó là:
+> Bài toán ta đang giải, subproblem: minimize f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ, thì Theorem 4.1 cho biết điều kiện cần và đủ của nghiệm bài toán này, đó là:
 >
 >
 >
@@ -1030,7 +1030,7 @@
 >
 >
 >
-> Và khi đó ||p\*|| = Δ ⇔ ||p\*|| - Δ = 0, thì dùng 4.8a, (B + λI)p\* = -g ⇨ p\* = - (B + λI)inv g, p\* phụ thuộc λ nên kí hiệu là p\*(λ), ta sẽ giải ||p\*(λ)|| - Δ = 0, λ ≥ -λ1 bằng root finding Newton's method.
+> Và khi đó ||p\*|| = Δ ⇔ ||p\*|| - Δ = 0, thì dùng 4.8a, (B + λI)p\* = -g ⇨ p\* = - (B + λI)⁻¹ g, p\* phụ thuộc λ nên kí hiệu là p\*(λ), ta sẽ giải ||p\*(λ)|| - Δ = 0, λ ≥ -λ1 bằng root finding Newton's method.
 >
 > Thế nhưng có một vấn đề là khi làm cách này, có thể xảy ra tình huống là trong chuỗi λ sinh ra xuất hiện một thằng nằm ngay sát bên phải -λ1, khiến thuật toán không thể hội tụ, hội tụ chậm. Do đó, ta mới chuyển hóa lại, bằng cách áp dụng root finding Newton nhưng giải bài toán: 1/||p\*(λ)|| - 1/Δ = 0 thay cho bài toán gốc. Và cách này sẽ tốt hơn.
 >
@@ -1080,7 +1080,7 @@
 >
 >
 >
-> Xét λ &gt; -λ1 → B + λI vẫn xác định dương → invertible → p = -(B + λI)inv g và vì ||p(-λ1)|| &lt; Δ nên chắc chắn ||p(λ)|| = Δ với λ &gt; -λ1 sẽ vô nghiệm.
+> Xét λ &gt; -λ1 → B + λI vẫn xác định dương → invertible → p = -(B + λI)⁻¹ g và vì ||p(-λ1)|| &lt; Δ nên chắc chắn ||p(λ)|| = Δ với λ &gt; -λ1 sẽ vô nghiệm.
 >
 >
 >
@@ -1112,7 +1112,7 @@
 >
 >
 >
-> Nhưng với λ\* = -λ1, thì B + λ\*I = B - λ1I sẽ có một eigenvalue bằng 0 → singular matrix. Và không thể invertible để có p = (B - λ1I)inv g được.
+> Nhưng với λ\* = -λ1, thì B + λ\*I = B - λ1I sẽ có một eigenvalue bằng 0 → singular matrix. Và không thể invertible để có p = (B - λ1I)⁻¹ g được.
 >
 >
 >
@@ -1136,7 +1136,7 @@
 >
 >
 >
-> (Dùng tính chất ||(u + v)||^2 = (u + v)T(u + v) = (uT + vT)(u + v)
+> (Dùng tính chất ||(u + v)||^2 = (u + v)ᵀ(u + v) = (uT + vT)(u + v)
 >
 >
 >
@@ -1212,7 +1212,7 @@
 >
 >
 >
-> Thế thì, tác giả cho biết việc chứng minh theorem 4.1 cần dựa trên một bổ đề sau: Gọi m là **quadratic function** m(p) = gTp + (1/2)pTBp với B đối xứng thì khi đó:
+> Thế thì, tác giả cho biết việc chứng minh theorem 4.1 cần dựa trên một bổ đề sau: Gọi m là **quadratic function** m(p) = gᵀp + (1/2)pᵀBp với B đối xứng thì khi đó:
 >
 >
 >
@@ -1252,19 +1252,19 @@
 >
 >
 >
-> m(p + z) = gT(p + z) + (1/2)(p + z)TB(p + z)
+> m(p + z) = gᵀ(p + z) + (1/2)(p + z)ᵀB(p + z)
 >
-> = gTp + gTz + (1/2)(pTB + zTB)(p + z)
+> = gᵀp + gᵀz + (1/2)(pᵀB + zTB)(p + z)
 >
-> = gTp + gTz + (1/2)(pTBp + zTBp + pTBz + zTBz)
+> = gᵀp + gᵀz + (1/2)(pᵀBp + zTBp + pᵀBz + zTBz)
 >
-> = gTp + gTz + (1/2)pTBp + zTBp + (1/2)zTBz
+> = gᵀp + gᵀz + (1/2)pᵀBp + zTBp + (1/2)zTBz
 >
-> = gTp + (-Bp)Tz + (1/2)pTBp + zTBp + (1/2)zTBz (thay g = - Bp)
+> = gᵀp + (-Bp)ᵀz + (1/2)pᵀBp + zTBp + (1/2)zTBz (thay g = - Bp)
 >
-> = gTp - pTBz + (1/2)pTBp + zTBp + (1/2)zTBz
+> = gᵀp - pᵀBz + (1/2)pᵀBp + zTBp + (1/2)zTBz
 >
-> = gTp + (1/2)pTBp + (1/2)zTBz
+> = gᵀp + (1/2)pᵀBp + (1/2)zTBz
 >
 > = m(p) + (1/2)zTBz
 >
@@ -1342,15 +1342,15 @@
 >
 >
 >
-> m(p + z) = gT(p + z) + (1/2)(p + z)TB(p + z)
+> m(p + z) = gᵀ(p + z) + (1/2)(p + z)ᵀB(p + z)
 >
 >
 >
-> = gTp + gTz + (1/2)(pTBp + zTBp + pTBz + zTBz)
+> = gᵀp + gᵀz + (1/2)(pᵀBp + zTBp + pᵀBz + zTBz)
 >
 >
 >
-> = gTp + gTz + (1/2)\[pTBp + 0p + pT(0) + zT(0)\] (0 là zero vector)
+> = gᵀp + gᵀz + (1/2)\[pᵀBp + 0p + pᵀ(0) + zT(0)\] (0 là zero vector)
 >
 >
 >
@@ -1362,11 +1362,11 @@
 >
 >
 >
-> Mà **nullspace orthogonal complement rowspace** ⇨ **gTz = 0**
+> Mà **nullspace orthogonal complement rowspace** ⇨ **gᵀz = 0**
 >
 >
 >
-> = gTp + (1/2)pTBp
+> = gᵀp + (1/2)pᵀBp
 >
 >
 >
@@ -1503,7 +1503,7 @@
 >
 > Bài làm xuất sắc, thể hiện sự hiểu biết sâu sắc và khả năng phân tích vững chắc các điều kiện tối ưu và tính chất của hàm bậc hai. Các bước chứng minh được trình bày rõ ràng, logic và chính xác. Một điểm nhỏ cần lưu ý là có sự không nhất quán trong việc sử dụng 'x' thay vì 'm' hoặc 'p' khi đề cập đến hàm số hoặc cực tiểu trong phần chứng minh ý (ii).
 
-**🔗 See also:** [Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pTBkp subject to ||pk|| ≤ Δk](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-4oyhvi4) · [Theorem 4.1](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-6p1mgzb)
+**🔗 See also:** [Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pᵀBkp subject to ||pk|| ≤ Δk](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-4oyhvi4) · [Theorem 4.1](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-6p1mgzb)
 
 <br>
 
@@ -1520,13 +1520,13 @@
 >
 > Nhưng nếu g không nằm trong C(B), thì theo lemma vừa rồi, m chắc chắn không thể attain minimum. (vì hãy nhớ lemma phát biểu điều kiện cần và đủ)
 >
-> Thật vậy, nếu phần tử thứ 2 của g khác 0. Ta xét m = gTp + (1/2)pTBp 
+> Thật vậy, nếu phần tử thứ 2 của g khác 0. Ta xét m = gᵀp + (1/2)pᵀBp 
 >
-> Và cụ thể là d = (0, -g2, 0), ta xét scalar function k(t) = m(dt) = gT(dt) + (1/2)(td)TB(td)
+> Và cụ thể là d = (0, -g2, 0), ta xét scalar function k(t) = m(dt) = gᵀ(dt) + (1/2)(td)ᵀB(td)
 >
 > (trong EE364A, gọi là restricted by an affine)
 >
-> = t(gTd)+ (1/2)t^2 dTBd
+> = t(gᵀd)+ (1/2)t^2 dTBd
 >
 > = t[g2 × (-g2)]+ (1/2)t^2 dTBd
 >
@@ -1558,7 +1558,7 @@
 >
 >
 >
-> Nhắc lại theorem 4.1: Nói nói rằng p\* là solution của bài toán minimize m(p) = f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ khi và chỉ khi p\* feasible và tồn tại λ ≥ 0 thỏa:
+> Nhắc lại theorem 4.1: Nói nói rằng p\* là solution của bài toán minimize m(p) = f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ khi và chỉ khi p\* feasible và tồn tại λ ≥ 0 thỏa:
 >
 >
 >
@@ -1578,7 +1578,7 @@
 >
 >
 >
-> Dùng bổ đề 4.7 ý i) nói rằng xét hàm m(p) = gTp + (1/2)pTBp: m attain minimum ⇔ B ⪰ 0 và g ∈ range B. Khi đó minimizer sẽ là p thỏa Bp = -g.
+> Dùng bổ đề 4.7 ý i) nói rằng xét hàm m(p) = gᵀp + (1/2)pᵀBp: m attain minimum ⇔ B ⪰ 0 và g ∈ range B. Khi đó minimizer sẽ là p thỏa Bp = -g.
 >
 >
 >
@@ -1590,7 +1590,7 @@
 >
 >
 >
-> Vậy áp dụng bổ đề 4.7 suy ra hàm quadratic m'(p) = gTp + (1/2)pT(B + λI)p có thể attain minimum và p\* thỏa (B + λI)p\* = -g chính là minimizer của nó.
+> Vậy áp dụng bổ đề 4.7 suy ra hàm quadratic m'(p) = gᵀp + (1/2)pᵀ(B + λI)p có thể attain minimum và p\* thỏa (B + λI)p\* = -g chính là minimizer của nó.
 >
 >
 >
@@ -1598,19 +1598,19 @@
 >
 >
 >
-> m'(p) = gTp + (1/2)pT(B + λI)p
+> m'(p) = gᵀp + (1/2)pᵀ(B + λI)p
 >
-> = gTp + (1/2)pTBp + (1/2)pT(λI)p
+> = gᵀp + (1/2)pᵀBp + (1/2)pᵀ(λI)p
 >
-> = gTp + (1/2)pTBp + (λ/2)pTp
->
->
->
-> Hai hạng tử đầu tiên làm nên m(p) - f | m(p), là cái hàm trong định lí 4.1 = f + gTp + (1/2)pTBp
+> = gᵀp + (1/2)pᵀBp + (λ/2)pᵀp
 >
 >
 >
-> = m(p) - f + (λ/2)pTp
+> Hai hạng tử đầu tiên làm nên m(p) - f | m(p), là cái hàm trong định lí 4.1 = f + gᵀp + (1/2)pᵀBp
+>
+>
+>
+> = m(p) - f + (λ/2)pᵀp
 >
 >
 >
@@ -1626,19 +1626,19 @@
 >
 >
 >
-> ⇔ m(p) - f + (λ/2)pTp ≥ m(p\*) - f + (λ/2)pTp
+> ⇔ m(p) - f + (λ/2)pᵀp ≥ m(p\*) - f + (λ/2)pᵀp
 >
 >
 >
-> ⇔ m(p) ≥ m(p\*) + (λ/2)pTp - (λ/2)pTp
+> ⇔ m(p) ≥ m(p\*) + (λ/2)pᵀp - (λ/2)pᵀp
 >
 >
 >
-> ⇔ m(p) ≥ m(p\*) + (λ/2)(pTp - pTp)
+> ⇔ m(p) ≥ m(p\*) + (λ/2)(pᵀp - pᵀp)
 >
 >
 >
-> ⇔ m(p) ≥ m(p\*) + (λ/2)pTp - (λ/2)pTp (a)
+> ⇔ m(p) ≥ m(p\*) + (λ/2)pᵀp - (λ/2)pᵀp (a)
 >
 >
 >
@@ -1652,15 +1652,15 @@
 >
 > ⇔ λ(Δ^2 - ||p\*||^2) = 0
 >
-> ⇔ λΔ^2 = λpTp
+> ⇔ λΔ^2 = λpᵀp
 >
-> ⇔ (λ/2)Δ^2 = (λ/2)pTp
+> ⇔ (λ/2)Δ^2 = (λ/2)pᵀp
 >
 >
 >
-> ⇨ (a) ⇔ m(p) ≥ m(p\*) + (λ/2)Δ^2 - (λ/2)pTp
+> ⇨ (a) ⇔ m(p) ≥ m(p\*) + (λ/2)Δ^2 - (λ/2)pᵀp
 >
-> ⇔ m(p) ≥ m(p\*) + (λ/2)(Δ^2 - pTp)
+> ⇔ m(p) ≥ m(p\*) + (λ/2)(Δ^2 - pᵀp)
 >
 >
 >
@@ -1692,7 +1692,7 @@
 <p align="center"><kbd><img src="assets/odube4lxh3l.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Nhắc lại theorem 4.1: Nói nói rằng p\* là solution của bài toán minimize m(p) = f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ khi và chỉ khi p\* feasible và tồn tại λ ≥ 0 thỏa:
+> Nhắc lại theorem 4.1: Nói nói rằng p\* là solution của bài toán minimize m(p) = f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ khi và chỉ khi p\* feasible và tồn tại λ ≥ 0 thỏa:
 >
 > (B + λI)p\* = -g (4.8a)
 >
@@ -1722,43 +1722,43 @@
 >
 > (Nhờ MIT 18s096, viêc tìm gradient và Hessian của quadratic function không có gì khó nữa:
 >
-> Gradient: Ta sẽ muốn đưa về kết quả df = f'(x)\[dx\], là linear operator của dx. Với f = (1/2)xTPx + gTx + v
+> Gradient: Ta sẽ muốn đưa về kết quả df = f'(x)\[dx\], là linear operator của dx. Với f = (1/2)xᵀPx + gᵀx + v
 >
-> ⇨ df = f(x+dx) - f(x) = (1/2)(x+dx)TP(x+dx) + gTx + v -\[(1/2)xTPx + gTx + v\]
+> ⇨ df = f(x+dx) - f(x) = (1/2)(x+dx)ᵀP(x+dx) + gᵀx + v -\[(1/2)xᵀPx + gᵀx + v\]
 >
-> = (1/2)(xTP+dxTP)(x+dx) + gT(x+dx) + v -\[(1/2)xTPx + gTx + v\]
+> = (1/2)(xᵀP+dxᵀP)(x+dx) + gᵀ(x+dx) + v -\[(1/2)xᵀPx + gᵀx + v\]
 >
-> = (1/2)(xTPx+dxTPx+xTPdx+dxTPdx) + gT(x+dx) + v -\[(1/2)xTPx + gTx + v\]
+> = (1/2)(xᵀPx+dxᵀPx+xᵀPdx+dxᵀPdx) + gᵀ(x+dx) + v -\[(1/2)xᵀPx + gᵀx + v\]
 >
-> = (1/2)(xTPx+2xTPdx+dxTPdx) + gTdx - (1/2)xTPx
+> = (1/2)(xᵀPx+2xᵀPdx+dxᵀPdx) + gᵀdx - (1/2)xᵀPx
 >
-> = (1/2)(xTPx+2xTPdx) + gTdx - (1/2)xTPx | Bỏ high order term của dx
+> = (1/2)(xᵀPx+2xᵀPdx) + gᵀdx - (1/2)xᵀPx | Bỏ high order term của dx
 >
-> = xTPdx + gTdx
+> = xᵀPdx + gᵀdx
 >
-> = gTdx + (PTx)Tdx
+> = gᵀdx + (Pᵀx)ᵀdx
 >
-> = (PTx + g)Tdx
->
->
->
-> f là vector → scalar function, nên df là scalar. Linear operator act on dx để cho scalar dx chỉ có thể là phép dot product với một vector. Do đó gradient ∇f chính là PTx + g
+> = (Pᵀx + g)ᵀdx
 >
 >
 >
-> Để tìm Hessian ta có thể đi tìm Jacobian của hàm ∇f(x) = PTx hoặc làm theo lối bilinear form của \[dx, dx'\].
+> f là vector → scalar function, nên df là scalar. Linear operator act on dx để cho scalar dx chỉ có thể là phép dot product với một vector. Do đó gradient ∇f chính là Pᵀx + g
 >
 >
 >
-> Cách làm theo lối tìm Bilinear form: Ta sẽ có df' = (x+dx')TPdx + g - xTPdx - g
+> Để tìm Hessian ta có thể đi tìm Jacobian của hàm ∇f(x) = Pᵀx hoặc làm theo lối bilinear form của \[dx, dx'\].
 >
-> = (xT+dx'T)Pdx - xTPdx
 >
-> = xTPdx + dx'TPdx - xTPdx
+>
+> Cách làm theo lối tìm Bilinear form: Ta sẽ có df' = (x+dx')ᵀPdx + g - xᵀPdx - g
+>
+> = (xᵀ+dx'T)Pdx - xᵀPdx
+>
+> = xᵀPdx + dx'TPdx - xᵀPdx
 >
 > = dx'TPdx, đây là Bilinear form của \[dx,dx'\] ⇨ Hessian chính là P
 >
-> Cách làm theo lối tìm Jacobian của ∇f: d∇f(x) = ∇f(x+dx) - ∇f(x) = PT(x+dx) + g - PTx - g = PTdx
+> Cách làm theo lối tìm Jacobian của ∇f: d∇f(x) = ∇f(x+dx) - ∇f(x) = Pᵀ(x+dx) + g - Pᵀx - g = Pᵀdx
 >
 > ⇨ Jacobian là P, cũng là Hessian của f.)
 >
@@ -1782,9 +1782,9 @@
 >
 > Lagrangian: L(p, λ) = m(p) + λ(||p|| - Δ).
 >
-> Nhưng vì constrained ||p|| ≤ Δ ⇔ (1/2)||p||^2 ≤ (1/2)Δ do ||p|| không âm nên bài toán tương đương (equivalent) là minimize m(p) s.t (1/2) pTp ≤ (1/2) Δ^2.
+> Nhưng vì constrained ||p|| ≤ Δ ⇔ (1/2)||p||^2 ≤ (1/2)Δ do ||p|| không âm nên bài toán tương đương (equivalent) là minimize m(p) s.t (1/2) pᵀp ≤ (1/2) Δ^2.
 >
-> Lagrangian: L(p, λ) = m(p) + λ/2(pTp - Δ^2).
+> Lagrangian: L(p, λ) = m(p) + λ/2(pᵀp - Δ^2).
 >
 > ∇L = ∇m(p) + λp = BTp + g + λp = (B + λI)p + g
 >
@@ -1796,7 +1796,7 @@
 >
 >
 >
-> Tiếp theo ta sẽ phải chứng minh 4.8c: B + λI xác định bán dương. Thì ý tưởng đơn giản thôi: Nhớ hồi học MIT 18.06, thầy Strang đã dạy, để chứng minh matrix A positive semidefinite, ta sẽ chứng minh quadratic form của nó xTAx ≥ 0 với mọi x.
+> Tiếp theo ta sẽ phải chứng minh 4.8c: B + λI xác định bán dương. Thì ý tưởng đơn giản thôi: Nhớ hồi học MIT 18.06, thầy Strang đã dạy, để chứng minh matrix A positive semidefinite, ta sẽ chứng minh quadratic form của nó xᵀAx ≥ 0 với mọi x.
 >
 > Ở đây, ta bắt đầu với việc đã có p\* là minimizer của bài toán (minimize m(p) s.t ||p|| ≤ Δ). nên:
 >
@@ -1806,19 +1806,19 @@
 >
 > Và dĩ nhiên inequality này cũng đúng nếu xét riêng các p có ||p|| = Δ
 >
-> m(p) ≥ m(p\*) + (λ/2)(pTp - pTp) ∀p có ||p|| = Δ
+> m(p) ≥ m(p\*) + (λ/2)(pᵀp - pᵀp) ∀p có ||p|| = Δ
 >
-> ⇔ f + gTp + (1/2)pTBp ≥ f + gTp\* + (1/2)pTBp + (λ/2)(pTp - pTp) ∀p có ||p|| = Δ
+> ⇔ f + gᵀp + (1/2)pᵀBp ≥ f + gᵀp\* + (1/2)pᵀBp + (λ/2)(pᵀp - pᵀp) ∀p có ||p|| = Δ
 >
-> ⇔ gTp - gTp\* + (1/2)pTBp - (1/2)pTBp - (λ/2)(pTp - pTp) ≥ 0 ∀p có ||p|| = Δ
+> ⇔ gᵀp - gᵀp\* + (1/2)pᵀBp - (1/2)pᵀBp - (λ/2)(pᵀp - pᵀp) ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ gT(p - p\*) + (1/2)pTBp - (1/2)pTBp - (λ/2)pTp + (λ/2)pTp) ≥ 0 ∀p có ||p|| = Δ
+> ⇔ gᵀ(p - p\*) + (1/2)pᵀBp - (1/2)pᵀBp - (λ/2)pᵀp + (λ/2)pᵀp) ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ gT(p - p\*) + (1/2)pTBp + (λ/2)pTp - (1/2)pTBp - (λ/2)pTp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ gᵀ(p - p\*) + (1/2)pᵀBp + (λ/2)pᵀp - (1/2)pᵀBp - (λ/2)pᵀp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ gT(p - p\*) + (1/2)pTBp + (1/2)pT(λI)p - (1/2)pTBp - (1/2)pT(λI)p ≥ 0 ∀p có ||p|| = Δ
+> ⇔ gᵀ(p - p\*) + (1/2)pᵀBp + (1/2)pᵀ(λI)p - (1/2)pᵀBp - (1/2)pᵀ(λI)p ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ gT(p - p\*) + (1/2)pT(B + λI)p - (1/2)pT(B + λI)p ≥ 0 ∀p có ||p|| = Δ
+> ⇔ gᵀ(p - p\*) + (1/2)pᵀ(B + λI)p - (1/2)pᵀ(B + λI)p ≥ 0 ∀p có ||p|| = Δ
 >
 >
 >
@@ -1828,11 +1828,11 @@
 >
 > (B + λI)p\* = -g
 >
-> ⇔ \[(B + λI)p\*\]T = -gT
+> ⇔ \[(B + λI)p\*\]T = -gᵀ
 >
-> ⇔ -p\*T(B + λI)T = gT
+> ⇔ -p\*T(B + λI)ᵀ = gᵀ
 >
-> ⇔ -p\*T(B + λI) = gT do B + λI đối xứng
+> ⇔ -p\*T(B + λI) = gᵀ do B + λI đối xứng
 >
 >
 >
@@ -1840,29 +1840,29 @@
 >
 >
 >
-> ⇔ -pT(B + λI)(p - p) + (1/2)pT(B + λI)p - (1/2)pT(B + λI)p ≥ 0 ∀p có ||p|| = Δ
+> ⇔ -pᵀ(B + λI)(p - p) + (1/2)pᵀ(B + λI)p - (1/2)pᵀ(B + λI)p ≥ 0 ∀p có ||p|| = Δ
 >
 > Đặt A = B + λI
 >
-> \-pTA(p - p) + (1/2)pTAp - (1/2)pTAp ≥ 0 ∀p có ||p|| = Δ
+> \-pᵀA(p - p) + (1/2)pᵀAp - (1/2)pᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ -pTAp + pTAp\* + (1/2)pTAp - (1/2)pTAp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ -pᵀAp + pᵀAp\* + (1/2)pᵀAp - (1/2)pᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ -pTAp + (1/2)pTAp\* + (1/2)pTAp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ -pᵀAp + (1/2)pᵀAp\* + (1/2)pᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ (1/2)pTAp -p\*TAp + (1/2)pTAp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ (1/2)pᵀAp -p\*TAp + (1/2)pᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ pTAp -2p\*TAp + pTAp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ pᵀAp -2p\*TAp + pᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ pTAp -pTAp - pTAp+ pTAp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ pᵀAp -pᵀAp - pᵀAp+ pᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ pTA(p-p) - (p\*T-pT)Ap ≥ 0 ∀p có ||p|| = Δ
+> ⇔ pᵀA(p-p) - (p\*T-pᵀ)Ap ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ pTA(p-p) - (p\*-p)TAp ≥ 0 ∀p có ||p|| = Δ
+> ⇔ pᵀA(p-p) - (p\*-p)ᵀAp ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ pTA(p-p) - pTA(p\*-p) ≥ 0 ∀p có ||p|| = Δ
+> ⇔ pᵀA(p-p) - pᵀA(p\*-p) ≥ 0 ∀p có ||p|| = Δ
 >
-> ⇔ (p\* - p)TA(p\* - p) ≥ 0 ∀p có ||p|| = Δ
+> ⇔ (p\* - p)ᵀA(p\* - p) ≥ 0 ∀p có ||p|| = Δ
 >
 >
 >
@@ -1911,7 +1911,7 @@
 >
 > Bài phân tích này thể hiện sự hiểu biết sâu sắc về ngữ cảnh và các thuật toán liên quan đến đoạn văn. Các điểm chính từ đoạn văn gốc được nắm bắt chính xác và được bổ trợ bởi thông tin nền đáng giá, thể hiện độ sâu đáng nể, mặc dù một số chi tiết nền không trực tiếp có trong hình ảnh đã cho.
 
-**🔗 See also:** [Algorithm 4.3 Trust Region Subproblem](#node-t3v5vev) · [Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pTBkp subject to ||pk|| ≤ Δk](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-4oyhvi4) · [Theorem 4.5](./42_trust_region_methods_global_convergence.md#node-fg12jtm) · [Theorem 4.6 #QUAY LẠI SAU](./42_trust_region_methods_global_convergence.md#node-i5wiv3l) · [Theorem 4.1](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-6p1mgzb) · [Tái định hình bài toán để khắc phục hạn chế của Newton method:](#node-o8ah5zo) · [Mức giảm Dogleg và Wolfe, (4.20)](./42_trust_region_methods_global_convergence.md#node-flrtdwa)
+**🔗 See also:** [Algorithm 4.3 Trust Region Subproblem](#node-t3v5vev) · [Bài toán (4.5) sẽ là minimize mk(p) = fk + gkTp + (1/2)pᵀBkp subject to ||pk|| ≤ Δk](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-4oyhvi4) · [Theorem 4.5](./42_trust_region_methods_global_convergence.md#node-fg12jtm) · [Theorem 4.6 #QUAY LẠI SAU](./42_trust_region_methods_global_convergence.md#node-i5wiv3l) · [Theorem 4.1](./40_trust_region_methods_outline_of_the_trust_region_approach.md#node-6p1mgzb) · [Tái định hình bài toán để khắc phục hạn chế của Newton method:](#node-o8ah5zo) · [Mức giảm Dogleg và Wolfe, (4.20)](./42_trust_region_methods_global_convergence.md#node-flrtdwa)
 
 <br>
 
@@ -1932,7 +1932,7 @@
 >
 > Lập luận như sau, giả sử đến một iteration k nào đó, ta đến được điểm saddle point xk: Tại đây, gradient gk = 0, và Hessian tại đó, vì là điểm yên ngựa nên: Đi ra khỏi xk thì theo một số phương khiến độ dốc tăng lên, và một số thì độ dốc âm xuống. Có nghĩa là B là indefinite matrix, eigenvalue có âm có dương.
 >
-> mk(p) = fk + gkTp + (1/2)pTBkp = fk + 0 + (1/2)pTBkp = fk + (1/2)pTBkp
+> mk(p) = fk + gkTp + (1/2)pᵀBkp = fk + 0 + (1/2)pᵀBkp = fk + (1/2)pᵀBkp
 >
 > Thế thì đại ý là, ta sẽ giải bài toán subproblem minimize mk(p) này s.t ||p|| ≤ Δ, thì kiểu gì cũng tồn tại true / exact solution p\* phải khiến giảm mk, lí do là vì Bk có trị riêng âm, nên chỉ cần đi theo hướng eigenvector ứng với trị riêng này, thì sẽ giảm được mk thêm. (Có cách để chứng minh ý này)
 >
@@ -1944,29 +1944,29 @@
 >
 > Tức là chỉ được dừng khi m(0) - m(p) ≥ SỐ DƯƠNG.
 >
-> ⇔ fk - fk - (1/2)pTBkp ≥ Số dương
+> ⇔ fk - fk - (1/2)pᵀBkp ≥ Số dương
 >
-> ⇔ - (1/2)pTBkp ≥ Số dương
+> ⇔ - (1/2)pᵀBkp ≥ Số dương
 >
-> ⇔ pTBkp ≤ Số âm
+> ⇔ pᵀBkp ≤ Số âm
 >
 > Và như vậy p phải thỏa điều này thì p phải thế nào?
 >
-> pTBkp = pTQΛQTp = pTQΛQTp
+> pᵀBkp = pᵀQΛQᵀp = pᵀQΛQᵀp
 >
-> QTp là gì, là vector (q1Tp, q2Tp,...qnTp)
+> Qᵀp là gì, là vector (q1Tp, q2Tp,...qnTp)
 >
-> ΛQTp là (λ1q1Tp, λ2q2Tp,....λnqnTp)
+> ΛQᵀp là (λ1q1Tp, λ2q2Tp,....λnqnTp)
 >
-> QΛQTp là λ1q1Tp × q1 + λ2q2Tp × q2 + ..
+> QΛQᵀp là λ1q1Tp × q1 + λ2q2Tp × q2 + ..
 >
-> pTQΛQTp = pT(λ1q1Tp × q1) + pT(λ2q2Tp × q2) + ...
+> pᵀQΛQᵀp = pᵀ(λ1q1Tp × q1) + pᵀ(λ2q2Tp × q2) + ...
 >
-> = λ1q1Tp × pTq1 + λ2q2Tp × pTq2 + ...
+> = λ1q1Tp × pᵀq1 + λ2q2Tp × pᵀq2 + ...
 >
 > = λ1(q1Tp)^2 + λ2(q2Tp)^2 ...
 >
-> ⇨ pTBkp ≤ Số âm
+> ⇨ pᵀBkp ≤ Số âm
 >
 > ⇔ λ1(q1Tp)^2 + λ2(q2Tp)^2 ... ≤ Số âm
 >
