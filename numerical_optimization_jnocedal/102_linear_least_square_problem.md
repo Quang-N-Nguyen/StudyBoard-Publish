@@ -44,7 +44,7 @@
 >
 >
 >
-> Như vậy, objective lúc này trở thành: f(x) = (1/2)r(x)Tr(x) = (1/2)(Jx - y)T(Jx - y) = (1/2)||Jx - y||^2.
+> Như vậy, objective lúc này trở thành: f(x) = (1/2)r(x)ᵀr(x) = (1/2)(Jx - y)ᵀ(Jx - y) = (1/2)||Jx - y||^2.
 >
 >
 >
@@ -56,27 +56,27 @@
 >
 >
 >
-> df = f(x + dx) - f(x) = (1/2)(J(x+dx) - y)T(J(x+dx) - y) - (1/2)(Jx - y)T(Jx - y)
+> df = f(x + dx) - f(x) = (1/2)(J(x+dx) - y)ᵀ(J(x+dx) - y) - (1/2)(Jx - y)ᵀ(Jx - y)
 >
 >
 >
-> = (1/2) \[(J(x+dx) - y)T(J(x+dx) - y) - (Jx - y)T(Jx - y)\]
+> = (1/2) \[(J(x+dx) - y)ᵀ(J(x+dx) - y) - (Jx - y)ᵀ(Jx - y)\]
 >
 >
 >
-> = (1/2) \[(Jx + Jdx - y)T(Jx + Jdx - y) - (Jx - y)T(Jx - y)\]
+> = (1/2) \[(Jx + Jdx - y)ᵀ(Jx + Jdx - y) - (Jx - y)ᵀ(Jx - y)\]
 >
 >
 >
-> = (1/2) \[(xTJT + dxTJT - yT)(Jx + Jdx - y) - (xTJT - yT)(Jx - y)\]
+> = (1/2) \[(xᵀJᵀ + dxᵀJᵀ - yT)(Jx + Jdx - y) - (xᵀJᵀ - yT)(Jx - y)\]
 >
 >
 >
-> = (1/2) \[xTJTJx + dxTJTJx - yTJx + xTJTJdx + dxTJTJdx - yTJdx - xTJTy - dxTJTy + yTy - (xTJTJx - yTJx - xTJTy + yTy)\]
+> = (1/2) \[xᵀJᵀJx + dxᵀJᵀJx - yTJx + xᵀJᵀJdx + dxᵀJᵀJdx - yTJdx - xᵀJᵀy - dxᵀJᵀy + yTy - (xᵀJᵀJx - yTJx - xᵀJᵀy + yTy)\]
 >
 >
 >
-> = (1/2) \[xTJTJx + dxTJTJx - yTJx + xTJTJdx + dxTJTJdx - yTJdx - xTJTy - dxTJTy + yTy - xTJTJx + yTJx + xTJTy - yTy\]
+> = (1/2) \[xᵀJᵀJx + dxᵀJᵀJx - yTJx + xᵀJᵀJdx + dxᵀJᵀJdx - yTJdx - xᵀJᵀy - dxᵀJᵀy + yTy - xᵀJᵀJx + yTJx + xᵀJᵀy - yTy\]
 >
 >
 >
@@ -84,23 +84,23 @@
 >
 >
 >
-> = (1/2) \[2xTJTJdx - 2yTJdx\]
+> = (1/2) \[2xᵀJᵀJdx - 2yTJdx\]
 >
 >
 >
-> = (xTJTJ - yTJ)dx
+> = (xᵀJᵀJ - yTJ)dx
 >
 >
 >
-> = \[(xTJT - yT)J\]dx
+> = \[(xᵀJᵀ - yT)J\]dx
 >
 >
 >
-> Vậy tại đây ta có df = (xTJTJ - yTJ)dx
+> Vậy tại đây ta có df = (xᵀJᵀJ - yTJ)dx
 >
 >
 >
-> ⇨ ∇f(x) = \[(xTJT - yT)J\]T = JT((xTJT - yT)T = **JT(Jx - y)** → đây **chính là công thức trong sách.**
+> ⇨ ∇f(x) = \[(xᵀJᵀ - yT)J\]T = Jᵀ((xᵀJᵀ - yT)ᵀ = **Jᵀ(Jx - y)** → đây **chính là công thức trong sách.**
 >
 >
 >
@@ -112,23 +112,23 @@
 >
 >
 >
-> Xét d∇f(x) = ∇f(x + dx) - ∇f(x) = JT(J(x+dx) - y) - JT(Jx - y)
+> Xét d∇f(x) = ∇f(x + dx) - ∇f(x) = Jᵀ(J(x+dx) - y) - Jᵀ(Jx - y)
 >
 >
 >
-> = JT(Jx + Jdx - y) - JT(Jx - y)
+> = Jᵀ(Jx + Jdx - y) - Jᵀ(Jx - y)
 >
 >
 >
-> = JTJx + JTJdx - JTy - JTJx + JTy
+> = JᵀJx + JᵀJdx - Jᵀy - JᵀJx + Jᵀy
 >
 >
 >
-> = JTJdx
+> = JᵀJdx
 >
 >
 >
-> Tới đây ta đã có kết quả thể hiện d ∇f(x) ở dạng một linear operator act on dx, và vì với hàm ∇f(x) là vector → vector function, nên linear operator act on vector dx cho ra vector df chỉ có thể là một matrix. Và với kết quả trên thì **Jacobian chính là JTJ** (J transposed J, dĩ nhiên là matrix đối xứng)
+> Tới đây ta đã có kết quả thể hiện d ∇f(x) ở dạng một linear operator act on dx, và vì với hàm ∇f(x) là vector → vector function, nên linear operator act on vector dx cho ra vector df chỉ có thể là một matrix. Và với kết quả trên thì **Jacobian chính là JᵀJ** (J transposed J, dĩ nhiên là matrix đối xứng)
 >
 >
 >
@@ -144,7 +144,7 @@
 >
 >
 >
-> Ở đây ta dùng điều kiện đủ bậc hai, cho dễ dễ thấy, ta đã có Hessian là JTJ, thì như đã biết JTJ chắc chắn là positive semi definite: Chỉ cần xét quadratic form của nó (nhớ MIT 18.06 ta biết, chỉ cần chỉ ra quadratic form của nó luôn ko âm): zTJTJz = (JTz)T(JTz) = ||JTz||^2, đây là bình phương của norm của vector JTz, dĩ nhiên luôn không âm. Kết luận JTJ possitive semi definite ⇨ f là hàm lồi.
+> Ở đây ta dùng điều kiện đủ bậc hai, cho dễ dễ thấy, ta đã có Hessian là JᵀJ, thì như đã biết JᵀJ chắc chắn là positive semi definite: Chỉ cần xét quadratic form của nó (nhớ MIT 18.06 ta biết, chỉ cần chỉ ra quadratic form của nó luôn ko âm): zTJᵀJz = (Jᵀz)ᵀ(Jᵀz) = ||Jᵀz||^2, đây là bình phương của norm của vector Jᵀz, dĩ nhiên luôn không âm. Kết luận JᵀJ possitive semi definite ⇨ f là hàm lồi.
 >
 >
 >
@@ -160,7 +160,7 @@
 >
 >
 >
-> JT(Jx\* - y) = 0 ⇔ JTJx = JTy.
+> Jᵀ(Jx\* - y) = 0 ⇔ JᵀJx = Jᵀy.
 >
 >
 >
@@ -186,7 +186,7 @@
 >
 >
 >
-> Thì cái đầu tiên đơn giản là giải cái normal equation này JTJx = JTy, vì nghiệm của nó chính là solution của bài toán này. (Đây là lúc ta nhớ lúc trước có chỗ thấy người ta nói bài toán không có closed-form solution, thì mình hiểu rằng, tức là không phải bài toán nào cũng có solution thể hiện dưới dạng closed-form, ví dụ như ở đây, về cơ bản, là có thể, vì nhân hai vế cho JTJinv, ta sẽ có x = (JTJ)invJTy. (với việc giả định J full column rank thì ta sẽ có JTJ invertible)
+> Thì cái đầu tiên đơn giản là giải cái normal equation này JᵀJx = Jᵀy, vì nghiệm của nó chính là solution của bài toán này. (Đây là lúc ta nhớ lúc trước có chỗ thấy người ta nói bài toán không có closed-form solution, thì mình hiểu rằng, tức là không phải bài toán nào cũng có solution thể hiện dưới dạng closed-form, ví dụ như ở đây, về cơ bản, là có thể, vì nhân hai vế cho JᵀJ⁻¹, ta sẽ có x = (JᵀJ)⁻¹Jᵀy. (với việc giả định J full column rank thì ta sẽ có JᵀJ invertible)
 >
 >
 >
@@ -194,11 +194,11 @@
 >
 >
 >
-> i) Tính toán ra matrix hệ số JTJ và vector JTy
+> i) Tính toán ra matrix hệ số JᵀJ và vector Jᵀy
 >
 >
 >
-> ii) Phân tách matrix JTJ thành dạng tích của hai matrix tam giác thông qua phép phân rã Cholesky.
+> ii) Phân tách matrix JᵀJ thành dạng tích của hai matrix tam giác thông qua phép phân rã Cholesky.
 >
 >
 >
@@ -206,19 +206,19 @@
 >
 >
 >
-> Thế thì trong bước 2, gs cho biết ta sẽ đảm bảo có thể phân tách được JTJ thành R'TR' (trong sách là R_bar) nếu m ≥ n và J full column rank. Thử phân tích xem vì sao?
+> Thế thì trong bước 2, gs cho biết ta sẽ đảm bảo có thể phân tách được JᵀJ thành R'TR' (trong sách là R_bar) nếu m ≥ n và J full column rank. Thử phân tích xem vì sao?
 >
 >
 >
-> Nếu m ≥ n, thì tức là ta có matrix J cao ốm (nhiều hàng hơn cột), và full column rank tức mọi cột độc lập và khi đó JTJ sẽ full rank (chứng minh nhanh: Giả sử **A full rank nhưng ATA không fullrank** → tồn tại x khác 0 khiến ATAx = 0. A full rank thì Ax phải khác 0 khi x khác 0 do nullspace của A chỉ có {0}. Mà AT(Ax) = 0 ⇨ Ax nằm trong left nullspace C(AT), là orthogonal complement với column space C(A) (cặp orthogonal complemt còn lại là nullspace và rowspace). Nhưng với x khác 0 thì Ax do A full column rank, sẽ phải nằm trong C(A), là vector khác 0 trong C(A).Do đó không thể có chuyện nó là left nullspace vector được. Như vậy mâu thuẫn giả thiết. Nên ATA phải full rank. Vậy áp dụng vào đây, J full column rank thì JTJ full rank.
+> Nếu m ≥ n, thì tức là ta có matrix J cao ốm (nhiều hàng hơn cột), và full column rank tức mọi cột độc lập và khi đó JᵀJ sẽ full rank (chứng minh nhanh: Giả sử **A full rank nhưng AᵀA không fullrank** → tồn tại x khác 0 khiến AᵀAx = 0. A full rank thì Ax phải khác 0 khi x khác 0 do nullspace của A chỉ có {0}. Mà Aᵀ(Ax) = 0 ⇨ Ax nằm trong left nullspace C(Aᵀ), là orthogonal complement với column space C(A) (cặp orthogonal complemt còn lại là nullspace và rowspace). Nhưng với x khác 0 thì Ax do A full column rank, sẽ phải nằm trong C(A), là vector khác 0 trong C(A).Do đó không thể có chuyện nó là left nullspace vector được. Như vậy mâu thuẫn giả thiết. Nên AᵀA phải full rank. Vậy áp dụng vào đây, J full column rank thì JᵀJ full rank.
 >
 >
 >
-> Ngoài ra, vì JTJ là gram matrix, là matrix positive semi definite (check quadratic form uTJTJu = (Ju)TJu = ||Ju||^2 ≥ 0 với mọi u), điều này đồng nghĩa mọi eigenvalue không âm, mà ở trên đã nói nó full rank, tức là không có eigenvalue bằng 0.
+> Ngoài ra, vì JᵀJ là gram matrix, là matrix positive semi definite (check quadratic form uTJᵀJu = (Ju)ᵀJu = ||Ju||^2 ≥ 0 với mọi u), điều này đồng nghĩa mọi eigenvalue không âm, mà ở trên đã nói nó full rank, tức là không có eigenvalue bằng 0.
 >
 >
 >
-> Vậy, JTJ là matrix **xác định dương** (positive definite) → Thoả điều kiện tồn tại của Cholesky factorization.
+> Vậy, JᵀJ là matrix **xác định dương** (positive definite) → Thoả điều kiện tồn tại của Cholesky factorization.
 >
 >
 >
@@ -226,7 +226,7 @@
 >
 >
 >
-> Tiếp, ông nói cách làm này cơ bản cũng tốt nhưng có nhược điểm chí mạng là condition number của JTJ = bình phương của condition number của J, mà relative error của solution lại thường là tỉ lệ thuận với condition number. Do đó, sai số của phương pháp này thường lớn hơn các phương pháp khác. Và hơn nữa, có thể khi J có condition number quá lớn (gọi là ill condition) thì thuật toán này còn có thể fail (do bước phân rã Cholesky fail do eigenvalue bằng 0 do lỗi làm tròn)
+> Tiếp, ông nói cách làm này cơ bản cũng tốt nhưng có nhược điểm chí mạng là condition number của JᵀJ = bình phương của condition number của J, mà relative error của solution lại thường là tỉ lệ thuận với condition number. Do đó, sai số của phương pháp này thường lớn hơn các phương pháp khác. Và hơn nữa, có thể khi J có condition number quá lớn (gọi là ill condition) thì thuật toán này còn có thể fail (do bước phân rã Cholesky fail do eigenvalue bằng 0 do lỗi làm tròn)
 >
 >
 >
@@ -234,7 +234,7 @@
 >
 >
 >
-> Còn nhớ đã học trong MIT 18.06 condition number của matrix A được định nghĩa là tỉ lệ của stretching factor lớn nhất và nhỏ nhất của A: κ(A) = max_x (||Ax||/||x||) / min_x (||Ax||/||x||), và thật ra biến đổi chút cộng với định nghĩa của norm A là max_x ||Ax|| / ||x||, thì ta có κ(A) = ||A|| . ||Ainv||.
+> Còn nhớ đã học trong MIT 18.06 condition number của matrix A được định nghĩa là tỉ lệ của stretching factor lớn nhất và nhỏ nhất của A: κ(A) = max_x (||Ax||/||x||) / min_x (||Ax||/||x||), và thật ra biến đổi chút cộng với định nghĩa của norm A là max_x ||Ax|| / ||x||, thì ta có κ(A) = ||A|| . ||A⁻¹||.
 >
 >
 >
@@ -242,7 +242,7 @@
 >
 >
 >
-> Sai số nói đến ở đây, dĩ nhiên là sai số khi giải hệ, Ax = b (vì đang nói đến việc giải normal equation, có bản chất cũng chỉ là giải hệ tuyến tính với A là JTJ, b là JTy).
+> Sai số nói đến ở đây, dĩ nhiên là sai số khi giải hệ, Ax = b (vì đang nói đến việc giải normal equation, có bản chất cũng chỉ là giải hệ tuyến tính với A là JᵀJ, b là Jᵀy).
 >
 >
 >
@@ -250,7 +250,7 @@
 >
 >
 >
-> Giả sử A invertible, ta có Δx = Ainv Δb. ⇨ ||Δx|| = ||Ainv Δb||, và cái này, là norm của vector kết qủa khi dùng Ainv transform Δb, nên nó luôn nhỏ hơn việc lấy stretching factor lớn nhất đem stretch Δb: ||Ainv|| ||Δb|| ⇨ ||Δx|| = ||Ainv Δb|| ≤ ||Ainv|| ||Δb||
+> Giả sử A invertible, ta có Δx = A⁻¹ Δb. ⇨ ||Δx|| = ||A⁻¹ Δb||, và cái này, là norm của vector kết qủa khi dùng A⁻¹ transform Δb, nên nó luôn nhỏ hơn việc lấy stretching factor lớn nhất đem stretch Δb: ||A⁻¹|| ||Δb|| ⇨ ||Δx|| = ||A⁻¹ Δb|| ≤ ||A⁻¹|| ||Δb||
 >
 >
 >
@@ -258,19 +258,19 @@
 >
 >
 >
-> Nhân vế theo vế của ||Δx|| ≤ ||Ainv|| ||Δb|| và 1/||x|| ≤ ||A||/||b||, ta có:
+> Nhân vế theo vế của ||Δx|| ≤ ||A⁻¹|| ||Δb|| và 1/||x|| ≤ ||A||/||b||, ta có:
 >
 >
 >
-> ||Δx|| / ||x|| ≤ ||Ainv|| ||Δb|| ||A|| / ||b|| = ||Ainv|| ||A|| (||Δb|| / ||b||)
+> ||Δx|| / ||x|| ≤ ||A⁻¹|| ||Δb|| ||A|| / ||b|| = ||A⁻¹|| ||A|| (||Δb|| / ||b||)
 >
 >
 >
-> ⇔ relative error (=||Δx|| / ||x||) ≤ \[||Ainv|| ||A||\] × \[||Δb|| / ||b||\]
+> ⇔ relative error (=||Δx|| / ||x||) ≤ \[||A⁻¹|| ||A||\] × \[||Δb|| / ||b||\]
 >
 >
 >
-> Như vậy, **sai số tương đối ||Δx|| / ||x|| sẽ tỉ lệ thuận với ||Ainv|| ||A||** và **cả ||Δb|| / ||b||**, là biến động tương đối của b. Thì trong đó **||Ainv|| ||A|| chính là κ(A)**, nên giúp ta hiểu vì sao gs Nocedal nói "...Since the **relative error** in the computed solution of a problem is usually **proportional** to the **condition num-ber**.."
+> Như vậy, **sai số tương đối ||Δx|| / ||x|| sẽ tỉ lệ thuận với ||A⁻¹|| ||A||** và **cả ||Δb|| / ||b||**, là biến động tương đối của b. Thì trong đó **||A⁻¹|| ||A|| chính là κ(A)**, nên giúp ta hiểu vì sao gs Nocedal nói "...Since the **relative error** in the computed solution of a problem is usually **proportional** to the **condition num-ber**.."
 >
 >
 >
@@ -278,7 +278,7 @@
 >
 >
 >
-> Rồi, vì sao gs nói "the condition number of JTJ is the square of the condition number of J"?
+> Rồi, vì sao gs nói "the condition number of JᵀJ is the square of the condition number of J"?
 >
 >
 >
@@ -286,87 +286,87 @@
 >
 >
 >
-> Như đã nói stretching factor lớn nhất, chính là định nghĩa của norm A: ||A|| = max_x ||Ax|| / ||x||. Vậy thì ta sẽ thử mổ xẻ bài toán này: maximize_x ||Ax|| / ||x||. Đối mặt với bài toán tối ưu này, nhận thấy ||Ax|| / ||x|| là hàm không âm, và hàm quadratic thì đồng biến với input không âm, nên ta sẽ chuyển thành bài toán tương đương: maximize_x ||Ax||^2 / ||x||^2 = (Ax)T(Ax) / xTx = xTATAx / xTx (cái này trong MIT 1806, sách thầy Strang mình biết gọi là Rayleint quotient).
+> Như đã nói stretching factor lớn nhất, chính là định nghĩa của norm A: ||A|| = max_x ||Ax|| / ||x||. Vậy thì ta sẽ thử mổ xẻ bài toán này: maximize_x ||Ax|| / ||x||. Đối mặt với bài toán tối ưu này, nhận thấy ||Ax|| / ||x|| là hàm không âm, và hàm quadratic thì đồng biến với input không âm, nên ta sẽ chuyển thành bài toán tương đương: maximize_x ||Ax||^2 / ||x||^2 = (Ax)ᵀ(Ax) / xᵀx = xᵀAᵀAx / xᵀx (cái này trong MIT 1806, sách thầy Strang mình biết gọi là Rayleint quotient).
 >
 >
 >
-> Tiếp, nhận ra ATA là Gram matrix, là matrix đối xứng, nên luôn tồn tại phép phân rã eigenvalue với bộ eigenvector vuông góc: (ATA) = Q Λ QT. ⇨ xTATAx / xTx = xTQΛQTx / xTx. Bài toán trở thành maximize_x xTQΛQTx / xTx , đổi biến: Đặt y = QTx ⇨ yTy = (xTQQTx) = xTx ta có bài toán maximize yTΛy / yTy
+> Tiếp, nhận ra AᵀA là Gram matrix, là matrix đối xứng, nên luôn tồn tại phép phân rã eigenvalue với bộ eigenvector vuông góc: (AᵀA) = Q Λ Qᵀ. ⇨ xᵀAᵀAx / xᵀx = xᵀQΛQᵀx / xᵀx. Bài toán trở thành maximize_x xᵀQΛQᵀx / xᵀx , đổi biến: Đặt y = Qᵀx ⇨ yTy = (xᵀQQᵀx) = xᵀx ta có bài toán maximize yTΛy / yTy
 >
 >
 >
-> Σi λmin(ATA) yi^2 ≤ yTΛy = Σi λi yi^2 ≤ Σi λmax(ATA) yi^2
+> Σi λmin(AᵀA) yi^2 ≤ yTΛy = Σi λi yi^2 ≤ Σi λmax(AᵀA) yi^2
 >
 >
 >
-> ⇔ λmin(ATA) Σi yi^2 ≤ yTΛy = Σi λi yi^2 ≤ λmax(ATA) Σi yi^2
+> ⇔ λmin(AᵀA) Σi yi^2 ≤ yTΛy = Σi λi yi^2 ≤ λmax(AᵀA) Σi yi^2
 >
 >
 >
-> ⇔ λmin(ATA) ||y||^2 ≤ yTΛy = Σi λi yi^2 ≤ λmax(ATA) ||y||^2
+> ⇔ λmin(AᵀA) ||y||^2 ≤ yTΛy = Σi λi yi^2 ≤ λmax(AᵀA) ||y||^2
 >
 >
 >
-> ⇨ λmin(ATA) ≤ yTΛy / yTy = Σi λi yi^2 ≤ λmax(ATA)
+> ⇨ λmin(AᵀA) ≤ yTΛy / yTy = Σi λi yi^2 ≤ λmax(AᵀA)
 >
 >
 >
-> ⇨ yTΛy / yTy, cũng là ||Ax||^2 / ||x||^2 đạt max = λmax(ATA) và đạt min = λmin(ATA)
+> ⇨ yTΛy / yTy, cũng là ||Ax||^2 / ||x||^2 đạt max = λmax(AᵀA) và đạt min = λmin(AᵀA)
 >
 >
 >
-> ⇨ ||Ax|| / ||x|| đạt max = √ λmax(ATA) và đạt min = √λmin(ATA)
+> ⇨ ||Ax|| / ||x|| đạt max = √ λmax(AᵀA) và đạt min = √λmin(AᵀA)
 >
 >
 >
-> Vậy κ(A) = √ λmax(ATA) / √λmin(ATA)
+> Vậy κ(A) = √ λmax(AᵀA) / √λmin(AᵀA)
 >
 >
 >
-> Tiếp. Dùng quan hệ của eigenvalue của ATA và singular value của A:
+> Tiếp. Dùng quan hệ của eigenvalue của AᵀA và singular value của A:
 >
 >
 >
-> Ta biết, bất cứ matrix nào cũng có phép phân tách SVD: Có bản chất là: mapping một orthogonal basis của rowspace (đặt là các cột của matrix V) và orthogonal basis của columnspace (đặt là các cột của U): Avi = σiui, i = 1,2....⇨ AV = UΣ. Với việc V có các cột orthogonal: VVT = I_r (r là rank) nhân hai vế cho VT, ta có A = U Σ VT.
+> Ta biết, bất cứ matrix nào cũng có phép phân tách SVD: Có bản chất là: mapping một orthogonal basis của rowspace (đặt là các cột của matrix V) và orthogonal basis của columnspace (đặt là các cột của U): Avi = σiui, i = 1,2....⇨ AV = UΣ. Với việc V có các cột orthogonal: VVᵀ = I_r (r là rank) nhân hai vế cho Vᵀ, ta có A = U Σ Vᵀ.
 >
 >
 >
-> Xét ATA, áp cái SVD factorization của A vào: ATA = (U Σ VT)T (U Σ VT) = (V ΣT UT)(U Σ VT) = V ΣT UTU Σ VT = V ΣTΣ VT, và đây cũng chính là eigen-decomposition của ATA, giúp kết luận σ(A)^2 = λ(ATA) ⇨ σ(A) = √λ(ATA).
+> Xét AᵀA, áp cái SVD factorization của A vào: AᵀA = (U Σ Vᵀ)ᵀ (U Σ Vᵀ) = (V ΣT Uᵀ)(U Σ Vᵀ) = V ΣT UᵀU Σ Vᵀ = V ΣTΣ Vᵀ, và đây cũng chính là eigen-decomposition của AᵀA, giúp kết luận σ(A)^2 = λ(AᵀA) ⇨ σ(A) = √λ(AᵀA).
 >
 >
 >
-> Từ đó, κ(A) = √ λmax(ATA) / √λmin(ATA) = σmax(A) / σmin(A).
+> Từ đó, κ(A) = √ λmax(AᵀA) / √λmin(AᵀA) = σmax(A) / σmin(A).
 >
 >
 >
-> Nếu áp dụng công thức này, thì κ(ATA) = √λmax(\[ATA\]T\[ATA\])/√λmin(\[ATA\]T\[ATA\])
+> Nếu áp dụng công thức này, thì κ(AᵀA) = √λmax(\[AᵀA\]T\[AᵀA\])/√λmin(\[AᵀA\]T\[AᵀA\])
 >
 >
 >
-> = √λmax(\[ATA ATA\])/√λmin(\[ATA ATA\])
+> = √λmax(\[AᵀA AᵀA\])/√λmin(\[AᵀA AᵀA\])
 >
 >
 >
-> = √λmax(\[ATA\]^2)/√λmin(\[ATA\]^2)
+> = √λmax(\[AᵀA\]^2)/√λmin(\[AᵀA\]^2)
 >
 >
 >
-> Ôn nhanh tính chất này giả sử u và λ là eigenvector/value của A: Au = λu ⇨ A^2u = A λu = λ Au = λ^2 u ⇨ u cũng là eigenvector ứng với eigenvalue là λ^2, tức là eigenvalue của A^2 = \[eigenvalue tương ứng của A\]^2. Nếu A là matrix có eigenvalue không âm, ví dụ như matrix ATA, thì khi đó dễ thấy ta sẽ có thể nói, λmax(A^2) = \[λmax(A)\]^2, và λmin(A^2) = \[λmin(A)\]^2
+> Ôn nhanh tính chất này giả sử u và λ là eigenvector/value của A: Au = λu ⇨ A^2u = A λu = λ Au = λ^2 u ⇨ u cũng là eigenvector ứng với eigenvalue là λ^2, tức là eigenvalue của A^2 = \[eigenvalue tương ứng của A\]^2. Nếu A là matrix có eigenvalue không âm, ví dụ như matrix AᵀA, thì khi đó dễ thấy ta sẽ có thể nói, λmax(A^2) = \[λmax(A)\]^2, và λmin(A^2) = \[λmin(A)\]^2
 >
 >
 >
-> Vậy λmax\[(ATA)^2\] = \[λmax(ATA)\]^2 và λmin(\[ATA\]^2) = \[λmin(ATA)\]^2
+> Vậy λmax\[(AᵀA)^2\] = \[λmax(AᵀA)\]^2 và λmin(\[AᵀA\]^2) = \[λmin(AᵀA)\]^2
 >
 >
 >
-> ⇨ √λmax(\[ATA\]^2)/√λmin(\[ATA\]^2) = λmax(ATA) / λmin(ATA)
+> ⇨ √λmax(\[AᵀA\]^2)/√λmin(\[AᵀA\]^2) = λmax(AᵀA) / λmin(AᵀA)
 >
 >
 >
-> và cái này = \[√λmax(ATA) / √λmin(ATA)\]^2 = \[κ(A)\]^2
+> và cái này = \[√λmax(AᵀA) / √λmin(AᵀA)\]^2 = \[κ(A)\]^2
 >
 >
 >
-> Vậy ta đã thấy κ(ATA) = \[κ(A)\]^2 ⇨ giúp hiểu vì sao gs nói "the condition number of JTJ is the square of the condition number of J"
+> Vậy ta đã thấy κ(AᵀA) = \[κ(A)\]^2 ⇨ giúp hiểu vì sao gs nói "the condition number of JᵀJ is the square of the condition number of J"
 >
 >
 >
@@ -374,11 +374,11 @@
 >
 >
 >
-> i) sai số tương đối của hệ Ax = b sẽ tỉ lệ thuận với condition number của A, vậy sai số tương đối khi ta giải hệ normal equation JTJx = JTy sẽ tỉ lệ thuận với condition number của JTJ.
+> i) sai số tương đối của hệ Ax = b sẽ tỉ lệ thuận với condition number của A, vậy sai số tương đối khi ta giải hệ normal equation JᵀJx = Jᵀy sẽ tỉ lệ thuận với condition number của JᵀJ.
 >
 >
 >
-> ii) mà condition number của JTJ lại là bình phương condition number của J, nên nếu J ill-condition, tức có condition number lớn → condition number của JTJ càng lớn bạo → sai số tương đối của việc giải hệ JTJx = JTy, sẽ rất lớn. Đây chính là nhược điểm của cách làm thứ nhất này.
+> ii) mà condition number của JᵀJ lại là bình phương condition number của J, nên nếu J ill-condition, tức có condition number lớn → condition number của JᵀJ càng lớn bạo → sai số tương đối của việc giải hệ JᵀJx = Jᵀy, sẽ rất lớn. Đây chính là nhược điểm của cách làm thứ nhất này.
 >
 >
 >
@@ -414,15 +414,15 @@
 >
 >
 >
-> Thì QR factorization cho ta một cách làm: GỈA SỬ (BẰNG THUẬT TOÁN NÀO ĐÓ, TA CÓ THỂ FACTOR J THÀNH: J Π = \[Q1, Q2\] \[R; 0\], ta sẽ áp dụng cái này vào việc giải bài toán tối ưu:
+> Thì QR factorization cho ta một cách làm: GỈA SỬ (BẰNG THUẬT TOÁN NÀO ĐÓ, TA CÓ THỂ FACᵀOR J THÀNH: J Π = \[Q1, Q2\] \[R; 0\], ta sẽ áp dụng cái này vào việc giải bài toán tối ưu:
 >
 >
 >
-> Objective là norm của vector Jx - y, thì vì Q là orthogonal matrix, nên QT cũng vậy, nên nó không thay đổi norm. Nên ta có thể chuyển thành bài toán equivalient với objective,:
+> Objective là norm của vector Jx - y, thì vì Q là orthogonal matrix, nên Qᵀ cũng vậy, nên nó không thay đổi norm. Nên ta có thể chuyển thành bài toán equivalient với objective,:
 >
 >
 >
-> ⇔ minimize ||QT(Jx - y)||
+> ⇔ minimize ||Qᵀ(Jx - y)||
 >
 >
 >
@@ -430,19 +430,19 @@
 >
 >
 >
-> ⇔ minimize ||QT(Jx - y)||^2
+> ⇔ minimize ||Qᵀ(Jx - y)||^2
 >
 >
 >
-> Thay QT = \[Q1, Q2\]T = \[Q1T; Q2T\] và Jx = J Π ΠT x vào (vì Π là permutation matrix, nên Π ΠT = Π Πinv = I)
+> Thay Qᵀ = \[Q1, Q2\]T = \[Q1ᵀ; Q2ᵀ\] và Jx = J Π ΠT x vào (vì Π là permutation matrix, nên Π ΠT = Π Πinv = I)
 >
 >
 >
-> QT(Jx - y) = \[Q1T; Q2T\](J Π ΠT x - y)
+> Qᵀ(Jx - y) = \[Q1ᵀ; Q2ᵀ\](J Π ΠT x - y)
 >
 >
 >
-> = \[Q1T; Q2T\] J Π ΠT x - \[Q1T; Q2T\]y
+> = \[Q1ᵀ; Q2ᵀ\] J Π ΠT x - \[Q1ᵀ; Q2ᵀ\]y
 >
 >
 >
@@ -450,15 +450,15 @@
 >
 >
 >
-> = \[Q1T; Q2T\] \[Q1, Q2\] \[R; 0\] ΠT x - \[Q1T; Q2T\]y
+> = \[Q1ᵀ; Q2ᵀ\] \[Q1, Q2\] \[R; 0\] ΠT x - \[Q1ᵀ; Q2ᵀ\]y
 >
 >
 >
-> = \[R; 0\] ΠT x - \[Q1T; Q2T\]y
+> = \[R; 0\] ΠT x - \[Q1ᵀ; Q2ᵀ\]y
 >
 >
 >
-> Vậy ||QT(Jx - y)||^2 = ||\[R; 0\] ΠT x - \[Q1T; Q2T\]y||^2 (đây là dấu bằng thứ 2)
+> Vậy ||Qᵀ(Jx - y)||^2 = ||\[R; 0\] ΠT x - \[Q1ᵀ; Q2ᵀ\]y||^2 (đây là dấu bằng thứ 2)
 >
 >
 >
@@ -466,19 +466,19 @@
 >
 >
 >
-> Nên xét vector \[R; 0\] ΠT x - \[Q1T; Q2T\]y, nó cũng chính là hai vector này nối lại: \[RΠT x - Q1Ty\] và \[0 - Q2Ty\] 
+> Nên xét vector \[R; 0\] ΠT x - \[Q1ᵀ; Q2ᵀ\]y, nó cũng chính là hai vector này nối lại: \[RΠT x - Q1ᵀy\] và \[0 - Q2ᵀy\] 
 >
 >
 >
-> ⇨ ||\[R; 0\] ΠT x - \[Q1T; Q2T\]y||^2 
+> ⇨ ||\[R; 0\] ΠT x - \[Q1ᵀ; Q2ᵀ\]y||^2 
 >
 >
 >
-> = ||\[RΠT x - Q1Ty\]||^2 + ||\[0 - Q2Ty\]||^2
+> = ||\[RΠT x - Q1ᵀy\]||^2 + ||\[0 - Q2ᵀy\]||^2
 >
 >
 >
-> = ||\[RΠT x - Q1Ty\]||^2 + ||\[Q2Ty\]||^2 → 10.18
+> = ||\[RΠT x - Q1ᵀy\]||^2 + ||\[Q2ᵀy\]||^2 → 10.18
 >
 >
 >
@@ -486,28 +486,36 @@
 >
 >
 >
-> minimize  ||\[RΠT x - Q1Ty\]||^2
+> minimize  ||\[RΠT x - Q1ᵀy\]||^2
 >
 >
 >
-> Và nó là square norm của \[RΠT x - Q1Ty\] đó, nên nó nhỏ nhất khi nó bằng 0: RΠT x - Q1Ty = 0 ⇔ RΠT x = Q1Ty
+> Và nó là square norm của \[RΠT x - Q1ᵀy\] đó, nên nó nhỏ nhất khi nó bằng 0: RΠT x - Q1ᵀy = 0 ⇔ RΠT x = Q1ᵀy
 >
 >
 >
-> Vậy là bài toán trở thành giải hệ RΠT x = Q1Ty
+> Vậy là bài toán trở thành giải hệ RΠT x = Q1ᵀy
 >
 >
 >
-> Bước 1: giải R z = Q1Ty, ra z, đây là hệ có matrix hệ số tam giác → chỉ là back-subsititution, tốn O(n^2)
+> Bước 1: giải R z = Q1ᵀy, ra z, đây là hệ có matrix hệ số tam giác → chỉ là back-subsititution, tốn O(n^2)
 >
 >
 >
-> Bước 2: Giải ΠT x = z, và hệ này matrix hệ số chỉ là permutation matrix, ⇨ x = Π z, chỉ là việc sắp xếp (hoán vị) lại các phần tử của z (ko tốn gì) (đây là ý mà gs Nocedal nói "perform triangular substitution to solve Rz = Q1Ty, then PERMUTE the component of z  to obtain x\*)
+> Bước 2: Giải ΠT x = z, và hệ này matrix hệ số chỉ là permutation matrix, ⇨ x = Π z, chỉ là việc sắp xếp (hoán vị) lại các phần tử của z (ko tốn gì) (đây là ý mà gs Nocedal nói "perform triangular substitution to solve Rz = Q1ᵀy, then PERMUᵀE the component of z  to obtain x\*)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Phần ghi chú này cung cấp một quá trình dẫn xuất từng bước cực kỳ rõ ràng và chi tiết cho phương pháp phân tích QR trong bài toán bình phương tối thiểu tuyến tính, giải thích kỹ lưỡng từng phép biến đổi và lý do của nó. Việc liên hệ với các bước triển khai thực tế cũng được trình bày rất tốt.
+> Ghi chú xuất sắc, giải thích cặn kẽ và chuẩn xác từng bước biến đổi đại số khối cũng như ý nghĩa hình học/thuật toán của phép phân rã QR có chọn cột (pivoting).
+>
+> **✓ Strengths**
+> - Diễn giải chi tiết và rất trực quan lý do phân tách được norm thành hai thành phần độc lập thông qua phép ghép vector (block vector).
+> - Hiểu rõ bản chất của ma trận hoán vị Pi (orthogonal, dễ nghịch đảo bằng chuyển vị) và cách khôi phục nghiệm x qua hai bước z = Pi^T x và x = Pi z.
+> - Nắm chắc tính chất bất biến độ dài dưới phép biến đổi trực giao (orthogonal invariance).
+>
+> **💡 Deeper notes**
+> - Để hệ Rz = Q_1^T y luôn giải được và có nghiệm duy nhất bằng phép thế ngược, ta ngầm giả định J có full column rank (hạng cột đầy đủ n), khi đó các phần tử trên đường chéo chính của R đều dương (khác 0).
 
 **🔗 See also:** [Phân tích QR và Gram-Schmidt](./a1_matrix_factorizations_cholesky_lu_qr.md#node-1eq3gxk) · [Gradient và Hessian của f(x)](./101_least_square_problem.md#node-rhbo48g) · [Đạo hàm bình phương tối thiểu](./101_least_square_problem.md#node-woorrym) · [SVD Approach and Singular Values](#node-0hoe8tb)
 
@@ -556,7 +564,7 @@
 >
 >
 >
-> chiếu b lên C(A) được p ⇨ p = linear combination của A's column: p = Ax, phần dư r = b - p sẽ vuông góc C(A) ⇨ ∈ left nullspace do hai subspace này orthogonal complement ⇨ AT(b - p) = 0 ⇔ ATb = ATp ⇔ ATb = ATAx. Nếu A full column rank, thì ATA full rank ⇨ ATb = ATAx ⇔ x = (ATA)invATAb ⇨ p = Ax = A(ATA)invATb. Và như vậy matrix chiếu lên C(A) là P = A(ATA)invAT.
+> chiếu b lên C(A) được p ⇨ p = linear combination của A's column: p = Ax, phần dư r = b - p sẽ vuông góc C(A) ⇨ ∈ left nullspace do hai subspace này orthogonal complement ⇨ Aᵀ(b - p) = 0 ⇔ Aᵀb = Aᵀp ⇔ Aᵀb = AᵀAx. Nếu A full column rank, thì AᵀA full rank ⇨ Aᵀb = AᵀAx ⇔ x = (AᵀA)⁻¹AᵀAb ⇨ p = Ax = A(AᵀA)⁻¹Aᵀb. Và như vậy matrix chiếu lên C(A) là P = A(AᵀA)⁻¹Aᵀ.
 >
 >
 >
@@ -564,7 +572,7 @@
 >
 >
 >
-> Vr(VrTVr)invVrT = VrVrT (do các cột của Vr orthogonal (dĩ nhiên là cũng chuẩn hóa thành orthonormal) nên VrTVr = Ir)
+> Vr(VrTVr)⁻¹VrT = VrVrT (do các cột của Vr orthogonal (dĩ nhiên là cũng chuẩn hóa thành orthonormal) nên VrTVr = Ir)
 >
 >
 >
@@ -572,7 +580,7 @@
 >
 >
 >
-> Thế thì nếu chiếu một vector đã thuộc rowspace của A lên rowspace của A thì dĩ nhiên được chính nó: ⇨ VrVrT (A's row)T = (A's row)T
+> Thế thì nếu chiếu một vector đã thuộc rowspace của A lên rowspace của A thì dĩ nhiên được chính nó: ⇨ VrVrT (A's row)ᵀ = (A's row)ᵀ
 >
 >
 >
@@ -580,15 +588,15 @@
 >
 >
 >
-> Gọi a1, a2,...am là các row của A, ta có VrVrT a1T = a1T, VVT a2T = a2T,...
+> Gọi a1, a2,...am là các row của A, ta có VrVrT a1T = a1T, VVᵀ a2T = a2T,...
 >
 >
 >
-> gom lại dưới dạng matrix: VrVrT AT = AT
+> gom lại dưới dạng matrix: VrVrT Aᵀ = Aᵀ
 >
 >
 >
-> Và tranpose hai vế ta có: (AT)T (VrVrT)T = (AT)T ⇔ A VrVrT = A.
+> Và tranpose hai vế ta có: (Aᵀ)ᵀ (VrVrT)ᵀ = (Aᵀ)ᵀ ⇔ A VrVrT = A.
 >
 >
 >
@@ -604,15 +612,15 @@
 >
 >
 >
-> J = U \[S; 0\] VT
+> J = U \[S; 0\] Vᵀ
 >
 >
 >
-> với U = \[U1, U2\] trong đó U1 là matrix các orthogonal basis của column space C(J), U2 là matrix các orthogonal basis của left nullspace N(JT)
+> với U = \[U1, U2\] trong đó U1 là matrix các orthogonal basis của column space C(J), U2 là matrix các orthogonal basis của left nullspace N(Jᵀ)
 >
 >
 >
-> và V = \[V1, V2\], V1 là matrix các orthogonal basis của rowspace C(JT) và V2 là matrix các orthogonal basis của nullspace N(J)
+> và V = \[V1, V2\], V1 là matrix các orthogonal basis của rowspace C(Jᵀ) và V2 là matrix các orthogonal basis của nullspace N(J)
 >
 >
 >
@@ -620,23 +628,23 @@
 >
 >
 >
-> Một ý nữa đó là, JTJ = \[U \[S; 0\] VT\]T U \[S; 0\] VT
+> Một ý nữa đó là, JᵀJ = \[U \[S; 0\] Vᵀ\]T U \[S; 0\] Vᵀ
 >
 >
 >
-> = V \[S; 0\]T UT U \[S; 0\] VT
+> = V \[S; 0\]T Uᵀ U \[S; 0\] Vᵀ
 >
 >
 >
-> = V \[S; 0\]T \[S; 0\] VT
+> = V \[S; 0\]T \[S; 0\] Vᵀ
 >
 >
 >
-> = V S^2 VT
+> = V S^2 Vᵀ
 >
 >
 >
-> Và như đã biết cái vụ này từ MIT 1806, đó là, kết quả này cho thấy với JTJ, thì SVD cũng là eigendecomposition, nên eigenvector của JTJ chính là các cột của V, và eigenvalue của JTJ chính là các σi^2 (bình phương singular value của J)
+> Và như đã biết cái vụ này từ MIT 1806, đó là, kết quả này cho thấy với JᵀJ, thì SVD cũng là eigendecomposition, nên eigenvector của JᵀJ chính là các cột của V, và eigenvalue của JᵀJ chính là các σi^2 (bình phương singular value của J)
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
@@ -664,7 +672,7 @@
 >
 >
 >
-> Nhớ lại cái phương pháp dựa trên QR factor ta đã nói rằng vì Q là orthogonal matrix nên nó ko làm thay đổi norm, nên có thể chuyển bài toán về tương đương minimize ||Q(Jx - y)||^2. Thì ở đây cũng vậy, ta dùng UT, cũng là orthogonal matrix (do U là orthogonal matrix: Chứng minh rất nhanh: U orthogonal ⇨ UT = Uinv ⇨ (UT)T(UT) = UUT = UUinv = I ⇨ UT cũng là orthogonal matrix)
+> Nhớ lại cái phương pháp dựa trên QR factor ta đã nói rằng vì Q là orthogonal matrix nên nó ko làm thay đổi norm, nên có thể chuyển bài toán về tương đương minimize ||Q(Jx - y)||^2. Thì ở đây cũng vậy, ta dùng Uᵀ, cũng là orthogonal matrix (do U là orthogonal matrix: Chứng minh rất nhanh: U orthogonal ⇨ Uᵀ = U⁻¹ ⇨ (Uᵀ)ᵀ(Uᵀ) = UUᵀ = UU⁻¹ = I ⇨ Uᵀ cũng là orthogonal matrix)
 >
 >
 >
@@ -672,27 +680,27 @@
 >
 >
 >
-> ||UT(Jx - y)||^2 = ||UTJx - UTy||^2
+> ||Uᵀ(Jx - y)||^2 = ||UᵀJx - Uᵀy||^2
 >
 >
 >
-> Thay J = U \[S; 0\] VT
+> Thay J = U \[S; 0\] Vᵀ
 >
 >
 >
-> ..= ||UT U \[S; 0\] VT x - UTy||^2
+> ..= ||Uᵀ U \[S; 0\] Vᵀ x - Uᵀy||^2
 >
 >
 >
-> = || \[S; 0\] VT x - UTy||^2
+> = || \[S; 0\] Vᵀ x - Uᵀy||^2
 >
 >
 >
-> U = \[U1, U2\] ⇨ UT = \[U1T; U2T\]
+> U = \[U1, U2\] ⇨ Uᵀ = \[U1T; U2T\]
 >
 >
 >
-> ...= || \[S; 0\] VT x - \[U1T; U2T\]y||^2 
+> ...= || \[S; 0\] Vᵀ x - \[U1T; U2T\]y||^2 
 >
 >
 >
@@ -700,35 +708,35 @@
 >
 >
 >
-> .. = ||S(VTx) - U1Ty||^2 + ||\[0\]VTx - \[U2T\]y||^2 
+> .. = ||S(Vᵀx) - U1Ty||^2 + ||\[0\]Vᵀx - \[U2T\]y||^2 
 >
 >
 >
-> = ||S(VTx) - U1Ty||^2 + ||\[U2T\]y||^2  → 10.20
+> = ||S(Vᵀx) - U1Ty||^2 + ||\[U2T\]y||^2  → 10.20
 >
 >
 >
-> Đến đây, tiếp tục chuyển thành bài toán tương đương với objective khác bằng cách bỏ đi hằng số: minimize ||S(VTx) - U1Ty||^2, và cái này là hàm không âm, nên minimize khi nó bằng 0: S(VTx) - U1Ty = 0
+> Đến đây, tiếp tục chuyển thành bài toán tương đương với objective khác bằng cách bỏ đi hằng số: minimize ||S(Vᵀx) - U1Ty||^2, và cái này là hàm không âm, nên minimize khi nó bằng 0: S(Vᵀx) - U1Ty = 0
 >
 >
 >
-> ⇔ S(VTx) = U1Ty
+> ⇔ S(Vᵀx) = U1Ty
 >
 >
 >
-> ⇔ x = \[S(VT)\]inv U1Ty
+> ⇔ x = \[S(Vᵀ)\]inv U1Ty
 >
 >
 >
-> ⇔ x = (VTinv Sinv) U1Ty
+> ⇔ x = (Vᵀ⁻¹ S⁻¹) U1Ty
 >
 >
 >
-> Vì V cũng là orthogonal matrix ⇨ VT = Vinv
+> Vì V cũng là orthogonal matrix ⇨ Vᵀ = V⁻¹
 >
 >
 >
-> ⇔ x = V Sinv U1Ty → chính là solution x\*
+> ⇔ x = V S⁻¹ U1Ty → chính là solution x\*
 >
 >
 >
@@ -736,7 +744,7 @@
 >
 >
 >
-> Đầu tiên xem thử Sinv U1Ty là gì:
+> Đầu tiên xem thử S⁻¹ U1Ty là gì:
 >
 >
 >
@@ -744,19 +752,19 @@
 >
 >
 >
-> S là diag(σ1, σ2,...σn) ⇨ Sinv là diag(1/σ1, 1/σ2,...1/σn)
+> S là diag(σ1, σ2,...σn) ⇨ S⁻¹ là diag(1/σ1, 1/σ2,...1/σn)
 >
 >
 >
-> ⇨ Sinv U1Ty sẽ là vector có các phần tử là u1Ty/σ1, u2Ty/σ2,...unTy/σn.
+> ⇨ S⁻¹ U1Ty sẽ là vector có các phần tử là u1Ty/σ1, u2Ty/σ2,...unTy/σn.
 >
 >
 >
-> Và với góc nhìn nhân matrix với vector là linear combination các cột của matrix bởi hệ số là các phần tử của vector. nên matrix V nhân vector (Sinv U1Ty) sẽ là linear combination của các cột của V, tức v1,...vn với các hệ số là các phần tử của Sinv U1Ty, tức u1Ty/σ1, u2Ty/σ2,...unTy/σn.
+> Và với góc nhìn nhân matrix với vector là linear combination các cột của matrix bởi hệ số là các phần tử của vector. nên matrix V nhân vector (S⁻¹ U1Ty) sẽ là linear combination của các cột của V, tức v1,...vn với các hệ số là các phần tử của S⁻¹ U1Ty, tức u1Ty/σ1, u2Ty/σ2,...unTy/σn.
 >
 >
 >
-> ⇨ V Sinv U1Ty = ∑i=1:n (uiTy/σi) vi → 10.21
+> ⇨ V S⁻¹ U1Ty = ∑i=1:n (uiTy/σi) vi → 10.21
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
@@ -794,19 +802,19 @@
 >
 >
 >
-> ||Ax||^2 = (Ax)T(Ax) = xTATAx
+> ||Ax||^2 = (Ax)ᵀ(Ax) = xᵀAᵀAx
 >
 >
 >
-> Với ATA luôn đối xứng ⇨ luôn tồn tại đủ một bộ eigenvector độc lập, trong đó có thể chọn một bộ orthogonal để phân ra ATA thành Q Λ QT, với Λ là diagonal matrix chứa các eigenvalue của ATA.
+> Với AᵀA luôn đối xứng ⇨ luôn tồn tại đủ một bộ eigenvector độc lập, trong đó có thể chọn một bộ orthogonal để phân ra AᵀA thành Q Λ Qᵀ, với Λ là diagonal matrix chứa các eigenvalue của AᵀA.
 >
 >
 >
-> = xT(Q Λ QT)x = (QTx)T Λ (QTx)
+> = xᵀ(Q Λ Qᵀ)x = (Qᵀx)ᵀ Λ (Qᵀx)
 >
 >
 >
-> = yT Λ y (đặt y = QTx, vì Q orthogonal ||y|| = ||x||)
+> = yT Λ y (đặt y = Qᵀx, vì Q orthogonal ||y|| = ||x||)
 >
 >
 >
@@ -838,23 +846,23 @@
 >
 >
 >
-> viết rõ hơn để nhấn mạnh λ đây là eigenvalue của ATA
+> viết rõ hơn để nhấn mạnh λ đây là eigenvalue của AᵀA
 >
 >
 >
-> √λmin(ATA) ≤ ||Ax|| / ||x|| ≤ √λmax(ATA)
+> √λmin(AᵀA) ≤ ||Ax|| / ||x|| ≤ √λmax(AᵀA)
 >
 >
 >
-> Và cái này cũng chính là: ||A|| = max_x ||Ax|| / ||x|| = √λmax(ATA)
+> Và cái này cũng chính là: ||A|| = max_x ||Ax|| / ||x|| = √λmax(AᵀA)
 >
 >
 >
-> Và ta cũng đã biết eigenvalue của ATA cũng chính là bình phương singular value của A
+> Và ta cũng đã biết eigenvalue của AᵀA cũng chính là bình phương singular value của A
 >
 >
 >
-> nên √λmin(ATA) ≤ ||Ax|| / ||x|| ≤ √λmax cũng
+> nên √λmin(AᵀA) ≤ ||Ax|| / ||x|| ≤ √λmax cũng
 >
 >
 >
@@ -890,11 +898,11 @@
 >
 >
 >
-> Cách làm thứ nhất, giải normal equation JTJx = JTy gồm 3 bước: tính JTJ, phân tách Cholesky thành L(LT), và giải hai hệ matrix tam giác Lu = JTy, và LTx = u.
+> Cách làm thứ nhất, giải normal equation JᵀJx = Jᵀy gồm 3 bước: tính JᵀJ, phân tách Cholesky thành L(Lᵀ), và giải hai hệ matrix tam giác Lu = Jᵀy, và Lᵀx = u.
 >
 >
 >
-> Cách này có ưu điểm nếu m >> n ⇨ J là matrix cao ốm, thì rõ ràng lưu trữ JTJ (shape n × n) sẽ ít tốn hơn J (shape m × n). Và thậm chí nếu J spares thì chi phí còn rẻ hơn.
+> Cách này có ưu điểm nếu m >> n ⇨ J là matrix cao ốm, thì rõ ràng lưu trữ JᵀJ (shape n × n) sẽ ít tốn hơn J (shape m × n). Và thậm chí nếu J spares thì chi phí còn rẻ hơn.
 >
 >
 >
@@ -902,11 +910,11 @@
 >
 >
 >
-> Nếu ill-condition tức κ(J) lớn ⇨ Cholesky factor có thể fail luôn khi singular value bằng 0 (nhớ ko, bình phương singular value của J chính là eigenvalue của JTJ, nếu singular value của J = 0 (ví dụ như xét J ill condition, tức có σmax / σmin << 1 và gỉa sử σmax = 1 thì **σmin ≈ 0** → λ(JTJ) tương ứng sẽ ≈ 0 → JTJ sẽ không positive definite khiến không thể phân rã Cholesky mà cụ thể là thuật toán phân rã Cholesky sẽ có bước chia cho 0 → tạch.
+> Nếu ill-condition tức κ(J) lớn ⇨ Cholesky factor có thể fail luôn khi singular value bằng 0 (nhớ ko, bình phương singular value của J chính là eigenvalue của JᵀJ, nếu singular value của J = 0 (ví dụ như xét J ill condition, tức có σmax / σmin << 1 và gỉa sử σmax = 1 thì **σmin ≈ 0** → λ(JᵀJ) tương ứng sẽ ≈ 0 → JᵀJ sẽ không positive definite khiến không thể phân rã Cholesky mà cụ thể là thuật toán phân rã Cholesky sẽ có bước chia cho 0 → tạch.
 >
 >
 >
-> Nếu rank-definite thì cũng vậy, trường hợp này là có nullspace vector của J → stretching factor nhỏ nhất = 0 → singular value **σmin(J) = 0** → cũng là λmin(JTJ) = 0 → y như trên.
+> Nếu rank-definite thì cũng vậy, trường hợp này là có nullspace vector của J → stretching factor nhỏ nhất = 0 → singular value **σmin(J) = 0** → cũng là λmin(JᵀJ) = 0 → y như trên.
 >
 >
 >
@@ -926,15 +934,15 @@
 >
 >
 >
-> bài toán trở thành giải hệ RΠΠT x = Q1Ty\
+> bài toán trở thành giải hệ RΠΠT x = Q1ᵀy\
 > \
-> ii) giải R z = Q1Ty, ra z, đây là hệ có matrix hệ số tam giác →→ chỉ là back-subsititution, tốn O(n^2)\
+> ii) giải R z = Q1ᵀy, ra z, đây là hệ có matrix hệ số tam giác →→ chỉ là back-subsititution, tốn O(n^2)\
 > \
-> iii) Giải ΠΠT x = z, và hệ này matrix hệ số chỉ là permutation matrix, ⇨ x = ΠΠ z, chỉ là việc sắp xếp (hoán vị) lại các phần tử của z (ko tốn gì) (đây là ý mà gs Nocedal nói "perform triangular substitution to solve Rz = Q1Ty, then PERMUTE the component of z to obtain x\*)
+> iii) Giải ΠΠT x = z, và hệ này matrix hệ số chỉ là permutation matrix, ⇨ x = ΠΠ z, chỉ là việc sắp xếp (hoán vị) lại các phần tử của z (ko tốn gì) (đây là ý mà gs Nocedal nói "perform triangular substitution to solve Rz = Q1ᵀy, then PERMUᵀE the component of z to obtain x\*)
 >
 >
 >
-> Thì ưu điểm là nó có sai số tương đối chỉ tỉ lệ thuận vào condition number của J, không phải của JTJ nên sai số tương đối của nó nhỏ hơn của cách một → độ chính xác của solution đáng tin cậy hơn
+> Thì ưu điểm là nó có sai số tương đối chỉ tỉ lệ thuận vào condition number của J, không phải của JᵀJ nên sai số tương đối của nó nhỏ hơn của cách một → độ chính xác của solution đáng tin cậy hơn
 
 **🔗 See also:** [Giải phương trình chuẩn Cholesky](#node-ceyn10w)
 
@@ -947,7 +955,7 @@
 <p align="center"><kbd><img src="assets/f5anpbc48kg.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> x\* = V Sinv U1Ty = ∑i=1:n (uiTy/σi) vi
+> x\* = V S⁻¹ U1Ty = ∑i=1:n (uiTy/σi) vi
 >
 >
 >
@@ -955,11 +963,11 @@
 >
 >
 >
-> Tất nhiên lục này x\* không thể bằng ∑i=1:n (uiTy/σi) vi. Vậy ta sẽ bắt đầu tìm x\* lại từ bài toán minimize ||S(VTx) - U1Ty||^2 (mà nếu J full column rank thì x\* có công thức trên)
+> Tất nhiên lục này x\* không thể bằng ∑i=1:n (uiTy/σi) vi. Vậy ta sẽ bắt đầu tìm x\* lại từ bài toán minimize ||S(Vᵀx) - U1Ty||^2 (mà nếu J full column rank thì x\* có công thức trên)
 >
 >
 >
-> Xem xét ||S(VTx) - U1Ty||^2
+> Xem xét ||S(Vᵀx) - U1Ty||^2
 >
 >
 >
@@ -967,7 +975,7 @@
 >
 >
 >
-> VTx = là vector có các phần tử là v1Tx, v2Tx,...vnTx. Nhân với S là diagonal matrix, ta sẽ có vector S(VTx) có các phần tử là σ1v1Tx, σ2v2Tx,...
+> Vᵀx = là vector có các phần tử là v1Tx, v2Tx,...vnTx. Nhân với S là diagonal matrix, ta sẽ có vector S(Vᵀx) có các phần tử là σ1v1Tx, σ2v2Tx,...
 >
 >
 >
@@ -975,11 +983,11 @@
 >
 >
 >
-> ⇨ S(VTx) - U1Ty là vector có các phần tử là σ1v1Tx - u1Ty, σ2v2Tx - u2Ty, ...
+> ⇨ S(Vᵀx) - U1Ty là vector có các phần tử là σ1v1Tx - u1Ty, σ2v2Tx - u2Ty, ...
 >
 >
 >
-> ⇨ ||S(VTx) - U1Ty||^2 = ∑i (σiviTx - uiTy)^2
+> ⇨ ||S(Vᵀx) - U1Ty||^2 = ∑i (σiviTx - uiTy)^2
 >
 >
 >
@@ -1015,7 +1023,7 @@
 >
 >
 >
-> Và vì đây là orthogonal basis, nên tọa độ ci cũng chính là xTvi = viTx
+> Và vì đây là orthogonal basis, nên tọa độ ci cũng chính là xᵀvi = viTx
 >
 >
 >
@@ -1069,7 +1077,7 @@
 >
 >
 >
-> Điều đầu tiên còn nhớ, đó là, CG là một thuật toán chuyên trị việc giải hệ Ax = b. Và bản chất của nghiệm x\* của Ax = b chỉ là: Nó thỏa Ax\* - b = 0. Và khi nhìn nhận cái Ax - b như gradient của hàm số quadratic g(x) = (1/2)xTAx -bTx, thì việc tìm x\* thỏa Ax - b = 0 chính là tìm x khiến gradient ∇g(x) vanish, tức first order necessary condition. Thành ra, việc giải hệ Ax = b có thể được nhìn nhận như giải bài toán tối ưu: minimize g(x).
+> Điều đầu tiên còn nhớ, đó là, CG là một thuật toán chuyên trị việc giải hệ Ax = b. Và bản chất của nghiệm x\* của Ax = b chỉ là: Nó thỏa Ax\* - b = 0. Và khi nhìn nhận cái Ax - b như gradient của hàm số quadratic g(x) = (1/2)xᵀAx -bᵀx, thì việc tìm x\* thỏa Ax - b = 0 chính là tìm x khiến gradient ∇g(x) vanish, tức first order necessary condition. Thành ra, việc giải hệ Ax = b có thể được nhìn nhận như giải bài toán tối ưu: minimize g(x).
 >
 >
 >
@@ -1085,7 +1093,7 @@
 >
 >
 >
-> Và ở đây, thì JTJ đóng vai A, nếu xem lại thuật toán 5.2 ta sẽ thấy trong đó ta cần tính Apk, là nhân một matrix với vector. Vậy thì ở đây đại ý gs nói là, ta chỉ việc tính lần lượt Jpk và JT(Jpk) cũng như có thể có một số cách làm khác.
+> Và ở đây, thì JᵀJ đóng vai A, nếu xem lại thuật toán 5.2 ta sẽ thấy trong đó ta cần tính Apk, là nhân một matrix với vector. Vậy thì ở đây đại ý gs nói là, ta chỉ việc tính lần lượt Jpk và Jᵀ(Jpk) cũng như có thể có một số cách làm khác.
 >
 >
 >
