@@ -810,18 +810,183 @@
 
 > [!NOTE]
 > Qua bài toán binary classification:
+>
+>
+>
+> Tóm tắt chút đại ý, như chapter 4 đã thấy rằng nếu như **giả định class conditional density là phân phối exponential family với cùng scale param với mọi class**. Thì khi đó: 
+>
+>
+>
+> p(𝒞|𝐱) = p(𝐱, 𝒞)/p(𝐱) = p(𝐱|𝒞)p(𝒞)/p(𝐱)
+>
+>
+>
+> **class posterior** p(𝒞|𝐱) (tức P(T=1|𝐱) sẽ **đều có dạng generalize linear model**: sigmoid của một linear function của tham số 𝐰 và transformed feature: σ(𝐰ᵀΦ(𝐱) + w0).
+>
+>
+>
+> (Mà điển hình trước đó, gỉa định class conditional density là 𝒩(𝛍k, 𝚺) tức cũng là chung scale, chỉ khác nhau location.)
+>
+>
+>
+> Thành ra qua ta qua logistic regression, ta **giả định trực tiếp class posterior pmf** là P(T=1|𝐱) = σ(𝐰ᵀΦ(𝐱)+w0).
+>
+>
+>
+> Vậy thì tiếp nối như vậy, nay ta sẽ **giả định class posterior probability** là có dạng của **logistic sigmoid áp lên một hàm phi tuyến của 𝐰 và 𝐱, ĐẠI DIỆN HÀM NÀY BỞI NEURAL NETWORK:**
+>
+>
+>
+> P(T=1|𝐱) = y(𝐰,𝐱)
+>
+>
+>
+> với  y(𝐰,𝐱) là output của neural network có output activation function là sigmoid, 
+>
+>
+>
+> Như vậy và output đóng vai trò là class posterior p(𝒞1|𝐱,𝐰) = P(T=1|𝐱,𝐰) = y = σ(a) = σ(𝐰⁽²⁾ᵀ𝐳 + w⁽²⁾0)
+>
+>
+>
+> ---
+>
+>
+>
+> Như vậy **nói đầy đủ giả định** sẽ là:
+>
+>
+>
+> Xét các data point (𝐱1, t1),...(𝐱N, tN) độc lập thì t1,t2,...tN là các observed value của T1|𝐱1, T2|𝐱2,....TN|𝐱N trong đó, Ti|𝐱i \~ Bernouilly(y(𝐰,𝐱i)) với y(𝐰,𝐱i) hàm phi tuyến của 𝐰 và 𝐱i thể hiện bởi neural network, với output activation function là sigmoid.
+>
+>
+>
+> (vs trong logistic regression, ta giả định t1,t2,...tN là các observed value của T1|𝐱1, T2|𝐱2,....TN|𝐱N trong đó Ti|𝐱i \~ Bernouilly(y(𝐰,𝐱)) và y(𝐰,𝐱) là sigmoid của hàm tuyến tính của 𝐰 và Φ(𝐱): 𝐰ᵀΦ(𝐱))
+>
+>
+>
+> ---
+>
+>
+>
+> Và ta sẽ đi giải bài toán inference: Point estimate tham số của (các) phân phối Bern (tức y(𝐰,𝐱i)) cũng là estimate tham số 𝐰 của neural net, bằng cách tíêp cận điển hình của Frequentist: Maximum Likelihood.
+>
+>
+>
+> Theo định nghĩa likelihood đã nói nhiều lần, là hàm của tham số của population, ở đây chính là xác suất Ti=1, nhưng vì ta tham số nó theo 𝐰, nên nó trở thành likelihood của 𝐰.
+>
+>
+>
+> Và định nghĩa nói rằng ý nghĩa của nó là hàm nhận 1 giá trị của tham số và trả ra mức độ hợp lí của tham số khi muốn giải thích cho dữ liệu quan sát được. Và độ lớn thì chính là bằng joint pdf/pmf của T1,...TN tại observed value.
+>
+>
+>
+> Joint pmf của T1|𝐱1,....TN|𝐱N:
+>
+>
+>
+> P(T1=t1,...TN=tn|𝐱1,..𝐱N,𝐰) = p(t1,t2,...tn|𝐱1,...𝐱N,𝐰)
+>
+>
+>
+> do tính độc lập của T1|𝐱1,T2|𝐱2,...nên
+>
+>
+>
+> .. = Πn=1:N p(tn|𝐱n,𝐰)
+>
+>
+>
+> = Πn=1:N Bern(tn|y(𝐱n,𝐰))
+>
+>
+>
+> Nhớ lại pmf của Bern(p): P(X=1) = p, P(X=0) = 1-p, P(X=x) = p^x (1-p)^(1-x)
+>
+>
+>
+> = Πn=1:N \[y(𝐱n,𝐰)^tn\]\[(1-y(𝐱n,𝐰))^(1-tn)\] → Likelihood L(𝐰|data)
+>
+>
+>
+> ---
+>
+>
+>
+> Maximize over 𝐰 Likelihood
+>
+>
+>
+> Và coi nó như hàm theo 𝐰 thì chính là likelihood của 𝐰.
+>
+>
+>
+> Như thường lệ, để maximize lielihood ta sẽ chuỷen thành bài toán tương đương với objective là ln likelihood:
+>
+>
+>
+> ln likelihood: ln {Πn=1:N \[y(𝐱n,𝐰)^tn\]\[(1-y(𝐱n,𝐰))^(1-tn)\]}
+>
+>
+>
+> (ln(ab) = ln a + ln b)
+>
+>
+>
+> = Σn=1:N ln\[y(𝐱n,𝐰)^tn\]\[(1-y(𝐱n,𝐰))^(1-tn)\]
+>
+>
+>
+> = Σn=1:N ln\[y(𝐱n,𝐰)^tn\] + ln \[(1-y(𝐱n,𝐰))^(1-tn)\]
+>
+>
+>
+> = Σn=1:N tn ln\[y(𝐱n,𝐰)\] + (1-tn) ln \[(1-y(𝐱n,𝐰)\] | ln a^x = x ln a
+>
+>
+>
+> = Σn=1:N tn ln y(𝐱n,𝐰) + (1-tn) ln \[(1-y(𝐱n,𝐰)\]
+>
+>
+>
+> = Σn=1:N tn ln(yn)+ (1-tn) ln (1-yn) (ln likelihood)
+>
+>
+>
+> Và chuyển sang bài toán tương đương lần nữa:
+>
+>
+>
+> maximize\_𝐰 ln likelihood = Σn=1:N tn ln(yn)+ (1-tn) ln (1-yn)
+>
+>
+>
+> equivalent minimize\_𝐰 negative ln likelihood: 
+>
+>
+>
+> \- Σn=1:N tn ln(yn)+ (1-tn) ln (1-yn),
+>
+>
+>
+> cũng chính là binary cross entropy loss.
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=KaRfsb0rGJA)
 
 > [!TIP]
-> 🤖 **AI Check** — 🔴 Critical issues — ❌ **0/100** · ✗ Fix first
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú đang bị bỏ dở giữa chừng và hoàn toàn chưa có nội dung tóm tắt hay kiến thức nào được trình bày.
+> Ghi chú xuất sắc! Bạn đã xâu chuỗi rất mạch lạc tư tưởng từ mô hình xác suất sinh (Chapter 4), qua Logistic Regression đến Neural Network, đồng thời diễn giải và biến đổi đầy đủ từ Bernoulli likelihood sang hàm mất mát binary cross-entropy.
 >
-> **🔴 Critical issues**
+> **✓ Strengths**
+> - Hiểu rất rõ và hệ thống được quá trình phát triển mô hình: từ giả định phân phối sinh (exponential family chung scale) suy ra sigmoid tuyến tính, đến logistic regression và tổng quát hóa thành mạng neural phi tuyến.
+> - Phân biệt chính xác giữa biến ngẫu nhiên, giá trị quan sát, tham số mô hình, và bản chất xác suất có điều kiện đối với bài toán classification.
+> - Khai triển đạo hàm/biến đổi hàm log-likelihood từ phân phối Bernoulli từng bước rất rõ ràng, chuẩn xác và chặt chẽ.
 >
-> **1.** *"Tương tự như trong phần"*
->
-> Ghi chú chưa hoàn thành, câu văn bị ngắt quãng và chưa ghi lại bất kỳ nội dung nào từ bài học để có thể đánh giá.
->
+> **💡 Deeper notes**
+> - Khác với bài toán regression cần tham số độ chính xác của nhiễu (noise precision beta), trong bài toán classification chuẩn này ta giả định nhãn là hoàn toàn chính xác (không có label noise), do đó không xuất hiện tham số scale/precision tương tự.
+
+**🔗 See also:** [4.3.2 Logistic Regression](./432_logistic_regression.md#node-oyj7m7j)
 
 <br>
 
