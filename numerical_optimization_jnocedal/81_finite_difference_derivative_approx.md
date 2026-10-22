@@ -40,30 +40,30 @@
 >
 > Gốc rễ của nó, như gs Nocedal nói, là từ Taylor's theorem đã học trong chap 2:
 >
-> f(x + p) = f(x) + ∇f(x + tp)Tp for some t ∈ [0,1] 
+> f(x + p) = f(x) + ∇f(x + tp)ᵀp for some t ∈ [0,1] 
 >
 > Tiếp, nếu f twice differentiable, thì:
 >
 > ∇f(x + p) = ∇f(x) + ∫0:1 ∇^2f(x + tp)pdt
 >
-> f(x + p) = f(x) + ∇f(x)Tp + (1/2)pT ∇^2f(x + tp) p for some t in [0,1]
+> f(x + p) = f(x) + ∇f(x)ᵀp + (1/2)pᵀ ∇^2f(x + tp) p for some t in [0,1]
 >
 > Và đại khái là cái này chính là cái cho ta finite differentiation:
 >
 > Áp dụng với p = ε*ei:
 >
-> f(x + εei) = f(x) + ∇f(x)T ε*ei + (1/2)(εei)T ∇f(x + tεei)εei
+> f(x + εei) = f(x) + ∇f(x)ᵀ ε*ei + (1/2)(εei)ᵀ ∇f(x + tεei)εei
 >
-> ⇔ f(x + εei) = f(x) + ε∇f(x)Tei + (1/2)ε^2(ei)T ∇f(x + tεei)ei
+> ⇔ f(x + εei) = f(x) + ε∇f(x)ᵀei + (1/2)ε^2(ei)ᵀ ∇f(x + tεei)ei
 >
 > Tới đây có thể nói như sau: nếu ε rất nhỏ, thì t*ε càng nhỏ, và x + tεei là
 > điểm rất gần x, nên Hessian tại đó coi như xấp xỉ Hessian tại x:
 >
-> ⇔ f(x + εei) ≈ f(x) + ε∇f(x)Tei + (1/2)ε^2(ei)T ∇f(x)ei
+> ⇔ f(x + εei) ≈ f(x) + ε∇f(x)ᵀei + (1/2)ε^2(ei)ᵀ ∇f(x)ei
 >
 > Tương tự:
 >
-> f(x - εei) ≈ f(x) - ε∇f(x)Tei + (1/2)ε^2(ei)T ∇f(x)ei
+> f(x - εei) ≈ f(x) - ε∇f(x)ᵀei + (1/2)ε^2(ei)ᵀ ∇f(x)ei
 >
 > Trừ vế theo vế:
 >
@@ -71,7 +71,7 @@
 >
 > ⇔ f(x + εei) - f(x - εei) ≈ 2ε∇f(x)ei
 >
-> ∇f(x)Tei chính là lấy ra phần tử thứ i của ∇f(x): ∂/∂xi f(x), hay ∂f(x)/∂xi
+> ∇f(x)ᵀei chính là lấy ra phần tử thứ i của ∇f(x): ∂/∂xi f(x), hay ∂f(x)/∂xi
 >
 > ..⇔ f(x + εei) - f(x - εei) ≈ 2ε∂f(x)/∂xi
 >
@@ -104,9 +104,9 @@
 >
 > ⇔ ∇f(x + tp) . p = f(x + p) - f(x)
 >
-> ⇔ ∇f(x + tp)Tp = f(x + p) - f(x)
+> ⇔ ∇f(x + tp)ᵀp = f(x + p) - f(x)
 >
-> ⇔ f(x + p) = f(x) + ∇f(x + tp)Tp for some t ∈ [0,1] 
+> ⇔ f(x + p) = f(x) + ∇f(x + tp)ᵀp for some t ∈ [0,1] 
 >
 > Đây chính là ý đầu tiên của Theorem 2.1
 >
@@ -134,7 +134,7 @@
 >
 > ------
 >
-> Và ý thứ ba: f(x + p) = f(x) + ∇f(x)Tp + (1/2)pT ∇^2f(x + tp) p for some t in [0,1]
+> Và ý thứ ba: f(x + p) = f(x) + ∇f(x)ᵀp + (1/2)pᵀ ∇^2f(x + tp) p for some t in [0,1]
 >
 > Chứng minh (xem lại) Chap 2
 
@@ -219,17 +219,17 @@
 >
 > Bắt đầu với Taylor's theorem:
 >
-> f(x + p) = f(x) + ∇f(x)Tp + (1/2)pT ∇^2f(x + tp)p for some t ∈ (0,1)
+> f(x + p) = f(x) + ∇f(x)ᵀp + (1/2)pᵀ ∇^2f(x + tp)p for some t ∈ (0,1)
 >
-> ⇔ f(x + p) - f(x) - ∇f(x)Tp = (1/2)pT ∇^2f(x + tp)p
+> ⇔ f(x + p) - f(x) - ∇f(x)ᵀp = (1/2)pᵀ ∇^2f(x + tp)p
 >
 > Gọi L là upper bound nào đó của norm Hessian: ||∇^2f(x)|| ≤ L. Ta có thể nói vậy là vì hàm số không thể cong vô cực (do điều kiện twice continously differentiable)
 >
-> Xét |(1/2)pT ∇^2f(x + tp)p|
+> Xét |(1/2)pᵀ ∇^2f(x + tp)p|
 >
 > Áp dụng |uTv| ≤ ||u|| ||v||, vì |uTv| = | ||u||||v|| cos θ(u,v) | ≤ ||u|| ||v||
 >
-> ⇨ |(1/2)pT ∇^2f(x + tp)p| ≤ (1/2) ||p|| ||∇^2f(x + tp)p||
+> ⇨ |(1/2)pᵀ ∇^2f(x + tp)p| ≤ (1/2) ||p|| ||∇^2f(x + tp)p||
 >
 > Tiếp, áp dụng ||Ax|| ≤ ||A|| ||x||
 >
@@ -240,25 +240,25 @@
 >
 > = (1/2) ||p||^2 ||∇^2f(x + tp)||
 >
-> Vậy |(1/2)pT ∇^2f(x + tp)p| ≤ (1/2) ||p||^2 ||∇^2f(x + tp)||
+> Vậy |(1/2)pᵀ ∇^2f(x + tp)p| ≤ (1/2) ||p||^2 ||∇^2f(x + tp)||
 >
 > Và đã nói L là upper bound của Hessian trong phạm vi đang xét
 >
 > Nên ||∇^2f(x + tp)|| ≤ L
 >
-> ⇨ |(1/2)pT ∇^2f(x + tp)p| ≤ (1/2) ||p||^2 ||∇^2f(x + tp)|| ||p|| ≤ (1/2) L ||p||^2
+> ⇨ |(1/2)pᵀ ∇^2f(x + tp)p| ≤ (1/2) ||p||^2 ||∇^2f(x + tp)|| ||p|| ≤ (1/2) L ||p||^2
 >
-> Vậy |f(x + p) - f(x) - ∇f(x)Tp| ≤ (L/2) ||p||^2
+> Vậy |f(x + p) - f(x) - ∇f(x)ᵀp| ≤ (L/2) ||p||^2
 >
 > Áp dụng điều này với p = εei
 >
-> |f(x + εei) - f(x) - ∇f(x)T εei| ≤ (L/2) ||εei||^2
+> |f(x + εei) - f(x) - ∇f(x)ᵀ εei| ≤ (L/2) ||εei||^2
 >
-> ⇔ |f(x + εei) - f(x) - ε ∇f(x)Tei| ≤ (L/2) ε^2 ||ei||^2
+> ⇔ |f(x + εei) - f(x) - ε ∇f(x)ᵀei| ≤ (L/2) ε^2 ||ei||^2
 >
-> ⇔ |[f(x + εei) - f(x) - ε ∇f(x)Tei]/ε| ≤ (L/2) * ε * 1  (||ei|| = 1)
+> ⇔ |[f(x + εei) - f(x) - ε ∇f(x)ᵀei]/ε| ≤ (L/2) * ε * 1  (||ei|| = 1)
 >
-> ⇔ |[f(x + εei) - f(x)] / ε - ∇f(x)Tei| ≤ (L/2) ε
+> ⇔ |[f(x + εei) - f(x)] / ε - ∇f(x)ᵀei| ≤ (L/2) ε
 >
 > ⇔ |[f(x + εei) - f(x)] / ε - ∂f(x)/∂xi| ≤ (L/2) ε
 >
@@ -399,8 +399,8 @@
 > con số đầu tiên, thì hiệu của chúng chỉ đáng tin ở k-k' con số đầu tiên.
 >
 > Và cái hiện tượng đang có A, B có 15 con số có nghĩa, tức là chính xác tới 15
-> con số đầu tiên, nhưng lấy A - B thì ra con số vô nghĩa, gọi là LỖI CANCELLATION
-> THẢM KHỐC (CATAROSPHIC CANCELLATION)
+> con số đầu tiên, nhưng lấy A - B thì ra con số vô nghĩa, gọi là LỖI CANCELLAᵀION
+> THẢM KHỐC (CAᵀAROSPHIC CANCELLAᵀION)
 
 <br>
 
@@ -585,7 +585,7 @@
 >
 > Rồi, thế thì nói về định lý Taylor thì đã biết rồi:
 >
-> f(x + p) = f(x) + ∇f(x)Tp + (1/2)pT ∇^2f(x + tp)p for some t ∈ (0,1)
+> f(x + p) = f(x) + ∇f(x)ᵀp + (1/2)pᵀ ∇^2f(x + tp)p for some t ∈ (0,1)
 >
 > Vậy thì xét Hessian tại ∇^2f(x + tp) và tại ∇^2f(x), khi đi từ x đến x + tp
 >
@@ -595,39 +595,39 @@
 >
 > ⇔ ||∇^2f(x + tp) - ∇^2f(x)|| / ≤ L |t| ||p|| (1)
 >
-> Vậy ||(1/2)pT ∇^2f(x + tp)p - (1/2)pT∇^2f(x)p||
+> Vậy ||(1/2)pᵀ ∇^2f(x + tp)p - (1/2)pᵀ∇^2f(x)p||
 >
-> = ||(1/2)pT [∇^2f(x + tp)p - ∇^2f(x)]p||
+> = ||(1/2)pᵀ [∇^2f(x + tp)p - ∇^2f(x)]p||
 >
 > ≤ (1/2) ||p|| ||∇^2f(x + tp)p - ∇^2f(x)|| ||p||
 >
-> (Cái này do ||pTAp|| ≤ ||p|| ||Ap|| (triangular inequality) ≤ ||p|| ||A|| ||p|| (định nghĩa
+> (Cái này do ||pᵀAp|| ≤ ||p|| ||Ap|| (triangular inequality) ≤ ||p|| ||A|| ||p|| (định nghĩa
 > norm))
 >
 > ≤ (1/2) ||p|| L |t| ||p|| ||p|| (áp dụng inequality (1) trên)
 >
 > = [constant nào đó] ||p||^3
 >
-> Như vậy, sai khác giữa (1/2)pT ∇^2f(x + tp)p và (1/2)pT ∇^2f(x)p có độ lớn tỉ lệ với
+> Như vậy, sai khác giữa (1/2)pᵀ ∇^2f(x + tp)p và (1/2)pᵀ ∇^2f(x)p có độ lớn tỉ lệ với
 > ||p||^3.
 >
 > Nên ta sẽ ghi là:
 >
-> f(x + p) = f(x) + ∇f(x)Tp + (1/2)pT ∇^2f(x)p + O(||p||^3)
+> f(x + p) = f(x) + ∇f(x)ᵀp + (1/2)pᵀ ∇^2f(x)p + O(||p||^3)
 >
 > ====
 >
 > Rồi, áp dụng với p = εei và -εei
 >
-> f(x + εei) = f(x) + ∇f(x)Tεei + (1/2)(εei)T ∇^2f(x)(εei) + o(||εei||^3)
+> f(x + εei) = f(x) + ∇f(x)ᵀεei + (1/2)(εei)ᵀ ∇^2f(x)(εei) + o(||εei||^3)
 >
-> = f(x) + ε ∇f(x)Tei + (1/2)ε^2(ei)T ∇^2f(x)ei + O(ε^3)
+> = f(x) + ε ∇f(x)ᵀei + (1/2)ε^2(ei)ᵀ ∇^2f(x)ei + O(ε^3)
 >
-> Rồi ∇f(x)Tei, dĩ nhiên chính là ra phần tử thứ i của gradient, chính là ∂f(x)/∂xi
+> Rồi ∇f(x)ᵀei, dĩ nhiên chính là ra phần tử thứ i của gradient, chính là ∂f(x)/∂xi
 >
-> Còn ε^2(ei)T ∇^2f(x) ei ra gì?
+> Còn ε^2(ei)ᵀ ∇^2f(x) ei ra gì?
 >
-> = ε^2(ei)T[∇^2f(x) ei] = ε^2(ei)T[cột thứ i của ∇^2f(x)]
+> = ε^2(ei)ᵀ[∇^2f(x) ei] = ε^2(ei)ᵀ[cột thứ i của ∇^2f(x)]
 >
 > = ε^2 ∇^2f(x)_ii
 >
@@ -682,9 +682,9 @@
 >
 > Còn nếu hiểu theo cách thức truyền thống thì ta biết nó là matrix mà hàng
 > 1 sẽ vector đạo hàm riêng của f1 wrt vector x, thì cũng chính là gradient
-> của f1: ∇f1(x)T (transpose để ý là nó thành 1 hàng / row vector)
+> của f1: ∇f1(x)ᵀ (transpose để ý là nó thành 1 hàng / row vector)
 >
-> Tương tự, hàng 2 sẽ là ∇f2(x)T
+> Tương tự, hàng 2 sẽ là ∇f2(x)ᵀ
 >
 > Ở đây gs bishop dùng kí hiệu r
 >
@@ -1079,7 +1079,7 @@
 
 > [!NOTE]
 > QUAY LẠI CÁI NÀY SAU ĐỂ QUA MỘT PHẦN CỰC KÌ QUAN TRỌNG
-> TRONG AI - AUTOMATIC DIFFERENTATION
+> TRONG AI - AUᵀOMAᵀIC DIFFERENTAᵀION
 
 <br>
 
