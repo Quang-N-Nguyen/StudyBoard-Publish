@@ -54,7 +54,7 @@
 >
 > r2(x),....\]T, thì Σi \[ri(x)\]^2 có thể thể hiện bởi (1/2) ||r(x)||^2, cũng là f(x) = (1/2)
 >
-> r(x)T r(x)
+> r(x)ᵀ r(x)
 >
 >
 >
@@ -90,19 +90,19 @@
 <p align="center"><kbd><img src="assets/rrqbxllnbwf.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Thế thì ta có f(x) = (1/2) r(x)Tr(x) và J(x) là d/dx r(x).
+> Thế thì ta có f(x) = (1/2) r(x)ᵀr(x) và J(x) là d/dx r(x).
 >
 >
 >
-> d/dx f(x) = (1/2) d/dx \[r(x)Tr(x)\]
+> d/dx f(x) = (1/2) d/dx \[r(x)ᵀr(x)\]
 >
 >
 >
-> = (1/2) { d/dr(x) \[r(x)Tr(x)\] } . d/dx r(x) (Chain-rule)
+> = (1/2) { d/dr(x) \[r(x)ᵀr(x)\] } . d/dx r(x) (Chain-rule)
 >
 >
 >
-> Tạm dừng chút xíu, xét hàm g(x) = xTx. Tính đạo hàm nhanh theo cách làm của MIT 18s096: dg(x) = (x+dx)T(x+dx)-xTx = (xT+dxT)(x+dx)-xTx = xTx+dxTx+xTdx+dxTdx-xTx = 2xTdx+dxTdx = 2xTdx (bỏ term bậc cao) ⇨ ∇g(x) = 2x.
+> Tạm dừng chút xíu, xét hàm g(x) = xᵀx. Tính đạo hàm nhanh theo cách làm của MIT 18s096: dg(x) = (x+dx)ᵀ(x+dx)-xᵀx = (xᵀ+dxᵀ)(x+dx)-xᵀx = xᵀx+dxᵀx+xᵀdx+dxᵀdx-xᵀx = 2xᵀdx+dxᵀdx = 2xᵀdx (bỏ term bậc cao) ⇨ ∇g(x) = 2x.
 >
 >
 >
@@ -114,11 +114,11 @@
 >
 >
 >
-> Tiếp, vì f(x), như đã nói là vector → scalar function, nên ∇f(x) dĩ nhiên là vector R^n, nên kết quả sẽ là J(x)Tr(x) (có shape \[m,n\]T\[m,1\] = \[n,m\]\[m,1\] = \[n,1\].
+> Tiếp, vì f(x), như đã nói là vector → scalar function, nên ∇f(x) dĩ nhiên là vector R^n, nên kết quả sẽ là J(x)ᵀr(x) (có shape \[m,n\]T\[m,1\] = \[n,m\]\[m,1\] = \[n,1\].
 >
 >
 >
-> Nên ∇f(x) = J(x)Tr(x) là công thức 10.4 trong sách là vậy.
+> Nên ∇f(x) = J(x)ᵀr(x) là công thức 10.4 trong sách là vậy.
 >
 >
 >
@@ -130,19 +130,19 @@
 >
 >
 >
-> = d/dx \[J(x)Tr(x)\]
+> = d/dx \[J(x)ᵀr(x)\]
 >
 >
 >
-> Xét d/dx \[J(x)Tr(x)\] = d/dx \[Σi \[cột i của J(x)T\] ri(x)\]
+> Xét d/dx \[J(x)ᵀr(x)\] = d/dx \[Σi \[cột i của J(x)ᵀ\] ri(x)\]
 >
 >
 >
-> = Σi d/dx {\[cột i của J(x)T\] ri(x)}
+> = Σi d/dx {\[cột i của J(x)ᵀ\] ri(x)}
 >
 >
 >
-> Xét hàm gi(x) = \[cột i của J(x)T\] ri(x), cũng chính là \[hàng i của J(x)\]T ri(x) = ∇ri(x) ri(x), là vector có các phần tử \[∂ri(x)/∂x1 ri(x), ∂ri(x)/∂x2 ri(x), ...∂ri(x)/xn ri(x)\]
+> Xét hàm gi(x) = \[cột i của J(x)ᵀ\] ri(x), cũng chính là \[hàng i của J(x)\]T ri(x) = ∇ri(x) ri(x), là vector có các phần tử \[∂ri(x)/∂x1 ri(x), ∂ri(x)/∂x2 ri(x), ...∂ri(x)/xn ri(x)\]
 >
 >
 >
@@ -166,31 +166,31 @@
 >
 >
 >
-> cũng như ∇ri(x) là gradient vector, ⇨ ∇ri(x) . ∇ri(x) phải là outer product để có nxn matrix: ∇ri(x) ∇ri(x)T
+> cũng như ∇ri(x) là gradient vector, ⇨ ∇ri(x) . ∇ri(x) phải là outer product để có nxn matrix: ∇ri(x) ∇ri(x)ᵀ
 >
 >
 >
-> Vậy d/dx gi(x) = ∇^2ri(x) ri(x) + ∇ri(x) ∇ri(x)T
+> Vậy d/dx gi(x) = ∇^2ri(x) ri(x) + ∇ri(x) ∇ri(x)ᵀ
 >
 >
 >
-> Vậy d/dx \[J(x)Tr(x)\] = Σi d/dx {\[cột i của J(x)T\] ri(x)} = Σi d/dx gi(x)
+> Vậy d/dx \[J(x)ᵀr(x)\] = Σi d/dx {\[cột i của J(x)ᵀ\] ri(x)} = Σi d/dx gi(x)
 >
 >
 >
-> = Σi {∇^2ri(x) ri(x) + ∇ri(x) ∇ri(x)T}
+> = Σi {∇^2ri(x) ri(x) + ∇ri(x) ∇ri(x)ᵀ}
 >
 >
 >
-> = Σi {∇^2ri(x) ri(x)} + Σi {∇ri(x) ∇ri(x)T}
+> = Σi {∇^2ri(x) ri(x)} + Σi {∇ri(x) ∇ri(x)ᵀ}
 >
 >
 >
-> Term thứ 2, Σi {∇ri(x) ∇ri(x)T}, chính là tổng các rank 1 matrix, theo góc nhìn thứ 4 nhân hai matrix, ta có thể thấy đây là tích của hai matrix: \[matrix có các cột là ∇ri(x)\] \[matrix có các hàng là ∇ri(x)\] = J(x)T J(x)
+> Term thứ 2, Σi {∇ri(x) ∇ri(x)ᵀ}, chính là tổng các rank 1 matrix, theo góc nhìn thứ 4 nhân hai matrix, ta có thể thấy đây là tích của hai matrix: \[matrix có các cột là ∇ri(x)\] \[matrix có các hàng là ∇ri(x)\] = J(x)ᵀ J(x)
 >
 >
 >
-> Vậy kết quả là Σi {∇^2ri(x) ri(x)} + J(x)TJ(x), chính là 10.5
+> Vậy kết quả là Σi {∇^2ri(x) ri(x)} + J(x)ᵀJ(x), chính là 10.5
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **92/100** · ✓ Move on
@@ -232,7 +232,7 @@
 <p align="center"><kbd><img src="assets/d1le3t0879d.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Thế thì đại khái là vầy: Ta đã thấy rằng trong bài toán least-square, trong đó hàm objective là f(x) = Σi ri(x)^2 = r(x)Tr(x) với r(x) là vector → vector function, có Jacobian J(x) thì đạo hàm cấp 1 ∇f(x) và Hessian ∇^2f(x) có thể được tính bởi hai công thức 10.4 và 10.5. Và gs nói rằng, trong rất nhiều ứng dụng thì việc tính toán J(x) rất ít tốn kém. Từ đó, dẫn tới việc tính ra gradient và Hessian cũng đều không tốn kém gì mấy. Và đây là một đặc điểm mà ông cho rằng khiến bài toán least-square trở nên dễ chịu, và ông gọi nó đại khái là ta có được Hessian miễn phí.
+> Thế thì đại khái là vầy: Ta đã thấy rằng trong bài toán least-square, trong đó hàm objective là f(x) = Σi ri(x)^2 = r(x)ᵀr(x) với r(x) là vector → vector function, có Jacobian J(x) thì đạo hàm cấp 1 ∇f(x) và Hessian ∇^2f(x) có thể được tính bởi hai công thức 10.4 và 10.5. Và gs nói rằng, trong rất nhiều ứng dụng thì việc tính toán J(x) rất ít tốn kém. Từ đó, dẫn tới việc tính ra gradient và Hessian cũng đều không tốn kém gì mấy. Và đây là một đặc điểm mà ông cho rằng khiến bài toán least-square trở nên dễ chịu, và ông gọi nó đại khái là ta có được Hessian miễn phí.
 >
 >
 >
@@ -240,7 +240,7 @@
 >
 >
 >
-> Phải hiểu thêm là, trong đoạn này còn  một ý, nói đại khái là việc tính J(x) rẻ, chỉ giúp tính phần J(x)TJ(x) của Hessian là rẻ thôi, còn cái term thứ hai thì vẫn liên quan đến Hessian của rj(x), vẫn tốn. Tuy nhiên, đại ý là vì vài lí do thì phần đầu mới đóng vai trò quan trọng, thành ra nói chung ta vẫn được lợi ích.
+> Phải hiểu thêm là, trong đoạn này còn  một ý, nói đại khái là việc tính J(x) rẻ, chỉ giúp tính phần J(x)ᵀJ(x) của Hessian là rẻ thôi, còn cái term thứ hai thì vẫn liên quan đến Hessian của rj(x), vẫn tốn. Tuy nhiên, đại ý là vì vài lí do thì phần đầu mới đóng vai trò quan trọng, thành ra nói chung ta vẫn được lợi ích.
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
