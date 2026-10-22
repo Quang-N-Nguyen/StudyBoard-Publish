@@ -38,7 +38,7 @@
 >
 >
 >
-> Quay lại tập ℱ. Đầu tiên, có thể thấy nó chứa d sao cho ∇ci(x)Td = 0 với i ∈ ℰ. 
+> Quay lại tập ℱ. Đầu tiên, có thể thấy nó chứa d sao cho ∇ci(x)ᵀd = 0 với i ∈ ℰ. 
 >
 >
 >
@@ -50,7 +50,7 @@
 >
 >
 >
-> Tuy nhiên, ta tuyến tính hóa c1(x), thay constraint c1(x) = 0 bởi c^1(x) = 0, với c^1(x) = c1(x\*) + ∇c1(x\*)T(x-x\*). Khi đó, với x\* vẫn thỏa c1(x\*) = 0, và d ∈ ℱ(x\*) nên theo định nghĩa của ℱ, d sẽ thỏa ∇c1(x\*)Td = 0. Ta sẽ có c^1(x+s) = c1(x\*) + ∇c1(x\*)T(x\*+s-x\*) = c1(x\*) + ∇c1(x\*)Td = c1(x\*) + 0 = c1(x\*) và từ đó vẫn = 0.
+> Tuy nhiên, ta tuyến tính hóa c1(x), thay constraint c1(x) = 0 bởi c^1(x) = 0, với c^1(x) = c1(x\*) + ∇c1(x\*)ᵀ(x-x\*). Khi đó, với x\* vẫn thỏa c1(x\*) = 0, và d ∈ ℱ(x\*) nên theo định nghĩa của ℱ, d sẽ thỏa ∇c1(x\*)ᵀd = 0. Ta sẽ có c^1(x+s) = c1(x\*) + ∇c1(x\*)ᵀ(x\*+s-x\*) = c1(x\*) + ∇c1(x\*)ᵀd = c1(x\*) + 0 = c1(x\*) và từ đó vẫn = 0.
 >
 >
 >
@@ -66,7 +66,7 @@
 >
 >
 >
-> Khi đó, với x\* thỏa c2(x) ≥ 0, nên c2(x\*) ≥ 0, thì d thỏa dT∇c1(x) ≥ 0 với mọi i ∈ 𝒜(x) ∩ I, sẽ chưa chắc khiến c2(x\* + d) cũng ≥ 0. Nhưng nếu ta tuyến tính hóa  c2, để thay c2 bởi c^2(x) = c2(x\*) + ∇c2(x\*)T(x-x\*). Thì ta sẽ có sự thật rằng, c^2(x\*) ≥ 0 thì d trên sẽ khién c^2(x\*+d)  = c2(x\*) + ∇c2(x\*)Td cũng chắc chắn ≥ 0 do d đã thỏa ∇c2(x\*)Td ≥ 0.
+> Khi đó, với x\* thỏa c2(x) ≥ 0, nên c2(x\*) ≥ 0, thì d thỏa dT∇c1(x) ≥ 0 với mọi i ∈ 𝒜(x) ∩ I, sẽ chưa chắc khiến c2(x\* + d) cũng ≥ 0. Nhưng nếu ta tuyến tính hóa  c2, để thay c2 bởi c^2(x) = c2(x\*) + ∇c2(x\*)ᵀ(x-x\*). Thì ta sẽ có sự thật rằng, c^2(x\*) ≥ 0 thì d trên sẽ khién c^2(x\*+d)  = c2(x\*) + ∇c2(x\*)ᵀd cũng chắc chắn ≥ 0 do d đã thỏa ∇c2(x\*)ᵀd ≥ 0.
 >
 >
 >
@@ -104,11 +104,11 @@
 >
 >
 >
-> Xấp xỉ bậc 1 của f(x) tại điểm đang đứng: f(x + s) ≈ f(x) + ∇f(x)Ts (đặt là hàm f^(s))
+> Xấp xỉ bậc 1 của f(x) tại điểm đang đứng: f(x + s) ≈ f(x) + ∇f(x)ᵀs (đặt là hàm f^(s))
 >
 >
 >
-> Nếu tại x tồn tại s khiến ∇f(x)Ts &lt; 0, dễ thấy chính là sẽ giúp giảm thêm xấp xỉ bậc 1 của f khi đi từ x theo hướng s. Về mặt hình học, s hợp với ∇f(x) góc tù.
+> Nếu tại x tồn tại s khiến ∇f(x)ᵀs &lt; 0, dễ thấy chính là sẽ giúp giảm thêm xấp xỉ bậc 1 của f khi đi từ x theo hướng s. Về mặt hình học, s hợp với ∇f(x) góc tù.
 >
 >
 >
@@ -116,11 +116,11 @@
 >
 >
 >
-> Xấp xỉ bậc 1 của c1(x): c1(x + s) ≈ c1(x) + ∇c1(x)Ts (đặt là c1^(s))
+> Xấp xỉ bậc 1 của c1(x): c1(x + s) ≈ c1(x) + ∇c1(x)ᵀs (đặt là c1^(s))
 >
 >
 >
-> Ràng buộc là c1(x) ≥ 0. Nếu ta thay nó bằng c1^(s), ràng buộc trở thành c1^(s) ≥ ⇔ c1(x) + ∇c1(x)Ts ≥ 0. Từ đó, nếu xét s là linearized feasible direction ℱ(x\*) theo định nghĩa là: Hướng mà nếu c1(x\*) = 0 thì s thỏa ∇c1(x\*) ≥ 0) thì khi đó, dù cho c1(x\*) = 0 hay c1(x\*) &gt; 0, thì c1^(s) = c1(x\*) + ∇c1(x\*)Ts sẽ đều ≥ 0 (dù chưa chắc c1(x+s) đã thỏa ≥) tức là luôn thỏa phiên bản đã linearized của ràng buộc c1(x).
+> Ràng buộc là c1(x) ≥ 0. Nếu ta thay nó bằng c1^(s), ràng buộc trở thành c1^(s) ≥ ⇔ c1(x) + ∇c1(x)ᵀs ≥ 0. Từ đó, nếu xét s là linearized feasible direction ℱ(x\*) theo định nghĩa là: Hướng mà nếu c1(x\*) = 0 thì s thỏa ∇c1(x\*) ≥ 0) thì khi đó, dù cho c1(x\*) = 0 hay c1(x\*) &gt; 0, thì c1^(s) = c1(x\*) + ∇c1(x\*)ᵀs sẽ đều ≥ 0 (dù chưa chắc c1(x+s) đã thỏa ≥) tức là luôn thỏa phiên bản đã linearized của ràng buộc c1(x).
 >
 >
 >
@@ -132,11 +132,11 @@
 >
 >
 >
-> Xét case 1: Tại điểm đang đứng x, ràng buộc inactive: c1(x) &gt; 0. Khi đó để s + x vẫn (linearized) feasible, ta cần c^1(x + s) &gt; 0 ⇔ c^1(s) = c1(x) + ∇c1(x)Ts, với việc c1(x) đã &gt; 0 thì ∇c1(x)Ts có thể dương âm tùy ý, miễn là nếu âm thì đừng quá lớn để cục c1(x) dương còn đủ gánh cho nó. Như vậy s có thể có hướng bất kì. Và để tìm một điểm x không thể có s tạo với ∇f(x) góc tù thì chỉ có thể là tại x, ∇f(x) = 0.
+> Xét case 1: Tại điểm đang đứng x, ràng buộc inactive: c1(x) &gt; 0. Khi đó để s + x vẫn (linearized) feasible, ta cần c^1(x + s) &gt; 0 ⇔ c^1(s) = c1(x) + ∇c1(x)ᵀs, với việc c1(x) đã &gt; 0 thì ∇c1(x)ᵀs có thể dương âm tùy ý, miễn là nếu âm thì đừng quá lớn để cục c1(x) dương còn đủ gánh cho nó. Như vậy s có thể có hướng bất kì. Và để tìm một điểm x không thể có s tạo với ∇f(x) góc tù thì chỉ có thể là tại x, ∇f(x) = 0.
 >
 >
 >
-> Xét case 2: Tại điểm đang đứng x, ràng buộc active: c1(x) = 0. Khi đó c1^(s) = c1(x) + ∇c1(x)Ts = ∇c1(x)Ts, và để thỏa linearized constraint (c1^(s) ≥ 0) thì ∇c1(x)Ts phải ≥ 0, điều này theo hn2h học, là s tạo góc nhọn hoặc vuông với ∇c1. Như vậy, để tìm một điểm x mà ko thể có s tạo góc nhọn hoặc vuông với ∇c1(x) đồng thời tạo góc tù với ∇f(x). Và dễ thấy điểm thỏa điều này chính là x mà tại đó ∇f(x) trùng hướng với ∇c1(x), và diễn đạt theo toán học, là x mà tại đó tồn tại λ khiến ∇f(x) = λ ∇c1(x).
+> Xét case 2: Tại điểm đang đứng x, ràng buộc active: c1(x) = 0. Khi đó c1^(s) = c1(x) + ∇c1(x)ᵀs = ∇c1(x)ᵀs, và để thỏa linearized constraint (c1^(s) ≥ 0) thì ∇c1(x)ᵀs phải ≥ 0, điều này theo hn2h học, là s tạo góc nhọn hoặc vuông với ∇c1. Như vậy, để tìm một điểm x mà ko thể có s tạo góc nhọn hoặc vuông với ∇c1(x) đồng thời tạo góc tù với ∇f(x). Và dễ thấy điểm thỏa điều này chính là x mà tại đó ∇f(x) trùng hướng với ∇c1(x), và diễn đạt theo toán học, là x mà tại đó tồn tại λ khiến ∇f(x) = λ ∇c1(x).
 >
 >
 >
@@ -200,7 +200,7 @@
 >
 >
 >
-> Và do đó, người ta mới quan tâm về tập các linearized feasible direction (∈ ℱ(x\*)) khiến linearized f không tăng, mà điều này (linearized f không tăng) thể hiện bởi: ∇f(x\*)Tw = 0.
+> Và do đó, người ta mới quan tâm về tập các linearized feasible direction (∈ ℱ(x\*)) khiến linearized f không tăng, mà điều này (linearized f không tăng) thể hiện bởi: ∇f(x\*)ᵀw = 0.
 >
 >
 >
@@ -248,11 +248,11 @@
 >
 >
 >
-> Nhóm 1: d khiến ∇ci(x\*)Td = 0 với i ∈ ℰ
+> Nhóm 1: d khiến ∇ci(x\*)ᵀd = 0 với i ∈ ℰ
 >
 >
 >
-> Dịch nghĩa: Tại x\*, xét các ràng buộc đẳng thức mà nó đang thỏa, ở đây vì x\* feasible nên dĩ nhiên c1(x\*) = 0. Ta đặt câu hỏi: Đi hướng d nào khiến c1^(d) = c1(x\*) + ∇c1(x\*)Td vẫn bằng 0, lấy mấy cái d đó bỏ vào ℱ(x\*)
+> Dịch nghĩa: Tại x\*, xét các ràng buộc đẳng thức mà nó đang thỏa, ở đây vì x\* feasible nên dĩ nhiên c1(x\*) = 0. Ta đặt câu hỏi: Đi hướng d nào khiến c1^(d) = c1(x\*) + ∇c1(x\*)ᵀd vẫn bằng 0, lấy mấy cái d đó bỏ vào ℱ(x\*)
 >
 >
 >
@@ -260,7 +260,7 @@
 >
 >
 >
-> Nhóm 2: d thỏa ∇ci(x\*)Td ≥ 0 với i ∈ 𝒜(x\*) ∩ ℐ
+> Nhóm 2: d thỏa ∇ci(x\*)ᵀd ≥ 0 với i ∈ 𝒜(x\*) ∩ ℐ
 >
 >
 >
@@ -272,11 +272,11 @@
 >
 >
 >
-> Vậy thì ta sẽ xét c2 thôi, và đặt câu hỏi: với c2(x\*) = 0, thì đi hướng nào khiến c2^(d) = c2(x\*) + ∇c2(x\*)Td vẫn lớn hơn hoặc 0.
+> Vậy thì ta sẽ xét c2 thôi, và đặt câu hỏi: với c2(x\*) = 0, thì đi hướng nào khiến c2^(d) = c2(x\*) + ∇c2(x\*)ᵀd vẫn lớn hơn hoặc 0.
 >
 >
 >
-> Và giả sử câu trả lời là d1, d2, d3 (trong đó giả sử d1,d2 kiến ∇c2(x\*)Td &gt; 0, và d3 khiến ∇c2(x\*)Td3 = 0) ta bỏ đám d1,d2,d3 này vào ℱ(x\*)
+> Và giả sử câu trả lời là d1, d2, d3 (trong đó giả sử d1,d2 kiến ∇c2(x\*)ᵀd &gt; 0, và d3 khiến ∇c2(x\*)ᵀd3 = 0) ta bỏ đám d1,d2,d3 này vào ℱ(x\*)
 >
 >
 >
@@ -348,11 +348,11 @@
 >
 >
 >
-> Dòng 1: Chính là xem các trường hợp đụng tường thuộc diện equality constraint, lấy hết hướng đi men tường (∇ci(x\*)Tw = 0)
+> Dòng 1: Chính là xem các trường hợp đụng tường thuộc diện equality constraint, lấy hết hướng đi men tường (∇ci(x\*)ᵀw = 0)
 >
 >
 >
-> Dòng 2: Chính là xem các trường hợp đụng tường thuộc diện inequality constrain, và đang bị dí mạnh vào tường (λi\* &gt; 0). Với case này, ta chỉ được đi men theo tường (∇ci(x\*)Tw = 0)
+> Dòng 2: Chính là xem các trường hợp đụng tường thuộc diện inequality constrain, và đang bị dí mạnh vào tường (λi\* &gt; 0). Với case này, ta chỉ được đi men theo tường (∇ci(x\*)ᵀw = 0)
 >
 >
 >
@@ -378,7 +378,7 @@
 >
 >
 >
-> Tác giả nói với định nghĩa của 𝒞(x\*, λ\*) thì nếu w ∈ 𝒞(x\*, λ\*) thì λ\*i ∇ci(x\*)Tw = 0 ∀ i ∈ ℰ ∪ ℐ. Vì sao?
+> Tác giả nói với định nghĩa của 𝒞(x\*, λ\*) thì nếu w ∈ 𝒞(x\*, λ\*) thì λ\*i ∇ci(x\*)ᵀw = 0 ∀ i ∈ ℰ ∪ ℐ. Vì sao?
 >
 >
 >
@@ -386,19 +386,19 @@
 >
 >
 >
-> với equality constraint, thì ∇ci(x\*)Tw = 0
+> với equality constraint, thì ∇ci(x\*)ᵀw = 0
 >
 >
 >
-> với inequality constraint "đang bị ép dính tường λ\*i &gt; 0" thì ∇ci(x\*)Tw = 0
+> với inequality constraint "đang bị ép dính tường λ\*i &gt; 0" thì ∇ci(x\*)ᵀw = 0
 >
 >
 >
-> với inequality constraint "chưa dính tường λ\*i = 0" thì ∇ci(x\*)Tw ≥ 0
+> với inequality constraint "chưa dính tường λ\*i = 0" thì ∇ci(x\*)ᵀw ≥ 0
 >
 >
 >
-> Vậy với mỗi constraint nói trên, ta đều có λ\*i × ∇ci(x\*)Tw có tính chất là ít nhất một thừa số = 0, nên λ\*i × ∇ci(x\*)Tw = 0 ∀ i ∈ ℰ ∪ ℐ.  (1)
+> Vậy với mỗi constraint nói trên, ta đều có λ\*i × ∇ci(x\*)ᵀw có tính chất là ít nhất một thừa số = 0, nên λ\*i × ∇ci(x\*)ᵀw = 0 ∀ i ∈ ℰ ∪ ℐ.  (1)
 >
 >
 >
@@ -456,7 +456,7 @@
 >
 >
 >
-> Đầu tiên, objective là f(x) = x1, ∇f(x) = (1,0)T.
+> Đầu tiên, objective là f(x) = x1, ∇f(x) = (1,0)ᵀ.
 >
 >
 >
@@ -492,15 +492,15 @@
 >
 >
 >
-> Vậy thì đi hướng d nào sẽ có ∇c1(x\*)Td và ∇c2(x\*)Td ≥ 0:
+> Vậy thì đi hướng d nào sẽ có ∇c1(x\*)ᵀd và ∇c2(x\*)ᵀd ≥ 0:
 >
 >
 >
-> ∇c1(x\*) = (0,1)T (trên hình là vector tím)
+> ∇c1(x\*) = (0,1)ᵀ (trên hình là vector tím)
 >
 >
 >
-> ∇c2(x\*) = \[-2(0-1), 0\]T = (2,0)T, mình vẽ vector xanh lục hướng vào tâm đường tròn)
+> ∇c2(x\*) = \[-2(0-1), 0\]T = (2,0)ᵀ, mình vẽ vector xanh lục hướng vào tâm đường tròn)
 >
 >
 >
@@ -524,7 +524,7 @@
 >
 >
 >
-> (1,0)T - λ\*1 (0,1)T - λ\*2 (2,0)T = 0
+> (1,0)ᵀ - λ\*1 (0,1)ᵀ - λ\*2 (2,0)ᵀ = 0
 >
 >
 >
@@ -614,11 +614,11 @@
 >
 >
 >
-> f(x\* + w) ≈ f(x\*) + ∇f(x\*)Tw = f(x\*) + 0 = f(x\*)
+> f(x\* + w) ≈ f(x\*) + ∇f(x\*)ᵀw = f(x\*) + 0 = f(x\*)
 >
 >
 >
-> **KHIẾN TA KHÔNG BIẾT RẰNG VỚI CÁC LIEARIZED FEASIBLE DIRECTION NÀY** (vì w thuộc 𝒞(x\*, λ\*) là tập con của linearized feasible direction ℱ(x\*)), **THÌ LIỆU RẰNG CÓ THỂ GIẢM HAY TĂNG HÀM F**.
+> **KHIẾN TA KHÔNG BIẾT RẰNG VỚI CÁC LIEARIZED FEASIBLE DIRECᵀION NÀY** (vì w thuộc 𝒞(x\*, λ\*) là tập con của linearized feasible direction ℱ(x\*)), **THÌ LIỆU RẰNG CÓ THỂ GIẢM HAY TĂNG HÀM F**.
 >
 >
 >
@@ -670,35 +670,35 @@
 >
 >
 >
-> Xét ci(zk), khai triển Taylor = ci(x\*) + ∇ci(x\*)T(zk - x\*) + term bậc cao
+> Xét ci(zk), khai triển Taylor = ci(x\*) + ∇ci(x\*)ᵀ(zk - x\*) + term bậc cao
 >
 >
 >
-> = ci(x\*) + ∇ci(x\*)T(tj w + o(tk)) + term bậc cao
+> = ci(x\*) + ∇ci(x\*)ᵀ(tj w + o(tk)) + term bậc cao
 >
 >
 >
-> = ci(x\*) + ∇ci(x\*)T(tj w) + ∇ci(x\*)T o(tk) + term bậc cao
+> = ci(x\*) + ∇ci(x\*)ᵀ(tj w) + ∇ci(x\*)ᵀ o(tk) + term bậc cao
 >
 >
 >
-> = ci(x\*) + tj ∇ci(x\*)Tw + ∇ci(x\*)T o(tk) + term bậc cao
+> = ci(x\*) + tj ∇ci(x\*)ᵀw + ∇ci(x\*)ᵀ o(tk) + term bậc cao
 >
 >
 >
-> Và nếu như ta có xem phần chứng minh bổ đề 12.2, ta sẽ thấy cách chọn chuỗi tk có đặc điểm là khi k càng lớn, zk càng gần x\* và mức bẻ lái càng nhỏ thì ∇ci(x\*)T o(tk) + term bậc cao → 0
+> Và nếu như ta có xem phần chứng minh bổ đề 12.2, ta sẽ thấy cách chọn chuỗi tk có đặc điểm là khi k càng lớn, zk càng gần x\* và mức bẻ lái càng nhỏ thì ∇ci(x\*)ᵀ o(tk) + term bậc cao → 0
 >
 >
 >
-> Giúp ta có: ci(zk) = ci(x\*) + tj ∇ci(x\*)Tw
+> Giúp ta có: ci(zk) = ci(x\*) + tj ∇ci(x\*)ᵀw
 >
 >
 >
-> ⇔ ci(zk) = 0 + tj ∇ci(x\*)Tw (do constraint ci đang active tại x\*)
+> ⇔ ci(zk) = 0 + tj ∇ci(x\*)ᵀw (do constraint ci đang active tại x\*)
 >
 >
 >
-> Vậy ci(zk) = tj ∇ci(x\*)Tw
+> Vậy ci(zk) = tj ∇ci(x\*)ᵀw
 >
 >
 >
@@ -712,7 +712,7 @@
 >
 >
 >
-> ℒ(zk, λ\*) ≈ ℒ(x\*, λ\*) + ∇\_x ℒ(x\*, λ\*)(zk - x\*) + (1/2) (zk - x\*)T \[Hessian của ℒ tại x\*\] (zk - x\*)
+> ℒ(zk, λ\*) ≈ ℒ(x\*, λ\*) + ∇\_x ℒ(x\*, λ\*)(zk - x\*) + (1/2) (zk - x\*)ᵀ \[Hessian của ℒ tại x\*\] (zk - x\*)
 >
 >
 >
@@ -720,15 +720,15 @@
 >
 >
 >
-> ℒ(zk, λ\*) ≈ ℒ(x\*, λ\*) + (1/2) (zk - x\*)T \[Hessian của ℒ tại x\*\] (zk - x\*)
+> ℒ(zk, λ\*) ≈ ℒ(x\*, λ\*) + (1/2) (zk - x\*)ᵀ \[Hessian của ℒ tại x\*\] (zk - x\*)
 >
 >
 >
-> Xét ℒ(zk, λ\*), nó sẽ bằng f(zk) - Σi λ\*i ci(zk) = f(zk) - Σi λ\*i tj ∇ci(x\*)Tw
+> Xét ℒ(zk, λ\*), nó sẽ bằng f(zk) - Σi λ\*i ci(zk) = f(zk) - Σi λ\*i tj ∇ci(x\*)ᵀw
 >
 >
 >
-> Và với tính chất của critical cone direction mình đã ôn lại lúc đầu thì Σi λ\*i tj ∇ci(x\*)Tw = 0 dẫn đến ℒ(zk, λ\*) = f(zk)
+> Và với tính chất của critical cone direction mình đã ôn lại lúc đầu thì Σi λ\*i tj ∇ci(x\*)ᵀw = 0 dẫn đến ℒ(zk, λ\*) = f(zk)
 >
 >
 >
@@ -736,7 +736,7 @@
 >
 >
 >
-> Vây ℒ(zk, λ\*) ≈ ℒ(x\*, λ\*) + (1/2) (zk - x\*)T \[Hessian của ℒ tại x\*\] (zk - x\*)
+> Vây ℒ(zk, λ\*) ≈ ℒ(x\*, λ\*) + (1/2) (zk - x\*)ᵀ \[Hessian của ℒ tại x\*\] (zk - x\*)
 >
 >
 >
@@ -744,7 +744,7 @@
 >
 >
 >
-> f(zk) ≈ f(x\*) + (1/2) (zk - x\*)T \[Hessian của ℒ tại x\*\] (zk - x\*)
+> f(zk) ≈ f(x\*) + (1/2) (zk - x\*)ᵀ \[Hessian của ℒ tại x\*\] (zk - x\*)
 >
 >
 >
@@ -752,7 +752,7 @@
 >
 >
 >
-> f(zk) = f(x\*) + (1/2) (zk - x\*)T \[Hessian của ℒ tại x\*\] (zk - x\*)
+> f(zk) = f(x\*) + (1/2) (zk - x\*)ᵀ \[Hessian của ℒ tại x\*\] (zk - x\*)
 >
 >
 >
@@ -760,11 +760,11 @@
 >
 >
 >
-> (1/2) (zk - x\*)T \[Hessian của ℒ tại x\*\] (zk - x\*) ≥ 0
+> (1/2) (zk - x\*)ᵀ \[Hessian của ℒ tại x\*\] (zk - x\*) ≥ 0
 >
 >
 >
-> ⇔ (1/2) (tk w)T \[Hessian của ℒ tại x\*\] (tk w) ≥ 0
+> ⇔ (1/2) (tk w)ᵀ \[Hessian của ℒ tại x\*\] (tk w) ≥ 0
 >
 >
 >
@@ -817,19 +817,19 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> linearized f tại x\*+d = f(x\*) + ∇f(x\*)Td = f(x\*) + \[Σi λi ∇ci(x\*)\]Td
+> linearized f tại x\*+d = f(x\*) + ∇f(x\*)ᵀd = f(x\*) + \[Σi λi ∇ci(x\*)\]Td
 >
 >
 >
-> = f(x\*) + Σi λi \[∇ci(x\*)Td\]. 
+> = f(x\*) + Σi λi \[∇ci(x\*)ᵀd\]. 
 >
 >
 >
-> Và với việc d là linearized feasible như trên đã nói, đi từ x\* đến x\* + d không làm giảm hàm constraint, tức ∇ci(x\*)Td ≥ 0 ∀i ∈ ℰ ∪ ℐ, và cùng với constraint λi ≥ 0, ta có 
+> Và với việc d là linearized feasible như trên đã nói, đi từ x\* đến x\* + d không làm giảm hàm constraint, tức ∇ci(x\*)ᵀd ≥ 0 ∀i ∈ ℰ ∪ ℐ, và cùng với constraint λi ≥ 0, ta có 
 >
 >
 >
-> Vậy linearized f tại x\*+d = f(x\*) + Σi λi \[∇ci(x\*)Td\] ≥ f(x\*).
+> Vậy linearized f tại x\*+d = f(x\*) + Σi λi \[∇ci(x\*)ᵀd\] ≥ f(x\*).
 >
 >
 >
@@ -837,11 +837,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Chính vì vậy, ta sẽ xét các hướng d ∈ ℱ mà theo hướng đó, linearized f không tăng: Tức f(x\*) + ∇f(x\*)Td = f(x\*) ⇔ ∇f(x\*)Td = 0. Đây chính là critical cone.
+> Chính vì vậy, ta sẽ xét các hướng d ∈ ℱ mà theo hướng đó, linearized f không tăng: Tức f(x\*) + ∇f(x\*)ᵀd = f(x\*) ⇔ ∇f(x\*)ᵀd = 0. Đây chính là critical cone.
 >
 >
 >
-> Vậy thì điều kiện cần bậc hai hôm trước đã nhận định rằng, nếu như xét các hướng này mà độ cong âm, tức quadratic form của Hessian của Lagrangian tại x\* âm, thì ứng cử viên x\* (đã thỏa KKT) sẽ bị loại. Vì lúc này đạo hàm bậc hai cho thấy khi đi theo hướng critical cone w, hàm f xấp xỉ bậc hai giảm thêm f(x\*) + ∇f(x\*)Td + (1/2) dT ∇²ℒ(x\*, λ) d &lt; f(x\*).
+> Vậy thì điều kiện cần bậc hai hôm trước đã nhận định rằng, nếu như xét các hướng này mà độ cong âm, tức quadratic form của Hessian của Lagrangian tại x\* âm, thì ứng cử viên x\* (đã thỏa KKT) sẽ bị loại. Vì lúc này đạo hàm bậc hai cho thấy khi đi theo hướng critical cone w, hàm f xấp xỉ bậc hai giảm thêm f(x\*) + ∇f(x\*)ᵀd + (1/2) dT ∇²ℒ(x\*, λ) d &lt; f(x\*).
 >
 >
 >
@@ -921,7 +921,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> tương đương: (w/||w||)T ∇²\_xx ℒ(x\*, λ\*) (w/||w||) ≥ σ
+> tương đương: (w/||w||)ᵀ ∇²\_xx ℒ(x\*, λ\*) (w/||w||) ≥ σ
 >
 >
 >
@@ -929,7 +929,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> nên (w/||w||)T  = (w (1/||w||))T = (1/||w||)T wT = = (1/||w||) wT (scalar mà chuyển vị thì bằng chính nó)
+> nên (w/||w||)ᵀ  = (w (1/||w||))ᵀ = (1/||w||)ᵀ wT = = (1/||w||) wT (scalar mà chuyển vị thì bằng chính nó)
 >
 >
 >
@@ -941,11 +941,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ⇔ (1/||w||^2) (w)T ∇²\_xx ℒ(x\*, λ\*) (w) ≥ σ 
+> ⇔ (1/||w||^2) (w)ᵀ ∇²\_xx ℒ(x\*, λ\*) (w) ≥ σ 
 >
 >
 >
-> ⇔ (w)T ∇²\_xx ℒ(x\*, λ\*) (w) ≥ σ ||w||^2 → Ta có 12.66
+> ⇔ (w)ᵀ ∇²\_xx ℒ(x\*, λ\*) (w) ≥ σ ||w||^2 → Ta có 12.66
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
@@ -989,7 +989,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Cái này lập luận như sau: Đầu tiên nhớ lại định nghĩa của linearized feasible direction ℱ(x\*), là tập các hướng w sao cho: nếu đi theo hướng đó thì linearized equality constraint (linearized của ci(x) với i ∈ ℰ) và linearized inequality constraint mà đang active tại x\* (linearized của ci(x) với i ∈ ℐ, và ci(x\*) = 0) sẽ không đổi, và điều này thể hiện bởi với các i này thì ∇ci(x\*)Tw = 0 với i ∈ ℰ và ∇ci(x\*)Tw ≥ 0 với i ∈ 𝒜(x\*) ∩ ℐ. Nên để chứng minh d ở trên ∈ ℱ(x\*) ta cần chứng minh ∇ci(x\*)Td = 0 với i ∈ ℰ và ∇ci(x\*)Td ≥ 0 với i ∈ 𝒜(x\*) ∩ ℐ. (2)
+> Cái này lập luận như sau: Đầu tiên nhớ lại định nghĩa của linearized feasible direction ℱ(x\*), là tập các hướng w sao cho: nếu đi theo hướng đó thì linearized equality constraint (linearized của ci(x) với i ∈ ℰ) và linearized inequality constraint mà đang active tại x\* (linearized của ci(x) với i ∈ ℐ, và ci(x\*) = 0) sẽ không đổi, và điều này thể hiện bởi với các i này thì ∇ci(x\*)ᵀw = 0 với i ∈ ℰ và ∇ci(x\*)ᵀw ≥ 0 với i ∈ 𝒜(x\*) ∩ ℐ. Nên để chứng minh d ở trên ∈ ℱ(x\*) ta cần chứng minh ∇ci(x\*)ᵀd = 0 với i ∈ ℰ và ∇ci(x\*)ᵀd ≥ 0 với i ∈ 𝒜(x\*) ∩ ℐ. (2)
 >
 >
 >
@@ -1001,7 +1001,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ci(zk) = ci(x\*) + ∇ci(x\*)T(zk-x\*) + o(||zk-x\*||) (o(||zk-x\*||) là tất cả các term bậc 2 trở lên)
+> ci(zk) = ci(x\*) + ∇ci(x\*)ᵀ(zk-x\*) + o(||zk-x\*||) (o(||zk-x\*||) là tất cả các term bậc 2 trở lên)
 >
 >
 >
@@ -1009,7 +1009,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ci(z)/||z-x\*|| = ci(x\*)/||z-x\*|| + ∇ci(x\*)T(z-x\*)/||z-x\*|| + o(||z-x\*||)/||z-x\*||
+> ci(z)/||z-x\*|| = ci(x\*)/||z-x\*|| + ∇ci(x\*)ᵀ(z-x\*)/||z-x\*|| + o(||z-x\*||)/||z-x\*||
 >
 >
 >
@@ -1025,11 +1025,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> iii) Khi cho zk → x\*, thì ∇ci(x\*)T(z-x\*)/||z-x\*|| chính là trở thành ∇ci(x\*)Td theo định nghĩa của d ở trên
+> iii) Khi cho zk → x\*, thì ∇ci(x\*)ᵀ(z-x\*)/||z-x\*|| chính là trở thành ∇ci(x\*)ᵀd theo định nghĩa của d ở trên
 >
 >
 >
-> Vậy khi zk → x\*, vế phải trở thành ∇ci(x\*)Td
+> Vậy khi zk → x\*, vế phải trở thành ∇ci(x\*)ᵀd
 >
 >
 >
@@ -1037,7 +1037,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Vậy ta có khi zk → x\* thì ∇ci(x\*)Td = 0 và ∇ci(x\*)Td ≥ 0 với mọi i ∈ 𝒜(x\*) ∩ ℐ.
+> Vậy ta có khi zk → x\* thì ∇ci(x\*)ᵀd = 0 và ∇ci(x\*)ᵀd ≥ 0 với mọi i ∈ 𝒜(x\*) ∩ ℐ.
 >
 >
 >
@@ -1119,11 +1119,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Giả sử ta có hàm f(x) (hàm chung chung nào đó, ko ám chỉ hàm objective của bài toán này), là hàm đa biến (x là vector), thì bằng cách giới hạn hàm f theo một hướng p nào đó, tức là ta đặt ra hàm g(α) = f(x+αp), ta sẽ có hàm g là hàm đơn biến mà giá trị của nó sẽ là giá trị hàm f theo hướng vector p. Cái này giống y như f ban đầu là bề mặt đất nhấp nhô xung quanh chỗ ta đứng, còn g là ta xét sự nhấp nhô này khi đi trên một hướng duy nhất. Vậy thì độ dốc của hàm g thể hiện bởi đạo hàm của nó: g'(α) = d/dα g(α) = d/dα f(x+αp) = d/d(x+αp) f(x+αp) . d/dα (x+αp) (chain rule) = ∇f(x+αp)Tp. Và g'(α)|α=0, sẽ là độ dốc của hàm f theo phương p, tại điểm đang đứng (x) sẽ bằng ∇f(x+αp)Tp|α=0 = ∇f(x)Tp, đây chính là công thức của directional derivative của f theo hướng p.
+> Giả sử ta có hàm f(x) (hàm chung chung nào đó, ko ám chỉ hàm objective của bài toán này), là hàm đa biến (x là vector), thì bằng cách giới hạn hàm f theo một hướng p nào đó, tức là ta đặt ra hàm g(α) = f(x+αp), ta sẽ có hàm g là hàm đơn biến mà giá trị của nó sẽ là giá trị hàm f theo hướng vector p. Cái này giống y như f ban đầu là bề mặt đất nhấp nhô xung quanh chỗ ta đứng, còn g là ta xét sự nhấp nhô này khi đi trên một hướng duy nhất. Vậy thì độ dốc của hàm g thể hiện bởi đạo hàm của nó: g'(α) = d/dα g(α) = d/dα f(x+αp) = d/d(x+αp) f(x+αp) . d/dα (x+αp) (chain rule) = ∇f(x+αp)ᵀp. Và g'(α)|α=0, sẽ là độ dốc của hàm f theo phương p, tại điểm đang đứng (x) sẽ bằng ∇f(x+αp)ᵀp|α=0 = ∇f(x)ᵀp, đây chính là công thức của directional derivative của f theo hướng p.
 >
 >
 >
-> Còn độ cong? Ta xét đạo hàm của hàm g'(α), tức d/dα ∇f(x+αp)Tp = d/d(x+αp) ∇f(x+αp)Tp . d/dα(x+αp) = p∇²f(x+αp)Tp. Nên g''(α)|α=0 = p∇²f(x)Tp chính là đạo hàm của độ dốc = độ cong của hàm f theo hướng p tại x.
+> Còn độ cong? Ta xét đạo hàm của hàm g'(α), tức d/dα ∇f(x+αp)ᵀp = d/d(x+αp) ∇f(x+αp)ᵀp . d/dα(x+αp) = p∇²f(x+αp)ᵀp. Nên g''(α)|α=0 = p∇²f(x)ᵀp chính là đạo hàm của độ dốc = độ cong của hàm f theo hướng p tại x.
 >
 >
 >
@@ -1271,23 +1271,23 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> men theo vách c1 (tức ∇c1(x\*)Tw = 0) đồng thời men theo vách hoặc đi vào trong constraint c2,c3: ∇c2(x\*)Tw ≥ 0, ∇c3(x\*)Tw ≥ 0.
+> men theo vách c1 (tức ∇c1(x\*)ᵀw = 0) đồng thời men theo vách hoặc đi vào trong constraint c2,c3: ∇c2(x\*)ᵀw ≥ 0, ∇c3(x\*)ᵀw ≥ 0.
 >
 >
 >
-> Nhưng nếu w là critical cone direction thì nó chỉ được men theo vách c1 (∇c1(x\*)Tw = 0) + men theo vách c2 (∇c2(x\*)Tw = 0), và men theo vách hoặc đi vào trong với c3 (∇c1(x\*)Tw ≥ 0
+> Nhưng nếu w là critical cone direction thì nó chỉ được men theo vách c1 (∇c1(x\*)ᵀw = 0) + men theo vách c2 (∇c2(x\*)ᵀw = 0), và men theo vách hoặc đi vào trong với c3 (∇c1(x\*)ᵀw ≥ 0
 >
 >
 >
-> Vậy cách chứng minh d phải là critical cone direction ta phải chứng minh với mọi active constraint ci thì ∇ci(x\*)Td đều phải bằng 0
+> Vậy cách chứng minh d phải là critical cone direction ta phải chứng minh với mọi active constraint ci thì ∇ci(x\*)ᵀd đều phải bằng 0
 >
 >
 >
-> Ta mới giả sử d không phải là critical cone 𝒞\*(x\*, λ\*), thì **chắc chắn là tồn tại** một constrain nào đó **đang active** tại x\* (tức cj(x\*) = 0) nhưng ∇cj(x\*)Td &gt; 0, tức d lại không men theo vách cái constraint đó, thể hiện bởi:
+> Ta mới giả sử d không phải là critical cone 𝒞\*(x\*, λ\*), thì **chắc chắn là tồn tại** một constrain nào đó **đang active** tại x\* (tức cj(x\*) = 0) nhưng ∇cj(x\*)ᵀd &gt; 0, tức d lại không men theo vách cái constraint đó, thể hiện bởi:
 >
 >
 >
-> Tồn tại j ∈ 𝒜(x\*) ∩ ℐ sao cho λ\*j &gt; 0 và ∇cj(x\*)Td &gt; 0 
+> Tồn tại j ∈ 𝒜(x\*) ∩ ℐ sao cho λ\*j &gt; 0 và ∇cj(x\*)ᵀd &gt; 0 
 >
 >
 >
@@ -1295,7 +1295,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Điều này đồng nghĩa λ\*j ∇cj(x\*)Td &gt; 0 (12.70)
+> Điều này đồng nghĩa λ\*j ∇cj(x\*)ᵀd &gt; 0 (12.70)
 >
 >
 >
@@ -1303,19 +1303,19 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> cj(zk) = cj(x\*) + ∇cj(x\*)T(zk-x\*) + o(||zk-x\*||)
+> cj(zk) = cj(x\*) + ∇cj(x\*)ᵀ(zk-x\*) + o(||zk-x\*||)
 >
 >
 >
-> (o(||zk-x\*||) là gì? Chính là chỉ tổng term bậc 2 trở lên của zk-x\*, ví dụ gồm (zk-x\*)T∇²cj(x\*)(zk-x\*) + term bậc 3 + term bậc 4,...Và khi zk tiến về x\*, ||zk-x\*|| nhỏ lại thì mấy cái term bậc cao này teo nhỏ về 0 nhanh hơn cả ||zk-x\*||, nên ta kí hiệu nó bởi small-o notation, chữ O nhỏ. Và tí nữa có nhân thêm λ\*j thì cái cục này vẫn teo về 0 nhanh hơn ||zk-x\*||, nên vẫn ghi nó là o(||zk-x\*||))
+> (o(||zk-x\*||) là gì? Chính là chỉ tổng term bậc 2 trở lên của zk-x\*, ví dụ gồm (zk-x\*)ᵀ∇²cj(x\*)(zk-x\*) + term bậc 3 + term bậc 4,...Và khi zk tiến về x\*, ||zk-x\*|| nhỏ lại thì mấy cái term bậc cao này teo nhỏ về 0 nhanh hơn cả ||zk-x\*||, nên ta kí hiệu nó bởi small-o notation, chữ O nhỏ. Và tí nữa có nhân thêm λ\*j thì cái cục này vẫn teo về 0 nhanh hơn ||zk-x\*||, nên vẫn ghi nó là o(||zk-x\*||))
 >
 >
 >
-> ⇒ λ\*j cj(zk) = λ\*jcj(x\*) + λ\*j∇cj(x\*)T(zk-x\*) + λ\*j o(||zk-x\*||)
+> ⇒ λ\*j cj(zk) = λ\*jcj(x\*) + λ\*j∇cj(x\*)ᵀ(zk-x\*) + λ\*j o(||zk-x\*||)
 >
 >
 >
-> ⇔ λ\*j cj(zk) = λ\*jcj(x\*) + λ\*j∇cj(x\*)T(zk-x\*) + o(||zk-x\*||)
+> ⇔ λ\*j cj(zk) = λ\*jcj(x\*) + λ\*j∇cj(x\*)ᵀ(zk-x\*) + o(||zk-x\*||)
 >
 >
 >
@@ -1323,11 +1323,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ..⇔ λ\*j cj(zk) = 0 + λ\*j∇cj(x\*)T(zk-x\*) + o(||zk-x\*||)
+> ..⇔ λ\*j cj(zk) = 0 + λ\*j∇cj(x\*)ᵀ(zk-x\*) + o(||zk-x\*||)
 >
 >
 >
-> ..⇔ λ\*j cj(zk) = λ\*j∇cj(x\*)T(zk-x\*) + o(||zk-x\*||)
+> ..⇔ λ\*j cj(zk) = λ\*j∇cj(x\*)ᵀ(zk-x\*) + o(||zk-x\*||)
 >
 >
 >
@@ -1363,11 +1363,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Thay λ\*j cj(zk) = λ\*j∇cj(x\*)T(zk-x\*) + o(||zk-x\*||) ở trên vào:
+> Thay λ\*j cj(zk) = λ\*j∇cj(x\*)ᵀ(zk-x\*) + o(||zk-x\*||) ở trên vào:
 >
 >
 >
-> ℒ(zk, λ\*) ≤ f(zk) - λ\*j∇cj(x\*)T(zk-x\*) - o(||zk-x\*||) → 12.71
+> ℒ(zk, λ\*) ≤ f(zk) - λ\*j∇cj(x\*)ᵀ(zk-x\*) - o(||zk-x\*||) → 12.71
 >
 >
 >
@@ -1383,7 +1383,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ℒ(zk, λ\*) = f(x\*) + ∇ℒ(x\*, λ\*)T(zk-x\*) + O(||zk-x\*||^2) (3)
+> ℒ(zk, λ\*) = f(x\*) + ∇ℒ(x\*, λ\*)ᵀ(zk-x\*) + O(||zk-x\*||^2) (3)
 >
 >
 >
@@ -1401,11 +1401,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Còn ở đây O(||zk-x\*||^2) cũng chứ các term bậc 2,3... của ||zk-x\*||. Nhưng khi xét trên tương quan với ||zk-x\*||^2 thì khi ||zk-x\*||^2 nhỏ về 0, những term này, vì nó bao gồm term bậc 2 ((zk-x\*)T∇²cj(x\*)(zk-x\*)) nên nó cũng thu về 0 với tốc độ tương đương chứ không nhanh hơn.
+> Còn ở đây O(||zk-x\*||^2) cũng chứ các term bậc 2,3... của ||zk-x\*||. Nhưng khi xét trên tương quan với ||zk-x\*||^2 thì khi ||zk-x\*||^2 nhỏ về 0, những term này, vì nó bao gồm term bậc 2 ((zk-x\*)ᵀ∇²cj(x\*)(zk-x\*)) nên nó cũng thu về 0 với tốc độ tương đương chứ không nhanh hơn.
 >
 >
 >
-> Nói tóm lại, là vì định nghĩa của o(t) là những thứ teo nhỏ về t nhanh hơn t, còn O(t) là những thứ đồng hạng với t. Thành ra với cùng một chuỗi (zk-x\*)T∇²cj(x\*)(zk-x\*) + term bậc 3 + term bậc 4...thì nó là o (small o) đối với (||zk-x\*||) nhưng là O (big o) với ||zk-x\*||^2
+> Nói tóm lại, là vì định nghĩa của o(t) là những thứ teo nhỏ về t nhanh hơn t, còn O(t) là những thứ đồng hạng với t. Thành ra với cùng một chuỗi (zk-x\*)ᵀ∇²cj(x\*)(zk-x\*) + term bậc 3 + term bậc 4...thì nó là o (small o) đối với (||zk-x\*||) nhưng là O (big o) với ||zk-x\*||^2
 >
 >
 >
@@ -1417,7 +1417,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> nên ℒ(zk, λ\*) = f(x\*) + ∇ℒ(x\*, λ\*)T(zk-x\*) + O(||zk-x\*||^2) 
+> nên ℒ(zk, λ\*) = f(x\*) + ∇ℒ(x\*, λ\*)ᵀ(zk-x\*) + O(||zk-x\*||^2) 
 >
 >
 >
@@ -1445,7 +1445,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ℒ(zk, λ\*) ≤ f(zk) - λ\*j∇cj(x\*)T(zk-x\*) - o(||zk-x\*||) (12.71)
+> ℒ(zk, λ\*) ≤ f(zk) - λ\*j∇cj(x\*)ᵀ(zk-x\*) - o(||zk-x\*||) (12.71)
 >
 >
 >
@@ -1453,11 +1453,11 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> f(zk) - λ\*j∇cj(x\*)T(zk-x\*) - o(||zk-x\*||) ≥ f(x\*) + O(||zk-x\*||^2)
+> f(zk) - λ\*j∇cj(x\*)ᵀ(zk-x\*) - o(||zk-x\*||) ≥ f(x\*) + O(||zk-x\*||^2)
 >
 >
 >
-> ⇔ f(zk) ≥ f(x\*) + λ\*j∇cj(x\*)T(zk-x\*)+ O(||zk-x\*||^2) + o(||zk-x\*||)
+> ⇔ f(zk) ≥ f(x\*) + λ\*j∇cj(x\*)ᵀ(zk-x\*)+ O(||zk-x\*||^2) + o(||zk-x\*||)
 >
 >
 >
@@ -1465,7 +1465,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ⇔ f(zk) ≥ f(x\*) + λ\*j∇cj(x\*)T(zk-x\*) + o(||zk-x\*||)
+> ⇔ f(zk) ≥ f(x\*) + λ\*j∇cj(x\*)ᵀ(zk-x\*) + o(||zk-x\*||)
 >
 >
 >
@@ -1473,7 +1473,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ⇔ f(zk) ≥ f(x\*) + λ\*j ∇cj(x\*)T (||zk-x\*|| d) + o(||zk-x\*||)
+> ⇔ f(zk) ≥ f(x\*) + λ\*j ∇cj(x\*)ᵀ (||zk-x\*|| d) + o(||zk-x\*||)
 >
 >
 >
@@ -1481,7 +1481,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> ⇔ f(zk) ≥ f(x\*) + ||zk-x\*|| λ\*j∇cj(x\*)Td + o(||zk-x\*||)
+> ⇔ f(zk) ≥ f(x\*) + ||zk-x\*|| λ\*j∇cj(x\*)ᵀd + o(||zk-x\*||)
 >
 >
 >
@@ -1529,7 +1529,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> = f(x\*) + ∇ℒ(x\*, λ\*)T(zk-x\*) + (1/2)(zk-x\*)T∇²\_xx ℒ(x\*, λ\*)(zk-x\*) + o(||zk-x\*||^2)
+> = f(x\*) + ∇ℒ(x\*, λ\*)ᵀ(zk-x\*) + (1/2)(zk-x\*)ᵀ∇²\_xx ℒ(x\*, λ\*)(zk-x\*) + o(||zk-x\*||^2)
 >
 >
 >
@@ -1537,15 +1537,15 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> Tương tự ∇ℒ(x\*, λ\*)T(zk-x\*) = 0T(zk-x\*) do ∇ℒ(x\*, λ\*) = 0 vì x\* thỏa KKT
+> Tương tự ∇ℒ(x\*, λ\*)ᵀ(zk-x\*) = 0T(zk-x\*) do ∇ℒ(x\*, λ\*) = 0 vì x\* thỏa KKT
 >
 >
 >
-> = f(x\*) + 0 + (1/2)(zk-x\*)T∇²\_xx ℒ(x\*, λ\*)(zk-x\*) + o(||zk-x\*||^2)
+> = f(x\*) + 0 + (1/2)(zk-x\*)ᵀ∇²\_xx ℒ(x\*, λ\*)(zk-x\*) + o(||zk-x\*||^2)
 >
 >
 >
-> = f(x\*) + (1/2)(zk-x\*)T∇²\_xx ℒ(x\*, λ\*)(zk-x\*) + o(||zk-x\*||^2)
+> = f(x\*) + (1/2)(zk-x\*)ᵀ∇²\_xx ℒ(x\*, λ\*)(zk-x\*) + o(||zk-x\*||^2)
 >
 >
 >
@@ -2191,7 +2191,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 >
 >
-> À, như vậy, nếu R non-singular, thì det R khác 0 ⇔ tích các eigenvalue khác 0 ⇔ mọi eigenvalue đều khác 0 ⇔ mọi phần tử trên đường chéo đều khác 0 và như lập luận ở trên, điều này chứng tỏ: KHÔNG CÓ VECTOR CỘT aj NÀO NẰM SẴN TRONG SUBSPACE SPAN BỞI {a1,...aj-1} tức các cột trước đó, Và dĩ nhiên cho thấy CÁC CỘT CỦA A ĐỀU ĐỘC LẬP
+> À, như vậy, nếu R non-singular, thì det R khác 0 ⇔ tích các eigenvalue khác 0 ⇔ mọi eigenvalue đều khác 0 ⇔ mọi phần tử trên đường chéo đều khác 0 và như lập luận ở trên, điều này chứng tỏ: KHÔNG CÓ VECᵀOR CỘT aj NÀO NẰM SẴN TRONG SUBSPACE SPAN BỞI {a1,...aj-1} tức các cột trước đó, Và dĩ nhiên cho thấy CÁC CỘT CỦA A ĐỀU ĐỘC LẬP
 >
 >
 >
@@ -2226,6 +2226,8 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 > **💡 Deeper notes**
 > - Trong tính toán số thực tế (numerical linear algebra), phép phân tích QR thường dùng phản xạ Householder hoặc phép quay Givens thay vì Gram-Schmidt cổ điển để đảm bảo tính trực giao số học (loss of orthogonality).
 > - Khi R bị suy biến (rank-deficient), thuật toán phân tích QR có hoán vị cột (column pivoting: A^T P = Q R) giúp dồn các cột độc lập tuyến tính lên trước, tách R thành dạng khối tam giác trên khả nghịch và khối bằng 0, từ đó vẫn xác định được ma trận Z cho nullspace.
+
+**🔗 See also:** [QR Factorization for Y and Z](./153_eliminaion_of_variables.md#node-nlqpdrl)
 
 <br>
 
