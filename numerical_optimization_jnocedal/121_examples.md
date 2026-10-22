@@ -184,7 +184,7 @@
 >
 >
 >
-> Đại ý là đầu tiên ông lập luận rằng để từ một điểm feasible ta di chuyển đến một điểm feasible khác (ví dụ từ x trên đường tròn, ta move tới điểm khác trên đường tròn), thì từ linear approx hàm c1(x + s) ≈ c1(x) + ∇c1(x)Ts, và cộng với ta có c1(x + s) = c1(x) = 0 (do x + s cũng feasible, nên c1(x + s) phải = 0) dẫn đến ∇c1(x)Ts = 0 → gradient của c1 tại x sẽ vuông góc với s. Điều này hàm nghĩa là: **tại x bất kì trên đường tròn, chỉ cần di chuyển theo hướng s (với step nhỏ) có hướng vuông góc với gradient của c tại đó, thì ta sẽ vẫn đến được một điểm feasible mới**.
+> Đại ý là đầu tiên ông lập luận rằng để từ một điểm feasible ta di chuyển đến một điểm feasible khác (ví dụ từ x trên đường tròn, ta move tới điểm khác trên đường tròn), thì từ linear approx hàm c1(x + s) ≈ c1(x) + ∇c1(x)ᵀs, và cộng với ta có c1(x + s) = c1(x) = 0 (do x + s cũng feasible, nên c1(x + s) phải = 0) dẫn đến ∇c1(x)ᵀs = 0 → gradient của c1 tại x sẽ vuông góc với s. Điều này hàm nghĩa là: **tại x bất kì trên đường tròn, chỉ cần di chuyển theo hướng s (với step nhỏ) có hướng vuông góc với gradient của c tại đó, thì ta sẽ vẫn đến được một điểm feasible mới**.
 >
 >
 >
@@ -192,7 +192,7 @@
 >
 >
 >
-> đi từ x đến x + s với xải bước rất nhỏ, thì linear approx hàm f cho ta: f(x+s) ≈ f(x) + ∇f(x)Ts ⇔ ∇f(x)Ts ≈ f(x+s) - f(x). Từ đó để f(x+s) &lt; f(x) ⇔ f(x+s) - f(x) &lt; 0 ⇔ ∇f(x)Ts phải âm. Và điều này ý nghĩa là, **để giảm thêm hàm f từ một điểm x đang feasible, ta sẽ cần đi theo hướng s sao cho nó hợp với gradient ∇f(x) một góc tù**
+> đi từ x đến x + s với xải bước rất nhỏ, thì linear approx hàm f cho ta: f(x+s) ≈ f(x) + ∇f(x)ᵀs ⇔ ∇f(x)ᵀs ≈ f(x+s) - f(x). Từ đó để f(x+s) &lt; f(x) ⇔ f(x+s) - f(x) &lt; 0 ⇔ ∇f(x)ᵀs phải âm. Và điều này ý nghĩa là, **để giảm thêm hàm f từ một điểm x đang feasible, ta sẽ cần đi theo hướng s sao cho nó hợp với gradient ∇f(x) một góc tù**
 >
 >
 >
@@ -200,7 +200,7 @@
 >
 >
 >
-> Và để chứng minh ta sẽ chỉ ra rằng Giả sử điểm đang đứng chưa thỏa ∇f(x) và ∇c1(x) song song, thì ta sẽ luôn có vector s thỏa hai điều trên: ∇f(x)Ts &lt; 0 và ∇c1(x)Ts &lt; 0
+> Và để chứng minh ta sẽ chỉ ra rằng Giả sử điểm đang đứng chưa thỏa ∇f(x) và ∇c1(x) song song, thì ta sẽ luôn có vector s thỏa hai điều trên: ∇f(x)ᵀs &lt; 0 và ∇c1(x)ᵀs &lt; 0
 >
 > Đó là lấy vector s như sau: Là **hình chiếu của ∇f(x) lên cái subspace sau đây**: **orthogonal complement của span{∇c1(x)}**:
 >
@@ -218,19 +218,19 @@
 >
 >
 >
-> Chiếu u lên span{∇c1(x)}, ví dụ được u' → u' = ∇c1(x)∇c1(x)Tu/||∇c1(x)||^2
+> Chiếu u lên span{∇c1(x)}, ví dụ được u' → u' = ∇c1(x)∇c1(x)ᵀu/||∇c1(x)||^2
 >
 >
 >
-> phần dư u - u' = u - ∇c1(x)∇c1(x)Tu / ||∇c1(x)||^2
+> phần dư u - u' = u - ∇c1(x)∇c1(x)ᵀu / ||∇c1(x)||^2
 >
 >
 >
-> = \[I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2\]u
+> = \[I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\]u
 >
 >
 >
-> Do đó matrix chiếu lên orthogonal complement của span{∇c1(x)} chính là P = \[I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2\].
+> Do đó matrix chiếu lên orthogonal complement của span{∇c1(x)} chính là P = \[I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\].
 >
 >
 >
@@ -238,9 +238,9 @@
 >
 >
 >
-> \[I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2\] (-∇f(x))
+> \[I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\] (-∇f(x))
 >
-> = - \[I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2\] ∇f(x)
+> = - \[I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\] ∇f(x)
 >
 >
 >
@@ -248,15 +248,15 @@
 >
 >
 >
-> ∇c1(x)Td^ = \[-∇c1(x)T\[I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2\] ∇f(x)
+> ∇c1(x)ᵀd^ = \[-∇c1(x)ᵀ\[I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\] ∇f(x)
 >
 >
 >
-> = \[-∇c1(x)T + ∇c1(x)T∇c1(x)∇c1(x)T/||∇c1(x)||^2\] ∇f(x)
+> = \[-∇c1(x)ᵀ + ∇c1(x)ᵀ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\] ∇f(x)
 >
 >
 >
-> = \[-∇c1(x)T + ∇c1(x)T\] ∇f(x)
+> = \[-∇c1(x)ᵀ + ∇c1(x)ᵀ\] ∇f(x)
 >
 >
 >
@@ -264,15 +264,15 @@
 >
 >
 >
-> =0 → thỏa ∇c1(x)Td^ = 0
+> =0 → thỏa ∇c1(x)ᵀd^ = 0
 >
 >
 >
-> Và ∇f(x)Td^ = -∇f(x)T\[I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2\] ∇f(x)
+> Và ∇f(x)ᵀd^ = -∇f(x)ᵀ\[I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2\] ∇f(x)
 >
 >
 >
-> = - ∇f(x)TP∇f(x), là - quadratic form của matrix P
+> = - ∇f(x)ᵀP∇f(x), là - quadratic form của matrix P
 >
 >
 >
@@ -280,11 +280,11 @@
 >
 >
 >
-> Và tính chất đối xứng PT = P  (ví dụ như dễ thấy ở đây I - ∇c1(x)∇c1(x)T/||∇c1(x)||^2 là đối xứng)
+> Và tính chất đối xứng Pᵀ = P  (ví dụ như dễ thấy ở đây I - ∇c1(x)∇c1(x)ᵀ/||∇c1(x)||^2 là đối xứng)
 >
 >
 >
-> Do đó quadratic form của nó: xTPx = xTPPx = xTPTPx = (Px)T(Px) = ||Px||^2 ≥ 0 ∀x
+> Do đó quadratic form của nó: xᵀPx = xᵀPPx = xᵀPᵀPx = (Px)ᵀ(Px) = ||Px||^2 ≥ 0 ∀x
 >
 >
 >
@@ -292,7 +292,7 @@
 >
 >
 >
-> Nên quay lại đây ta có - ∇f(x)TP∇f(x) ≤ 0.
+> Nên quay lại đây ta có - ∇f(x)ᵀP∇f(x) ≤ 0.
 >
 >
 >
@@ -300,7 +300,7 @@
 >
 >
 >
-> ⇒ d^ thỏa ∇f(x)Td^ &lt; 0.
+> ⇒ d^ thỏa ∇f(x)ᵀd^ &lt; 0.
 >
 >
 >
@@ -400,7 +400,7 @@
 >
 >
 >
-> Rồi, với s nhỏ, để x+s nằm trong lân cận x, ta có thể xấp xỉ hàm c1(x+s) bởi hàm tuyến tính: c1(x+s) ≈ c1(x) + ∇c1(x)Ts. Và để đến được x+s vẫn feasible, thì s phải thỏa c1(x+s) ≥ 0. Kết hợp với c1(x+s) ≈ c1(x) + ∇c1(x)Ts ta có thể nói rằng s phải thỏa: c1(x) + ∇c1(x)Ts ≥ 0
+> Rồi, với s nhỏ, để x+s nằm trong lân cận x, ta có thể xấp xỉ hàm c1(x+s) bởi hàm tuyến tính: c1(x+s) ≈ c1(x) + ∇c1(x)ᵀs. Và để đến được x+s vẫn feasible, thì s phải thỏa c1(x+s) ≥ 0. Kết hợp với c1(x+s) ≈ c1(x) + ∇c1(x)ᵀs ta có thể nói rằng s phải thỏa: c1(x) + ∇c1(x)ᵀs ≥ 0
 >
 >
 >
@@ -408,15 +408,15 @@
 >
 >
 >
-> f(x+s) ≈ f(x) + ∇f(x)Ts
+> f(x+s) ≈ f(x) + ∇f(x)ᵀs
 >
 >
 >
-> và để đi xuống hơn nữa (giảm f hơn nữa) thì s phải thoả ∇f(x)Ts ≈ f(x+s) - f(x) &lt; 0 ⇔ ∇f(x)Ts &lt; 0.
+> và để đi xuống hơn nữa (giảm f hơn nữa) thì s phải thoả ∇f(x)ᵀs ≈ f(x+s) - f(x) &lt; 0 ⇔ ∇f(x)ᵀs &lt; 0.
 >
 >
 >
-> Như vậy muốn từ x, tiếp tục giảm f mà vẫn feasible thì phải tìm được s sao cho: ∇f(x)Ts &lt; 0 → s hợp với ∇f(x) góc tù. Và c1(x) + ∇c1(x)Ts ≥ 0
+> Như vậy muốn từ x, tiếp tục giảm f mà vẫn feasible thì phải tìm được s sao cho: ∇f(x)ᵀs &lt; 0 → s hợp với ∇f(x) góc tù. Và c1(x) + ∇c1(x)ᵀs ≥ 0
 >
 >
 >
@@ -428,11 +428,11 @@
 >
 >
 >
-> Khi đó ta thấy điều kiện c1(x) + ∇c1(x)Ts ≥ 0 sẽ chỉ là: Miễn là s đừng có khiến ∇c1(x)Ts âm quá lớn, để có giá trị dương của c1(x) vẫn đủ để gánh, thì khi đó điều kiện này sẽ vẫn thỏa. Và như vậy thì có nghĩa là, s có thể là hướng tùy ý, miễn là độ lớn phải đảm bảo không được làm cho ∇c1(x)Ts quá âm khiến c1(x) không gánh nổi. 
+> Khi đó ta thấy điều kiện c1(x) + ∇c1(x)ᵀs ≥ 0 sẽ chỉ là: Miễn là s đừng có khiến ∇c1(x)ᵀs âm quá lớn, để có giá trị dương của c1(x) vẫn đủ để gánh, thì khi đó điều kiện này sẽ vẫn thỏa. Và như vậy thì có nghĩa là, s có thể là hướng tùy ý, miễn là độ lớn phải đảm bảo không được làm cho ∇c1(x)ᵀs quá âm khiến c1(x) không gánh nổi. 
 >
 >
 >
-> Và vì s có thể chọn hướng tùy ý (miễn là giới hạn độ dài), nên đương nhiên là có thể chọn s để thỏa điều kiện ∇f(x)Ts &lt; 0, tức hợp với ∇f(x) góc tù để giảm thêm f nữa. Tuy nhiên phải đặt điều kiện là ∇f(x) khác 0 (vì nếu nó đã bằng 0, thì s, dù chọn hướng bất kì cũng không thể có tích vô hướng với ∇f(x) âm được.
+> Và vì s có thể chọn hướng tùy ý (miễn là giới hạn độ dài), nên đương nhiên là có thể chọn s để thỏa điều kiện ∇f(x)ᵀs &lt; 0, tức hợp với ∇f(x) góc tù để giảm thêm f nữa. Tuy nhiên phải đặt điều kiện là ∇f(x) khác 0 (vì nếu nó đã bằng 0, thì s, dù chọn hướng bất kì cũng không thể có tích vô hướng với ∇f(x) âm được.
 >
 >
 >
@@ -448,7 +448,7 @@
 >
 >
 >
-> Khi đó, điều kiện tìm s để x+s vẫn feasible: c1(x) + ∇c1(x)Ts ≥ 0 trở thành ∇c1(x)Ts ≥ 0, mang ý nghĩa là s hợp ∇c1(x) góc vuông hoặc tù.
+> Khi đó, điều kiện tìm s để x+s vẫn feasible: c1(x) + ∇c1(x)ᵀs ≥ 0 trở thành ∇c1(x)ᵀs ≥ 0, mang ý nghĩa là s hợp ∇c1(x) góc vuông hoặc tù.
 >
 >
 >
@@ -472,7 +472,7 @@
 >
 >
 >
-> (trong sách có cách giải thích hơi khác, đó là điều kiện ∇f(x)Ts &lt; 0 và ∇c1(x)Ts ≥ 0 chính là phương trình của hai halfspace (nhờ học Convex Optim S.Boyd nên trong mấy chapter đầu đã học về halfspace rồi) và s sẽ giúp define ra hai cái halfspace này. Thế thì nếu tồn tại s mà thỏa cùng lúc hai cái này tức là tồn tại s khiến cho điểm đang đứng x nằm trong intersection của hai cái halfspace này. Từ đó ta suy luận rằng để mà không tồn tại s, thì chỉ có thể là ∇f(x) trùng hướng ∇c1(x), vì khi đó hai half space sẽ chia đôi không gian, và một cái là tập đóng (ý là chứa biên) một cái là tập mở. Nên không thể nào chúng có điểm chung)
+> (trong sách có cách giải thích hơi khác, đó là điều kiện ∇f(x)ᵀs &lt; 0 và ∇c1(x)ᵀs ≥ 0 chính là phương trình của hai halfspace (nhờ học Convex Optim S.Boyd nên trong mấy chapter đầu đã học về halfspace rồi) và s sẽ giúp define ra hai cái halfspace này. Thế thì nếu tồn tại s mà thỏa cùng lúc hai cái này tức là tồn tại s khiến cho điểm đang đứng x nằm trong intersection của hai cái halfspace này. Từ đó ta suy luận rằng để mà không tồn tại s, thì chỉ có thể là ∇f(x) trùng hướng ∇c1(x), vì khi đó hai half space sẽ chia đôi không gian, và một cái là tập đóng (ý là chứa biên) một cái là tập mở. Nên không thể nào chúng có điểm chung)
 >
 >
 >
@@ -581,7 +581,7 @@
 >
 >
 >
-> Thế thì với s rất ngắn, x+s sẽ rất gần x (≈x), cho phép hàm f(x+s) hành xử xấp xỉ như hàm tuyến tính: f(x+s) ≈ f(x) + ∇f(x)Ts. Như vậy, để giảm f, thì f(x+s) &lt; f(s), đồng nghĩa ∇f(s)Ts ≈ f(x+s) - f(x) phải &lt; 0. Như vậy, s phải hợp góc tù với ∇f(x) (i)
+> Thế thì với s rất ngắn, x+s sẽ rất gần x (≈x), cho phép hàm f(x+s) hành xử xấp xỉ như hàm tuyến tính: f(x+s) ≈ f(x) + ∇f(x)ᵀs. Như vậy, để giảm f, thì f(x+s) &lt; f(s), đồng nghĩa ∇f(s)ᵀs ≈ f(x+s) - f(x) phải &lt; 0. Như vậy, s phải hợp góc tù với ∇f(x) (i)
 >
 >
 >
