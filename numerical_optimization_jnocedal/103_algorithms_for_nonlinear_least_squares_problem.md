@@ -22,7 +22,7 @@
 >
 >
 >
-> Thế thì mình cần hiểu, **không phải là vì hàm objective là hàm tuyến tính theo x**. Không hề, vì **ngay cả khi r(x) là linear thì objective vốn là r(x)Tr(x), vẫn là hàm non-linear theo x**. Ta chỉ gọi là **linear least square bởi vì r(x) là linear function của x mà thôi**, và khi không có điều này, thì dĩ nhiên bài toán là non-linear least square.
+> Thế thì mình cần hiểu, **không phải là vì hàm objective là hàm tuyến tính theo x**. Không hề, vì **ngay cả khi r(x) là linear thì objective vốn là r(x)ᵀr(x), vẫn là hàm non-linear theo x**. Ta chỉ gọi là **linear least square bởi vì r(x) là linear function của x mà thôi**, và khi không có điều này, thì dĩ nhiên bài toán là non-linear least square.
 >
 >
 >
@@ -52,11 +52,11 @@
 >
 >
 >
-> ∇f(x) = J(x)Tr(x) (10.4)
+> ∇f(x) = J(x)ᵀr(x) (10.4)
 >
 >
 >
-> ∇^2f(x) = J(x)TJ(x) + Σi {∇^2ri(x) ri(x)} (10.5)
+> ∇^2f(x) = J(x)ᵀJ(x) + Σi {∇^2ri(x) ri(x)} (10.5)
 >
 >
 >
@@ -71,7 +71,7 @@
 >
 >
 >
-> Ý tưởng rất đơn giản: tại điểm đang đứng, ví dụ gọi là x0, ta sẽ coi như hàm số là hàm bậc hai: f(x) ≈ f(x0) + ∇f(x0)(x - x0) + (1/2)(x-x0)T ∇^2f(x0)(x-x0). Đặt đây là hàm g(p) = f(x0) + ∇f(x0)p + (1/2)pT∇^2f(x0)p (p = x - x0). Câu chuyện tiếp theo sẽ là, tìm minimizer của hàm quadratic g(p), bằng closed-form solution:
+> Ý tưởng rất đơn giản: tại điểm đang đứng, ví dụ gọi là x0, ta sẽ coi như hàm số là hàm bậc hai: f(x) ≈ f(x0) + ∇f(x0)(x - x0) + (1/2)(x-x0)ᵀ ∇^2f(x0)(x-x0). Đặt đây là hàm g(p) = f(x0) + ∇f(x0)p + (1/2)pᵀ∇^2f(x0)p (p = x - x0). Câu chuyện tiếp theo sẽ là, tìm minimizer của hàm quadratic g(p), bằng closed-form solution:
 >
 >
 >
@@ -99,19 +99,19 @@
 >
 >
 >
-> i) Đầu tiên, dễ thấy là Hessian có hai term, thì một term là J(x)TJ(x), thì term trong nhiều trường hợp, sẽ lấn át (dominant) term thứ hai, khiến cho việc bỏ đi term thứ hai không gây ra sai lệch nhiều, hay nói cách khác, chỉ dùng term thứ nhất cũng có thể xấp xỉ tốt Hessian, dẫn đến thuật toán này (gọi là Gauss-Newton) sẽ vẫn đạt tốt độ hội tụ nhanh như Newton thứ thiệt.
+> i) Đầu tiên, dễ thấy là Hessian có hai term, thì một term là J(x)ᵀJ(x), thì term trong nhiều trường hợp, sẽ lấn át (dominant) term thứ hai, khiến cho việc bỏ đi term thứ hai không gây ra sai lệch nhiều, hay nói cách khác, chỉ dùng term thứ nhất cũng có thể xấp xỉ tốt Hessian, dẫn đến thuật toán này (gọi là Gauss-Newton) sẽ vẫn đạt tốt độ hội tụ nhanh như Newton thứ thiệt.
 >
 >
 >
-> ii) Và ý thứ hai đó là, việc tính gradient J(x)Tr(x) rồi thì tính thêm cái cục J(x)TJ(x) sẽ không tốn thêm mấy (là vì đã tính ra J(x) phục vụ cho việc tính gradient rồi thì tính J(x)TJ(x) chỉ là nhân matrix matrix, không tốn thêm gì nhiều)
+> ii) Và ý thứ hai đó là, việc tính gradient J(x)ᵀr(x) rồi thì tính thêm cái cục J(x)ᵀJ(x) sẽ không tốn thêm mấy (là vì đã tính ra J(x) phục vụ cho việc tính gradient rồi thì tính J(x)ᵀJ(x) chỉ là nhân matrix matrix, không tốn thêm gì nhiều)
 >
 >
 >
-> Tóm lại, vì hai đặc điểm này, nên ta dùng J(x)TJ(x) thay cho ∇^2f(x), để rồi Newton equation (giúp giải tìm Newton step) sẽ là:
+> Tóm lại, vì hai đặc điểm này, nên ta dùng J(x)ᵀJ(x) thay cho ∇^2f(x), để rồi Newton equation (giúp giải tìm Newton step) sẽ là:
 >
 >
 >
-> J(xk)TJ(xk)p = - J(xk)Trk
+> J(xk)ᵀJ(xk)p = - J(xk)ᵀrk
 >
 >
 >
@@ -119,7 +119,7 @@
 >
 >
 >
-> Một ý cuối đó là, cái vụ term J(x)TJ(x) dominate term thứ hai thường xuất hiện trong các bài toán mà residual nhỏ, hoặc chúng là hàm gần tuyến tính, và đây là những yếu tố xuất hiện nhiều trong cái bài toán thực tế, giúp cho việc dùng Gauss Newton sẽ có tác dụng.
+> Một ý cuối đó là, cái vụ term J(x)ᵀJ(x) dominate term thứ hai thường xuất hiện trong các bài toán mà residual nhỏ, hoặc chúng là hàm gần tuyến tính, và đây là những yếu tố xuất hiện nhiều trong cái bài toán thực tế, giúp cho việc dùng Gauss Newton sẽ có tác dụng.
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **97/100** · ✓ Move on
@@ -139,33 +139,33 @@
 > [!NOTE]
 > Tiếp theo, đại khái là nói về một ưu điểm nữa của Gauss-Newton. Có lẽ nên ôn nhanh, Gauss-Newton là gì:
 >
-> Bối cảnh là ta muốn quay lại đối mặt với bài toán least-square trong trường hợp residual là non-linear function, mà trước đó, trong 10.2, khi ta xét case residual r(x) là linear function, để rồi có dạng Jx - y, khiến việc giải bài toán minimize ||r(x)||^2 trở thành bài toán giải hệ phương trình tuyến tính (normal equation, JTJx = JTb) và từ đó có thể dùng các thuật toán đại số tuyến tính đơn thuần như Cholesky factorization giải normal equation, QR factorization based method và SVD based method. Trừ trường hợp bài toán có quy mô lớn thì ta sẽ dùng Conjugate Gradient method - là thuật toán chuyên trị việc giải tìm nghiệm của hệ Ax = b.
+> Bối cảnh là ta muốn quay lại đối mặt với bài toán least-square trong trường hợp residual là non-linear function, mà trước đó, trong 10.2, khi ta xét case residual r(x) là linear function, để rồi có dạng Jx - y, khiến việc giải bài toán minimize ||r(x)||^2 trở thành bài toán giải hệ phương trình tuyến tính (normal equation, JᵀJx = Jᵀb) và từ đó có thể dùng các thuật toán đại số tuyến tính đơn thuần như Cholesky factorization giải normal equation, QR factorization based method và SVD based method. Trừ trường hợp bài toán có quy mô lớn thì ta sẽ dùng Conjugate Gradient method - là thuật toán chuyên trị việc giải tìm nghiệm của hệ Ax = b.
 >
-> Thì nay, không còn sự tiện lợi đó, ta mới lại xét một đặc điểm của bài toán least square mà gs đề cập ở phần đầu chương 10, cũng như vừa nhắc lại ở note trước, đó là, bài toán này có gradient của hàm objective ∇f(x) = J(x)Tr(x) và Hessian = J(x)TJ(x) + một term thứ hai.
+> Thì nay, không còn sự tiện lợi đó, ta mới lại xét một đặc điểm của bài toán least square mà gs đề cập ở phần đầu chương 10, cũng như vừa nhắc lại ở note trước, đó là, bài toán này có gradient của hàm objective ∇f(x) = J(x)ᵀr(x) và Hessian = J(x)ᵀJ(x) + một term thứ hai.
 >
->  Thế thì, đặc điểm tốt của bài toán least square đó là, gs nói đại ý là đa số trường hợp thực tế cái term thứ hai của Hessian chính xác rất không đáng kể so với term thứ nhất J(x)TJ(x), khiến việc ta dùng J(x)TJ(x) để xấp xỉ cho Hessian là chấp nhận được. Và như vậy, dự trên sự thật là đằng nào thì ta cũng sẽ có J(x), nên ta sẽ có luôn Hessian xấp xỉ J(x)TJ(x), và vì nó tốt (phần lớn là xấp xỉ tốt cho Hessian thật) nên mới nói là ta có Hessian miễn phí, từ đó có thể dùng thuật toán Newton để giải bài toán này. Nhưng vì không hẵn là Newton thật (vì chỉ khi dùng Hessian thật, thì mới là Newton step thật), nên mới gọi là Gauss Newton. Dĩ nhiên, dùng J(x)TJ(x) thay cho Hessian ∇^2f(x) thì ta không gọi là Newton step pk_N (= -\[∇^2f(x)\]inv ∇f(x)) nữa mà gọi là Gauss-Newton step pk_GN = -(JkTJk)inv JkTr.
+>  Thế thì, đặc điểm tốt của bài toán least square đó là, gs nói đại ý là đa số trường hợp thực tế cái term thứ hai của Hessian chính xác rất không đáng kể so với term thứ nhất J(x)ᵀJ(x), khiến việc ta dùng J(x)ᵀJ(x) để xấp xỉ cho Hessian là chấp nhận được. Và như vậy, dự trên sự thật là đằng nào thì ta cũng sẽ có J(x), nên ta sẽ có luôn Hessian xấp xỉ J(x)ᵀJ(x), và vì nó tốt (phần lớn là xấp xỉ tốt cho Hessian thật) nên mới nói là ta có Hessian miễn phí, từ đó có thể dùng thuật toán Newton để giải bài toán này. Nhưng vì không hẵn là Newton thật (vì chỉ khi dùng Hessian thật, thì mới là Newton step thật), nên mới gọi là Gauss Newton. Dĩ nhiên, dùng J(x)ᵀJ(x) thay cho Hessian ∇^2f(x) thì ta không gọi là Newton step pk_N (= -\[∇^2f(x)\]inv ∇f(x)) nữa mà gọi là Gauss-Newton step pk_GN = -(JkTJk)⁻¹ JkTr.
 >
 > (và được biết thì Gauss cũng chính với Gaussen distribution của xác suất, hay khử Gauss của đại số tuyến tính)
 >
-> Vậy thì quay lại đây, tiếp nối hai ưu điểm ở trên (free Hessian, và J(x)TJ(x) xấp xỉ tốt Hessian) thì ở đây nói về ưu điểm thứ ba: Là khi Jk full rank thì ∇fk = JkTrk khác 0 và pk_GN (Gauss-Newton step) trở thành descent direction.
+> Vậy thì quay lại đây, tiếp nối hai ưu điểm ở trên (free Hessian, và J(x)ᵀJ(x) xấp xỉ tốt Hessian) thì ở đây nói về ưu điểm thứ ba: Là khi Jk full rank thì ∇fk = JkTrk khác 0 và pk_GN (Gauss-Newton step) trở thành descent direction.
 >
-> Ôn lại thế nào gọi là descent direction: Đơn giản là hướng đi giúp ta đi xuống, thể hiện bởi directional derivative ≤ 0: ∇f(x)Tp ≤ 0. Giúp cho khi đi ra khỏi x một đoạn nhỏ, theo theo hướng p này, xét hàm g(t) = f(x) giới hạn theo phương p: g(t) = f(x + tp). g'(t) = ∇f(x+tp)Tp, và g'(t)|t=0 = ∇f(x)Tp, với việc p là descent direction thì g'(t)|t=0 ≤ 0. Nên nếu đi ra khỏi x một đoạn nhỏ theo hướng p, thì theo linear approx g(t) ≈ g(0) + g'(0)t sẽ &lt; g(0) ⇨ giá trị hàm giảm xuống, nên mới gọi là descent direction (chú ý, và steepest descent - độ dốc lớn nhất,  chính là -∇f(x))
+> Ôn lại thế nào gọi là descent direction: Đơn giản là hướng đi giúp ta đi xuống, thể hiện bởi directional derivative ≤ 0: ∇f(x)ᵀp ≤ 0. Giúp cho khi đi ra khỏi x một đoạn nhỏ, theo theo hướng p này, xét hàm g(t) = f(x) giới hạn theo phương p: g(t) = f(x + tp). g'(t) = ∇f(x+tp)ᵀp, và g'(t)|t=0 = ∇f(x)ᵀp, với việc p là descent direction thì g'(t)|t=0 ≤ 0. Nên nếu đi ra khỏi x một đoạn nhỏ theo hướng p, thì theo linear approx g(t) ≈ g(0) + g'(0)t sẽ &lt; g(0) ⇨ giá trị hàm giảm xuống, nên mới gọi là descent direction (chú ý, và steepest descent - độ dốc lớn nhất,  chính là -∇f(x))
 >
 > Vậy quay lại đây, xét directional derivative wrt hướng Gauss-Newton: ∇fkTpkGN
 >
 >
 >
-> Dùng pkGN = -(JkTJk)inv ∇fk ⇨ ∇fk = -JkTJk pkGN
+> Dùng pkGN = -(JkTJk)⁻¹ ∇fk ⇨ ∇fk = -JkTJk pkGN
 >
-> ⇨ ∇fkTpkGN = (-JkTJk pkGN)TpkGN
+> ⇨ ∇fkTpkGN = (-JkTJk pkGN)ᵀpkGN
 >
-> = (-(JkTJk)pkGN)TpkGN
+> = (-(JkTJk)pkGN)ᵀpkGN
 >
-> = -(pkGN)T(JkTJk)TpkGN
+> = -(pkGN)ᵀ(JkTJk)ᵀpkGN
 >
-> = -(pkGN)TJkTJkpkGN
+> = -(pkGN)ᵀJkTJkpkGN
 >
-> = -(JkpkGN)T(JkpkGN)
+> = -(JkpkGN)ᵀ(JkpkGN)
 >
 > = - ||JkpkGN||^2 và đây là negative square norm, nên đương nhiên ≤ 0 cho thấy pkGN là descent direction.
 >
@@ -190,15 +190,15 @@
 <p align="center"><kbd><img src="assets/k5tk99f3q6g.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Ôn lại chút xíu, nói một cách ngắn gọn thì Gauss Newton method là khi ta dùng JkTJk (vốn chỉ là phần thứ nhất trong công thức của Hessian = ∇^2fk = JkTJk + term thứ 2) để xấp xỉ Hessian, và đây là một ưu điểm của bài toán least square vì thực tế thường cho phép xấp xỉ này, và cũng như là nhờ vậy, việc có Hessian trở nên không tốn kém mấy. Và như vậy, công thức Newton step trở thành công thức Gauss Newton: pkGN = -(JkTJk)inv JkTr, là solution của (JkTJk) pkGN = -JkTr → Công thức này chính là 10.23,
+> Ôn lại chút xíu, nói một cách ngắn gọn thì Gauss Newton method là khi ta dùng JkTJk (vốn chỉ là phần thứ nhất trong công thức của Hessian = ∇^2fk = JkTJk + term thứ 2) để xấp xỉ Hessian, và đây là một ưu điểm của bài toán least square vì thực tế thường cho phép xấp xỉ này, và cũng như là nhờ vậy, việc có Hessian trở nên không tốn kém mấy. Và như vậy, công thức Newton step trở thành công thức Gauss Newton: pkGN = -(JkTJk)⁻¹ JkTr, là solution của (JkTJk) pkGN = -JkTr → Công thức này chính là 10.23,
 >
-> Vậy thì ở đây ta sẽ nhớ lại bài toán linear least square: Nói một cách ngắn gọn, là khi residual r(x) là tuyến tính (tí quay lại chỗ này), để rồi có dạng r(x) = Jx - y. Khi đó objective là (1/2)||r(x)||^2 = (1/2)(Jx - y)T(Jx - y) = (1/2)(xTJT - yT)(Jx - y) = (1/2)xTJTJx - (1/2)yTJx - (1/2)xTJTy + (1/2)yTy = (1/2)xTJTJx - yTJx + (1/2)yTy. Và gradient lúc này là JTJx-JTy và Hessian là JTJ.
+> Vậy thì ở đây ta sẽ nhớ lại bài toán linear least square: Nói một cách ngắn gọn, là khi residual r(x) là tuyến tính (tí quay lại chỗ này), để rồi có dạng r(x) = Jx - y. Khi đó objective là (1/2)||r(x)||^2 = (1/2)(Jx - y)ᵀ(Jx - y) = (1/2)(xᵀJᵀ - yT)(Jx - y) = (1/2)xᵀJᵀJx - (1/2)yTJx - (1/2)xᵀJᵀy + (1/2)yTy = (1/2)xᵀJᵀJx - yTJx + (1/2)yTy. Và gradient lúc này là JᵀJx-Jᵀy và Hessian là JᵀJ.
 >
-> Lúc này bài toán minimize hàm ||r(x)||^2, là bài toán tối ưu hàm quadratic, có closed form solution: là nghiệm của phương trình normal equation: JTJx - JTy = 0 ⇔ JTJx = JTy → đây là 10.14.
+> Lúc này bài toán minimize hàm ||r(x)||^2, là bài toán tối ưu hàm quadratic, có closed form solution: là nghiệm của phương trình normal equation: JᵀJx - Jᵀy = 0 ⇔ JᵀJx = Jᵀy → đây là 10.14.
 >
-> Vậy thì so sánh 10.23 (JkTJk) pkGN = JkTr, giúp giải ra Gauss Newton step, với 10.14, JTJx = JTy giúp giải ra solution của bài toán linear least square, ta thấy có sự tương đồng. Nên dễ thấy việc tìm pkGN chính là giải một bài toán linear least square khác.
+> Vậy thì so sánh 10.23 (JkTJk) pkGN = JkTr, giúp giải ra Gauss Newton step, với 10.14, JᵀJx = Jᵀy giúp giải ra solution của bài toán linear least square, ta thấy có sự tương đồng. Nên dễ thấy việc tìm pkGN chính là giải một bài toán linear least square khác.
 >
-> Do đó nếu JTJx = JTy normal equation của bài toán minimize (1/2)||Jx - y||^2 thì (JkTJk) pkGN = -JkTrk chính là normal equation của bài toán minimize (1/2)||Jk p - (-rk)||^2 = (1/2)||Jkp + rk||^2 → Đây là 10.26
+> Do đó nếu JᵀJx = Jᵀy normal equation của bài toán minimize (1/2)||Jx - y||^2 thì (JkTJk) pkGN = -JkTrk chính là normal equation của bài toán minimize (1/2)||Jk p - (-rk)||^2 = (1/2)||Jkp + rk||^2 → Đây là 10.26
 >
 > Nói thêm chút về điểm (1) ở trên: Trong bối cảnh Nocedal, người ta chỉ tập trung vào vấn đề tối ưu hóa, nên chỉ đặt ra vấn đề là ta muốn minimize hàm f(x) = Σi ri(x)^2 = ||r(x)||^2 với r(x) = \[r1(x), ...rn(x)\] và ri(x) là residual function theo x, x là biến tối ưu. Và khi hàm ri(x) là hàm tuyến tính theo x, kéo theo r(x) cũng vậy, để lúc này r(x) có thể thể hiện bởi Jx - y, ta có bài toán linear least square.
 >
@@ -219,17 +219,17 @@
 <p align="center"><kbd><img src="assets/o2nfcubz7yd.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Đoạn này có thể hiểu như vầy, đại ý là khi ta có m &gt;&gt; n nhiều, thì khi đó, việc tính và lưu trữ J (kích thước m × n) là không không ngoan, bởi vì dù gì việc tính Gauss Newton step chỉ cần JTJ và JTr thôi, và JTJ có shape (n × m) (m × n) = (n × n) và JTr chỉ là (n × m) (m × 1) = (n × 1), tức là sẽ có kích thước nhỏ hơn nhiều.
+> Đoạn này có thể hiểu như vầy, đại ý là khi ta có m &gt;&gt; n nhiều, thì khi đó, việc tính và lưu trữ J (kích thước m × n) là không không ngoan, bởi vì dù gì việc tính Gauss Newton step chỉ cần JᵀJ và Jᵀr thôi, và JᵀJ có shape (n × m) (m × n) = (n × n) và Jᵀr chỉ là (n × m) (m × 1) = (n × 1), tức là sẽ có kích thước nhỏ hơn nhiều.
 >
 > Vậy thì ta hiểu 10.27 thế này:
 >
-> Theo góc nhìn thứ 4 trong việc nhân hai matrix của thầy Strang MIT 18.06, thì JTJ chính là tổng các rank 1 matrix tạo bởi các outer product của \[cột j của JT\] và \[hàng j của J\] với j = 1,2,...m. Mà cột j của JT chính là hàng j của J, và là chính là vector chứa các partial derivative của ri đối vối x: ∇rj. Vậy nên JTJ = Σj=1:m ∇rj(∇rj)T.
+> Theo góc nhìn thứ 4 trong việc nhân hai matrix của thầy Strang MIT 18.06, thì JᵀJ chính là tổng các rank 1 matrix tạo bởi các outer product của \[cột j của Jᵀ\] và \[hàng j của J\] với j = 1,2,...m. Mà cột j của Jᵀ chính là hàng j của J, và là chính là vector chứa các partial derivative của ri đối vối x: ∇rj. Vậy nên JᵀJ = Σj=1:m ∇rj(∇rj)ᵀ.
 >
-> Từ đó mới mở ra cách tính JTJ theo lối iterative: cho chạy vòng lặp từ 1 tới m, và tính và cộng dồn ∇rj(∇rj)T.
+> Từ đó mới mở ra cách tính JᵀJ theo lối iterative: cho chạy vòng lặp từ 1 tới m, và tính và cộng dồn ∇rj(∇rj)ᵀ.
 >
-> Tương tự, JTr, theo góc nhìn thứ hai của việc nhân matrix với vector, là linear combination các cột của JT, cũng là các hàng của J, là ∇rj với hệ số là các phần tử của r: JTr = Σj=1:m rj(∇rj). Từ đó cho phép ta tính cái này theo kiểu cộng dồn tương tự.
+> Tương tự, Jᵀr, theo góc nhìn thứ hai của việc nhân matrix với vector, là linear combination các cột của Jᵀ, cũng là các hàng của J, là ∇rj với hệ số là các phần tử của r: Jᵀr = Σj=1:m rj(∇rj). Từ đó cho phép ta tính cái này theo kiểu cộng dồn tương tự.
 >
-> Nói chung là, chỉ là đừng có dại mà tính J làm gì khi chỉ cần JTJ và JTr.
+> Nói chung là, chỉ là đừng có dại mà tính J làm gì khi chỉ cần JᵀJ và Jᵀr.
 
 <br>
 
@@ -242,11 +242,11 @@
 > [!NOTE]
 > Đoạn này đại khái là:
 >
->  Còn nhớ, bài toán least square là bài toán tối ưu trong đó ta minimize f(x) =(1/2) Σj rj(x)^2 = ||r(x)||^2 = r(x)Tr(x).
+>  Còn nhớ, bài toán least square là bài toán tối ưu trong đó ta minimize f(x) =(1/2) Σj rj(x)^2 = ||r(x)||^2 = r(x)ᵀr(x).
 >
-> Và với cái này, ta đã chứng minh ∇f(x) = J(x)Tr(x) và Hessian ∇^2f(x) là J(x)TJ(x) + Σj=1:m rj(x) ∇^2rj(x)
+> Và với cái này, ta đã chứng minh ∇f(x) = J(x)ᵀr(x) và Hessian ∇^2f(x) là J(x)ᵀJ(x) + Σj=1:m rj(x) ∇^2rj(x)
 >
-> Và sau đó, ta mới lập luận rằng, trong bài toán least square thực tế, nhiều khi residual nhỏ, khiến có cái term thứ hai của Hessian không đáng kể so với JTJ, cũng như là khi đến gần solution thì term này cũng nhỏ. Do đó, ta có thể lấy JTJ làm xấp xỉ tốt, cho Hessian. Mà dù gì thì ta cũng sẽ tính gradient J để tính JTr, nên chỉ việc tính JTJ cũng không khó, và ta gọi đây là free Hessian. Từ đó, việc dùng JTJ thay cho Hessian chính xác trong việc tính Newton step giúp ta có Gauss Newton method. Mà việc giải tìm pkNG là tìm nghiệm của hệ (JkTJk)pkGN = - JkTrk thì chính là giải điều kiện tối ưu cần bậc nhất của bài toán optimization: minimize (1/2) ||Jkp + rk||^2
+> Và sau đó, ta mới lập luận rằng, trong bài toán least square thực tế, nhiều khi residual nhỏ, khiến có cái term thứ hai của Hessian không đáng kể so với JᵀJ, cũng như là khi đến gần solution thì term này cũng nhỏ. Do đó, ta có thể lấy JᵀJ làm xấp xỉ tốt, cho Hessian. Mà dù gì thì ta cũng sẽ tính gradient J để tính Jᵀr, nên chỉ việc tính JᵀJ cũng không khó, và ta gọi đây là free Hessian. Từ đó, việc dùng JᵀJ thay cho Hessian chính xác trong việc tính Newton step giúp ta có Gauss Newton method. Mà việc giải tìm pkNG là tìm nghiệm của hệ (JkTJk)pkGN = - JkTrk thì chính là giải điều kiện tối ưu cần bậc nhất của bài toán optimization: minimize (1/2) ||Jkp + rk||^2
 >
 > Thế thì ở đây ta nhìn thêm góc nhìn khác: là ta xét hàm r(x), và thay nó bằng xấp xỉ tuyến tính của nó:
 >
@@ -264,7 +264,7 @@
 >
 > Và cái này thì thật ra cũng chỉ là: dùng hàm g xấp xỉ bậc hai của hàm f và đi giải bài toán minimize hàm g, là bài toán minimize hàm bậc hai, có closed form minimizer. Vốn dĩ cũng là cách ta giải các bài toán tối ưu đầu giờ thôi.
 >
-> Có nghĩa là, nó cũng y như việc ta giải bài toán minimize hàm f(x) = r(x)Tr(x) bằng Newton method: Ta cũng sẽ tại mỗi iteration, đặt ra subproblem: minimize hàm g(p) = xấp xỉ bậc hai của hàm f tại điểm đang đứng, và giải tìm Newton step p để nhảy đến minimizer của g. Thì trong bài toán này, newton step của g chính là Gauss Newton step pkGN.
+> Có nghĩa là, nó cũng y như việc ta giải bài toán minimize hàm f(x) = r(x)ᵀr(x) bằng Newton method: Ta cũng sẽ tại mỗi iteration, đặt ra subproblem: minimize hàm g(p) = xấp xỉ bậc hai của hàm f tại điểm đang đứng, và giải tìm Newton step p để nhảy đến minimizer của g. Thì trong bài toán này, newton step của g chính là Gauss Newton step pkGN.
 >
 >  Cuối cùng, gs cho biết, tuy là là tính Newton step (Gauss Newton step), mà theo lý mà nói ta có thể xài unit step factor (tức là nhảy ngay đến điểm tiếp theo bởi hướng và độ dài của Newton step). Tuy nhiên các thuật toán áp dùng Gauss Newton sẽ thường cũng chỉ dùng pkGN làm search direction, và sẽ đi tìm step size phù hợp, có thể là Armijo hay Wolfe condition đã bàn ở chap 3.
 
@@ -315,9 +315,9 @@
 >
 > Thế thì như đã nói, phương pháp Gauss Newton sẽ chỉ giống Newton method nhưng thay vì dùng Hessian ∇^2f(x) thì ta dùng JkTJk để xấp xỉ cho nó. Và Gauss Newton step là nghiệm của (JkTJk) pkGN = JkTrk (tức ∇fk).
 >
-> Và để hệ có nghiệm để giải ra được pkGN, thì JkTJk phải full rank, invertible. Mà nhờ MIT 1806 mình đã biết rồi, matrix ATA và A có chung nullspace. Nên muốn ATA full rank thì A phải full column rank. Do đó, nếu Jk rank deficient thì JkTJk sẽ không full rank, non invertible → không tồn tại pkGN (tức là thuật toán giải hệ trên sẽ fail)
+> Và để hệ có nghiệm để giải ra được pkGN, thì JkTJk phải full rank, invertible. Mà nhờ MIT 1806 mình đã biết rồi, matrix AᵀA và A có chung nullspace. Nên muốn AᵀA full rank thì A phải full column rank. Do đó, nếu Jk rank deficient thì JkTJk sẽ không full rank, non invertible → không tồn tại pkGN (tức là thuật toán giải hệ trên sẽ fail)
 >
-> Nhưng nếu Jk gần rank deficient, tức các cột gần phụ thuộc chứ chưa hẳn là phụ thuộc, thì lúc này JkTJk vẫn invertible, nhưng nó sẽ có eigenvalue rất nhỏ, khiến eigenvalue của JkTJk sẽ rất lớn và dẫn đến nếu vô tình JkTrk gần trùng với hướng của eiegenvector thì (JkTJk)inv JkTrk tức pkGN sẽ có độ dài khổng lồ → thuật toán bị phân kì và line search cũng không thể khắc phục được.
+> Nhưng nếu Jk gần rank deficient, tức các cột gần phụ thuộc chứ chưa hẳn là phụ thuộc, thì lúc này JkTJk vẫn invertible, nhưng nó sẽ có eigenvalue rất nhỏ, khiến eigenvalue của JkTJk sẽ rất lớn và dẫn đến nếu vô tình JkTrk gần trùng với hướng của eiegenvector thì (JkTJk)⁻¹ JkTrk tức pkGN sẽ có độ dài khổng lồ → thuật toán bị phân kì và line search cũng không thể khắc phục được.
 >
 > ---
 >
@@ -335,7 +335,7 @@
 >
 > Và với bài toán subproblem, thì ta có thể đi theo hai cách line search hoặc trust region.
 >
-> Và nếu đi theo line search approach, thì đáng lẽ ta sẽ theo các các tiếp cận đã biết như steepest direction hay Newton direciton, rồi tính step size. Nhưng vì tính chất của bài toán least square có nhiều thuận lợi nên ta có thể dùng JTJ để xấp xỉ tốt cho Hessian, và như vậy, ta sẽ đi tính Gauss Newton direction, thay vì Newton direction. Rồi cũng tính step size và nhảy đến điểm tiếp theo, và cứ thế lặp lại.
+> Và nếu đi theo line search approach, thì đáng lẽ ta sẽ theo các các tiếp cận đã biết như steepest direction hay Newton direciton, rồi tính step size. Nhưng vì tính chất của bài toán least square có nhiều thuận lợi nên ta có thể dùng JᵀJ để xấp xỉ tốt cho Hessian, và như vậy, ta sẽ đi tính Gauss Newton direction, thay vì Newton direction. Rồi cũng tính step size và nhảy đến điểm tiếp theo, và cứ thế lặp lại.
 >
 > Và note trước đã cho mình góc nhìn để thấy sự khác và giống nhau của Gauss Newton và Newton:
 >
@@ -343,7 +343,7 @@
 >
 > Nếu ta thay f(xk + p) = ||r(xk + p)||^2 bởi xấp xỉ bậc nai của nó tại xk: g(p) và đi tìm p để minimize cái này → p này chính là Newton direction.
 >
-> Nếu ta thây f(xk + p), vốn là ||r(xk + p)||^2, bởi h(p) = ||r(xk) + ∇r(x)Tp||^2 = ||Jkp + rk||^2, tức thay r(xk + p) bởi hàm xấp xỉ tuyến tính của r tại xk. Và đi minimize h(p), thì p này chính là Gauss Newton direction.
+> Nếu ta thây f(xk + p), vốn là ||r(xk + p)||^2, bởi h(p) = ||r(xk) + ∇r(x)ᵀp||^2 = ||Jkp + rk||^2, tức thay r(xk + p) bởi hàm xấp xỉ tuyến tính của r tại xk. Và đi minimize h(p), thì p này chính là Gauss Newton direction.
 >
 > Thế thì nay, là nói về đi theo trust region approach:
 >
@@ -357,9 +357,9 @@
 >
 > minimize h(p) = ||Jkp + rk||^2 s.t ||p|| ≤ Δ, và đây chính là Levenberg - Marquardt
 >
-> và cái hàm này ||Jkp + rk||^2 thì trong note trước mình đã thấy nó là (1/2)pTJkTJkp + rkTJkp + (1/2)rkTrk → chính là 10.32
+> và cái hàm này ||Jkp + rk||^2 thì trong note trước mình đã thấy nó là (1/2)pᵀJkTJkp + rkTJkp + (1/2)rkTrk → chính là 10.32
 >
-> mà đem so với g(p) = (1/2)pTJkTJkp + rkTJkp + (1/2)pT(term 2)p + rkTrk
+> mà đem so với g(p) = (1/2)pᵀJkTJkp + rkTJkp + (1/2)pᵀ(term 2)p + rkTrk
 >
 > thì đúng là chỉ khác ở chỗ: Hessian của người ta có 2 term, ta bỏ đi term 2, chỉ dùng term 2: JkTJk.
 
@@ -544,7 +544,7 @@
 >
 >
 >
-> Bài toán tối ưu đặt ra là minimize over p {||Jp + r||^2} s.t ||p|| ≤ Δ, và lemma nói rằng pLM là solution nếu như nó thỏa: là feasible point (tức thỏa constraint), và tồn tại scalar λ không âm sao cho (JTJ + λI) pLM = -JTr và λ(Δ - ||pLM||) = 0.
+> Bài toán tối ưu đặt ra là minimize over p {||Jp + r||^2} s.t ||p|| ≤ Δ, và lemma nói rằng pLM là solution nếu như nó thỏa: là feasible point (tức thỏa constraint), và tồn tại scalar λ không âm sao cho (JᵀJ + λI) pLM = -Jᵀr và λ(Δ - ||pLM||) = 0.
 >
 >
 >
@@ -588,23 +588,23 @@
 >
 >
 >
-> ||Jp + r||^2 = (Jp + r)T(Jp + r) = (pTJT + rT)(Jp + r) = pTJTJp + rTJp + pTJTr + rTr
+> ||Jp + r||^2 = (Jp + r)ᵀ(Jp + r) = (pᵀJᵀ + rT)(Jp + r) = pᵀJᵀJp + rTJp + pᵀJᵀr + rTr
 >
 >
 >
-> = pTJTJp + 2rTJp + rTr
+> = pᵀJᵀJp + 2rTJp + rTr
 >
 >
 >
-> và ta biết gradient của hàm f(x) = (1/2)xTPx + qTx + r sẽ là PTx + q.
+> và ta biết gradient của hàm f(x) = (1/2)xᵀPx + Qᵀx + r sẽ là Pᵀx + q.
 >
 >
 >
-> Nên ở đây, ∇\_p \[pTJTJp + 2rTJp + rTr\] = 2 ∇\_p \[(1/2)pTJTJp + rTJp + (1/2)rTr\] = 2 (JTJ p + JTr)
+> Nên ở đây, ∇\_p \[pᵀJᵀJp + 2rTJp + rTr\] = 2 ∇\_p \[(1/2)pᵀJᵀJp + rTJp + (1/2)rTr\] = 2 (JᵀJ p + Jᵀr)
 >
 >
 >
-> Còn d/dp (||p||^2)  = d/dp pTp là gì?
+> Còn d/dp (||p||^2)  = d/dp pᵀp là gì?
 >
 >
 >
@@ -612,43 +612,43 @@
 >
 >
 >
-> d(||p||^2) = d(pTp) = (p+dp)T(p+dp) - pTp = (pT+dpT)(p+dp) - pTp = pTp+dpTp+pTdp+dpTdp - pTp
+> d(||p||^2) = d(pᵀp) = (p+dp)ᵀ(p+dp) - pᵀp = (pᵀ+dpᵀ)(p+dp) - pᵀp = pᵀp+dpᵀp+pᵀdp+dpᵀdp - pᵀp
 >
 >
 >
-> = 2pTdp + dpTdp
+> = 2pᵀdp + dpᵀdp
 >
 >
 >
-> = 2pTdp (bỏ đi term bậc cao dpTdp)
+> = 2pᵀdp (bỏ đi term bậc cao dpᵀdp)
 >
 >
 >
-> Như vậy, tại đây ta có dot product của 2p và dp, chính là linear operator act on dp, nên ⇒ ∇(pTp) = 2p
+> Như vậy, tại đây ta có dot product của 2p và dp, chính là linear operator act on dp, nên ⇒ ∇(pᵀp) = 2p
 >
 >
 >
-> Vậy: ∇\_p L(p, λ) = 2 (JTJ p + JTr) + (λ/2)2p
+> Vậy: ∇\_p L(p, λ) = 2 (JᵀJ p + Jᵀr) + (λ/2)2p
 >
 >
 >
-> Và stationary condition: ∇\_p L(p, λ) = 0 ⇔ 2 (JTJ p + JTr) + λp = 0
+> Và stationary condition: ∇\_p L(p, λ) = 0 ⇔ 2 (JᵀJ p + Jᵀr) + λp = 0
 >
 >
 >
-> ⇔ JTJ p + JTr + λp = 0
+> ⇔ JᵀJ p + Jᵀr + λp = 0
 >
 >
 >
-> ⇔ JTJ p + (λ/2)p = -JTr
+> ⇔ JᵀJ p + (λ/2)p = -Jᵀr
 >
 >
 >
-> ⇔ JTJ p + (λ/2)p = -JTr
+> ⇔ JᵀJ p + (λ/2)p = -Jᵀr
 >
 >
 >
-> ⇔ (JTJ + (λ/2)I)p = -JTr
+> ⇔ (JᵀJ + (λ/2)I)p = -Jᵀr
 >
 >
 >
@@ -656,7 +656,7 @@
 >
 >
 >
-> (JTJ + (λI)p = -JTr
+> (JᵀJ + (λI)p = -Jᵀr
 >
 >
 >
@@ -718,7 +718,7 @@
 >
 >
 >
-> Theorem 4.1 nói rằng: Cho bài toán minimize over p {m(p) = f + gTp + (1/2)pTBp} s.t ||p|| ≤ Δ, thì p\* là global solution if and only if p\* feasible và có λ ≥ 0 sao cho:
+> Theorem 4.1 nói rằng: Cho bài toán minimize over p {m(p) = f + gᵀp + (1/2)pᵀBp} s.t ||p|| ≤ Δ, thì p\* là global solution if and only if p\* feasible và có λ ≥ 0 sao cho:
 >
 >
 >
@@ -738,7 +738,7 @@
 >
 >
 >
-> (JTJ + λI) pLM = -JTr (10.34a)
+> (JᵀJ + λI) pLM = -Jᵀr (10.34a)
 >
 >
 >
@@ -750,11 +750,11 @@
 >
 >
 >
-> Bài toán minimize ||Jp + r||^2 s.t ||p|| ≤ Δ chính là minimize f + gTp + (1/2)pTBp s.t ||p|| ≤ Δ với B = JTJ, g = JTr, f = rTr. Nên theo theorem 4.1, nếu pLM feasible và tồn tại λ ≥ 0 thỏa 4.8a,b,c thì pLM sẽ chính là solution.
+> Bài toán minimize ||Jp + r||^2 s.t ||p|| ≤ Δ chính là minimize f + gᵀp + (1/2)pᵀBp s.t ||p|| ≤ Δ với B = JᵀJ, g = Jᵀr, f = rTr. Nên theo theorem 4.1, nếu pLM feasible và tồn tại λ ≥ 0 thỏa 4.8a,b,c thì pLM sẽ chính là solution.
 >
 >
 >
-> Mà 4.8a: (B + λI) p\* = -g, thay B = JTJ, g = JTr sẽ thành: (JTJ + λI) p\* = -JTr → đây chính là điều kiện 10.34a
+> Mà 4.8a: (B + λI) p\* = -g, thay B = JᵀJ, g = Jᵀr sẽ thành: (JᵀJ + λI) p\* = -Jᵀr → đây chính là điều kiện 10.34a
 >
 >
 >
@@ -762,7 +762,7 @@
 >
 >
 >
-> Còn 4.8c: Chính là vì B = JTJ, đã ⪰ 0, nên chỉ cần λ ≥ 0 thì B + λI đã tự động ⪰, nên không cần nêu ra điều kiện tương ứng với 4.8c nữa.
+> Còn 4.8c: Chính là vì B = JᵀJ, đã ⪰ 0, nên chỉ cần λ ≥ 0 thì B + λI đã tự động ⪰, nên không cần nêu ra điều kiện tương ứng với 4.8c nữa.
 >
 >
 >
@@ -772,7 +772,7 @@
 >
 >
 >
-> Một điểm cần là rõ, là vì sao gs nói 10.33 ((JTJ + (λI)p = -JTr) lại chỉ là normal equation của bài toán linear least-square 10.35: minimize over p {(1/2) square norm của Up + q với U = \[J; I√λ\] và q = \[r; 0\].
+> Một điểm cần là rõ, là vì sao gs nói 10.33 ((JᵀJ + (λI)p = -Jᵀr) lại chỉ là normal equation của bài toán linear least-square 10.35: minimize over p {(1/2) square norm của Up + q với U = \[J; I√λ\] và q = \[r; 0\].
 >
 >
 >
@@ -780,27 +780,27 @@
 >
 >
 >
-> ∇f = (1/2) d/dx (Ax - b)T(Ax - b) =  (1/2) d/dx (xTAT - bT)(Ax - b)
+> ∇f = (1/2) d/dx (Ax - b)ᵀ(Ax - b) =  (1/2) d/dx (xᵀAᵀ - bᵀ)(Ax - b)
 >
 >
 >
-> = (1/2) d/dx (xTATAx - bTAx - xTATb + bTb)
+> = (1/2) d/dx (xᵀAᵀAx - bᵀAx - xᵀAᵀb + bᵀb)
 >
 >
 >
-> = d/dx \[(1/2)xTATAx - bTAx - xTATb + (1/2)bTb)
+> = d/dx \[(1/2)xᵀAᵀAx - bᵀAx - xᵀAᵀb + (1/2)bᵀb)
 >
 >
 >
-> = d/dx \[(1/2)xTATAx - bTAx + (1/2)bTb)
+> = d/dx \[(1/2)xᵀAᵀAx - bᵀAx + (1/2)bᵀb)
 >
 >
 >
-> = ATAx - ATb
+> = AᵀAx - Aᵀb
 >
 >
 >
-> Và first order optimality condition: ATAx - ATb ⇔ ATAx = ATb, đây chính là normal equation.
+> Và first order optimality condition: AᵀAx - Aᵀb ⇔ AᵀAx = Aᵀb, đây chính là normal equation.
 >
 >
 >
@@ -812,11 +812,11 @@
 >
 >
 >
-> ⇔ \[JTJ + √λ (ITI) √λ\]p = -\[JTr + √λ IT0\]
+> ⇔ \[JᵀJ + √λ (ITI) √λ\]p = -\[Jᵀr + √λ IT0\]
 >
 >
 >
-> ⇔ (JTJ + λI)p = -JTr → chính là 10.33
+> ⇔ (JᵀJ + λI)p = -Jᵀr → chính là 10.33
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
@@ -838,7 +838,7 @@
 >
 >
 >
-> Từ Lemma 10.2 (hay xa hơn là định lý 4.1) nói điều kiện cần và đủ để p\* làm nghiệm của bài toán minimize over p {m(p) = (1/2)pTBp + gTp + f} là tồn tại λ ≥ 0 thỏa (a) (B + λI)p\* = -g ; (b) λ(||p|| - Δ) = 0; (c) B + λI ⪰ 0 (c), sẽ dẫn ta đến cách giải bài toán subproblem đại ý như sau:
+> Từ Lemma 10.2 (hay xa hơn là định lý 4.1) nói điều kiện cần và đủ để p\* làm nghiệm của bài toán minimize over p {m(p) = (1/2)pᵀBp + gᵀp + f} là tồn tại λ ≥ 0 thỏa (a) (B + λI)p\* = -g ; (b) λ(||p|| - Δ) = 0; (c) B + λI ⪰ 0 (c), sẽ dẫn ta đến cách giải bài toán subproblem đại ý như sau:
 >
 >
 >
@@ -846,7 +846,7 @@
 >
 >
 >
-> Nên đầu tiên thử λ = 0, xem B có ⪰ 0, và p = -Binv có ≤ Δ không, nếu thỏa thì chốt nghiệm.
+> Nên đầu tiên thử λ = 0, xem B có ⪰ 0, và p = -B⁻¹ có ≤ Δ không, nếu thỏa thì chốt nghiệm.
 >
 >
 >
@@ -858,7 +858,7 @@
 >
 >
 >
-> Factorize B + λI thành RTR, giải RTR p = - g ra p và giải RTq = p cho ra q. Từ đó ráp vào công thức tính λ mới. Các công thức này chỉ là xuất phát từ phương pháp root finding Newton, áp dụng cho bài toán 1/||p|| = 1/Δ, là phương trình tương đương ||p|| = Δ, nhưng thuận lợi hơn vì tránh được các trường hợp khiến hệ khó hội tụ.
+> Factorize B + λI thành RᵀR, giải RᵀR p = - g ra p và giải Rᵀq = p cho ra q. Từ đó ráp vào công thức tính λ mới. Các công thức này chỉ là xuất phát từ phương pháp root finding Newton, áp dụng cho bài toán 1/||p|| = 1/Δ, là phương trình tương đương ||p|| = Δ, nhưng thuận lợi hơn vì tránh được các trường hợp khiến hệ khó hội tụ.
 >
 >
 >
@@ -886,21 +886,21 @@
 >
 >
 >
-> Quay lại nội dung của screenshot này. Tác giả nói cái vụ safeguard cho thuật toán trong trường hợp này sẽ dễ: Chỉ cần đảm bảo λ^(l) (ý nói λ tính trong chu trình root finding) dương là được. Có thể hiểu ý này, vì cái vụ safeguard đại ý là khi generate λ, phải check và có cơ chế can thiệp để khiến λ luôn &gt; -λ1 (- λmin(B)) vì như vậy B + λI mới ≻ 0 và từ đó việc factoring B + λI thành RTR mới thành công. Và lí do là B trong bài toán L-M = JTJ, vốn đã ⪰ 0, nên chỉ cần λ^(l) dương thì chắc chắc B + λ^(l)I ≻ 0.
+> Quay lại nội dung của screenshot này. Tác giả nói cái vụ safeguard cho thuật toán trong trường hợp này sẽ dễ: Chỉ cần đảm bảo λ^(l) (ý nói λ tính trong chu trình root finding) dương là được. Có thể hiểu ý này, vì cái vụ safeguard đại ý là khi generate λ, phải check và có cơ chế can thiệp để khiến λ luôn &gt; -λ1 (- λmin(B)) vì như vậy B + λI mới ≻ 0 và từ đó việc factoring B + λI thành RᵀR mới thành công. Và lí do là B trong bài toán L-M = JᵀJ, vốn đã ⪰ 0, nên chỉ cần λ^(l) dương thì chắc chắc B + λ^(l)I ≻ 0.
 >
 >
 >
 >
 >
-> Rồi, cũng vì B có cấu trúc đặc biệt (=JTJ) nên ta không cần phải refactor B + λI từ đầu mỗi vòng lặp (của chu trình tìm λ). Mà thay vào đó, ta có thể dùng một kĩ thuật khác:
+> Rồi, cũng vì B có cấu trúc đặc biệt (=JᵀJ) nên ta không cần phải refactor B + λI từ đầu mỗi vòng lặp (của chu trình tìm λ). Mà thay vào đó, ta có thể dùng một kĩ thuật khác:
 >
 >
 >
-> \[R\_λ; 0\] = (Q\_λ)T \[J; (√λ)I\]
+> \[R\_λ; 0\] = (Q\_λ)ᵀ \[J; (√λ)I\]
 >
 >
 >
-> Mình sẽ nói tiếp trong note sau, nhưng đại ý là: Bản chất của việc phân tách Cholesky đối với matrix B + λI mà ta muốn làm, cũng chỉ là tìm ra matrix R sao cho B + λI = RTR, hay kí hiệu (R\_λ)T(R\_λ) để ý nói kết quả này tương ứng với một λ cụ thể (vì trong chu trình lặp để tìm λ thỏa ||p(λ)|| = Δ thì mỗi bước ta sẽ đều phải factor B + λI)
+> Mình sẽ nói tiếp trong note sau, nhưng đại ý là: Bản chất của việc phân tách Cholesky đối với matrix B + λI mà ta muốn làm, cũng chỉ là tìm ra matrix R sao cho B + λI = RᵀR, hay kí hiệu (R\_λ)ᵀ(R\_λ) để ý nói kết quả này tương ứng với một λ cụ thể (vì trong chu trình lặp để tìm λ thỏa ||p(λ)|| = Δ thì mỗi bước ta sẽ đều phải factor B + λI)
 >
 >
 >
@@ -988,7 +988,7 @@
 >
 >
 >
-> (Có thể chỉnh sửa để B + λ^(l)I xác định dương) → Cholesky factor B + λI thành (RT)R → .. → tính λ kế tiếp: λ^(l+1))
+> (Có thể chỉnh sửa để B + λ^(l)I xác định dương) → Cholesky factor B + λI thành (Rᵀ)R → .. → tính λ kế tiếp: λ^(l+1))
 >
 >
 >
@@ -1000,15 +1000,15 @@
 >
 >
 >
-> Tuy nhiên trong bài toán least square, với B = JTJ, thì ta có một đặc điểm đặc biệt:
+> Tuy nhiên trong bài toán least square, với B = JᵀJ, thì ta có một đặc điểm đặc biệt:
 >
 >
 >
-> Đó là, nếu ta đi QR factor matrix A = \[J; (√λ)I\] để có: \[J; (√λ)I\] = Q\[R; 0\]. Thì cái matrix R này chính là matrix R khi ta Cholesky factor matrix JTJ + λI. Việc chứng minh không khó:
+> Đó là, nếu ta đi QR factor matrix A = \[J; (√λ)I\] để có: \[J; (√λ)I\] = Q\[R; 0\]. Thì cái matrix R này chính là matrix R khi ta Cholesky factor matrix JᵀJ + λI. Việc chứng minh không khó:
 >
 >
 >
-> ATA = \[J; (√λ)I\]T \[J; (√λ)I\] = \[JT, (√λ)I\] \[J; (√λ)I\] = JTJ + λI
+> AᵀA = \[J; (√λ)I\]T \[J; (√λ)I\] = \[Jᵀ, (√λ)I\] \[J; (√λ)I\] = JᵀJ + λI
 >
 >
 >
@@ -1016,11 +1016,11 @@
 >
 >
 >
-> ⇒ ATA = {Q\[R; 0\]}TQ\[R; 0\] = \[R; 0\]TQTQ\[R; 0\] = \[RT, 0\] \[R; 0\] = RTR
+> ⇒ AᵀA = {Q\[R; 0\]}TQ\[R; 0\] = \[R; 0\]TQᵀQ\[R; 0\] = \[Rᵀ, 0\] \[R; 0\] = RᵀR
 >
 >
 >
-> Vậy ATA = JTJ + λI = RTR. Và điều này cho thấy R trong A = Q\[R; 0\] cũng chính là R trong JTJ + λI = RTR.
+> Vậy AᵀA = JᵀJ + λI = RᵀR. Và điều này cho thấy R trong A = Q\[R; 0\] cũng chính là R trong JᵀJ + λI = RᵀR.
 >
 >
 >
@@ -1028,7 +1028,7 @@
 >
 >
 >
-> Vậy thì câu chuyển tại mỗi vòng lặp của chu trình, thay vì Cholesky factor matrix JTJ + λI, ta sẽ QR factor matrix A\_λ = \[J, (√λ)I\].
+> Vậy thì câu chuyển tại mỗi vòng lặp của chu trình, thay vì Cholesky factor matrix JᵀJ + λI, ta sẽ QR factor matrix A\_λ = \[J, (√λ)I\].
 >
 >
 >
@@ -1052,23 +1052,23 @@
 >
 >
 >
-> Nhân \[(Q_J)T, 0; 0, I\] vào bên phải matrix A\_λ = \[J; (√λ)I\]
+> Nhân \[(Q_J)ᵀ, 0; 0, I\] vào bên phải matrix A\_λ = \[J; (√λ)I\]
 >
 >
 >
-> \[(Q_J)T, 0; 0, I\] A\_λ = \[(Q_J)T, 0; 0, I\] \[J; (√λ)I\]
+> \[(Q_J)ᵀ, 0; 0, I\] A\_λ = \[(Q_J)ᵀ, 0; 0, I\] \[J; (√λ)I\]
 >
 >
 >
-> = \[(Q_J)TJ; (√λ)I\]
+> = \[(Q_J)ᵀJ; (√λ)I\]
 >
 >
 >
-> và vì J = (Q_J) \[R_J; 0\] nên (Q_J)TJ = (Q_J)T(Q_J) \[R_J; 0\] = \[R_J; 0\]
+> và vì J = (Q_J) \[R_J; 0\] nên (Q_J)ᵀJ = (Q_J)ᵀ(Q_J) \[R_J; 0\] = \[R_J; 0\]
 >
 >
 >
-> nên \[(Q_J)TJ; (√λ)I\] = \[\[R_J; 0\]; (√λ)I\]
+> nên \[(Q_J)ᵀJ; (√λ)I\] = \[\[R_J; 0\]; (√λ)I\]
 >
 >
 >
@@ -1076,7 +1076,7 @@
 >
 >
 >
-> Và như vậy chỉ việc nhân \[(Q_J)T, 0; 0, I\] vào bên phải matrix A\_λ ta đã có \[R_J; 0; (√λ)I\]
+> Và như vậy chỉ việc nhân \[(Q_J)ᵀ, 0; 0, I\] vào bên phải matrix A\_λ ta đã có \[R_J; 0; (√λ)I\]
 >
 >
 >
@@ -1088,7 +1088,7 @@
 >
 >
 >
-> Nói cách khác, thay vì chạy thuật toán QR factor đối với A\_λ (mà làm vậy thì chả có rẻ hơn tí nào so với việc chạy thuật toán Cholesky factor đối với JTJ + λI,) ta sẽ làm như sau:
+> Nói cách khác, thay vì chạy thuật toán QR factor đối với A\_λ (mà làm vậy thì chả có rẻ hơn tí nào so với việc chạy thuật toán Cholesky factor đối với JᵀJ + λI,) ta sẽ làm như sau:
 >
 >
 >
@@ -1096,11 +1096,11 @@
 >
 >
 >
-> Hình thành matrix \[(Q_J)T, 0; 0, I\] và lấy nó với A\_λ, sẽ được kết quả \[R_J; 0; (√λ)I\]
+> Hình thành matrix \[(Q_J)ᵀ, 0; 0, I\] và lấy nó với A\_λ, sẽ được kết quả \[R_J; 0; (√λ)I\]
 >
 >
 >
-> Chạy thuật toán Given, (rẻ), để từ \[R_J; 0; (√λ)I\] ta sẽ có được \[R\_λ; 0\] → đây chính là đã có R\_λ của Cholesky factor JTJ + λI = (R\_λ)T R\_λ nhưng rẻ hơn nhiều.
+> Chạy thuật toán Given, (rẻ), để từ \[R_J; 0; (√λ)I\] ta sẽ có được \[R\_λ; 0\] → đây chính là đã có R\_λ của Cholesky factor JᵀJ + λI = (R\_λ)ᵀ R\_λ nhưng rẻ hơn nhiều.
 >
 >
 >
@@ -1108,11 +1108,11 @@
 >
 >
 >
-> (Q^\_λ)T \[R_J; 0; (√λ)I\] = \[R\_λ; 0\]
+> (Q^\_λ)ᵀ \[R_J; 0; (√λ)I\] = \[R\_λ; 0\]
 >
 >
 >
-> (mà cụ thể nó làm gì có thể nghiên cứu sau, chỉ cần hiểu sơ là nó biến \[R_J; 0; (√λ)I\] thông qua matrix (Q^\_λ)T, kết qủa ta được matrix tam giác \[R\_λ; 0\])
+> (mà cụ thể nó làm gì có thể nghiên cứu sau, chỉ cần hiểu sơ là nó biến \[R_J; 0; (√λ)I\] thông qua matrix (Q^\_λ)ᵀ, kết qủa ta được matrix tam giác \[R\_λ; 0\])
 >
 >
 >
@@ -1120,7 +1120,7 @@
 >
 >
 >
-> Như vậy, tóm tắt lại, quá trình để có matrix R\_λ, kết quả của Cholesky factor matrix (B + λI) = (R\_λ)T R\_λ, thì ta QR factor matrix A\_λ = \[J; (√λ)I\] nhưng nhờ cấu trúc đặc biệt trong đó các matrix A\_λ chỉ khác nhau cái cục bên dưới, nên ta sẽ làm hai bước:
+> Như vậy, tóm tắt lại, quá trình để có matrix R\_λ, kết quả của Cholesky factor matrix (B + λI) = (R\_λ)ᵀ R\_λ, thì ta QR factor matrix A\_λ = \[J; (√λ)I\] nhưng nhờ cấu trúc đặc biệt trong đó các matrix A\_λ chỉ khác nhau cái cục bên dưới, nên ta sẽ làm hai bước:
 >
 >
 >
@@ -1128,7 +1128,7 @@
 >
 >
 >
-> iia) Hình thành matrix \[(Q_J)T, 0; 0, I\] và lấy nó với A\_λ, sẽ được kết quả \[R_J; 0; (√λ)I\]
+> iia) Hình thành matrix \[(Q_J)ᵀ, 0; 0, I\] và lấy nó với A\_λ, sẽ được kết quả \[R_J; 0; (√λ)I\]
 >
 >
 >
@@ -1140,23 +1140,23 @@
 >
 >
 >
-> (Q^\_λ)T \[(Q_J)T, 0; 0, I\] A\_λ = \[R\_λ; 0\]
+> (Q^\_λ)ᵀ \[(Q_J)ᵀ, 0; 0, I\] A\_λ = \[R\_λ; 0\]
 >
 >
 >
-> ⇔ A\_λ = {(Q^\_λ)T \[(Q_J)T, 0; 0, I\]}T \[R\_λ; 0\]
+> ⇔ A\_λ = {(Q^\_λ)ᵀ \[(Q_J)ᵀ, 0; 0, I\]}T \[R\_λ; 0\]
 >
 >
 >
-> ⇒ matrix Q\_λ giúp QR factor A\_λ: A\_λ = Q\_λ \[R\_λ; 0\] chính là {Q^\_λ \[(Q_J)T, 0; 0, I\]}T
+> ⇒ matrix Q\_λ giúp QR factor A\_λ: A\_λ = Q\_λ \[R\_λ; 0\] chính là {Q^\_λ \[(Q_J)ᵀ, 0; 0, I\]}T
 >
 >
 >
-> Q\_λ = {(Q^\_λ)T \[(Q_J)T, 0; 0, I\]}T
+> Q\_λ = {(Q^\_λ)ᵀ \[(Q_J)ᵀ, 0; 0, I\]}T
 >
 >
 >
-> = \[(Q_J)T, 0; 0, I\]T ((Q^\_λ)T)T
+> = \[(Q_J)ᵀ, 0; 0, I\]T ((Q^\_λ)ᵀ)ᵀ
 >
 >
 >
