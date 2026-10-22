@@ -86,7 +86,7 @@
 > **💡 Deeper notes**
 > - Dù mô hình discriminative (logistic regression) có ít tham số hơn nhiều và thường tối ưu hơn khi phân loại thuần túy, mô hình generative lại có ưu điểm là xử lý tốt missing data hoặc dễ dàng phát hiện mẫu ngoại lai (outlier detection) do nó mô hình hóa phân phối đầy đủ p(x).
 
-**🔗 See also:** [Section 4.3 Probabilistic Discriminative Models](./43_probabilistic_discriminative_models.md#node-nop86oc)
+**🔗 See also:** [Section 4.3 Probabilistic Discriminative Models](./43_probabilistic_discriminative_models.md#node-nop86oc) · [Binary Classification and Logistic Sigmoid](./52_training.md#node-esrera4)
 
 <br>
 
