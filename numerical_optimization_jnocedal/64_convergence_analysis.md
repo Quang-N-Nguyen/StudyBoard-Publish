@@ -54,7 +54,7 @@
 > [!NOTE]
 > 6.12: yk = Gbark αkpk = Gbark sk với vì Gbar là trung bình Hessian từ xk → xk+1:∫0:1 G(xk + ταkpk)dτ
 >
-> ykTsk = (Gbark sk)Tsk = skT Gbark sk và: 
+> ykTsk = (Gbark sk)ᵀsk = skT Gbark sk và: 
 >
 > 1) vì Gbar là hessian trung bình như định nghĩa trên, mà pk phải là descent direction cùng với cái ý gọi là practical line search (khiến tính ra αk hợp lí) nên nó không thể dẫn ta đi ra khỏi level set L, 
 >
@@ -108,15 +108,15 @@
 >
 > =  tr(Bk) - tr(BkskskTBk) / skTBksk + tr(ykykT) / ykTsk) | vẫn là tính linearity (αA) = α tr(A)
 >
-> =  tr(Bk) - tr((skTBk)TskTBk) / skTBksk + tr(ykykT) / ykTsk) 
+> =  tr(Bk) - tr((skTBk)ᵀskTBk) / skTBksk + tr(ykykT) / ykTsk) 
 >
 > Tới đây nhớ lại bản chất của trace: tổng entries đường chéo:
 >
-> tr(ATA) = Σii (ATA)_ii = Σi (aiTai) = Σij(Aij)^2 = ||A||^2 , chính là Frobenius norm (hay còn gọi là Eucledian norm)
+> tr(AᵀA) = Σii (AᵀA)_ii = Σi (aiTai) = Σij(Aij)^2 = ||A||^2 , chính là Frobenius norm (hay còn gọi là Eucledian norm)
 >
 > ⇨ ..= tr(Bk) - ||Bksk||^2 / skTBksk + ||yk||^2 / ykTsk  (6.44)
 >
-> (với tr(ykykT) thì coi như tr((ykTI)T(ykTI)) = ||ITyk|| = ||yk|| thôi)
+> (với tr(ykykT) thì coi như tr((ykTI)ᵀ(ykTI)) = ||ITyk|| = ||yk|| thôi)
 >
 > Nhưng cũng có cách khác cũng dễ: tr(AB) = tr(BA) ⇨ tr(ykykT) = tr(ykTyk) = ykTyk (trace của scalar = scalar) = ||yk||^2. và tr(BkskskTBk) = tr(BkTskskTBk) = tr(vvT) với v = BkTsk, = tr(vTv) = vTv = ||v||^2 = ||BkTsk||^2
 
