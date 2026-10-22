@@ -45,7 +45,7 @@
 >
 > Nói chung là trong chương 2, mình cũng đã có sự hình dung về idea của phương pháp này.
 >
-> Đại khái là, cho đến nay, sau khi đã học về các phương pháp như Line Search, Trust Region, thì mình hiểu cái mô tuýp chung nó đều là như vầy: Nó đều là giải bài toán tối ưu theo kiểu iterative: đi từ từ, từ điểm này sang điểm kế tiếp với mong muốn sẽ đi dần đến đích, minimizer của objective function. Và ở mỗi bước / vòng lặp, ta sẽ đều xét một hàm xấp xỉ bậc hai của f(x), hàm mk(p) = fk + gkTp + (1/2) pT Bk p
+> Đại khái là, cho đến nay, sau khi đã học về các phương pháp như Line Search, Trust Region, thì mình hiểu cái mô tuýp chung nó đều là như vầy: Nó đều là giải bài toán tối ưu theo kiểu iterative: đi từ từ, từ điểm này sang điểm kế tiếp với mong muốn sẽ đi dần đến đích, minimizer của objective function. Và ở mỗi bước / vòng lặp, ta sẽ đều xét một hàm xấp xỉ bậc hai của f(x), hàm mk(p) = fk + gkTp + (1/2) pᵀ Bk p
 >
 > Và dựa vào việc minimize hàm này để tìm điểm kế tiếp. Tới đây thì tùy vào cách làm mà ta sẽ sinh ra các phương pháp khác nhau nói trên.
 >
@@ -55,11 +55,11 @@
 >
 > Sau đó đi theo hướng đó tìm step size đưa ta xuống thấp nhất thì ta có thể giải bài toán tìm step size tối ưu (exact) hoặc dùng Wolfe condition để chọn step size đủ tốt. Ưu điểm của việc dùng Newton line search là nó hội tụ nhanh, nhưng nhược điểm là chi phí tính Hessian. Do đó, quasi-Newton ra đời, chính là bằng cách chọn Bk không phải I, không phải Hk, mà là một xấp xỉ củ Hk sao cho việc tính toán không quá tốn kém giúp vẫn hưởng lợi được từ sự hội tụ nhanh của Newton. 
 >
-> Do đó pk = -(Bk)inv gk (trong sách dùng ∇fk)
+> Do đó pk = -(Bk)⁻¹ gk (trong sách dùng ∇fk)
 >
 > Sau khi có pk thì dùng nó để nhảy tới xk+1: xk+1 = xk + αk pk
 >
-> Nhưng một điểm quan trọng là, Bkinv sẽ là matrix được cập nhật lại sau mỗi iteration chứ không phải là được tính toán ở mỗi iteration
+> Nhưng một điểm quan trọng là, Bk⁻¹ sẽ là matrix được cập nhật lại sau mỗi iteration chứ không phải là được tính toán ở mỗi iteration
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
@@ -93,17 +93,17 @@
 >
 > Rồi, thế thì, tại xk, ta xây dựng hàm bậc hai xấp xỉ của f(x):
 >
-> mk(p) = fk + gkTp + (1/2)pTHkp 
+> mk(p) = fk + gkTp + (1/2)pᵀHkp 
 >
 > và như vừa nói, ta dùng Bk thay cho Hk
 >
-> mk(p) = fk + gkTp + (1/2)pTBkp 
+> mk(p) = fk + gkTp + (1/2)pᵀBkp 
 >
 > Từ đó bằng cách nào đó tính ra được pk, rồi αk, để có xk+1 = xk + αkpk
 >
 > Thì tại xk+1, ta lại lặp lại, xây dựng hàm mk+1(p) xấp xỉ f(x):
 >
-> mk+1(p) = fk+1 + gk+1Tp + (1/2)pTBk+1p
+> mk+1(p) = fk+1 + gk+1Tp + (1/2)pᵀBk+1p
 >
 > Và để xây dựng Bk (tức là cập nhật lại B mới cho một iteration mới) thì ý tưởng vừa mới nói
 >
@@ -125,7 +125,7 @@
 >
 > Đặt sk = xk+1 - xk = αkpk, yk = gk+1 - gk, ta có:
 >
-> Bk+1 sk = yk. Đây chính là** SECANT EQUATION**.
+> Bk+1 sk = yk. Đây chính là** SECANT EQUAᵀION**.
 >
 > Nghĩ thêm, thế còn việc ép cho mk+1 tại xk khớp với fk?
 >
@@ -149,9 +149,9 @@
 >
 > Dừng lại một tí, matrix Bk phải xác định dương là vì sao? → Đơn giản là ta chỉ định, ta muốn như vậy. Tức là ta muốn Bk phải xác định dương. Nhưng vì sao ta muốn vậy? → Là vì nếu Bk không xác định dương thì tức là mọi trị riêng không phải luôn dương, khi đó có thể xảy ra là 
 >
-> 1) Có trị riêng bằng 0 → B singular → Bkinv không tồn tại, để mà tính pk = -(Bk)inv gk, hoặc 
+> 1) Có trị riêng bằng 0 → B singular → Bk⁻¹ không tồn tại, để mà tính pk = -(Bk)⁻¹ gk, hoặc 
 >
-> 2) Trị riêng khác 0 hết nhưng có cái âm, khi đó pk không chắc là descent direction: Xét hướng pk = -(Bk)inv gk, đạo hàm hàm mk(p) theo hướng pk tại 0: ∇mkTpk = gkT[-(Bk)inv gk] = - gkT(Bk)inv gk. Mà với việc Bk có trị riêng khác không cả âm lẫn dương thì Bkinv cũng vậy, gọi và dạng này gọi là indefinite matrix. Khi đó quadratic form này gkT(Bk)inv gk chưa chắc luôn dương ⇨ nhân thêm dấu trừ thì cái đạo hàm theo hướng pk của mk chưa chắc luôn âm → đi theo hướng đó chưa chắc luôn giảm m.
+> 2) Trị riêng khác 0 hết nhưng có cái âm, khi đó pk không chắc là descent direction: Xét hướng pk = -(Bk)⁻¹ gk, đạo hàm hàm mk(p) theo hướng pk tại 0: ∇mkTpk = gkT[-(Bk)⁻¹ gk] = - gkT(Bk)⁻¹ gk. Mà với việc Bk có trị riêng khác không cả âm lẫn dương thì Bk⁻¹ cũng vậy, gọi và dạng này gọi là indefinite matrix. Khi đó quadratic form này gkT(Bk)⁻¹ gk chưa chắc luôn dương ⇨ nhân thêm dấu trừ thì cái đạo hàm theo hướng pk của mk chưa chắc luôn âm → đi theo hướng đó chưa chắc luôn giảm m.
 >
 > -----
 >
@@ -161,7 +161,7 @@
 >
 > mà vế trái luôn dương với mọi sk (Bk+1 xác định dương) nên vế phải cũng vậy: skTyk > 0 
 >
-> Và đây gọi là **CURVATURE CONDITION**
+> Và đây gọi là **CURVAᵀURE CONDITION**
 >
 > -----
 >
@@ -171,11 +171,11 @@
 >
 > Với x, y là các điểm bất kì:
 >
-> f(y) ≥ f(x) + ∇f(x)T(y-x)
+> f(y) ≥ f(x) + ∇f(x)ᵀ(y-x)
 >
 > Với strictly convex:
 >
-> f(y) > f(x) + ∇f(x)T(y-x)
+> f(y) > f(x) + ∇f(x)ᵀ(y-x)
 >
 > Nên nếu f stritcly convex ta có: 
 >
@@ -237,9 +237,9 @@
 >
 > ⇔ ∇fk+1Tsk -∇fkTsk > c2∇fkTsk - ∇fkTsk
 >
-> ⇔ (∇fk+1-∇fk)Tsk > (c2-1)∇fkTsk
+> ⇔ (∇fk+1-∇fk)ᵀsk > (c2-1)∇fkTsk
 >
-> ⇔ (∇fk+1-∇fk)Tsk > (c2-1)∇fkT αk pk
+> ⇔ (∇fk+1-∇fk)ᵀsk > (c2-1)∇fkT αk pk
 >
 > ⇔ ykTsk > (c2-1)∇fkT αk pk
 >
@@ -249,7 +249,7 @@
 >
 > Từ hai điều trên thì vế phải > 0 ⇨ vế trái cũng > 0.
 >
-> Vậy thì nãy giờ mình hiểu thế này: Ta đặt ra secant equation để áp đặt ra một điều kiện để xây dựng Bk (hay Bk+1, không quan trọng cái index). Nhưng sau đó giáo sư lại nói về một hệ quả của cái này: curvature condition, để rồi nếu như secant equation thỏa thì cũng phải thỏa cái curvature condition. Và mục đích là, ĐỂ XÁC LẬP **ĐIỀU KIỆN CẦN** CỦA VIỆC CÓ NGHIỆM XÁC ĐỊNH DƯƠNG CỦA SECANT EQUATION . Này nhé:
+> Vậy thì nãy giờ mình hiểu thế này: Ta đặt ra secant equation để áp đặt ra một điều kiện để xây dựng Bk (hay Bk+1, không quan trọng cái index). Nhưng sau đó giáo sư lại nói về một hệ quả của cái này: curvature condition, để rồi nếu như secant equation thỏa thì cũng phải thỏa cái curvature condition. Và mục đích là, ĐỂ XÁC LẬP **ĐIỀU KIỆN CẦN** CỦA VIỆC CÓ NGHIỆM XÁC ĐỊNH DƯƠNG CỦA SECANT EQUAᵀION . Này nhé:
 >
 > Bk+1sk = yk (1) ⇨ skTBk+1sk = skTyk
 >
@@ -281,14 +281,14 @@
 >
 > Tiếp, từ cái điều kiện secant equation, cộng với việc vốn đã có một điều kiện khác là B phải xác định dương (để thỏa tiêu chí descent direction) thì hai cái này sẽ dẫn tới skTyk > 0 và cái này gọi là curvature condition, là điều kiện cần để secant equation có nghiệm. Vậy là ta có thêm một điều kiện nữa để đưa vào quá trình tìm Bk.
 >
-> Rồi, thế thì đại ý đoạn này là vầy: Nếu ta đã thỏa curvature condition, điều kiện cần để secant equation có nghiệm, thì thật ra nó sẽ giúp phương trình đó có vô số nghiệm chứ không chỉ có một. Thành ra, ta sẽ thêm điều kiện nữa để giúp phương trình có nghiệm duy nhất: đó là tìm ra cái Bk+1 thỏa secant equation nhưng có gần với Bk nhất. Và tiêu chí này có thể dùng **norm của hiệu hai matrix** với **các loại norm khác nhau**, và dùng cái nào thì sẽ **dẫn ta đến một phương pháp quasi-Newton khác nhau**. Để rồi nếu dùng một cái gọi là **WEIGHTED FROBENIUS NORM ||.||_W** có thêm một chút đặc biệt như W là matrix được chọn thỏa Wyk = sk, mà để giáo sư đề nghị cứ cho nó là (Gk)inv với Gk = ∫0:1 ∇^f(xk + ταkpk)dτ, thì ta sẽ có được tính chất là DỄ GIẢI NGHIỆM có được phương pháp tối ưu có tính **SCALE-INVARIANT**.
+> Rồi, thế thì đại ý đoạn này là vầy: Nếu ta đã thỏa curvature condition, điều kiện cần để secant equation có nghiệm, thì thật ra nó sẽ giúp phương trình đó có vô số nghiệm chứ không chỉ có một. Thành ra, ta sẽ thêm điều kiện nữa để giúp phương trình có nghiệm duy nhất: đó là tìm ra cái Bk+1 thỏa secant equation nhưng có gần với Bk nhất. Và tiêu chí này có thể dùng **norm của hiệu hai matrix** với **các loại norm khác nhau**, và dùng cái nào thì sẽ **dẫn ta đến một phương pháp quasi-Newton khác nhau**. Để rồi nếu dùng một cái gọi là **WEIGHTED FROBENIUS NORM ||.||_W** có thêm một chút đặc biệt như W là matrix được chọn thỏa Wyk = sk, mà để giáo sư đề nghị cứ cho nó là (Gk)⁻¹ với Gk = ∫0:1 ∇^f(xk + ταkpk)dτ, thì ta sẽ có được tính chất là DỄ GIẢI NGHIỆM có được phương pháp tối ưu có tính **SCALE-INVARIANT**.
 >
 > Tuy tác giả không giải thích, mà chỉ nói với cách chọn này, thì cái norm sẽ có tính chất non-dimensional, dẫn đến scale invariant, qua thảo luận với Gemini ta hiểu sơ vì sao có được tính scale invariant:
 >
 > A ở đây sẽ là hiệu hai Bk+1 và Bk, với việc B được thiết kế để xấp xỉ / thay thế Hessian, thì ta cứ coi nó như Hessian, matrix đạo hàm cấp hai. Thì đơn vị của các entries sẽ là [f]/[x]^2
 > (gọi [f] là đơn vị của f, [x] là đơn vị của x)
 >
-> W, mà tác giả nói ta có thể assume nó là Gk_inv, với Gk coi như Hessian trung bình, thì như vậy coi như W là inv của Hessian, có đơn vị của các entries là [x]^2/[f]
+> W, mà tác giả nói ta có thể assume nó là Gk⁻¹, với Gk coi như Hessian trung bình, thì như vậy coi như W là inv của Hessian, có đơn vị của các entries là [x]^2/[f]
 >
 > Nên W^(1/2) sẽ có đơn vị là [x]/[f]^(1/2)
 >
@@ -300,7 +300,7 @@
 >
 > steepest descent: αkpk. với pk = -gk, mà gk là vector đạo hàm bậc một → đơn vị của (element) của nó sẽ là [f]/[x]. và như vậy xk có đơn vị [x], pk lại là có đơn vị [f]/[x], dẫn đến αk sẽ phải gánh cái việc dung hòa đơn vị.
 >
-> Newton method pk = -Hk_inv gk. gk có đơn vị [f]/[x], Hk có đơn vị [f]/[x]^2 → Hk_inv có đơn vị [x]^2/[f] → pk = [x]^2/[f] [f]/[x] = [x] → là cùng đơn vị với x, hoàn toàn đúng
+> Newton method pk = -Hk⁻¹ gk. gk có đơn vị [f]/[x], Hk có đơn vị [f]/[x]^2 → Hk⁻¹ có đơn vị [x]^2/[f] → pk = [x]^2/[f] [f]/[x] = [x] → là cùng đơn vị với x, hoàn toàn đúng
 >
 > Nên ở đây, cái việc đơn vị của cái cục trước khi tính norm không có đơn vị chính là giúp tạo tính scale invariant vì dù x có đổi thành đơn vị gì, thì kết quả ko bị ảnh hưởng.
 >
@@ -374,7 +374,7 @@
 >
 > Gốc rễ là từ **mean value theorem** f'(c) = [f(b)-f(a)]/(b-a) với c đâu đó ở giữa a, b. ta đã biết cách chứng minh theorem này ở MIT 1801
 >
-> → MVT: f(b) = f(a) + f'(c)(b - a) với c đâu đó trong [a,b]
+> → MVᵀ: f(b) = f(a) + f'(c)(b - a) với c đâu đó trong [a,b]
 >
 > đặt a = x, b = x + p:
 >
@@ -382,7 +382,7 @@
 >
 > Đây chính là Taylor theorem 2.4 phiên bản hàm đơn biến
 >
-> nếu xét hàm đa biến f(x), x là vector, thì chỉ việc xét hàm g(t) = f(x + tp), và áp dụng MVT cho hàm g với a = 0, b = 1
+> nếu xét hàm đa biến f(x), x là vector, thì chỉ việc xét hàm g(t) = f(x + tp), và áp dụng MVᵀ cho hàm g với a = 0, b = 1
 >
 > g(1) = g(0) + g'(t) với t đâu đó trong [0,1]
 >
@@ -390,9 +390,9 @@
 >
 > ⇔ f(x + p) = f(x) + d/d(x + tp) f(x + tp) . d/dt (x + tp)
 >
-> ⇔ f(x + p) = f(x) + ∇f(x + tp)Tp 
+> ⇔ f(x + p) = f(x) + ∇f(x + tp)ᵀp 
 >
-> ⇔ f(x + p) = f(x) + ∇f(x + tp)Tp với t ở đâu đó trong [0,1]
+> ⇔ f(x + p) = f(x) + ∇f(x + tp)ᵀp với t ở đâu đó trong [0,1]
 >
 > Đây chính là Taylor's theorem 2.4 phiên bản đa biến trong sách.
 >
@@ -418,11 +418,11 @@
 >
 > -----
 >
-> Còn 2.6: f(x + p) = f(x) + ∇f(x)Tp + (1/2) pT ∇^2f(x + tp)p for some t in (0,1)
+> Còn 2.6: f(x + p) = f(x) + ∇f(x)ᵀp + (1/2) pᵀ ∇^2f(x + tp)p for some t in (0,1)
 >
-> Đơn giản là dùng MVT lần nữa: Với chính cái hàm G(t) = ∇f(x+tp)
+> Đơn giản là dùng MVᵀ lần nữa: Với chính cái hàm G(t) = ∇f(x+tp)
 >
-> MVT: G'(c) = [G(1)-G(0)] / (1-0) for some c ∈ (0,1)
+> MVᵀ: G'(c) = [G(1)-G(0)] / (1-0) for some c ∈ (0,1)
 >
 > ⇔ G'(c) = G(1) - G(0)
 >
@@ -440,7 +440,7 @@
 >
 > Nhưng cái chính là chứng minh 2.6 cơ:
 >
-> Cách dễ: Chấp nhận dùng lập luận tương tự của MVT, (nói rằng khi đi từ a → b thì tại c đâu đó giữa a và b thì hàm số sẽ có độ dốc trung bình) thì Taylor's theorem cũng nói:
+> Cách dễ: Chấp nhận dùng lập luận tương tự của MVᵀ, (nói rằng khi đi từ a → b thì tại c đâu đó giữa a và b thì hàm số sẽ có độ dốc trung bình) thì Taylor's theorem cũng nói:
 >
 > khi đi từ a → b thì tại c đâu đó ta sẽ có:
 >
@@ -450,19 +450,19 @@
 >
 > Chuẩn bị: 
 >
-> g'(t) = ∇f(x+tp)Tp → g'(0) = ∇f(x)Tp
+> g'(t) = ∇f(x+tp)ᵀp → g'(0) = ∇f(x)ᵀp
 >
-> g''(t) = d/dt ∇f(x+tp)Tp
+> g''(t) = d/dt ∇f(x+tp)ᵀp
 >
 > Đặt u = x + tp
 >
-> = d/dt ∇f(u)Tp
+> = d/dt ∇f(u)ᵀp
 >
-> Xét hàm k(u) = ∇f(u)Tp
+> Xét hàm k(u) = ∇f(u)ᵀp
 >
-> dk = d[∇f(u)Tp] = ∇f(u + du)Tp - ∇f(u)Tp = [∇f(u + du) - ∇f(u)]Tp
+> dk = d[∇f(u)ᵀp] = ∇f(u + du)ᵀp - ∇f(u)ᵀp = [∇f(u + du) - ∇f(u)]Tp
 >
-> áp dụng f(x + p) = f(x) + ∇f(x + tp)Tp for some t in (0,1)
+> áp dụng f(x + p) = f(x) + ∇f(x + tp)ᵀp for some t in (0,1)
 >
 > → ∇f(u+du) - ∇f(u) = ∇^2f(u + tdu)du for some t in (0,1)
 >
@@ -470,21 +470,21 @@
 >
 > ⇨ ∇f(u+du) - ∇f(u) = ∇^2f(u)du 
 >
-> ⇨ d[∇f(u)Tp] = [∇f(u+du) - ∇f(u)]Tp = [∇^2f(u)du]Tp = duT∇^2f(u)Tp
+> ⇨ d[∇f(u)ᵀp] = [∇f(u+du) - ∇f(u)]Tp = [∇^2f(u)du]Tp = duT∇^2f(u)ᵀp
 >
 > Thay du = p dt
 >
-> ⇔ d[∇f(u)Tp] = dt pT∇^2f(u)Tp
+> ⇔ d[∇f(u)ᵀp] = dt pᵀ∇^2f(u)ᵀp
 >
-> ⇨ d[∇f(u)Tp] / dt = pT∇^2f(u)Tp
+> ⇨ d[∇f(u)ᵀp] / dt = pᵀ∇^2f(u)ᵀp
 >
-> Vậy g''(t) = d/dt ∇f(x+tp)Tp = pT∇f(x+tp)Tp 
+> Vậy g''(t) = d/dt ∇f(x+tp)ᵀp = pᵀ∇f(x+tp)ᵀp 
 >
 > Rồi, áp dụng cho hàm g ta có:
 >
 > g(1) = g(0) + g'(0)(1-0) + (1/2)g''(c)(1-0)^2 for some c in (0,1)
 >
-> ⇔ f(x+p) = f(x) + ∇f(x)Tp + (1/2)∇^2f(x+cp) p for some c in (0,1)
+> ⇔ f(x+p) = f(x) + ∇f(x)ᵀp + (1/2)∇^2f(x+cp) p for some c in (0,1)
 >
 > Chính là (2.6)
 
@@ -564,13 +564,13 @@
 >
 > = P⊥B^P⊥ + PB^P⊥ + 0 + P (vì P⊥ và P orthogonal) và P là projection matrix nên ta nhớ tính chất PP = P (đã chiếu rồi thì chiếu lại vẫn y thinh đã học ở MIT 18.06)
 >
-> Tiếp, xét PB^P⊥ = (B^TP)TP⊥ 
+> Tiếp, xét PB^P⊥ = (B^TP)ᵀP⊥ 
 >
-> = (B^P)TP⊥ (vì B^ đối xứng: B^T = B^)
+> = (B^P)ᵀP⊥ (vì B^ đối xứng: B^T = B^)
 >
-> = (P)TP⊥ (vì B^P = P ở trên)
+> = (P)ᵀP⊥ (vì B^P = P ở trên)
 >
-> = PTP⊥ = 0 (P⊥ và P orthogonal)
+> = PᵀP⊥ = 0 (P⊥ và P orthogonal)
 >
 > Vậy rốt cục: B^ = P⊥B^P⊥ + P
 >
@@ -640,11 +640,11 @@
 >
 > Hãy nhớ lại bức tranh toàn cảnh:
 >
-> Ta muốn tại mỗi iteration, ta xây dựng Bk+1 sao cho nó có thể xấp xỉ Hessian, mục đích là để dùng nó giúp tính ra pk+1 = -(Bk+1)inv gk+1 (nếu Bk+1 xấp xỉ tốt Hessian ∇^2fk+1, thì pk+1 sẽ xấp xỉ tốt Newton's step, giúp converge nhanh, quadratically)
+> Ta muốn tại mỗi iteration, ta xây dựng Bk+1 sao cho nó có thể xấp xỉ Hessian, mục đích là để dùng nó giúp tính ra pk+1 = -(Bk+1)⁻¹ gk+1 (nếu Bk+1 xấp xỉ tốt Hessian ∇^2fk+1, thì pk+1 sẽ xấp xỉ tốt Newton's step, giúp converge nhanh, quadratically)
 >
 > Vậy để Bk+1 xấp xỉ được Hessian ∇^2fk+1, thì nó phải làm được cái việc mà Hessian làm được: Chứa thông tin curvature. Cụ thể như vầy:
 >
-> Hàm mk+1(p), xấp xỉ bậc hai của f tại xk+1: = fk+1 + ∇fk+1Tp + (1/2)pT ∇^2fk+1 p, nó sẽ có thể dự đoán chính xác hành vi của f tại xk+1: mk+1(0) = fk+1 và ∇mk+1 = ∇fk+1. Và sẽ dự đoán tốt hành vi của hàm f trong khoảng lân cận xk+1. Ta cho xk và xk+2 là những điểm trong khoảng lân cận này, (xk+2 thì chưa có nên khỏi bàn) thì ta cho là mk+1(p) có thể approx độ dốc của hàm f tại xk: ∇mk+1(-αkpk) ≈ ∇fk
+> Hàm mk+1(p), xấp xỉ bậc hai của f tại xk+1: = fk+1 + ∇fk+1Tp + (1/2)pᵀ ∇^2fk+1 p, nó sẽ có thể dự đoán chính xác hành vi của f tại xk+1: mk+1(0) = fk+1 và ∇mk+1 = ∇fk+1. Và sẽ dự đoán tốt hành vi của hàm f trong khoảng lân cận xk+1. Ta cho xk và xk+2 là những điểm trong khoảng lân cận này, (xk+2 thì chưa có nên khỏi bàn) thì ta cho là mk+1(p) có thể approx độ dốc của hàm f tại xk: ∇mk+1(-αkpk) ≈ ∇fk
 >
 > Điều này tương đương ∇^2fk+1 (-αkpk) + ∇fk+1 ≈ ∇fk
 >
@@ -652,7 +652,7 @@
 >
 > ⇔ ∇fk+1 - ∇fk ≈ ∇^2fk+1 (xk+1 - xk), đây chính là secant equation.
 >
-> Và ý nghĩa của cái này chính là NHỜ HESSIAN ∇^2fk+1 CHỨA THÔNG TIN CURVATURE CỦA HÀM SỐ TẠI xk+1 NÊN TRONG PHẠM VI LÂN CẬN xk+1, NÓ MỚI GIÚP HÀM mk+1 DỰ ĐOÁN GẦN ĐÚNG HÀNH VI CỦA HÀM f. NÊN CÁI PHƯƠNG TRÌNH XẤP XỈ NÀY, PHẢN ẢNH MỘT SỰ THẬT: HESSIAN ∇^2fk+1 **CHỨA THÔNG TIN CURVATURE CỦA HÀM SỐ TẠI xk+1**, HOẶC, CỤ THỂ HƠN: **NÓ CHỨA THÔNG TIN ĐỘ CONG CỦA HÀM SỐ TỪ xk → xk+1**
+> Và ý nghĩa của cái này chính là NHỜ HESSIAN ∇^2fk+1 CHỨA THÔNG TIN CURVAᵀURE CỦA HÀM SỐ TẠI xk+1 NÊN TRONG PHẠM VI LÂN CẬN xk+1, NÓ MỚI GIÚP HÀM mk+1 DỰ ĐOÁN GẦN ĐÚNG HÀNH VI CỦA HÀM f. NÊN CÁI PHƯƠNG TRÌNH XẤP XỈ NÀY, PHẢN ẢNH MỘT SỰ THẬT: HESSIAN ∇^2fk+1 **CHỨA THÔNG TIN CURVAᵀURE CỦA HÀM SỐ TẠI xk+1**, HOẶC, CỤ THỂ HƠN: **NÓ CHỨA THÔNG TIN ĐỘ CONG CỦA HÀM SỐ TỪ xk → xk+1**
 >
 > Và ta việc ta ép Bk+1, cũng phải thỏa điều này (secant equation) chính là muốn NÓ CŨNG CHỨA THÔNG TIN ĐỘ CONG CỦA HÀM f từ xk → xk+1.
 >
@@ -677,19 +677,19 @@
 >
 > ii) P⊥ là matrix chiếu lên orthogonal complement của span{s^k}, nên s^k-1 đã nằm sẵn trong đó, chiếu ra chính nó: P⊥s^k-1 = s^k-1 → B^kP⊥s^k-1 = B^ks^k-1. Tới đây, vì cách thiết kế cũng theo quy trình này, nên B^ks^k-1 cũng sẽ = s^k-1. → P⊥B^kP⊥s^k-1 = P⊥s^k-1 và again = s^k-1
 >
-> Như vậy B^k+1s^k-1 = s^k-1, cũng chính là Bk+1 sk-1 = yk-1 ĐIỀU NÀY CHO THẤY GÌ: **CHÍNH LÀ Bk+1 CŨNG MANG THÔNG TIN CURVATURE** từ xk-1 → xk! 
+> Như vậy B^k+1s^k-1 = s^k-1, cũng chính là Bk+1 sk-1 = yk-1 ĐIỀU NÀY CHO THẤY GÌ: **CHÍNH LÀ Bk+1 CŨNG MANG THÔNG TIN CURVAᵀURE** từ xk-1 → xk! 
 >
-> Và hoàn toàn tương tự, ta có thể thấy Bk+1 s1 = y1, Bk+1 s2 = y2, ...ĐỂ CHO THẤY Bk+1 CŨNG MANG THÔNG TIN CURVATURE từ x1 → x2, x2 → x3,....xk → xk+1!!!
+> Và hoàn toàn tương tự, ta có thể thấy Bk+1 s1 = y1, Bk+1 s2 = y2, ...ĐỂ CHO THẤY Bk+1 CŨNG MANG THÔNG TIN CURVAᵀURE từ x1 → x2, x2 → x3,....xk → xk+1!!!
 >
-> Và tương tự Bk CŨNG MANG THÔNG TIN CURVATURE từ x1 → x2, x2 → x3,....xk-1 → xk!!!
+> Và tương tự Bk CŨNG MANG THÔNG TIN CURVAᵀURE từ x1 → x2, x2 → x3,....xk-1 → xk!!!
 >
 > ĐIỀU NÀY CHO THẤY GÌ: ĐÓ LÀ VIỆC DÙNG CÔNG THỨC Bk+1 như vầy ĐÃ LÀM HAI VIỆC:
 >
-> i) BẢO TỒN THÔNG TIN CURVATURE TỪ x1 → x2, x2 → x3,..xk-1 → xk CÓ ĐƯỢC TRƯỚC ĐÓ!
+> i) BẢO TỒN THÔNG TIN CURVAᵀURE TỪ x1 → x2, x2 → x3,..xk-1 → xk CÓ ĐƯỢC TRƯỚC ĐÓ!
 >
-> ii) CẬP NHẬT THÊM THÔNG TIN CURVATURE TỪ xk → xk+1!
+> ii) CẬP NHẬT THÊM THÔNG TIN CURVAᵀURE TỪ xk → xk+1!
 >
-> Và dù cho thuật toán có thay đổi chút xíu: Thay vì cập nhật / tính Bk+1, thì nó cập nhật / tính (Bk+1)inv, tức Hk+1 (không phải Hessian nhé), nhằm mục đích là khỏi phải đi inverse Bk+1 lần nữa khi tính pk+1 = -(Bk+1)inv ∇fk (vì đây là mục đích cuối cùng). Nhưng TINH THẦN LÀ VẪN VẬY: CẬP NHẬT THÊM THÔNG TIN CURVATURE TỪ xk → xk+1!: "combines the most recently observed information about the objective function" VÀ BẢO TỒN THÔNG TIN CURVATURE: "with the existing knowledge embedded in our current Hessian approximation"
+> Và dù cho thuật toán có thay đổi chút xíu: Thay vì cập nhật / tính Bk+1, thì nó cập nhật / tính (Bk+1)⁻¹, tức Hk+1 (không phải Hessian nhé), nhằm mục đích là khỏi phải đi inverse Bk+1 lần nữa khi tính pk+1 = -(Bk+1)⁻¹ ∇fk (vì đây là mục đích cuối cùng). Nhưng TINH THẦN LÀ VẪN VẬY: CẬP NHẬT THÊM THÔNG TIN CURVAᵀURE TỪ xk → xk+1!: "combines the most recently observed information about the objective function" VÀ BẢO TỒN THÔNG TIN CURVAᵀURE: "with the existing knowledge embedded in our current Hessian approximation"
 >
 > Về cái vụ (!): s^k vuông góc với s^k-1: Thì đại khái là ông thầy Gemini có nói, điều này chỉ đúng nếu ta dùng exact line search khi tìm optimal step size αk và hàm f là hàm bậc hai.(Cái này tạm chấp nhận ở đây)
 >
@@ -697,7 +697,7 @@
 >
 > B^k+1s^k-1 = P⊥B^kP⊥s^k-1 + Ps^k-1 = s^k-1 + u với u = Ps^k-1 hơi khác 0 
 >
-> → B^k+1s^k-1 hơi khác s^k-1, mang ý nghĩa: B^k+1 MẤT ĐI CHÚT XÍU THÔNG TIN CURVATURE từ xk-1 → xk. Và TƯƠNG TỰ, B^k CŨNG MẤT ĐI CHÚT XÍU THÔNG TIN TỪ xk-2 → xk-1,... THÀNH RA HIỆU ỨNG LÀ k CÀNG LỚN, B^k+1 sẽ mất đi thông tin curvature ở các hướng x1→x2, x2→x3,...ở xa. Và hóa ra điều này lại hay.
+> → B^k+1s^k-1 hơi khác s^k-1, mang ý nghĩa: B^k+1 MẤT ĐI CHÚT XÍU THÔNG TIN CURVAᵀURE từ xk-1 → xk. Và TƯƠNG TỰ, B^k CŨNG MẤT ĐI CHÚT XÍU THÔNG TIN TỪ xk-2 → xk-1,... THÀNH RA HIỆU ỨNG LÀ k CÀNG LỚN, B^k+1 sẽ mất đi thông tin curvature ở các hướng x1→x2, x2→x3,...ở xa. Và hóa ra điều này lại hay.
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
@@ -746,7 +746,7 @@
 > [!NOTE]
 > Tiếp, thầy Nocedal cũng chỉ nói qua rằng, tuy DFP đã khá là hiệu quả, nhưng sau đó BFGS ra đời, tỏ ra còn hiệu quả hơn nữa.
 >
-> Cách làm thì chỉ khác ở chỗ: Thay vì xây dựng công thức update Bk+1, và dùng công thức Sherman-Morrison-Woodburry để chuyển thành công thức update (Bk+1)inv, tức Hk+1, thì BFGS tiếp cận bằng cách trực tiếp xây dựng Hk+1 cũng từ điều kiện Hk+1 thỏa secant equation (mình nên hiểu là secant equation ĐỐI VỚI INVERSE: Hk+1yk = sk (vì Bksk = yk ⇔ Bkyk = sk) , và minimize weight norm của Hk+1-Hk, và Hk đối xứng. Kết quả là ta có công thức 6.17
+> Cách làm thì chỉ khác ở chỗ: Thay vì xây dựng công thức update Bk+1, và dùng công thức Sherman-Morrison-Woodburry để chuyển thành công thức update (Bk+1)⁻¹, tức Hk+1, thì BFGS tiếp cận bằng cách trực tiếp xây dựng Hk+1 cũng từ điều kiện Hk+1 thỏa secant equation (mình nên hiểu là secant equation ĐỐI VỚI INVERSE: Hk+1yk = sk (vì Bksk = yk ⇔ Bkyk = sk) , và minimize weight norm của Hk+1-Hk, và Hk đối xứng. Kết quả là ta có công thức 6.17
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
@@ -991,11 +991,11 @@
 >
 > (nói cập nhật Bk, thì ý là tính Bk+1, cái này nên hiểu ý)
 >
-> Nhưng sau đó, ta vẫn phải tính nghịch đảo của Bk+1, để mà tính pk+1 = - Bk+1 ∇fk+1. Và ta thay vì tính Bk+1 xong rồi tính nghịch đảo, thì người ta mới dùng một cách biến đổi đại số để đổi cái công thức cập nhật Bk, (tức tính Bk+1) thẳng qua công thức cập nhật (Bk)inv: tức tính thẳng (Bk+1)inv từ (Bk)inv luôn (mà trong sách dùng Hk+1,Hk). Và như vậy thì ta sẽ tránh được việc tính nghịch đảo, vốn sẽ tốn O(n^3), giúp toàn bộ quá trình chỉ là tốn O(n^2).
+> Nhưng sau đó, ta vẫn phải tính nghịch đảo của Bk+1, để mà tính pk+1 = - Bk+1 ∇fk+1. Và ta thay vì tính Bk+1 xong rồi tính nghịch đảo, thì người ta mới dùng một cách biến đổi đại số để đổi cái công thức cập nhật Bk, (tức tính Bk+1) thẳng qua công thức cập nhật (Bk)⁻¹: tức tính thẳng (Bk+1)⁻¹ từ (Bk)⁻¹ luôn (mà trong sách dùng Hk+1,Hk). Và như vậy thì ta sẽ tránh được việc tính nghịch đảo, vốn sẽ tốn O(n^3), giúp toàn bộ quá trình chỉ là tốn O(n^2).
 >
 > Và đó là thuật toán DFP. Nói ngắn gọn: Áp các điều kiện lên Bk để có công thức cập nhật Bk, rồi dùng công thức "chuyển đổi để có công thức cập nhật Hk"
 >
-> Nhưng lại có cách khác, đó là áp thẳng các điều kiện lên luôn (Bk)inv, để ra luôn công thức cập nhật Hk, và đây chính là BFGS, còn tốt hơn cả DFP.
+> Nhưng lại có cách khác, đó là áp thẳng các điều kiện lên luôn (Bk)⁻¹, để ra luôn công thức cập nhật Hk, và đây chính là BFGS, còn tốt hơn cả DFP.
 >
 > Tuy nhiên gs nói có khi, việc dùng cách cập nhật Hk gặp khó khăn trong một số tình huống, nên khi đó, ta lại dùng công thức chuyển đổi nói trên để có phiên bản BFGS nhưng mà là cập nhật Bk. Nhưng mà làm vậy thì lại đạp cái đuôi của mình. là phải tính inverse hóa ra lại tốn O(n^3). Tuy nhiên có cách, bằng cách phân rã Cholesky, ta có thể tạo ra thuật toán BFGS cập nhật các matrix L,D này (vẫn là dựa trên gốc là việc đặt điều kiện lên Hk (là điểm khác biệt giữa DFP và BFGS), để có công thức cập nhật Hk, và chuyển đổi thành công thức cập nhật Bk hay Lk,Dk), và với điều này, vì B thể hiện bằng tích các matrix tam giác L, matrix đường chéo D, khiến việc tính inverse, cơ bản chỉ là vẫn chỉ tốn O(n^2).
 >
