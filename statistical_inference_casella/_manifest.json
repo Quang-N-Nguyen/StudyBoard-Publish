@@ -1,6 +1,6 @@
 {
   "title": "Statistical Inference - Casella",
-  "publishedAt": 1792692022345,
+  "publishedAt": 1792779916273,
   "sections": [
     {
       "title": "📋 Overview",
@@ -311,10 +311,10 @@
     {
       "title": "11.3 Simple Linear Regression",
       "path": "statistical_inference_casella/113_simple_linear_regression.md",
-      "noteCount": 12,
-      "imageCount": 22
+      "noteCount": 14,
+      "imageCount": 27
     }
   ],
-  "totalNotes": 914,
-  "totalImages": 1202
+  "totalNotes": 916,
+  "totalImages": 1207
 }
