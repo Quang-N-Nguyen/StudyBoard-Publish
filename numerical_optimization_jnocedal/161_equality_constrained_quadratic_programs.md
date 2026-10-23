@@ -1,6 +1,6 @@
 # 16.1 Equality-constrained Quadratic Programs
 
-📊 **Progress:** `2` Notes | `5` Screenshots | `2` AI Reviews
+📊 **Progress:** `3` Notes | `19` Screenshots | `3` AI Reviews
 
 ---
 <a id="node-bat3b7g"></a>
@@ -71,7 +71,7 @@
 >
 >
 >
-> Lagrangian: f(x) - Σi λi ci(x) 
+> Lagrangian: f(x) - Σi λi ci(x)
 >
 >
 >
@@ -87,7 +87,15 @@
 >
 >
 >
-> ⇔ Gᵀx\* + c - Aᵀλ\* = 0 ⇔ Gᵀx\* - Aᵀλ\* = -c ⇔ Gx\* - Aᵀλ\* = -c
+> ⇔ Gᵀx\* + c - Aᵀλ\* = 0 
+>
+>
+>
+> ⇔ Gᵀx\* - Aᵀλ\* = -c 
+>
+>
+>
+> ⇔ Gx\* - Aᵀλ\* = -c
 >
 >
 >
@@ -103,11 +111,15 @@
 >
 >
 >
-> Gx\* - Aᵀλ\* = -c ⇔ G(x + p) - Aᵀλ\* = -c ⇔ Gx + Gp - Aᵀλ\* = -c 
+> Gx\* - Aᵀλ\* = -c ⇔ G(x + p) - Aᵀλ\* = -c 
 >
 >
 >
-> ⇔ Gp - Aᵀλ\* = -c-Gx 
+> ⇔ Gx + Gp - Aᵀλ\* = -c
+>
+>
+>
+> ⇔ Gp - Aᵀλ\* = -c-Gx
 >
 >
 >
@@ -115,7 +127,11 @@
 >
 >
 >
-> Và Ax\* = b ⇔ A(x + p) = b ⇔ Ax + Ap = b ⇔  -Ap = Ax - b ⇔ A(-p) = Ax - b
+> Và Ax\* = b ⇔ A(x + p) = b ⇔ Ax + Ap = b ⇔ -Ap = Ax - b 
+>
+>
+>
+> ⇔ A(-p) = Ax - b
 >
 >
 >
@@ -123,7 +139,7 @@
 >
 >
 >
-> Ta có 16.5
+> ⇒ ta có 16.5, matrix \[G A; Aᵀ 0\] gọi là KKT matrix.
 
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
@@ -143,11 +159,175 @@
 
 #### KKT Matrix Nonsingularity Conditions
 
-<p align="center"><kbd><img src="assets/mqef6dbcr3.png" width="80%"></kbd></p>
-
 <p align="center"><kbd><img src="assets/dl6xnzwr1jm.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/cvj83ordvxa.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/mqef6dbcr3.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/36eplvak5rp.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Bổ đề 16.1 nói đại ý rằng, nếu ta có A full row rank, và ZᵀGZ (Z là matrix basis cuả N(A) như đã biết ở chương 15, và ZᵀGZ gọi là reduced Hessian) xác định dương thì KKT matrix sẽ nonsingular, và từ đó phương trình \[matrix KKT\] \[-p, λ\*\]ᵀ = \[g, h\]ᵀ có nghiệm duy nhất, nên đồng nghĩa bài toán QP cũng có nghiệm (x\*, λ\*) duy nhất.
+>
+>
+>
+> Vì sao ZᵀGZ gọi là reduced Hessian?
+>
+>
+>
+> Để ý, G, là trong hàm mục tiêu f(x) = (1/2)xᵀGx + cᵀx, thì G chính là Hessian của f: ∇²f(x) = G.
+>
+>
+>
+> Ta sẽ nói về vụ reduced sau. Cái chính là chứng minh bổ đề này.
+>
+>
+>
+> ---
+>
+>
+>
+> Bài chứng minh này hoàn toàn là cơ hội để ôn 18.06:
+>
+>
+>
+> Trong 18.06 đã học và sẽ dùng mấy điểm sau đây: 
+>
+>
+>
+> 1) Matrix non-singular / invertible / full rank là matrix vuông: Ax = 0 khi và chỉ khi  x = 0, nullspace (và left nullspace) chỉ có {0}.
+>
+>
+>
+> 2) Matrix xác định dương là matrix mà quadratic form uᵀAu &gt; 0 với mọi u khác 0 và bằng 0 chỉ khi u  = 0. 
+>
+>
+>
+> 3) Full row rank ⇒ mọi hàng đều độc lập tuyến tính.
+>
+>
+>
+> Vậy ở đây để chứng minh KKT matrix nonsingular ta chỉ cần giả sử có vector \[w;v\] khiến \[KKT\]\[w;v\] = 0, thì nhất định \[w;v\] = 0
+>
+>
+>
+> THế thì, giả sử \[KKT\]\[w, v\]ᵀ = 0
+>
+>
+>
+> ⇔ Gw + Aᵀv = 0 (a) và Aw = 0 (b)
+>
+>
+>
+> nhân hai vế cho \[w; v\]ᵀ = \[wᵀ, vᵀ\] 
+>
+>
+>
+> \[wᵀ, vᵀ\]\[KKT\]\[w;v\] = 0 (1)
+>
+>
+>
+> \[KKT\]\[w;v\] = \[Gw + Aᵀv; Aw\]
+>
+>
+>
+> (1) ⇔ \[wᵀ, vᵀ\]\[Gw + Aᵀv; Aw\] = 0
+>
+>
+>
+> ⇔ wᵀGw + wᵀAᵀv + vᵀAw = 0 (2)
+>
+>
+>
+> Mà \[KKT\]\[w, v\]ᵀ = 0 ⇒ Aw = 0
+>
+>
+>
+> Nên (2) ⇔ wᵀGw = 0 (3)
+>
+>
+>
+> ---
+>
+>
+>
+> Tiếp, vì Aw = 0, nên nó nhất định ∈ N(A), nên với việc Z là matrix các cột là basis của N(A), đương nhiên w = Zu for some u.
+>
+>
+>
+> Nên (3) ⇔ (Zu)ᵀG(Zu) = 0
+>
+>
+>
+> ⇔ uᵀZᵀGZu = 0
+>
+>
+>
+> Tới đây dùng đề bài cho là ZᵀGZ xác định dương, thì đồng nghĩa u chắc chắn phải = 0
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy u = 0 ⇒ w = Zu = 0
+>
+>
+>
+> Và như vậy (a): Gw + Aᵀv = 0 ⇔ Aᵀv = 0 
+>
+>
+>
+> Mà A full row rank, tức Aᵀ full column rank, các cột độc lập, nên Aᵀv = 0 khi và chỉ khi v = 0.
+>
+>
+>
+> Vậy ta đã chứng minh rằng giả sử có \[w; v\] khiến \[KKT\]\[w; v\] = 0 thì \[w; v\] = 0, vậy matrix KKT là non-singular, vì nó đã vuông sẵn rồi (nếu ko vuông thì chỉ kết luận full column rank)
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=TYA0HbfhlHQ)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, tái hiện và giải thích chi tiết, chính xác từng bước chứng minh của Bổ đề 16.1 dựa trên kiến thức Đại số tuyến tính chuẩn xác.
+>
+> **✓ Strengths**
+> - Trình bày mạch lạc và đầy đủ các bước chứng minh KKT matrix khả nghịch thông qua việc chứng minh hạch (nullspace) chỉ chứa vector 0.
+> - Liên hệ và vận dụng chính xác các kiến thức đại số tuyến tính như tính xác định dương của reduced Hessian và tính full column rank của Aᵀ từ giả thiết A full row rank.
+> - Lập luận chặt chẽ về tính duy nhất của nghiệm cho hệ phương trình KKT.
+>
+> **💡 Deeper notes**
+> - Trong bài toán Quadratic Programming lồi với ràng buộc đẳng thức, điều kiện reduced Hessian xác định dương (ZᵀGZ > 0) không chỉ đảm bảo ma trận KKT khả nghịch (nghiệm KKT duy nhất), mà còn là điều kiện đủ bậc hai đảm bảo nghiệm x* là điểm cực tiểu toàn cục duy nhất.
+
 <br>
+
+<a id="node-pxczrh0"></a>
+
+<p align="center"><kbd><img src="assets/yg9orlbzbj.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/36eplvak5rp.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/na1al6g4zbb.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/itlnmpgry3c.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/0ywtu2ulzh4.png" width="80%"></kbd></p>
 
