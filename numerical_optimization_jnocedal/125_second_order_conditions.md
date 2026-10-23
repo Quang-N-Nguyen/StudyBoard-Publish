@@ -2227,7 +2227,7 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 > - Trong tính toán số thực tế (numerical linear algebra), phép phân tích QR thường dùng phản xạ Householder hoặc phép quay Givens thay vì Gram-Schmidt cổ điển để đảm bảo tính trực giao số học (loss of orthogonality).
 > - Khi R bị suy biến (rank-deficient), thuật toán phân tích QR có hoán vị cột (column pivoting: A^T P = Q R) giúp dồn các cột độc lập tuyến tính lên trước, tách R thành dạng khối tam giác trên khả nghịch và khối bằng 0, từ đó vẫn xác định được ma trận Z cho nullspace.
 
-**🔗 See also:** [QR Factorization for Y and Z](./153_eliminaion_of_variables.md#node-nlqpdrl)
+**🔗 See also:** [QR Factorization for Y and Z](./153_elimination_of_variables.md#node-nlqpdrl)
 
 <br>
 
