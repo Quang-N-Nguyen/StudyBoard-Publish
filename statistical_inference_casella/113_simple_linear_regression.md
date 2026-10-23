@@ -1,6 +1,6 @@
 # 11.3 Simple Linear Regression
 
-📊 **Progress:** `12` Notes | `22` Screenshots | `12` AI Reviews
+📊 **Progress:** `14` Notes | `27` Screenshots | `14` AI Reviews
 
 ---
 <a id="node-m4lr6nj"></a>
@@ -313,6 +313,8 @@
 >
 > **💡 Deeper notes**
 > - Công thức hệ số góc $b = S_{xy} / S_{xx}$ ngầm giả định $S_{xx} > 0$, tức các điểm dữ liệu $x_i$ không hoàn toàn trùng nhau (ít nhất có hai giá trị $x$ khác nhau).
+
+**🔗 See also:** [BLUE of Linear Estimators](#node-s1vw0l4)
 
 <br>
 
@@ -868,6 +870,359 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 > **💡 Deeper notes**
 > - Trong bối cảnh bài học ở sách giáo khoa (BLUE - Gauss-Markov Theorem), chữ 'Linear' (tuyến tính) giới hạn không gian tìm kiếm chỉ trong các hàm tuyến tính của biến phản hồi Y; do đó BLUE là ước lượng có phương sai nhỏ nhất trong lớp ước lượng tuyến tính không chệch, chứ không nhất thiết là nhỏ nhất trên toàn bộ không gian ước lượng phi tuyến (UMVUE).
+
+<br>
+
+<a id="node-s1vw0l4"></a>
+
+###### BLUE of Linear Estimators
+
+<p align="center"><kbd><img src="assets/chu05f305s4.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/4qhgxrpeyf3.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> b = Sxy / Sxx
+>
+>
+>
+> a = ȳ - bx̄
+>
+>
+>
+> Ok, đại khái ta đã biết để có một unbiased linear estimator, thì W(𝐘) = Σi diYi phải có kì vọng bằng β với mọi α,β. Dẫn tới hai ràng buộc là Σi di = 0 và Σi di xi = 1
+>
+>
+>
+> Thế thì như note trước vừa ôn lại, với point estimator của θ, để có cái gọi là the best unbiased estimator của θ thì Var(W(𝐗)) phải nhỏ nhất trong đám các unbiased estimator.
+>
+>
+>
+> Tương tự như vậy, để gọi là the best unbiased estimator của β thì Var(W(𝐘)) phải nhỏ nhất.
+>
+>
+>
+> ---
+>
+>
+>
+> Xét Var(W(𝐘)) = Var(Σi diYi)
+>
+>
+>
+> Áp dụng công thức Var(X1+X2+...Xn) = Var(X1) + ..Var(Xn) + 2Cov(X1,X2) + 2Cov(X1,X3)....
+>
+>
+>
+> = Σi Var(Xi) + Σi,j,i≠j 2Cov(Xi,Xj)
+>
+>
+>
+> Nếu Xi, Xj uncorrelate, tức Cov(Xi,Xj)/STD(Xi)STD(Xj) = 0 ⇔ Cov(Xi,Xj) = 0
+>
+>
+>
+> Do đó, vì Yi uncorrelate nên Var(Σi diYi) = Σi Var(diYi)
+>
+>
+>
+> = Σi di² Var(Yi) (tính chất variance: Var(cX) =  c²Var(X))
+>
+>
+>
+> = Σi di² σ² (Var(Yi) = σ² ∀i, đây là giả định của simple linear regression)
+>
+>
+>
+> = σ² Σi di² 
+>
+>
+>
+> ---
+>
+>
+>
+> Như vậy, để Var(W(𝐘)) nhỏ nhất thì Σi di²  phải nhỏ nhất.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú đã ghi lại chính xác công thức tính hệ số góc $b$ và hệ số chặn $a$ trong hồi quy tuyến tính đơn giản. Tuy nhiên, ghi chú khá ngắn gọn và chưa đề cập đến bản chất BLUE (ước lượng tuyến tính không chệch tốt nhất) được trình bày trong tài liệu.
+>
+> **✓ Strengths**
+> - Ghi lại chính xác công thức chuẩn cho ước lượng hệ số góc b = Sxy / Sxx và hệ số chặn a = ȳ - bx̄.
+>
+> **💡 Deeper notes**
+> - Tài liệu gốc sử dụng ký hiệu S_{xY} (với Y viết hoa) để nhấn mạnh đây là biến ngẫu nhiên / ước lượng (estimator), phụ thuộc vào các biến ngẫu nhiên Y_i, khác với giá trị mẫu cụ thể S_{xy}.
+> - Đoạn văn bản chủ yếu tập trung chứng minh b là ước lượng tuyến tính không chệch tốt nhất (BLUE) của β dựa trên việc tối thiểu hóa tổng d_i^2.
+
+**🔗 See also:** [Two Steps of Regression Analysis](#node-7ilb1oo)
+
+<br>
+
+<a id="node-fgu25fe"></a>
+
+###### Lemma 11.2.7 Contrast Maximization
+
+<p align="center"><kbd><img src="assets/h550a9c9c8m.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/0uaahjjodw6.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/rzpjk02zock.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Cov(X,Y) = E\[(X-EX)(Y-EY)\]
+>
+>
+>
+> = E\[XY-(EX)Y-X(EY)+(EX)(EY)\]
+>
+>
+>
+> = E(XY) - (EX)(EY) - (EX)(EY) + (EX)(EY)
+>
+>
+>
+> = E(XY) - (EX)(EY)
+>
+>
+>
+> ---
+>
+>
+>
+> Bất đẳng thức Cauchy-Schwarz:
+>
+>
+>
+> E\[(U-tV)²\] ≥ 0 ∀t
+>
+>
+>
+> ⇔ E\[U² - 2U(tV) + (tV)²\] ≥ 0
+>
+>
+>
+> ⇔ E\[U²\] - E\[2U(tV)\] + E\[(tV)²\] ≥ 0
+>
+>
+>
+> ⇔ E\[U²\] - 2tE\[UV\] + t²E\[V²\] ≥ 0
+>
+>
+>
+> ⇔ E\[V²\]t² - 2E\[UV\]t + E\[U²\] ≥ 0 ∀t (1)
+>
+>
+>
+> Xét hàm f(t) = E\[V²\]t² - 2E\[UV\]t + E\[U²\]
+>
+>
+>
+> d/dt f(t) = 2E\[V²\]t - 2E\[UV\]
+>
+>
+>
+> Điều kiện tối ưu cần bậc nhất: d/dt f(t) = 0 ⇔ 2E\[V²\]t - 2E\[UV\] = 0 
+>
+>
+>
+> ⇔ t = E\[UV\]/ E\[V²\]
+>
+>
+>
+> d/dt \[2E\[V²\]t - 2E\[UV\]\] = 2E\[V²\] ≥ 0 với t
+>
+>
+>
+> Suy ra hàm số đạt cực tiểu tại t0 = E\[UV\] / E\[V²\]
+>
+>
+>
+> (1) ⇔ f(t0) ≥ 0
+>
+>
+>
+> E\[V²\](E\[UV\]/ E\[V²\])² - 2E\[UV\](E\[UV\]/ E\[V²\]) + E\[U²\] ≥ 0
+>
+>
+>
+> ⇔ (E\[UV\])²/ E\[V²\] - 2(E\[UV\])²/ E\[V²\] + E\[U²\] ≥ 0
+>
+>
+>
+> ⇔ -(E\[UV\])²/ E\[V²\] + E\[U²\] ≥ 0
+>
+>
+>
+> ⇔  E\[U²\] ≥ (E\[UV\])²/ E\[V²\]
+>
+>
+>
+> ⇔ E\[U²\]E\[V²\] ≥ (E\[UV\])²
+>
+>
+>
+>  đây chính là bất đẳng thức Cauchy-Schwarz:
+>
+>
+>
+> (E\[UV\])² ≤ E\[U²\]E\[V²\] 
+>
+>
+>
+> ---
+>
+>
+>
+> Áp dụng cho U = (X - EX), V = (Y - EY)
+>
+>
+>
+> (E\[(X - EX)(Y - EY)\])² ≤ E\[(X - EX)²\]E\[(Y - EY)²\] 
+>
+>
+>
+> (Cov(X,Y))² ≤ Var(X)Var(Y)
+>
+>
+>
+> ⇔ -STD(X)STD(Y) ≤ (Cov(X,Y)) ≤ STD(X)STD(Y)
+>
+>
+>
+> ⇔ -1 ≤ Cov(X,Y) / STD(X)STD(Y) ≤ 1
+>
+>
+>
+> ⇔ -1 ≤ Corr(X,Y) ≤ 1
+>
+>
+>
+> ---
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> ---
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> ---
+>
+>
+>
+> Rồi, chứng minh đại khái như sau:
+>
+>
+>
+> Bổ đề nói rằng cho (v1,...vk) là constant và (c1,...ck) là constant dương. Và 𝒜 = {𝐚=(a1,...ak): Σiai = 0} thì khi đó:
+>
+>
+>
+> max\_𝐚∈𝒜 {(Σi aivi)² / (Σi ai²/ci)} = Σi ci(vi - v̄c)² với v̄c = Σi civi / Σici 
+>
+>
+>
+> Và maximum sẽ đạt tại 𝐚 có dạng ai = Kci(vi-v̄c) với K là constant khác 0
+>
+>
+>
+> ---
+>
+>
+>
+> Chứng minh đại khái như sau:
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=gpURGn0c_74)
+
+> [!TIP]
+> 🤖 **AI Check** — 🔴 Critical issues — ❌ **35/100** · ✗ Fix first
+>
+> Ghi chú chưa thực hiện phần chứng minh bổ đề như đã nêu ('Chứng minh đại khái như sau:' nhưng để trống), đồng thời mắc lỗi nghiêm trọng khi đưa biến ngẫu nhiên sign(UV) ra ngoài kỳ vọng.
+>
+> **🔴 Critical issues**
+>
+> **1.** *"Chứng minh đại khái như sau:"*
+>
+> Kiểm tra tiến độ (Progress Check): Ghi chú đặt ra mục tiêu chứng minh bổ đề nhưng chỉ chép lại phát biểu của Bổ đề 11.2.7 và để trống toàn bộ phần chứng minh theo gợi ý phân phối xác suất và bất đẳng thức Cauchy-Schwarz từ tài liệu.
+>
+> **2.** *"E[sign(UV) |UV|] = sign(UV) E[|UV|]"*
+>
+> Sai bản chất toán học: sign(UV) là một đại lượng ngẫu nhiên phụ thuộc vào mẫu, không phải là hằng số nên không thể tùy tiện đưa ra ngoài dấu kỳ vọng E[·].
+>
+>
+> **🟡 Minor issues**
+>
+> **1.** *"t = E[UV]/ E[V²]"*
+>
+> Chưa xét trường hợp mẫu số bằng 0 (E[V²] = 0 hay V = 0 hầu chắc chắn) khi chia cho E[V²].
+>
+> **2.** *"(2) |E[UV]| ⇔ ≤ E[|UV|] ≤ √E[|U|²] √E[|V|²]"*
+>
+> Ký hiệu bị lỗi cú pháp ('⇔ ≤') gây khó hiểu cho biểu thức so sánh.
+>
+>
+> **✓ Strengths**
+> - Khai triển và biến đổi công thức tính hiệp biến Cov(X, Y) = E[XY] - E[X]E[Y] chính xác.
+> - Ý tưởng chứng minh bất đẳng thức Cauchy-Schwarz qua việc tối thiểu hóa tam thức bậc hai f(t) = E[(U - tV)²] rất rõ ràng và mạch lạc.
+>
+> **💡 Deeper notes**
+> - Để chứng minh Bổ đề 11.2.7 theo tài liệu, cần áp dụng Cauchy-Schwarz cho Cov(B, V)² ≤ Var(B)Var(V) với phân phối xác suất rời rạc P(B = b_i/c_i, V = v_i) = c_i / C thay vì chỉ dừng lại ở việc chứng minh lại bất đẳng thức Cauchy-Schwarz tổng quát.
+> - Bất đẳng thức |E[UV]| ≤ E[|UV|] suy ra trực tiếp từ tính chất kỳ vọng của hàm lồi / bất đẳng thức tam giác cho tích phân, không cần thông qua biến đổi sign(UV).
 
 <br>
 
