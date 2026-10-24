@@ -1,6 +1,6 @@
 # 5.2 Training
 
-📊 **Progress:** `7` Notes | `14` Screenshots | `7` AI Reviews
+📊 **Progress:** `9` Notes | `20` Screenshots | `9` AI Reviews
 
 ---
 <a id="node-90vy3g2"></a>
@@ -1423,5 +1423,316 @@
 
 <a id="node-avgsj97"></a>
 
+###### Feature Sharing in Neural Networks
+
+<p align="center"><kbd><img src="assets/5ml76eogja8.png" width="80%"></kbd></p>
+
 <p align="center"><kbd><img src="assets/0q2q8wl0t21.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/vgsqmjma4l.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/78f5flfuiac.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> E(𝐰) = - Σn=1:N Σk=1:K { (tnk) ln (ynk) + (1-tnk) ln (1-ynk)}
+>
+>
+>
+> Error function đối với 1 data point:
+>
+>
+>
+> E(𝐰) = - Σk=1:K {(tk) ln (yk) + (1-tk) ln (1-yk)}
+>
+>
+>
+>  ví dụ K = 2
+>
+>
+>
+> \- {(t1) ln (y1) + (1-t1) ln (1-y1)} - {t2 ln (y2) + (1-t2) ln (1-y2)}
+>
+>
+>
+> Tính đạo hàm đối với a1: sẽ bằng ∂/∂a1 \[- {(t1) ln (y1) + (1-t1) ln (1-y1)} \]
+>
+>
+>
+> Tương tự:
+>
+>
+>
+> Trong hàm số trên, chỉ có yk = σ(ak), còn lại yj, j khác k đều không phụ thuộc ak. Do đó
+>
+>
+>
+> ∂/∂ak E(𝐰) = - ∂/∂ak Σk=1:K { (tk) ln (yk) + (1-tk) ln (1-yk)}
+>
+>
+>
+> ∂/∂ak E(𝐰) = - ∂/∂ak {(tk) ln (yk) + (1-tk) ln (1-yk)}
+>
+>
+>
+> = - ∂/∂ak {(tk) ln (yk) + (1-tk) ln (1-yk)}
+>
+>
+>
+> = - { ∂/∂ak (tk) ln (yk) + ∂/∂ak (1-tk) ln (1-yk)}
+>
+>
+>
+> = - { tk ∂/∂ak ln (yk) + (1-tk) ∂/∂ak ln (1-yk)}
+>
+>
+>
+> Dùng chain rule:
+>
+>
+>
+> = - { tk ∂/∂yk ln (yk) . ∂/∂ak yk + (1-tk) ∂/∂(1-yk) ln (1-yk) . ∂/∂yk (1-yk) ∂/∂ak yk}
+>
+>
+>
+> yk = σ(ak), d/dak yk = σ(ak)\[1-σ(ak)\]
+>
+>
+>
+> = - { tk (1/yk) . σ(ak)(1-σ(ak) + (1-tk) \[1/(1-yk)\] . (-1) σ(ak)(1-σ(ak)}
+>
+>
+>
+> = - { tk (1/yk) . σ(ak)(1-σ(ak)) + (1-tk) \[1/(1-yk)\] . (-1) σ(ak)(1-σ(ak))}
+>
+>
+>
+> = - { tk (1/yk) . yk(1-yk) - (1-tk) \[1/(1-yk)\] yk (1-yk)}
+>
+>
+>
+> = - \[tk (1-yk) - (1-tk) yk\]
+>
+>
+>
+> = - (tk - tkyk - yk + tkyk)
+>
+>
+>
+> = - (tk - yk)
+>
+>
+>
+> = yk - tk
+
+📹 Video 1: [Tại sao đạo hàm ∂E/∂a_k lại bằng y_k - t_k?](https://www.youtube.com/watch?v=kbQmbgK_CTY)
+
+📹 Video 2: [So sánh logistic regression và neural network](https://www.youtube.com/watch?v=_ny2GNFdhfo)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Lời giải bài tập 5.6 rất chi tiết, chuẩn xác và mạch lạc từ việc rút gọn tổng cho đến các bước đạo hàm theo quy tắc chuỗi.
+>
+> **✓ Strengths**
+> - Nhận xét chính xác rằng các đầu ra $y_j$ với $j \neq k$ không phụ thuộc vào $a_k$, giúp rút gọn đạo hàm của tổng về đúng số hạng thứ $k$.
+> - Áp dụng đạo hàm hàm hợp (chain rule) và công thức đạo hàm hàm logistic sigmoid $\sigma'(a_k) = y_k(1-y_k)$ một cách cẩn thận và ra kết quả cuối cùng $y_k - t_k$ hoàn toàn chính xác.
+>
+> **💡 Deeper notes**
+> - Hàm lỗi cho một điểm dữ liệu thường được ký hiệu là $E_n(\mathbf{w})$ để phân biệt rõ ràng với tổng lỗi trên toàn bộ tập dữ liệu $E(\mathbf{w})$.
+
+<br>
+
+<a id="node-m0zazid"></a>
+
+###### Multiclass Classification Error Function
+
+<p align="center"><kbd><img src="assets/va7se1wd9c.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/7mwkddkaz6l.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/6p3r2m1nqhf.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Qua bài toán multi-class classification tiêu chuẩn nơi một input chỉ được gán cho một trong K class.
+>
+>
+>
+> Thiết lập Error function:
+>
+>
+>
+> Như thường lệ, để xây dựng likelihood ta cần hỏi data là gì, là observed value biến ngẫu nhiên nào, dưới giả định phân phối gì.
+>
+>
+>
+> Xét một data point (𝐱, 𝐭), target 𝐭 lúc này là one-hot vector (one-of-K coding scheme). Nên dataset (𝐱i, 𝐭i) được xem như observed value của 𝐓i|𝐱i, với 𝐓i là random vector (Ti1, Ti2,...TiK). Với:
+>
+>
+>
+> Ti1,Ti2,..đều chỉ có hai possible value {0, 1} nhưng mấu chốt là, trong đám t1, t2,..tK **chỉ có một thằng bằng 1**. Ta sẽ lập luận như sau:
+>
+>
+>
+>  P(𝐓=𝐭|𝐱) = P(T1=t1,T2=t2,...TK=tk|𝐱) 
+>
+>
+>
+> Xét joint event (T1=t1,T2=t2,..,Tk=tk)
+>
+>
+>
+>  \[1,0,...0\],  \[0,1,0,...0\],...\[0,...,1\]
+>
+>
+>
+> Xét 𝐭 = 𝐢1 = \[1,0,...0\]: event (T1=1, T2=0,..,TK=0) sẽ tương đương event T1=1 (vì khi đó T2,T3... dĩ nhiên = 0).
+>
+>
+>
+> Mà hai event tương đương nên xác suất bằng nhau P(T1=1,T2=0,..,Tk=0) = P(T1=1), và ta đặt P(T1=1) là p1
+>
+>
+>
+> P(𝐓=𝐢1) = p1
+>
+>
+>
+> Xét 𝐭 = 𝐢2 = \[0,1,0,..0\]: event (T1=0,T2=1,..,Tk=0) sẽ tương đương event T2=1 (vì khi đó T1,T3.. dĩ nhiên = 0).
+>
+>
+>
+> ⇒ P(T1=0,T2=1,..,Tk=0) = P(T2=1), ta đặt P(T2=1) là p2
+>
+>
+>
+> ⇔ P(𝐓=𝐢2) = p2
+>
+>
+>
+> Như vậy tương tự với các possible value khác có thể thấy
+>
+>
+>
+> P(𝐓 = 𝐢k) = pk
+>
+>
+>
+> ---
+>
+>
+>
+> Nhưng ta cần là cần P(𝐓 = 𝐭|𝐱)
+>
+>
+>
+> Và y như khi ta thể hiện PMF của Bern(p): P(X=1) = p, P(X=0) = 1-p bằng cách P(X=x) = p^x (1-p)^(1-x)
+>
+>
+>
+> Thì ở đây P(𝐓=𝐭|𝐱) 
+>
+>
+>
+> = p1^t1 × p2^t2 ×... × pK^tK 
+>
+>
+>
+> = Πk pk^tk 
+>
+>
+>
+> hay Πk \[P(Tk=1)\]^tk
+>
+>
+>
+> ---
+>
+>
+>
+> Và với linear model, p1,..pK được giả định là softmax transformation các hàm tuyến tính: 𝐰1ᵀΦ(𝐱), 𝐰2ᵀΦ(𝐱),...𝐰KᵀΦ(𝐱)
+>
+>
+>
+> Thì nay, ta giả định chúng là hàm phi tuyến biểu diễn bởi các output của neural net: y1(𝐱,𝐰),y2(𝐱,𝐰),...yK(𝐱,𝐰)
+>
+>
+>
+> ---
+>
+>
+>
+> Và như vậy, giả định của bài toán sẽ là: 𝐭n|𝐱n, n=1,2...N là giá trị quan sát được của 𝐓n|𝐱n với
+>
+>
+>
+> 𝐓n|𝐱n \~ phân phối có P(𝐓n=𝐭n|𝐱n) = Πk pnk^tnk , k = 1,2,..K, gọi là phân phối Multinoulli
+>
+>
+>
+> và (pn1,pn2,...pnK) là hàm vector-vector biểu diễn bởi neural network: y(𝐱n,𝐰)
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy ta đã có đủ nguyên liệu để xây hàm likelihood:
+>
+>
+>
+> Joint pmf của 𝐓1|𝐱1,...TN|𝐱N:
+>
+>
+>
+> P(𝐓1=𝐭1,...,𝐓N=𝐭N|𝐱1,...𝐱N,𝐰)
+>
+>
+>
+> = Πn P(𝐓n=tn|𝐱n, 𝐰)
+>
+>
+>
+> = Πn Πk pnk^tnk
+>
+>
+>
+> = Πn Πk ynk^tnk
+>
+>
+>
+> = Πn Πk yk(𝐱n, 𝐰)^tnk
+>
+>
+>
+> Nên E(𝐰) = negative log likelihood:
+>
+>
+>
+> = - ln \[Πn Πk yk(𝐱n, 𝐰)^tnk\]
+>
+>
+>
+> = - Σn Σk ln yk(𝐱n, 𝐰)^tnk
+>
+>
+>
+> = - Σn Σk tnk ln yk(𝐱n, 𝐰) chính là 5.24
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=56_O8qpinzE)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Bạn đã xây dựng và dẫn dắt bản chất xác suất của hàm lỗi phân loại đa lớp (Categorical/Multinoulli likelihood) một cách rất trực quan, chặt chẽ và chuẩn xác.
+>
+> **✓ Strengths**
+> - Diễn giải cực kỳ trực quan và chuẩn xác cách dạng lũy thừa tích Πk pk^tk biểu diễn phân phối Multinoulli từ vector one-hot.
+> - Các bước triển khai từ likelihood sang negative log-likelihood (NLL) để thu được công thức (5.24) hoàn chỉnh, mạch lạc.
+>
+> **💡 Deeper notes**
+> - Khi phân tách tích theo n: P(T1=t1,...,TN=tN|...) = Πn P(Tn=tn|...), bạn đang ngầm sử dụng giả định các mẫu dữ liệu độc lập có điều kiện theo x (i.i.d. assumption).
+> - Để vector dự đoán y(x, w) thực sự là một phân phối xác suất hợp lệ (yk ≥ 0 và ∑k yk = 1), lớp output thường kết hợp hàm softmax như được đề cập trong công thức (5.25).
+
+<br>
 
