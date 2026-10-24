@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1792709639207,
+  "publishedAt": 1792801646067,
   "sections": [
     {
       "title": "📋 Overview",
@@ -473,8 +473,8 @@
     {
       "title": "5.2 Training",
       "path": "pattern_recognition_machine_learning_cbishop/52_training.md",
-      "noteCount": 5,
-      "imageCount": 10
+      "noteCount": 7,
+      "imageCount": 14
     },
     {
       "title": "Appendix C. Matrices",
@@ -489,6 +489,6 @@
       "imageCount": 7
     }
   ],
-  "totalNotes": 483,
-  "totalImages": 751
+  "totalNotes": 485,
+  "totalImages": 755
 }
