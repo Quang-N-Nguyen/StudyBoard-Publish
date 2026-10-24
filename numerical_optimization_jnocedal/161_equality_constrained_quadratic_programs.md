@@ -1,6 +1,6 @@
 # 16.1 Equality-constrained Quadratic Programs
 
-📊 **Progress:** `3` Notes | `19` Screenshots | `3` AI Reviews
+📊 **Progress:** `4` Notes | `14` Screenshots | `4` AI Reviews
 
 ---
 <a id="node-bat3b7g"></a>
@@ -165,24 +165,6 @@
 
 <p align="center"><kbd><img src="assets/mqef6dbcr3.png" width="80%"></kbd></p>
 
-<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/36eplvak5rp.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/viniwqb4p6.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/k4n6wzjhsts.png" width="80%"></kbd></p>
-
 > [!NOTE]
 > Bổ đề 16.1 nói đại ý rằng, nếu ta có A full row rank, và ZᵀGZ (Z là matrix basis cuả N(A) như đã biết ở chương 15, và ZᵀGZ gọi là reduced Hessian) xác định dương thì KKT matrix sẽ nonsingular, và từ đó phương trình \[matrix KKT\] \[-p, λ\*\]ᵀ = \[g, h\]ᵀ có nghiệm duy nhất, nên đồng nghĩa bài toán QP cũng có nghiệm (x\*, λ\*) duy nhất.
 >
@@ -330,4 +312,258 @@
 <p align="center"><kbd><img src="assets/itlnmpgry3c.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/0ywtu2ulzh4.png" width="80%"></kbd></p>
+
+<a id="node-uskk83z"></a>
+
+###### Example 16.2 Quadratic Programming Problem
+
+<p align="center"><kbd><img src="assets/pvfxagfln4g.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/bbyl5twz9di.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/oays05xgjcs.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/bo0ie6alp3a.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> minimize f(x) (1/2)xᵀGx + cᵀx s.t Ax = b
+>
+>
+>
+> KKT conditions: First order necessary condition
+>
+>
+>
+> Lagrangian: L(x, λ) = (1/2)xᵀGx + cᵀx - λᵀ(Ax - b)
+>
+>
+>
+> ∇\_x L(x, λ) = ∇f(x) - λᵀ∇c(x) chỗ này chính là chỗ mình ghi ẩu trong video
+>
+>
+>
+> đúng ra phải là ∇f(x) - ∇c(x)ᵀλ
+>
+>
+>
+> khi đó lắp ∇f và ∇c vào thì kết quả sẽ đúng.
+>
+>
+>
+> ---
+>
+>
+>
+> Ôn lại Cách tính gradient cua hàm bậc 2:
+>
+>
+>
+> f(x) = (1/2)xᵀPx + qᵀx + r
+>
+>
+>
+> ∇f(x) = (1/2)(P + Pᵀ)x + q
+>
+>
+>
+> df = f(x+dx) - f(x) = (1/2)(x+dx)ᵀP(x+dx) + qᵀ(x+dx) + r - (1/2)xᵀPx - qᵀx - r
+>
+>
+>
+> = (1/2)(x+dx)ᵀP(x+dx) +qᵀdx - (1/2)xᵀPx
+>
+>
+>
+> mở ngoặc ra, triệt tiêu, và bỏ số hạng bậc 2 của dx 
+>
+>
+>
+> = (1/2)dxᵀPx + (1/2)xᵀPdx + qᵀdx
+>
+>
+>
+> dxᵀPx = (dxᵀPx)ᵀ = xᵀPᵀdx | (AB)ᵀ = BᵀAᵀ
+>
+>
+>
+> ...= (1/2)xᵀPᵀdx + (1/2)xᵀPdx + qᵀdx
+>
+>
+>
+> = (1/2)xᵀ(Pᵀ+P)dx + qᵀdx
+>
+>
+>
+> = \[(1/2)xᵀ(Pᵀ+P) + qᵀ\]dx
+>
+>
+>
+> = \[(1/2)(P+Pᵀ)x + q\]ᵀdx
+>
+>
+>
+> f(x) vector → scalar d/dx f(x) là vector \[∂/∂x1 f(x), ∂/∂x2 f(x)...\],
+>
+>
+>
+> tới đây mình đã có df = \[(1/2)(P+Pᵀ)x + q\] . dx chính là một linear operator
+>
+>
+>
+> Do đó ∇f(x) = (1/2)(P+Pᵀ)x + q
+>
+>
+>
+> nếu P đối xứng ∇f(x) = Px + q
+>
+>
+>
+> ---
+>
+>
+>
+> Tiếp tục tính Jacobian của ∇f(x) ta có Hessian của f(x)
+>
+>
+>
+> ∇f(x): vector → vector.
+>
+>
+>
+> g(x), d/dx g(x): Jacobian.
+>
+>
+>
+> d∇f(x) = ∇f(x+dx) - ∇f(x) = (1/2)(P+Pᵀ)(x+dx) + q - (1/2)(P+Pᵀ)x - q
+>
+>
+>
+> = (1/2)(P+Pᵀ)x + (1/2)(P+Pᵀ)dx - (1/2)(P+Pᵀ)x
+>
+>
+>
+> = (1/2)(P+Pᵀ)dx
+>
+>
+>
+> ⇒ Jacobian của ∇f(x) = (1/2)(P+Pᵀ), cũng chính là Hessian của f(x)
+>
+>
+>
+> Và nếu P đối xứng thì Hessian là P: ∇²f(x) = P
+>
+>
+>
+> ---
+>
+>
+>
+> L(x, λ) = (1/2)xᵀGx + cᵀx - λᵀ(Ax - b)
+>
+>
+>
+> dL = L(x+dx, λ) - L(x, λ)
+>
+>
+>
+> = (1/2)(x+dx)ᵀG(x+dx) + cᵀ(x+dx) - λᵀ\[A(x+dx) - b)\] - (1/2)xᵀGx - cᵀx + λᵀ(Ax - b)
+>
+>
+>
+> = (1/2)xᵀGx + (1/2)dxᵀGx + (1/2)xᵀGdx + (1/2)dxᵀGdx + cᵀx + cᵀdx - λᵀAx - λᵀAdx + λᵀb - (1/2)xᵀGx - cᵀx + λᵀAx - λᵀb
+>
+>
+>
+> (G đối xứng)
+>
+>
+>
+> = \[xᵀG + cᵀ - λᵀA\]dx
+>
+>
+>
+> = \[Gx + c - Aᵀλ\]ᵀdx
+>
+>
+>
+> ⇒ ∇\_x L(x, λ) = Gx + c - Aᵀλ
+>
+>
+>
+> Stationary condition: ∇\_x L(x, λ) = 0 ⇔ Gx + c - Aᵀλ = 0
+>
+>
+>
+> ⇔ Gx - Aᵀλ = - c
+>
+>
+>
+> Ax - b = 0
+>
+>
+>
+> \[G, -Aᵀ; A 0\] \[x\*; λ\*\] = \[-c; b\]
+>
+>
+>
+> x\* = x + p ⇒ p = x\* - x
+>
+>
+>
+> Ax\* - b = 0 ⇔ Ax + Ap - b = 0 ⇔ Ap = -(Ax - b) = -h
+>
+>
+>
+> Gx\* - Aᵀλ = - c ⇔ G(x + p) - Aᵀλ = - c ⇔ Gx + Gp - Aᵀλ = - c
+>
+>
+>
+> ⇔ Gp - Aᵀλ = - Gᵀx - c = -g
+>
+>
+>
+> ⇔ - Gp + Aᵀλ = g
+>
+>
+>
+> ⇔ G(-p) + Aᵀλ = g
+>
+>
+>
+> Vậy ta có hai phương trình:
+>
+>
+>
+> Ap = -h
+>
+>
+>
+> Gᵀ(-p) + Aᵀλ = g
+>
+>
+>
+> \[G, Aᵀ; A 0\]\[-p, λ\*\] = \[g; h\]
+
+📹 Video 1: [Mượn bài toán  lập hệ ma trận KKT để ôn cách tìm gradient và Hessian hàm bậc hai.](https://www.youtube.com/watch?v=sNjOXBKz0YM)
+
+📹 Video 2: [Mượn bài toán tối ưu để ôn lại vài kiến thức đại số tuyến tính.](https://www.youtube.com/watch?v=2u9U3nA1768)
+
+📹 Video 3: [Ví dụ 16.2 minh họa một bài toán QP có nghiệm duy nhất.](https://www.youtube.com/watch?v=jg7rbTIx6Wk)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú rất chi tiết, tự giác sửa lại các lỗi vector/ma trận chuyển vị và tự chứng minh chặt chẽ đạo hàm, Hessian cũng như hệ phương trình KKT dạng gia số.
+>
+> **✓ Strengths**
+> - Khai triển vi phân df và dL rất bài bản, chuẩn xác khi dùng tính chất tích vô hướng của ma trận đối xứng để đưa về dạng gradient.
+> - Tự phát hiện và đính chính đúng chiều vector/chuyển vị giữa λᵀ∇c(x) và ∇c(x)ᵀλ.
+> - Biến đổi chuẩn xác hệ KKT sang hệ phương trình gia số p với bước tìm kiếm x* = x + p.
+>
+> **💡 Deeper notes**
+> - Trong công thức vi phân dL, việc giả định G đối xứng (G = Gᵀ) là điều kiện cần thiết để nhóm (1/2)(G + Gᵀ) thành G. Trong bài toán QP chuẩn tắc, ma trận Hessian G luôn được chọn là đối xứng.
+
+**🔗 See also:** [Second-Order Sufficient Conditions](./125_second_order_conditions.md#node-dxoyw3c)
+
+<br>
 
