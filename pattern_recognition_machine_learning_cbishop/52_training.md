@@ -1,6 +1,6 @@
 # 5.2 Training
 
-📊 **Progress:** `5` Notes | `10` Screenshots | `5` AI Reviews
+📊 **Progress:** `7` Notes | `14` Screenshots | `7` AI Reviews
 
 ---
 <a id="node-90vy3g2"></a>
@@ -989,4 +989,439 @@
 **🔗 See also:** [4.3.2 Logistic Regression](./432_logistic_regression.md#node-oyj7m7j)
 
 <br>
+
+<a id="node-dqy3yyv"></a>
+
+###### Multiple Binary Classification Error
+
+<p align="center"><kbd><img src="assets/tr07boxics.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/mpatmd4bnf8.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Tiếp nối note trước ta đã có error function E(𝐰) = - Σn=1:N \[tn ln(yn) + (1-tn) ln (1-yn)\]
+>
+>
+>
+> Ở đây, bài tập 5.4 đặt vấn đề ta có ε là xác suất label bị gán sai. Yêu cầu viết error function.
+>
+>
+>
+> Giả định independent và identically distributed data, và xác nhận ràng khi ε = 0 thì ta lại có error function ở trên.
+>
+>
+>
+> ---
+>
+>
+>
+> Nhắc lại giả định t1|𝐱1,...tN|𝐱N là observed value của các random variable độc lập T1|𝐱1,...TN|𝐱N trong đó Ti|𝐱i \~ Bern(y(𝐰, 𝐱)), tức Bernuoilly distribution có tham số là một hàm phi tuyến của 𝐰 và 𝐱i biểu diễn bởi neural network.
+>
+>
+>
+> ---
+>
+>
+>
+> Thế thì, khi mở rộng bài toán qua việc tính thêm xác suất gán nhãn sai, gọi M (kí hiệu cho mislabel)) là biến ngẫu nhiên tuân theo phân phối Bern(ε): P(M=1) = ε, P(M=0) = 1-ε, M=1 đại diện cho event dán nhãn sai.
+>
+>
+>
+> ---
+>
+>
+>
+> Ôn nhanh nếu không có vụ nhãn sai, để thiết lập error:
+>
+>
+>
+> Ta giả định t1|𝐱1 observed value của T1|𝐱1 với T1|𝐱1 \~ Bern(y(𝐱1,𝐰)),
+>
+>
+>
+> để rồi P(T1=t1|𝐱1) = (y1^t1) (1-y1)^(1-t1)
+>
+>
+>
+> t2|𝐱2,... cũng vậy
+>
+>
+>
+> Và làm như thông thường, để thiết lập error function, ta sẽ thiết lập joint pmf của T1,..TN, để rồi có likelihood:
+>
+>
+>
+> likelihood = P(T1=t1,...TN=tn|𝐱1,..𝐱N,𝐰)
+>
+>
+>
+> = Πn=1:N P(Tn=tn|𝐱n,𝐰) 
+>
+>
+>
+> = Πn Bern(tn|yn) = Πn (yn^tn) (1-yn)^(1-tn)
+>
+>
+>
+> ⇒ negative ln likelihood = - ln Πn (yn^tn) (1-yn)^(1-tn) = công thức trên
+>
+>
+>
+> ---
+>
+>
+>
+> thì nay vì có thêm yếu tố dán nhãn sai. Có nghĩa là :
+>
+>
+>
+> Nếu nhãn của data point này sai, thì khi t1=1 thì label thật của data point này là 0 chứ không phải 1.
+>
+>
+>
+> Ngược lại nếu t1=0, thì label thật của data point là 1 chứ không phải 0.
+>
+>
+>
+> nên nếu gọi z1 là label thật của data point 1 thì: Khi gán nhãn đúng: z1 = t1, khi gán nhãn sai: z1 = 1-t1
+>
+>
+>
+> Do đó:
+>
+>
+>
+> Giả định bây giờ sẽ là:
+>
+>
+>
+> z1,z2,...zN là giá trị quan sát được của của Z1,...ZN với Zn\~ Bern(yn)
+>
+>
+>
+> còn t1,t2,...tN là giá trị quan sát được của T1, ...TN 
+>
+>
+>
+> Trong đó T1 là biến quan hệ với biến Z1 như sau:
+>
+>
+>
+> Khi M1 = 1, Z1 = 1 - T1: mistake xảy ra, giá trị label thật của data = 1 - label quan sát được
+>
+>
+>
+> Viết theo event (T1=t1|M1=1) ⇔ Z1=(1-t1)
+>
+>
+>
+> Khi M1 = 0, Z1 = T1: mistake không xảy ra, label thật của data = label quan sát được
+>
+>
+>
+> Viết theo event (T1=t1|M1=0) ⇔ (Z1=t1)
+>
+>
+>
+> Nên P(T1=t1|M1=0) = P(Z1=t1)
+>
+>
+>
+> và P(T1=t1|M1=1) = P(Z1=1-t1)
+>
+>
+>
+> ---
+>
+>
+>
+> X,Y discrete, y1,y2,y3
+>
+>
+>
+> Joint pmf X,Y,  Σi=1,2,3 P(X=x,Y=yi) = P(X=x),
+>
+>
+>
+> ∫f(x,y)dy = f(x)
+>
+>
+>
+> Σ\_m={0,1} P(T=t, M=m) = P(T=t)
+>
+>
+>
+> P(T=t) = Σ\_m={0,1} P(T=t, M=m) =  Σ\_m={0,1} P(T=t|M=m)P(M=m)
+>
+>
+>
+> Theo LOTP: P(T1=t1) = P(T1=t1|M1=0)P(M1=0) + P(T1=t1|M1=1)P(M1=1)
+>
+>
+>
+> = P(T1=t1|M1=0)(1-ε) + P(T1=t1|M1=1)ε
+>
+>
+>
+> = P(Z1=t1)(1-ε) + P(Z1=1-t1)ε
+>
+>
+>
+> = (y1^t1)(1-y1)^(1-t1)(1-ε) + (y1^(1-t1)) ((1-y1)^t1) ε
+>
+>
+>
+> ---
+>
+>
+>
+> Tương tự như vậy với T2,...TN:
+>
+>
+>
+> P(Tn=tn) = (yn^tn)((1-yn)^(1-tn)(1-ε) + (yn^(1-tn)) ((1-yn)^tn) ε
+>
+>
+>
+> ---
+>
+>
+>
+> Do đó, likelihood của bài toán này:
+>
+>
+>
+> P(T1=t1,T2=t2,...|𝐱1,..𝐱N,𝐰)
+>
+>
+>
+> = Πn P(Tn=tn|𝐱n,𝐰)
+>
+>
+>
+> = Πn \[(yn^tn)((1-yn)^(1-tn)(1-ε) + (yn^(1-tn)) ((1-yn)^tn) ε\]
+>
+>
+>
+> và negative log likelihood, tức E(𝐰):
+>
+>
+>
+> E(𝐰) = - ln { Πn {\[yn^(1-tn)\] (1-yn)^tn ε + (yn^tn) (1-yn)^(1-tn)\] (1-ε)} }
+>
+>
+>
+> = - Σn ln {\[yn^(1-tn)\] (1-yn)^tn ε + (yn^tn) (1-yn)^(1-tn)\] (1-ε)}
+>
+>
+>
+> ---
+>
+>
+>
+> Khi ε = 0 (xác suất dán nhãn sai = 0) , thì E(𝐰) trở thành:
+>
+>
+>
+> \- Σn ln {(yn^tn) (1-yn)^(1-tn)\]}
+>
+>
+>
+> = - Σn \[ln (yn^tn) + ln (1-yn)^(1-tn))\]
+>
+>
+>
+> = - Σn \[tn ln(yn) + (1-tn) ln (1-yn)\] chính là công thức 5.21
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=qBtQHf2RkQ4)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, lập luận chặt chẽ bằng cách đặt biến ngẫu nhiên ẩn (true label) và dùng công thức xác suất toàn phần để thiết lập hàm loss một cách chính xác.
+>
+> **✓ Strengths**
+> - Mô hình hóa bài toán rất rõ ràng bằng việc phân tách giữa nhãn quan sát được (T), nhãn thực tế (Z) và biến cố gán nhãn sai (M).
+> - Áp dụng chính xác định lý xác suất toàn phần (LOTP) để suy ra phân phối biên duyên của biến quan sát Tn.
+> - Chứng minh và rút gọn chính xác về dạng cross-entropy (5.21) khi xác suất nhiễu epsilon = 0.
+>
+> **💡 Deeper notes**
+> - Vì $t_n \in \{0, 1\}$, phân phối của $T_n$ thực chất vẫn là Bernoulli với tham số điều chỉnh $\tilde{y}_n = (1-\epsilon)y_n + \epsilon(1-y_n)$. Do đó hàm lỗi có thể viết dưới dạng gọn: $E(\mathbf{w}) = -\sum_n \{ t_n \ln \tilde{y}_n + (1-t_n) \ln (1-\tilde{y}_n) \}$, tương đương hoàn toàn với biểu thức bạn đã rút ra nhưng giúp tính đạo hàm gradient thuận tiện hơn.
+
+<br>
+
+<a id="node-jcm94hf"></a>
+
+###### Multiple Binary Classification Error Function
+
+<p align="center"><kbd><img src="assets/88o35llcx08.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Xét qua bài toán multi label classification:
+>
+>
+>
+> Data sẽ là các K-dimensional vector 𝐭 = (t1,...tK) với tk mang giá trị 1 hoặc 0, nhưng không nhất thiết chỉ có 1 thằng = 1. Vì đây là set up của bài toán phân loại mà input có thể được xếp vào nhiều class (gọi là multiple label classification: ví dụ phân loại ảnh là chó mèo thì ảnh chụp có thể có hình cả chó lẫn mèo)
+>
+>
+>
+> (𝐭1,𝐱1),...(𝐭N,𝐱N)
+>
+>
+>
+> Giả định của ta sẽ là 𝐭i là observed value của 𝐓i|𝐱i với 𝐓i = (Ti1 Ti2,...TiK), có Tik \~ Bernouilly có tham số là hàm phi tuyến đại diện bởi output thứ k của neural network:
+>
+>
+>
+> Tik \~ Bern(y(𝐰,𝐱i)\_k) = Bern(yik)
+>
+>
+>
+> yik sẽ mang ý nghĩa xác suất input 𝐱i thuộc loại k
+>
+>
+>
+> Và giả định Ti1,Ti2,...TiK là độc lập (assume class labels are independent)
+>
+>
+>
+> ---
+>
+>
+>
+> Như vậy:
+>
+>
+>
+> P(𝐓i=𝐭i|𝐱i,𝐰) = P(Ti1=ti1, Ti2=ti2,..|𝐱i,𝐰)
+>
+>
+>
+> = P(Ti1=ti1|𝐱i,𝐰)P(Ti2=ti2|𝐱i,𝐰).... (do giả định Ti1,Ti2,...TiK là độc lập nói trên)
+>
+>
+>
+> Như trên vừa nói: Tik \~ Bern(y(𝐰,𝐱i)\_k)
+>
+>
+>
+> = Bern(ti1|y(𝐰,𝐱i)\_1) Bern(ti2|y(𝐰,xi)\_2) ...
+>
+>
+>
+> = Bern(ti1|yi1) Bern(ti2|yi2) ...
+>
+>
+>
+> X \~ Bern(p) P(X=x) = p^x (1-p)^(1-x)
+>
+>
+>
+> Ti1 \~ Bern(y(𝐰,𝐱i)\_1) = P(Ti1=ti1) = yi1^ti1 \[1 - yi1\]^(1-ti1)
+>
+>
+>
+> = yi1^(ti1)\[(1-yi1)^(1-ti1)\] × yi2^(ti2)\[(1-yi2)^(1-ti2)\] × ...
+>
+>
+>
+> = Πk=1:K yik^(tik)\[(1-yik)^(1-tik)\]
+>
+>
+>
+> Viết lại: P(𝐓i=𝐭i|𝐱i,𝐰) = Πk=1:K yik^(tik)\[(1-yik)^(1-tik)\]
+>
+>
+>
+> hay dùng n thay i:
+>
+>
+>
+> P(𝐓n=𝐭n|𝐱n,𝐰) = Πk=1:K ynk^(tnk)\[(1-ynk)^(1-tnk)\]
+>
+>
+>
+> Hoặc bỏ biến chạy đi thì chính là 5.22:
+>
+>
+>
+> P(𝐓=𝐭|𝐱,𝐰) = Πk=1:K yk^(tk)\[(1-yk)^(1-tk)\]
+>
+>
+>
+> ---
+>
+>
+>
+> Likelihood, như thường lệ, là joint pmf của 𝐓1|𝐱1,...𝐓N|𝐱N
+>
+>
+>
+> P(𝐓1=𝐭1,𝐓2=𝐭2,...|𝐱1,𝐱2,...𝐰)
+>
+>
+>
+> = Πn=1:N P(𝐓n=𝐭n|𝐱n,𝐰) (do data point độc lập)
+>
+>
+>
+> = Πn=1:N Πk=1:K ynk^(tnk)\[(1-ynk)^(1-tnk)\]
+>
+>
+>
+> Ln likelihood:
+>
+>
+>
+> ln {Πn=1:N Πk=1:K ynk^(tnk)\[(1-ynk)^(1-tnk)\]}
+>
+>
+>
+> = Σn=1:N Σk=1:K ln {ynk^(tnk)\[(1-ynk)^(1-tnk)\]}
+>
+>
+>
+> = Σn=1:N Σk=1:K { ln \[ynk^(tnk)\] + ln \[(1-ynk)^(1-tnk)\]}
+>
+>
+>
+> = Σn=1:N Σk=1:K { (tnk) ln (ynk) + (1-tnk) ln (1-ynk)}
+>
+>
+>
+> Như thường lệ, maximize ln likelihood (để tìm maximum likelihood của 𝐰) tương đương đi minimize negetive ln likelihood:
+>
+>
+>
+> E(𝐰) = - Σn=1:N Σk=1:K { (tnk) ln (ynk) + (1-tnk) ln (1-ynk)}
+>
+>
+>
+> → chính là 5.23
+>
+>
+>
+> ---
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=SCVs2NRRo7s)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất tốt, trình bày mạch lạc và tự tay diễn giải từng bước suy dẫn toán học từ phân phối Bernoulli, tính độc lập có điều kiện đến hàm mất mát cross-entropy.
+>
+> **✓ Strengths**
+> - Diễn giải rõ ràng bản chất bài toán phân loại nhiều nhãn (multi-label) và giải thích trực quan về vector nhãn mục tiêu.
+> - Mô hình hóa chặt chẽ từng nhãn bằng biến ngẫu nhiên Bernoulli với tham số là đầu ra của mạng neural.
+> - Suy dẫn công thức likelihood và negative log-likelihood từng bước rất chính xác và đầy đủ.
+>
+> **💡 Deeper notes**
+> - Cần nhấn mạnh rõ tính độc lập ở đây là độc lập có điều kiện khi đã biết đầu vào x (conditional independence given x), không phải các nhãn độc lập tuyệt đối với nhau.
+> - Lưu ý phân biệt bài toán multi-label (K bài toán nhị phân độc lập, dùng sigmoid riêng ở output dẫn đến 5.23) với bài toán multiclass (1 trong K lớp loại trừ lẫn nhau, dùng softmax dẫn đến 5.24 trong Bài tập 5.5).
+
+<br>
+
+<a id="node-avgsj97"></a>
+
+<p align="center"><kbd><img src="assets/0q2q8wl0t21.png" width="80%"></kbd></p>
 
