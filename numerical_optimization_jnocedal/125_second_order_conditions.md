@@ -872,6 +872,8 @@ abla c_i(x^*)^T w$ và nó chỉ triệt tiêu khi nhân với $\lambda_i^*$ tro
 >
 > Ghi chú rất xuất sắc, thể hiện sự hiểu biết sâu sắc và trực giác tốt về điều kiện tối ưu (KKT, nón tới hạn và điều kiện đủ bậc hai). Bạn nên lưu ý thêm ký hiệu chính xác của các ràng buộc đẳng thức và bất đẳng thức khi viết biểu thức Lagrangian để hoàn thiện hơn.
 
+**🔗 See also:** [Example 16.2 Quadratic Programming Problem](./161_equality_constrained_quadratic_programs.md#node-uskk83z)
+
 <br>
 
 <a id="node-o77d3vi"></a>
