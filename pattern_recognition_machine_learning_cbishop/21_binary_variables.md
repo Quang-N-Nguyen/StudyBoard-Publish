@@ -42,7 +42,19 @@
 >
 >
 >
-> EX, theo định nghĩa, là weighted sum các possible value của X, với weighted là xác suất tương ứng: EX = 1 × f(1) + 0  × f(0) = 1 × μ = μ.
+> EX, theo định nghĩa, là weighted sum các possible value của X, với weighted là xác suất tương ứng: EX = 1 × f(1) + 0 × f(0) = 1 × μ = μ.
+>
+>
+>
+> Giả sử X có 3 possible x1,x2,x3
+>
+>
+>
+> E\[X\] = P(X=x1) x1 + P(X=x2) x2 + P(X=x3) x3
+>
+>
+>
+> E\[X\] = ∫x f(x)dx
 >
 >
 >
@@ -50,7 +62,15 @@
 >
 >
 >
-> VarX, theo công thức thứ nhất:
+> VarX, theo công thức thứ nhất: E\[(X-EX)²\] = E\[X²\] - (EX)²
+>
+>
+>
+> dispersion X
+>
+>
+>
+> X x1 = 1 tỷ, x2 = - 1 tỷ, EX = 0,
 >
 >
 >
@@ -59,6 +79,56 @@
 >
 >
 > áp dụng LOTUS = Σ{x=1,0} (x-μ)²f(x)
+>
+>
+>
+> LOTUS: 
+>
+>
+>
+> EX = Σi=1,2,3 P(X=xi) xi, EX = ∫xfX(x)dx
+>
+>
+>
+> EY = E\[g(X)\] = Σi=1,2,3 P(X=xi) g(xi), ∫g(x)fX(x)dx
+>
+>
+>
+> EX = μ × 1 + (1-μ) × 0
+>
+>
+>
+> EY, Y=(X - EX)², g(u) = (u - EX)² = (u - μ)²
+>
+>
+>
+> THeo LOTUS, EY = μ × g(1) + (1-μ) × g(0)
+>
+>
+>
+> = μ × (1-μ)² + (1-μ) × μ²
+>
+>
+>
+> = μ (1- 2μ + μ²) + μ² - μ³
+>
+>
+>
+> = μ - 2μ² + μ³ + μ² - μ³
+>
+>
+>
+> = μ - 2μ²  + μ² 
+>
+>
+>
+> = μ - μ²  = μ(1-μ)
+>
+>
+>
+>
+>
+>
 >
 >
 >
@@ -159,6 +229,8 @@ Deeper notes:
 
 </details>
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=92V18SjUb00)
+
 > [!TIP]
 > 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
@@ -181,11 +253,15 @@ Deeper notes:
 <p align="center"><kbd><img src="assets/qyaa4fic15b.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, đoạn này đại ý là nếu ta có dataset 𝒟 (hay 𝐱) = {x1,....xN} là các giá trị quan sát được của 𝒟 (hay 𝐱) và công thức likelihood function
+> Rồi, đoạn này đại ý là nếu ta có dataset 𝒟 (hay 𝐱) = {x1,....xN} là các giá trị quan sát được của 𝐗 và công thức likelihood function 
 >
 >
 >
 > Ôn lại chút, trong Casella, định nghiã của một random sample size n, là khi ta muốn quan sát giá trị của một đại lượng mang tính chất uncertainty n lần, mỗi lần đại diện bởi một random variable: X1,X2,....Xn, và được tiến hành sao cho các rvs này mutually independent và chúng có cùng distribution population distribution kí hiệu là f(x|θ).
+>
+>
+>
+> (phần ghi chú mình gõ trong lúc làm clip nằm ở dưới cùng)
 >
 >
 >
@@ -298,20 +374,155 @@ Deeper notes:
 >
 >
 > Từ đó, đi minimize_W(𝐗) E\_θ\~π(θ) \[R(W(𝐗), θ)\] cũng là minimize posterior expected loss (∫L(W(𝐱),θ)π(θ|𝐱)dθ) ta sẽ có "Bayes estimator that minimize Bayes risk" cho θ.
+>
+>
+>
+> ---
+>
+>
+>
+> Phần ghi chú trong clip:
+>
+>
+>
+> 𝐱 = (x1,x2,..) = (1,2,3,4,5,6,7), random sample 𝐗 = (X1,X2,...X7) independent identically distributed, iid, \~ f(x|θ), n(μ,1) 
+>
+>
+>
+> w(x1,x2,..) point estimate cho μ (vs interval estimate \[l(x1,x2,...), u(x1,x2,...)\])
+>
+>
+>
+> W(𝐗) point estimator của μ
+>
+>
+>
+> Maximum likelihood
+>
+>
+>
+> 𝐱 = (x1,x2,..) = (1,2,3,4,5,6,7)
+>
+>
+>
+> Likelihood(μ|𝐱=1,2,3,4,5,6,7)|μ=μ1 = 5
+>
+>
+>
+> Πi (1/√2π) exp(-(xi-μ1)²/2) = 5
+>
+>
+>
+> Likelihood(μ|𝐱=1,2,3,4,5,6,7)|μ=μ2 = 10
+>
+>
+>
+> Πi (1/√2π) exp(-(xi-μ2)²/2) = 10
+>
+>
+>
+> Likelihood(μ|𝐱=1,2,3,4,5,6,7)|μ=μ3 = 100
+>
+>
+>
+> μ3 là maximum likelihood estimate của μ
+>
+>
+>
+> (minh họa 5, 10, 15 là vì đây là joint pdf, mà pdf không bị ràng buộc phải ≤ 1, tất nhiên nếu xét yếu tố đây là pdf của normal(μ,1) thì 1/√2π khiến cho pdf chắc chắn &lt; 1)
+>
+>
+>
+> L(μ|𝐱) = f(𝐱|μ) = joint pmf/pdf của X1,....X7 evaluate tại observed data
+>
+>
+>
+> P(X1=x1, X2=x2,...X7=x7)|x1=1,x2=2,...x7=7
+>
+>
+>
+> f(x1,x2,x3..x7|μ)|x1=1,x2=2,...x7=7
+>
+>
+>
+> vì independent: f(x1,x2,x3..x7|μ) = f(x1|μ)f(x2|μ)..f(x7|μ) = Πi f(xi|μ)
+>
+>
+>
+> = Πi (1/√2π) exp(-(xi-μ)²/2)
+>
+>
+>
+> X1,X2,....XN có giá trị quan sát x1,x2...xN, Xi \~ Bern(μ), PMF P(X=x) = μ^x (1-μ)^(1-x)
+>
+>
+>
+> Likelihood L(μ|𝒟) = joint pmf của X1,...XN, evaluate tại observer data 𝒟
+>
+>
+>
+> = P(X1=x1, X2=x2,....XN=xn|μ)
+>
+>
+>
+> = P(X1=x1|μ)P(X2=x2|μ),....P(XN=xn|μ)
+>
+>
+>
+> = Πi P(Xi=xi|μ)
+>
+>
+>
+> = Πn μ^xn (1-μ)^(1-xn)
+>
+>
+>
+> μ\_ML maximum likelihood estimate của μ
+>
+>
+>
+> maximize\_μ L(μ|𝒟) = Πn μ^xn (1-μ)^(1-xn)
+>
+>
+>
+> monotone 
+>
+>
+>
+> maximize\_μ log L(μ|𝒟) = ln Πn μ^xn (1-μ)^(1-xn)
+>
+>
+>
+> =Σn ln \[μ^xn (1-μ)^(1-xn)\]
+>
+>
+>
+> =Σn \[ ln μ^xn + ln (1-μ)^(1-xn)\]
+>
+>
+>
+> =Σn \[ xn ln μ + (1-xn) ln (1-μ)\]
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=LyNb3hLs4Rg)
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
 >
-> Ghi chú rất xuất sắc, không chỉ giải thích chi tiết từng bước biến đổi từ likelihood sang log-likelihood mà còn liên hệ sâu sắc giữa trường phái Frequentist và Bayesian (từ góc nhìn ra quyết định thống kê theo Casella & Berger).
+> Ghi chú rất xuất sắc, hiểu sâu sắc bản chất khái niệm từ giáo trình Casella & Berger và kết nối liền mạch với Bishop; việc đối chiếu giữa Frequentist và Bayesian thông qua lý thuyết quyết định (loss, risk, Bayes risk) hoàn toàn chính xác.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Và vì θ là random variable, nên risk function vẫn là random variable."*
+>
+> Về mặt chuẩn tắc, hàm rủi ro (risk function) R(W, θ) được định nghĩa là một hàm tất định của tham số θ (đã lấy kỳ vọng trên X). Trong góc nhìn Bayesian, khi gán cho θ một phân phối tiên nghiệm π(θ) thì R(W, θ) mới được xem như một biến đổi của biến ngẫu nhiên θ để lấy kỳ vọng ra Bayes risk.
+>
 >
 > **✓ Strengths**
-> - Diễn giải và thực hiện từng bước khai triển hàm log-likelihood một cách chuẩn xác, rõ ràng.
-> - Liên hệ nền tảng rất vững với định nghĩa mẫu ngẫu nhiên (random sample i.i.d.) và hàm hợp lý trong sách Casella & Berger.
-> - Giải thích thấu đáo lý do tác giả nhấn mạnh 'In a frequentist setting' bằng cách đối chiếu với trường phái Bayesian, phân tích chuẩn xác từ loss, risk function, Bayes risk cho đến posterior expected loss.
+> - Khái niệm mẫu ngẫu nhiên (random sample), likelihood và biến đổi sang log-likelihood cho phân phối Bernoulli được trình bày chi tiết và hoàn toàn chính xác.
+> - Kết nối kiến thức rất tốt khi giải thích vì sao tác giả dùng thuật ngữ Frequentist bằng cách dẫn chứng sang trường phái Bayesian và biến đổi tối thiểu hóa posterior expected loss.
 >
 > **💡 Deeper notes**
-> - Cụm từ 'indicator distributed Xi ~ Bern(μ)' thực chất là biến ngẫu nhiên Bernoulli; bản thân biến Bernoulli chính là biến chỉ thị (indicator variable) của biến cố thành công {X=1}.
-> - Khi chuyển từ cực tiểu hóa Bayes risk sang cực tiểu hóa posterior expected loss cho từng x, về mặt giải tích ngầm hiểu điều kiện phân phối cận biên f(x) > 0 và tích phân tồn tại hữu hạn.
+> - Khi chuyển bài toán tối ưu từ hàm hợp lý sang log-hợp lý, cần lưu ý giả định ln là hàm đơn điệu tăng ngặt (strictly increasing) và likelihood phải strictly positive (0 < μ < 1 với bài toán Bernoulli để ln xác định).
 
 <br>
 
@@ -602,19 +813,143 @@ Deeper notes:
 <p align="center"><kbd><img src="assets/jfde5jfctnm.png" width="80%"></kbd></p>
 
 > [!NOTE]
-> Rồi, thế thì binomial là gì thì stat110, Casella đã quá rành rồi, cái quan
-> trọng nhất là story của nó: X ~ binomial(n, p) thì nó chính là  số trial
-> success trong n iid Bern(p) trial. có pmf: P(X=k) = (n choose k) p^k
-> (1-p)^(n-k).
+> Rồi, thế thì binomial là gì thì stat110, Casella đã quá rành rồi, cái quan trọng nhất là story của nó: X \~ binomial(n, p) thì nó chính là số trial success trong n iid Bern(p) trial. có pmf: P(X=k) = (n choose k) p^k (1-p)^(n-k).
 >
 >
 >
-> -------
+> ---
 >
 >
 >
-> Thử giải thích lại công thức của (n choose k), đây là cái đã học từ những
-> bài đầu của Stat110:
+> X \~ Binomial(n, p), X số lần thành công trong chuỗi n Bern(p) trials độc lập
+>
+>
+>
+> {0,1,...n}
+>
+>
+>
+> P(X=3)
+>
+>
+>
+> n=5, k=3
+>
+>
+>
+> P(X=3) ⇔ P(FFSSS ∪ FSFSS ∪ SSSFF,....)
+>
+>
+>
+> Axiom: P(FFSSS ∪ FSFSS ∪ SSSFF,....) = P(FFSSS) + P(FSFSS) + P(SSSFF) + ... (1)
+>
+>
+>
+> (FFSSS) = (trial 1: F, trial 2: F, trial 3: S, trial 4: S, trial 5: S)
+>
+>
+>
+> Joint event
+>
+>
+>
+> P(FFSSS) = P(trial 1: F, trial 2: F, trial 3: S, trial 4: S, trial 5: S)
+>
+>
+>
+> P(A,B): Nếu A,B độc lập: P(A,B) = P(A)P(B)
+>
+>
+>
+> ⇒ P(trial 1: F, trial 2: F, trial 3: S, trial 4: S, trial 5: S) = P(trial 1: F)P(trial 2: F)P(trial 3: S)P(trial 4: S)P(trial 5: S)
+>
+>
+>
+> = (1-p)(1-p)ppp = (1-p)²p³
+>
+>
+>
+> ---
+>
+>
+>
+> FSFSS = (trial 1: F, trial 2: S, trial 3: F, trial 4: S, trial 5: S)
+>
+>
+>
+> P(FSFSS) = P(trial 1: F, trial 2: S, trial 3: F, trial 4: S, trial 5: S)
+>
+>
+>
+> = P(trial 1: F)P(trial 2: s)P(trial 3: F)P(trial 4: S)P(trial 5: S)
+>
+>
+>
+> = (1-p)p(1-p)pp = (1-p)²p³
+>
+>
+>
+> ---
+>
+>
+>
+> Mấy thằng khác trong tổng (1): Đều có xác xuất = (1-p)²p³
+>
+>
+>
+> Câu chuyện bây giờ là đếm xem có bao nhiêu event như vậy:
+>
+>
+>
+> ---
+>
+>
+>
+> FFSSS ∪ FSFSS ∪ SSSFF,....
+>
+>
+>
+> F1,F2,S1,S2,S3
+>
+>
+>
+> S S S F F
+>
+>
+>
+> S F S S F
+>
+>
+>
+> S F F S S
+>
+>
+>
+> Bài toán trở thành đếm số cách chọn: khi cho 5 chỗ trống, chọn 3
+>
+>
+>
+> Đây chính là ý nghĩa của (5 choose 3) = 5!/3!(5-3)!, (n choose k) = n!/k!(n-k)!
+>
+>
+>
+> PMF Bin(n,p): P(X=k) = (n choose k) (1-p)^(n-k) p^k
+>
+>
+>
+> Bin(N, μ) P(X=m) = (N choose m) (1-μ)^(N-m) μ^m
+>
+>
+>
+> (N choose m) = N!/m!(N-m)!
+>
+>
+>
+> ---
+>
+>
+>
+> Thử giải thích lại công thức của (n choose k), đây là cái đã học từ những bài đầu của Stat110:
 >
 >
 >
@@ -634,33 +969,27 @@ Deeper notes:
 >
 >
 >
-> Tuy nhiên vì không care thứ tự các object nên ta đã đếm thừa với mỗi cách
-> chọn n! lần, nên để adjust ta sẽ chia cho k!
+> Tuy nhiên vì không care thứ tự các object nên ta đã đếm thừa với mỗi cách chọn k! lần, nên để adjust ta sẽ chia cho k!
 >
 >
 >
-> Ngoài ra, với mỗi một cách chọn này ta cũng đã đếm thừ (n-k)! lần số cách
-> chọn n-k quả banh ở cuối → nên cũng phải adjust bằng cách chia (n-k)!.
+> Ngoài ra, với mỗi một cách chọn này ta cũng đã đếm thừ (n-k)! lần số cách chọn n-k quả banh ở cuối → nên cũng phải adjust bằng cách chia (n-k)!.
 >
 >
 >
-> Nên  (n choose k) = n! / k!(n-k)!
+> Nên (n choose k) = n! / k!(n-k)!
 >
 >
 >
-> ------
+> ---
 >
 >
 >
-> Derive công thức EX cực nhanh: dùng story của nó, thì bên cạnh story
-> trên, binomial còn có story khác: nó là tổng có n iid indicator random
-> variable I_{Aj} với Aj là trial thứ j, và I_{Aj} j=1,2....n có hai possible value là
-> 1 hoặc 0 nếu  kết quả của trial là success hoặc failure, dễ thấy I_{Aj} chính
-> là Bern(μ)
+> Derive công thức EX cực nhanh: dùng story của nó, thì bên cạnh story trên, binomial còn có story khác: nó là tổng có n iid indicator random variable I\_{Aj} với Aj là trial thứ j, và I\_{Aj} j=1,2....n có hai possible value là 1 hoặc 0 nếu kết quả của trial là success hoặc failure, dễ thấy I\_{Aj} chính là Bern(μ)
 >
 >
 >
-> Khi đó EX = E[Σi I_{Aj}]
+> Khi đó EX = E\[Σi I\_{Ai}\]
 >
 >
 >
@@ -668,21 +997,19 @@ Deeper notes:
 >
 >
 >
-> ...= Σi E[I_{Aj}]
+> ...= Σi E\[I\_{Aj}\]
 >
 >
 >
-> = Σi [μ] = nμ (hay trong sách là Nμ)
+> = Σi \[μ\] = nμ (hay trong sách là Nμ)
 >
 >
 >
-> ------
+> ---
 >
 >
 >
-> VarX: Trong Stat110 gs Joe đã trình bày 3 cách để tìm Var của binomial
-> trong đó cách dễ nhất chính là dựa trên tính chất của Variance: Nếu  X1,...
-> Xn độc lập thì Var(Σi Xi) = Σi VarXi
+> VarX: Trong Stat110 gs Joe đã trình bày 3 cách để tìm Var của binomial trong đó cách dễ nhất chính là dựa trên tính chất của Variance: Nếu X1,... Xn độc lập thì Var(Σi Xi) = Σi VarXi
 >
 >
 >
@@ -702,13 +1029,11 @@ Deeper notes:
 >
 >
 >
-> -------
+> ---
 >
 >
 >
-> Nói thêm chút xíu hai công thức gs Bishop trong sách thật ra chỉ là ông
-> dùng định nghĩa thôi, nhưng cách derive nhanh là như gs Joe đã dạy ở
-> trên),
+> Nói thêm chút xíu hai công thức gs Bishop trong sách thật ra chỉ là ông dùng định nghĩa thôi, nhưng cách derive nhanh là như gs Joe đã dạy ở trên),
 >
 >
 >
@@ -716,20 +1041,15 @@ Deeper notes:
 >
 >
 >
-> ở đây ông Bishop dùng chữ m, để chỉ random variable binomial, (một lần
-> nữa phải complain rằng việc ông dùng chữ thường để chỉ tên biến đi
-> ngược lại quy ước của toán khiến ta rất dễ lú), mình cũng dùng lại chữ m
-> nhưng viết hoa cho nó theo chuẩn:
+> ở đây ông Bishop dùng chữ m, để chỉ random variable binomial, (một lần nữa phải complain rằng việc ông dùng chữ thường để chỉ tên biến đi ngược lại quy ước của toán khiến ta rất dễ lú), mình cũng dùng lại chữ m nhưng viết hoa cho nó theo chuẩn:
 >
 >
 >
-> E[M] = Σ{mọi possible value m của M} mP(M = m)
+> E\[M\] = Σ{mọi possible value m của M} mP(M = m)
 >
 >
 >
-> Và pmf của M ~ binomial(N,μ) thì ông kí hiệu nó là Bin(m|N, μ) (giống  như
-> pdf của Normal(μ, σ²) thì thay vì như sách toán người ta ghi f(x|μ, σ²)
-> thì ổng chơi luôn N(x|μ, σ²), thật hay.
+> Và pmf của M \~ binomial(N,μ) thì ông kí hiệu nó là Bin(m|N, μ) (giống như pdf của Normal(μ, σ²) thì thay vì như sách toán người ta ghi f(x|μ, σ²) thì ổng chơi luôn N(x|μ, σ²), thật hay.
 >
 >
 >
@@ -737,36 +1057,27 @@ Deeper notes:
 >
 >
 >
-> Var[M], thì theo định nghĩa gốc của variance thôi: E[(M - EM)²], và dùng
-> LOTUS, ta có Σ{mọi possible value m của M} (m -EM)² P(M=m)
+> Var\[M\], thì theo định nghĩa gốc của variance thôi: E\[(M - EM)²\], và dùng LOTUS, ta có Σ{mọi possible value m của M} (m -EM)² P(M=m)
 >
 >
 >
 > = Σ{m=0,1,...N} (m - EM)² Bin(m|N,μ)
 
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=hY_5sPoMfWE)
+
 > [!TIP]
-> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Ghi chú rất tốt, thể hiện sự hiểu sâu sắc bản chất (story) của phân phối nhị thức qua tổng các biến ngẫu nhiên Bernoulli i.i.d. để tính kỳ vọng và phương sai cực kỳ nhanh gọn thay vì tính trực tiếp bằng giải tích.
->
-> **🟡 Minor issues**
->
-> **1.** *"Tuy nhiên vì không care thứ tự các object nên ta đã đếm thừa với mỗi cách chọn n! lần, nên để adjust ta sẽ chia cho k!"*
->
-> Lỗi diễn đạt/nhầm lẫn nhỏ: Ta đếm thừa k! lần (số hoán vị của k vật thể được chọn), chứ không phải đếm thừa n! lần (dù ngay sau đó bạn vẫn chia đúng cho k!).
->
-> **2.** *"Khi đó EX = E[Σi I_{Aj}]"*
->
-> Ký hiệu chỉ số bị lệch nhẹ giữa i và j (Σ theo i nhưng biến ngẫu nhiên lại đánh chỉ số Aj).
->
+> Ghi chú xuất sắc, hiểu rất sâu sắc bản chất xác suất ('story' của phân phối nhị thức) và diễn giải trọn vẹn từ hàm PMF, tổ hợp đến kỳ vọng và phương sai.
 >
 > **✓ Strengths**
-> - Vận dụng xuất sắc tư duy 'story' (tổng của các biến chỉ thị / Bernoulli i.i.d.) để tính kỳ vọng và phương sai nhanh chóng thông qua tính chất tuyến tính của kỳ vọng và tính cộng của phương sai.
-> - Hiểu rõ bản chất công thức trong sách Bishop chỉ là áp dụng định nghĩa gốc của kỳ vọng và luật LOTUS cho hàm của biến ngẫu nhiên.
-> - Nhận thức và phân biệt chuẩn xác quy ước ký hiệu biến ngẫu nhiên (chữ hoa) và giá trị nhận được (chữ thường) so với ký hiệu gộp của Bishop.
+> - Nắm vững và vận dụng xuất sắc tư duy 'story proof' từ Stat 110 để giải thích bản chất phân phối nhị thức thay vì chỉ áp dụng công thức thuần túy.
+> - Chứng minh trực quan công thức hàm khối xác suất (PMF) thông qua các biến cố xung khắc và tính độc lập của các phép thử Bernoulli.
+> - Derive kỳ vọng và phương sai bằng biến chỉ thị (indicator variables) kết hợp tính tuyến tính của kỳ vọng rất gãy gọn, chuẩn xác.
+> - Liên hệ và so sánh sắc bén giữa cách trình bày định nghĩa hình thức của Bishop và bản chất toán học từ Stat 110.
 >
 > **💡 Deeper notes**
-> - Sách của Bishop có nhắc đến việc chứng minh (2.11) và (2.12) trực tiếp bằng giải tích (calculus): phương pháp này thường dùng đạo hàm của khai triển nhị thức Newton đối với tham số μ (hoặc hàm sinh mô-men), đây cũng là một kỹ thuật toán rất đẹp nên biết.
+> - Sách giáo trình Bishop ghi chú thêm 'These results can also be proved directly using calculus': ta có thể chứng minh kỳ vọng và phương sai bằng giải tích thông qua vi phân nhị thức Newton $(p + q)^N$ theo $p$ hoặc hàm sinh mô-men (MGF).
 
 <br>
 
