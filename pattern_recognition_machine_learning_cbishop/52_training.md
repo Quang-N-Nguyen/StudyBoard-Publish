@@ -1,6 +1,6 @@
 # 5.2 Training
 
-📊 **Progress:** `9` Notes | `20` Screenshots | `9` AI Reviews
+📊 **Progress:** `10` Notes | `24` Screenshots | `10` AI Reviews
 
 ---
 <a id="node-90vy3g2"></a>
@@ -1735,4 +1735,330 @@
 > - Để vector dự đoán y(x, w) thực sự là một phân phối xác suất hợp lệ (yk ≥ 0 và ∑k yk = 1), lớp output thường kết hợp hàm softmax như được đề cập trong công thức (5.25).
 
 <br>
+
+<a id="node-5kuxlzr"></a>
+
+###### Exercise 5.7 Softmax Derivative
+
+<p align="center"><kbd><img src="assets/ibpk1xf4de.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/2d22fj679ac.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/ygaikzf1k4f.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Tính đạo hàm theo ak của E(𝐰) = - Σn Σk tnk ln ynk
+>
+>
+>
+> E(𝐰) của một datapoint: - Σk tk ln yk
+>
+>
+>
+> a1 = 𝐰1⁽²⁾ᵀ𝐳 + w10
+>
+>
+>
+> a2 = 𝐰2⁽²⁾ᵀ𝐳 + w20
+>
+>
+>
+> ...
+>
+>
+>
+> aK = 𝐰K⁽²⁾ᵀ𝐳 + wK0
+>
+>
+>
+> y1 = exp(a1) / Σj exp(aj)
+>
+>
+>
+> y2 = exp(a2) / Σj exp(aj)
+>
+>
+>
+> ..
+>
+>
+>
+> ---
+>
+>
+>
+> ∂/∂ak \[- Σi ti ln yi\]
+>
+>
+>
+> = -Σi ∂/∂ak \[ti ln yi\]
+>
+>
+>
+> = -Σi ti ∂/∂ak \[ln yi\]
+>
+>
+>
+> = -Σi ti ∂/∂yi (ln yi) . ∂/∂ak yi
+>
+>
+>
+> = -Σi ti (1/yi) . ∂/∂ak yi
+>
+>
+>
+> = -Σi (ti/yi) . ∂/∂ak yi
+>
+>
+>
+> ---
+>
+>
+>
+> Xét ∂/∂ak yi:
+>
+>
+>
+> ---
+>
+>
+>
+> Xét i = k, yi = yk = exp(ak) / Σj exp(aj)
+>
+>
+>
+> ∂/∂ak yi = ∂/∂ak \[exp(ak) / Σj exp(aj)\]
+>
+>
+>
+> Dùng quotient rule: (u/v)' = (u'v - uv')/v²
+>
+>
+>
+> = {∂/∂ak \[exp(ak)\] Σj exp(aj) - exp(ak) \[∂/∂ak Σj exp(aj)\]} / \[Σj exp(aj)\]² (1)
+>
+>
+>
+> Xét ∂/∂ak \[exp(ak)\] = exp(ak)
+>
+>
+>
+> ∂/∂ak Σj exp(aj)\] = Σj ∂/∂ak exp(aj) = ∂/∂ak exp(a1) + ∂/∂ak exp(a2) + ...∂/∂ak exp(ak) + ... = ∂/∂ak exp(ak) = 0 + 0 + ...+ exp(ak) + .. 0 = exp(ak)
+>
+>
+>
+> (1) = {exp(ak) Σj exp(aj) - exp(ak) exp(ak)} / \[Σj exp(aj)\]²
+>
+>
+>
+> = {exp(ak) \[Σj exp(aj) - exp(ak)\]} / \[Σj exp(aj)\]²
+>
+>
+>
+> ---
+>
+>
+>
+> Xét i ≠ k: ∂/∂ak yi = ∂/∂ak \[exp(ai) / Σj exp(aj)\]
+>
+>
+>
+> = exp(ai) ∂/∂ak \[1 / Σj exp(aj)\]
+>
+>
+>
+> = exp(ai) ∂/∂\[Σj exp(aj)\] \[1 / Σj exp(aj)\] . ∂/∂ak Σj exp(aj)
+>
+>
+>
+> = exp(ai) \[-1 / (Σj exp(aj))²\] . exp(ak)
+>
+>
+>
+> = - exp(ai) exp(ak) / (Σj exp(aj))²
+>
+>
+>
+> ---
+>
+>
+>
+> Viết lại hai case:
+>
+>
+>
+> i = k: ∂/∂ak yi = exp(ak) \[Σj exp(aj) - exp(ak)\] / \[Σj exp(aj)\]²
+>
+>
+>
+> i ≠ k: ∂/∂ak yi = exp(ak) \[-exp(ai)\] / \[Σj exp(aj)\]²
+>
+>
+>
+> ∂/∂ak yi = exp(ak) \[..\] / \[Σj exp(aj)\]²
+>
+>
+>
+> Indicator function: 𝐈\_{A} = 1 nếu A true, = 0 nếu A false.
+>
+>
+>
+> \[..\] = 𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] + 𝐈\_{i≠k} \[-exp(ai)\]
+>
+>
+>
+> ∂/∂ak yi = exp(ak) {𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] + 𝐈\_{i≠k} \[-exp(ai)\]} / \[Σj exp(aj)\]² 
+>
+>
+>
+> = \[exp(ak) / Σj exp(aj)\] × {𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] + 𝐈\_{i≠k} \[-exp(ai)\]} / \[Σj exp(aj)\]
+>
+>
+>
+> = yk × {𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] + 𝐈\_{i≠k} \[-exp(ai)\]} / \[Σj exp(aj)\] (2)
+>
+>
+>
+> Xét riêng {𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] + 𝐈\_{i≠k} \[-exp(ai)\]} / \[Σj exp(aj)\] (3)
+>
+>
+>
+> = 𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] / Σj exp(aj) + 𝐈\_{i≠k} \[-exp(ai)\] / Σj exp(aj)
+>
+>
+>
+> Xét riêng: 𝐈\_{i=k} × \[Σj exp(aj) - exp(ak)\] / Σj exp(aj)
+>
+>
+>
+> = 𝐈\_{i=k} × \[Σj exp(aj)/Σj exp(aj) - exp(ak)/Σj exp(aj)\]
+>
+>
+>
+> = 𝐈\_{i=k} (1 - yk)
+>
+>
+>
+> Xét tiếp: 𝐈\_{i≠k} \[-exp(ai)\] / Σj exp(aj) = - 𝐈\_{i≠k} yi
+>
+>
+>
+> Vậy (3) = 𝐈\_{i=k} (1 - yk) - 𝐈\_{i≠k} yi
+>
+>
+>
+> ∂/∂ak yi = (2) = yk \[𝐈\_{i=k} (1 - yk) - 𝐈\_{i≠k} yi\]
+>
+>
+>
+> = yk \[𝐈\_{i=k} - 𝐈\_{i=k} yk - 𝐈\_{i≠k} yi\]
+>
+>
+>
+> Xét riêng: - 𝐈\_{i=k} yk - 𝐈\_{i≠k} yi
+>
+>
+>
+> i=k: - 𝐈\_{i=k} yk - 𝐈\_{i≠k} yi = -1 × yk - 0 × yi = - yk = - yi
+>
+>
+>
+> i≠k: - 𝐈\_{i=k} yk - 𝐈\_{i≠k} yi = - 0 × yk - 1 × yi = - yi
+>
+>
+>
+> ⇒ - 𝐈\_{i=k} yk - 𝐈\_{i≠k} yi = - yi
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy ∂/∂ak yi = yk \[𝐈\_{i=k} - 𝐈\_{i=k} yk - 𝐈\_{i≠k} yi\]
+>
+>
+>
+> = yk \[𝐈\_{i=k} - yi\]
+>
+>
+>
+> ---
+>
+>
+>
+> Ráp vô:
+>
+>
+>
+> ∂/∂ak E(𝐰) = -Σi (ti/yi) . ∂/∂ak yi
+>
+>
+>
+> = -Σi (ti/yi) . yk \[𝐈\_{i=k} - yi\]
+>
+>
+>
+> = -Σi \[𝐈\_{i=k} (ti/yi) yk - yi (ti/yi) yk\]
+>
+>
+>
+> = -Σi ti\[𝐈\_{i=k} (1/yi) yk - yi (1/yi) yk\]
+>
+>
+>
+> = -Σi ti\[𝐈\_{i=k} (yk/yi) - yk\]
+>
+>
+>
+> = -t1\[𝐈\_{1=k} (yk/y1) - yk\] - t2\[𝐈\_{2=k} (yk/y2) - yk\] - ...- tk\[𝐈\_{k=k} (yk/yk) - yk\] - ...
+>
+>
+>
+> = -t1(- yk) - t2(- yk) - ...- tk(1 - yk) - ...
+>
+>
+>
+> = t1yk + t2yk - ... + tkyk - tk - ...
+>
+>
+>
+> = (t1+t2+...)yk - tk 
+>
+>
+>
+> Do 𝐭 là one-hot vector, nên t1+t2+...tK = 1
+>
+>
+>
+> Vậy ∂/∂ak E(𝐰) = yk - tk
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=x2nqrx_1N-g)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú xuất sắc! Lời giải chi tiết, chặt chẽ từng bước từ đạo hàm hàm softmax đến việc rút gọn với hàm mất mát cross-entropy để ra kết quả $y_k - t_k$.
+>
+> **✓ Strengths**
+> - Chia trường hợp $i = k$ và $i \neq k$ rất rõ ràng khi tính đạo hàm của hàm softmax $\partial y_i / \partial a_k$.
+> - Kết hợp khéo léo biến chỉ số/Kronecker delta để tổng quát hóa công thức đạo hàm softmax thành $y_k (\mathbb{I}_{i=k} - y_i)$.
+> - Ráp vào đạo hàm hàm lỗi cross-entropy chính xác và khai thác đúng tính chất $\sum_k t_k = 1$ của vector one-hot để thu được kết quả đẹp $y_k - t_k$.
+>
+> **💡 Deeper notes**
+> - Ký hiệu hàm chỉ số $\mathbb{I}_{i=k}$ trong toán học và các sách giáo trình (như Bishop) thường được biểu diễn gọn gàng hơn bằng delta Kronecker $I_{ik}$ (hoặc $\delta_{ik}$).
+
+**🔗 See also:** [Logistic Sigmoid Error Derivative](./57_ex.md#node-p2ztaoo) · [Error Function Derivatives Exercises](./57_ex.md#node-xxadbu9)
+
+<br>
+
+<a id="node-u8iarjb"></a>
+
+###### Output Activation and Error Functions
+
+<p align="center"><kbd><img src="assets/sy7qlwbhqwn.png" width="80%"></kbd></p>
+
+<br>
+
+<a id="node-iyefmff"></a>
 
