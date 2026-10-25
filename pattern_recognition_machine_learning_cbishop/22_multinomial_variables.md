@@ -1,6 +1,6 @@
 # 2.2 Multinomial Variables
 
-📊 **Progress:** `7` Notes | `10` Screenshots | `3` AI Reviews
+📊 **Progress:** `7` Notes | `10` Screenshots | `4` AI Reviews
 
 ---
 <a id="node-3wyjcuf"></a>
@@ -80,6 +80,19 @@
 >
 > (cái này chỉ là khái quát của pmf của binary / Bern(μ) variable vốn có thể
 > coi như K = 2: P_μ(X=x) = μ^x(1-μ)^(1-x))
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và diễn đạt mạch lạc bản chất của biểu diễn 1-of-K cũng như hàm khối xác suất (pmf) mở rộng từ phân phối Bernoulli. Việc liên hệ từ biến ngẫu nhiên rời rạc vô hướng $U$ sang vector ngẫu nhiên $\mathbf{X}$ giúp hình dung mô hình cực kỳ rõ ràng.
+>
+> **✓ Strengths**
+> - Diễn giải trực quan và chính xác sự chuyển đổi từ biến rời rạc nhận $K$ trạng thái sang vector nhị phân 1-of-K.
+> - Nắm rõ ràng buộc cốt lõi $\sum_{k=1}^K X_k = 1$ với $X_k \in \{0, 1\}$.
+> - Chỉ ra chính xác cơ chế hoạt động của công thức lũy thừa $\prod_{k=1}^K \mu_k^{x_k}$ như một cách viết gọn tổng quát hóa của Bernoulli.
+>
+> **💡 Deeper notes**
+> - Dù giáo trình Bishop đặt tên mục là 'Multinomial Variables', trong nhiều tài liệu xác suất hiện đại, phân phối của 1 lần thử đơn lẻ vector 1-of-K này thường được gọi cụ thể là phân phối Categorical (phân phối phân loại), còn phân phối Đa thức (Multinomial) thường dùng để chỉ tổng số đếm của $N$ phép thử độc lập như vậy.
 
 <br>
 
