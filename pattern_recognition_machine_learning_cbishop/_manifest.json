@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1792881971257,
+  "publishedAt": 1792949209157,
   "sections": [
     {
       "title": "📋 Overview",
@@ -255,16 +255,16 @@
       "imageCount": 10
     },
     {
-      "title": "3.3.1 Bayesian Linear Regression",
-      "path": "pattern_recognition_machine_learning_cbishop/331_bayesian_linear_regression.md",
-      "noteCount": 8,
-      "imageCount": 12
-    },
-    {
       "title": "3.3.3 Equivalent kernel",
       "path": "pattern_recognition_machine_learning_cbishop/333_equivalent_kernel.md",
       "noteCount": 5,
       "imageCount": 8
+    },
+    {
+      "title": "3.3.1 Bayesian Linear Regression",
+      "path": "pattern_recognition_machine_learning_cbishop/331_bayesian_linear_regression.md",
+      "noteCount": 8,
+      "imageCount": 12
     },
     {
       "title": "3.4 Bayesian Model Comparison",
@@ -471,10 +471,22 @@
       "imageCount": 20
     },
     {
+      "title": "5.1.1",
+      "path": "pattern_recognition_machine_learning_cbishop/511.md",
+      "noteCount": 0,
+      "imageCount": 0
+    },
+    {
       "title": "5.2 Training",
       "path": "pattern_recognition_machine_learning_cbishop/52_training.md",
-      "noteCount": 9,
-      "imageCount": 20
+      "noteCount": 10,
+      "imageCount": 24
+    },
+    {
+      "title": "5.7 Ex",
+      "path": "pattern_recognition_machine_learning_cbishop/57_ex.md",
+      "noteCount": 1,
+      "imageCount": 5
     },
     {
       "title": "Appendix C. Matrices",
@@ -489,6 +501,6 @@
       "imageCount": 7
     }
   ],
-  "totalNotes": 487,
-  "totalImages": 761
+  "totalNotes": 489,
+  "totalImages": 770
 }
