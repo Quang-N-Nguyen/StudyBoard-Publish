@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1792972525917,
+  "publishedAt": 1793059519450,
   "sections": [
     {
       "title": "📋 Overview",
@@ -471,16 +471,22 @@
       "imageCount": 20
     },
     {
-      "title": "5.1.1",
-      "path": "pattern_recognition_machine_learning_cbishop/511.md",
-      "noteCount": 0,
-      "imageCount": 0
+      "title": "5.1.1 Parameter optimization",
+      "path": "pattern_recognition_machine_learning_cbishop/511_parameter_optimization.md",
+      "noteCount": 2,
+      "imageCount": 4
     },
     {
       "title": "5.2 Training",
       "path": "pattern_recognition_machine_learning_cbishop/52_training.md",
       "noteCount": 10,
       "imageCount": 24
+    },
+    {
+      "title": "5.2.2 Local quadratic approximation",
+      "path": "pattern_recognition_machine_learning_cbishop/522_local_quadratic_approximation.md",
+      "noteCount": 1,
+      "imageCount": 10
     },
     {
       "title": "5.7 Ex",
@@ -501,6 +507,6 @@
       "imageCount": 7
     }
   ],
-  "totalNotes": 489,
-  "totalImages": 770
+  "totalNotes": 492,
+  "totalImages": 784
 }
