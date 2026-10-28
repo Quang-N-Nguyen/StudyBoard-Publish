@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1793151879557,
+  "publishedAt": 1793227932255,
   "sections": [
     {
       "title": "📋 Overview",
@@ -485,8 +485,14 @@
     {
       "title": "5.2.2 Local quadratic approximation",
       "path": "pattern_recognition_machine_learning_cbishop/522_local_quadratic_approximation.md",
-      "noteCount": 1,
-      "imageCount": 12
+      "noteCount": 3,
+      "imageCount": 14
+    },
+    {
+      "title": "5.2.3 Use of gradient information",
+      "path": "pattern_recognition_machine_learning_cbishop/523_use_of_gradient_information.md",
+      "noteCount": 0,
+      "imageCount": 1
     },
     {
       "title": "5.7 Ex",
@@ -498,7 +504,7 @@
       "title": "Appendix C. Matrices",
       "path": "pattern_recognition_machine_learning_cbishop/appendix_c_matrices.md",
       "noteCount": 19,
-      "imageCount": 24
+      "imageCount": 23
     },
     {
       "title": "Appendix D. Calculus of Variation",
@@ -507,6 +513,6 @@
       "imageCount": 7
     }
   ],
-  "totalNotes": 492,
-  "totalImages": 787
+  "totalNotes": 494,
+  "totalImages": 789
 }
