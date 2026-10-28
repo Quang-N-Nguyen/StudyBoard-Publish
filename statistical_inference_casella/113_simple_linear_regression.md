@@ -1,6 +1,6 @@
 # 11.3 Simple Linear Regression
 
-📊 **Progress:** `14` Notes | `27` Screenshots | `14` AI Reviews
+📊 **Progress:** `24` Notes | `43` Screenshots | `24` AI Reviews
 
 ---
 <a id="node-m4lr6nj"></a>
@@ -314,7 +314,7 @@
 > **💡 Deeper notes**
 > - Công thức hệ số góc $b = S_{xy} / S_{xx}$ ngầm giả định $S_{xx} > 0$, tức các điểm dữ liệu $x_i$ không hoàn toàn trùng nhau (ít nhất có hai giá trị $x$ khác nhau).
 
-**🔗 See also:** [BLUE of Linear Estimators](#node-s1vw0l4)
+**🔗 See also:** [BLUE of Linear Estimators](#node-s1vw0l4) · [Estimation with Normal Errors](#node-c6564df)
 
 <br>
 
@@ -968,7 +968,7 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 
 <p align="center"><kbd><img src="assets/0uaahjjodw6.png" width="80%"></kbd></p>
 
-<p align="center"><kbd><img src="assets/rzpjk02zock.png" width="80%"></kbd></p>
+<p align="center"><kbd><img src="assets/ujn0b7b9bdc.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Cov(X,Y) = E\[(X-EX)(Y-EY)\]
@@ -988,8 +988,6 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 > ---
->
->
 >
 > Bất đẳng thức Cauchy-Schwarz:
 >
@@ -1023,11 +1021,11 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 >
-> Điều kiện tối ưu cần bậc nhất: d/dt f(t) = 0 ⇔ 2E\[V²\]t - 2E\[UV\] = 0 
+> Điều kiện tối ưu cần bậc nhất: d/dt f(t) = 0 ⇔ 2E\[V²\]t - 2E\[UV\] = 0
 >
 >
 >
-> ⇔ t = E\[UV\]/ E\[V²\]
+> ⇔ t = E\[UV\]/ E\[V²\] (giả định E\[V²\] &gt; 0)
 >
 >
 >
@@ -1055,7 +1053,7 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 >
-> ⇔  E\[U²\] ≥ (E\[UV\])²/ E\[V²\]
+> ⇔ E\[U²\] ≥ (E\[UV\])²/ E\[V²\]
 >
 >
 >
@@ -1063,11 +1061,11 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 >
->  đây chính là bất đẳng thức Cauchy-Schwarz:
+> đây chính là bất đẳng thức Cauchy-Schwarz:
 >
 >
 >
-> (E\[UV\])² ≤ E\[U²\]E\[V²\] 
+> (E\[UV\])² ≤ E\[U²\]E\[V²\]
 >
 >
 >
@@ -1079,7 +1077,7 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 >
-> (E\[(X - EX)(Y - EY)\])² ≤ E\[(X - EX)²\]E\[(Y - EY)²\] 
+> (E\[(X - EX)(Y - EY)\])² ≤ E\[(X - EX)²\]E\[(Y - EY)²\]
 >
 >
 >
@@ -1103,77 +1101,11 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 >
->
->
->
->
->
->
->
->
-> ---
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
-> ---
->
->
->
-> Rồi, chứng minh đại khái như sau:
->
->
->
 > Bổ đề nói rằng cho (v1,...vk) là constant và (c1,...ck) là constant dương. Và 𝒜 = {𝐚=(a1,...ak): Σiai = 0} thì khi đó:
 >
 >
 >
-> max\_𝐚∈𝒜 {(Σi aivi)² / (Σi ai²/ci)} = Σi ci(vi - v̄c)² với v̄c = Σi civi / Σici 
+> max\_𝐚∈𝒜 {(Σi aivi)² / (Σi ai²/ci)} = Σi ci(vi - v̄c)² với v̄c = Σi civi / Σici
 >
 >
 >
@@ -1186,43 +1118,1096 @@ W(𝐱) = argmax_θ L(θ|𝐱)"*
 >
 >
 > Chứng minh đại khái như sau:
+>
+>
+>
+> Đặt ℬ = {𝐛: (b1,...bk): Σi bi = 0 và Σi bi²/ci = 1}. Với mọi 𝐚 ∈ 𝒜, đặt 𝐛 sao cho:
+>
+>
+>
+> bi = ai/√(Σj aj²/cj) (1)
+>
+>
+>
+> ⇒ bi² = ai² / (Σj aj²/cj)
+>
+>
+>
+> Dễ thấy khi đó Σi bi²/ci = Σi \[ai² / (Σj aj²/cj)\] / ci = \[1/ (Σj aj²/cj)\] Σi ai²/ci = (Σi ai²/ci)/(Σj aj²/cj) = 1
+>
+>
+>
+> và Σi bi = Σi ai/√(Σj aj²/cj) = 0
+>
+>
+>
+> ---
+>
+>
+>
+> (1) cũng suy ra ai = bi √(Σj aj²/cj) 
+>
+>
+>
+> ⇒ Σi ai vi = Σi bivi √(Σj aj²/cj) = (Σi bivi) √(Σj aj²/cj)
+>
+>
+>
+>  ⇔ (Σi ai vi)² = (Σi bivi)² (Σj aj²/cj)
+>
+>
+>
+>  ⇔ (Σi ai vi)²/ (Σi ai²/ci)= (Σi bivi)² (Σj aj²/cj) / (Σi ai²/ci) 
+>
+>
+>
+>  ⇔ (Σi ai vi)²/ (Σi ai²/ci) = (Σi bivi)² 
+>
+>
+>
+> ---
+>
+>
+>
+> Nhắc nhớ rằng, ta cần chứng minh chính là  là max\_𝐚∈𝒜 {vế trái ở trên} = Σi ci(vi - v̄c)²
+>
+>
+>
+> Nên nay ta cần chứng minh max\_𝐚∈𝒜 {vế phải ở trên, tức (Σi bivi)² } = Σi ci(vi - v̄c)²
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy bài toán là maximize (Σi bivi)² , thì cơ bản là ta xem thử nó ≤ cái gì (tìm upperbound)
+>
+>
+>
+> Và đại khái là thì (Σi bivi)² chính là (E\[BV\])². 
+>
+>
+>
+> Đã ôn lại ở trên Cov(X,Y) = E(XY) - (EX)(EY)
+>
+>
+>
+> Mà E\[B\] = 0, nên Cov(B,V) = E\[BV\]
+>
+>
+>
+> Nên theo Cauchy Schwart inequality: \[Cov(B,V)\]² ≤ Var(B)Var(V)
+>
+>
+>
+> ⇔ (E\[BV\])² ≤ Var(B)Var(V)
+>
+>
+>
+> Giờ làm rõ vì sao Σi bivi lại là E\[BV\]:
+>
+>
+>
+> Là bởi vì nếu đặt U là random variable = BV với B là rv có possible values; b1/c1,...bk/ck, V là rv có possible values v1,...vk Và joint pmf của B,V là P(B=bi/ci, V=vi) = ci/C (Σi ci/C = 1) thì 
+>
+>
+>
+> Hãy nhìn U ở dạng: hàm của B,V: U = g(B,V) = B × V
+>
+>
+>
+> khi đó theo LOTUS:
+>
+>
+>
+> E\[U\] = E\[BV\] = Σi (bi/ci) vi P(Bi=bi/ci, Vi=vi)
+>
+>
+>
+> = Σi (bi/ci)vi ci/C
+>
+>
+>
+> Vậy E\[BV\] = Σi (bi/ci)vi ci/C 
+>
+>
+>
+> ⇔ C × E\[BV\] = Σi bivi 
+>
+>
+>
+> ⇔ E\[BV\] = Σi bivi / C
+>
+>
+>
+> ---
+>
+>
+>
+> (E\[BV\])² ≤ Var(B)Var(V)
+>
+>
+>
+> ⇔ (Σi bivi)²/C²  ≤ Var(B)Var(V)
+>
+>
+>
+> Var(B) = E\[(B-EB)²\] = Σi (bi/ci - 0)² × P(B=bi/ci) = Σi (bi/ci)² × (ci/C) 
+>
+>
+>
+> Var(V)  = E\[(V-EV)²\]
+>
+>
+>
+> EV = Σi vi P(V=vi) = Σi vi ci/C = (Σi vici) / (Σi ci), đặt là v̄c
+>
+>
+>
+> ⇒ Var(V) = Σi (vi-v̄)² (ci/C)
+>
+>
+>
+> ---
+>
+>
+>
+> .. ⇔ (Σi bivi)²/C² ≤ \[Σi (bi/ci)² × (ci/C)\] \[Σi (vi-v̄c)² (ci/C)\]
+>
+>
+>
+> ⇔ \[Σi bivi\]²/C² ≤  \[Σi (bi/ci)² × (ci/C)\] \[Σi (vi-v̄c)² (ci/C)\]
+>
+>
+>
+> Dùng Σi bi²/ci = 1 ⇔ Σi \[(bi²/ci²) × ci\] = 1 ⇔ Σi \[(bi²/ci²) × ci/C\] = 1/C
+>
+>
+>
+> .. ⇔ \[Σi bivi\]²/C² ≤  (1/C) \[Σi (vi-v̄c)² (ci/C)\]
+>
+>
+>
+> ⇔ \[Σi bivi\]²≤  Σi \[(vi-v̄c)² ci\]
+>
+>
+>
+> ⇔ \[Σi bivi\]²≤  Σi \[ci(vi-v̄c)²\] → 11.2.11
+>
+>
+>
+> ---
+>
+>
+>
+> Cuối cùng, đại khái là khi dùng vector 𝐚 với ai = Kci(vi-v̄c) thì ta thấy: 𝐚 ∈ 𝒜 đồng thời lắp vô Σi bivi thì ra được kết quả là √vế phải, chứng minh xong rằng nó chính là solution của maximize\_ 𝐚∈𝒜 \[Σi bivi\]² và tại đó \[Σi bivi\]² cũng là {(Σi aivi)² / (Σi ai²/ci)} sẽ đặt max = Σi ci(vi - v̄c)²
 
-📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=gpURGn0c_74)
+📹 Video 1: [Lemma 11.2.7 Contrast Maximization — Statistical Inference - Casella](https://www.youtube.com/watch?v=BnLldZjJnlc)
+
+📹 Video 2: [Chứng minh bất đẳng thức Cauchy-Schwarz không cần học thuộc lòng.](https://www.youtube.com/watch?v=gpURGn0c_74)
 
 > [!TIP]
-> 🤖 **AI Check** — 🔴 Critical issues — ❌ **35/100** · ✗ Fix first
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
 >
-> Ghi chú chưa thực hiện phần chứng minh bổ đề như đã nêu ('Chứng minh đại khái như sau:' nhưng để trống), đồng thời mắc lỗi nghiêm trọng khi đưa biến ngẫu nhiên sign(UV) ra ngoài kỳ vọng.
+> Ghi chú rất xuất sắc, trình bày đầy đủ từ việc chứng minh lại bất đẳng thức Cauchy-Schwarz đến từng bước biến đổi chi tiết của Bổ đề 11.2.7 thông qua góc nhìn biến ngẫu nhiên.
 >
-> **🔴 Critical issues**
+> **✓ Strengths**
+> - Tự suy biến và chứng minh chặt chẽ bất đẳng thức Cauchy-Schwarz bằng phương pháp tối ưu hàm bậc hai f(t) trước khi áp dụng vào bài.
+> - Hiểu rất rõ và diễn giải rành mạch cách chuyển đổi tổng trọng số sang kỳ vọng toán học E[BV] cùng luật LOTUS theo phân phối xác suất ci/C.
+> - Chứng minh rõ ràng tính tương đương giữa bài toán gốc và bài toán tối ưu trên tập B thông qua phép chuẩn hóa.
 >
-> **1.** *"Chứng minh đại khái như sau:"*
+> **💡 Deeper notes**
+> - Trường hợp E[V²] = 0 khi chứng minh Cauchy-Schwarz là suy biến (V = 0 hầu chắc chắn), khi đó E[UV] = 0 và bất đẳng thức hiển nhiên trở thành đẳng thức 0 ≤ 0.
+> - Khi kiểm tra điều kiện đạt dấu bằng với ai = K ci (vi - v̄c), nếu K < 0 thì √(K²) = -K, dẫn đến ∑ bi vi = -√(∑ ci(vi - v̄c)²); tuy nhiên khi bình phương lên giá trị cực đại vẫn giữ nguyên là ∑ ci(vi - v̄c)².
+
+<br>
+
+<a id="node-q19qd3o"></a>
+
+###### Application of Lemma 11.2.7
+
+<p align="center"><kbd><img src="assets/ld8gf90z8nq.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/o42hbu3jxk.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/ugd5sknwsaf.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Tiếp nối note trước: Như vậy, để Var(W(𝐘)) nhỏ nhất thì Σi di² phải nhỏ nhất.
 >
-> Kiểm tra tiến độ (Progress Check): Ghi chú đặt ra mục tiêu chứng minh bổ đề nhưng chỉ chép lại phát biểu của Bổ đề 11.2.7 và để trống toàn bộ phần chứng minh theo gợi ý phân phối xác suất và bất đẳng thức Cauchy-Schwarz từ tài liệu.
 >
-> **2.** *"E[sign(UV) |UV|] = sign(UV) E[|UV|]"*
 >
-> Sai bản chất toán học: sign(UV) là một đại lượng ngẫu nhiên phụ thuộc vào mẫu, không phải là hằng số nên không thể tùy tiện đưa ra ngoài dấu kỳ vọng E[·].
+> Note liền trước ta đã học bổ đề 11.2.7, nói rằng:
 >
+>
+>
+> Bổ đề nói rằng cho (v1,...vk) là constant và (c1,...ck) là constant dương. Và 𝒜 = {𝐚=(a1,...ak): Σi ai = 0} thì khi đó:
+>
+>
+>
+> max\_𝐚∈𝒜 {(Σi aivi)² / (Σi ai²/ci)} = Σi ci(vi - v̄c)² với v̄c = Σi civi / Σici
+>
+>
+>
+> Và maximum sẽ đạt tại 𝐚 có dạng ai = Kci(vi-v̄c) với K là constant khác 0
+>
+>
+>
+> Vậy áp dụng vào đây: cho k = n, vi = xi, ci = 1, ai = di, v̄c = Σi xi / n = x̄
+>
+>
+>
+> khi đó maximize {𝐝 thỏa Σi di = 0} của {(Σi dixi)² / (Σi di²)} sẽ bằng Σi (xi-x̄)² và đạt được maximum khi 𝐝 = (d1,..dn) sao cho di = K(xi-x̄)
+>
+>
+>
+> Bên cạnh đó, đại ý là vì tập {𝐝 = (d1,...dn): Σi di = 0, Σi dixi = 1} ⊂ {𝐝 = (d1,...dn): Σi di = 0}
+>
+>
+>
+> nên nếu 𝐝 với di = K(xi-x̄) với K khác 0 như trên là solution của maximize\_𝐝 {(Σi dixi)² / (Σi di²)} s.t Σi di = 0
+>
+>
+>
+> thì với nếu xét trên không gian biến hẹp hơn (thêm ràng buộc  Σi dixi = 1) thì chỉ cần nó thỏa ràng buộc, thì dĩ nhiên nó cũng sẽ là solution của maximize\_𝐝 {(Σi dixi)² / (Σi di²)} s.t Σi di = 0, Σi dixi = 1
+>
+>
+>
+> ---
+>
+>
+>
+> Vậy thì với 𝐝 = (d1,..dk) với di = K(xi-x̄)
+>
+>
+>
+> Σi dixi = Σi K(xi-x̄)xi = K Σi (xi-x̄)xi  = K Sxx
+>
+>
+>
+> (Sxx = Σi (xi-x̄)xi)
+>
+>
+>
+> để thỏa Σi dixi = 1 ⇔ K Sxx = 1 ⇔ K = 1/Sxx
+>
+>
+>
+> Vậy, với K = 1/Sxx, thì 𝐝: di = K(xi-x̄) = (xi-x̄)/Sxx sẽ thỏa ràng buộc Σi dixi = 1
+>
+>
+>
+> do đó theo lập luận trên nó sẽ maximize (Σi dixi)² / (Σi di²), s.t Σi di = 0, Σi dixi = 1
+>
+>
+>
+> ---
+>
+>
+>
+> Cuối cùng, để ý nếu 𝐝 thỏa Σi di = 0, Σi dixi = 1 thì (Σi dixi)² / (Σi di²) sẽ = 1/(Σi di²)
+>
+>
+>
+> Vậy nên maximize (Σi dixi)² / (Σi di²) s.t  Σi di = 0, Σi dixi = 1
+>
+>
+>
+> sẽ tương đương minimize (Σi di²) s.t  Σi di = 0, Σi dixi = 1 (chú ý ko được bỏ constraint)
+>
+>
+>
+> mà Σi di² nhỏ nhất ⇔ Var(W(𝐘)) nhỏ nhất  
+>
+>
+>
+> Như vậy 𝐝: di = (xi-x̄)/Sxx sẽ minimize (Σi di²), cũng là minimize Var(W(𝐘))
+>
+>
+>
+> Do đó W(𝐘) = Σi diYi với di = (xi-x̄)/Sxx, chính là Best Unbiased Linear Estimator
+>
+>
+>
+> Hay Σi (xi-x̄)Yi/Sxx = SxY/Sxx là Best Linear Unbiased Estimator của β 
+>
+>
+>
+> và Σi (xi-x̄)yi/Sxx = Sxy/Sxx là Best Linear Unbiased Estimate của β
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **98/100** · ✓ Move on
+>
+> Ghi chú rất xuất sắc, lập luận chặt chẽ và giải thích rõ ràng từng bước từ việc thu hẹp không gian tối ưu cho đến phép đổi bài toán max sang min.
 >
 > **🟡 Minor issues**
 >
-> **1.** *"t = E[UV]/ E[V²]"*
+> **1.** *"Vậy thì với 𝐝 = (d1,..dk) với di = K(xi-x̄)"*
 >
-> Chưa xét trường hợp mẫu số bằng 0 (E[V²] = 0 hay V = 0 hầu chắc chắn) khi chia cho E[V²].
->
-> **2.** *"(2) |E[UV]| ⇔ ≤ E[|UV|] ≤ √E[|U|²] √E[|V|²]"*
->
-> Ký hiệu bị lỗi cú pháp ('⇔ ≤') gây khó hiểu cho biểu thức so sánh.
+> Lỗi gõ phím nhỏ (typo): số chiều ở đây là n phần tử 𝐝 = (d1,...,dn) thay vì k.
 >
 >
 > **✓ Strengths**
-> - Khai triển và biến đổi công thức tính hiệp biến Cov(X, Y) = E[XY] - E[X]E[Y] chính xác.
-> - Ý tưởng chứng minh bất đẳng thức Cauchy-Schwarz qua việc tối thiểu hóa tam thức bậc hai f(t) = E[(U - tV)²] rất rõ ràng và mạch lạc.
+> - Nắm rất vững logic tối ưu trên tập con: nếu nghiệm của bài toán trên tập lớn thuộc tập con thì nó cũng là nghiệm tối ưu trên tập con đó.
+> - Hiểu rõ mối liên hệ nghịch đảo giữa việc cực đại hóa tỉ số 1/(Σ di²) và cực tiểu hóa phương sai Σ di² dưới ràng buộc.
+> - Phân biệt chính xác giữa Estimator (ước lượng - biến ngẫu nhiên Y) và Estimate (giá trị ước lượng cụ thể - quan sát y).
 >
 > **💡 Deeper notes**
-> - Để chứng minh Bổ đề 11.2.7 theo tài liệu, cần áp dụng Cauchy-Schwarz cho Cov(B, V)² ≤ Var(B)Var(V) với phân phối xác suất rời rạc P(B = b_i/c_i, V = v_i) = c_i / C thay vì chỉ dừng lại ở việc chứng minh lại bất đẳng thức Cauchy-Schwarz tổng quát.
-> - Bất đẳng thức |E[UV]| ≤ E[|UV|] suy ra trực tiếp từ tính chất kỳ vọng của hàm lồi / bất đẳng thức tam giác cho tích phân, không cần thông qua biến đổi sign(UV).
+> - Điều kiện tồn tại K = 1/Sxx ngầm định rằng Sxx = Σ (xi - x̄)² > 0, nghĩa là các điểm dữ liệu xi không được hoàn toàn trùng nhau (không suy biến).
 
 <br>
+
+<a id="node-be2name"></a>
+
+###### Geometric Description of BLUE
+
+<p align="center"><kbd><img src="assets/wjf86fkamz.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/00rzczae3115j.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Về mặt hình học, thì {di} định ra BLUE của β: Σi diYi như sau:
+>
+>
+>
+> Phải thỏa Σi di xi = 1 nên nó 𝐝 phải nằm trên plane này
+>
+>
+>
+> Phải thỏa Σi di = 0 nên nó phải nằm trên plane này luôn
+>
+>
+>
+> Nên nó phải là trên giao tuyến của hai plane.
+>
+>
+>
+> Và bài toán là tìm 𝐝 trên giao tuyến giúp minimize Σi di², mà cái này chính là bình phương norm vector 𝐝. Vậy nên 𝐝 chính là hình chiếu của 𝟎 lên giao tuyến này.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú rất chuẩn xác và súc tích, nắm bắt hoàn hảo bản chất hình học của bài toán tìm BLUE: giao tuyến của hai siêu phẳng và hình chiếu trực giao từ gốc tọa độ.
+>
+> **✓ Strengths**
+> - Hiểu chính xác mỗi ràng buộc tuyến tính của ước lượng không chệch tương ứng với một mặt phẳng trong không gian.
+> - Kết luận rất chuẩn xác rằng cực tiểu hóa tổng bình phương các tọa độ chính là tìm điểm gần gốc tọa độ nhất, tương đương hình chiếu trực giao của gốc tọa độ 0 lên đường giao tuyến.
+>
+> **💡 Deeper notes**
+> - Hình học biểu diễn không gian 3 chiều với 2 mặt phẳng cắt nhau tại một đường thẳng (tương ứng trường hợp mẫu n = 3). Trong trường hợp tổng quát với mẫu cỡ n, không gian sẽ là n chiều và giao của hai siêu phẳng là một không gian afin (n-2) chiều.
+
+<br>
+
+<a id="node-akqu751"></a>
+
+###### Optimal Design for Slope Estimator
+
+<p align="center"><kbd><img src="assets/2cf9flekq5g.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Đại ý là với optimal 𝐝, để có BLUE của β: Var(b_BLUE) = σ² Σi di² = σ²/Sxx thì  vì Sxx phụ thuộc 𝐱 nên experimenter đại khái là có thể chọn 𝐱 sao cho Sxx lớn nhất từ đó có b_BLUE có variance nhỏ nhất
+>
+>
+>
+> Lấy ví dụ xbi chỉ được chọn trong \[e, f\] thì đại khái là có thể chọn một nửa số xi = e và một nửa bằng f (giả sử n chẵn). Khi đó, có thể chứng minh rằng Sxx lúc này sẽ lớn nhất.
+>
+>
+>
+> Có điều, chỉ khi ta rất chắc chắn giả định của simple regression là đúng thì mới nên làm vậy: tức giả định Yi = α + βxi + εi với E\[εi\] = 0, Var(εi) σ² còn nếu không, giả sử E\[Yi|xi\] không phải là hàm tuyến tính theo xi (α + β xi) thì cách làm này sẽ không ổn
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú nắm rất tốt ý tưởng thiết kế thực nghiệm để tối thiểu hóa phương sai của ước lượng hệ số góc, cũng như hiểu rõ rủi ro của thiết kế hai điểm (two-point design). Chỉ có một vài sơ suất nhỏ về ký hiệu và diễn đạt.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Yi = αi + βxi + εi"*
+>
+> Trong mô hình hồi quy tuyến tính đơn, hệ số chặn là hằng số α chung cho toàn bộ mẫu, viết αi là nhầm lẫn ký hiệu khiến mỗi quan sát có một hệ số chặn riêng.
+>
+> **2.** *"cách làm này sẽ không chính xác"*
+>
+> Diễn đạt chưa thật sát với bản chất trong sách: khi chỉ đo tại hai điểm e và f, ta hoàn toàn không thể kiểm tra hoặc phát hiện tính phi tuyến (nonlinearity) của mô hình từ dữ liệu thu thập được.
+>
+>
+> **✓ Strengths**
+> - Hiểu chính xác cơ chế: chọn các giá trị x_i để tối đa hóa S_xx nhằm cực tiểu hóa Var(b).
+> - Nắm đúng kết quả tối ưu trong khoảng [e, f] với n chẵn là chia đều nửa ở e và nửa ở f.
+> - Nắm được lý do thực tế ít dùng thiết kế này: cần giả định mô hình tuyến tính đúng, nếu không sẽ không phát hiện được phi tuyến.
+>
+> **💡 Deeper notes**
+> - Thiết kế hai điểm thực chất là trường hợp đặc biệt của D-optimal design trong lý thuyết quy hoạch thực nghiệm (optimal design theory).
+> - Để vừa có phương sai ước lượng nhỏ vừa kiểm tra được tính tuyến tính (lack-of-fit test), trong thực tế người ta thường bổ sung thêm các điểm ở giữa (chẳng hạn tại tâm (e+f)/2).
+
+<br>
+
+<a id="node-8ao1cbi"></a>
+
+###### Gauss-Markov Theorem and BLUE
+
+<p align="center"><kbd><img src="assets/6kkxpt5n8aj.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Cuối cùng, với α, tương tự, ta cũng có thể chứng minh a = ȳ - bx̄ là BLUE của intercept α
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
+>
+> Ghi chú chính xác và súc tích; ước lượng bình phương tối thiểu a = ȳ - bx̄ quả thực là ước lượng tuyến tính không chệch tốt nhất (BLUE) của hệ số chặn α theo định lý Gauss-Markov.
+>
+> **✓ Strengths**
+> - Nắm đúng kết luận trọng tâm từ tài liệu tham khảo rằng ước lượng OLS cho hệ số chặn a là BLUE của α.
+>
+> **💡 Deeper notes**
+> - Để chứng minh a là BLUE, ước lượng tuyến tính dạng ∑ d_i y_i cần thoả mãn hai điều kiện không chệch: ∑ d_i = 1 và ∑ d_i x_i = 0, sau đó cực tiểu hóa phương sai dưới các giả định của định lý Gauss-Markov (phương sai sai số không đổi và sai số không tương quan).
+
+<br>
+
+<a id="node-a17n579"></a>
+
+###### Models and Distribution Assumptions
+
+<p align="center"><kbd><img src="assets/2d3duq4fkn4.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Phần này đại ý là:
+>
+>
+>
+> Hai phần trước, 11.3.1 từ data {(xi, yi)} ta có được cái gọi là least square estimate (của α và β), cái này không dựa trên giả định gì (về phân phối xác suất của data), mà chỉ là bài toán tối ưu thuần túy, nên không có gì để nói - ví dụ như, ko thể nói về variance của estimator, vì không có estimator nào cả, và đây không phải là kết quả của một bài toán suy luận thống kê.
+>
+>
+>
+> Sau đó, 12.3.2, ta giả định rằng các giá trị quan sát được {(xi, yi)} là giá trị quan sát được của Yi = α + βxi + εi với E\[εi\] = 0, Var(εi) = σ² và Cov(εi, εj) = 0 với i ≠ j, cũng chính là giả định E\[Yi|xi\] = α + βxi và Var(Yi) = σ², chính là giả định hai moment đầu tiên của Yi. Và từ đó, ta có thể nói b = SxY/Sxx là estimator của β, Ȳ - bx̄ là estimator của α. Cũng như chứng minh rằng chúng là Best Unbiased Linear Estimator của β và α.
+>
+>
+>
+> (Chú ý, nếu không giả định gì về phân phối của Y, hay nói cách khác, như cách làm least square, ta không giả định {(xi, yi)} là giá trị quan sát của random variable Yi, hay Xi gì cả, thì lấy gì mà gọi là estimator, vì estimator thì phải là hàm số của random variable) Và không có estimator thì ko đánh giá variance hay kì vọng gì cả.
+>
+>
+>
+> Vậy thì nay, đại ý là, ta sẽ giả định thêm về phân phối của data chứ ko chỉ là hai moment.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất chuẩn xác bức tranh tổng thể về mặt tư duy thống kê: từ tối ưu hình học thuần túy không có mô hình xác suất, đến giả định 2 moment đầu tiên (BLUE), và lý do cần giả định phân phối đầy đủ để xây dựng khoảng tin cậy hay kiểm định.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Sau đó, 12.3.2"*
+>
+> Lỗi gõ nhầm số mục tham chiếu, trong giáo trình đây là mục 11.3.2 chứ không phải 12.3.2.
+>
+> **2.** *"Best Unbiased Linear Estimator"*
+>
+> Thuật ngữ chuẩn của từ viết tắt BLUE là 'Best Linear Unbiased Estimator' (ước lượng tuyến tính không chệch tốt nhất).
+>
+>
+> **✓ Strengths**
+> - Nắm rất vững bản chất: một ước lượng (estimator) phải là một biến ngẫu nhiên (hàm của dữ liệu mẫu ngẫu nhiên), nên nếu chỉ tối ưu thuần túy trên tập điểm cố định thì không thể bàn về kì vọng hay phương sai.
+> - Hiểu rõ sự phân cấp giữa các tầng giả định: không giả định -> giả định 2 moment đầu (đủ để có BLUE) -> giả định toàn bộ phân phối (cần thiết để suy diễn, kiểm định và lập khoảng tin cậy chính xác).
+>
+> **💡 Deeper notes**
+> - Dưới các giả định về 2 moment (định lý Gauss-Markov), ta chứng minh được tính tối ưu BLUE mà không cần biết phân phối cụ thể của sai số. Tuy nhiên, để tìm được phân phối chính xác của các thống kê kiểm định (như phân phối t của Student hay phân phối F) và khoảng tin cậy ở cỡ mẫu hữu hạn, ta bắt buộc phải giả định phân phối chuẩn cho sai số εi.
+
+<br>
+
+<a id="node-lur3wot"></a>
+
+###### Conditional Normal Model
+
+<p align="center"><kbd><img src="assets/nm7mmpnti3n.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Đây rồi, đây chính là lần đầu tiên mình chính thức được học về kiến thức làm nền tảng cho những thứ đã học trước đây bên Bishop, ISL: Conditional normal model
+>
+>
+>
+> Giả định của model này là như sau:
+>
+>
+>
+> x1,x2,...vẫn là hằng số cố định
+>
+>
+>
+> y1,y2,...là giá trị quan sát được của các random variable Y1,Y2,... độc lập
+>
+>
+>
+> Và Yi có phân phối xác suất: n(α + βxi, σ²)
+>
+>
+>
+> ---
+>
+>
+>
+> Mô hình này cũng có thể thể hiện theo cách khác:
+>
+>
+>
+> x1,x2,...vẫn là hằng số cố định
+>
+>
+>
+> y1,y2,...là giá trị quan sát được của các random variable Y1,Y2,..
+>
+>
+>
+> Và Yi = α + βxi + εi với εi độc lập có phân phối n(0, σ²)
+>
+>
+>
+> ---
+>
+>
+>
+> Và dĩ nhiên cũng dưới mô hình này, E\[Yi|xi\] = α + βxi
+>
+>
+>
+> Đây chính là mô hình phổ biến nhất, trong chương 3 Bishop, mà ta đã gặp trong linear regression
+>
+>
+>
+> ---
+>
+>
+>
+> Dĩ nhiên dễ hiểu đây là special case của mô hình trong 13.3.2: giả định Yi uncorrelate, có E\[Yi|xi\] = α + βxi, Var(Yi) = σ², trong đó ta chỉ giả định về dạng của hai moment đầu tiên. Còn ở đây dĩ nhiên ta cũng có giả định này, nhưng có thêm dạng chính xác của Yi: n(α + βxi, σ²). Và uncorrelate thay bằng independence, là gỉa định mạnh hợn.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và chính xác bản chất của conditional normal model, bao gồm hai cách biểu diễn tương đương cũng như mối liên hệ chặt chẽ hơn so với mô hình tổng quát trước đó.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"mô hình trong 13.3.2"*
+>
+> Lỗi gõ phím nhỏ: trong giáo trình là Section 11.3.2 chứ không phải 13.3.2.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng và nêu đủ hai cách biểu diễn của mô hình: phân phối trực tiếp của Y_i và thông qua sai số ngẫu nhiên epsilon_i iid.
+> - Nắm rất chuẩn sự khác biệt cốt lõi so với phần trước: nâng từ không tương quan (uncorrelated) lên độc lập (independent), và từ việc chỉ biết 2 moment đầu tiên sang xác định rõ toàn bộ hàm phân phối chuẩn.
+>
+> **💡 Deeper notes**
+> - Khi viết dạng $Y_i = \alpha + \beta x_i + \epsilon_i$, các $\epsilon_i$ cần nhấn mạnh tính cùng phân phối (identically distributed) ngoài tính độc lập (i.i.d.), nhằm đảm bảo tính đồng nhất phương sai (homoscedasticity) $\sigma^2$ xuyên suốt mọi $x_i$.
+
+<br>
+
+<a id="node-q4wudzl"></a>
+
+###### Joint PDF for Linear Regression
+
+<p align="center"><kbd><img src="assets/6702ditiqb5.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> rất dễ hiểu, với giả định independent, ta có joint pdf của Yi = tích marginal pdf. Và ta sẽ dùng cái này để thực hiện các quy trình suy luận như tìm MLE của α, β, và σ²: Thấy gì không, đây chính xác là thứ mà ta làm trong Bishop: tìm MLE của 𝐰 của mô hình: giả định Ti \~ n(𝐰ᵀ𝐱i, 1/β)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc bản chất: nhận diện đúng tính độc lập dẫn đến việc nhân các hàm mật độ, đồng thời có liên hệ trực tiếp và chính xác với mô hình hồi quy tuyến tính trong sách PRML của Bishop.
+>
+> **✓ Strengths**
+> - Hiểu đúng bản chất của hàm hợp xác suất (joint pdf) dưới giả thiết độc lập là tích các pdf thành phần.
+> - Liên hệ rất tốt với kiến thức trong sách Bishop (PRML) về bài toán hồi quy tuyến tính với giả định nhiễu Gauss.
+>
+> **💡 Deeper notes**
+> - Lưu ý về sự trùng lặp ký hiệu: trong sách Bishop, ký hiệu β thường được dùng để chỉ độ chính xác (precision, tức 1/σ²), trong khi ở tài liệu này β là hệ số hồi quy (slope). Tránh nhầm lẫn vai trò của ký hiệu β giữa hai ngữ cảnh.
+> - Về mặt bản chất, các mật độ xác suất ở đây là mật độ có điều kiện theo biến đầu vào x (conditional pdf p(y|x, θ)), dù giáo trình dùng thuật ngữ 'marginal pdf' do đang xem các giá trị x là cố định.
+
+<br>
+
+<a id="node-efv27w1"></a>
+
+###### Bivariate Normal Model
+
+<p align="center"><kbd><img src="assets/nvkt4fr1ih.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/x2yrid49jd8.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> rồi, có khi {xi} thật ra không phải các gía trị hằng số chọn sẵn, mà cũng là observed value của một đại lượng ngẫu nhiên nào đó. Khi đó ta sẽ phải phát triển mô hình trong đó: {(xi,yi)} là observed value của random variable (Xi, Yi)
+>
+>
+>
+> Vậy ở đây ta giả định: {(xi,yi)} là observed value của random vector (Xi, Yi) độc lập, có joint distribution là bivariate normal: bivariate normal (μx, μy, σ²x, σ²y, ρ), là distribution mình đã học trong chap4.
+>
+>
+>
+> Và joint pdf của (X1,Y1), (X2,Y2),.. cũng sẽ là tích các joint pdf
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú tóm tắt rất chính xác động lực chuyển sang mô hình phân phối chuẩn hai chiều (khi biến dự báo cũng là biến ngẫu nhiên) cùng các giả định cốt lõi về tính độc lập và hàm mật độ đồng thời.
+>
+> **✓ Strengths**
+> - Nắm vững lý do cốt lõi: biến dự báo x_i trên thực tế thường là giá trị quan sát của biến ngẫu nhiên thay vì hằng số cố định chọn trước.
+> - Tóm tắt đầy đủ các giả thiết quan trọng: các cặp (X_i, Y_i) độc lập, tuân theo phân phối chuẩn hai chiều cùng tham số và hàm mật độ đồng thời của mẫu là tích các hàm mật độ thành phần.
+>
+> **💡 Deeper notes**
+> - Mặc dù các vector (X_i, Y_i) độc lập với nhau giữa các quan sát khác nhau (i != j), bản thân X_i và Y_i trong cùng một quan sát lại có tương quan với nhau thông qua hệ số tương quan rho.
+
+<br>
+
+<a id="node-3wizpa4"></a>
+
+###### Bivariate Normal Regression Model
+
+<p align="center"><kbd><img src="assets/1xg46xfncz5.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/k3ueom6qie.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Rồi, đoạn này đại ý là, dù là trong case này, ta phải coi xi là giá trị quan sát được của random variable Xi, nhưng bài toán chủ yếu vẫn là mong muốn dự đoán Y từ x. Vậy thì, như đã biết ở chương 4 rằng, nếu có X, Y \~ bivariate normal, thì marginal pdf của X, hay Y cũng là normal, và conditional pdf của Y|X=x cũng là normal, cụ thể là n(μy + ρ(σy/σx)(x-μx), ...)
+>
+>
+>
+> Do đó, nếu ta đã giả định (xi, yi) là giá trị quan sát được của (Xi,Yi) \~ bivariate normal thì DĨ NHIÊN POPULATION REGRESSION: E\[Y|X=x\] SẼ IMPLY (Ý LÀ TỰ NHIÊN SẼ PHẢI) là MỘT hàm tuyến tính theo x: E\[Y|X=x\] = ρ\[σy/σx\] x + \[μy - ρ(σy/σx)μx\], và ta không cần giả định này (vì nó là kết quả của giả định bivariate normal rồi)
+>
+>
+>
+> Và mô hình này cũng sẽ giống conditional normal ở chỗ: Var(Y|x) = không phụ thuộc x.
+>
+>
+>
+> ---
+>
+>
+>
+> Cuối cùng, đại ý là ngay cả khi ta dùng bivariate normal model, thì phần lớn ta sẽ vẫn chỉ dùng conditional distribution của (Y1,...Yn) dựa trên (X1=x1,X2=x2,....). Có nghĩa là, khi đó nó cũng chỉ y như mô hình conditional normal.
+>
+>
+>
+> Nói cách khác, một khi ta đã dựa trên giá trị cụ thể x1,x2,... thì việc nó là observed value của các biến ngẫu nhiên X1, ...Xn hay là fixed value ngay từ đầu không khác gì nhau. 
+>
+>
+>
+> Do đó, trong simple linear regression, TA KHÔNG DÙNG CÁI YẾU TỐ PHÂN PHỐI JOINT CỦA X,Y LÀ BIVARIATE NORMAL, TRỪ VIỆC DÙNG NÓ ĐỂ ĐỊNH NGHĨA RA CONDITIONAL DISTRIBUTION.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Ghi chú nắm rất chắc và diễn giải chính xác bản chất của mô hình hồi quy tuyến tính dưới giả định phân phối chuẩn hai biến (bivariate normal).
+>
+> **✓ Strengths**
+> - Hiểu đúng điểm mấu chốt: tính tuyến tính của E[Y|x] là hệ quả tất yếu suy ra từ giả định chuẩn hai biến chứ không cần phải giả định thêm như mô hình hồi quy trước đó.
+> - Nắm chuẩn tính chất phân phối có điều kiện Y|X=x cũng có dạng chuẩn và phương sai có điều kiện Var(Y|x) độc lập với x (không đổi theo x).
+>
+> **💡 Deeper notes**
+> - Phương sai có điều kiện cụ thể là Var(Y|x) = σ_Y^2 (1 - ρ^2), cho thấy mối tương quan ρ càng mạnh (|ρ| càng gần 1) thì độ bất định (phương sai) của Y khi đã biết x càng giảm.
+
+<br>
+
+<a id="node-c6564df"></a>
+
+###### Estimation with Normal Errors
+
+<p align="center"><kbd><img src="assets/dw7q6b2eosu.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/autcnqa56a5.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Conditional normal model:
+>
+>
+>
+> (x1,y1),... (xn,yn)
+>
+>
+>
+> x1,x2,...xn là các hằng cố định có sẵn.
+>
+>
+>
+> y1,y2,...yn là observed value của Y1, Y2,...Yn độc lập
+>
+>
+>
+> Yi \~ normal(α+βxi, σ²)
+>
+>
+>
+> ---
+>
+>
+>
+> x1,x2,...xn là các hằng cố định có sẵn.
+>
+>
+>
+> y1,y2,...yn là observed value của Y1, Y2,...Yn
+>
+>
+>
+> Yi = α + βxi + εi, với εi \~ normal(0, σ²), εi độc lập
+>
+>
+>
+> ---
+>
+>
+>
+> Tìm Maximum Likelhood estimator cho α, β, σ²: 
+>
+>
+>
+> (t1,𝐱1), (t2,𝐱2)...
+>
+>
+>
+> t1, t2 ... là observed value của các random variable T1, T2,....Ti độc lập \~ normal(𝐰ᵀΦ(𝐱i), 1/β)
+>
+>
+>
+> cũng tương đương giả định: residual error εi \~ normal(0, 1/β)
+>
+>
+>
+> ---
+>
+>
+>
+> Likehood = L(θ|𝐱) = f(𝐱|θ)
+>
+>
+>
+> L(α, β, σ²|𝐱, 𝐲) = f(y1,y2,...yn|α, β, σ²,𝐱)
+>
+>
+>
+> Vì tính độc lập:  f(y1,y2,...yn|α, β, σ²,𝐱) = Πi f(yi|α, β, σ²,𝐱)
+>
+>
+>
+> Với Yi \~ n(α + βxi, σ²) 
+>
+>
+>
+> thì pdf: f(yi|xi, α, β, σ²) = (1/√2πσ²) exp{-(yi-α - βxi)²/2σ²}
+>
+>
+>
+> ..= Πi f(yi|α, β, σ²,𝐱)
+>
+>
+>
+> = Πi (1/√2πσ²) exp{-(yi-α - βxi)²/2σ²}
+>
+>
+>
+> log Likelihood:
+>
+>
+>
+> log Πi (1/√2πσ²) exp{-(yi-α - βxi)²/2σ²}
+>
+>
+>
+> = Σi log (1/√2πσ²) exp{-(yi-α - βxi)²/2σ²}
+>
+>
+>
+> = Σi log (1/√2πσ²) + Σi log exp{-(yi-α - βxi)²/2σ²}
+>
+>
+>
+> = Σi log (2πσ²)^(-1/2) + Σi {-(yi-α - βxi)²/2σi²}
+>
+>
+>
+> = (-1/2) Σi log (2π)  + (-1/2) Σi log(σ²) + (1/2σ²) Σi {-(yi - α - βxi)²}
+>
+>
+>
+> = - (n/2) log (2π)  - n/2) log(σ²) - (1/2σ²) Σi (yi - α - βxi)²
+>
+>
+>
+> ---
+>
+>
+>
+> Như vậy bài toán:
+>
+>
+>
+> maximize\_α, β, σ² {- (n/2) log (2π)  - n/2) log(σ²) - (1/2σ²) Σi (yi - α - βxi)²}
+>
+>
+>
+> equivalent:
+>
+>
+>
+> maximize\_α, β, σ² { -(n/2) log(σ²) - (1/2σ²) Σi (yi - α - βxi)²}
+>
+>
+>
+> fixed σ² fixed:
+>
+>
+>
+> maximize\_α, β { -(n/2) log(σ²) - (1/2σ²) Σi (yi - α - βxi)²}
+>
+>
+>
+> equivalent:
+>
+>
+>
+> maximize\_α, β {-Σi (yi - α - βxi)²}
+>
+>
+>
+> equivalent
+>
+>
+>
+> minimize\_α, β {Σi (yi - α - βxi)²}
+>
+>
+>
+> Gỉải theo β trước:
+>
+>
+>
+> minimize\_β {Σi (yi - α - βxi)²}
+>
+>
+>
+> d/dβ \[Σi (yi - α - βxi)²\]
+>
+>
+>
+> = Σi d/dβ \[(yi - α - βxi)²\]
+>
+>
+>
+> = Σi d/d(yi - α - βxi) \[(yi - α - βxi)²\] . d/dβ (yi - α - βxi)
+>
+>
+>
+> = Σi 2(yi - α - βxi) (-xi)
+>
+>
+>
+> = - Σi 2xi(yi - α - βxi)
+>
+>
+>
+> Điều kiện cần tối ưu bậc nhất: - Σi 2xi(yi - α - βxi) = 0
+>
+>
+>
+> ⇔ - Σi xi(yi - α - βxi) = 0
+>
+>
+>
+> ⇔ - (Σi xiyi - Σixiα - Σi βxi²) = 0
+>
+>
+>
+> ⇔ Σi xiyi - Σixiα - Σi βxi² = 0
+>
+>
+>
+> ⇔ Σi xiyi - Σixiα = Σi βxi²
+>
+>
+>
+> ⇔ (Σi xiyi - Σixiα)/Σi xi² = β 
+>
+>
+>
+> ⇔ Σi xi(yi - α)/Σi xi² = β  (1)
+>
+>
+>
+> ---
+>
+>
+>
+> Giải theo α: 
+>
+>
+>
+> minimize\_α {Σi (yi - α - βxi)²}
+>
+>
+>
+> d/dα \[Σi (yi - α - βxi)²\]
+>
+>
+>
+> =  Σi d/dα (yi - α - βxi)²
+>
+>
+>
+> =  Σi d/d(yi - α - βxi) (yi - α - βxi)² . d/dα (yi - α - βxi)²
+>
+>
+>
+> =  2 Σi (yi - α - βxi) (-1)
+>
+>
+>
+> =  -2 Σi (yi - α - βxi) 
+>
+>
+>
+> Điều kiện cần bậc nhất: -2 Σi (yi - α - βxi)  = 0
+>
+>
+>
+> ⇔ Σi (yi - α - βxi) = 0
+>
+>
+>
+> ⇔ Σi yi - Σi α - Σiβxi = 0
+>
+>
+>
+> ⇔ (1/n) (Σi yi - βΣixi) =  α 
+>
+>
+>
+> ⇔ α = (Σi yi)/n - β(Σixi)/n 
+>
+>
+>
+> ⇔ α = ȳ - βx̄
+>
+>
+>
+> Thay vào (1): Σi xi(yi - ȳ + βx̄)/Σi xi² = β
+>
+>
+>
+> (Σi xiyi - Σi xiȳ + Σi xiβx̄)/Σi xi² = β
+>
+>
+>
+> Σi xiyi - Σi xiȳ + Σi xiβx̄ = βΣi xi²
+>
+>
+>
+> Σi xiyi - ȳ Σixi + x̄ β Σixi = βΣi xi²
+>
+>
+>
+> Σi xiyi - ȳ Σixi = βΣi xi² - x̄ β Σixi
+>
+>
+>
+> Σi xiyi - ȳ Σixi = β(Σi xi² - x̄ Σixi)
+>
+>
+>
+> Σi (xiyi - ȳxi) = βΣi (xi² - x̄ xi)
+>
+>
+>
+> ---
+>
+>
+>
+>  Xét Σi (xi² - x̄ xi) = Σi (xi² - 2x̄ xi + x̄ xi + x̄ ² - x̄ ²)
+>
+>
+>
+> = Σi (xi² - 2x̄ xi + x̄ ² + x̄ xi - x̄ ²)
+>
+>
+>
+> = Σi \[(xi - x̄ )² + x̄ (xi - x̄ )\]
+>
+>
+>
+> = Σi (xi - x̄ )² + Σi \[x̄ (xi - x̄ )\]
+>
+>
+>
+> = Σi (xi - x̄ )² + x̄  (Σi xi - Σi x̄ )
+>
+>
+>
+> = Σi (xi - x̄ )² = Sxx
+>
+>
+>
+> ---
+>
+>
+>
+> Xét Σi (xiyi - ȳxi) = Σi (xiyi - ȳxi + x̄ yi - x̄ yi + x̄ ȳ - x̄ ȳ)
+>
+>
+>
+> = Σi (xiyi - ȳxi - x̄ yi + x̄ ȳ + x̄ yi - x̄ ȳ)
+>
+>
+>
+> = Σi (xiyi - ȳxi - x̄ yi + x̄ ȳ) + Σi(x̄ yi - x̄ ȳ)
+>
+>
+>
+> = Σi (xi - x̄ )(yi - ȳ) + x̄ (Σiyi - Σi ȳ)
+>
+>
+>
+> = Σi (xi - x̄ )(yi - ȳ) = Sxy
+>
+>
+>
+> β\_ML = Sxy/Sxx = b
+>
+>
+>
+> α\_ML = ȳ - βML x̄ = a
+
+📹 [Xem video trên YouTube](https://www.youtube.com/watch?v=dQ-blTqxLaM)
+
+> [!TIP]
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **92/100** · ✓ Move on
+>
+> Ghi chú rất tốt, bạn đã tự thực hiện chi tiết toàn bộ các bước đạo hàm và biến đổi đại số để tìm nghiệm MLE cho α và β thay vì chỉ chép lại kết quả. Chỉ cần bổ sung thêm bước tìm nghiệm MLE cho σ² để hoàn thành trọn vẹn mục tiêu ban đầu.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"Tìm Maximum Likelhood estimator cho α, β, σ²:"*
+>
+> Ghi chú đặt mục tiêu tìm MLE cho cả ba tham số (α, β, σ²) nhưng mới chỉ giải chi tiết cho α và β, chưa thực hiện bước thay α_ML, β_ML vào log-likelihood để tối ưu tìm nghiệm σ²_ML.
+>
+> **2.** *"=  Σi d/d(yi - α - βxi) (yi - α - βxi)² . d/dα (yi - α - βxi)²"*
+>
+> Lỗi gõ ký hiệu quy tắc chuỗi đạo hàm: thừa số thứ hai phải là d/dα (yi - α - βxi) thay vì còn bình phương.
+>
+> **3.** *"= Σi log (2πσ²)^(-1/2) + Σi {-(yi-α - βxi)²/2σi²}"*
+>
+> Lỗi đánh máy nhỏ ở mẫu số: xuất hiện chỉ số i ở σi² (phương sai σ² là hằng số đẳng phương sai homoscedasticity).
+>
+>
+> **✓ Strengths**
+> - Hiểu rõ bản chất hàm log-likelihood dưới mô hình chuẩn điều kiện và chỉ ra được mối liên hệ trực tiếp giữa MLE và bài toán bình phương cực tiểu (OLS/RSS).
+> - Tự triển khai đầy đủ, mạch lạc các bước đạo hàm riêng bậc nhất theo α và β để tìm điều kiện cần tối ưu.
+> - Biến đổi đại số tường minh việc đưa tổng các tích chéo về dạng độ lệch chuẩn tâm Sxx và Sxy.
+>
+> **💡 Deeper notes**
+> - Để bài toán tìm cực trị hoàn chỉnh về mặt toán học, ngoài điều kiện cần bậc nhất (FOC), có thể kiểm tra thêm ma trận Hessian (điều kiện đủ bậc hai) để khẳng định đây là điểm cực đại toàn cục (hàm lồi đối với RSS).
+> - Nghiệm MLE của σ² thu được có mẫu số là n (được đề cập ở cuối trang sách tham khảo), đây là ước lượng chệch (biased), khác với ước lượng không chệch hiệu chỉnh bậc tự do s² có mẫu số là n - 2.
+
+**🔗 See also:** [Two Steps of Regression Analysis](#node-7ilb1oo)
+
+<br>
+
+<a id="node-k77vw5e"></a>
 
