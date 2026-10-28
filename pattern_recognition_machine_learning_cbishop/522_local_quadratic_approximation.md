@@ -1,6 +1,6 @@
 # 5.2.2 Local quadratic approximation
 
-📊 **Progress:** `1` Notes | `12` Screenshots | `1` AI Reviews
+📊 **Progress:** `3` Notes | `14` Screenshots | `3` AI Reviews
 
 ---
 <a id="node-0injcxa"></a>
@@ -28,8 +28,6 @@
 <p align="center"><kbd><img src="assets/q49rp4btz5o.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/uo0pb0cz86c.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/bdl2ipc201d.png" width="80%"></kbd></p>
 
 <p align="center"><kbd><img src="assets/r2lcu0tndz.png" width="80%"></kbd></p>
 
@@ -537,6 +535,233 @@
 >
 > **💡 Deeper notes**
 > - Khai triển này ngầm giả định hàm lỗi liên tục và khả vi đến cấp hai (lớp C²) trong một lân cận đủ nhỏ quanh điểm ŵ, đồng thời đã bỏ qua các số hạng bậc ba và cao hơn (O(||w - ŵ||³)).
+
+<br>
+
+<a id="node-b0ew8l7"></a>
+
+#### Positive Definite Hessian Matrix
+
+<p align="center"><kbd><img src="assets/aypc0fqxee8.png" width="80%"></kbd></p>
+
+<p align="center"><kbd><img src="assets/aue01ucz0hh.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Chứng minh để 𝐇 xác định dương thì λi &gt; 0 ∀i
+>
+>
+>
+> 𝐇 xác định dương theo định nghĩa, khi 𝐯ᵀ𝐇𝐯 &gt; 0 ∀ 𝐯 khác 0
+>
+>
+>
+> 𝐯 bất kì đều ∈ span{𝐮1,..𝐮n} nên 𝐯 = Σi αi 𝐮i for some {αi}
+>
+>
+>
+> và nếu xét 𝐯 khác 0 và 𝐯 = Σi αi 𝐮i vector 𝛂 phải có ít nhất một phần tử khác 0
+>
+>
+>
+> nên 𝐯ᵀ𝐇𝐯 &gt; 0 ∀ 𝐯 khác 0
+>
+>
+>
+> ⇔ (Σi αi 𝐮i)ᵀ𝐇 (Σi αi 𝐮i) &gt; 0 ∀𝛂 = (α1,α2...) có ít nhất một αi khác 0
+>
+>
+>
+> ---
+>
+>
+>
+> Xét 𝐇 (Σi αi 𝐮i) = Σi 𝐇 αi 𝐮i = Σi αi 𝐇𝐮i = Σi αiλi 𝐮i
+>
+>
+>
+> (Σi αi 𝐮i)ᵀ𝐇 (Σi αi 𝐮i) = (Σi αi 𝐮i)ᵀ (Σi αiλi 𝐮i) = Σi αi² λi
+>
+>
+>
+> ---
+>
+>
+>
+> ⇔ Σi αi² λi &gt; 0 ∀ 𝛂 = (α1,α2...) có ít nhất một αi khác 0
+>
+>
+>
+> Chứng minh Σi αi² λi &gt; 0 ∀ 𝛂 = (α1,α2...) thì mọi λi đều &gt; 0 (điều kiện cần):
+>
+>
+>
+> Chọn 𝛂 = (1,0,...) thì Σi αi² λi &gt; 0 (vì nó đúng với mọi α)
+>
+>
+>
+> ⇔ λ1 &gt; 0.
+>
+>
+>
+> Tương tự ta có thể chọn 𝛂 = (0,1,0...) để chỉ ra λ2 phải &gt; 0, và các λ khác cũng vậy.
+>
+>
+>
+> ---
+>
+>
+>
+> Chứng minh nếu mọi λi &gt; 0 thì Σi αi² λi &gt; 0 ∀ 𝛂 = (α1,α2...) có ít nhất một αi khác 0 (điều kiện đủ)
+>
+>
+>
+> Cái này dĩ nhiên vì λi &gt; 0 ⇔ αi² λi ≥ 0 do αi² ≥ 0
+>
+>
+>
+> ⇒ Σi αi² λi ≥ 0 với mọi 𝛂 = (α1,α2,...)
+>
+>
+>
+> Nhưng do có ít nhất một αi khác 0 nên Σi αi² λi &gt; 0
+>
+>
+>
+> Chứng minh xong.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **90/100** · ✓ Move on
+>
+> Ghi chú đã chứng minh rất rõ ràng và chính xác cả hai chiều điều kiện cần và đủ cho tính chất ma trận đối xứng xác định dương khi và chỉ khi mọi giá trị riêng đều dương.
+>
+> **✓ Strengths**
+> - Trình bày mạch lạc cấu trúc chứng minh hai chiều (điều kiện cần và điều kiện đủ).
+> - Lập luận chặt chẽ khi chỉ ra vector khác 0 tương đương với vector hệ số có ít nhất một phần tử khác 0.
+>
+> **💡 Deeper notes**
+> - Phép biến đổi từ $(\sum_i \alpha_i \mathbf{u}_i)^T \mathbf{H} (\sum_i \alpha_i \mathbf{u}_i)$ thành $\sum_i \alpha_i^2 \lambda_i$ ngầm định cơ sở vector riêng $\{\mathbf{u}_i\}$ là trực chuẩn (orthonormal basis), điều này luôn khả thi do ma trận Hessian $\mathbf{H}$ đối xứng.
+
+<br>
+
+<a id="node-ukztrdt"></a>
+
+##### Exercise 5.12 Local Minimum Condition
+
+<p align="center"><kbd><img src="assets/cudefulksct.png" width="80%"></kbd></p>
+
+> [!NOTE]
+> Bài này yêu cầu chứng minh điều kiện cần và đủ để 𝐰\* là minimum của E(𝐰) ≈ E(𝐰\*) + (1/2)(𝐰-𝐰\*)ᵀ𝐇(𝐰-𝐰\*) là 𝐇 tại 𝐰\* xác định dương.
+>
+>
+>
+> Trong bài này cần hiểu nói 𝐰\* là local minimum tức là strict local minimum: 
+>
+>
+>
+> Taylor expand E(𝐰) tại 𝐰\* 5.32:
+>
+>
+>
+> E(𝐰) = E(𝐰\*) + ∇E(𝐰\*)(𝐰 - 𝐰\*) + (1/2)(𝐰-𝐰\*)ᵀ𝐇(𝐰\*)(𝐰-𝐰\*)
+>
+>
+>
+> Vì đề bài đã cho 𝐰\* là điểm dừng nên
+>
+>
+>
+> E(𝐰) = E(𝐰\*) + (1/2)(𝐰-𝐰\*)ᵀ𝐇(𝐰-𝐰\*)
+>
+>
+>
+>
+>
+> ---
+>
+>
+>
+> Chứng minh điều kiện đủ: 𝐇(𝐰\*) xác định dương thì 𝐰\* là local minimum:
+>
+>
+>
+> Đơn giản: Vì 𝐇(𝐰\*) xác định dương nên 𝐯ᵀ𝐇𝐯 &gt; 0 ∀ 𝐯 ≠ 0
+>
+>
+>
+> ⇒ (𝐰-𝐰\*)ᵀ𝐇(𝐰-𝐰\*) &gt; 0 ∀ 𝐰 ≠ 𝐰\*
+>
+>
+>
+> ⇔ E(𝐰) - E(𝐰\*) &gt; 0 ∀ 𝐰 ≠ 𝐰\* ⇒ 𝐰\* là strict local minimum ⇒ cũng là local minimum
+>
+>
+>
+> ---
+>
+>
+>
+> Chứng minh điều kiện cần: 𝐰\* là local minimum, đồng nghĩa E(𝐰) &gt; E(𝐰\*) ∀ 𝐰 lân cận
+>
+>
+>
+> Ta cần chứng minh 𝐇 xác định dương, tức 𝐯ᵀ𝐇𝐯 &gt; 0 ∀ 𝐯 ≠ 0 hoặc mọi trị riêng đều dương.
+>
+>
+>
+> Giả sử tồn tại λ1 ≤ 0:
+>
+>
+>
+> 𝐰\* = Σi α\*i 𝐮i = α\*1 𝐮1 + α\*2 𝐮2 + ...
+>
+>
+>
+> xét vector 𝐰 = (α\*1 + ε) 𝐮1 + α\*2 𝐮2 + ... = ε 𝐮1 + α\*1 𝐮1 + α\*2 𝐮2 + ... với ε &gt; 0
+>
+>
+>
+> ⇒ 𝐰 - 𝐰\* = ε 𝐮1
+>
+>
+>
+> Khi đó E(𝐰) - E(𝐰\*) = (1/2)(𝐰-𝐰\*)ᵀ𝐇(𝐰-𝐰\*)
+>
+>
+>
+> = (1/2)(ε 𝐮1)ᵀ𝐇(ε 𝐮1)
+>
+>
+>
+> = (1/2)ε² 𝐮1ᵀ𝐇𝐮1
+>
+>
+>
+> = (1/2)ε² 𝐮1ᵀλ1𝐮1
+>
+>
+>
+> = (1/2)ε²λ1 𝐮1ᵀ𝐮1
+>
+>
+>
+> = (1/2)ε²λ1 ≤ 0
+>
+>
+>
+> Vậy nếu 𝐰\* là local minimum thì mọi λi &gt; 0 ⇒ 𝐇 xác định dương.
+
+> [!TIP]
+> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+>
+> Lời giải rất tốt, nắm vững bản chất khai triển Taylor bậc hai và quan hệ giữa ma trận Hessian với tính chất cực trị. Bạn cũng rất tinh ý khi nhận ra bài toán ngầm định 'strict local minimum' để điều kiện cần là xác định dương.
+>
+> **✓ Strengths**
+> - Hiểu và chỉ ra đúng giả định ngầm của đề bài rằng 'local minimum' ở đây là strict local minimum để Hessian phải là xác định dương thay vì chỉ nửa xác định dương.
+> - Chứng minh điều kiện đủ rõ ràng thông qua định nghĩa ma trận xác định dương trên dạng toàn phương.
+> - Chứng minh điều kiện cần bằng phản chứng khéo léo thông qua việc biến thiên dọc theo vector riêng ứng với trị riêng không dương.
+>
+> **💡 Deeper notes**
+> - Về mặt giải tích chặt chẽ tổng quát, với hàm khả vi bậc hai bất kỳ, điều kiện cần cho cực tiểu địa phương (yếu) chỉ là Hessian nửa xác định dương (H >= 0). Việc đề bài Bishop 5.12 yêu cầu 'xác định dương' là điều kiện cần và đủ xuất phát từ việc xét trực tiếp trên mô hình sai số toàn phương thuần túy (5.32) và đòi hỏi cực tiểu địa phương ngặt (strict local minimum).
 
 <br>
 
