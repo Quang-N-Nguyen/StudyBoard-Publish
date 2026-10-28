@@ -1,6 +1,6 @@
 # Appendix C. Matrices
 
-📊 **Progress:** `19` Notes | `23` Screenshots | `17` AI Reviews
+📊 **Progress:** `19` Notes | `24` Screenshots | `17` AI Reviews
 
 ---
 <a id="node-zscgdad"></a>
@@ -97,6 +97,8 @@
 
 <p align="center"><kbd><img src="assets/aec6vewmttk.png" width="80%"></kbd></p>
 
+<p align="center"><kbd><img src="assets/95axxbm9c6e.png" width="80%"></kbd></p>
+
 > [!NOTE]
 > Tiếp theo là một identity gọi là Woodbury identity. Nói chung là biết vậy thôi, còn chứng minh thì cũng dễ. Chỉ là biết các công thức này để khi nào cần tính một phép toán các matrix thì ta có thể lôi nó ra và thay vì tính cái bên trái thì ta sẽ tính cái bên phải giúp tiết kiệm chi phí tính toán hơn, vậy thôi. Chứ bản thân các identity này cũng ko cần phải mổ xẻ phân tích làm gì.
 >
@@ -113,9 +115,23 @@
 > Độc lập tuyến tính thì dễ. Theo cái định nghĩa hiểu nôm na là cứ một cái vector, ví dụ như một cái bộ vector mà không có vector nào có thể được tạo ra bởi mấy thằng khác thì nó là một bộ vector độc lập tuyến tính. Còn định nghĩa chính thức thì một cái bộ vector mà cái tổ hợp tuyến tính duy nhất của chúng để tạo ra vector zero thì chỉ có thể là một cái tổ hợp tuyến tính với bộ hệ số là tất cả đều bằng 0. Tổ hợp tuyến tính thì có nghĩa là gì? Tổ hợp tuyến tính là một cái tổng thôi. Tổng tất cả các vector và mỗi vector được nhân với một cái hệ số, một cái trọng số, một cái hệ số. Như vậy thì với những cái bộ hệ số khác nhau thì mình sẽ có những cái tổ hợp tuyến tính khác nhau. Vậy thì nếu như mà một cái bộ vector mà mình muốn tạo ra vector zero chỉ có một cách là dùng các cái hệ số bằng 0 để tổ hợp tụi nó thì đó là một cái bộ độc lập tuyến tính. Thì đó là định nghĩa chính thức của độc lập tuyến tính nhưng mà hiểu một cách nôm na thì độc lập tuyến tính thì có nghĩa là một cái bộ vector mà không có cái vector nào trong đó được tạo ra bởi cách kết hợp những cái vector còn lại.
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟡 Minor issues — ✅ **90/100** · ✓ Move on
 >
-> Ghi chú của bạn giải thích rất tốt về công dụng thực tế của Woodbury identity và khái niệm độc lập tuyến tính một cách rõ ràng, dễ hiểu. Để hoàn thiện hơn, bạn có thể bổ sung định nghĩa cụ thể về hạng của ma trận (rank) được đề cập trong bài.
+> Ghi chú nắm rất chắc ý nghĩa của công thức Woodbury và bản chất của tính độc lập tuyến tính. Bạn có thể bổ sung thêm kích thước của ma trận D để làm rõ lý do tại sao vế phải lại tính toán rẻ hơn.
+>
+> **🟡 Minor issues**
+>
+> **1.** *"khi nào A là matrix diagonal lớn, và B có nhiều hàng, ít cột, thì khi đó tính cái bên phải sẽ rẻ hơn."*
+>
+> Để vế phải thực sự rẻ hơn, cần thêm điều kiện kích thước của D nhỏ (tương ứng với số cột của B và số hàng của C nhỏ), nhờ đó phép nghịch đảo (D + CA⁻¹B) chỉ thực hiện trên ma trận cỡ nhỏ thay vì ma trận lớn ban đầu.
+>
+>
+> **✓ Strengths**
+> - Hiểu đúng mục đích ứng dụng thực tế của đẳng thức Woodbury trong việc tối ưu hóa chi phí tính toán ma trận nghịch đảo.
+> - Giải thích khái niệm độc lập tuyến tính và tổ hợp tuyến tính rất trực quan, chính xác cả về mặt định nghĩa toán học lẫn trực giác.
+>
+> **💡 Deeper notes**
+> - Nếu A có kích thước N x N (với N rất lớn) và B có kích thước N x k (với k << N), thì ma trận bên trong cần nghịch đảo ở vế phải (D + CA⁻¹B) chỉ có kích thước k x k, giúp giảm độ phức tạp từ O(N³) xuống O(k³).
 
 <br>
 
@@ -219,9 +235,17 @@
 > Còn trường hợp ta có vector → vector function 𝐛 → 𝐚. Thì đạo hàm của 𝐚 đối với 𝐛, sẽ là matrix mà hàng i sẽ là gradienet vector của ai đối với vector 𝐛: (∂a/∂b)ij = ∂ai/∂bj và matrix này gọi là Jacobian
 
 > [!TIP]
-> 🤖 **AI Check** — 🟢 Pass — ✅ **95/100** · ✓ Move on
+> 🤖 **AI Check** — 🟢 Pass — ✅ **100/100** · ✓ Move on
 >
-> Bạn đã giải thích chính xác và đầy đủ các khái niệm đạo hàm vector và ma trận được trình bày trong hình ảnh, đồng thời bổ sung các thuật ngữ quan trọng như gradient và Jacobian. Để bài viết khách quan hơn, bạn nên tránh những nhận xét mang tính cá nhân ngay từ đầu.
+> Ghi chú rất chuẩn xác và rõ ràng. Bạn không chỉ nắm vững các công thức trong tài liệu mà còn liên hệ chính xác đến các khái niệm quen thuộc trong Machine Learning như Gradient vector và ma trận Jacobian.
+>
+> **✓ Strengths**
+> - Diễn giải chính xác định nghĩa đạo hàm của vector theo scalar và ngược lại theo từng thành phần chỉ số.
+> - Mở rộng và liên hệ chuẩn xác đạo hàm của hàm scalar theo vector/ma trận với Gradient vector/Gradient matrix.
+> - Nhận diện đúng ma trận đạo hàm giữa hai vector chính là ma trận Jacobian theo quy ước bố cục tử số (numerator layout).
+>
+> **💡 Deeper notes**
+> - Cần lưu ý về quy ước bố cục (layout convention): tài liệu đang dùng quy ước tử số (numerator layout), trong đó đạo hàm của vector cột a (m phần tử) theo vector cột b (n phần tử) cho ma trận m x n với hàng i là (∂a_i/∂b)^T. Trong một số tài liệu khác theo quy ước mẫu số (denominator layout), ma trận này sẽ bị chuyển vị thành n x m.
 
 <br>
 
