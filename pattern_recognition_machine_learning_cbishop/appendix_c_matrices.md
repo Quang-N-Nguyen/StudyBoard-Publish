@@ -1,6 +1,6 @@
 # Appendix C. Matrices
 
-📊 **Progress:** `19` Notes | `24` Screenshots | `17` AI Reviews
+📊 **Progress:** `19` Notes | `23` Screenshots | `17` AI Reviews
 
 ---
 <a id="node-zscgdad"></a>
@@ -96,8 +96,6 @@
 ##### Độc lập tuyến tính
 
 <p align="center"><kbd><img src="assets/aec6vewmttk.png" width="80%"></kbd></p>
-
-<p align="center"><kbd><img src="assets/95axxbm9c6e.png" width="80%"></kbd></p>
 
 > [!NOTE]
 > Tiếp theo là một identity gọi là Woodbury identity. Nói chung là biết vậy thôi, còn chứng minh thì cũng dễ. Chỉ là biết các công thức này để khi nào cần tính một phép toán các matrix thì ta có thể lôi nó ra và thay vì tính cái bên trái thì ta sẽ tính cái bên phải giúp tiết kiệm chi phí tính toán hơn, vậy thôi. Chứ bản thân các identity này cũng ko cần phải mổ xẻ phân tích làm gì.
