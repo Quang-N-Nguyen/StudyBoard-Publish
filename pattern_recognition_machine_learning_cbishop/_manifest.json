@@ -1,6 +1,6 @@
 {
   "title": "Pattern Recognition Machine Learning_C.Bishop",
-  "publishedAt": 1793059519450,
+  "publishedAt": 1793151879557,
   "sections": [
     {
       "title": "📋 Overview",
@@ -486,7 +486,7 @@
       "title": "5.2.2 Local quadratic approximation",
       "path": "pattern_recognition_machine_learning_cbishop/522_local_quadratic_approximation.md",
       "noteCount": 1,
-      "imageCount": 10
+      "imageCount": 12
     },
     {
       "title": "5.7 Ex",
@@ -498,7 +498,7 @@
       "title": "Appendix C. Matrices",
       "path": "pattern_recognition_machine_learning_cbishop/appendix_c_matrices.md",
       "noteCount": 19,
-      "imageCount": 23
+      "imageCount": 24
     },
     {
       "title": "Appendix D. Calculus of Variation",
@@ -508,5 +508,5 @@
     }
   ],
   "totalNotes": 492,
-  "totalImages": 784
+  "totalImages": 787
 }
